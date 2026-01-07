@@ -32,3 +32,4 @@ testem.log
 Thumbs.db
 .pnpm-store
 .npmrc
+proxy.conf.json
