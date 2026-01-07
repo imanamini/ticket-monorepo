@@ -1,0 +1,4 @@
+<app-page-title-bar closeButton="1" (onCloseButtonClick)="closeButton()" [title]="title"></app-page-title-bar>
+<div class="iframe-container">
+  <iframe *ngIf="_html" [srcdoc]="_html"></iframe>
+</div>

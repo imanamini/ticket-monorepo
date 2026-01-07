@@ -1,0 +1,11 @@
+<ui-content-card
+  [title]="'افزایش موجودی کیف پول'"
+  [hasFooter]="false"
+  [hasPoweredLogo]="false"
+  [hasHeaderBackAction]="true"
+  (headerBackActionClicked)="cancelCashIn()"
+>
+  <app-cash-in-applet
+    [ticket]="ticket"
+  ></app-cash-in-applet>
+</ui-content-card>

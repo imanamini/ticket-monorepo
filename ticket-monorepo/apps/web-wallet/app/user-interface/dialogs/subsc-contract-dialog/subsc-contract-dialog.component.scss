@@ -1,0 +1,19 @@
+@import "../../../layout/variables";
+@import "../../../layout/mixins/font-size";
+@import "../../../layout/mixins/flex";
+
+.subscription-dialog {
+  direction: rtl;
+  text-align: right;
+
+  div {
+    p.dialog-description {
+      min-height: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      @include fontSize(12);
+      color: $text-color-lighter;
+      @include flex-center-start;
+    }
+  }
+}

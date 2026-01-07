@@ -1,0 +1,6 @@
+export enum EsLoanRegistrationIcsReportingSteps {
+  ES_LOAN_ICS_REPORTING_CONFIRM = 0,
+  ES_LOAN_ICS_REPORTING_SEND_OTP = 1,
+  ES_LOAN_ICS_REPORTING_CHECK_SCORE = 2
+
+}

@@ -1,0 +1,55 @@
+<app-location-trap [canExit]="true" [canBack]="false" (back)="cancelPay()"></app-location-trap>
+
+<credit-ui-content-box
+  *ngIf="!gettingData"
+  contentBoxTitle="پرداخت با دیجی‌پی"
+  (backClick)="cancelPay()"
+  [showHeader]="true"
+  [bodyPadding]="false"
+  [showCloseButton]="true"
+  [grayMode]="true"
+  [showLogo]="false"
+  [countDown]="0">
+
+  <div class="info-body">
+    <div class="side-padding">
+      <div class="info-body-title">
+        مبلغ را با کدام کارت پرداخت می‌کنید؟
+      </div>
+    </div>
+    <div class="side-padding wallets-wrapper">
+
+      <app-selective-card
+        *ngFor="let item of cards; let i = index"
+        [title]="item.title"
+        [logo]="item.icon"
+        [color]="item.color"
+        [description]="item.description"
+        [isSelected]="selectedIndex === i"
+        (select)="selectedIndex = i"
+      ></app-selective-card>
+
+    </div>
+  </div>
+  <div class="info-footer">
+    <div class="side-padding">
+      <div class="call-to-action-row">
+        <div class="primary-col">
+
+          <credit-ui-button
+            class="primary-button"
+            (buttonClick)="onConfirm()"
+            [styles]="{width: '100%'}"
+            [disabled]="gettingData || routing || !this.cards[this.selectedIndex]"
+          >
+            <ng-container *ngIf="!routing">
+              تایید و ادامه
+            </ng-container>
+            <mat-spinner [diameter]="12" [strokeWidth]="1" *ngIf="routing"></mat-spinner>
+          </credit-ui-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</credit-ui-content-box>
+<page-loading [active]="gettingData"></page-loading>

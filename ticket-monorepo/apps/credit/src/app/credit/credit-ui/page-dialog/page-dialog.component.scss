@@ -1,0 +1,45 @@
+::ng-deep app-page-dialog {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+iframe {
+  width: 100%;
+  flex-grow: 1;
+}
+
+.iframe-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 10px;
+}
+
+@media (max-width: 767px) {
+  .iframe-container {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+  }
+}
+
+
+@media (max-width: 767px) {
+  ::ng-deep .page-dialog-component {
+    width: 100%;
+    height: 100%;
+    max-width: 100% !important;
+
+    .mat-mdc-dialog-container {
+      border-radius: 0;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  ::ng-deep .page-dialog-component {
+    width: 640px;
+    height: 90%;
+    max-width: 90% !important;
+  }
+}

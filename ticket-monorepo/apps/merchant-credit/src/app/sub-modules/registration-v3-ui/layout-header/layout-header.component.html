@@ -1,0 +1,10 @@
+<div class="header-wrapper">
+  <div class="digipay-logo"></div>
+  <span class="title">فعالسازی بانک سامان</span>
+  <div class="action">
+    <ui-api-image  class="logo" (click)="profileClick()" *ngIf="details?.registration?.businessId" width="24px"
+                  height="24px" [imageId]="details.registration.businessId"></ui-api-image>
+    <span class="separator"></span>
+    <span (click)="closeClick()" class="close"></span>
+  </div>
+</div>

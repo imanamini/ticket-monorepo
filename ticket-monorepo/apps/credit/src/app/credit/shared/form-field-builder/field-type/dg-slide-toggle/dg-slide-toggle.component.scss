@@ -1,0 +1,46 @@
+@import "../../style/from-field-builder";
+
+.dg-slide-toggle-wrapper {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .dg-slide-toggle-checkbox {
+    display: none;
+  }
+
+  label {
+    margin: 0;
+  }
+
+  .dg-slide-toggle {
+    height: 24px;
+    width: 40px;
+    position: relative;
+    border-radius: 12px;
+    background-color: $slide-toggle-off-bg;
+
+    &:after {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #FFFFFF;
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      transition: $transition;
+    }
+  }
+
+  .dg-slide-toggle-checkbox:checked ~ .dg-slide-toggle {
+    background-color: $slide-toggle-on-bg;
+
+    &:after {
+      right: 18px;
+    }
+  }
+}

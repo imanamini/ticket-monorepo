@@ -1,0 +1,13 @@
+<div class="select" [ngClass]="{
+  'has-value': true,
+  'is-invalid': hasError,
+  'is-disabled': disabled
+}" #textField>
+  <ng-template [ngTemplateOutlet]="textFieldInput.first.template"></ng-template>
+  <div class="label" (mousedown)="labelClicked($event)">{{label}}</div>
+</div>
+<div class="subscript">
+  <ng-container *ngFor="let notice of notices">
+    <ng-template [ngTemplateOutlet]="notice.template"></ng-template>
+  </ng-container>
+</div>

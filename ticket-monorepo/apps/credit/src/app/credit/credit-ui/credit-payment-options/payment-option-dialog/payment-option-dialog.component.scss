@@ -1,0 +1,107 @@
+@import "../../../../global-styles/variables";
+
+.payment-option-dialog {
+  direction: rtl;
+  text-align: right;
+  color: #4c4c4c;
+  .dialog-header {
+    font-size: 14px;
+    border-bottom: 1px solid $border-color;
+    padding: 16px 24px;
+    .balance {
+      font-size: 12px;
+      font-weight: 100;
+    }
+  }
+  .dialog-body {
+    padding: 24px 32px;
+  }
+  .detail-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: $swatch_steel_500;
+    margin-bottom: 12px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    .label {
+      font-size: 12px;
+    }
+    .value {
+      font-size: 16px;
+    }
+  }
+
+  .separator {
+    height: 1px;
+    background: $border-color;
+    margin: 24px 0;
+  }
+
+  .enter-amount {
+    .label {
+      color: $swatch_steel_500;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: right;
+      margin-bottom: 16px;
+    }
+    input {
+      background: #f5f8fa;
+      direction: ltr;
+      border-radius: 8px 8px 0 0;
+      border: none;
+      width: 100%;
+      display: block;
+      height: 60px;
+      line-height: 60px;
+      font-size: 24px;
+      text-align: center;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+
+  .details {
+    margin: 32px 0 40px 0;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .reject {
+      width: 35%;
+    }
+    .confirm {
+      width: 60%;
+    }
+  }
+}
+
+
+::ng-deep .payment-option-dialog-container {
+  width: 400px;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+@media (max-width: 767px){
+  ::ng-deep .payment-option-dialog-container {
+    width: 100% !important;
+    max-width: initial !important;
+    max-height: initial !important;
+    height: 100% !important;
+  }
+  .payment-option-dialog {
+    .dialog-body {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+}
+

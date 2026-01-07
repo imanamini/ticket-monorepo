@@ -1,0 +1,44 @@
+<div class="ui-amount-input">
+  <form [formGroup]="form" dir="ltr">
+    <mat-form-field
+      class="field"
+      appearance="outline">
+      <input
+        matInput type="text" dir="ltr"
+        (keydown)="inputKeyDown($event)" #inputElement
+        [errorStateMatcher]="matcher"
+        formControlName="amount" autocomplete="off" numericKeyboard="price">
+
+      <mat-icon *ngIf="form.get('amount').value" matSuffix class="empty-btn" (click)="emptyAmount()">cancel</mat-icon>
+      <mat-error>
+        <ng-container *ngIf="form.controls['amount'].errors && form.controls['amount'].errors.min">
+          مبلغ قابل برداشت از اعتبار نمی‌تواند کمتر از
+          {{minAmount | FormattedPrice}}
+          ریال باشد.
+        </ng-container>
+        <ng-container *ngIf="form.controls['amount'].errors && form.controls['amount'].errors.max">
+          <ng-container *ngIf="maxAmountType === 'balance'">
+            مبلغ قابل برداشت از اعتبار نمی‌تواند بیشتر از
+            {{maxAmount | FormattedPrice}}
+            ریال باشد.
+          </ng-container>
+          <ng-container *ngIf="maxAmountType === 'purchase'">
+            مبلغ وارد شده بیشتر از سبدخرید شماست.
+          </ng-container>
+        </ng-container>
+      </mat-error>
+
+      <mat-hint *ngIf="maxAmount !== minAmount" class="rtl" align="end">مبلغ وارد شده باید بین {{minAmount | FormattedPrice}}
+        تا {{maxAmount | FormattedPrice}} ریال باشد.
+      </mat-hint>
+
+
+      <mat-hint *ngIf="maxAmount === minAmount" class="rtl" align="end">
+        مبلغ وارد شده باید
+        {{minAmount | FormattedPrice}}
+         ریال باشد.
+      </mat-hint>
+
+    </mat-form-field>
+  </form>
+</div>

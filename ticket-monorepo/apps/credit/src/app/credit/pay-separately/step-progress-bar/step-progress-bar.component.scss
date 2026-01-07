@@ -1,0 +1,41 @@
+@import "variables";
+
+.step-progress-bar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  height: 10px;
+  border-radius: 5px;
+  background-color: $swatch_steel_200;
+  overflow: hidden;
+
+  .step-progress-item {
+    width: 0;
+    height: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    transition: all 2s;
+
+    &.status {
+      &-disabled {
+        background-color: $swatch_steel_200;
+      }
+
+      &-primary {
+        background-color: $swatch_steel_200;
+      }
+
+      &-success {
+        background-color: $swatch_green_500;
+      }
+
+      &-danger {
+        background-color: $swatch_red_500;
+      }
+
+      &-warning {
+        background-color: $swatch_orange_500;
+      }
+    }
+  }
+}

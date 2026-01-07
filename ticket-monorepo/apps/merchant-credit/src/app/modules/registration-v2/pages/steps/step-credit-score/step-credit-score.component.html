@@ -1,0 +1,31 @@
+<ui-content-card cardTitle="اعتبارسنجی بانکی" [backArrow]="true" (backClicked)="goBack()">
+
+  <ng-container card-body>
+
+    <section class="score-state" *ngIf="!scoreRejected">
+      <div class="illustration illustration-calculating"></div>
+      <h2 class="state-title is-blue">در حال انجام اعتبارسنجی بانکی</h2>
+      <p class="state-description">
+        درخواست شما ثبت شد. ما در حال بررسی امکان دریافت اعتبار شما هستیم. ظرف چند ساعت آینده منتظر پیامک دیجی‌پی باشید.
+      </p>
+    </section>
+    <section class="score-state" *ngIf="scoreRejected">
+      <div class="illustration illustration-failed"></div>
+      <h2 class="state-title">
+        اختصاص اعتبار به حساب شما ممکن نیست
+      </h2>
+      <p class="state-description">
+        متأسفیم، طبق نتیجۀ امکان‌سنجی، حساب شما قابلیت دریافت اعتبار ندارد.
+      </p>
+
+      <ui-note-box
+        noteTitle="موارد مؤثر بر نتیجۀ امکان‌سنجی:"
+        [points]="[
+      'خوش‌حسابی در بازپرداخت تسهیلات بانکی',
+      'خوش‌حسابی حساب جاری (دسته چک)',
+      'سابقه فعال در دریافت تسهیلات و تراکنش‌های بانکی'
+      ]"></ui-note-box>
+    </section>
+  </ng-container>
+
+</ui-content-card>

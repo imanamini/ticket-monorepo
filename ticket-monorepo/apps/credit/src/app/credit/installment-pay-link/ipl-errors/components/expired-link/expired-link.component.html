@@ -1,0 +1,19 @@
+<div class="flex flex-column h-100 px-medium">
+  <ngx-status-result
+    (clicked)="onClick()"
+    [buttons]="button"
+    class="flex-1"
+    description="برای پرداخت بدهی، از طریق پیامک به شما لینک جدیدی ارسال می‌شود."
+    title="لینک شما منقضی شده است!"
+  >
+    <ng-container status-image>
+      <img alt="" loading="lazy" src="assets/installment-pay-link/expired-link.svg">
+    </ng-container>
+  </ngx-status-result>
+
+  <ipl-callout
+    class="mt-auto"
+    linkTitle="پشتیبانی دیجی‌پی"
+    title="اگر به شماره همراهی که اعتبار را دریافت کردید دسترسی ندارید، با پشتیبانی دیجی‌پی تماس بگیرید."
+  />
+</div>

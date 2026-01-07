@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="cards">
+    <div class="top-section">
+      <div class="logo"></div>
+      <div class="message-title">
+        {{successResultData?.message?.title}}
+      </div>
+      <div class="message-description">
+        {{ successResultData?.message?.description }}
+      </div>
+    </div>
+    <div class="middle-section">
+      <div class="title">کد پیگیری تسویه:</div>
+      <div class="description">
+        {{successResultData?.trackingCode}}</div>
+      <div class="copy-icon"></div>
+    </div>
+  </div>
+  <ng-button (clickHandler)="onSubmit()"
+             [fullWidth]="true"
+             buttonSize="medium"
+             [buttonText]="'مشاهده وضعیت درخواست'">
+  </ng-button>
+</div>
+

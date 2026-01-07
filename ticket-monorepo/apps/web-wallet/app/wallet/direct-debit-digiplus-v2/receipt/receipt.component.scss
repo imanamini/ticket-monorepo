@@ -1,0 +1,38 @@
+@import '../../../layout/variables';
+@import '../../../layout/mixins/line-height';
+@import "../../../layout/mixins/device";
+
+.flex-card-content {
+  margin-top: 44px;
+}
+
+.receipt {
+  ui-button::ng-deep {
+    width: 100%;
+  }
+}
+
+:host::ng-deep.content-card-body {
+  overflow: scroll;
+  direction: ltr;
+}
+
+
+@include mediaMobile() {
+  ::ng-deep .content-card-body {
+    height: 100%;
+    max-height: none !important;
+  }
+  .flex-card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 80px 24px 24px 24px;
+    margin: unset;
+
+    app-content {
+      flex-grow: 1;
+    }
+  }
+}
+

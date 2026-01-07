@@ -1,0 +1,6 @@
+.form-row {
+  column-gap: 16px;
+  > * {
+    width: 100%;
+  }
+}

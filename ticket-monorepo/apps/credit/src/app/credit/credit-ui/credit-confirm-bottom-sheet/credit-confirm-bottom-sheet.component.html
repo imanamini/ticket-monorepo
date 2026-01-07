@@ -1,0 +1,23 @@
+<div class="body">
+  <div class="image"></div>
+
+  <div [innerHTML]="description" class="description"></div>
+</div>
+
+<div class="actions">
+  <credit-ui-button
+    (buttonClick)="reject()"
+    [styles]="{width: '100%'}"
+    appearance="outline-primary"
+    class="reject"
+  >
+    {{ rejectButtonTitle }}
+  </credit-ui-button>
+
+  <credit-ui-button
+    (buttonClick)="confirm()"
+    [styles]="{width: '100%'}"
+  >
+    {{ confirmButtonTitle }}
+  </credit-ui-button>
+</div>

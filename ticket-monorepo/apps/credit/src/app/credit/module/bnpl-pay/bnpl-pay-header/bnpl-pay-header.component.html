@@ -1,0 +1,14 @@
+<div class="p-medium d-flex align-items-center text-onback-low title">
+  <ngx-icon (click)="backHandler()" name="arrow-right" type="linear"></ngx-icon>
+  <h3 class="mr-medium fs-18">{{ title() }}</h3>
+</div>
+
+<div class="py-medium px-huge d-flex justify-content-space-between align-items-center info">
+  <div class="bt-2 text-onback-low">
+    {{ purchaseAmountTitle() }}
+  </div>
+
+  <div class="info-amount">
+    {{ purchaseAmount() | thousands }} <span>ریال</span>
+  </div>
+</div>

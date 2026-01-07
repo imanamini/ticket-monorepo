@@ -1,0 +1,36 @@
+<app-card
+  *ngIf="info && user; else loading"
+  [submitText]="cardConfig.submitText"
+  [submitLoading]="loadingSubmit"
+  [disableSubmitButton]="loadingSubmit"
+  [amount]="info.amount"
+  [headerTitle]="cardConfig.headerTitle"
+  [headerCloseButtonType]="'BACK'"
+  (submit)="payByWalletService.completePaymentProcess(info)">
+
+  <div body class="wallet-container">
+    <div class="wallet-card-img">
+
+      <div class="header">
+        <div class="logo"></div>
+        <span class="title">کیف پول</span>
+      </div>
+
+      <div class="content">
+        {{info.walletBalance | separator}} ریال
+      </div>
+
+      <div class="user-name">
+        <span>{{user?.name?.name || ''}}&nbsp;</span>
+        <span>{{user?.name?.surname || ''}}</span>
+      </div>
+    </div>
+  </div>
+</app-card>
+
+
+<ng-template #loading>
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+</ng-template>

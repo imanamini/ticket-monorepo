@@ -1,0 +1,58 @@
+@import "../../../../../layout/variables";
+
+.add-gift-card-container {
+  padding: 12px 24px 24px 24px;
+
+  .title {
+    margin: 24px 0;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+    text-align: center;
+  }
+
+  .add-serial {
+    margin-bottom: 24px;
+
+    .or {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 24px;
+
+      .line {
+        flex-grow: 1;
+        height: 1px;
+        background-color: $light-blue;
+      }
+
+      > .text {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        color: $gray;
+      }
+    }
+  }
+
+  ui-button {
+    width: 100%;
+  }
+
+}
+
+::ng-deep .add-gift-card-bottom-sheet {
+  * {
+    font-family: $font-name;
+  }
+}
+
+:host ::ng-deep .icon-scan {
+  width: 24px;
+  height: 24px;
+  background-image: url("../../../../../../assets/icon/scan.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}

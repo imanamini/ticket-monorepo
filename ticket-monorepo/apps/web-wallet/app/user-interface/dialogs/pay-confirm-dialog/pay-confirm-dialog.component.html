@@ -1,0 +1,29 @@
+<ui-dialog [title]="'مبلغ قابل پرداخت:‌ '+(dialogData.amount | IRR)+' ریال'" class="pay-confirm-dialog">
+  <div class="image"></div>
+
+  <ng-container *ngIf="step === 0">
+    <p class="text">آیا مایل به پرداخت از کیف پول خود هستید؟</p>
+  </ng-container>
+
+  <ng-container *ngIf="step === 1">
+    <p class="text">رمز کیف پول خود را برای تکمیل پرداخت وارد کنید.</p>
+    <div class="digits">
+      <ui-digit-input
+        [clearSignal]="pinClearSignal"
+        [enabled]="!callingLoginApi"
+        (changed)="enteredPin($event)"></ui-digit-input>
+    </div>
+  </ng-container>
+
+  <div class="actions">
+    <ui-button [fullWidth]="true" (buttonClick)="confirm()" [disabled]="callingLoginApi">
+      <ng-container *ngIf="!callingLoginApi">تایید و پرداخت</ng-container>
+      <mat-spinner *ngIf="callingLoginApi"></mat-spinner>
+    </ui-button>
+
+    <ui-button [fullWidth]="true" appearance="clean" (buttonClick)="cancel()" [disabled]="callingLoginApi">
+      انصراف
+    </ui-button>
+  </div>
+
+</ui-dialog>

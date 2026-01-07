@@ -1,0 +1,10 @@
+<div class="header-remaining">
+  <span *ngIf="hasDescription" class="icon-clock"></span>
+  <span *ngIf="hasDescription">زمان باقی‌مانده&nbsp;&nbsp;</span>
+  <span *ngIf="(formattedMinutes && formattedSeconds); else loader">
+    {{ formattedMinutes }}:{{ formattedSeconds }}</span>
+  <ng-template #loader>
+    <div class="loader"></div>
+  </ng-template>
+
+</div>

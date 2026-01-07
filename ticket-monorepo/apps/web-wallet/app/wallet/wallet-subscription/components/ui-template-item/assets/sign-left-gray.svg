@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="7" height="12" viewBox="0 0 7 12">
+  <defs>
+    <rect id="close-copy-a" width="24" height="24"/>
+    <rect id="close-copy-b" width="24" height="24"/>
+    <path id="close-copy-c" d="M14.7057692,15.8842316 L10.83,12 L10.83,12 L14.7057692,8.11576839 C15.0948293,7.72585884 15.094485,7.09448505 14.705,6.705 C14.3156393,6.31563925 13.6843607,6.31563925 13.295,6.705 L8,12 L8,12 L13.295,17.295 C13.6843607,17.6843607 14.3156393,17.6843607 14.705,17.295 C15.094485,16.905515 15.0948293,16.2741412 14.7057692,15.8842316 Z"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(-8 -6)">
+    <mask id="close-copy-d" fill="#fff">
+      <use xlink:href="#close-copy-c"/>
+    </mask>
+    <g fill="#4D596B" mask="url(#close-copy-d)">
+      <rect width="24" height="24"/>
+    </g>
+  </g>
+</svg>

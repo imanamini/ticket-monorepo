@@ -1,0 +1,90 @@
+@import "variables";
+
+@font-face {
+  font-family: $font-name-2;
+  font-style: normal;
+  font-weight: 100;
+  src: url('./fonts/iran-yekan-fa/thin/thin.eot');
+  src: url('./fonts/iran-yekan-fa/thin/thin.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('./fonts/iran-yekan-fa/thin/thin.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+  url('./fonts/iran-yekan-fa/thin/thin.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  url('./fonts/iran-yekan-fa/thin/thin.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: $font-name-2;
+  font-style: normal;
+  font-weight: 200;
+  src: url('./fonts/iran-yekan-fa/light/light.eot');
+  src: url('./fonts/iran-yekan-fa/light/light.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('./fonts/iran-yekan-fa/light/light.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+  url('./fonts/iran-yekan-fa/light/light.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  url('./fonts/iran-yekan-fa/light/light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: $font-name-2;
+  font-style: normal;
+  font-weight: normal;
+  src: url('./fonts/iran-yekan-fa/regular/regular.eot');
+  src: url('./fonts/iran-yekan-fa/regular/regular.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('./fonts/iran-yekan-fa/regular/regular.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+  url('./fonts/iran-yekan-fa/regular/regular.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  url('./fonts/iran-yekan-fa/regular/regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: $font-name-2;
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/iran-yekan-fa/medium/medium.eot');
+  src: url('./fonts/iran-yekan-fa/medium/medium.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('./fonts/iran-yekan-fa/medium/medium.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+  url('./fonts/iran-yekan-fa/medium/medium.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  url('./fonts/iran-yekan-fa/medium/medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: $font-name-2;
+  font-style: normal;
+  font-weight: 500;
+  src: url('./fonts/iran-yekan-fa/bold/bold.eot');
+  src: url('./fonts/iran-yekan-fa/bold/bold.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('./fonts/iran-yekan-fa/bold/bold.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+  url('./fonts/iran-yekan-fa/bold/bold.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  url('./fonts/iran-yekan-fa/bold/bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: $font-name-2;
+  font-style: normal;
+  font-weight: 600;
+  src: url('./fonts/iran-yekan-fa/extrabold/extrabold.eot');
+  src: url('./fonts/iran-yekan-fa/extrabold/extrabold.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('./fonts/iran-yekan-fa/extrabold/extrabold.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+  url('./fonts/iran-yekan-fa/extrabold/extrabold.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  url('./fonts/iran-yekan-fa/extrabold/extrabold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: $font-name-2;
+  font-style: normal;
+  font-weight: 700;
+  src: url('./fonts/iran-yekan-fa/black/black.eot');
+  src: url('./fonts/iran-yekan-fa/black/black.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('./fonts/iran-yekan-fa/black/black.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+  url('./fonts/iran-yekan-fa/black/black.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  url('./fonts/iran-yekan-fa/black/black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: $font-name-2;
+  font-style: normal;
+  font-weight: 800;
+  src: url('./fonts/iran-yekan-fa/extrablack/extrablack.eot');
+  src: url('./fonts/iran-yekan-fa/extrablack/extrablack.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('./fonts/iran-yekan-fa/extrablack/extrablack.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/
+  url('./fonts/iran-yekan-fa/extrablack/extrablack.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  url('./fonts/iran-yekan-fa/extrablack/extrablack.ttf') format('truetype');
+}
+

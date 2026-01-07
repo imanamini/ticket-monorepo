@@ -1,0 +1,30 @@
+.cdk-overlay-dark-backdrop {
+  background: rgba(66, 76, 92, 0.85) !important;
+}
+
+.mat-mdc-dialog-container .mat-mdc-dialog-surface {
+  box-shadow: unset !important;
+  display: block;
+  border-radius: 12px !important;
+}
+
+.mat-mdc-dialog-container {
+  border-radius: 16px !important;
+  background: white;
+  box-shadow: 0 11px 15px -7px #0003, 0 24px 38px 3px #00000024, 0 9px 46px 8px #0000001f;
+  max-width: unset !important;
+}
+
+.mat-mdc-dialog-container .mat-mdc-dialog-content {
+  font-family: $font-name !important;
+}
+
+.mat-mdc-tooltip {
+  max-width: 250px !important;
+}
+
+.mat-mdc-tooltip .mdc-tooltip__surface {
+  background-color: #616161FF !important;
+  color: #FFFFFFFF !important;
+  text-align: justify !important;
+}

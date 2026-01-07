@@ -1,0 +1,43 @@
+<section class="limitation-wrapper" *ngIf="!errorMode">
+  <div class="limitation-picture-holder">
+    <img src="assets/limitation/early-settlement.png" alt="">
+  </div>
+  <div class="limitation-top-section">
+    <div class="limitation-title">{{baseTitle}}</div>
+
+    <div class="slider-wrapper">
+      <app-select-amount-slider
+        [step]="slideStep"
+        [min]="creditAmountRange.min"
+        [max]="creditAmountRange.max"
+        [(value)]="selectedAmount"
+        (valueChange)="setDocuments()"
+      ></app-select-amount-slider>
+    </div>
+  </div>
+  <div class="limitation-documents-section">
+    <div class="limitation-documents-title">
+      <span>{{boxTitle}}</span>
+    </div>
+    <div *ngIf="!isLoading">
+      <div class="limitation-documents-holder">
+        <div class="limitation-documents" *ngFor="let document of allDocument" [ngClass]="{show: requiredDocuments.indexOf(document.id) >= 0}">
+          <div class="doc-description">{{document.description}}</div>
+        </div>
+      </div>
+    </div>
+    <app-limitation-skeleton *ngIf="isLoading"></app-limitation-skeleton>
+  </div>
+  <div class="limitation-location-holder">
+    <img src="assets/icons/location.svg" alt="">
+    <span>{{address}}</span>
+  </div>
+  <div class="limitation-hint-holder">
+    <ui-button appearance="BLUE-TEXT" (click)="openEstimationDialog()">{{calculatorButtonTitle}}</ui-button>
+  </div>
+  <div class="limitation-button-holder">
+    <ui-button appearance="STEEL-TEXT" (click)="this.cancel.emit()">انصراف</ui-button>
+    <ui-button (click)="onSubmit()">قوانین را می‌پذیرم</ui-button>
+  </div>
+</section>
+<div class="error-mode" *ngIf="errorMode">Error: {{errorMode}}</div>

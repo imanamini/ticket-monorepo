@@ -1,0 +1,9 @@
+<div class="suggestions">
+  <div *ngFor="let suggestion of suggestions" class="suggestion-wrapper">
+    <div (click)="onClick(suggestion)"
+         [ngClass]="{'selected': selectedValue === suggestion}"
+         class="suggestion">
+      <ui-currency [value]="suggestion"></ui-currency>
+    </div>
+  </div>
+</div>

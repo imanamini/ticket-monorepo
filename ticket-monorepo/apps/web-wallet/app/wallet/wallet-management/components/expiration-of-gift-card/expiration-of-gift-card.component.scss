@@ -1,0 +1,75 @@
+@import "../../../../layout/variables";
+
+.expiration-gift-card-container {
+  padding: 12px 24px 24px 24px;
+
+  .title-container {
+    margin: 24px 0;
+
+    .title {
+      text-align: center;
+      display: block;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 32px;
+      margin-bottom: 12px;
+    }
+
+    .description {
+      display: block;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+
+  .gift-card-info {
+    display: flex;
+    padding: 24px 32px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+    border-radius: 12px;
+    background: $light-blue;
+    margin-bottom: 24px;
+
+    .title {
+      color: #424C5C;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px;
+    }
+
+    .date {
+      color: #FF811A;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+    }
+
+    .serial-number {
+      color: $gray;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+    }
+  }
+
+  ui-button {
+    width: 100%;
+  }
+}
+
+
+::ng-deep .expire-gift-card-bottom-sheet {
+  * {
+    font-family: $font-name;
+  }
+}

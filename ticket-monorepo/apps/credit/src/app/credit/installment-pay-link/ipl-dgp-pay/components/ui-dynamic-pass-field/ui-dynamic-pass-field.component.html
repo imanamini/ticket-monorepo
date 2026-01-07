@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <ui-text-field
+    label="رمز دوم"
+    [dataType]="'PASSWORD'"
+    (clicked)="onFocusIn($event)"
+    [autofocus]="autofocus"
+    [value]="value"
+    [parentForm]="parentForm"
+    [name]="controlName"
+    [validationRules]="validationRules"
+    [maxLength]="12"></ui-text-field>
+
+  <div class="action-wrapper">
+    <div class="action send-dynamic-pass" *ngIf="countdownSeconds === null && !inProgress" [ngClass]="{'disabled': !enableSendButton}" (click)="onSend()">
+      <span class="icon"></span>
+      درخواست رمز پویا
+    </div>
+
+    <div class="action in-progress" *ngIf="inProgress">
+      <ui-spinner></ui-spinner>
+    </div>
+
+    <div class="action countdown" *ngIf="countdownSeconds !== null">
+      <span class="icon"></span>
+      <ui-count-down-text [seconds]="countdownSeconds" (finished)="onFinish()"></ui-count-down-text>
+    </div>
+  </div>
+
+</div>

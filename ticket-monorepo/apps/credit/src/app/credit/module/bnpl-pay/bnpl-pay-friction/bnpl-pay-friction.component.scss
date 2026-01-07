@@ -1,0 +1,45 @@
+$bnpl-logo-back-color: #f2f0ff;
+
+.logo {
+  height: 58px;
+  width: 58px;
+  border-radius: 16px;
+  margin: auto;
+  background-image: url("../../../credit-assets-new/images/bnpl_mini_app.svg");
+  background-position: center;
+  background-color: $bnpl-logo-back-color;
+}
+
+.row {
+  line-height: 24px;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 18px;
+
+  .confirm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    > span {
+      min-width: max-content;
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .actions {
+    grid-template-columns: 1fr;
+
+    & > :first-child {
+      order: 2;
+    }
+
+    & > :last-child {
+      order: 1;
+    }
+  }
+}

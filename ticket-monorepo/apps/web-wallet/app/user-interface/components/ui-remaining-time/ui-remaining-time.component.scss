@@ -1,0 +1,17 @@
+@import "src/app/layout/mixins/flex";
+
+.header-remaining {
+  @include flex-center;
+  font-size: 12px;
+
+  .icon-clock {
+    background: url('../../../../assets/icon/clock.svg') no-repeat 0 0/100%;
+    width: 16px;
+    height: 16px;
+    margin-left: 2px;
+  }
+
+  ui-count-down-text {
+    min-width: 30px !important;
+  }
+}

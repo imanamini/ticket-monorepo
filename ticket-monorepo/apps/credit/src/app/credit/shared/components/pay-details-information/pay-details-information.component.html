@@ -1,0 +1,81 @@
+<div class="wrapper">
+  <div class="body-header">
+    <div class="header-title">مجموع پرداخت نهایی</div>
+    <div class="header-amount">
+      {{ totalPayableAmount | iranianRials:'hideRial' }}
+      <span class="currency">ریال</span>
+    </div>
+    <button (click)="showDetails = !showDetails" [disabled]="loading" class="collapse-button">
+      <span>{{ showDetails ? 'بستن' : 'مشاهده' }} جزئیات</span>
+      <span [ngClass]="['arrow', showDetails ? 'up' : '']"></span>
+    </button>
+  </div>
+
+  <div #bodyContent [ngClass]="['body-content', showDetails ? 'show' : 'hide']">
+    <scrollable-view>
+      <div class="content-container">
+        <app-pay-details-card
+          *ngFor="let detailContent of detailContents"
+          [footerAmount]="detailContent.footerAmount"
+          [footerTitle]="detailContent.footerTitle"
+          [rows]="detailContent.rows"
+          class="card"
+        >
+        </app-pay-details-card>
+      </div>
+    </scrollable-view>
+  </div>
+
+  <div [ngClass]="[showDetails ? 'hide' : 'show']" class="footer-placeholder">
+    <div class="footer">
+      <div [ngClass]="['footer-content', showDetails ? 'hide' : 'show']"
+           [ngStyle]="{'height.px': showDetails ? 0 : bodyContentHeight }">
+        <scrollable-view>
+          <app-pay-details-footer-placeholder *ngIf="loading"></app-pay-details-footer-placeholder>
+
+          <div *ngIf="!loading" class="content-container">
+            <p class="description">{{ footerDescription }}</p>
+
+            <ng-container *ngFor="let footerContent of footerContents">
+              <div *ngIf="footerContent.amount" class="container-card">
+                <div [ngClass]="['card-icon', footerContent.icon]"></div>
+
+                <div class="card-content">
+                  <div>
+                    <span class="first">{{ footerContent.title }}</span>
+                    <span *ngIf="footerContent.extraTitle" class="second">
+                      {{ footerContent.extraTitle }}
+                    </span>
+                  </div>
+
+                  <div class="amount">
+                    {{ footerContent.amount | iranianRials:'hideRial' }}
+                    <span class="currency">ریال</span>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+            <div (click)="editAmount()" *ngIf="!disableEditAmount" class="edit">
+              <span class="edit-icon"></span>
+              <span>می‌خواهم از اعتبار کمتری استفاده کنم</span>
+            </div>
+          </div>
+        </scrollable-view>
+      </div>
+    </div>
+    <div class="footer-action">
+      <div *ngIf="disabled && disabledMessages && disabledMessages.length > 0" class="disabled-message-list">
+        <div *ngFor="let item of disabledMessages" class="disabled-message">{{ item.text }}</div>
+      </div>
+      <credit-ui-button
+        (click)="onClick()"
+        [disabled]="loading || disabled || otpLoading"
+        [styles]="{'width': '100%'}"
+        appearance="default"
+        class="full-width-button">
+        {{ footerActionTitle }}
+      </credit-ui-button>
+    </div>
+  </div>
+</div>

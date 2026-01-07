@@ -1,0 +1,48 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nx", "prettier", "json"],
+  "parserOptions": {
+    "project": "./tsconfig.base.json",
+    "extraFileExtensions": [".json", ".html"]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:@nx/angular", "plugin:prettier/recommended"],
+      "rules": {
+        "prettier/prettier": "error",
+        "@nx/enforce-module-boundaries": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-empty-function": "warn",
+        "@typescript-eslint/no-inferrable-types": "warn",
+        "@typescript-eslint/no-unused-vars": "warn"
+      }
+    },
+    {
+      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
+      "env": {
+        "jest": true
+      },
+      "rules": {}
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended", "plugin:prettier/recommended"],
+      "parser": "@angular-eslint/template-parser",
+      "plugins": ["@angular-eslint/template"],
+      "rules": {
+        "prettier/prettier": [
+          "error",
+          {
+            "parser": "angular"
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.json"],
+      "processor": "json/json"
+    }
+  ]
+}

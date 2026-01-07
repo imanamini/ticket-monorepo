@@ -1,0 +1,55 @@
+@import "../../../layout/variables";
+@import "../../../layout/mixins/font-size";
+@import "../../../layout/mixins/flex";
+@import "../../../layout/mixins/device";
+
+:host ::ng-deep .content-card-body {
+  padding: 24px 28px !important;
+}
+
+:host ::ng-deep .footer-back-button {
+  .ui-button {
+    background: #ffeef3 !important;
+    box-shadow: none !important;
+    border: none !important;
+    color: $digipay-red !important;
+  }
+}
+
+.select-bank-wrapper {
+  > .description {
+    text-align: right;
+    direction: rtl;
+    margin-bottom: 24px;
+    color: #2c3544;
+    font-weight: 700;
+    line-height: 1.71;
+    @include fontSize(14);
+  }
+
+  > .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@include mediaMobile() {
+  :host ::ng-deep .content-card-body {
+    padding: 0 !important;
+  }
+  ui-bank-item {
+    width: 100%;
+  }
+  .select-bank-wrapper {
+    height: 100%;
+    overflow-y: auto;
+    padding: 0 28px;
+
+    .description {
+      margin-top: 24px;
+      font-weight: 500;
+    }
+  }
+}

@@ -1,0 +1,148 @@
+<ui-content-card [cardTitle]="cardTitle" [contentPadding]="false" [backArrow]="isBack" [close]="isClose"
+                 (backClicked)="onBack()">
+  <ng-container card-body *ngIf="!gettingData && inProgressAction === openBankActionEnum.SIGN_DOCS">
+    <ng-container>
+      <p *ngIf="documents.length === 0">
+        قراردادی یافت نشد
+      </p>
+    </ng-container>
+    <ng-container *ngIf="documents.length > 0">
+      <progressive-flow
+        [stepIndex]="currentFileIndex"
+        [stepTitles]="documentTitles"
+        [stepSubTitles]="stepSubTitles">
+
+        <ng-container *ngFor="let document of documents">
+          <div *progressStep>
+            <div class="viewer">
+              <ui-pdf-viewer [pdfFile]="pdfFiles[document.trackingCode]"></ui-pdf-viewer>
+            </div>
+            <step-footer
+              (buttonClick)="signDocument(document)"
+              [buttonDisabled]="signing"
+              buttonText="تایید و امضا"
+            >
+              <div class="person">
+                <div class="person-name">
+                  <span>امضا کننده</span>
+                  <span>{{ personName }}</span>
+                </div>
+                <div class="person-signature">
+                  <ui-api-image *ngIf="signatureImageId" width="100%" [imageId]="signatureImageId"></ui-api-image>
+                </div>
+              </div>
+            </step-footer>
+          </div>
+        </ng-container>
+
+      </progressive-flow>
+    </ng-container>
+
+  </ng-container>
+  <ng-container card-body *ngIf="inProgressAction === openBankActionEnum.GETTING_PASSWORD">
+    <div class="signature-password-container">
+      <div class="inputs-wrapper">
+        <div class="pass-icon"></div>
+        <h2>رمز امضای دیجیتال وارد کنید</h2>
+        <ui-pin-input
+          [value]="code"
+          [hasError]="!!errorMessage"
+          [errorMessage]="errorMessage"
+          (pinChange)="onCodeChange($event)"
+          type="PIN"></ui-pin-input>
+      </div>
+      <div class="description-wrapper">
+        <p>{{inputDescription}}</p>
+      </div>
+    </div>
+    <div class="action-button">
+      <ng-button [fullWidth]="true" (clickHandler)="passProceed()"
+                 [disabled]="!isPassProceed">
+        تایید و ادامه
+      </ng-button>
+    </div>
+  </ng-container>
+
+  <ng-container card-body *ngIf="inProgressAction === openBankActionEnum.GENERATE_DOCS">
+    <div class="loading-wrapper">
+      <ui-spinner></ui-spinner>
+    </div>
+  </ng-container>
+
+  <ng-container card-body *ngIf="inProgressAction === openBankActionEnum.REJECT_MSG">
+    <div class="result-message">
+      <div class="failed-illustration"></div>
+      <h3>
+        متاسفانه! سقف ‌اعتباری شما رد شد
+      </h3>
+
+      <p>
+        سقف اعتباری انتخاب شده در ثبت‌نام توسط بانک رد شده است.
+      </p>
+    </div>
+  </ng-container>
+
+  <ng-container card-body *ngIf="inProgressAction === openBankActionEnum.SUCCESS_MSG">
+    <div class="result-message">
+      <div class="success-illustration"></div>
+      <h3>
+        سقف ‌اعتباری شما تایید شد
+      </h3>
+
+      <p>
+        تا ۴۸ ساعت آینده سرویس تسویه زودهنگام برای شما فعال خواهد شد و پس از آن می‌توانید فاکتور‌های خود را زودتر تسویه
+        کنید.
+      </p>
+    </div>
+  </ng-container>
+
+  <ng-container card-body *ngIf="inProgressAction === openBankActionEnum.GENERATION_FAILED_MSG">
+    <div class="result-message">
+      <div class="failed-illustration"></div>
+      <h3>
+        ساخت قرارداد با مشکل مواجه شده است
+      </h3>
+
+      <p>
+      </p>
+    </div>
+  </ng-container>
+
+  <ng-container card-body *ngIf="inProgressAction === openBankActionEnum.SENT_CONTRACT_MSG">
+    <div class="result-message">
+      <div class="bank-illustration"></div>
+      <h3 class="title">
+        قرارداد برای بانک ارسال شد.
+      </h3>
+
+      <p class="message">
+        پس از بررسی سقف اعتباری شما توسط بانک وضعیت ثبت نام شما مشخص خواهد‌شد.
+      </p>
+    </div>
+  </ng-container>
+
+  <ng-container card-body *ngIf="gettingData || inProgressAction === openBankActionEnum.PENDING || !inProgressAction">
+    <div class="loading-wrapper">
+      <ui-spinner></ui-spinner>
+    </div>
+  </ng-container>
+
+  <ng-container card-body *ngIf="inProgressAction === openBankActionEnum.ERROR_MSG">
+    <ngx-status-result
+      class="status-result"
+      [title]="errorData?.title"
+      [description]="errorData?.message"
+      [buttons]="errorData?.buttons"
+      (clicked)="onBack()"
+    >
+      <ng-container status-image>
+        <img [src]="errorData?.staticImage" alt="">
+      </ng-container>
+    </ngx-status-result>
+
+    <div class="support-wrapper">
+      <span class="name">شماره پشتیبانی:</span>
+      <span class="phone">۰۲۱-۵۳۹۲۴۰۰۰ (داخلی۶)</span>
+    </div>
+  </ng-container>
+</ui-content-card>

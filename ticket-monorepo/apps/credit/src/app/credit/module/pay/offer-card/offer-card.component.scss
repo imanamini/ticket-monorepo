@@ -1,0 +1,67 @@
+@import "variables";
+
+.offer-card {
+  margin-bottom: 8px;
+  border: 1px solid $swatch_steel_200;
+  border-radius: 16px;
+  cursor: pointer;
+  padding: 12px;
+
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+  .offer-card-header {
+    display: flex;
+
+    .offer-card-icon {
+      flex: 0 0 76px;
+      width: 76px;
+      height: 62px;
+      background-image: url("./images/credit-offer-icon.svg");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      margin-left: 12px;
+    }
+
+    .content-col {
+      flex: 1 1 auto;
+      width: 100%;
+
+      .primary-line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        line-height: 24px;
+        font-weight: 600;
+        margin-bottom: 2px;
+
+        .main-title {
+          font-size: 14px;
+          font-weight: 600;
+          margin-left: 8px;
+        }
+      }
+
+      .secondary-line, .small-secondary-line {
+        display: flex;
+        align-items: center;
+        line-height: 20px;
+        font-size: 12px;
+        color: $swatch_steel_500;
+      }
+
+      .small-secondary-line {
+        font-size: 10px;
+      }
+    }
+
+  }
+
+
+  .offer-message {
+    font-size: 12px;
+    margin-top: 8px;
+    color: $swatch_blue_900;
+  }
+}

@@ -1,0 +1,24 @@
+<div class="checkbox-box" *ngIf="document">
+  <input
+    [id]="document.id"
+    type="checkbox"
+    [ngClass]="{disabled: disabled}"
+    (change)='handleChange()'
+    [(ngModel)]="checked"
+    [disabled]='disabled'
+  />
+  <label [for]='document.id' class="checkbox-label">
+    <div class="row-1">
+      <div class="checkbox-check-mark"></div>
+      <div class="checkbox-text" *ngIf="!isNumber">{{document.description }}</div>
+      <div class="checkbox-text" *ngIf="isNumber">{{document.description | number}} ریال</div>
+
+    </div>
+    <div class="row-2" *ngIf="document.subItems && document.subItems.length">
+      <div class="checkbox-sub-items-text">یکی از مدارک زیر:</div>
+      <div class="checkbox-sub-items">
+        <div class="checkbox-sub-item" *ngFor="let item of document.subItems">{{item}}</div>
+      </div>
+    </div>
+  </label>
+</div>

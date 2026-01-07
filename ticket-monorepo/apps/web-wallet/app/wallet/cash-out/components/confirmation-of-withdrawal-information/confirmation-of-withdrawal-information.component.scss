@@ -1,0 +1,25 @@
+@import "../../shared-styles/shared-styles-cash-out";
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.mobile-title {
+  text-align: center;
+}
+
+@include mediaMobile {
+  .content-wrapper {
+    gap: 32px;
+    height: 100%;
+  }
+
+  confirmation-footer {
+    margin-top: auto;
+  }
+}
+
+

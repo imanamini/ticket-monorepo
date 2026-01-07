@@ -1,0 +1,66 @@
+<ui-digipay-dialog>
+  <div class="payment-option-dialog">
+    <div class="dialog-header">
+      <h3>{{dialogData.paymentOption.title}}</h3>
+      <p class="balance">موجودی:
+        <ng-container *ngIf="dialogData.paymentOption.balance">{{ dialogData.paymentOption.balance | IRR }}</ng-container>
+        <ng-container *ngIf="!dialogData.paymentOption.balance">-</ng-container>
+      </p>
+    </div>
+    <div class="dialog-body">
+
+      <div class="enter-amount">
+        <p class="label">مبلغ موردنظر برای برداشت از اعتبار خود را انتخاب کنید.</p>
+        <credit-ui-amount-input
+          (valueChange)="amountValueChanged($event)"
+          [minAmount]="minAmount" [maxAmount]="maxAmount" [maxAmountType]="maxAmountType"
+          [value]="creditAmount"></credit-ui-amount-input>
+      </div>
+
+      <!--      <div class="separator"></div>-->
+
+      <div class="details">
+        <div class="detail-row">
+          <div class="label">مبلغ سبد خرید</div>
+          <div class="value">
+            <credit-ui-currency *ngIf="amountIsValid else emptyPrice" [value]="dialogData.paymentOption.creditItem.purchaseAmount"></credit-ui-currency>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <div class="label">پرداخت از اعتبار</div>
+          <div class="value">
+            <credit-ui-currency *ngIf="amountIsValid else emptyPrice" [value]="creditAmount"></credit-ui-currency>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <div class="label">پرداخت از کارت</div>
+          <div class="value">
+            <credit-ui-currency *ngIf="amountIsValid else emptyPrice" [value]="dialogData.paymentOption.creditItem.purchaseAmount - creditAmount"></credit-ui-currency>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #emptyPrice>
+        <span> - </span>
+      </ng-template>
+
+
+      <div class="actions">
+        <credit-ui-button
+          appearance="outline" class="reject" (buttonClick)="cancelButton()"
+          [styles]="{width: '100%'}">
+          انصراف
+        </credit-ui-button>
+
+        <credit-ui-button
+          appearance="default" (buttonClick)="confirmButton()" [disabled]="!amountIsValid"
+          class="confirm" [styles]="{width: '100%'}">
+          تایید
+        </credit-ui-button>
+      </div>
+
+    </div>
+  </div>
+</ui-digipay-dialog>

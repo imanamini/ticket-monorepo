@@ -1,0 +1,31 @@
+<div class="seller-info">
+  <div class="seller-info-title">
+    <div class="title">
+      اطلاعات فروشنده
+    </div>
+    <div class="close" (click)="onClose()"></div>
+  </div>
+  <div class="seller-info-box">
+    <ui-api-image *ngIf="details?.registration?.businessId" width="32px" height="32px"
+                  [imageId]="details?.registration?.businessId"></ui-api-image>
+    <div class="seller-info-title">
+      <span>نام و نام خانوادگی</span>
+      <span>شماره همراه</span>
+    </div>
+    <div class="seller-info-description">
+      <span>{{details?.registration?.agent?.name}}</span>
+      <span>{{details?.registration?.agent?.cellNumber}}</span>
+    </div>
+  </div>
+  <ui-note-box
+    note=" توجه داشته باشید که فرایند ثبت‌نام در سرویس تسویه زودهنگام با اطلاعات ثبت‌شده شما در {{details.registration.businessLabel}} ثبت‌ خواهدشد و در صورت بروز هرگونه مشکل اطلاعات شما باید از سمت {{details.registration.businessLabel}} اصلاح شود."></ui-note-box>
+
+  <div class="footer-section">
+
+    <ng-button (clickHandler)="onClose()"
+               buttonSize="medium"
+               [fullWidth]="true"
+               [buttonText]="'متوجه شدم'">
+    </ng-button>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<ui-content-card cardTitle="احراز هویت و بررسی مدارک" [contentPadding]="false">
+
+  <ng-container card-body>
+
+
+    <ng-container *ngIf="inProgressAction && actionToStepIndex[inProgressAction] !== undefined">
+      <progressive-flow
+        [stepIndex]="actionToStepIndex[inProgressAction]"
+        [stepTitles]="stepTitles">
+
+        <div *progressContent>
+          <ng-container [ngSwitch]="inProgressAction">
+            <step-identification *ngSwitchCase="IdentificationActionEnum.IDENTIFICATION_STEP"
+                                 (nextStep)="getState()"></step-identification>
+            <step-otp *ngSwitchCase="IdentificationActionEnum.OTP_STEP" (nextStep)="getState()"></step-otp>
+            <step-basic-info *ngSwitchCase="IdentificationActionEnum.BASIC_INFO_STEP"
+                             (nextStep)="getState()"></step-basic-info>
+            <step-address *ngSwitchCase="IdentificationActionEnum.ADDRESS_STEP"
+                          (nextStep)="getState()"></step-address>
+          </ng-container>
+        </div>
+      </progressive-flow>
+    </ng-container>
+
+
+    <div class="loading-wrapper" *ngIf="!inProgressAction || inProgressAction === IdentificationActionEnum.PENDING">
+      <ui-spinner></ui-spinner>
+    </div>
+    <div class="failed-identification-message"
+         *ngIf="inProgressAction === IdentificationActionEnum.FAILED_IDENTIFICATION">
+      <div class="top-section">
+        <div class="img-no-service"></div>
+        <div class="message-title">
+          اشکال در اتصال به سرویس‌دهنده
+        </div>
+        <div class="message-description">
+          در حال‌حاضر سرویس‌دهنده در دسترس نیست. لطفاً برای ادامه فرآیند دقایقی دیگر دوباره تلاش کنید.
+        </div>
+      </div>
+      <div class="footer-section">
+        <ui-button class="secondary-cta" appearance="FLAT-BLUE" (clicked)="exit()">بستن</ui-button>
+        <ui-button class="primary-cta" (clicked)="getState()">تلاش مجدد</ui-button>
+      </div>
+    </div>
+
+  </ng-container>
+
+
+</ui-content-card>

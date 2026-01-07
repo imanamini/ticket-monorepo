@@ -1,0 +1,33 @@
+@import '../../../../../styles/layout/variables';
+
+.box-wrapper-desktop {
+  width: 100%;
+  background-color: $swatch_steel_100;
+  padding: 24px;
+  border-radius: 16px;
+
+  .box-wrapper-title {
+    font-size: 18px;
+    line-height: 2;
+    margin-bottom: 16px;
+  }
+}
+
+.mobile-action-button {
+  width: 100%;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: $swatch_blue_100;
+}
+
+@media screen and (max-width: 768px) {
+  .box-wrapper-desktop {
+    display: none;
+  }
+  .mobile-action-button {
+    display: flex;
+  }
+}

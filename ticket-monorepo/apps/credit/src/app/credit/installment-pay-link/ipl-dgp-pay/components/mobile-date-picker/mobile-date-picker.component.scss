@@ -1,0 +1,50 @@
+@import "variables";
+
+.date-picker {
+  border-top: 1px solid $swatch_steel_200;
+  padding: 6px 12px 12px;
+  border-radius: 16px 16px 0 0;
+  background: $swatch_steel_100;
+
+  .header {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    color: $swatch_steel_500;
+    font-size: 12/16rem;
+    border-bottom: 1px solid $swatch_steel_200;
+    padding: 0 0 8px;
+
+    span {
+      cursor: pointer;
+    }
+
+    .confirm-selection {
+      ::ng-deep {
+        button {
+          padding: 6px 0;
+          min-width: 50px;
+          line-height: 1;
+          height: auto;
+          border-radius: 8px;
+          font-size: 12/16rem;
+        }
+      }
+    }
+  }
+
+  .selects {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 50% 50%;
+    margin: 12px 0;
+
+    date-picker-number-picker {
+      flex: 0 0 48%;
+
+      ::ng-deep .wrapper {
+        padding: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<div class="ui-hint-message" *ngIf="message">
+  <div class="ui-hint-message-content">
+    {{message}}
+  </div>
+  <div *ngIf="ctaButton" class="ui-hint-message-footer">
+    <ui-button (clicked)="onCtaClick()" appearance="BLUE-TEXT">
+      <div class="cta-button-content">
+        <div>{{ctaButton}}</div>
+        <div class="icon-arrow-left-blue"></div>
+      </div>
+    </ui-button>
+  </div>
+</div>

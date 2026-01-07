@@ -1,0 +1,92 @@
+@import "@digipay/base-style/styleguide";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+.stepper-header {
+  flex: 0 0 auto;
+
+
+  .stepper-header-container {
+    width: 360px;
+
+    .progress-bar {
+      height: 6px;
+      background-color: map-get($shade-colors, onback-shade-80);
+
+    }
+  }
+}
+
+.stepper-body {
+
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+
+  .stepper-body-container {
+
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    background-color: #fff;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: center;
+
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 22px;
+  border-top: 1px solid blue;
+
+  .actions {
+    width: 474px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 522px) {
+  .stepper-header {
+    .stepper-header-container {
+      width: 100%;
+
+      .step-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0;
+        padding: 13px;
+
+        .step-info-title {
+          font-size: 14px;
+          font-weight: 400;
+
+          b {
+            font-size: 14px;
+            font-weight: 700;
+          }
+
+        }
+
+        .step-number {
+          font-size: 14px;
+          font-weight: 500;
+          color: red;
+
+        }
+      }
+    }
+  }
+}

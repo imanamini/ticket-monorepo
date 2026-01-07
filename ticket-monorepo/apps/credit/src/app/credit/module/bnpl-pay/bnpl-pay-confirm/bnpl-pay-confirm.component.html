@@ -1,0 +1,61 @@
+<app-location-trap (back)="onBack()" [canBack]="false" [canExit]="true"></app-location-trap>
+@if (!loading()) {
+  <credit-ui-content-box
+    (backClick)="onBack()"
+    [bodyPadding]="false"
+    [contentBoxTitle]="'پرداخت اعتباری ' + fundProviderTitle()"
+    [countDown]="0"
+    [grayMode]="!isDesktop()"
+    [headerBorderBottom]="isDesktop()"
+    [showCloseButton]="true"
+    [showHeader]="true"
+    [showLogo]="false"
+  >
+    <div [ngClass]="['wrapper', isDesktop() ? 'isDesktop' : '']">
+      <div class="container">
+        <div class="body">
+          <div class="body-box">
+            <div class="logo"></div>
+
+            <div class="title">پرداخت اعتباری</div>
+
+            <div class="row">
+              <span class="row-right">بازپرداخت در</span>
+              <span>{{ settleTitle() }}</span>
+            </div>
+
+            <div class="row">
+              <span class="row-right">موجودی اعتبار</span>
+              <span>{{ balance() | IRR }}</span>
+            </div>
+
+            <div class="actions">
+              <ngx-button
+                (clickHandler)="onBack()"
+                [style]="'tinted-on-elevated'"
+                [fullWidth]="true"
+                [size]="'medium'"
+              >
+                انصراف
+              </ngx-button>
+
+              <ngx-button
+                (clickHandler)="onConfirm()"
+                [fullWidth]="true"
+                [size]="'medium'"
+                [brandButton]="true"
+                (finished)="onConfirm()"
+                [timer]="{timeInSeconds: 10, timerType: 'mm:ss'}"
+              >
+                &nbsp;پرداخت در&nbsp;
+              </ngx-button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer"></div>
+    </div>
+  </credit-ui-content-box>
+}
+<page-loading [active]="loading()"></page-loading>

@@ -1,0 +1,15 @@
+<label (click)="wrapperClick($event)"
+       [ngClass]="{disabled: !enabled, 'blue-border':blueBorder ,'has-error': errorState, 'mobile-mode' : mobileMode}"
+       class="ui-amount-input">
+  <span class="unit">ریال</span>
+  <input #input (ngModelChange)="onValueChanged($event)"
+         [attr.disabled]="!enabled ? 'disabled' : null"
+         [attr.maxlength]="maxLength ? maxLength : null"
+         [attr.placeholder]="value && value.length > 0 ? null : placeholder"
+         [ngClass]="{'has-placeholder': !(value && value.length > 0)}"
+         [ngModel]="value"
+         [style.width]="inputWidth+'px'" numericKeyboard
+         type="text">
+
+</label>
+<span *ngIf="withHint && hint" class="hint">{{ hint }}</span>

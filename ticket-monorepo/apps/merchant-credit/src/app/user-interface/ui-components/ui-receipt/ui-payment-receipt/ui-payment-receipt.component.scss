@@ -1,0 +1,179 @@
+@import "variables";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.receipt {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  color: $swatch_steel_500;
+
+  .top-section {
+    text-align: center;
+    //padding: 20px 0 20px 0;
+  }
+
+  .numbers-pattern {
+
+    margin-bottom: 24px;
+    border-bottom: 1px solid $swatch_steel_200;
+
+    span {
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 28px;
+    }
+
+    div {
+      width: 54.5px;
+      border-bottom: 1px solid $swatch_steel_200;
+    }
+  }
+
+  .middle-section {
+    flex: 1 0;
+  }
+
+  .bottom-section {
+    left: 24px;
+    right: 24px;
+    position: absolute;
+    bottom: 24px;
+
+    .binary-copy {
+      margin: 0 auto 24px;
+      width: 364px;
+      height: 38px;
+      background: url("../../../../../assets/icons/binary-copy.svg") no-repeat center center;
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0 0;
+
+      .logo {
+        width: 96px;
+        height: 48px;
+        background: url('./icon/digipay-receipt-logo.svg') no-repeat center center/96px 48px;
+      }
+    }
+  }
+}
+
+.amount {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 56px;
+
+  .unit {
+    font-size: 18px;
+  }
+}
+
+.short-message {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  color: $swatch_steel_500;
+}
+
+.long-message-container {
+  min-height: 48px;
+  margin: 24px 0 24px;
+
+  .long-message {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: start;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: $swatch_steel_100;
+  }
+}
+
+.tracking-code {
+  text-align: center;
+  font-size: 12px;
+  color: $swatch_steel_200;
+  position: relative;
+
+  span {
+    font-family: monospace, Monospaced, arial;
+    background: #fff;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    padding: 0 20px;
+  }
+
+  &::after {
+    z-index: 0;
+    content: ' ';
+    display: block;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    background: $swatch_steel_200;
+  }
+
+}
+
+
+.status-icon {
+  background: no-repeat center/70px;
+  height: 70px;
+  margin-bottom: 8px;
+
+  &.icon-success {
+    background-image: url("./icon/receipt-pay-success.svg");
+  }
+
+  &.icon-failed {
+    background-image: url("./icon/receipt-pay-failed.svg");
+  }
+
+  &.icon-undetermined {
+    background-image: url("./icon/receipt-pay-undertermined.svg");
+  }
+}
+
+
+.transaction-details {
+  .detail-row {
+    font-size: 14px;
+    font-weight: 400;
+    min-height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $swatch_steel_500;
+
+    .value {
+      color: $swatch_steel_900;
+
+      &.copiable {
+        cursor: pointer;
+        color: $swatch_blue_500;
+      }
+    }
+  }
+}
+
+.action {
+  background: $swatch_blue_100;
+  color: $swatch-blue_500;
+  border-radius: 12px;
+  text-align: center;
+  width: 170px;
+  padding: 12px;
+  cursor: pointer;
+}

@@ -1,0 +1,71 @@
+<div
+  [ngClass]="{
+    'cash-in': true,
+    'compact-theme': theme === 'compact'
+  }"
+>
+
+  <div class="preparing" *ngIf="!config">
+    <ui-preparing
+      [showSubtitle]="false"
+    ></ui-preparing>
+  </div>
+
+  <ng-container *ngIf="!!config">
+
+    <div class="content">
+      <div class="cash-in-logo"></div>
+
+      <div class="description">
+        <span *ngIf="changeable; else amountAlert" class="title">مبلغ افزایش موجودی را وارد کنید.</span>
+        <ng-template #amountAlert>
+          <span class="title">مبلغ افزایش موجودی مورد نیاز</span>
+        </ng-template>
+        <div class="subtitle-wrapper">
+          <div class="subtitle">
+            <span>موجودی فعلی</span>
+            <ui-currency [customColor]="'#2c3544'" [value]="walletBalance"></ui-currency>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper" #inputAmount>
+        <ui-amount-input
+          (click)="inputTapped()"
+          (valueChange)="inputValueChanged($event)"
+          (clickEvent)="triggerClickEvent($event)"
+          [value]="selectedAmount"
+          [focusSignal]="inputFocusSignal"
+          [minAmount]="config.minAmount"
+          [maxAmount]="config.maxAmount"
+          [hasCounter]="true"
+          [changeable]="changeable"
+        ></ui-amount-input>
+      </div>
+
+      <div class="suggestions" *ngIf="changeable">
+        <ui-amount-suggestions
+          (clickEvent)="triggerClickEvent($event)"
+          [selected]="selectedAmount"
+          (itemSelect)="suggestionItemClick($event)"
+          [config]="config"></ui-amount-suggestions>
+      </div>
+
+      <form [action]="paymentUrl" #redirectPaymentForm method="post">
+        <input type="hidden" [value]="selectedAmount" name="amount">
+      </form>
+    </div>
+
+    <div class="actions">
+      <ui-button
+        appearance="default"
+        theme="digipay"
+        class="submit-button full-width"
+        (buttonClick)="cashIn(inputAmount)"
+        [fullWidth]="true">
+        تایید مبلغ و ادامه
+      </ui-button>
+    </div>
+  </ng-container>
+
+</div>

@@ -1,0 +1,24 @@
+@import "../variables";
+
+.digipay-bottom-sheet {
+  position: relative !important;
+
+  .mat-bottom-sheet-container{
+    &::before {
+      content: "";
+      width: 40px;
+      border-radius: 16px;
+      height: 4px;
+      background-color: $swatch_steel_200;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translate(-50%);
+      z-index: 1;
+    }
+  }
+
+  .mat-bottom-sheet-container {
+    border-radius: 16px 16px 0 0 !important;
+  }
+}

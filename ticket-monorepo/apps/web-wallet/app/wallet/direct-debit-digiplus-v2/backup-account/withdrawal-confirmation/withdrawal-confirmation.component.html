@@ -1,0 +1,42 @@
+<h3 class="dialog-title">تایید نهایی</h3>
+
+<div *ngIf="loading"
+     class="loader-container">
+  <div class="loader"></div>
+</div>
+
+<app-daily-payment
+  *ngIf="!loading"
+  [detailRows]="[
+    [
+      {label: 'مبلغ', value: (ticketInfo.maxDailyTransactionAmount | separator) + ' ریال'},
+      {label: 'مدت', value: ticketInfo?.duration?.count +' '+ (ticketInfo?.duration?.timeUnit | translateTimeUnit)},
+      {label: 'حساب پشتیبان', value: bank ? bank.name : ''},
+    ],
+    [
+      {
+        label: 'برداشت ماهیانه',
+        value: (totalWithdrawal | separator) + ' ریال'
+      }
+    ]
+  ]"
+></app-daily-payment>
+
+
+<div class="actions">
+  <ui-button
+    (buttonClick)="reject()"
+    class="secondary"
+    theme="digipay"
+    [fullWidth]="true"
+    appearance="red-text">انصراف
+  </ui-button>
+
+  <ui-button
+    (buttonClick)="confirm()"
+    [fullWidth]="true"
+    class="primary"
+    theme="digipay"
+  >تایید و ادامه
+  </ui-button>
+</div>

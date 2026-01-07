@@ -1,0 +1,93 @@
+@import "../../../styles/layout/variables";
+
+:host {
+  display: inline-block;
+}
+
+.button {
+  height: 48px;
+  padding: 10px 24px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 400;
+  border: 1px solid $swatch_blue_500;
+  background: $swatch_blue_500;
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &.default {
+    &[disabled] {
+      background: #e6e6e6;
+      border-color: #e6e6e6;
+      color: #b2b2b2;
+    }
+  }
+
+  &.outline-blue {
+    background: transparent;
+    color: $swatch_blue_500;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.flat-blue {
+    background: $swatch_blue_100;
+    color: $swatch_blue_500;
+    border: none;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.outline-steel {
+    background: transparent;
+    color: $swatch_steel_900;
+    border-color: $swatch_steel_500;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.blue-text {
+    color: $swatch_blue_500;
+    background: transparent;
+    border-color: transparent;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.steel-text {
+    color: $swatch_steel_500;
+    background: transparent;
+    border-color: transparent;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+}
+
+a.button {
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

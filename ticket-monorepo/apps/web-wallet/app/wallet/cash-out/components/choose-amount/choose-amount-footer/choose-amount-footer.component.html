@@ -1,0 +1,11 @@
+<div class="footer">
+
+  <ui-button [fullWidth]="true" theme="digipay" (buttonClick)="next.emit('CUSTOM')" [disabled]="isInvalidAmount">
+    تایید و ادامه
+  </ui-button>
+
+  <ui-button [fullWidth]="true" theme="digipay" (buttonClick)="next.emit('TOTAL')" appearance="blue-text">
+    برداشت تمام موجودی
+  </ui-button>
+
+</div>

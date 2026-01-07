@@ -1,0 +1,67 @@
+﻿@import "base-style/styleguide";
+@import "./variables";
+
+@mixin my-font-face(
+  $name,
+  $weights: normal,
+  $path: '../../assets/fonts/',
+  $style: null,
+  $exts: eot woff2 woff ttf svg,
+  $unicodes: '',
+  $font-display: auto,
+  $isVariableFont: false
+) {
+  $extmods: (
+    eot: '?',
+  );
+  $formats: (
+    otf: 'opentype',
+    ttf: 'truetype',
+  );
+  @each $weight in $weights {
+    $src: null;
+    @each $ext in $exts {
+      $extmod: if(
+          map-has-key($extmods, $ext),
+          $ext + map-get($extmods, $ext),
+          $ext
+      );
+      $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+      $weightName: if($isVariableFont, 'variable', $weight);
+      $src: append(
+          $src,
+          url(quote(
+              $path +
+              $name +
+              '/' +
+              $ext +
+              '/' +
+              $name +
+              '_' +
+              $weightName +
+              '.' +
+              $extmod
+          )) format(quote($format)),
+          comma
+      );
+    }
+    @font-face {
+      font-family: quote($name);
+      font-style: $style;
+      font-weight: $weight;
+      src: $src;
+      font-display: $font-display;
+      unicode-range: $unicodes;
+    }
+  }
+}
+
+@include my-font-face(
+    $primary-font,
+    $weights,
+    '../../assets/fonts/',
+    normal,
+    woff woff2,
+    '',
+    swap,
+    true);

@@ -1,0 +1,31 @@
+<ui-dialog
+  [id]="{submit:dialogData.id.submit , cancel:dialogData.id.cancel}"
+  class="subscription-dialog"
+  [title]="'لغو شارژ خودکار'"
+  [submitButtonTitle]="confirmButtonTitle"
+  [theme]="'secondary'"
+  (close)="cancel()"
+  (submit)="confirm()"
+>
+  <div>
+    <p class="dialog-description">
+      {{'آیا از لغو قرارداد زیر اطمینان دارید؟'}}
+    </p>
+
+    <ui-template-card
+      [imageId]="contractInfo['bankIcon']"
+      [cardAmount]="contractInfo['minWalletBalance']"
+      [cardTitle]="contractInfo.title"
+      [cardAmountPrefix]="cardAmountPrefix"
+      [firstField]="{
+        title: 'تاریخ شروع قرارداد',
+        value: contractInfo['activationDate']
+      }"
+      [secondField]="{
+        title: 'تاریخ انقضا',
+        value: contractInfo['expirationDate']
+      }"
+    ></ui-template-card>
+
+  </div>
+</ui-dialog>

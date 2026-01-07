@@ -1,0 +1,108 @@
+<ngx-location-trap
+  (back)="back()"
+  [canBack]="false"
+  [canExit]="true"
+>
+</ngx-location-trap>
+
+<app-page-title-bar [buttonLink]="backUrl" [closeButton]="true" alignment="RIGHT" title="پرداخت"></app-page-title-bar>
+<div *ngIf="!loading" class="page-content">
+
+  <div class="body">
+
+    <div class="form">
+      <div class="form-columns">
+        <div class="full-col">
+          <ui-c2c-card-number-input
+            (focusin)="displayingDatePicker = false"
+            [bankLogoId]="bankLogo"
+            [errorState]="false"
+            [label]="'شماره کارت'"
+            [name]="'cardNumber'"
+            [parentForm]="form"
+            [showSpinner]="gettingProfileCard"
+            [validationRules]="validationRules.cardNumber"
+            [value]="form.value['cardNumber']"
+          ></ui-c2c-card-number-input>
+          <div class="field-errors-area">
+            <ui-dpg-form-notice [visible]="false" appearance="error"> شماره کارت وارد شده اشتباه است.
+            </ui-dpg-form-notice>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-columns">
+        <div class="col">
+          <ui-text-field
+            (focusin)="displayingDatePicker = false"
+            [autofocus]="autoFocusCvv2"
+            [maxLength]="4"
+            [parentForm]="form"
+            [validationRules]="validationRules.cvv2"
+            [value]="form.value.cvv2"
+            dataType="SECRET_NUMBER"
+            label="CVV2"
+            name="cvv2"></ui-text-field>
+        </div>
+
+        <div class="col">
+          <ui-text-field
+            (focusedIn)="displayingDatePicker = true"
+            (keyDown)="expirationDateKeydown($event)"
+            [autofocus]="autofocusDate"
+            [parentForm]="form"
+            [readonly]="true"
+            [validationRules]="validationRules.expirationDate"
+            [value]="form.value.expirationDate"
+            label="تاریخ انقضا"
+            name="expirationDate"></ui-text-field>
+        </div>
+      </div>
+
+      <ui-dynamic-pass-field
+        (countdownFinished)="dynamicPassCountdownFinished()"
+        (focusin)="displayingDatePicker = false"
+        (sendButtonClicked)="sendDynamicPass()"
+        [autofocus]="autoFocusPassword"
+        [countdownSeconds]="countdownDynamicPasswordSeconds"
+        [enableSendButton]="form.controls.cardNumber.valid && form.controls.expirationDate.valid && enableSendDynamicPasswordButton"
+        [inProgress]="gettingDynamicPassword"
+        [parentForm]="form"
+        [validationRules]="validationRules.password"
+        [value]="form.value.password"
+        controlName="password"></ui-dynamic-pass-field>
+
+    </div>
+  </div>
+
+  <!-- Date picker -->
+
+  <ui-c2c-mobile-date-picker
+    (confirm)="confirmDateSelection($event)"
+    (hide)="displayingDatePicker = false"
+    *ngIf="displayingDatePicker"
+    [date]="form.value.expirationDate"
+  ></ui-c2c-mobile-date-picker>
+
+  <!-- Footer -->
+  <div *ngIf="!displayingDatePicker" class="footer">
+    <div class="footer-details">
+      <ng-container *ngIf="amount">
+        <span class="title">مبلغ</span>
+        <span class="amount">{{ amount | thousands }} <span class="unit">ریال</span></span>
+      </ng-container>
+    </div>
+
+    <ngx-button
+      (clickHandler)="pay()"
+      [brandButton]="true"
+      [disabled]="form.invalid || paying"
+      [isLoading]="paying"
+      [size]="'medium'"
+    >
+      پرداخت
+    </ngx-button>
+  </div>
+
+</div>
+<page-loading [active]="loading"></page-loading>

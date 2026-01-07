@@ -1,0 +1,14 @@
+<div class=" es-loan-ics-reporting-check-score-step d-flex flex-column gap-huge  pl-medium pr-medium">
+  <div class="d-flex flex-column mt-hulk mb-auto">
+    <ngx-status-result
+      [title]="errorData?.title!"
+      [description]="errorData?.message!"
+      [buttons]="errorData?.buttons!"
+      (clicked)="onClick($event)"
+    >
+      <ng-container status-image>
+        <img [src]="errorData?.staticImage" alt="">
+      </ng-container>
+    </ngx-status-result>
+  </div>
+</div>

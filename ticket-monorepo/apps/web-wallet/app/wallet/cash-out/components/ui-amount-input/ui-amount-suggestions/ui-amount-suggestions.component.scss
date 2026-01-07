@@ -1,0 +1,37 @@
+
+:host {
+  display: block;
+}
+
+$padding: 6px;
+
+.suggestions {
+  display: flex;
+  align-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 0 (-1 * $padding);
+
+  .suggestion-wrapper {
+    justify-content: space-between;
+    flex: 2;
+    padding: 0 $padding;
+  }
+
+  .suggestion {
+    text-align: center;
+    font-size: 12px;
+    padding: 12px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px #666666;
+    cursor: pointer;
+    margin: 0 0 12px 0;
+    white-space: nowrap;
+
+    &.selected {
+      box-shadow: 0 0 0 2px #0040ff;
+      background-color: #f0f5ff;
+      color: #0040ff;
+    }
+  }
+}

@@ -1,0 +1,403 @@
+[
+  {
+    "id": 1,
+    "title": "آفریقا",
+    "address": "تهران، بزرگراه آفریقا، نرسیده به چهارراه جهان کودک، پلاک 31",
+    "phone": [
+      "021-88874461",
+      "021-88874457"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/F7g1rnwUddoQ22im7",
+    "status": 0
+  },
+  {
+    "id": 2,
+    "title": "مرکزی",
+    "address": "تهران، خیابان انقلاب، بین چهارراه کالج و ولیعصر، شماره 80337",
+    "phone": [
+      "021-66959050",
+      "021-66958933"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/kGwBo8BCcBvVLbrLA",
+    "status": 0
+  },
+  {
+    "id": 3,
+    "title": "پاسداران",
+    "address": "تهران، خیابان پاسداران، مقابل بوستان ششم، جنب برج سفید، پلاک 250",
+    "phone": [
+      "021-22595658"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/kn6H12vfEbSbeWJg9",
+    "status": 0
+  },
+  {
+    "id": 4,
+    "title": "بازار",
+    "address": "تهران، بازار، خیابان 15 خرداد غربی، بین چهارراه گلوبندک و ابوسعید، پلاک681",
+    "phone": [
+      "021-55575738",
+      "021-55575739"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/R567ZbPK23PG7GNp9",
+    "status": 0
+  },
+  {
+    "id": 5,
+    "title": "صادقیه",
+    "address": "تهران، ضلع جنوب\u200Cشرقی فلکه اول صادقیه، شماره 918",
+    "phone": "021-44254518-20",
+    "mapUrl": "https://maps.app.goo.gl/kWaDGuk29eEFpUUj7",
+    "status": 0
+  },
+  {
+    "id": 6,
+    "title": "اقدسیه",
+    "address": "تهران، خیابان اقدسیه، نبش کوچه نسیم، پلاک 63",
+    "phone": [
+      "021-22823249",
+      "021-22823405"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/nnnECfU4NiX7yzCj8",
+    "status": 0
+  },
+  {
+    "id": 7,
+    "title": "میرداماد",
+    "address": "تهران، خیابان میرداماد، نرسیده به میدان مادر، پلاک 148",
+    "phone": [
+      "021-22924451-3"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/DVY7hvZVEC9n8jjo9",
+    "status": 0
+  },
+  {
+    "id": 8,
+    "title": "دکتر فاطمی",
+    "address": "تهران، خیابان دکتر فاطمی، روبه\u200Cروی خیابان کاخ، نبش کوچه ششم (شیخلر)، پلاک 140",
+    "phone": [
+      "021-88982181-5"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/t9PAprjdDKV3YBWR7",
+    "status": 0
+  },
+  {
+    "id": 9,
+    "title": "سعادت\u200Cآباد",
+    "address": "تهران، خیابان سعادت\u200Cآباد، میدان کاج، شماره 13",
+    "phone": [
+      "021-22086195-200"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/8TP5QPi4CQxdSjky6",
+    "status": 0
+  },
+  {
+    "id": 10,
+    "title": "جنت\u200Cآباد",
+    "address": "تهران، خیابان جنت\u200Cآباد جنوبی، میدان چهارباغ، خیابان لاله غربی، مجتمع سمرقند، شماره 47",
+    "phone": [
+      "021-44495201-9"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/3vn11iqgW5bzU5yH9",
+    "status": 0
+  },
+  {
+    "id": 11,
+    "title": "میدان ونک",
+    "address": "تهران، خیابان ولیعصر، بالاتر از میدان ونک، نبش خیابان برادران شریفی، شماره 2477",
+    "phone": [
+      "021-88205455-9"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/653rY6Pg6tbVMLJt8",
+    "status": 0
+  },
+  {
+    "id": 12,
+    "title": "آفریقای شمالی",
+    "address": "تهران، خیابان نلسون ماندلا (جردن)، بالاتر از خیابان اسفندیار، نبش شمالی خیابان سعیدی، پلاک 158",
+    "phone": [
+      "021-26219547",
+      "021-26219651"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/LXwLDUJnCAHCekVa9",
+    "status": 0
+  },
+  {
+    "id": 13,
+    "title": "جام\u200Cجم",
+    "address": "تهران، خیابان ولیعصر، نرسیده به چهارراه پارک\u200Cوی، نبش کوچه ترکش\u200Cدوز، شماره 2",
+    "phone": [
+      "021-26210912-4"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/cx3aaSpyRHKrp2qE6",
+    "status": 0
+  },
+  {
+    "id": 14,
+    "title": "خیابان آذربایجان",
+    "address": "تهران، خیابان آزادی، نبش خیابان آذربایجان، پلاک 1046",
+    "phone": [
+      "021-66067882",
+      "021-66067884~6"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/D68YsNjZxb34okkT7",
+    "status": 0
+  },
+  {
+    "id": 15,
+    "title": "دکتر بهشتی",
+    "address": "تهران، خیابان شهید دکتر بهشتی، بعد از چهارراه سهروردی، پلاک 138",
+    "phone": [
+      "021-88512603-8"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/vx8UwSLnb3WWGUm56",
+    "status": 0
+  },
+  {
+    "id": 16,
+    "title": "امین حضور",
+    "address": "تهران، میدان بهارستان، خیابان مصطفی خمینی، خیابان امیرکبیرشرقی، نبش کوچه جاویدی، پلاک 140",
+    "phone": [
+      "021-33443711",
+      "021-33443704"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/3LQg6aN16jdM5gQy8",
+    "status": 0
+  },
+  {
+    "id": 17,
+    "title": "دهکده\u200C المپیک",
+    "address": "تهران، میدان المپیک، بلوار دهکده المپیک، نبش خیابان شهید یعقوبی (خیابان15)، شماره 2",
+    "phone": [
+      "021-44715055",
+      "021-44701467"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/t4AhmbcUmMjo8dCWA",
+    "status": 0
+  },
+  {
+    "id": 18,
+    "title": "جهانشهر کرج",
+    "address": "کرج، میدان سپاه، ابتدای خیابان جهانشهر، نبش نیلوفر، شماره 1",
+    "phone": [
+      "026-34466115-20"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/ueuxokFjiXzkgZhS9",
+    "status": 1
+  },
+  {
+    "id": 19,
+    "title": "قم",
+    "address": "قم، بلوار امین، نبش کوچه 41",
+    "phone": [
+      "025-32903240",
+      "025-32903250"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/J4yBiHN2A2qZvFgT9",
+    "status": 2
+  },
+  {
+    "id": 20,
+    "title": "شیراز",
+    "address": "شیراز، خیابان زند، بین خیابان فلسطین و هفت\u200Cتیر، شماره 396",
+    "phone": [
+      "071-32319521~7"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/n3amofYdbPMLi36j9",
+    "status": 3
+  },
+  {
+    "id": 21,
+    "title": "هرمزگان",
+    "address": "بندرعباس، خیابان امام خمینی، نرسیده به سه\u200Cراه دلگشا، برج نیلوفر، طبقه همکف",
+    "phone": [
+      "076-32235302~8"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/qY1Lz2sJDrxRsWKV7",
+    "status": 4
+  },
+  {
+    "id": 22,
+    "title": "قزوین",
+    "address": "قزوین، خیابان خیام شمالی - شماره 560",
+    "phone": [
+      "028~33357305~8"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/SjMe94A1va6gHzcC8",
+    "status": 5
+  },
+  {
+    "id": 23,
+    "title": "مشهد",
+    "address": "مشهد، بلوار احمد آباد، 30 متری اول احمد آباد (خیابان رضا)، نبش کوچه رضای دوم",
+    "phone": [
+      "051~38444460~1"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/u5Q191waViRirsB5A",
+    "status": 6
+  },
+  {
+    "id": 24,
+    "title": "مدرس مشهد",
+    "address": "مشهد، بلوار مدرس، نبش مدرس 5، پلاک 37",
+    "phone": [
+      "051-32283800-5"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/UaGs93c65x3YSxxT9",
+    "status": 6
+  },
+  {
+    "id": 25,
+    "title": "بلوار سجاد مشهد",
+    "address": "مشهد، بلوار سجاد، نبش سجاد 8 (خیابان لاله جنوبی)",
+    "phone": [
+      "051~37648208~9"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/UaGs93c65x3YSxxT9",
+    "status": 6
+  },
+  {
+    "id": 26,
+    "title": "گلسار رشت",
+    "address": "رشت، ابتدای بلوار گلسار، ضلع شرقی میدان باستانی شعار",
+    "phone": [
+      "013-32114710-14"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/eSNrkGuzX8vtpoZW6",
+    "status": 7
+  },
+  {
+    "id": 27,
+    "title": "مازندران",
+    "address": "ساری، خیابان فرهنگ، بعد از تقاطع قارن، به طرف میدان شهدا",
+    "phone": [
+      "011-33259762-6"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/PwkQoZwgtxFRu7ZR6",
+    "status": 8
+  },
+  {
+    "id": 28,
+    "title": "مازندران",
+    "address": "آمل، خیابان امام خمینی(ره) (هزاز)، بین آفتاب 18 و 20 ، پلاک 261",
+    "phone": [
+      "011-44296421-8"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/fZJaRtBp6w6Rvk367",
+    "status": 8
+  },
+  {
+    "id": 29,
+    "title": "کرمان",
+    "address": "کرمان، خیابان سپهبد قر\u200Cنی، نرسیده به میدان سپهبد قر\u200Cنی، نبش کوچه قر\u200Cنی 8",
+    "phone": [
+      "034-32238794",
+      "034-32233386"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/cC5WGA94fBVsPURg9",
+    "status": 10
+  },
+  {
+    "id": 30,
+    "title": "بلوار جمهوری اسلامی یزد",
+    "address": "یزد، بلوار جمهوری، روبروی برج آسمان، نبش کوچه محمودآباد، پلاک 605",
+    "phone": [
+      "035-35302140-45"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/BXYiZLuK58FtZt1f9",
+    "status": 11
+  },
+  {
+    "id": 31,
+    "title": "اراک",
+    "address": "اراک، خیابان شهید رجایی، بین دوازده متری وهفده متری، پلاک 8837",
+    "phone": [
+      "086-32214404-9",
+      "086-32214504-10"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/nPEkMrq9iyMBV7CPA",
+    "status": 12
+  },
+  {
+    "id": 32,
+    "title": "ولیعصر تبریز",
+    "address": "تبریز، خیابان ولیعصر، بین فلکه بازار و ایرداک، شماره 27",
+    "phone": [
+      "041-33327085-6"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/RvwGrSQkUvq58K4T6",
+    "status": 13
+  },
+  {
+    "id": 33,
+    "title": "استاد شهریار تبریز",
+    "address": "تبریز، اول جاده ائل\u200Cگلی، نبش کوی الهی\u200Cپرست، پلاک 3",
+    "phone": [
+      "041-33293262~4"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/yUyLowexFmZgQnk47",
+    "status": 13
+  },
+  {
+    "id": 34,
+    "title": "ارومیه",
+    "address": "ارومیه، خیابان کاشانی، روبروی مرکز بهداشت، پلاک 156",
+    "phone": [
+      "044-32244311",
+      "044-32231652"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/5S4K2kPs4tdi4gJMA",
+    "status": 14
+  },
+  {
+    "id": 35,
+    "title": "اهواز",
+    "address": "اهواز، خیابان کیانپارس، بین خیابان 3 و 4 شرقی، شماره 205",
+    "phone": [
+      "061-33920524~6"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/sBXv59LhXjEK4yRX6",
+    "status": 15
+  },
+  {
+    "id": 36,
+    "title": "هرمزگان",
+    "address": "کیش، خیابان فردوسی، مرکز تجاری کیش، طبقه همکف - شماره 29",
+    "phone": [
+      "076-44452491-4"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/q9Tnyh2S5FqVn9Hv5",
+    "status": 4
+  },
+  {
+    "id": 37,
+    "title": "هرمزگان",
+    "address": "قشم، بلوار ولیعصر، روبروی مجتمع خلیج فارس، ساختمان گلدیس",
+    "phone": [
+      "076-35242645-6"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/VXNEchVVMct4p9bZ6",
+    "status": 4
+  },
+  {
+    "id": 38,
+    "title": "اصفهان",
+    "address": "اصفهان، خیابان فردوسی، نبش خیابان منوچهری، شماره 13",
+    "phone": [
+      "031-32230424~6"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/bE3CjWSg4thowWmy7",
+    "status": 18
+  },
+  {
+    "id": 39,
+    "title": "زاینده\u200Cرود اصفهان",
+    "address": "اصفهان، خیابان توحید، نبش کوچه شهید تقی\u200Cآبادی، شماره 5",
+    "phone": [
+      "9521",
+      "031-36282572-8"
+    ],
+    "mapUrl": "https://maps.app.goo.gl/HyoPckZhHsyrnxsU9",
+    "status": 18
+  }
+]

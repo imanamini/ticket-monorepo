@@ -1,0 +1,80 @@
+@import "src/app/layout/variables";
+@import "src/app/layout/mixins/font-size";
+@import "src/app/layout/mixins/flex";
+
+:host ui-button {
+  ::ng-deep button {
+    width: 100%;
+  }
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.dialog-container {
+  padding: 16px;
+  .header {
+    position: relative;
+
+    .close-icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      background: url("../../../../../assets/icon/close.svg") no-repeat 0 0/100%;
+    }
+  }
+
+  .body {
+    .title {
+      font-family: $font-name;
+      @include fontSize(14);
+      text-align: center;
+    }
+
+    .logo-wrapper {
+      width: 100%;
+      @include flex-center;
+
+      img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    .description {
+      font-family: $font-name;
+      font-size: 14px;
+      color: $gray;
+      line-height: 1.71;
+      text-align: right;
+      direction: rtl;
+      margin-bottom: 24px;
+    }
+
+    .title {
+      margin: 12px 0;
+      font-size: 18px;
+      color: $dark-gray;
+      text-align: center;
+    }
+  }
+
+  .footer {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
+    .fullWidthButton {
+      width: 100%;
+    }
+  }
+}

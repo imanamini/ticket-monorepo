@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg height="20px" version="1.1" viewBox="0 0 20 20" width="20px" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>icon/general/information</title>
+  <defs>
+    <rect height="24" id="path-1" width="24" x="0" y="0"></rect>
+    <rect height="24" id="path-3" width="24" x="0" y="0"></rect>
+    <path d="M12,9 C11.4477153,9 11,8.55228475 11,8 C11,7.44771525 11.4477153,7 12,7 C12.5522847,7 13,7.44771525 13,8 C13,8.55228475 12.5522847,9 12,9 Z M12,17 C11.4477153,17 11,16.5522847 11,16 L11,11 C11,10.4477153 11.4477153,10 12,10 C12.5522847,10 13,10.4477153 13,11 L13,16 C13,16.5522847 12.5522847,17 12,17 Z M11.99,2 C6.47,2 2,6.48 2,12 C2,17.52 6.47,22 11.99,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 11.99,2 Z M12,20 C7.58,20 4,16.42 4,12 C4,7.58 7.58,4 12,4 C16.42,4 20,7.58 20,12 C20,16.42 16.42,20 12,20 Z"
+          id="path-5"></path>
+  </defs>
+  <g fill="none" fill-rule="evenodd" id="KYC-states" stroke="none" stroke-width="1">
+    <g id="Tax-Code-01-Copy" transform="translate(-291.000000, -22.000000)">
+      <g id="icon/general/information" transform="translate(289.000000, 20.000000)">
+        <g id="Bounds">
+          <mask fill="white" id="mask-2">
+            <use xlink:href="#path-1"></use>
+          </mask>
+          <g id="Mask"></g>
+          <mask fill="white" id="mask-4">
+            <use xlink:href="#path-3"></use>
+          </mask>
+          <g id="Border"></g>
+        </g>
+        <mask fill="white" id="mask-6">
+          <use xlink:href="#path-5"></use>
+        </mask>
+        <g fill-rule="nonzero" id="Mask"></g>
+        <g fill="#6E798D" id="Group" mask="url(#mask-6)">
+          <g id="🎨-Color">
+            <rect height="24" id="Surface" width="24" x="0" y="0"></rect>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

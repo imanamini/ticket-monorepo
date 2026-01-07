@@ -1,0 +1,33 @@
+<div *ngIf="!tacShow">
+  <p>
+    سقف اعتباری شما با توجه به مدارک انتخاب شده مبلغ
+    <span class="bold-text">{{ amount | thousands }} ریال</span>
+    می‌باشد. آیا از انتخاب این مبلغ اطمینان دارید؟
+  </p>
+
+  <ui-note-box note="توجه داشته باشید که مبلغ در ادامه قابل ویرایش نیست."></ui-note-box>
+
+  <ui-checkbox [checked]="agreed" (changed)="agreed = $event">
+    با
+    <span class="link-style" (click)="showTac()">قوانین و مقررات</span>
+    استفاده از این سرویس موافقم
+  </ui-checkbox>
+
+
+  <div class="actions">
+    <ng-button (clickHandler)="cancel()"
+               buttonSize="medium"
+               [fullWidth]="true"
+               buttonType="tinted"
+               [buttonText]="'انصراف'">
+    </ng-button>
+    <ng-button (clickHandler)="proceed()"
+               buttonSize="medium"
+               [fullWidth]="true"
+               [disabled]="!agreed"
+               [buttonText]="'ثبت درخواست'">
+    </ng-button>
+
+  </div>
+</div>
+<app-terms-condition [tacShow]="tacShow" (closed)="onClose($event)"></app-terms-condition>

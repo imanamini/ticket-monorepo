@@ -1,0 +1,80 @@
+@import "src/app/layout/mixins/device";
+
+
+::ng-deep app-page-dialog {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+::ng-deep .page-bottom-sheet {
+  height: 80vh;
+}
+
+.header {
+  direction: rtl;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 5px 5px 0 0;
+
+  .title {
+    color: #2c3544;;
+    font-size: 18px;
+  }
+
+  .close {
+    width: 24px;
+    height: 24px;
+    background-image: url("../../assets/icons/exit.svg");
+    cursor: pointer;
+  }
+}
+
+iframe {
+  width: 100%;
+  flex-grow: 1;
+}
+
+.iframe-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 0 5px 5px;
+  background-color: rgba(255, 255, 255, 0.05);
+  height: 90%;
+  overflow: auto;
+}
+
+@include mediaMobile() {
+  .iframe-container {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+  }
+}
+
+
+@include mediaMobile() {
+  ::ng-deep .page-dialog-component {
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    max-width: 100% !important;
+
+    .mat-mdc-dialog-container {
+      border-radius: 0;
+    }
+  }
+}
+
+@include mediaDesktop() {
+  ::ng-deep .page-dialog-component {
+    border-radius: 5px;
+    width: 600px;
+    height: 90%;
+    max-width: 90% !important;
+  }
+}

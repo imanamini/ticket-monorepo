@@ -1,0 +1,64 @@
+@import "src/app/layout/mixins/device";
+@import "../../shared-styles/shared-styles-cash-out";
+
+:host ::ng-deep input {
+  direction: rtl;
+  text-align: right !important;
+}
+
+.content-wrapper {
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.explain {
+  color: #424C5C;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+
+  .bold {
+    font-weight: 500;
+    color: black;
+  }
+}
+
+@include mediaMobile() {
+  .content-wrapper {
+    margin-bottom: 80px;
+
+    &.without-margin {
+      margin-bottom: 0;
+    }
+  }
+
+  cash-out-date-picker {
+    position: absolute;
+  }
+
+  .cash-out-date-picker-hide {
+    height: 0;
+    visibility: hidden;
+    top: -400px;
+  }
+
+  .cash-out-date-picker-show {
+    visibility: visible;
+    height: 310px;
+    transition: all 0.35s ease-in-out;
+    bottom: 0;
+    top: unset;
+    z-index: 2;
+    left: 0;
+    right: 0;
+  }
+}

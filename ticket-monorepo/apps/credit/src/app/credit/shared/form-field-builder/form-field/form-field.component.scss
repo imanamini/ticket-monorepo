@@ -1,0 +1,32 @@
+@import "../style/from-field-builder";
+@import "@ng-select/ng-select/themes/material.theme.css";
+
+:host {
+  font-size: 14px;
+  line-height: 1.6;
+
+  *:focus-visible {
+    outline: none;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.dg-hint-message {
+  margin: $hint-margin;
+  font-size: $hint-font-size;
+  line-height: $hint-line-height;
+  min-height: $hint-line-height;
+  color: $hint-color;
+}
+
+.dg-error-message {
+  margin: $hint-margin;
+  font-size: $hint-font-size;
+  line-height: $hint-line-height;
+  min-height: $hint-line-height;
+  color: $error-message-color;
+}
+

@@ -1,0 +1,51 @@
+<app-location-trap (back)="cancelPay()" [canBack]="false" [canExit]="true"></app-location-trap>
+
+@if (!gettingData) {
+  <div class="d-flex flex-column h-100">
+    <ngx-app-bar
+      [title]="'پرداخت با دیجی‌پی'"
+      [rightButton]="{
+      icon: 'close',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+      (onRightButtonClick)="cancelPay()"
+    />
+    <ngx-divider/>
+
+    <div class="pt-huge px-big pb-big flex-grow">
+      <div class="text-onback-medium mb-medium">مبلغ را با کدام کارت پرداخت می‌کنید؟</div>
+      <app-selective-card
+        (select)="onSelect(i)"
+        *ngFor="let item of creditInfo.creditDetails; let i = index"
+        [color]="item.color"
+        [description]="item.balance ? ('موجودی: ' + (item.balance | iranianRials)) : 'موجودی: -'"
+        [disabled]="item.disable"
+        [isSelected]="selectedIndex === i"
+        [title]="item.installmentCount ? item.installmentCount === 1 ?
+        'اعتبار ماهانه' : 'اعتبار ' + (item.installmentCount + 1) + ' قسطه'
+        : 'دیجی‌پی'"
+      ></app-selective-card>
+    </div>
+
+    <div *ngIf="selectedCreditItem && selectedCreditItem.disable" class="p-big">
+      <p *ngFor="let message of selectedCreditItem.messages" class="wallet-notice-text">
+        {{ message.text }}
+      </p>
+    </div>
+
+    <app-credit-payment-footer
+      [finalAmount]="footer().finalAmount"
+      [finalAmountTitle]="footer().finalAmountTitle"
+      [rows]="footer().rows"
+      [primaryButton]="'تایید و ادامه'"
+      [primaryButtonDisabled]="!selectedCreditItem || selectedCreditItem.disable || selectedCreditItem.balance === 0"
+      [secondaryButton]="creditInfo.couponVisible ? 'کد تخفیف' : ''"
+      [secondaryButtonDisabled]="!selectedCreditItem || selectedCreditItem.disable || selectedCreditItem.balance === 0"
+      (primaryClicked)="navigateToDetail(selectedCreditItem.fundProvider.businessId, selectedCreditItem.creditId)"
+      (secondaryClicked)="couponClickedHandler()"
+    />
+  </div>
+}
+<page-loading [active]="gettingData"></page-loading>

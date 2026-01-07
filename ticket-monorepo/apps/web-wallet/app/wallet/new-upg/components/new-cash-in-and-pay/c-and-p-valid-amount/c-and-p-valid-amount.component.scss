@@ -1,0 +1,51 @@
+@import "src/app/layout/mixins/device";
+@import "src/app/layout/variables";
+
+.loader {
+  margin: auto;
+}
+
+ui-button {
+  margin-top: 40px;
+}
+
+
+.cash-in-container {
+  padding: 40px;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+
+  .cash-in {
+    font-family: $font-name;
+  }
+}
+
+@include mediaMobile() {
+  :host {
+    height: 100%;
+  }
+
+  .loader-container {
+    padding: 15px;
+  }
+
+  .cash-in-container {
+    min-height: unset;
+    padding: 12px 24px 24px 24px;
+  }
+
+  .cash-in {
+    height: max-content !important;
+    position: relative;
+    padding: 0;
+  }
+
+  ::ng-deep {
+    .content-card {
+      .content-card-body {
+        padding: 12px !important;
+      }
+    }
+  }
+}

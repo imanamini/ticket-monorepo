@@ -1,0 +1,3 @@
+<div class="step-progress-bar">
+  <div [class]="'step-progress-item status-'+step.status" *ngFor="let step of steps; let i = index" [ngStyle]="{width: stepWidth[i] || 0}"></div>
+</div>

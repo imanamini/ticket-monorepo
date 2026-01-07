@@ -1,0 +1,31 @@
+.overflow-auto {
+  overflow-y: auto;
+}
+
+.footer {
+  flex-shrink: 0;
+  max-height: 400px;
+  transition: max-height .3s ease-in-out;
+
+  &.hide-footer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease-in-out;
+  }
+}
+
+.select-all_wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin-right: -1px; // To come over cards below
+}
+
+.select-all {
+  height: 56px;
+  box-sizing: border-box;
+}
+
+.position-relative {
+  position: relative;
+}

@@ -1,0 +1,81 @@
+<div class="subscription-card">
+  <div class="subscription-card-header">
+
+    <ui-image
+      *ngIf="imageId; else defaultLogo"
+      class="header-logo"
+      [imageId]="imageId"
+      height="32px"
+      width="32px"
+    ></ui-image>
+
+    <ng-template #defaultLogo>
+      <div class="header-logo default-icon"></div>
+    </ng-template>
+
+    <div class="header-content">
+      <div class="header-title">
+        <div>{{cardTitle}}</div>
+      </div>
+      <!--<div class="header-discount-details">-->
+      <!--  <div class="discount">-->
+      <!--    {{'30000'}}-->
+      <!--  </div>-->
+      <!--  <ui-badge [appearance]="'red'" [percentage]="50" [label]="'تخفیف'"></ui-badge>-->
+      <!--</div>-->
+      <div *ngIf="cardAmountPrefix" class="header-amount-details">
+        <div class="amount-prefix">
+          {{cardAmountPrefix + ':'}}
+        </div>
+        <div class="amount">
+          <ui-currency
+            [value]="cardAmount"
+          ></ui-currency>
+        </div>
+        <!--<ui-badge [appearance]="'green'" [percentage]="50" [label]="'بازگشت وجه'"></ui-badge>-->
+      </div>
+    </div>
+    <div class="header-detail" *ngIf="trialDuration">
+      {{trialDuration}}
+    </div>
+    <div
+      class="header-cancel-action"
+      *ngIf="!trialDuration && hasCancelAction"
+      (click)="cancelClicked()"
+      id="{{id?.cancel}}"
+    >
+      {{'لغو'}}
+      <div class="card-cancel-icon"></div>
+    </div>
+  </div>
+  <div class="subscription-card-body">
+    <div class="body-durations">
+      <div *ngIf="firstField">
+        <div class="detail-label">
+          {{firstField.title}}
+        </div>
+        <div class="detail-title">
+          {{firstField.value}}
+        </div>
+      </div>
+      <div *ngIf="secondField">
+        <div class="detail-label">
+          {{secondField.title}}
+        </div>
+        <div class="detail-title">
+          {{secondField.value}}
+        </div>
+      </div>
+    </div>
+    <div class="body-descriptions" *ngIf="thirdField">
+      <div>
+        <div class="detail-label">
+          {{thirdField.title}}
+        </div>
+        <div class="detail-title">
+          {{thirdField.value}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div [ngClass]="{'desktop-mod' :screenMode === 'DESKTOP', 'mobile-mod':screenMode === 'MOBILE'}"
+     class="cash-out-header">
+  <div class="left">
+    <div (click)="openTacEvent()" class="tac-icon">
+      <div class="dot"></div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="title">{{ title }}</div>
+    <ng-container [ngSwitch]="action">
+      <div (click)="exit()" *ngSwitchCase="'EXIT'" class="icon-exit"></div>
+      <div (click)="back()" *ngSwitchCase="'BACK'" class="back-icon"></div>
+    </ng-container>
+  </div>
+</div>

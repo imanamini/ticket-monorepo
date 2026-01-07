@@ -1,0 +1,13 @@
+@import "../../../../layout/mixins/device";
+
+.distance {
+  ::ng-deep.title {
+    margin-top: 16px;
+  }
+}
+
+@include mediaMobile() {
+  .form-wrapper {
+    direction: rtl !important;
+  }
+}

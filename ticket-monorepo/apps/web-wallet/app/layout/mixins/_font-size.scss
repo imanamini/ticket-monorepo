@@ -1,0 +1,5 @@
+@mixin fontSize($sizeInPixel) {
+  $rem: 14;
+
+  font-size: ($sizeInPixel / $rem)+rem;
+}

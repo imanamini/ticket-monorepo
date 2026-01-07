@@ -1,0 +1,59 @@
+@import "../../../../../../layout/mixins/device";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.amount-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+
+  .chargeable-amount-title{
+    color: #2C3544;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .amount{
+    color: #2C3544;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 56px;
+
+    .rial{
+      color: #2C3544;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 32px;
+    }
+  }
+
+  .toman-amount{
+    padding: 6px 12px;
+    border-radius: 12px;
+    background: #F2F5F8;
+    width: fit-content;
+    margin: 0 auto ;
+    color: #6E798D;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+  }
+
+}
+
+@include mediaMobile(){
+  :host {
+    gap: 24px;
+  }
+}

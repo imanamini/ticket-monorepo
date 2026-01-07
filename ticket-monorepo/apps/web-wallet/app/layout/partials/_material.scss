@@ -1,0 +1,99 @@
+@import "../variables";
+
+mat-hint, mat-error, .mat-simple-snackbar {
+  font-family: $font-name;
+  direction: rtl;
+  text-align: right;
+}
+
+mat-hint {
+  color: $digipay-blue !important;
+}
+
+$spinnerSize: 24px;
+
+.mat-mdc-spinner {
+  display: inline-block !important;
+  vertical-align: middle !important;
+  width: $spinnerSize !important;
+  height: $spinnerSize !important;
+
+  svg {
+    width: $spinnerSize !important;
+    height: $spinnerSize !important;
+  }
+
+  circle {
+    stroke: rgba(255, 255, 255, 0.5);
+  }
+}
+
+
+.mat-mdc-dialog-content {
+  max-height: 100% !important;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Snackbar customizations
+|--------------------------------------------------------------------------
+| These customizations are based on Digipay's DSL system
+| https://app.zeplin.io/styleguide/5f4d004e75c25a34f15e5348/components
+|
+*/
+.mat-mdc-snack-bar-container {
+  background: $swatch_steel_900;
+  color: #fff;
+  border-radius: 12px !important;
+
+  .mat-mdc-simple-snackbar-action {
+    color: $swatch_blue_300;
+    margin: -8px 8px -8px -8px;
+  }
+}
+
+.mat-mdc-simple-snack-bar {
+  direction: rtl;
+}
+
+.mat-mdc-snack-bar-container.is-danger {
+  .mat-mdc-simple-snack-bar {
+    > div::before {
+      background: url("../../../assets/icon/snackbar/snack-warning.svg") no-repeat 0 0/100%;
+    }
+  }
+}
+
+.mat-mdc-snack-bar-container.is-success {
+  .mat-mdc-simple-snack-bar {
+    > div::before {
+      background: url("../../../assets/icon/snackbar/snack-success.svg") no-repeat 0 0/100%;
+    }
+  }
+}
+
+.mat-mdc-snack-bar-container.is-danger, .mat-mdc-snack-bar-container.is-success, .mat-mdc-snack-bar-container.is-warn {
+  .mat-mdc-simple-snack-bar {
+    > div {
+      font-size: 14px;
+
+      &::before {
+        display: inline-block;
+        vertical-align: middle;
+        content: ' ';
+        width: 20px;
+        height: 20px;
+        margin-inline-end: 8px;
+      }
+    }
+  }
+}
+
+.mat-mdc-tooltip {
+  font-size: 12px;
+  font-family: $font-name;
+  text-align: right;
+  direction: rtl;
+  line-height: 1.5;
+}

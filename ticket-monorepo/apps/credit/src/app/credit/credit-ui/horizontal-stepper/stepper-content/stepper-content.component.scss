@@ -1,0 +1,62 @@
+@import "../../../../global-styles/variables";
+.step-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  .step-index-col {
+    flex: 0 0 32px;
+    margin-left: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 8px 0;
+    .index-number {
+      width: 32px;
+      height: 32px;
+      background-color: $swatch_blue_100;
+      color: $swatch_blue_500;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border-radius: 50%;
+    }
+  }
+  .step-content {
+    flex: 1 1 auto;
+    width: 100%;
+    padding: 8px 0;
+  }
+
+  &.is-first {
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 4px;
+      height: 50%;
+      top: 0;
+      right: 13px;
+      background-color: #FFFFFF;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+  }
+  &.is-last {
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      height: 50%;
+      top: 50%;
+      right: 13px;
+      background-color: #FFFFFF;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+  }
+}

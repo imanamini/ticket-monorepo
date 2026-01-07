@@ -1,0 +1,112 @@
+@import '../../../../styles/layout/variables';
+
+.tabs-wrapper {
+  border-top: 1px solid $swatch_steel_200;
+  border-radius: 16px 16px 0 0;
+  padding: 16px;
+  min-height: 590px;
+
+  h1 {
+    font-size: 16px;
+    font-weight: 700;
+    color: $swatch_steel_500;
+    margin-bottom: 16px;
+  }
+
+  .tabs {
+    .index {
+      display: flex;
+      font-size: 12px;
+      font-weight: 500;
+      gap: 8px;
+
+      * {
+        border-radius: 24px;
+        border: 1px solid $swatch_steel_200;
+        background: white;
+        color: $swatch_steel_500;
+        padding: 6px 12px;
+        top: 1px;
+        cursor: pointer;
+
+      }
+
+      .active {
+        border-radius: 24px;
+        border: 1px solid $swatch_blue_400;
+        color: $swatch_blue_400;
+        background-color: $swatch_blue_100;
+      }
+    }
+
+    .contents {
+      min-height: 120px;
+      border-radius: 16px;
+      margin: 22px 0;
+
+      .merchant-card-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+
+        .name {
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 24px;
+          color: $db-black;
+        }
+
+        .action {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 12px;
+          font-weight: 450;
+          line-height: 20px;
+          color: #1159FC;
+          cursor: pointer;
+
+          .arrow-icon {
+            background-image: url("../../../../../assets/icons/left-icon-blue.svg");
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+
+      .merchant-cards div:not(:last-child) {
+        border-bottom: 1px solid #DFE1E5;
+      }
+    }
+  }
+
+}
+
+.enroll-button {
+  position: fixed;
+  left: 16px;
+  bottom: 24px;
+  line-height: 24px;
+  padding: 12px 44px 12px 16px;
+  border-radius: 24px;
+  color: white;
+  background-color: $swatch_green_500;
+  background-image: url("../../../../../assets/icons/leading-Icon.svg");
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  background-position: right 16px center;
+  cursor: pointer;
+  z-index: 999;
+}
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: none;
+}
+
+.border {
+  border: 1px solid #DFE1E5;
+  padding: 16px;
+}

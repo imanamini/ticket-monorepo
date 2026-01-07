@@ -1,0 +1,59 @@
+@import "../../../layout/mixins/font-size";
+@import "../../../layout/mixins/device";
+@import "../../../layout/variables";
+
+.wrapper {
+  width: 380px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  ui-digipay-logo::ng-deep {
+    margin-top: 4vh;
+
+    .logo {
+      width: 48px;
+      height: 72px;
+    }
+  }
+
+  .rules-button {
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    @include fontSize(12);
+    color: $digipay-blue-primary;
+    margin-bottom: 16px;
+  }
+
+  .cell-number {
+    text-align: center;
+    display: block;
+    @include fontSize(24);
+    padding: 9vh 0 0;
+    color: #191919;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  .description {
+    text-align: center;
+    @include fontSize(14);
+    color: #191919;
+    direction: rtl;
+    padding-bottom: 8vh;
+    line-height: 1.71;
+    font-weight: normal;
+  }
+}
+
+//  #####   Responsive Styles   #####
+@include mediaMobile() {
+  ui-content-card::ng-deep {
+    .suggestions {
+      margin-right: 0;
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+}

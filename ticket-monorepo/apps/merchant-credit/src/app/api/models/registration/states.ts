@@ -1,0 +1,189 @@
+export enum RegistrationState {
+
+  // Main Flow
+  INITIATED = 1,
+  MAX_CREDIT_AMOUNT_REVISED = 2,
+  ICS = 3,
+  ICS_REJECTED = 8,
+  ICS_CELL_NUMBER_INQUIRY_REJECTED = 18,
+  DOCUMENTS_UPLOAD_COMPLETED = 32,
+  OPEN_ACCOUNT = 40,
+  OPEN_ACCOUNT_INQUIRY = 41,
+  CONTRACT_GENERATION = 50,
+  CONTRACT_GENERATION_RESULT = 52,
+  CONTRACT_SIGNING = 54,
+  CREDIT_LINE = 60,
+  CREDIT_LINE_UPLOAD_FILE = 62,
+  CREDIT_LINE_INQUIRY = 64,
+  CREDIT_LINE_INQUIRY_FAILED = 68,
+  CREDIT_LINE_INQUIRY_REJECTED = 72,
+  APPROVED = 7,
+
+  OPEN_ACCOUNT_COMPLETED = 42,
+  CREDIT_SCORE_PASSED = 300000,
+
+  // payment sub steps
+  VERIFY_UNKNOWN = 404,
+  VERIFY_SUCCESSFUL = 405,
+  CONFIRMED = 406,
+  UNKNOWN_REVERSED = 407,
+  REVERSED = 408,
+  FAILED_EXPIRED = 409,
+  EXPIRED = 410,
+
+  // Identity
+  IDENTITY_EVALUATION = 4,
+  IDENTITY_EVALUATION_SET_DETAILS = 44,
+  IDENTITY_EVALUATION_SET_ADDRESS = 45,
+  DIGITAL_SIGNATURE = 20,
+  DIGITAL_SIGNATURE_GENERATE = 22,
+  UPLOAD_DOCUMENTS = 23,
+
+  IDENTITY_EVALUATION_INITIATED = 300,
+  BIRTH_DATE_FILLED = 3010,
+  INVALID_BIRTH_DATE = 3011,
+
+  // Identity sub steps
+  OTP_VERIFICATION_FAILED = 100,
+  OTP_VERIFICATION_SUCCESS = 101,
+  OTP_VERIFICATION_PENDING = 102,
+  OTP_VERIFICATION_INVALID_OTP = 103,
+  OTP_VERIFICATION_OTP_CONFIRMED_BEFORE = 104,
+  OTP_VERIFICATION_CODE_IS_EXPIRED_TRY_AGAIN = 105,
+  OTP_VERIFICATION_REQUEST_IS_INVALID = 106,
+  OTP_VERIFICATION_COUNT_OF_UNSUCCESSFUL_RETRY_IS_NOT_LEGAL = 107,
+  OTP_VERIFICATION_SEND_OTP_MAX_RETRY_REACHED = 108,
+
+  OTP_VERIFIED = 3020,
+  OTP_FAILED = 3021,
+  IDENTITY_REGISTRATION_INQUIRY_COMPLETED = 3040,
+  IDENTITY_REGISTRATION_INQUIRY_FAILED = 3041,
+  IDENTITY_INFO_COMPLETED = 3050,
+  INVALID_IDENTITY_INFO = 3051,
+
+  IDENTITY_EVALUATION_PASSED = 2050,
+  DIGITAL_SIGNATURE_PENDING = 2060,
+  OPEN_ACCOUNT_SUBMITTED = 2080,
+  OPEN_ACCOUNT_SUCCEED = 2081,
+  OPEN_ACCOUNT_FAILED = 2082,
+  DOCUMENT_GENERATION_INITIATED = 2090,
+  DOCUMENT_GENERATED = 2091,
+  DOCUMENT_GENERATION_FAILED = 2092,
+  DOCUMENT_SIGNED = 2093,
+  COMPLETED_CREDIT_LINE = 20130,
+  REJECTED = 20141,
+
+// New middleeast journey
+  DIGITAL_SIGNATURE_INITIATED = 200000,
+  DIGITAL_SIGNATURE_COMPLETED = 22
+}
+
+export const MIDDLE_EAST_STEP_TO_STATE_MAP: { [key: string]: number[] } = {
+  'middleeast-max-credit-amount-step': [
+    RegistrationState.INITIATED,
+  ],
+  'middleeast-credit-scoring-step': [
+    RegistrationState.MAX_CREDIT_AMOUNT_REVISED,
+    RegistrationState.ICS,
+    RegistrationState.ICS_REJECTED,
+    RegistrationState.ICS_CELL_NUMBER_INQUIRY_REJECTED,
+  ],
+  'middleeast-payment-step': [
+    RegistrationState.CREDIT_SCORE_PASSED,
+    RegistrationState.VERIFY_UNKNOWN,
+    RegistrationState.VERIFY_SUCCESSFUL,
+    RegistrationState.CONFIRMED,
+    RegistrationState.UNKNOWN_REVERSED,
+    RegistrationState.REVERSED,
+    RegistrationState.FAILED_EXPIRED,
+    RegistrationState.EXPIRED,
+  ],
+  'middleeast-identity-evaluation-step': [
+    RegistrationState.IDENTITY_EVALUATION,
+    RegistrationState.IDENTITY_EVALUATION_SET_DETAILS,
+    RegistrationState.IDENTITY_EVALUATION_SET_ADDRESS,
+    RegistrationState.IDENTITY_EVALUATION_INITIATED,
+    RegistrationState.BIRTH_DATE_FILLED,
+    RegistrationState.INVALID_BIRTH_DATE,
+    RegistrationState.OTP_VERIFIED,
+    RegistrationState.OTP_FAILED,
+    RegistrationState.IDENTITY_REGISTRATION_INQUIRY_COMPLETED,
+    RegistrationState.IDENTITY_REGISTRATION_INQUIRY_FAILED,
+    RegistrationState.IDENTITY_INFO_COMPLETED,
+    RegistrationState.INVALID_IDENTITY_INFO,
+
+    RegistrationState.OTP_VERIFICATION_FAILED,
+    RegistrationState.OTP_VERIFICATION_SUCCESS,
+    RegistrationState.OTP_VERIFICATION_PENDING,
+    RegistrationState.OTP_VERIFICATION_INVALID_OTP,
+    RegistrationState.OTP_VERIFICATION_OTP_CONFIRMED_BEFORE,
+    RegistrationState.OTP_VERIFICATION_CODE_IS_EXPIRED_TRY_AGAIN,
+    RegistrationState.OTP_VERIFICATION_COUNT_OF_UNSUCCESSFUL_RETRY_IS_NOT_LEGAL,
+    RegistrationState.OTP_VERIFICATION_SEND_OTP_MAX_RETRY_REACHED,
+    RegistrationState.OTP_VERIFICATION_REQUEST_IS_INVALID,
+  ],
+  'middleeast-create-signature-step': [
+    RegistrationState.DIGITAL_SIGNATURE,
+    RegistrationState.IDENTITY_EVALUATION_PASSED,
+    RegistrationState.DIGITAL_SIGNATURE_PENDING,
+    RegistrationState.DIGITAL_SIGNATURE_INITIATED,
+    RegistrationState.DIGITAL_SIGNATURE_COMPLETED,
+  ],
+  'middleeast-open-account-step': [
+    RegistrationState.UPLOAD_DOCUMENTS,
+    RegistrationState.OPEN_ACCOUNT,
+    RegistrationState.OPEN_ACCOUNT_INQUIRY,
+    RegistrationState.OPEN_ACCOUNT_SUBMITTED,
+    RegistrationState.OPEN_ACCOUNT_FAILED,
+    RegistrationState.DOCUMENTS_UPLOAD_COMPLETED,
+    RegistrationState.OPEN_ACCOUNT_COMPLETED,
+  ],
+  'middleeast-contract-signing-step': [
+    RegistrationState.CONTRACT_GENERATION,
+    RegistrationState.CONTRACT_SIGNING,
+    RegistrationState.OPEN_ACCOUNT_SUCCEED,
+    RegistrationState.DOCUMENT_GENERATION_INITIATED,
+    RegistrationState.DOCUMENT_GENERATION_FAILED,
+    RegistrationState.DOCUMENT_GENERATED,
+    RegistrationState.DOCUMENT_SIGNED,
+    RegistrationState.CREDIT_LINE,
+    RegistrationState.CREDIT_LINE_UPLOAD_FILE,
+    RegistrationState.CREDIT_LINE_INQUIRY,
+    RegistrationState.CREDIT_LINE_INQUIRY_FAILED,
+    RegistrationState.COMPLETED_CREDIT_LINE,
+    RegistrationState.CREDIT_LINE_INQUIRY_REJECTED
+  ]
+};
+
+export enum FLOW_STATUS {
+  ACTIVE,
+  PENDING,
+  REJECTED,
+  FINISHED,
+}
+
+export const MIDDLE_EAST_FLOW_STATUS_TO_STATE_CONFIG: { states: RegistrationState[], flowStatus: FLOW_STATUS }[] = [
+  {
+    flowStatus: FLOW_STATUS.PENDING,
+    states: [
+      RegistrationState.ICS,
+      RegistrationState.COMPLETED_CREDIT_LINE,
+      RegistrationState.CREDIT_LINE_INQUIRY_REJECTED,
+    ]
+  },
+  {
+    flowStatus: FLOW_STATUS.REJECTED,
+    states: [
+      RegistrationState.ICS_REJECTED,
+      RegistrationState.ICS_CELL_NUMBER_INQUIRY_REJECTED,
+      RegistrationState.REJECTED,
+      RegistrationState.OPEN_ACCOUNT_FAILED
+    ]
+  },
+  {
+    flowStatus: FLOW_STATUS.FINISHED,
+    states: [
+      RegistrationState.APPROVED
+    ]
+  }
+];

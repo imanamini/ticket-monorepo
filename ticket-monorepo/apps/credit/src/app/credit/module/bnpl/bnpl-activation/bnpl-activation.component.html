@@ -1,0 +1,59 @@
+<app-card-layout *ngIf="!gettingProfile" [formGroup]="form">
+  @switch (state()) {
+    @case ('INFO_FORM') {
+      <div class="main-wrapper">
+        <div class="main-content">
+          <p>کد ملی متعلق به مالک شماره همراه زیر را وارد کنید.</p>
+          <div class="cell-number">{{ cellNumber() }}</div>
+          <ui-form-field
+                  (focusin)="focusOnNationalCode = true"
+                  (focusout)="focusOnNationalCode = false"
+                  [errorMessageMapper]="{
+            invalidNotionalCode: 'کدملی معتبر نمی‌باشد'
+          }"
+                  [error]="form.controls.nationalCode.errors"
+                  [hint]="focusOnNationalCode ? 'کد ملی را بدون خط تیره و فاصله وارد کنید.' : ''"
+                  [maxSize]="10"
+                  formControlName="nationalCode"
+                  label="کدملی"
+                  type="input"
+          ></ui-form-field>
+          <ui-form-field
+                  [errorMessageMapper]="{
+            lessThan18Years: 'حداقل سن مجاز ۱۸ سال می‌باشد.'
+          }"
+                  [error]="form.controls.birthDate.errors"
+                  formControlName="birthDate"
+                  label="تاریخ تولد"
+                  type="date"
+                  dateRange="past"
+          ></ui-form-field>
+        </div>
+      </div>
+      <div class="call-to-action-wrapper">
+        <div class="checkbox-wrapper">
+          <mat-checkbox formControlName="acceptContract">
+            با
+            <span (click)="openContract($event)" class="link">قوانین و مقررات</span>
+            استفاده از این سرویس موافقم.
+          </mat-checkbox>
+        </div>
+        <credit-ui-button (click)="onSubmit()" [disabled]="form.invalid || sendingData" [styles]="{width: '100%'}">
+          {{ !sendingData ? 'ادامه' : '' }}
+          <div *ngIf="sendingData" class="button-loading-content">
+            <span class="button-spinner"><mat-spinner [diameter]="14" [strokeWidth]="1"></mat-spinner></span>
+            <span>در حال ارسال...</span>
+          </div>
+        </credit-ui-button>
+      </div>
+    }
+    @case ('ERROR') {
+      <bnpl-error-page [errorType]="errorType()"
+                       (retry)="onSubmit()"
+                       (changeState)="changeState( 'INFO_FORM')"
+      />
+    }
+  }
+</app-card-layout>
+
+<page-loading [active]="gettingProfile"></page-loading>

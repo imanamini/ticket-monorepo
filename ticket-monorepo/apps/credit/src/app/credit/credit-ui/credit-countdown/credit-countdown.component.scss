@@ -1,0 +1,42 @@
+@import "variables";
+
+.countdown {
+  user-select: none;
+
+  .time {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: $primary-color;
+    margin: 0 0 16px 0;
+
+    .time-part {
+      width: 25%;
+      background: #edf4ff;
+      border-radius: 8px;
+      padding: 8px 4px;
+      font-size: 32px;
+      text-align: center;
+      font-weight: 500;
+
+      .label {
+        display: block;
+        font-size: 8px;
+        margin: 4px 0 0;
+      }
+    }
+
+    .colon {
+      margin: 0 4px;
+    }
+  }
+
+  .description {
+    font-size: 12px;
+    font-weight: 500;
+    color: $primary-color;
+    direction: rtl;
+    text-align: center;
+  }
+}

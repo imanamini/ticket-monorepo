@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="cash">
+    <div class="title">
+      <div class="icon icon-cash"></div>
+      <div class="text">بخش نقدی</div>
+    </div>
+
+    <div class="cash-amount">{{ cashAmount() | thousands }} <span>ریال</span></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="credit">
+    <div class="title">
+      <div class="icon icon-credit"></div>
+      <div class="text">بخش قسطی</div>
+    </div>
+
+    <div class="credit-amount">{{ creditAmount() | thousands }} <span>ریال</span></div>
+
+    <div (click)="onEditCredit.emit()" class="edit">
+      <div>ویرایش مبغ اعتبار</div>
+      <div class="edit-icon"></div>
+    </div>
+
+    <div class="effective">
+      <div>بازپرداخت</div>
+
+      <div>{{ formattedEffectiveDate() }}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="header">
+  <div (click)="closeContract()" [ngClass]="['close', checked ? 'disabled' : '']"></div>
+  <div class="title">قوانین و مقررات خرید</div>
+</div>
+
+<ng-container *ngIf="!gettingData">
+  <div class="content-wrapper">
+    <div class="content">
+      <scrollable-view #scroller>
+        <iframe
+          #frame
+          (load)="iframeLoading = false"
+          *ngIf="htmlContent"
+          [srcdoc]="htmlContent"
+          class="content-iframe"
+        >
+        </iframe>
+      </scrollable-view>
+    </div>
+  </div>
+
+  <div class="tick">
+    <div class="checkbox">
+
+      <app-credit-checkbox
+        (checkedChange)="handleCheckbox($event)"
+        [checked]="checked"
+        [disabled]="checkDisabled"
+        [id]="'contract-checkbox'"
+        [type]="'primary'">
+      </app-credit-checkbox>
+    </div>
+    <span>قوانین را مطالعه کرده و تایید می‌کنم.</span>
+  </div>
+
+  <div class="action">
+    <ngx-button
+      #tooltip="matTooltip" (clickHandler)="onClick()"
+      [fullWidth]="true"
+      [matTooltip]="'ابتدا قوانین را مطالعه کرده و تایید کنید.'"
+      [ngStyle]="{'font-weight': '500', 'opacity': checked ? '1' : '.3'}"
+      [size]="'medium'"
+    >
+      تایید و پرداخت
+    </ngx-button>
+  </div>
+</ng-container>
+
+<page-loading [active]="gettingData"></page-loading>

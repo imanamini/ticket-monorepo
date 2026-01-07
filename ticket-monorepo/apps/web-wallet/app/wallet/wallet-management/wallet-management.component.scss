@@ -1,0 +1,97 @@
+@import "../../layout/variables";
+
+.wallet-management-container {
+  width: 100%;
+  display: grid;
+  gap: 24px;
+  position: relative;
+
+  .background {
+    position: absolute;
+    background-image: url("../../../assets/image/gift-card/background.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .fix-header {
+    background-color: white;
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+
+    .back {
+      width: 24px;
+      height: 24px;
+      margin-left: 16px;
+      cursor: pointer;
+      background-image: url("../../../assets/icon/back.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      transform: rotate(180deg);
+    }
+
+  }
+
+  > .title {
+    margin: 68px 24px 0 24px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 2;
+
+    .title-information {
+      font-size: 12px;
+      font-weight: 400;
+      color: $dark-gray;
+      display: flex;
+      gap: 4px;
+      align-items: center;
+
+      .info {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        background-image: url("../../../assets/icon/info.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+  }
+
+  .chart {
+    margin: 0 24px;
+    height: 180px;
+  }
+
+  .chart-labels {
+    margin: 0 24px;
+    background-color: $light-blue;
+    border-radius: 12px;
+    padding: 12px;
+  }
+
+  .wallet-description {
+    margin: 0 24px;
+    background-color: $light-blue;
+    border-radius: 12px;
+  }
+
+  .wallet-action-button {
+    margin: 0 24px;
+    justify-self: center;
+    padding: 12px 16px;
+    background-color: $light-blue;
+    border-radius: 24px;
+  }
+
+  .gift-card-container {
+    border-radius: 16px 16px 0 0;
+    border-top: 1px solid #E8ECF0;
+  }
+
+}

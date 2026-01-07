@@ -1,0 +1,37 @@
+@import "../../../layout/variables";
+@import "../../../layout/mixins/flex";
+@import "../../../layout/mixins/font-size";
+
+.error-request-wrapper {
+  height: 100%;
+  min-height: 390px;
+  @include flex-center;
+  flex-direction: column;
+
+  > .error-icon {
+    width: 120px;
+    height: 120px;
+    display: inline-block;
+    background: url('./assets/error.svg') no-repeat 0 0/100%;
+  }
+
+  > .template-error-message {
+    height: 32px;
+    margin-top: 16px;
+    font-weight: normal;
+    margin-bottom: 22px;
+    @include fontSize(18);
+    @include flex-center;
+    color: $text-color-lighter;
+  }
+
+  > .template-retry {
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: bold;
+    margin-bottom: 22px;
+    @include fontSize(13);
+    text-decoration: underline;
+    color: $digipay-blue-primary;
+  }
+}

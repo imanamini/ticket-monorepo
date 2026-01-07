@@ -1,0 +1,25 @@
+<div class="error-container">
+
+  <div class="box">
+    <img class="logo" [src]="getSafeUrl(state.logoPath)">
+
+    <p class="title">{{state?.title}}</p>
+
+    <p *ngFor="let description of state.descriptions"
+       class="description">{{description}}</p>
+
+    <div class="buttons">
+      <ui-button
+        appearance="outline"
+        theme="digipay"
+        class="submit-button"
+        [style.margin]="'auto'"
+        [style.flex-grow]="0"
+        (buttonClick)="submit()">تلاش مجدد
+      </ui-button>
+
+
+    </div>
+  </div>
+
+</div>

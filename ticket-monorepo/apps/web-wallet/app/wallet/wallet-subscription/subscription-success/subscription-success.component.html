@@ -1,0 +1,68 @@
+<div *ngIf="this.isLoading; else showContent">
+  <ui-preparing [showSubtitle]="false"></ui-preparing>
+</div>
+
+<ng-template #showContent>
+
+  <ui-content-card
+    class="subscription-success"
+    [id]="{
+    closeButton: GA_SUBSCRIPTION_CONTRACT_ID.RETURN_TO_MERCHANT_CLICK ,
+    cancel: GA_SUBSCRIPTION_CONTRACT_ID.RETURN_TO_MERCHANT_CLICK ,
+    submit: GA_SUBSCRIPTION_CONTRACT_ID.RETURN_TO_MERCHANT_CLICK ,
+    view: GA_SUBSCRIPTION_CONTRACT_ID.SUCCESSFUL_CONTRACT_ACTIVATION_VIEW
+    }"
+    [title]="'پرداخت خودکار دیجی‌پی'"
+    [confirmButtonTitle]="'بازگشت به ' + (ticketInfo ? ticketInfo['business'].name : 'پذیرنده')"
+    (confirm)="callbackToMerchant()"
+    [hasHeaderAction]="true"
+    (headerCloseActionClicked)="callbackToMerchant()"
+    [confirmButtonFullWidth]="true"
+  >
+    <ui-error-request
+      *ngIf="tokenExpired; else showError"
+      [errorMessage]="'خطا در اعتبارسنجی'"
+      [hasButton]="false"
+    ></ui-error-request>
+
+    <ng-template #showError>
+      <ui-error-request
+        *ngIf="!tokenExpired && !templateInfo; else showContractsResult"
+        (clicked)="getData()"
+      ></ui-error-request>
+    </ng-template>
+
+    <ng-template #showContractsResult>
+
+      <div class="success-details">
+        <div class="success-icon"></div>
+        <div class="success-message">
+          {{'اشتراک شما فعال شد'}}
+        </div>
+      </div>
+
+      <ui-template-card
+        [imageId]="'digipay'"
+        [cardTitle]="templateInfo['title']"
+        [trialDuration]="getTrialDuration()"
+        [cardAmountPrefix]="''"
+        [cardAmount]="templateInfo['periodicAmount']"
+        [firstField]="{
+          title: 'بازه‌ تکرار پرداخت',
+          value: getPaymentPeriodDuration()
+        }"
+        [secondField]="{
+          title: 'طول مدت قرارداد',
+          value: getValidityDuration()
+        }"
+        [thirdField]="{
+          title: 'توضیحات قرارداد',
+          value: templateInfo['description']
+        }"
+      ></ui-template-card>
+
+    </ng-template>
+
+  </ui-content-card>
+
+</ng-template>

@@ -1,0 +1,14 @@
+@import "variables";
+
+:host {
+  height: 100%;
+  direction: rtl;
+  background-color: #fff;
+}
+
+.wallet-notice-text {
+  font-size: 12px;
+  line-height: 20px;
+  color: $swatch_orange_900;
+  padding-bottom: 16px;
+}

@@ -1,0 +1,108 @@
+@import '../../../layout/variables';
+@import '../../../layout/mixins/flex';
+@import '../../../layout/mixins/font-size';
+@import "../../../layout/mixins/device";
+
+.direct-debit-contract {
+  .direct-debit-title {
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+    color: #2c3544;
+    font-weight: bold;
+  }
+
+  .contract-logo {
+    width: auto;
+    height: 200px;
+    display: block;
+    margin: 4px auto 0;
+    background-size: contain !important;
+    background: url('../../../../assets/image/wallet.png') no-repeat center;
+  }
+
+  .description {
+    text-align: center;
+    line-height: 1.72em;
+    @include fontSize(14);
+    margin: 16px auto 24px auto;
+  }
+
+  .input-description {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2c3544;
+    margin-bottom: 20px;
+  }
+
+  .wrapper {
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    max-width: 100%;
+    flex-direction: column;
+
+    > .button-container {
+      @include flex-center-between;
+      margin-top: 16px;
+
+      ui-button {
+        &.back-btn {
+          max-width: 112px;
+          width: 100%;
+          margin-bottom: 25px !important;
+          margin-left: 16px !important;
+
+          ::ng-deep .ui-button {
+            width: 100%;
+          }
+        }
+
+        &.activation-btn {
+          width: 100%;
+          margin-bottom: 25px !important;
+
+          ::ng-deep .ui-button {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .form-field {
+      margin: 0;
+    }
+
+    ui-button::ng-deep {
+      margin: 0;
+      display: block;
+
+      .left-arrow {
+        width: 24px;
+        height: 24px;
+        background: url("../../../../assets/icon/arrow-left.svg") no-repeat 0 0/100%;
+      }
+    }
+  }
+}
+
+
+@include mediaMobile() {
+
+  .direct-debit-contract {
+    padding: 0 24px;
+
+    .direct-debit-title {
+      height: 64px;
+      margin-top: 15vw;
+      font-weight: 800;
+      @include flex-center;
+    }
+  }
+
+  :host ::ng-deep .content-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

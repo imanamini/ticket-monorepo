@@ -1,0 +1,81 @@
+<div *ngIf="loadingPage; else showContent">
+  <ui-preparing [showSubtitle]="false"></ui-preparing>
+</div>
+
+<ng-template #showContent>
+
+  <ui-content-card
+    [headerRemainingTimeSecond]="ticketInfo.ttl"
+    [timeType]="'MILLI_SECOND'"
+    (finishTimer)="unAuthorizedRedirectFormData()"
+    [hasFooter]="false"
+    [hasHeader]="true"
+    [hasHeaderAction]="true"
+    (headerCloseActionClicked)="cancel()"
+    [title]="'جزییات برداشت'">
+
+    <div class="flex-card-content">
+
+      <div class="top">
+        <p class="description">
+          با فعال‌سازی این سرویس، به دیجی‌کالا اجازه می‌دهید
+          <span class="bold">بابت تمدید اشتراک دیجی‌پلاس</span>
+          به‌صورت ماهیانه از حساب شما به‌صورت خودکار برداشت کند
+        </p>
+      </div>
+
+      <div class="center">
+        <app-daily-payment
+          [detailRows]="[
+            [
+              {label: 'مبلغ', value: (ticketInfo?.maxDailyTransactionAmount | separator) + ' ریال'},
+              {label: 'مدت', value: ticketInfo?.duration?.count +' '+ (ticketInfo?.duration?.timeUnit | translateTimeUnit) },
+            ]
+          ]"
+        >
+        </app-daily-payment>
+      </div>
+
+      <div>
+        <app-authenticate
+          *ngIf="ticketInfo && ticketInfo.user && ticketInfo.user.cellNumber"
+          [cellNumber]="ticketInfo.user.cellNumber">
+        </app-authenticate>
+      </div>
+
+      <p class="tac-notice">
+        فشردن دکمه «تایید و ادامه» به معنی این است که اطلاعات بالا را خوانده‌اید و می‌پذیرید.
+      </p>
+
+      <div class="bottom">
+
+        <div class="button-box">
+          <ui-button
+            class="cancel-btn"
+            theme="digipay"
+            appearance="red-text"
+            (buttonClick)="cancel()"
+            [fullWidth]="true"
+            [hasIcon]="false">
+            انصراف
+          </ui-button>
+          <ui-button
+            class="submit-btn"
+            theme="digipay"
+            appearance="default"
+            [hasIcon]="false"
+            [fullWidth]="true"
+            [disabled]="submitLoading"
+            (buttonClick)="continue()">
+            <mat-spinner class="spinner" *ngIf="submitLoading"></mat-spinner>
+            تایید و ادامه
+          </ui-button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </ui-content-card>
+
+</ng-template>

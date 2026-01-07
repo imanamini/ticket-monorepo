@@ -1,0 +1,17 @@
+<ng-container [formGroup]="form">
+  <div>
+    <ng-select
+      [placeholder]="label"
+      [readonly]="readonly"
+      [multiple]="multiSelect"
+      [formControlName]="formControlName"
+      [clearable]="hasCleaner"
+      class="dg-select"
+      size="sm"
+    >
+      <ng-option *ngFor="let opt of options" [value]="opt.value">{{opt.title}}</ng-option>
+    </ng-select>
+    <div class="dg-hint-message" *ngIf="!(form.touched && form.invalid && errorMessage)">{{hint}}</div>
+    <div class="dg-error-message" *ngIf="form.touched && form.invalid && errorMessage">{{errorMessage}}</div>
+  </div>
+</ng-container>

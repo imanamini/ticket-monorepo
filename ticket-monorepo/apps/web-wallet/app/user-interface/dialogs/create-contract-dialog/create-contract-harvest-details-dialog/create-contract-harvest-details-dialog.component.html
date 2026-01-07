@@ -1,0 +1,44 @@
+<div class="form-wrapper">
+
+  <app-create-contract-title-container
+    [title]="'سقف برداشت روزانه از کارت'"
+    [description]="' حداکثر مبلغی که دیجی‌پی اجازه خواهد داشت روزانه از حساب بانکی انتخاب شده به کیف‌پول شما انتقال دهد را تعیین کنید'">
+  </app-create-contract-title-container>
+  <ui-amount-input
+    [googleAnalyticId]="{inputClickEvent: GA_DIRECT_DEBIT_ID_CONTRACT.CHANGE_MAXIMUM_AMOUNT_TYPE}"
+    [hintText]="'حداکثر برداشت روزانه'"
+    [value]="harvestDetailsData.value.maxDailyTransactionAmount"
+    [minAmount]="minWalletBalance"
+    [maxAmount]="selectedBank.directDebit.dailyAmountMax"
+    [hasCounter]="true"
+    (valueChange)="updateMaxTransactionAmount($event)"
+  ></ui-amount-input>
+
+  <app-create-contract-title-container
+    class="distance"
+    [title]="'حداقل موجودی کیف‌پول'"
+    [description]="' مبلغی که مایلید کیف‌پول شما با رسیدن به آن به‌صورت خودکار شارژ شود را تعیین کنید'">
+  </app-create-contract-title-container>
+  <ui-amount-input
+    [googleAnalyticId]="{inputClickEvent: GA_DIRECT_DEBIT_ID_CONTRACT.CHANGE_MINIMUM_BALANCE_TYPE}"
+    [hintText]="'حداقل موجودی کیف‌پول'"
+    [value]="harvestDetailsData.value.minWalletBalance"
+    [minAmount]="minWalletBalance"
+    [maxAmount]="maxWalletBalance"
+    [hasCounter]="true"
+    (valueChange)="updateMinTransactionAmount($event)"
+  ></ui-amount-input>
+
+  <div class="form-field">
+    <app-create-contract-title-container
+      class="distance"
+      [title]="'مدت دسترسی'"
+      [description]="'مدتی که می‌خواهید برداشت ادامه پیدا کند را انتخاب کنید'">
+    </app-create-contract-title-container>
+    <ui-single-choice
+      [items]="contractPeriodItems"
+      (itemSelect)="selectContractPeriod($event)"
+      [selectedItemId]="(harvestDetailsData|async).duration.count"
+    ></ui-single-choice>
+  </div>
+</div>

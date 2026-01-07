@@ -1,0 +1,15 @@
+<ui-receipt
+  *ngIf="stateService.hideUI === false; else LoadingPage"
+  [state]="stateService.result"
+  [backgroundColor]="stateService.backgroundColor"
+  (finish)="finish()">
+</ui-receipt>
+
+
+<ng-template #LoadingPage>
+  <div class="preparing">
+    <ui-preparing
+      [showSubtitle]="false"
+    ></ui-preparing>
+  </div>
+</ng-template>

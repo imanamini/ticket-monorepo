@@ -1,0 +1,13 @@
+<div class="bnpl-title-bar">
+  <div class="bnpl-title-bar-container">
+    <div class="right-box">
+      <div *ngIf="!hideClose" class="icon-close" (click)="onClose()"></div>
+    </div>
+    <div class="title">
+      <ng-content></ng-content>
+    </div>
+    <div class="left-box">
+      <div class="icon-powered-by"></div>
+    </div>
+  </div>
+</div>

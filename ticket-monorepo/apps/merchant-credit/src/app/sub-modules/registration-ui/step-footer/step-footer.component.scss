@@ -1,0 +1,18 @@
+@import "../../../styles/layout/variables";
+
+:host {
+  display: block;
+  margin: 24px -24px -24px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 16px 24px;
+  border-top: 1px solid $swatch_steel_200;
+  flex: 0 0;
+}
+
+ui-button {
+  min-width: 170px;
+}

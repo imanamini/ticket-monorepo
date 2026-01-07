@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 8</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="24" height="24"></rect>
+        <rect id="path-3" x="0" y="0" width="24" height="24"></rect>
+        <path d="M12,2 C17.5228475,2 22,6.4771525 22,12 C22,17.5228475 17.5228475,22 12,22 C6.4771525,22 2,17.5228475 2,12 C2,6.4771525 6.4771525,2 12,2 Z M12,4 C7.581722,4 4,7.581722 4,12 C4,16.418278 7.581722,20 12,20 C16.418278,20 20,16.418278 20,12 C20,7.581722 16.418278,4 12,4 Z" id="path-5"></path>
+        <rect id="path-7" x="0" y="0" width="16" height="16"></rect>
+        <rect id="path-9" x="0" y="0" width="16" height="16"></rect>
+    </defs>
+    <g id="🛅-SDK" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-8">
+            <g id="icon/general/checked/filled-copy-7">
+                <g id="Bounds">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Mask"></g>
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <g id="Border"></g>
+                </g>
+                <mask id="mask-6" fill="white">
+                    <use xlink:href="#path-5"></use>
+                </mask>
+                <g id="Mask"></g>
+                <g id="Group" mask="url(#mask-6)" fill="#0037D1">
+                    <g id="🎨-Color">
+                        <rect id="Surface" x="0" y="0" width="24" height="24"></rect>
+                    </g>
+                </g>
+            </g>
+            <g id="icon/general/checked/filled-copy-7" transform="translate(4.000000, 4.000000)">
+                <g id="Bounds">
+                    <mask id="mask-8" fill="white">
+                        <use xlink:href="#path-7"></use>
+                    </mask>
+                    <g id="Mask"></g>
+                    <mask id="mask-10" fill="white">
+                        <use xlink:href="#path-9"></use>
+                    </mask>
+                    <g id="Border"></g>
+                </g>
+                <path d="M4,9.33333333 C3.26362033,9.33333333 2.66666667,8.73637967 2.66666667,8 C2.66666667,7.26362033 3.26362033,6.66666667 4,6.66666667 C4.73637967,6.66666667 5.33333333,7.26362033 5.33333333,8 C5.33333333,8.73637967 4.73637967,9.33333333 4,9.33333333 Z" id="Mask" fill="#B4C7FF"></path>
+                <path d="M8,9.33333333 C7.26362033,9.33333333 6.66666667,8.73637967 6.66666667,8 C6.66666667,7.26362033 7.26362033,6.66666667 8,6.66666667 C8.73637967,6.66666667 9.33333333,7.26362033 9.33333333,8 C9.33333333,8.73637967 8.73637967,9.33333333 8,9.33333333 Z" id="Mask-Copy" fill="#789AFF"></path>
+                <path d="M12,9.33333333 C11.2636203,9.33333333 10.6666667,8.73637967 10.6666667,8 C10.6666667,7.26362033 11.2636203,6.66666667 12,6.66666667 C12.7363797,6.66666667 13.3333333,7.26362033 13.3333333,8 C13.3333333,8.73637967 12.7363797,9.33333333 12,9.33333333 Z" id="Mask-Copy-2" fill="#0040FF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

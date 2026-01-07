@@ -1,0 +1,82 @@
+:host {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-content {
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  direction: rtl;
+  align-items: center;
+  box-sizing: border-box;
+   * {
+     box-sizing: border-box;
+   }
+
+  .top-section {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 24px;
+    width: 100%;
+    max-width: 420px;
+  }
+  .call-to-action {
+    flex-grow: 0;
+    padding: 24px;
+    width: 100%;
+    max-width: 420px;
+    credit-ui-button {
+      width: 100%;
+    }
+  }
+}
+
+.message-image {
+  width: 108px;
+  height: 108px;
+  border-radius: 28px;
+  border: 1px solid #dee3e7;
+  margin-bottom: 24px;
+  background: no-repeat center center;
+  background-size: 90px auto;
+}
+.message-title {
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 600;
+  color: #2c3544;
+  margin-bottom: 16px;
+}
+.message-description {
+  font-size: 14px;
+  line-height: 24px;
+  color: #6e798d;
+}
+
+.main-content {
+  &.mi-error {
+    .message-image {
+      background-image: url("../assets/xiaomi-logo.svg");
+    }
+  }
+
+  &.huawei-error {
+    .message-image {
+      background-image: url("../assets/huawei-logo.svg");
+    }
+  }
+
+  &.wrong-url {
+    .message-image {
+      background-image: url("../assets/wrong-url.svg");
+      background-size: 70px auto;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<div class="section-box">
+  <ui-hint-message
+    [message]="'لطفا صحت اطلاعات زیر را تایید نموده درصورت مغایرت، با پشتیبانی تماس بگیرید'"
+    [ctaButton]="'تماس با پشتیبانی'"
+    (ctaClick)="callSupport()"
+  ></ui-hint-message>
+  <ui-key-value-list [separated]="true" [items]="items"></ui-key-value-list>
+
+  <ui-checkbox class="terms" [checked]="agreed" (changed)="agreed = $event">
+    با
+    <span class="link-style" (click)="showTac()">قوانین و مقررات</span>
+    استفاده از این سرویس موافقم
+  </ui-checkbox>
+</div>
+
+<step-footer
+  (buttonClick)="proceed()"
+  [buttonDisabled]="!agreed"
+  buttonText="تایید و افتتاح حساب"></step-footer>

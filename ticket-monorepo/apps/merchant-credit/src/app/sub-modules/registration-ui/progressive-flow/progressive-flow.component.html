@@ -1,0 +1,32 @@
+<div class="header" *ngIf="stepTitles && stepTitles[stepIndex]">
+  <div class="l-row-vc jc-sb">
+    <h4 class="title">
+    <span class="step-number" *ngIf="stepTitles.length > 1">
+    مرحله {{ indexTranslations[ stepIndex ]}}:
+    </span>
+      <span>
+    {{ stepTitles[ stepIndex ] }}
+  </span>
+    </h4>
+    <div class="status" *ngIf="stepTitles.length > 1">
+      {{stepSubTitles[ 0 ]  | jalaliDate:'jDD jMMMM-h:mm'}}
+    </div>
+  </div>
+  <div class="progress-bar">
+    <div class="bar" [ngStyle]="{width: ((stepIndex + 1)/stepTitles.length)*100+'%' }"></div>
+  </div>
+</div>
+
+<ng-container *ngIf="stepContent && stepContent.first && stepContent.first.template">
+  <div class="step-content">
+    <ng-container [ngTemplateOutlet]="stepContent.first.template"></ng-container>
+  </div>
+</ng-container>
+
+<ng-container *ngFor="let step of steps; let si = index;">
+  <ng-container *ngIf="stepIndex === si">
+    <div class="step-content">
+      <ng-container [ngTemplateOutlet]="step.template"></ng-container>
+    </div>
+  </ng-container>
+</ng-container>

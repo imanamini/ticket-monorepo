@@ -1,0 +1,9 @@
+<div class="checkbox-list">
+  <div class="checkbox" [ngClass]="{'is-checked': checked[checkbox.value]}" *ngFor="let checkbox of checkboxes"
+       (click)="itemClick(checkbox)">
+    <span *ngIf="checkbox.imageId && !imageLoadErrors[checkbox.imageId]" class="checkbox-image">
+      <digipay-image (loadError)="imageLoadError(checkbox.imageId)" [imageId]="checkbox.imageId" width="100%"></digipay-image>
+    </span>
+    <span>{{checkbox.label}}</span>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="box">
+  @if (showAmount()) {
+    <div class="pay-info">
+      <div class="title">قابل پرداخت</div>
+      <div class="amount">
+        <div class="amount-number">
+          {{ amount() | thousands }}
+        </div>
+        <div class="amount-unit">ریال</div>
+      </div>
+    </div>
+  }
+
+  <ngx-button
+    (clickHandler)="onActionClick.emit()"
+    [disabled]="disabled()"
+    [fullWidth]="!showAmount()"
+    [size]="'medium'"
+  >
+    {{ buttonText() }}
+  </ngx-button>
+</div>

@@ -1,0 +1,48 @@
+<ui-content-box>
+  <div dir="ltr">
+    <h1>Test Digiplus Direct Debit</h1>
+
+    <label dir="ltr">Cell Number</label>
+    <input type="text" placeholder="Cell Number" dir="ltr"
+           [(ngModel)]="state.cellNumber">
+
+    <label dir="ltr">Max Daily Transaction Amount</label>
+    <input type="number" placeholder="Max Daily Transaction Amount" dir="ltr"
+           [(ngModel)]="state.maxDailyTransactionAmount">
+
+    <label dir="ltr">Max Daily Transaction Count</label>
+    <input type="number" placeholder="Max Daily Transaction Count" dir="ltr"
+           [(ngModel)]="state.maxDailyTransactionCount">
+
+    <label dir="ltr">Max Monthly Transaction Count</label>
+    <input type="number" placeholder="Max Monthly Transaction Count" dir="ltr"
+           [(ngModel)]="state.maxMonthlyTransactionCount">
+
+    <label dir="ltr">Redirect Url</label>
+    <input type="text" placeholder="Redirect Url" dir="ltr"
+           [(ngModel)]="state.redirectUrl">
+
+    <label dir="ltr">Count</label>
+    <input type="text" placeholder="Count" dir="ltr"
+           [(ngModel)]="state.duration.count">
+
+    <label dir="ltr">Time Unit</label>
+    <select (change)="setTimeUnit($event)" name="timeUnit">
+      <option *ngFor="let enum of DurationTimeUnitEnum | keyvalue"
+              [value]="enum.value"
+              [defaultSelected]="state.duration.timeUnit">
+        {{ enum.key }}
+      </option>
+    </select>
+
+    <ng-container>
+      <label dir="ltr">Token</label>
+      <textarea type="text" placeholder="Token" dir="ltr"
+                [(ngModel)]="token">
+    </textarea>
+    </ng-container>
+
+    <ui-button (buttonClick)="generateTicket()" [disabled]="loading || !token">Get Ticket</ui-button>
+
+  </div>
+</ui-content-box>

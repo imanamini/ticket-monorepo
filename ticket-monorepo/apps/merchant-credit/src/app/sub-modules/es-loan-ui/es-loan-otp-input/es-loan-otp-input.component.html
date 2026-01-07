@@ -1,0 +1,19 @@
+<div class="pin-input">
+  <div #inputs [ngClass]="{'has-error': hasError()}" class="inputs d-flex justify-content-center
+   align-items-center gap-small">
+    <ng-container>
+      @for(input of otpInputs; track $index){
+      <div  class="input">
+        <input class="t-4 text-onback-high" (focusin)="inputFocusIn($index)"
+               (keyup)="otpInputKeyUp($event,$index)"
+               (ngModelChange)="onChange($index, $event)"
+               [ngModel]="valueArray[$index] || ''"
+               autocomplete="one-time-code"
+               inputmode="numeric"
+               pattern="[0-9]*"
+        >
+      </div>
+      }
+    </ng-container>
+  </div>
+</div>

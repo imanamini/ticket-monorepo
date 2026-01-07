@@ -1,0 +1,18 @@
+.early-settlement-desktop {
+  flex-grow: 1;
+  flex-direction: column;
+  display: flex;
+}
+.early-settlement-mobile {
+  flex-grow: 1;
+  flex-direction: column;
+  display: none;
+}
+@media screen and (max-width: 991px) {
+  .early-settlement-desktop {
+    display: none;
+  }
+  .early-settlement-mobile {
+    display: flex;
+  }
+}

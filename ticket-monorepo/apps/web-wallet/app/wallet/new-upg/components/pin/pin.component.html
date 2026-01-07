@@ -1,0 +1,38 @@
+<app-card
+  [submitText]="cardConfig.submitText"
+  [submitLoading]="loadingSubmit"
+  [disableSubmitButton]="true"
+  [headerTitle]="cardConfig.headerTitle"
+  [headerCloseButtonType]="'BACK'"
+>
+  <div body class="protection-container">
+    <div class="code-protection">
+      <div class="amount-wrapper" *ngIf="creditBalance()">
+        <ui-amount-label-bar
+          [title]="'اعتبار باقی‌مانده'"
+          [value]="creditBalance()"
+          [userFullName]="(user?.name?.name || '') + ' ' + (user?.name?.surname || '')"
+        ></ui-amount-label-bar>
+      </div>
+
+      <div class="description">
+        <span>{{ 'برای تایید پرداخت' }}</span
+        ><br />
+        <span>{{ 'رمز خود را وارد کنید.' }}</span>
+      </div>
+
+      <ui-pin-input #otp (pinChange)="login($event)" [type]="'PIN'" [ngClass]="{invalid: invalidMessage}"> </ui-pin-input>
+
+      <div class="invalid-pin" [ngStyle]="invalidMessage && {visibility: 'visible'}">
+        {{ invalidMessage }}
+      </div>
+      <div class="pin-divider"></div>
+    </div>
+  </div>
+</app-card>
+
+<ng-template #loading>
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+</ng-template>

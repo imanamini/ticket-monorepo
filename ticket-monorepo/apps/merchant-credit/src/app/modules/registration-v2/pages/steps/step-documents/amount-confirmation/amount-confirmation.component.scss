@@ -1,0 +1,30 @@
+@import "../../../../../../styles/layout/variables";
+
+.bold-text {
+  font-weight: bold;
+  color: $swatch_steel_900;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 12px;
+  margin: 24px 0 0;
+
+  .secondary {
+    flex: 0 1 35%;
+  }
+
+  .primary {
+    flex: 1 1;
+  }
+}
+
+
+.link-style {
+  color: $swatch_blue_500;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0.2em;
+  font-weight: 500;
+}

@@ -1,0 +1,20 @@
+<app-card-layout>
+  <div class="top-section">
+    <ngx-status-result
+      description="بعد از بررسی رفتار مالی شما،‌ در حال حاضر امکان اختصاص اعتبار به شما وجود ندارد."
+      title="در حال حاضر امکان دریافت اعتبار را ندارید.">
+      <ng-container status-image>
+        <div class="score-gauge-image"></div>
+      </ng-container>
+    </ngx-status-result>
+    <div class="cta-wrapper">
+      <ngx-button
+        (clickHandler)="backToMerchant()"
+        (finished)="backToMerchant()"
+        [size]="'medium'"
+        [timer]="{timeInSeconds: 10, timerType: 'mm:ss'}">
+        بازگشت به فروشگاه در&nbsp;
+      </ngx-button>
+    </div>
+  </div>
+</app-card-layout>

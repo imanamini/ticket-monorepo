@@ -1,0 +1,56 @@
+@import "src/app/layout/variables";
+@import "src/app/layout/mixins/device";
+
+.error-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 288px;
+    width: 100%;
+
+    .logo {
+      width: 160px;
+      height: 140px;
+      margin-bottom: 40px;
+    }
+
+    .title {
+      font-weight: bold;
+      font-size: 14px;
+      color: $dark-gray;
+      margin-bottom: 4px;
+      line-height: 1.71;
+    }
+
+    .description {
+      font-size: 12px;
+      font-weight: normal;
+      line-height: 1.67;
+      text-align: center;
+      color: #6e798d;
+    }
+
+    .buttons {
+      margin-top: 32px;
+      display: flex;
+      width: 100%;
+      gap: 24px;
+    }
+  }
+}
+
+@include mediaMobile() {
+  .error-container {
+    padding: 30px;
+  }
+}

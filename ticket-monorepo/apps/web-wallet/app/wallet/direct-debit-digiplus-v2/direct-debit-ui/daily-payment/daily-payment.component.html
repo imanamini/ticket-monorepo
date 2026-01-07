@@ -1,0 +1,25 @@
+<div class="digiplus-box">
+
+  <div class="title-box">
+    <div class="business-logo"></div>
+    <div class="">
+      <h5 class="payment-type">نوع برداشت </h5>
+      <h3 class="payment-title">تمدید خودکار اشتراک دیجی‌پلاس</h3>
+    </div>
+  </div>
+
+  <div class="separator"></div>
+
+  <ng-container *ngFor="let row of detailRows; let ri = index">
+    <ul class="details">
+      <ng-container *ngFor="let detail of row">
+        <li>
+          <span>{{ detail.label }}</span>
+          <span>{{ detail.value }}</span>
+        </li>
+      </ng-container>
+    </ul>
+    <div class="separator" *ngIf="ri !== detailRows?.length - 1"></div>
+  </ng-container>
+
+</div>

@@ -1,0 +1,23 @@
+<div class="template-item">
+  <div class="template-logo"></div>
+  <div class="template-content">
+    <div class="template-title">
+      <div>{{cardData.title}}</div>
+    </div>
+    <!--      <div class="template-discount-details">-->
+    <!--        <div class="discount">-->
+    <!--          {{'30000'}}-->
+    <!--        </div>-->
+    <!--        <ui-badge [appearance]="'red'" [percentage]="50" [label]="'تخفیف'"></ui-badge>-->
+    <!--      </div>-->
+    <div class="template-amount-details">
+      <div class="amount">
+        <ui-currency
+          [value]="cardData['periodicAmount']"
+        ></ui-currency>
+      </div>
+      <!--        <ui-badge [appearance]="'green'" [percentage]="50" [label]="'بازگشت وجه'"></ui-badge>-->
+    </div>
+  </div>
+  <div class="template-more-icon"></div>
+</div>

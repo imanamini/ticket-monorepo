@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.wallet-types {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+
+  .point {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+
+    &.cash {
+      background-color: #0040FF;
+    }
+
+    &.non-cash {
+      background-color: #789AFF;
+    }
+
+    &.gift-card {
+      background-color: #00CC6D;
+    }
+  }
+}
+

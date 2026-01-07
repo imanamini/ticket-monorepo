@@ -1,0 +1,18 @@
+<ui-content-card cardTitle="ثبت امضای دیجیتال"  [backArrow]="true" (backClicked)="onBackClick()" *ngIf="isCallBackError">
+  <ng-container card-body>
+    <div class="result is-failed">
+      <div class="illustration"></div>
+      <h2 class="resul-title">
+        {{ result.description ? result.description : 'اشکال در ثبت امضای دیجیتال'}}
+      </h2>
+
+      <p>
+        امضای دیجیتال شما ثبت نشد لطفا مجددا نسبت به ثبت آن اقدام نمایید.
+      </p>
+
+    </div>
+    <ui-button appearance="FLAT-BLUE" (clicked)="onBackClick()" class="back-to-home">
+      بازگشت به خانه
+    </ui-button>
+  </ng-container>
+</ui-content-card>

@@ -1,0 +1,19 @@
+@import "../../../layout/variables";
+@import "../../../layout/mixins/font-size";
+@import "../../../layout/mixins/flex";
+
+.upg-action-dialog {
+  height: 100%;
+  overflow-y: scroll;
+  padding-bottom: 5px;
+  max-height: calc(98vh - 145px);
+
+  .dialog-logo-wrapper {
+    width: 100%;
+    @include flex-center;
+  }
+
+  .dialog-description {
+    margin-top: 24px;
+  }
+}

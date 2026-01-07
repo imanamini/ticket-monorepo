@@ -1,0 +1,28 @@
+export const environment = {
+  name: 'staging',
+  production: true,
+  api_prefix: '/digipay/api',
+  api_username: 'webapp-client-id',
+  api_password: 'webapp-client-secret-3cc0504a-76c5-488d-8f20-8b235126c5d0',
+  digipay_version: '2019-07-17',
+  google_tag_manager_id: 'GTM-PS2XTV5J',
+  google_analytics_tracking_id: '',
+  fail_url: 'https://demo.digikala.com/',
+  // prefix should not have trailing slash
+  route_prefix: '/web-pay',
+  app_base_url: 'https://uatweb.mydigipay.info/web-pay',
+  sentryDsn:'https://3fb51afd7bd9b79cf090342aa78878e9@uatsentry.mydigipay.info/96',
+  sentryTarget:['https://uatweb.mydigipay.info/web-pay/tgs'],
+  tracesSampleRate:0,
+  sampleRate:0.1,
+  android_agent: 'HYBRID_ANDROID',
+  ios_agent: 'HYBRID_IOS',
+  web_agent: 'WEB',
+  web_username: 'webapp-client-id',
+  web_password: 'webapp-client-secret-3cc0504a-76c5-488d-8f20-8b235126c5d0',
+  android_hybrid_username: 'hybrid-android-client-id',
+  android_hybrid_password: 'B5U4i7kzHWVcMCTitvcD',
+  ios_hybrid_username: 'hybrid-ios-client-id',
+  ios_hybrid_password: 'WtRP6H9n7pjH5QhY8YzK',
+
+};

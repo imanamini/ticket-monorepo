@@ -1,0 +1,14 @@
+<div class="confirmation-fee-message">
+  <div class="top-section">
+    <div class="logo"></div>
+    <div class="message-description">
+      توجه داشته باشید که با ثبت درخواست تسویه، امکان لغو درخواست وجود ندارد.
+    </div>
+  </div>
+  <div class="footer-section">
+    <ui-button appearance="FLAT-BLUE" [ngStyle]="{'width': '60%'}" (clicked)="onCancel()">انصراف</ui-button>
+    <ui-button [ngStyle]="{'width': '80%'}"
+               (clicked)="onsubmit()">ثبت درخواست
+    </ui-button>
+  </div>
+</div>

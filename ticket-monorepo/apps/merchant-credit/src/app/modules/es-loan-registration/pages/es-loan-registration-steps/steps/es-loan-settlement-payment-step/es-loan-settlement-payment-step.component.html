@@ -1,0 +1,78 @@
+<header class="d-flex flex-row align-items-center gap-small pt-pony pb-pony pl-medium pr-medium ">
+  <div class="action mt-tiny" (click)="closeClick()"></div>
+  <span class="t-6 text-onback-medium">پرداخت کارمزد</span>
+</header>
+
+<div class="d-flex flex-column mb-auto">
+  <div class="d-flex flex-column mt-big mr-medium ml-medium gap-medium">
+    <div class="section-top d-flex flex-row justify-content-space-between">
+      <span class="st-8 text-onback-high">تسهیلات درخواستی</span>
+      <span class="d-flex flex-row align-items-center gap-tiny"><span
+        class="st-8 text-onback-medium">{{ requestAmount() | number }}</span>
+        <div class="rial-icon"></div>
+      </span>
+    </div>
+    <div class="section-bottom">
+      <div class="d-flex flex-row justify-content-space-between  mt-minus mb-minus">
+        <span class="b-3 text-onback-medium">وضعیت</span>
+        <ngx-badge size="sm" status="warning" mode="fill" type="text">
+          در انتظار پرداخت کارمزد
+        </ngx-badge>
+      </div>
+      <ngx-divider
+        [color]="BorderColorsEnum.Air"
+        orientation="horizontal"></ngx-divider>
+      <div class="d-flex flex-row justify-content-space-between  mt-minus mb-minus">
+        <span class="b-3 text-onback-medium">بانک عامل</span>
+        <span class="b-3 text-onback-low">سامان</span>
+      </div>
+      <ngx-divider
+        [color]="BorderColorsEnum.Air"
+        orientation="horizontal"></ngx-divider>
+      <div class="d-flex flex-row justify-content-space-between  mt-minus mb-minus">
+        <span class="b-3 text-onback-medium">دریافتی نهایی (کسر ۲۳٪ کارمزد بانک)</span>
+        <span><span class="b-3 text-onback-low">{{ previewDetail().settlementAmount | number }}</span><span
+          class="c-3 text-onback-low">ریال </span></span>
+      </div>
+      <ngx-divider
+        [color]="BorderColorsEnum.Air"
+        orientation="horizontal"></ngx-divider>
+      <div class="d-flex flex-row justify-content-space-between  mt-minus mb-minus">
+        <span class="b-3 text-onback-medium">تاریخ حدودی واریز تسهیلات</span>
+        <span class="b-3 text-onback-low">{{ previewDetail().settlementDate | persianDatePipe }}</span>
+      </div>
+      <ngx-divider
+        [color]="BorderColorsEnum.Air"
+        orientation="horizontal"></ngx-divider>
+      <div class="d-flex flex-row justify-content-space-between  mt-minus mb-minus">
+        <span class="b-3 text-onback-medium">تعداد اقساط/ زمان بازپرداخت</span>
+        <span class="b-3 text-onback-low">۱ قسط / ۹۰ روز</span>
+      </div>
+      <ngx-divider
+        [color]="BorderColorsEnum.Air"
+        orientation="horizontal"></ngx-divider>
+      <div class="d-flex flex-row justify-content-space-between mt-minus mb-minus">
+        <span class="b-3 text-onback-medium">تاریخ حدودی بازپرداخت</span>
+        <span class="b-3 text-onback-low">{{ repaymentLoanDate()  | persianDatePipe }}</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="action-button d-flex flex-row justify-content-space-between ml-plus mr-plus mb-medium">
+  <div class="d-flex flex-column">
+    <span class="b-1 text-onback-medium">مبلغ پرداختی</span>
+    <span class="st-3 text-onback-high"> {{ (previewDetail().fundProviderFee + previewDetail().digipayFee) | number }}
+      ریال</span>
+  </div>
+  <ngx-button
+    (clickHandler)="submit()"
+    size="large"
+    mode="form"
+    style="fill"
+    [brandButton]="true"
+    [disabled]="!getData()"
+  >
+    پرداخت کارمزد
+  </ngx-button>
+</div>

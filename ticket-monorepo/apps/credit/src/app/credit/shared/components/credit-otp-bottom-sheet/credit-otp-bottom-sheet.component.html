@@ -1,0 +1,37 @@
+<div class="description">
+  <p class="text">کد امنیتی به شماره زیر ارسال می‌شود.</p>
+
+  <p class="cell-number">{{ phone | cellPhoneMask }}</p>
+</div>
+
+<app-ui-pin-input
+  (pinChange)="onPinChange($event)"
+  [hasError]="otpError"
+  [readonly]="isReadonly"
+  [value]="this.autoFillOtpCode ? this.autoFillOtpCode : ''"
+  type="OTP"
+/>
+<div class="error">
+  <ng-container *ngIf="otpInvalid">
+    کد وارد شده اشتباه است
+  </ng-container>
+</div>
+
+<ngx-button
+  (clickHandler)="callForOtpAgain()"
+  [brandButton]="true"
+  [disabled]="waiting || otpLoading"
+  [fullWidth]="true"
+  [size]="'medium'"
+  class="action"
+>
+  <span>ارسال مجدد</span>
+  <ng-container *ngIf="waiting">
+    <countdown
+      #cd
+      (event)="countdownHandler($event)"
+      [config]="{leftTime: 120, format: 'mm:ss'}"
+      class="count-down"
+    />
+  </ng-container>
+</ngx-button>

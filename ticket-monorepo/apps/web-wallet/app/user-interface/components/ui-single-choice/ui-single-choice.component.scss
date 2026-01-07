@@ -1,0 +1,61 @@
+@import "../../../layout/variables";
+@import "../../../layout/mixins/device";
+
+.single-choice {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  direction: rtl;
+
+  .single-choice-item {
+    direction: rtl;
+    cursor: pointer;
+    padding: 7px 2px;
+    margin-left: 10px;
+    flex-basis: 21.5%;
+    text-align: center;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    background-color: #fff;
+    border: solid 1px #d3dbe1;
+    user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+
+
+    &:first-child {
+      margin-right: 1px;
+    }
+
+    &:last-child {
+      margin-left: 1px;
+    }
+
+    &.is-selected {
+      color: $digipay-blue-primary;
+      background: $digipay-blue-light;
+      border: solid 1px $digipay-blue-primary;
+      box-shadow: 0 0 0 1px $digipay-blue-primary;
+    }
+
+    &.full-width {
+      flex-grow: 1;
+    }
+
+    ui-currency::ng-deep span.unit {
+      display: block;
+      margin-top: 2px;
+    }
+  }
+}
+
+@include mediaMaxWidth(460px) {
+  .amount-suggestions {
+    .suggestion {
+      flex-grow: 1;
+    }
+  }
+}

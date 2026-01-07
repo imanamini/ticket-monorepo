@@ -1,0 +1,70 @@
+
+.bank-card {
+  margin: 10px 0;
+
+  ::ng-deep {
+    .card-information {
+      height: 72px !important;
+      box-sizing: border-box !important;
+      align-content: center !important;
+      padding: 10px 16px !important;
+      width: 100% !important;
+      display: grid !important;
+      grid-template-areas:
+            'bank bank-card'
+            'bank name';
+      grid-template-columns: 1fr 1fr !important;
+      grid-template-rows: 25px 25px !important;
+    }
+
+    .top-section {
+      grid-area: bank !important;
+      display: grid !important;
+      grid-template-areas:
+            'bank-icon bank-extra-title'
+            'bank-icon bank-name';
+      grid-template-columns: 40px 1fr !important;
+      grid-template-rows: 25px 25px !important;
+      gap: 4px !important;
+
+      img {
+        width: 40px;
+        height: 40px;
+      }
+
+      .bank-icon {
+        grid-area: bank-icon;
+      }
+
+      .bank-extra-title {
+        grid-area: bank-extra-title;
+        color: #FFF;
+        font-size: 12px;
+        font-weight: 300;
+      }
+
+      .bank-name {
+        grid-area: bank-name;
+        color: #FFF;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+
+    .bank-card-number {
+      grid-area: bank-card;
+      color: #FFF;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: left;
+    }
+
+    .owner-name {
+      grid-area: name;
+      color: #FFF;
+      font-size: 12px;
+      font-weight: 400;
+      text-align: left;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+<div class="p-big surface-elevated radius-big d-flex align-items-center flex-column">
+  <div class="logo mb-medium"></div>
+
+  <div class="fs-16 fw-semi-bold mb-big">پرداخت از اعتبار</div>
+
+  <div class="d-flex align-items-center justify-content-space-between w-100 mb-minus row">
+    <span class="text-onback-low">مبلغ</span>
+    <span>{{ amount() | thousands }} <span class="">ریال</span></span>
+  </div>
+
+  <div class="d-flex align-items-center justify-content-space-between w-100 mb-minus row">
+    <span class="text-onback-low text-align-right">تاریخ بازپرداخت</span>
+    <span>
+      {{ formattedDate() }}
+      @if (nearPay()) {
+        <span class="text-onback-low ml-tiny">{{ nearPay() }}</span>
+      }
+    </span>
+  </div>
+
+  <div class="d-flex align-items-center justify-content-space-between w-100 mb-minus row">
+    <span class="text-onback-low">تعداد اقساط</span>
+    <span>{{ formattedInstallmentCount() }}</span>
+  </div>
+
+  @if (nearPay()) {
+    <ngx-callout
+      class="mb-minus"
+      [mode]="'single-without-title'"
+      message="در صورت مرجوع کردن کالا، مبلغ آن پس از تأیید فروشنده به کیف‌پول شما واریز می‌شود."/>
+  }
+
+  <div class="actions w-100 mt-minus">
+    <ngx-button
+      (clickHandler)="cancel()"
+      [fullWidth]="true"
+      [size]="'medium'"
+      [style]="'tinted-on-elevated'">
+      انصراف
+    </ngx-button>
+
+    <ngx-button
+      (clickHandler)="confirm()"
+      (finished)="confirm()"
+      [fullWidth]="true"
+      [size]="'medium'"
+      [timer]="{timeInSeconds: countDownTimer(), timerType: 'mm:ss'}"
+    >
+      &nbsp;پرداخت در
+    </ngx-button>
+  </div>
+</div>

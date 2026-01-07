@@ -1,0 +1,15 @@
+::ng-deep app-home-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.home-page-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  .brand-logo {
+    width: 192px;
+  }
+}

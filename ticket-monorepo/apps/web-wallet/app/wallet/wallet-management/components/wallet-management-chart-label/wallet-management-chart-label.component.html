@@ -1,0 +1,20 @@
+<div class="wallet-types">
+  <div class="point cash"></div>
+  <span>نقدی</span>
+  <span>{{balanceInformation.cashoutableBalance | separator}}</span>
+  <span>ریال</span>
+</div>
+
+<div class="wallet-types">
+  <div class="point non-cash"></div>
+  <span>غیر نقدی</span>
+  <span>{{balanceInformation.nonCashoutableBalance | separator}}</span>
+  <span>ریال</span>
+</div>
+
+<div class="wallet-types">
+  <div class="point gift-card"></div>
+  <span>کارت هدیه</span>
+  <span>{{balanceInformation.timeBoundBalance | separator}}</span>
+  <span>ریال</span>
+</div>

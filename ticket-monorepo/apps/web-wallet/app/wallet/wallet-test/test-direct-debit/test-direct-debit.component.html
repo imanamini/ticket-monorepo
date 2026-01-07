@@ -1,0 +1,16 @@
+<ui-content-box>
+  <div dir="ltr">
+    <h1>Test Direct Debit</h1>
+
+    <label dir="ltr">Cell Number</label>
+    <input type="text" placeholder="Cell Number" dir="ltr" [(ngModel)]="cellNumber">
+
+    <label dir="ltr">Custom Token</label>
+    <textarea type="text" placeholder="Custom Token" dir="ltr"
+              [(ngModel)]="customToken">
+    </textarea>
+
+    <ui-button (buttonClick)="getTestTicket()" [disabled]="gettingToken">Get Ticket</ui-button>
+
+  </div>
+</ui-content-box>

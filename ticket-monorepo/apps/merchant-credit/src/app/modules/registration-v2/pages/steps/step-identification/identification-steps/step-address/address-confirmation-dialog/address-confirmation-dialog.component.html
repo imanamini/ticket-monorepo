@@ -1,0 +1,26 @@
+<div class="confirmation-fee-message">
+  <div class="top-section">
+    <div class="logo"></div>
+    <div class="message-title">
+      کارت بانکی شما بعد از افتتاح‌حساب موفق به این آدرس ارسال خواهدشد.
+    </div>
+    <div class="message-description">
+      آدرس :   {{address}}
+    </div>
+    <ui-note-box note="توجه داشته باشید در صورت اشتباه بودن آدرس کارت شما با تاخیر به دستتان می رسد."></ui-note-box>
+
+  </div>
+  <div class="footer-section">
+    <ng-button (clickHandler)="onCancel()"
+               buttonSize="medium"
+               [styles]="{'width': '116px'}"
+               [buttonType]="'tinted'"
+               [buttonText]="'ویرایش'">
+    </ng-button>
+    <ng-button (clickHandler)="onsubmit()"
+               buttonSize="medium"
+               [styles]="{'width': '188px'}"
+               [buttonText]="'تایید آدرس'">
+    </ng-button>
+  </div>
+</div>

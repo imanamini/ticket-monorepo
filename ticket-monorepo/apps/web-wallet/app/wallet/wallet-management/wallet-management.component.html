@@ -1,0 +1,44 @@
+<div class="wallet-management-container">
+  <div class="background"></div>
+
+  <div class="fix-header">
+    <div class="back icon"></div>
+    مدیریت کیف پول
+  </div>
+
+  <div class="title">
+    جزئیات موجودی
+    <div class="title-information">
+      جزئیات موجودی باقی‌مانده در کیف‌پول دیجی‌پی
+      <div class="icon info"></div>
+    </div>
+  </div>
+
+  <div class="chart">
+    <app-wallet-management-chart
+      *ngIf="balanceInformation"
+      [balanceInformation]="balanceInformation">
+    </app-wallet-management-chart>
+  </div>
+
+  <div class="chart-labels">
+    <app-wallet-management-chart-label
+      *ngIf="balanceInformation"
+      [balanceInformation]="balanceInformation">
+    </app-wallet-management-chart-label>
+  </div>
+
+  <div class="wallet-description">
+    <!--    //ToDO: باید سایز باکس نسبت به بزرگترین متن اتو باشد و استپر ساخته شود.-->
+    <app-wallet-management-description-stepper></app-wallet-management-description-stepper>
+  </div>
+
+  <div class="wallet-action-button">
+    <app-wallet-management-action-button></app-wallet-management-action-button>
+  </div>
+
+  <div class="gift-card-container">
+    <app-wallet-management-gift-card></app-wallet-management-gift-card>
+  </div>
+
+</div>

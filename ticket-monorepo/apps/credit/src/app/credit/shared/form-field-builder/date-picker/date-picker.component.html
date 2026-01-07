@@ -1,0 +1,35 @@
+<div class="date-picker">
+  <div class="body">
+    <date-picker-number-picker
+      class="number-picker"
+      [(value)]="value.year"
+      (valueChange)="valueChangedCallback()"
+      *ngIf="pickers.year"
+      [list]="lists.year">
+    </date-picker-number-picker>
+
+    <date-picker-number-picker
+      class="number-picker"
+      [(value)]="value.month"
+      [list]="lists.month"
+      (valueChange)="valueChangedCallback()"
+      *ngIf="pickers.month"
+    ></date-picker-number-picker>
+
+    <date-picker-number-picker
+      class="number-picker"
+      [(value)]="value.day"
+      *ngIf="pickers.day"
+      (valueChange)="valueChangedCallback()"
+      [list]="lists.day">
+    </date-picker-number-picker>
+  </div>
+  <div class="actions">
+    <button (click)="clearButtonClick()" class="reject">حذف</button>
+    <button
+      class="resolve"
+      [disabled]="!value.day || !value.month || !value.year"
+      (click)="confirmClick()"
+    >تایید</button>
+  </div>
+</div>

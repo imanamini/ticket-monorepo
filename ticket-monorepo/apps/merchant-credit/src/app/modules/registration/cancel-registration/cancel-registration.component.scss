@@ -1,0 +1,61 @@
+:host {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+.cancel-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .digipay-logo {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    background-image: url("./assets/digipay-logo.svg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+}
+.cancel-card {
+  width: 600px;
+  max-width: 90%;
+  border-radius: 16px;
+  border: 1px solid #CCC;
+  .card-content {
+    padding: 24px;
+  }
+  .cancel-title {
+    font-size: 24px;
+    line-height: 1.7;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  ui-button {
+    width: 100%;
+  }
+  .canceled-message-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    .canceled-image {
+      width: 166px;
+      height: 166px;
+      max-width: 100%;
+      background-image: url("./assets/illustration-credit-cancel.svg");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .cancel-message {
+      font-size: 18px;
+      line-height: 32px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+  }
+}

@@ -1,0 +1,6 @@
+<div
+  class="switch"
+  [ngClass]="{'is-on': isOn, disabled: disabled}"
+  (click)="emitClick($event)">
+  <div class="circle"></div>
+</div>

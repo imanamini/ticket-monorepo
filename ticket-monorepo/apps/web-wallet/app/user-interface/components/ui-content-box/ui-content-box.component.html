@@ -1,0 +1,25 @@
+<div class="content-box" [ngClass]="{'small-box': smallMode}">
+  <div class="header" *ngIf="showHeader">
+    <ui-digipay-logo *ngIf="showLogo"></ui-digipay-logo>
+    <div *ngIf="title" class="title-bar" [ngClass]="{'with-logo': showLogo}">
+      <h3 class="title">
+        <span class="digipay-tiny-logo" *ngIf="showTitleLogo"></span>
+        <span>{{title}}</span>
+      </h3>
+      <div class="countdown" *ngIf="showCountDown">
+        <span class="icon"></span>
+        <span class="label">
+          زمان باقیمانده:
+        </span>
+        <span class="time">
+          <ui-count-down-text
+            (finished)="emitCountDownFinish()"
+            [seconds]="countDownSeconds"></ui-count-down-text>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <ng-content></ng-content>
+  </div>
+</div>

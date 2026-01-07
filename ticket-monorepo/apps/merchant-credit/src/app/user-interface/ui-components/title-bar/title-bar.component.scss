@@ -1,0 +1,29 @@
+@import "../../../styles/layout/variables";
+
+.title-bar {
+  padding: 16px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid $border-color;
+  .action-icon {
+    flex: 0 0 24px;
+    width: 24px;
+    margin-left: 16px;
+    .back-button {
+      height: 24px;
+      width: 24px;
+      background-image: url("./icon-general-back.svg");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      transform: rotate(180deg);
+      cursor: pointer;
+    }
+  }
+  .title {
+    flex-grow: 1;
+    font-size: 18px;
+    line-height: 32px;
+    color: $swatch_steel_500;
+  }
+}

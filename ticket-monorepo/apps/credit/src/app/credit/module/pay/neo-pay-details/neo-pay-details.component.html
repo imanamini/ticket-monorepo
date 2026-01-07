@@ -1,0 +1,31 @@
+<ng-container *ngIf="!pageLoading && creditWallet">
+  <credit-ui-content-box
+    (backClick)="onBack()"
+    [contentBoxTitle]="'جزئیات پرداخت'"
+    [showHeader]="true"
+    [bodyPadding]="false"
+    [showCloseButton]="true"
+    [grayMode]="true"
+    [showLogo]="false"
+    [countDown]="0"
+    [fullHeight]="true"
+  >
+    <app-pay-details-information
+      [totalPayableAmount]="totalPayableAmount"
+      [footerDescription]="footerDescription"
+      [footerActionTitle]="footerActionTitle"
+      [detailContents]="payDetailContents"
+      [footerContents]="payDetailFooters"
+      [disabled]="creditWallet.disable"
+      [disabledMessages]="creditWallet.messages"
+      [loading]="gettingData"
+      [otpLoading]="otpLoading"
+      (actionClicked)="onConfirm()"
+      (edit)="editAmount()"
+      [disableEditAmount]="disableEditAmount"
+    >
+    </app-pay-details-information>
+  </credit-ui-content-box>
+</ng-container>
+
+<page-loading [active]="pageLoading"></page-loading>

@@ -1,0 +1,38 @@
+<div class="dg-input-wrapper" [ngClass]="{
+    'dg-not-empty': !!this.form.controls[formControlName].value,
+    'dg-focused': !!isFocused,
+    'dg-error': form.touched && form.invalid,
+    'dg-cleanable': hasCleaner,
+    'dg-ltr-input': ltrInput,
+    'dg-ltr-placeholder': ltrPlaceholder
+  }">
+  <label [htmlFor]="id">{{label}}</label>
+  <ng-container *ngIf="!multiLine" [formGroup]="form">
+    <input
+      [id]="id"
+      [placeholder]="placeholder || ''"
+      [formControlName]="formControlName"
+      [type]="inputType"
+      [readonly]="readonly"
+      [autocomplete]="inputType === 'password' ? 'new-password' : 'off'"
+      [maxLength]="maxSize"
+      (focusin)="isFocused = true"
+      (focusout)="isFocused = false"
+    />
+  </ng-container>
+  <ng-container *ngIf="multiLine" [formGroup]="form">
+    <textarea
+      [id]="id"
+      [rows]="6"
+      [placeholder]="placeholder || ''"
+      [formControlName]="formControlName"
+      [readonly]="readonly"
+      [maxLength]="maxSize"
+      (focusin)="isFocused = true"
+      (focusout)="isFocused = false"
+    ></textarea>
+  </ng-container>
+  <div class="dg-clean-icon" (click)="clean($event)"></div>
+</div>
+<div class="dg-hint-message" *ngIf="!(form.touched && form.invalid && errorMessage)">{{hint}}</div>
+<div class="dg-error-message" *ngIf="form.touched && form.invalid && errorMessage">{{errorMessage}}</div>

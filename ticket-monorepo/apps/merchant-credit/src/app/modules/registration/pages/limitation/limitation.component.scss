@@ -1,0 +1,138 @@
+@import '../../../../styles/layout/variables';
+
+.limitation-wrapper {
+  width: 100%;
+  padding: 50px;
+}
+
+.limitation-picture-holder {
+  width: 240px;
+  height: 240px;
+  margin: 0 auto 32px auto;
+
+  img {
+    width: 100%;
+  }
+}
+
+.limitation-top-section {
+  margin-bottom: 43px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .limitation-title {
+    flex: 0 0 auto;
+    font-size: 24px;
+    color: $swatch_steel_900;
+    padding-left: 20px;
+  }
+
+  .slider-wrapper {
+    flex: 1 1 auto;
+  }
+}
+
+.limitation-documents-section {
+  width: 100%;
+  padding: 24px 16px;
+  background-color: $swatch_steel_100;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.limitation-documents-title {
+  width: 100%;
+  margin-bottom: 24px;
+
+  span {
+    font-weight: bolder;
+    font-size: 18px;
+    color: $swatch_steel_900;
+  }
+}
+
+.limitation-documents-holder, .limitation-documents-skeleton-holder {
+  width: 100%;
+}
+
+.limitation-documents, .limitation-documents-skeleton {
+  position: relative;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all .3s;
+  padding: 8px 20px 8px 0;
+  &.show {
+    max-height: 100px;
+    opacity: 1;
+  }
+
+  .doc-description {
+    font-size: 14px;
+    color: $swatch_steel_900;
+    font-weight: bold;
+    line-height: 24px;
+  }
+
+  &::before {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 16px;
+    width: 8px;
+    height: 8px;
+    background-color: $swatch_steel_900;
+    border-radius: 50%;
+  }
+}
+
+.limitation-description-holder {
+  width: 100%;
+  margin-bottom: 16px;
+
+  span {
+    font-size: 18px;
+    color: $swatch_steel_900;
+    font-weight: bolder;
+    line-height: 32px;
+  }
+}
+
+.limitation-location-holder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 27px;
+
+  img {
+    margin-left: 4px;
+  }
+
+  span {
+    font-size: 14px;
+    color: $swatch_steel_900;
+    font-weight: bold;
+  }
+}
+
+.limitation-hint-holder {
+  margin-bottom: 32px;
+}
+
+.limitation-button-holder {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  ui-button {
+    margin-right: 8px;
+  }
+}
+
+.error-mode {
+  padding: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $swatch_red_500;
+}

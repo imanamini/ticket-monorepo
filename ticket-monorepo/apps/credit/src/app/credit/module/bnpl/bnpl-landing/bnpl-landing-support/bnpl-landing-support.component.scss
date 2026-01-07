@@ -1,0 +1,45 @@
+.artwork {
+  left: 36px;
+  position: absolute;
+  top: -50px;
+}
+
+.box {
+  margin-top: 48px;
+  background: #F0F5FF;
+  border-radius: 24px;
+  width: 100%;
+  padding: 50px;
+  position: relative;
+}
+
+.title {
+  font-size: 17px;
+  color: #2C3544;
+  margin-bottom: 16px;
+}
+
+.tel {
+  font-size: 24px;
+  font-weight: 900;
+
+  a {
+    color: #2C3544;
+    text-decoration: auto;
+  }
+}
+
+.subtitle {
+  color: #6E798D;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .box {
+    padding: 32px;
+  }
+
+  .artwork {
+    left: 16px;
+  }
+}

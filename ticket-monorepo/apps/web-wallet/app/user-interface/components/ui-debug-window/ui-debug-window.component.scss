@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  position: fixed;
+  padding: 12px;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  width: 70vw;
+  height: 40vh;
+  overflow: scroll;
+  direction: ltr;
+  white-space: pre;
+  z-index: 999999;
+  font-family: monospace !important;
+}
+
+:host ::ng-deep p {
+  margin: 0;
+  font-family: monospace !important;
+  line-height: 1em;
+}

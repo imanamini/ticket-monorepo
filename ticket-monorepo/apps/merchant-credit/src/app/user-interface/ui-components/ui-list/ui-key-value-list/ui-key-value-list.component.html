@@ -1,0 +1,4 @@
+<div class="info-row" *ngFor="let item of items" [ngClass]="{'is-separated': separated}">
+  <span class="label">{{ item.label }}</span>
+  <span class="value">{{ item.value }}</span>
+</div>

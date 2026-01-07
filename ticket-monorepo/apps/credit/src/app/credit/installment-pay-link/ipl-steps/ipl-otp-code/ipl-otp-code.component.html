@@ -1,0 +1,43 @@
+<div class="surface-high-contrast h-100 d-flex flex-column">
+  <ipl-header backUrl="cell-number"/>
+
+  <div class="d-flex flex-column flex-grow">
+    <div class="flex-grow-1 p-big">
+      <div class="mb-big text-medium-emphasis">کد فعالسازی ارسال شده به شماره زیر را وارد کنید.</div>
+      <div class="flex justify-between py-small align-items-center">
+        <span class="text-high-emphasis fs-18">{{ iplService.userInfo().cellNumber }}</span>
+        <span (click)="backToCellNumber()" class="text-onback-brand cursor-pointer">تغییر شماره همراه</span>
+      </div>
+
+      <app-ui-pin-input
+        (pinChange)="onPinChange($event)"
+        [hasError]="otpError"
+        [readonly]="isReadonly"
+        type="OTP"
+      >
+      </app-ui-pin-input>
+      <div class="text-onback-error fs-10 mt-minus text-align-center">
+        @if (otpError) {
+          کد وارد شده اشتباه است
+        }
+      </div>
+    </div>
+
+    <div class="p-big flex gap-minus">
+      <ngx-button
+        (clickHandler)="sendSms()"
+        [disabled]="iplService.pageInnerLoading()"
+        [size]="'medium'"
+        [style]="'tinted-on-elevated'"
+      >
+        ارسال مجدد
+      </ngx-button>
+      <ngx-button
+        [disabled]="true"
+        [fullWidth]="true"
+        [size]="'medium'">
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  </div>
+</div>

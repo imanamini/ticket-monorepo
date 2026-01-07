@@ -1,0 +1,31 @@
+@import "../../../styles/layout/variables";
+
+:host {
+  display: block;
+  margin: 12px 0;
+}
+
+.section-title {
+  position: relative;
+  color: $swatch_steel_300;
+  font-size: 12px;
+  margin-bottom: 12px;
+
+  span {
+    background: #fff;
+    padding-inline-end: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  &::after {
+    z-index: 0;
+    content: ' ';
+    position: absolute;
+    top: 50%;
+    height: 1px;
+    width: 100%;
+    left: 0;
+    background: $swatch_steel_200;
+  }
+}

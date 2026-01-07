@@ -1,0 +1,126 @@
+<div class="max-credit-amount-step" *ngIf="steps[currentStepIndex] && !errorData">
+  <ng-container *ngIf="stepSections === 'select-amount'">
+    <ng-container>
+      <p class="title">
+        اعتبار مورد نیاز را با توجه به میانگین فاکتورهای ماهیانه خود انتخاب کنید:
+      </p>
+      <div class="cards">
+        <app-max-credit-amount-card
+          *ngFor="let creditAmount of steps[0]?.maxCreditAmountDetails"
+          (cardClicked)="onClick($event)"
+          [selected]="selectedDoc === creditAmount?.maxCreditAmount"
+          [creditAmount]="creditAmount"
+        ></app-max-credit-amount-card>
+      </div>
+      <ui-note-box
+        noteTitle="هزینه فعالسازی خط‌ اعتباری بانکی"
+        note="۰.0۵ درصد هر ۱۰۰۰ تومان، در هنگام واریز اولین تسویه برای فعال‌سازی خط اعتباری در بانک از واریزی شما کسر خواهد شد."></ui-note-box>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="stepSections === 'select-docs'">
+    <div class="select-docs">
+      <div class="select-docs-header">
+        <div class="logo"></div>
+        <div class="description">
+        <span class="amount">
+          {{maxCreditAmount}} <span class="unit">ریال</span>
+        </span>
+          <span class="message">
+          {{documents.message}}
+        </span>
+        </div>
+      </div>
+      <div class="select-docs-body" *ngFor="let subItem of documents?.subItems">
+        <h3 class="title">{{subItem?.title}}</h3>
+        <div class="items">
+          <div class="item" *ngFor="let item of subItem?.items">
+            <div *ngIf="item?.id" class="item-id">{{item?.id}}</div>
+            <div *ngIf="!item?.id" class="item-id">
+              <div class="item-icon"></div>
+            </div>
+            <span class="item-name">{{item?.name}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="stepSections === 'select-account'">
+    <div class="select-account-body">
+      <h2 class="title">
+        معرفی حساب بانک سامان
+      </h2>
+      <p class="description">
+        برای ادامه مراحل فعال‌سازی تسویه زودهنگام، شماره شبای متعلق به بانک سامان خود را وارد کنید.
+      </p>
+      <div class="iban-card-wrapper">
+        <div class="iban-card">
+          <div class="iban-card-title">
+            <div class="small-logo"></div>
+            <span>بانک سامان</span>
+          </div>
+          <div class="iban-text">
+            {{splitAndDisplay(this.form.controls[ 'iban' ].value, '## ## ## ####################', '-')}}
+          </div>
+        </div>
+
+        <div class="iban-form" [formGroup]="form">
+          <ui-form-field
+            [type]="'iban'"
+            [placeholder]="'شماره شبا را وارد کنید'"
+            formControlName="iban"
+            [error]="form.controls.iban.errors"
+            [errorMessageMapper]="{
+              pattern: 'شماره شبا متعلق به بانک سامان نیست.'
+            }"
+            hint="شماره شبا را بدون IR وارد کنید."
+            [hasCleaner]="true"
+            [autoFocus]="true"
+            [showError]="showError"
+          ></ui-form-field>
+        </div>
+        <a *ngIf="type === 0" class="open-account-link"
+           href="https://www.sb24.ir/e-services/e-banking/mobillet/open-account">حساب سامان
+          فعال ندارید؟</a>
+        <div class="legal-notice" *ngIf="type === 1">
+          <h2 class="title">
+            افتتاح حساب بانک سامان (حقوقی)
+          </h2>
+          <p class="description">
+            در بانک سامان امکان افتتاح حساب آنلاین برای اشخاص حقوقی وجود ندارد؛ شما می‌توانید با مراجعه حضوری به بانک با
+            همراه داشتن مدارک کسب و کار خود، ابتدا در این بانک حساب باز کرده و مجدد وارد فرایند ثبت‌نام شوید.
+          </p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div *ngIf="!errorData" class="footer">
+  <div class="actions">
+    <ng-button (clickHandler)="onBack()"
+               buttonSize="medium"
+               buttonType="tinted"
+               [disabled]="!isBack"
+               [buttonText]="'بازگشت'">
+    </ng-button>
+    <ng-button (clickHandler)="onSubmit()"
+               buttonSize="medium"
+               [disabled]="!isValid"
+               [buttonText]="'تایید و ادامه'">
+    </ng-button>
+  </div>
+</div>
+
+<ngx-status-result
+  class="status-result"
+  *ngIf="errorData"
+  [title]="errorData?.title"
+  [description]="errorData?.message"
+  [buttons]="errorData?.buttons"
+  [loading]="errorData?.loading"
+  (clicked)="closeClick($event)"
+>
+  <ng-container status-image>
+    <img [src]="errorData?.staticImage" alt="">
+  </ng-container>
+</ngx-status-result>

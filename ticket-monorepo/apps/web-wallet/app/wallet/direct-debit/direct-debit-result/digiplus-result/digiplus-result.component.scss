@@ -1,0 +1,38 @@
+.digiplus-result-container {
+  border-top: 1px solid #f2f5f8;
+  direction: rtl;
+
+  .content {
+    margin-top: 32px;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      line-height: 2.5;
+
+      .title {
+        color: #6e798d;
+      }
+
+      .value {
+        color: #2c3544;
+        direction: rtl;
+      }
+
+      &:last-child {
+        margin-bottom: 90px;
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+
+    .icon {
+      width: 90px;
+      height: 48px;
+      background: url("../assets/logo-digipay-logotype.svg") center no-repeat;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<ui-page-layout>
+  <ui-content-card [backArrow]="true" cardTitle="نتیجه پرداخت" (backClicked)="onBackClick()">
+    <ng-container card-body>
+      <ui-payment-receipt
+        (redirectClicked)="onRedirectClick()"
+        [paymentResult]="result" *ngIf="result"></ui-payment-receipt>
+    </ng-container>
+  </ui-content-card>
+</ui-page-layout>

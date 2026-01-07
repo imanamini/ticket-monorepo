@@ -1,0 +1,68 @@
+<div [ngClass]="{
+'invert-color': invertColor,
+'right-aligned': alignment === 'RIGHT'}" [ngStyle]="getStyles()" class="page-title-bar">
+  <div class="left-action">
+    @if (actionSpinner) {
+      <mat-spinner diameter="20"></mat-spinner>
+    } @else {
+      @if (actionText) {
+        <a
+          (click)="actionTextClick($event)"
+          [ngClass]="{'has-image': !!actionImage}"
+        >
+          @if (!!actionImage) {
+            <img [src]="actionImage" alt="left" class="left-action-img"/>
+          }
+          {{ actionText }}
+        </a>
+      }
+    }
+
+    @if (infoButton) {
+      <img
+        (click)="infoItemClicked($event)"
+        class="invertable info-img-area"
+        alt="توضیحات"
+        src="credit-assets-new/icons/page-title-bar-assets/title-bar-info-icon.svg"
+      />
+    }
+
+    <ng-content></ng-content>
+  </div>
+
+  <span class="title invert-text">
+    <span>{{ title }}</span>
+    @if (subtitle) {
+      <span class="subtitle">{{ subtitle }}</span>
+    }
+  </span>
+
+  <div class="right-action">
+    @if (closeButton) {
+      <span
+        (click)="closeButtonClick($event)"
+        class="action-icon close-icon invertable"
+      >
+      </span>
+    }
+
+    <!-- back button with click callback  -->
+    <span class="right-title">
+        {{ rightTitle }}
+    </span>
+
+    @if (backButton) {
+      <span
+        (click)="backButtonClick($event)"
+        class="action-icon back-icon invertable"
+      >
+      </span>
+    }
+
+    @if (closeText) {
+      <span (click)="closeButtonClick($event)" class="close-text">
+        {{ closeText }}
+      </span>
+    }
+  </div>
+</div>

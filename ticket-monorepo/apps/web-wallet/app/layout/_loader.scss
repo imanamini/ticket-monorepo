@@ -1,0 +1,15 @@
+@keyframes load {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #c9c6c6;
+  border-top: 2px solid gray;
+  border-radius: 60px;
+  animation: load 1s linear infinite;
+  margin: 3px;
+}

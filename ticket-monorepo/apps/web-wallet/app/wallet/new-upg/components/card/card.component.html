@@ -1,0 +1,27 @@
+<div class="card-container">
+
+  <app-card-header
+    [title]="headerTitle"
+    [closeButton]="headerCloseButtonType"
+    [customizeBackAction]="customizeBackAction"
+    (onBackClicked)="onBackClicked.emit()">
+  </app-card-header>
+
+  <div class="body" [style.margin-bottom]="!hasFooter && '0'">
+    <div class="content">
+      <ng-content select="[body]"></ng-content>
+    </div>
+  </div>
+
+  <app-card-footer
+    *ngIf="hasFooter"
+    [currencyText]="currencyText"
+    [submitText]="submitText"
+    [submitLoading]="submitLoading"
+    [disableButton]="disableSubmitButton"
+    [amount]="amount"
+    [iconPath]="footerIconPath"
+    (onSubmit)="submit.emit()"
+  ></app-card-footer>
+
+</div>

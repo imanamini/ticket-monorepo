@@ -1,0 +1,109 @@
+<div
+  [ngClass]="{
+    'content-card': true,
+    'has-footer': hasFooter,
+    'has-extra-link': extraLinkTitle,
+    'secondary-theme': theme === 'secondary'
+  }"
+  [ngStyle]="{'--vh': this.viewportHeight * 0.01}"
+  #uiContentCard
+>
+  <div *ngIf="hasHeader" class="content-card-header">
+    <div class="header-action" *ngIf="hasHeaderAction || hasHeaderBackAction">
+      <span
+        id="{{id?.closeButton}}"
+        class="back-action"
+        *ngIf="hasHeaderBackAction; else headerCloseButton"
+        (click)="headerBackAction()"
+      ></span>
+      <ng-template #headerCloseButton>
+        <span
+          id="{{id?.closeButton}}"
+          class="close-action"
+          (click)="headerCloseAction()"
+        ></span>
+      </ng-template>
+    </div>
+    <div class="header-title">{{title}}</div>
+
+    <div class="header-remaining" *ngIf="headerRemainingTimeSecond">
+      <ui-remaining-time
+        (finish)="finishTimer.emit()"
+        [time]="headerRemainingTimeSecond"
+        [timeType]="timeType"
+      ></ui-remaining-time>
+    </div>
+
+    <div class="header-logo" *ngIf="hasHeaderLogo">
+      <ui-digipay-logo></ui-digipay-logo>
+    </div>
+  </div>
+
+  <div
+    [ngClass]="{
+      'content-card-body': true,
+      'content-scrollbar': true,
+      'without-header': !hasHeader,
+      'without-footer': !hasFooter
+    }" id="{{id?.view}}">
+    <ng-content></ng-content>
+  </div>
+
+  <div
+    *ngIf="hasFooter"
+    [ngClass]="{
+      'content-card-footer': true,
+      'integrated-footer': integratedFooter
+    }"
+  >
+    <ui-button
+      appearance="outline"
+      theme="digipay"
+      class="footer-back-button"
+      [fullWidth]="theme !== 'secondary'"
+      *ngIf="hasRejectAction; else amountDetails"
+      [disabled]="rejectButtonDisable"
+      (click)="onReject()"
+    >
+      {{rejectButtonTitle}}
+    </ui-button>
+    <ng-template #amountDetails>
+      <div class="footer-details" *ngIf="amount">
+        <div class="footer-details-label">
+          <div class="footer-icon" *ngIf="footerIconPath" [style.background-image]="'url('+footerIconPath+')'"></div>
+          {{footerDetailLabel}}</div>
+        <div class="footer-details-amount">
+          <div class="amount">
+            <ui-currency
+              [value]="amount"></ui-currency>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ui-button
+      id="{{id?.submit}}"
+      *ngIf="confirmButtonTitle"
+      appearance="default"
+      theme="digipay"
+      class="submit-button"
+      [ngClass]="{'full-width': confirmButtonFullWidth && !amount}"
+      [disabled]="confirmButtonDisable"
+      (buttonClick)="onConfirm()"
+      [fullWidth]="confirmButtonFullWidth"
+    >
+      {{confirmButtonTitle}}
+      <ui-count-down-text
+        *ngIf="confirmButtonRemainingTime && (confirmButtonDisable || showConfirmButtonRemaining)"
+        [showParentheses]="true"
+        (finished)="onFinishedConfirmRemaining()"
+        [seconds]="confirmButtonRemainingTime"
+      ></ui-count-down-text>
+    </ui-button>
+  </div>
+
+  <div class="extra-link" *ngIf="extraLinkTitle" (click)="extraLinkClick()">
+    <div class="extra-link-title">{{extraLinkTitle}}</div>
+    <div class="extra-link-mobile-title">{{extraLinkMobileTitle}}</div>
+    <div class="extra-link-icon"></div>
+  </div>
+</div>

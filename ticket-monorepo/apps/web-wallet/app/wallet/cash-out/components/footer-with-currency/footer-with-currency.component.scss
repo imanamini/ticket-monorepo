@@ -1,0 +1,82 @@
+
+@import "src/app/layout/mixins/device";
+
+@mixin amount-section($amount-font-size , $amount-font-weight , $currency-font-size , $currency-font-weight) {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+
+  .amount {
+    color: #2C3544;
+    font-size: $amount-font-size;
+    font-style: normal;
+    font-weight: $amount-font-weight;
+  }
+
+  .currency {
+    color: #2C3544;
+    font-size: $currency-font-size;
+    font-style: normal;
+    font-weight: $currency-font-weight;
+  }
+}
+
+.footer {
+  display: flex;
+  padding: 22px 24px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 16px 16px 16px 16px;
+  border: 1px solid #DEE3E7;
+  background: #F2F5F8;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  ::ng-deep .button {
+    padding: 12px 24px;
+  }
+
+  .amount-description {
+    .action-title {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+
+      .action-title-icon {
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background-repeat: no-repeat;
+        background-image: url('../../assets/icons/action.svg');
+        background-size: contain;
+      }
+
+      .title {
+        color: #6E798D;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+      }
+    }
+
+    .amount-section {
+      @include amount-section(18px, 700, 14px, 500)
+    }
+  }
+
+  .loader {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@include mediaMobile() {
+  .footer {
+    position: fixed;
+    border-bottom-left-radius: unset;
+    border-bottom-right-radius: unset;
+  }
+}

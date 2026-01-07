@@ -1,0 +1,65 @@
+<div class="body">
+  <header class="d-flex flex-row align-items-center gap-small py-pony px-plus">
+    <div class="action" (click)="goToDashboard()"></div>
+    <span class="t-6 text-onback-medium">بازپرداخت تسهیلات اعطا شده</span>
+  </header>
+
+  <div class="d-flex flex-column gap-medium py-big px-medium">
+    <ngx-segmented-control
+      [countStatus]="countStatus()"
+      [mode]="mode()"
+      [options]="options()"
+      [selectedOption]="selectedOption()"
+      (change)="changeTab($event)"
+    >
+    </ngx-segmented-control>
+    <div class="d-flex flex-column gap-medium">
+      @for(item of settlementList() ;track $index){
+      @if(item.status ===  settlementValue.ALLOCATED && id() === tabs.payed){
+      <div class="d-flex flex-row justify-content-space-between gap-tiny py-small  cursor-pointer"
+           (click)="goToRepaymentDetail(item.trackingCode)">
+        <div class="d-flex flex-row gap-tiny align-items-center">
+          <div class="logo"></div>
+          <div class="d-flex flex-column">
+            <span class="c-2 text-onback-medium">تسهیلات بانک سامان</span>
+            <span class="d-flex flex-row gap-tiny c-3 text-onback-low">
+                 <span>{{item.expectedCreditAllocation.requestedAmount | number}}</span><span>ریال</span><span>.</span><span>{{item.dueDate | persianDatePipe}}</span>
+               </span>
+          </div>
+        </div>
+
+        <div class="d-flex flex-row gap-tiny align-self-start ">
+          @if(item.status === settlementValue.ALLOCATED){
+          <ngx-badge size="sm" [status]="badgeStatus()" mode="fill" type="text">
+          {{calculateBadgeData(item.repaymentRemainPeriod)}}
+          </ngx-badge>
+          }
+          <div class="arrow-icon"></div>
+        </div>
+      </div>
+      }
+      @if(item.status ===  settlementValue.CONFIRMED && id() === tabs.unPayed){
+      <div class="d-flex flex-row justify-content-space-between gap-tiny py-small cursor-pointer"
+           (click)="goToRepaymentDetail(item.trackingCode)">
+        <div class="d-flex flex-row gap-tiny align-items-center">
+          <div class="logo"></div>
+          <div class="d-flex flex-column">
+            <span class="c-2 text-onback-medium">تسهیلات بانک سامان</span>
+            <span class="d-flex flex-row gap-tiny c-3 text-onback-low">
+                 <span>{{item.expectedCreditAllocation.requestedAmount | number}}</span><span>ریال</span><span>.</span><span>{{item.dueDate | persianDatePipe}}</span>
+               </span>
+          </div>
+        </div>
+        <div class="d-flex flex-row gap-tiny align-self-start ">
+          @if(item.status !== settlementValue.CONFIRMED){
+          <ngx-badge size="sm" [status]="badgeStatus()" mode="fill" type="text">
+          {{calculateBadgeData(item.repaymentRemainPeriod)}}
+          </ngx-badge>
+          }
+          <div class="arrow-icon"></div>
+        </div>
+      </div>
+      }
+      }
+    </div>
+  </div>

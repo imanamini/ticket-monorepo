@@ -1,0 +1,4 @@
+export enum MERCHANT_TYPE {
+  INDIVIDUAL,
+  LEGAL
+}

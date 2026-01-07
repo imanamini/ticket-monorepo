@@ -1,0 +1,35 @@
+<ui-dialog
+  class="subscription-dialog"
+  [title]="'لغو اشتراک پرداخت خودکار'"
+  [submitButtonTitle]="'لغو اشتراک'"
+  [theme]="'digipay'"
+  (close)="cancel()"
+  (submit)="confirm()"
+  [id] = "{submit: dialogData?.id?.submit , cancel: dialogData?.id?.cancel}"
+>
+  <div>
+    <p class="dialog-description">قرارداد پرداخت دوره‌ای خودکار شما با جزئیات زیر لغو خواهد شد:</p>
+
+    <ui-template-card
+      *ngIf="contractInfo;"
+      [imageId]="'digipay'"
+      [cardTitle]="contractInfo['title']"
+      [trialDuration]="getTrialDuration()"
+      [cardAmountPrefix]="''"
+      [cardAmount]="contractInfo['periodicAmount']"
+      [firstField]="{
+          title: 'بازه‌ تکرار پرداخت',
+          value: getPaymentPeriodDuration()
+        }"
+      [secondField]="{
+          title: 'طول مدت قرارداد',
+          value: getValidityDuration()
+        }"
+      [thirdField]="{
+          title: 'توضیحات قرارداد',
+          value: contractInfo['description']
+        }"
+    ></ui-template-card>
+
+  </div>
+</ui-dialog>

@@ -1,0 +1,144 @@
+@import "variables";
+
+$text-field-focus: $swatch_blue_500;
+$text-field-padding-in-sides: 1em;
+
+.label-floated-state {
+  top: -0.7em;
+  transform: scale(0.9);
+  right: 5px;
+  padding: 0 0.5em;
+}
+
+::ng-deep {
+  ui-text-field {
+    display: block;
+  }
+}
+
+.is-readonly {
+  opacity: 0.7;
+}
+
+:host ::ng-deep .text-field {
+  position: relative;
+  direction: rtl;
+  text-align: start;
+  width: 100%;
+  display: block;
+  padding: 4px $text-field-padding-in-sides;
+  box-sizing: border-box;
+  font-size: 14px;
+  box-shadow: 0 0 0 1px #666666;
+  transition: box-shadow 0.2s cubic-bezier(.25, .8, .25, 1);
+  border-radius: 5px;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .body {
+    position: relative;
+    z-index: 1;
+  }
+
+  input, textarea {
+    border: none;
+    width: 100%;
+    font-size: 1em;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus + label {
+      @extend .label-floated-state
+    }
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  input {
+    line-height: 32px;
+  }
+
+  label {
+    position: absolute;
+    right: $text-field-padding-in-sides;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0;
+    background: #fff;
+    border-radius: 5px;
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    user-select: none;
+    pointer-events: none;
+  }
+
+
+  &:hover:not(.is-disabled, .is-invalid) {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.87);
+  }
+
+  &.is-disabled {
+    .field {
+      background: #fff;
+      opacity: 1;
+      color: initial;
+    }
+  }
+
+  &.has-value {
+    label {
+      @extend .label-floated-state
+    }
+  }
+
+  &.is-focused:not(.is-invalid) {
+    box-shadow: 0 0 0 2px $text-field-focus !important;
+
+    label {
+      color: $text-field-focus !important;
+    }
+  }
+
+  &.is-clearable {
+    .clear-icon {
+      position: absolute;
+      left: 0.5em;
+      top: 50%;
+      transform: translateY(-50%);
+      background: url('./dpg-remove.svg') no-repeat 0 0/24px;
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    input {
+      padding-left: 30px;
+    }
+  }
+
+  &.is-invalid {
+    box-shadow: 0 0 0 2px $swatch_red_500;
+
+    label {
+      color: $swatch_red_500;
+    }
+  }
+}
+
+input.secret-number {
+  font-size: 8px;
+  letter-spacing: 3px;
+}
+
+
+.text-field-subscript {
+  font-size: 12px;
+  margin: 1.2em 0 0 0;
+  padding: 0 1em;
+}

@@ -1,0 +1,65 @@
+.header {
+  color: #fff;
+  background:url("./../assets/provider-bg-pattern.svg") no-repeat center center #FF8000;
+  background-size: cover;
+  padding: 38px 24px 24px;
+  border-radius: 0 0 16px 16px;
+}
+
+.exit-btn {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-meta {
+  font-size: 14px;
+}
+
+.title-bar {
+  display: flex;
+  align-items: center;
+
+  h3 {
+    font-size: 18px;
+  }
+
+  .arrow {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url("back-arrow-white.svg") no-repeat center/24px;
+    margin-right: -9px;
+  }
+}
+
+.detail {
+  text-align: right;
+
+  &:last-child {
+    text-align: end;
+  }
+
+  span {
+    display: block;
+  }
+
+  span:first-child {
+    font-size: 12px;
+  }
+
+  span:last-child {
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+
+.title-row {
+  margin-bottom: 24px;
+}

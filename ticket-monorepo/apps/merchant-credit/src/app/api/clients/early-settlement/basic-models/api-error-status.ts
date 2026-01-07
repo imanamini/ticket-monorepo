@@ -1,0 +1,3 @@
+export enum ApiErrorStatus {
+  MERCHANT_CREDIT_SETTLEMENT_PROFILE_DISABLED = 15644,
+}

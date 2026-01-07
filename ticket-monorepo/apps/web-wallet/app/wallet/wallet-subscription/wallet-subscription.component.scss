@@ -1,0 +1,140 @@
+@import "../../layout/mixins/device";
+@import "../../layout/variables";
+@import "../../layout/mixins/font-size";
+@import "../../layout/mixins/flex";
+
+ui-content-card.show-all-templates::ng-deep {
+  .content-card {
+    .content-card-body {
+      transition: 0.5s;
+      max-height: calc(100vh - 230px);
+    }
+  }
+}
+
+ui-content-card.show-less-templates::ng-deep {
+  .content-card {
+    .content-card-body {
+      max-height: 554px;
+    }
+  }
+}
+
+.wallet-subscription {
+  .template-select-title {
+    height: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    @include fontSize(12);
+    color: $text-color-lighter;
+    @include flex-center-start;
+  }
+
+  .subscription-tc-wrapper {
+    margin-top: 12px;
+    @include flex-center-start;
+
+    > div {
+      height: 24px;
+      color: #4c4c4c;
+      font-size: 12px;
+      @include flex-center-start;
+
+      &.tc-action {
+        color: #0040ff;
+        cursor: pointer;
+        margin-left: 4px;
+        margin-right: 6px;
+        font-weight: bold;
+        user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .templates-loading {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    position: absolute;
+    @include flex-center;
+    flex-direction: column;
+
+    > .loading {
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      background: url('assets/ui-preparing-loading-subscription.svg') no-repeat 0 0/100%;
+      animation: circularRotate 0.7s linear infinite;
+    }
+
+    > .templates-loading-message {
+      margin-top: 20px;
+    }
+  }
+
+  .more-templates-button {
+    height: 24px;
+    cursor: pointer;
+    margin-top: 24px;
+    @include flex-center;
+
+    div {
+      font-weight: bold;
+      @include fontSize(14);
+      color: $digipay-blue-primary;
+    }
+
+    .more-icon {
+      width: 12px;
+      height: 7px;
+      display: block;
+      margin-right: 10px;
+      background: url('./assets/sign-down-blue.svg') no-repeat 0 0/100%;
+    }
+  }
+
+  @keyframes circularRotate {
+    from {
+      -ms-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -ms-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+}
+
+//  #####   Responsive Styles   #####
+@include mediaMobile() {
+  .wallet-subscription {
+    .subscription-tc-wrapper {
+      margin-top: auto;
+      padding-left: 2px;
+      padding-right: 2px;
+      margin-bottom: 90px;
+    }
+  }
+  ui-content-card::ng-deep {
+    .content-card {
+      border-radius: 0;
+      border-bottom: solid 1px transparent !important;
+    }
+  }
+  ui-content-card.show-all-templates::ng-deep {
+    .content-card {
+      border-bottom: solid 1px #d3dbe1 !important;
+    }
+  }
+}

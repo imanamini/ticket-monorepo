@@ -1,0 +1,26 @@
+.switch {
+  width: 40px;
+  height: 24px;
+  background: rgba(#fff, 0.3);
+  border-radius: 12px;
+  padding: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+  .circle {
+    width: 16px;
+    height: 100%;
+    background: #fff;
+    border-radius: 50%;
+    transition: margin-right 0.3s;
+  }
+  &.is-on {
+    background: #00cc6d;
+    .circle {
+      margin-right: 16px;
+    }
+  }
+  &.disabled {
+    cursor: default;
+    opacity: .5;
+  }
+}

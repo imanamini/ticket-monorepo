@@ -1,0 +1,54 @@
+@import "variables";
+
+.error-logo {
+  width: 144px;
+  max-width: 100%;
+  margin: 0 auto 44px;
+}
+
+.error-content-box {
+  text-align: center;
+  color: #4c4c4c;
+}
+
+:host ::ng-deep .content-box {
+  .box-header {
+    .title {
+      justify-content: center !important;
+      font-size: 18px;
+      color: #4c4c4c;
+      font-weight: 600;
+    }
+  }
+}
+
+.error-title {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  margin-bottom: 1em;
+  color: $swatch_red_900;
+}
+
+.try-again {
+  font-size: 14px;
+  color: #4c4c4c;
+  line-height: 24px;
+}
+
+.buttons {
+  margin: 40px 0 0;
+
+  credit-ui-button {
+    width: 336px;
+    max-width: 100%;
+  }
+}
+
+.cancel-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 14px;
+  margin-top: auto;
+}

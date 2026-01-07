@@ -1,0 +1,45 @@
+@import "variables";
+
+.primary-action {
+  min-width: 170px;
+}
+
+.signature {
+  border: 2px dashed $swatch_steel_200;
+  width: 196px;
+  margin: 0 auto 24px;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.title {
+  font-size: 18px;
+  color: $swatch_steel_900;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+
+.description {
+  text-align: center;
+  font-size: 14px;
+  color: #2C3544;
+  margin-bottom: 1em;
+}
+
+
+.one-time-notice {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 0 0 12px 0;
+  border-bottom: 1px solid $swatch_steel_200;
+  margin-bottom: 12px;
+}
+
+
+.key-value-card {
+  margin-top: 16px;
+  border: 1px solid $swatch_steel_200;
+  padding: 16px;
+  border-radius: 12px;
+}

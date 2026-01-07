@@ -1,0 +1,24 @@
+@import "@digipay/base-style/styleguide";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+.action {
+  background-image: url("../../../../../../../assets/icons/icon-back.svg");
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.rial-icon {
+  background-image: url("../../../../../../../assets/icons/rial.svg");
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
