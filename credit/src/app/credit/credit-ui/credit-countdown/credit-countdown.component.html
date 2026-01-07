@@ -1,0 +1,33 @@
+@if (type() === 'installment') {
+  <div class="countdown">
+    <div class="time">
+      <div class="time-part day">
+        {{ formattedTime.day }}
+        <span class="label">روز</span>
+      </div>
+      <div class="colon">:</div>
+      <div class="time-part hour">
+        {{ formattedTime.hour }}
+        <span class="label">ساعت</span>
+      </div>
+      <div class="colon">:</div>
+      <div class="time-part minute">
+        {{ formattedTime.minutes }}
+        <span class="label">دقیقه</span>
+      </div>
+      <div class="colon">:</div>
+      <div class="time-part seconds">
+        {{ formattedTime.seconds }}
+        <span class="label">ثانیه</span>
+      </div>
+    </div>
+    <p class="description">
+      تا شروع پرداخت اقساط باقی مانده است.
+    </p>
+  </div>
+}
+@if (type() === 'mm:ss') {
+  <span>
+    {{ formattedTime.minutes }}:{{ formattedTime.seconds }}
+  </span>
+}

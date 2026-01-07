@@ -1,0 +1,5 @@
+@mixin lineHeight($sizeInPixel) {
+  $rem: 14;
+
+  line-height: ($sizeInPixel / $rem)+rem;
+}

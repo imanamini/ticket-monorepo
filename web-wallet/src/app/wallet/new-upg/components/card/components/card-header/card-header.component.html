@@ -1,0 +1,23 @@
+<div class="tgs-header">
+
+  <div class="right-box">
+    <div *ngIf="closeButton !== 'NONE'"
+         [ngClass]="closeButton === 'BACK' ? 'back-icon' : 'exit-icon'"
+         (click)="close()"
+         class="icon exit-icon">
+    </div>
+    <div><span class="header-title">{{title}}</span></div>
+  </div>
+
+  <div class="left-box">
+    <ui-remaining-time
+      *ngIf="ttl"
+      [time]="ttl"
+      [timeType]="'MILLI_SECOND'"
+      (returnRemainingTime)="saveRemainingTime($event)"
+      (finish)="finishTimer()">
+    </ui-remaining-time>
+    <div class="header-logo"></div>
+  </div>
+
+</div>

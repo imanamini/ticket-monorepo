@@ -1,0 +1,41 @@
+<div *ngIf="!bankList || !ticketInfo; else showContent">
+  <ui-preparing [showSubtitle]="false"></ui-preparing>
+</div>
+
+<ng-template #showContent>
+  <ui-content-card
+    [headerRemainingTimeSecond]="ticketInfo.ttl"
+    [timeType]="'MILLI_SECOND'"
+    (finishTimer)="unAuthorizedRedirectFormData()"
+    [hasFooter]="true"
+    [confirmButtonDisable]="isLoading || !selectedBank"
+    [confirmButtonTitle]="'انتخاب و ادامه'"
+    [hasRejectAction]="true"
+    (confirm)="callRegisterApi()"
+    (reject)="cancel()"
+    [rejectButtonTitle]="'انصراف'"
+    [hasHeader]="true"
+    [hasHeaderAction]="true"
+    [hasHeaderBackAction]="true"
+    (headerBackActionClicked)="back()"
+    [title]="'افزودن حساب پشتیبان'">
+
+    <div class="select-bank-wrapper content-scrollbar">
+      <p class="description">
+        حساب بانکی که می‌خواهید برداشت خودکار از آن انجام شود را انتخاب کنید.
+      </p>
+
+      <div class="wrapper">
+        <ui-bank-item
+          *ngFor="let bank of bankList"
+          [bankName]="bank['name']"
+          [imageId]="bank['imageId']"
+          [dailyAmountMax]="bank?.directDebit?.dailyAmountMax || defaultDailyAmountMax"
+          [selected]="selectedBank && bank['code'] === selectedBank.code"
+          (onClick)="selectBank(bank)"
+        ></ui-bank-item>
+      </div>
+    </div>
+
+  </ui-content-card>
+</ng-template>

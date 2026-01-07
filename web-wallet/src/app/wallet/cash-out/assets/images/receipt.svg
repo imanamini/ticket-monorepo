@@ -1,0 +1,9 @@
+<svg fill="none" height="70" viewBox="0 0 70 70" width="70" xmlns="http://www.w3.org/2000/svg">
+  <g id="Group 113">
+    <rect fill="#00CFD5" height="70" id="Rectangle" opacity="0.123163" rx="20" width="70"/>
+    <rect fill="#00CFD5" height="52" id="Rectangle_2" rx="16" width="52" x="9" y="9"/>
+    <path clip-rule="evenodd" d="M32.8274 34.9253L27.1553 40.4503V47.9253H43.1553V40.4503L36.9586 34.9253L43.1553 29.4003V21.9253H27.1553V29.4003L32.8274 34.9253Z" fill-rule="evenodd"
+          id="Path"
+          stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  </g>
+</svg>

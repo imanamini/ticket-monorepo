@@ -1,0 +1,55 @@
+@import "../../shared-styles/shared-styles-cash-out.scss";
+
+.content-wrapper {
+  padding-right: 0;
+  padding-left: 0;
+
+  .content-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+      color: #2C3544;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 24px 32px 24px;
+  align-items: center;
+
+  .header-text {
+    color: #2c3544;
+  }
+
+  .new-card-action {
+    color: #0040ff;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    .plus {
+      font-size: 24px;
+      font-weight: 300;
+      margin-top: 3px;
+    }
+
+    &.disabled {
+      color: #8d99a8;
+    }
+  }
+}
+
+@include mediaMobile {
+  .header {
+    margin: 24px;
+  }
+}
+

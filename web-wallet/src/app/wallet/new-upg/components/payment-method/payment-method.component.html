@@ -1,0 +1,108 @@
+<app-card
+  *ngIf="!loadingPage; else loading"
+  [submitText]="cardConfig.submitText"
+  [currencyText]="currencyText"
+  [submitLoading]="loadingSubmit"
+  [disableSubmitButton]="loadingSubmit || !paymentMethodService.selectedFeature"
+  [amount]="ticketInfoService.state.amount"
+  [headerTitle]="cardConfig.headerTitle"
+  [headerCloseButtonType]="'EXIT'"
+  (submit)="submit()">
+
+  <div body class="payment-method-container">
+
+    <div class="hidden-lg"></div>
+
+    <div class="logo-wrapper show-in-mobile">
+      <div class="logo"></div>
+    </div>
+
+    <div class="hidden-lg"></div>
+
+    <div class="features-title">
+      روش پرداخت را انتخاب کنید:
+    </div>
+    <div class="features">
+      <div class="payment-method"
+           #PaymentMethod
+           *ngFor="let item of ticketInfoService.state?.features"
+           (click)="onSelectFeature(PaymentMethod , item)"
+           [ngStyle]="item.name  === paymentMethodService?.selectedFeature?.name ? {'border-color' : item.selectedColor} : null "
+           [ngClass]="{ 'item-selected': item.name  == paymentMethodService?.selectedFeature?.name,
+                         'hide': item.visible === false && hasExistHiddenFeatures,
+                         'item-disable': (
+                         TicketInfoStatusEnum[item.status] === 'INACTIVE')}">
+
+        <div class="icon">
+          <ui-image
+            *ngIf="item.name  === paymentMethodService?.selectedFeature?.name ? item.selectedIcon : item.icon"
+            [imageId]="item.name  === paymentMethodService?.selectedFeature?.name ? item.selectedIcon : item.icon"
+            height="24px"
+            class="business-logo"
+          ></ui-image>
+        </div>
+
+        <div class="details">
+          <div class="title">{{item.title}}
+            <div class="description" *ngIf="item.name === UpgFeatureName.WALLET_CASH_IN_IPG">
+              <span>{{walletBalanceService.state?.amount | separator}}ریال</span>
+            </div>
+            <div class="description" *ngIf="item.name !== UpgFeatureName.WALLET_CASH_IN_IPG">
+              <span>{{item.description}}</span>
+            </div>
+          </div>
+
+          <div class="selection" *ngIf="!item.badge && !item.ActionButton">
+            <ui-circle-checkmark
+              *ngIf="item.name  === paymentMethodService?.selectedFeature?.name; else circle"
+              [color]="item.selectedColor">
+            </ui-circle-checkmark>
+            <ng-template #circle>
+              <div class="selection-not-filled"></div>
+            </ng-template>
+          </div>
+
+          <div class="badge" *ngIf="item.badge">
+            <div class="badge-item"
+                 matTooltip="{{item.badge.message}}"
+                 [ngStyle]="{ 'color': item.badge.textColor,
+                               'background-color': item.badge.backgroundColor ,
+                               'border-color':item.badge.borderColor}">
+              {{item.badge.value || 'نامشخص'}}
+            </div>
+          </div>
+
+          <div
+            class="action-button"
+            *ngIf="item.ActionButton"
+            (click)="creditFeatureService.openModal(item.ActionButton.actionUrl)">
+            <div
+              class="action-button-item"
+              matTooltip="{{item.ActionButton.message}}"
+              [ngStyle]="{ 'color': item.ActionButton.textColor,
+              'background-color': item.ActionButton.backgroundColor ,
+              'border-color':item.ActionButton.borderColor}">
+              {{item.ActionButton.value || 'نامشخص'}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p *ngIf="hasExistHiddenFeatures"
+         class="more-payment-methods"
+         (click)="hasExistHiddenFeatures = false">
+        سایر روش های پرداخت
+      </p>
+    </div>
+
+    <div class="hidden-lg"></div>
+
+  </div>
+
+</app-card>
+
+<ng-template #loading>
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+</ng-template>

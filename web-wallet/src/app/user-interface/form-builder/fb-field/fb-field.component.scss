@@ -1,0 +1,267 @@
+@import "../assets/styles/form-bulder";
+
+//  ##########################
+//  #####     STYLES     #####
+
+:host {
+  width: 100%;
+}
+
+.fb-field {
+  padding-top: 8px;
+  position: relative;
+
+  > label {
+    top: $fb-input-height / 2.5 + px;
+    right: $fb-input-padding / 2;
+    height: $fb-input-height / 2 + px;
+    display: flex;
+    font-size: $fb-input-font-size;
+    padding-left: $fb-input-padding / 2;
+    padding-right: $fb-input-padding / 2;
+    position: absolute;
+    align-content: center;
+  }
+
+  > .message {
+    width: 100%;
+    font-size: $fb-input-font-size;
+    padding-right: $fb-input-padding;
+
+    > div {
+      height: $fb-input-height / 2 + px;
+      display: flex;
+      line-height: 1.4;
+      font-size: $fb-hint-font-size;
+      align-items: center;
+
+      &.error {
+        display: none;
+        color: $fb-primary-red;
+        transition: opacity $fb-effects-speed;
+      }
+
+      &.hint {
+        display: block;
+        color: $fb-hint-message-text;
+      }
+    }
+  }
+
+  .clean-input-action {
+    left: 8px;
+    cursor: pointer;
+    position: absolute;
+    top: $fb-input-height / 2 - 4 + px;
+
+    &.has-sibling {
+      left: 40px;
+    }
+  }
+
+  .currency-label {
+    left: 8px;
+    position: absolute;
+    top: $fb-input-height / 2 - 4 + px;
+  }
+
+  ::ng-deep {
+    input,
+    textarea {
+      width: 100%;
+      height: $fb-input-height + px;
+      font-size: $fb-input-font-size !important;
+      padding-left: $fb-input-padding;
+      padding-right: $fb-input-padding;
+      outline: none !important;
+    }
+
+    textarea {
+      resize: none;
+      padding-top: $fb-input-padding;
+      padding-bottom: $fb-input-padding;
+      min-height: $fb-textarea-min-height;
+      scrollbar-color: $fb-scrollbar-color-secondary;
+
+      &::-webkit-scrollbar {
+        height: 7px;
+        width: 7px;
+      }
+
+      &::-webkit-scrollbar-corner {
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $fb-scrollbar-color-secondary;
+        border-radius: 10px;
+        border: 2px solid transparent;
+        background-clip: padding-box;
+
+        &:hover,
+        &:active {
+          background-color: $fb-scrollbar-color-primary;
+        }
+      }
+    }
+
+    textarea,
+    input[type=text],
+    input[type=tel],
+    input[type=number] {
+      background-color: $fb-input-background-color;
+      transition: border $fb-effects-speed;
+      color: $fb-input-text-color;
+      border-radius: $fb-input-radius;
+      border: solid 1px $fb-input-radius-color;
+
+      + label {
+        transition: $fb-effects-speed;
+        border-radius: 5px;
+      }
+
+      &:focus {
+        border-color: $fb-primary-blue;
+        box-shadow: inset 0 0 0 1px $fb-primary-blue;
+
+        + label {
+          top: 0;
+          font-size: $fb-label-font-size;
+          background-color: $fb-input-background-color;
+          color: $fb-primary-blue;
+        }
+
+        + .message > div.hint {
+          color: $fb-primary-blue;
+        }
+      }
+    }
+  }
+
+
+  &.invalid {
+    > .message {
+      > div {
+        &.error {
+          display: block;
+        }
+
+        &.hint {
+          display: none;
+        }
+      }
+    }
+
+    ::ng-deep {
+      textarea,
+      input[type=text],
+      input[type=tel],
+      input[type=number] {
+        + label {
+          top: 0;
+          color: $fb-primary-red;
+          font-size: $fb-label-font-size;
+          background-color: $fb-input-background-color;
+        }
+
+        border-color: $fb-primary-red !important;
+        box-shadow: inset 0 0 0 1px $fb-primary-red !important;
+      }
+    }
+  }
+
+  &.fill {
+    ::ng-deep {
+      textarea,
+      input[type=text],
+      input[type=tel],
+      input[type=number] {
+        + label {
+          top: 0;
+          font-size: $fb-label-font-size;
+          background-color: $fb-input-background-color;
+        }
+      }
+    }
+  }
+
+  &.has-cleaner {
+    ::ng-deep {
+      textarea,
+      input[type=text],
+      input[type=tel],
+      input[type=number] {
+        padding-left: 37px !important;
+      }
+    }
+  }
+
+  &.show-currency {
+    ::ng-deep {
+      textarea,
+      input[type=text],
+      input[type=tel],
+      input[type=number] {
+        padding-left: 50px !important;
+      }
+    }
+  }
+
+  &.has-two-action {
+    ::ng-deep {
+      textarea,
+      input[type=text],
+      input[type=tel],
+      input[type=number] {
+        padding-left: 70px !important;
+      }
+    }
+  }
+
+  &.has-float-label {
+    ::ng-deep {
+      textarea,
+      input[type=text],
+      input[type=tel],
+      input[type=number] {
+        &::placeholder,
+        &:placeholder-shown {
+          font-size: 0;
+          color: transparent;
+        }
+      }
+    }
+  }
+
+  &.ltr-placeholder {
+    ::ng-deep {
+      textarea,
+      input[type=text],
+      input[type=tel],
+      input[type=number] {
+        &::placeholder,
+        &:placeholder-shown {
+          direction: ltr;
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  &.ltr-input {
+    ::ng-deep {
+      textarea,
+      input[type=text],
+      input[type=tel],
+      input[type=number] {
+        direction: ltr !important;
+        text-align: left !important;
+      }
+    }
+  }
+
+}

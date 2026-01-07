@@ -1,0 +1,24 @@
+@import "../../../styles/layout/variables";
+
+.amount-box {
+  background: $swatch_steel_100;
+  border-radius: 16px;
+  color: #6E798D;
+  padding: 24px;
+  text-align: center;
+}
+
+
+.caption {
+  margin-bottom: 0.4em;
+}
+
+.amount {
+  color: #2C3544;
+  font-size: 32px;
+}
+
+.unit {
+  font-size: 18px;
+  margin-inline-start: 0.3em;
+}

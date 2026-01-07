@@ -1,0 +1,53 @@
+@import "variables";
+
+.footer-loading-skeleton {
+  direction: rtl;
+
+  .placeholder {
+    background-color: $swatch_steel_100;
+  }
+
+  .description {
+    border-radius: 4px;
+    width: 70%;
+    height: 16px;
+    margin-bottom: 24px;
+  }
+
+  .card {
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid $swatch_steel_100;
+    height: 78px;
+    margin-bottom: 24px;
+
+    .icon {
+      border-radius: 8px;
+      width: 40px;
+      height: 40px;
+      margin-left: 12px
+    }
+
+    .card-left {
+      align-self: normal;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .left-top {
+        height: 23px;
+        width: 30%;
+        border-radius: 8px;
+      }
+
+      .left-down {
+        height: 23px;
+        width: 40%;
+        border-radius: 8px;
+      }
+    }
+  }
+}

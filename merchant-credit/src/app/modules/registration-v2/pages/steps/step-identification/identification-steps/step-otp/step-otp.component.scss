@@ -1,0 +1,25 @@
+@import "variables";
+
+.inputs-wrapper {
+  max-width: 320px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.otp-error-message {
+  text-align: center;
+  font-size: 12px;
+  color: $swatch_red_500;
+}
+
+.resend-action {
+  cursor: pointer;
+  padding: 8px 12px;
+  display: inline-block;
+  text-decoration: underline;
+  color: $swatch_blue_500;
+}
+
+.actions {
+  min-height: 50px;
+}

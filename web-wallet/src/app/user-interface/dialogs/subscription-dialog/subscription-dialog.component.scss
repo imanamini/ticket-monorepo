@@ -1,0 +1,10 @@
+.subscription-dialog {
+  direction: rtl;
+  text-align: right;
+
+  div {
+    p.dialog-description {
+      margin-bottom: 20px;
+    }
+  }
+}

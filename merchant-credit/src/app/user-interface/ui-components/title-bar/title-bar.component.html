@@ -1,0 +1,8 @@
+<div class="title-bar">
+  <div class="action-icon">
+    <div class="back-button" *ngIf="hasBackButton" (click)="back.emit()"></div>
+  </div>
+  <div class="title">
+    <ng-content></ng-content>
+  </div>
+</div>

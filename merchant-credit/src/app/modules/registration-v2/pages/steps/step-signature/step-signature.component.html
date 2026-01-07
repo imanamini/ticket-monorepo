@@ -1,0 +1,92 @@
+<ui-content-card [cardTitle]="cardTitle" [backArrow]="isBack" [close]="isClose" (backClicked)="onBack()"
+                 *ngIf="!redirecting">
+  <ng-container card-body *ngIf="!ready && !isRetryError && !isError">
+    <ui-spinner></ui-spinner>
+  </ng-container>
+  <ng-container card-body>
+    <ng-container *ngIf="state === 'INITIAL' && ready && !isRetryError && !isError">
+
+      <ui-hint-message
+        [message]="'لطفا صحت اطلاعات زیر را تایید نموده درصورت مغایرت، با پشتیبانی تماس بگیرید'"
+        [ctaButton]="'تماس با پشتیبانی'"
+        (ctaClick)="callSupport()"
+      ></ui-hint-message>
+
+      <div class="key-value-card">
+        <ui-key-value-list
+          [separated]="true"
+          [items]="items"></ui-key-value-list>
+      </div>
+      <ui-form-message [message]="errorMessage"></ui-form-message>
+    </ng-container>
+    <ng-container>
+      <div *ngIf="isRetryError">
+        <app-no-service-error [noServiceErrorData]="noServiceErrorData" (onASecondaryClick)="onRetry()"
+                              (onPrimaryClick)="onBack()"></app-no-service-error>
+      </div>
+      <div *ngIf="isError">
+        <app-no-service-error [noServiceErrorData]="noServiceErrorData"
+                              (onPrimaryClick)="onBack()"></app-no-service-error>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="state === 'GET_PASSWORD' && ready && !isRetryError && !isError">
+      <app-signature-password (cardInfoChanged)="cardInfo($event)"
+      ></app-signature-password>
+    </ng-container>
+    <ng-container *ngIf="state === 'CREATED' && ready">
+
+      <div class="signature">
+        <ui-api-image
+          width="100%"
+          [imageId]="signatureDetails.signature.signatureImageId"></ui-api-image>
+      </div>
+      <h3 class="title">
+        امضای شما با موفقیت ثبت شد.
+      </h3>
+      <p class="description">
+        به کمک امضای دیجیتال، هویت شما در قراردادهای دیجیتال، قابل شناسایی و تایید ا‌ست. این امضا رمزگذاری شده و با حفظ
+        محرمانگی برای شما به مدت ۳۰ روز ذخیره می‌شود.
+      </p>
+
+    </ng-container>
+
+  </ng-container>
+
+
+  <ng-container card-footer *ngIf="ready  && !isRetryError && !isError">
+
+    <ng-container *ngIf="state === 'CREATED'">
+      <div class="one-time-notice">
+        <ui-checkbox [checked]="noticeChecked" (changed)="noticeChecked = $event">
+          این امضا فقط برای امضای اسناد این طرح اعتباری قابل استفاده است.
+        </ui-checkbox>
+      </div>
+
+      <ui-button
+        (clicked)="onBack()"
+        [disabled]="!noticeChecked"
+        class="primary-action">
+        <ui-spinner *ngIf="initializing"></ui-spinner>
+        <ng-container *ngIf="!initializing">
+          تایید امضا و ادامه
+        </ng-container>
+      </ui-button>
+    </ng-container>
+
+    <ng-container *ngIf="state === 'INITIAL'">
+      <ng-button (clickHandler)="proceed()"
+                 [disabled]="initializing">
+        <ui-spinner *ngIf="initializing"></ui-spinner>
+        <ng-container *ngIf="!initializing">
+          تایید و ادامه
+        </ng-container>
+      </ng-button>
+    </ng-container>
+  </ng-container>
+
+</ui-content-card>
+
+<redirecting-to-service-provider *ngIf="redirecting"></redirecting-to-service-provider>
+
+
+

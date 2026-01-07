@@ -1,0 +1,128 @@
+@import "../../layout/variables";
+@import "../../layout/mixins/font-size";
+@import "../../layout/mixins/flex";
+
+:host * {
+  font-family: $font-name;
+}
+
+:host ::ng-deep {
+  input.mat-mdc-input-element {
+    font-family: $font-name;
+  }
+}
+
+.loader-container{
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.hide{
+  display: none;
+}
+
+.code-protection {
+  > .default-message {
+    min-height: 24px;
+    text-align: center;
+
+    > .cell-number {
+      height: 24px;
+      font-weight: 800;
+    }
+  }
+}
+
+.code-protection {
+
+  > .amount-wrapper {
+    margin-bottom: 36px;
+  }
+
+  > .description {
+    > p {
+      color: $navy-blue;
+      line-height: 1.71;
+      text-align: center;
+      font-weight: normal;
+      margin-bottom: 20px;
+      @include fontSize(14);
+
+      span {
+        margin-left: 3px;
+        margin-right: 3px;
+        display: inline-block;
+
+        &.cell-number {
+          font-weight: 800;
+        }
+      }
+
+      &.otp-success-message {
+        height: 161px;
+        margin-bottom: 0;
+        @include flex-center;
+      }
+    }
+
+    > .subscription-messages {
+      div {
+        height: 24px;
+        color: $navy-blue;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 8px;
+        @include fontSize(14);
+      }
+
+      p {
+        @include fontSize(12);
+      }
+    }
+  }
+
+  > .protection-features {
+    > .otp-resend-button {
+      height: 24px;
+      color: $otp-resend-button;
+      cursor: not-allowed;
+      transition: 0.3s;
+      margin-top: 25px;
+      font-weight: normal;
+      @include flex-center;
+      @include fontSize(14);
+
+      > .resend-remaining-wrapper {
+        opacity: 1;
+        width: 40px;
+        transition: 0.3s;
+        margin-right: 4px;
+        text-align: center;
+
+        &.hide-remaining {
+          width: 0;
+          opacity: 0;
+        }
+      }
+
+      &.active {
+        cursor: pointer;
+
+        > span {
+          color: $digipay-blue-primary;
+        }
+      }
+    }
+
+    > .forgot-pin-action {
+      margin-top: 18px;
+      @include flex-center;
+    }
+  }
+
+  > .pin-divider {
+    margin-bottom: 35px;
+  }
+}
+

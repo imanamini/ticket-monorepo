@@ -1,0 +1,85 @@
+@import "src/app/layout/mixins/device";
+@import "src/app/layout/variables";
+
+:host ::ng-deep .ui-button:focus {
+  border: none !important;
+}
+
+.footer {
+  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+  background-color: #f2f5f8;
+  padding: 24px;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  &.too-small-resolution {
+    flex-direction: column;
+    gap: 16px;
+    .footer-description {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+    .button-container {
+      width: 100%;
+    }
+  }
+  .footer-label {
+    display: flex;
+    align-items: center;
+
+    .label-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: #6e798d;
+      font-family: $font-name-2 !important;
+    }
+
+    .label-icon {
+      width: 24px;
+      height: 24px;
+      margin-left: 4px;
+      background-repeat: no-repeat;
+      background-image: url('../../../../../../../assets/image/tgs/purchase-type.svg');
+      background-size: contain;
+    }
+  }
+
+  .amount {
+    ::ng-deep .value {
+      font-family: $font-name-2;
+      font-weight: 600;
+    }
+
+    margin-top: 4px;
+  }
+
+  .button-container {
+    min-width: 196px;
+  }
+}
+
+@include mediaMobile() {
+  .footer {
+    border-top: 1px solid #dee3e7;
+    position: fixed;
+    border-radius: 16px 16px 0 0;
+    padding: 16px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  :host ::ng-deep {
+    .loader {
+      width: 20px;
+      height: 20px;
+    }
+
+    .button {
+      font-size: 13px;
+    }
+  }
+}

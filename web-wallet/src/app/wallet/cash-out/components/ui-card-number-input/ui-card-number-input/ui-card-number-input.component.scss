@@ -1,0 +1,103 @@
+
+
+.ui-card-number-input {
+  .content {
+    position: relative;
+
+    ui-image {
+      position: absolute;
+      right: 0;
+      transform: translateY(35%);
+      margin: 0 8px;
+    }
+
+    .card-number-title {
+      padding: 0 5px;
+      position: absolute;
+      transition: .4s ease all;
+      top: 50%;
+      font-size: 14px;
+      right: 0;
+      color: #424c5c;
+      transform: translate(-50%, -50%);
+      background: white;
+
+      &.title-move {
+        color: #6e798d;
+        font-size: 12px;
+        top: 0;
+        right: -10px;
+      }
+    }
+
+    .icon-close-inp {
+      width: 24px;
+      height: 24px;
+      background-image: url("../assets/icons/close-icon-inp.svg");
+      position: absolute;
+      top: 10px;
+      left: 5px;
+      cursor: pointer;
+      visibility: hidden;
+      opacity: 0;
+      transition: .5s ease all;
+
+      &.show {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    .card-number-input {
+      text-align: right;
+      border: 1px solid #8d99a8;
+      border-radius: 8px;
+      outline: none;
+      width: 100%;
+      height: 100%;
+      padding: 10px 35px;
+      font-size: 16px;
+      color: #2c3544;
+      direction: ltr;
+
+      &:focus {
+        border: solid 2px #0040ff;;
+        padding: 9px 34px;
+      }
+    }
+  }
+
+  .hint {
+    font-size: .9rem;
+    color: #0040ff;;
+    text-align: right;
+    margin: 6px;
+    height: 12px;
+
+    .hint-item {
+      font-size: 10px;
+    }
+
+    .error {
+      color: red;
+    }
+  }
+
+}
+
+.default-bank-place-holder {
+  width: 24px;
+  height: 24px;
+  background-image: url("../assets/icons/default-bank.svg");
+  position: absolute;
+  right: 0;
+  bottom: 24px;
+  transform: translateY(50%);
+  margin: 0 8px;
+}
+
+.input-prefix-icon {
+  position: absolute;
+  top: 10px;
+  left: 5px;
+}

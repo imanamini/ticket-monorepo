@@ -1,0 +1,5 @@
+<div class="input-drop-down smart-drop-down is-drop-down backdrop" [hidden]="!open" (click)="backdropClick($event)">
+  <div class="drop-down" [ngStyle]="styles" #dropDown>
+    <ng-content></ng-content>
+  </div>
+</div>

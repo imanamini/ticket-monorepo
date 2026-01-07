@@ -1,0 +1,46 @@
+<ng-container [ngSwitch]="routeAction" *ngIf="!gettingRouteInfo">
+  <ng-container *ngSwitchCase="'MIDDLE_PAGE'">
+    <credit-ui-content-box
+      [showLogo]="false"
+      [showHeader]="false">
+      <img class="message-image" [src]="messageImage" [alt]="title">
+
+      <h2 class="main-title">{{title}}</h2>
+      <div class="loading-wrapper">
+        <mat-spinner [diameter]="28" [strokeWidth]="1"></mat-spinner>
+      </div>
+      <div class="timer">
+        <countdown
+          class="count-down"
+          [config]="{leftTime: countdownTime, format: 'mm:ss'}"
+          (event)="countdownHandler($event)"
+        />
+      </div>
+      <p class="message">{{mainLabel}}</p>
+      <div class="dont-close-warning">
+        <div>
+          لطفا صفحه را نبندید
+        </div>
+      </div>
+    </credit-ui-content-box>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <page-loading [active]="true"></page-loading>
+  </ng-container>
+</ng-container>
+<ng-container *ngIf="gettingRouteInfo">
+  <page-loading [active]="true"></page-loading>
+</ng-container>
+<form
+  *ngIf="redirectForm && redirectForm.url"
+  #hiddenPaymentForm
+  [action]="redirectForm.url"
+  [method]="redirectForm.method.toLocaleLowerCase()"
+>
+  <input
+    *ngFor="let item of redirectForm.data"
+    type="hidden"
+    [name]="item.name"
+    [value]="item.value"
+  />
+</form>

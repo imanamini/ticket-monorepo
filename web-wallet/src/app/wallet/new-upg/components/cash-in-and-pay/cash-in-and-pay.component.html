@@ -1,0 +1,76 @@
+<app-card
+  *ngIf="info; else loading"
+  [submitText]="cardConfig?.submitText"
+  [submitLoading]="loadingSubmit"
+  [disableSubmitButton]="loadingSubmit"
+  [amount]="info?.amount"
+  [headerTitle]="cardConfig?.headerTitle"
+  [headerCloseButtonType]="'BACK'"
+  (submit)="cashIn()">
+
+  <div body class="cash-in-container">
+
+    <div *ngIf="info?.rawAmount" class="cash-in">
+      <div class="content">
+
+        <div class="cash-in-logo" *ngIf="info?.rawAmount >= info?.cashInXferMin "></div>
+
+        <div class="description">
+          <div class="subtitle-wrapper">
+            <div class="subtitle">
+              <div class="balance-wrapper">
+                <span>موجودی فعلی </span>
+                <div class="balance-icon"></div>
+              </div>
+              <ui-currency
+                [customColor]="'#2c3544'"
+                [value]="info?.walletBalance">
+              </ui-currency>
+            </div>
+          </div>
+
+          <span class="title" *ngIf="info?.rawAmount >= info?.cashInXferMin">
+            مبلغ افزایش موجودی موردنیاز
+          <app-user-card-tooltip [info]="info"></app-user-card-tooltip>
+          </span>
+
+          <app-hint
+            *ngIf="info?.rawAmount < info?.cashInXferMin"
+            [info]="info"
+          ></app-hint>
+        </div>
+
+        <div class="wrapper">
+          <ui-amount-input
+            [value]="info.amount"
+            [minAmount]="info?.cashInXferMin"
+            [maxAmount]="info?.cashInXferMax"
+            [hasCounter]="true"
+            [changeable]="false"
+            [hintText]="tomanAmount"
+          ></ui-amount-input>
+        </div>
+
+        <form
+          [action]="info?.payUrl"
+          #redirectPaymentForm
+          method="post">
+          <input type="hidden"
+                 [value]="(info?.rawAmount < info?.cashInXferMin ) ? info?.cashInXferMin : info?.rawAmount"
+                 name="amount">
+        </form>
+
+        <div [ngClass]="{'hide-hint-with-animation':userCardHintWasRead , 'display-none':userCardHintAlreadyRead}"
+             class="card-hint">
+          <app-user-card-hint (readAll)="onHintWasRead()"></app-user-card-hint>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-card>
+
+<ng-template #loading>
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+</ng-template>

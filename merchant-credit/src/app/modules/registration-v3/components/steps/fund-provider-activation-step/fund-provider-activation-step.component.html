@@ -1,0 +1,37 @@
+<div class="fund-provider-activation-step" *ngIf="steps[currentStepIndex]">
+  <ngx-status-result
+    class="status-result"
+    *ngIf="errorData"
+    [title]="errorData?.title"
+    [description]="errorData?.message"
+    [subDescription]="errorData?.subDescription"
+    [buttons]="errorData?.buttons"
+    [timer]="errorData?.timer"
+    [loading]="errorData?.loading"
+    (finished)="finishTimer()"
+    (clicked)="closeClick()"
+  >
+    <ng-container status-image>
+      <img [src]="errorData?.staticImage" alt="">
+    </ng-container>
+  </ngx-status-result>
+  <div class="branch-info-area" *ngIf="ICS_STATES.FUND_PROVIDER_ACTIVATION === errorStatus">
+    <app-fund-provider-branch-info></app-fund-provider-branch-info>
+
+  </div>
+</div>
+<div class="footer" *ngIf="ICS_STATES.FUND_PROVIDER_ACTIVATION === errorStatus">
+  <div class="actions">
+    <ngx-button (clickHandler)="showGuide()"
+                [style]="'tinted-on-elevated'"
+                [mode]="'section'">
+      راهنمای مدرک
+    </ngx-button>
+    <ngx-button (clickHandler)="showMap()"
+                [style]="'fill'"
+                [mode]="'section'"
+                [brandButton]="true">
+      مشاهده نقشه
+    </ngx-button>
+  </div>
+</div>

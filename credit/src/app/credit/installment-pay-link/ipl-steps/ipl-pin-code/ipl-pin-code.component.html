@@ -1,0 +1,17 @@
+<div class="surface-high-contrast h-100 d-flex flex-column">
+  <ipl-header backUrl="cell-number"/>
+
+  <div class="d-flex flex-column align-items-center justify-content-start mt-medium flex-grow">
+    <ngx-pin
+      [title]="'رمز عبور خود را وارد کنید'"
+      (onPinCompleted)="pinCompletedHandler($event)"
+      [enterPasswordState]="enterPasswordState"
+      [hint]="hint"
+      #pinComponent
+    />
+
+    <div class="spinner">
+      <mat-spinner *ngIf="pendingRequest" diameter="20"></mat-spinner>
+    </div>
+  </div>
+</div>

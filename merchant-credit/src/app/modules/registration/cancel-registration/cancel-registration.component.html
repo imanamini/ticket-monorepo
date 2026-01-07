@@ -1,0 +1,34 @@
+<div class="cancel-card">
+  <app-title-bar [hasBackButton]="!showCanceledMessage" (back)="back.emit()">
+    <div class="cancel-card-header">
+      <span>انصراف</span>
+      <div class="digipay-logo"></div>
+    </div>
+  </app-title-bar>
+  <div class="card-content" *ngIf="!showCanceledMessage">
+    <div class="cancel-title">چرا از فعال‌سازی این سرویس انصراف می‌دهید؟</div>
+    <ng-container [formGroup]="form">
+      <ui-form-field
+        type="select"
+        label="دلیل انصراف"
+        [options]="reasonsOptions"
+        formControlName="uid"
+      ></ui-form-field>
+      <ui-form-field
+        type="input"
+        label="توضیحات"
+        [multiLine]="true"
+        formControlName="message"
+      ></ui-form-field>
+    </ng-container>
+    <ui-button (click)="submitForm()" [disabled]="form.invalid || sendingData">ثبت</ui-button>
+  </div>
+  <ng-container *ngIf="showCanceledMessage">
+    <div class="canceled-message-wrapper">
+      <div class="canceled-image"></div>
+      <div class="cancel-message">
+        درخواست شما لغو شد
+      </div>
+    </div>
+  </ng-container>
+</div>

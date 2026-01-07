@@ -1,0 +1,10 @@
+@import "../../layout/mixins/device";
+
+.wallet-activation-wrapper {
+  background-color: #fff !important;
+
+  //  #####   Responsive Styles   #####
+  @include mediaMobile() {
+    height: 100vh;
+  }
+}

@@ -1,0 +1,19 @@
+<ui-dialog
+  [title]="dialogData.title || ''"
+  [submitButtonTitle]="dialogData.actionTitle || 'تایید'"
+  [confirmText]="dialogData.actionTitle"
+  [rejectText]="dialogData.rejectTitle"
+  [theme]="'thin-dialog'"
+  (submit)="confirm()"
+  (close)="cancel()"
+>
+  <div class="upg-action-dialog content-scrollbar">
+    <div class="dialog-logo-wrapper" *ngIf="dialogData.logoId">
+      <ui-image [imageId]="dialogData.logoId" [width]="'120px'" [height]="'120px'"></ui-image>
+    </div>
+    <div class="dialog-description">
+      {{dialogData.description}}
+    </div>
+  </div>
+
+</ui-dialog>

@@ -1,0 +1,20 @@
+<section class="card">
+  <h2 class="card-title card-part" *ngIf="cardTitle">
+    <span>
+      <span *ngIf="backArrow" (click)="onBackClick()" class="back-arrow"></span>
+      <span *ngIf="close" (click)="onBackClick()" class="close"></span>
+      {{ cardTitle }}
+    </span>
+    <span class="title-action"><ng-content select="[title-action]"></ng-content></span>
+    <span *ngIf="help" (click)="onHelpClick()" class="help"></span>
+  </h2>
+
+  <div class="card-body card-part">
+    <div class="main-content" [ngClass]="{'no-padding': !contentPadding, 'no-bottom-padding': !bottomPadding}">
+      <ng-content select="[card-body]"></ng-content>
+    </div>
+    <div class="card-footer">
+      <ng-content select="[card-footer]"></ng-content>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,210 @@
+
+@import "src/app/layout/mixins/device";
+
+.left-section {
+  display: flex;
+  flex-direction: column;
+  padding-right: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: 100%;
+
+  .gift {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    padding: 12px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px;
+    border: 1px solid #DEE3E7;
+
+    &-icon {
+      padding: 12px;
+      border-radius: 12px;
+      background-color: #F0F5FF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .icon {
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 40px;
+        height: 40px;
+        background-image: url("./gift.svg");
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+
+    .title {
+      color: #2C3544;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .description {
+      color: #6E798D;
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+
+  .icon-status {
+    width: 112px;
+    height: 112px;
+    background-image: url("./cash-out-status-image.svg");
+    margin: 10px auto;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+  }
+
+  .cash-out-title-status {
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    width: fit-content;
+    width: -moz-fit-content;
+    color: #2c3544;
+    background-color: #f2f5f8;
+    border-radius: 17px;
+    margin: 5px auto;
+
+    &.with-error {
+      background-color: #ffeef3;
+      color: #ff2638;
+      text-align: center;
+    }
+  }
+
+  .cash-out-mode {
+    color: #6e798d;
+    font-weight: 500;
+    font-size: .9rem;
+    margin: 5px auto;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+
+  .amount {
+    margin: 10px auto;
+    width: fit-content;
+    width: -moz-fit-content;
+    color: #2c3544;
+    font-size: 1.7rem;
+    direction: rtl;
+    width: 100%;
+    text-align: center;
+
+    &.with-error {
+      padding-bottom: 20px;
+      border-bottom: 1px solid #dee3e7;
+    }
+  }
+
+  .cash-out-description {
+    width: 100%;
+    color: #2c3544;
+    background-color: #f2f5f8;
+    border-radius: 8px;
+    font-size: .82rem;
+    text-align: center;
+    margin: 10px auto;
+    padding: 6px;
+    line-height: 18px;
+    direction: rtl;
+  }
+
+  .bottom-data {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+
+    .details {
+      direction: rtl;
+      display: flex;
+      justify-content: space-between;
+
+      &.details-copy {
+        .value {
+          cursor: pointer;
+          display: flex;
+          color: #0040ff;
+          align-items: center;
+
+          .copy-place-holder {
+            background-image: url("./copy.svg");
+            width: 16px;
+            height: 16px;
+            display: block;
+            margin: 0 3px;
+          }
+        }
+      }
+
+      .title {
+        color: #6e798d;
+        font-size: .9rem;
+      }
+
+      .value {
+        color: #2c3544;
+        font-size: .9rem;
+      }
+    }
+
+  }
+
+  .digipay-logo {
+    background-image: url("./logo-digipay.svg");
+    width: 80px;
+    height: 40px;
+    margin: 20px auto;
+  }
+}
+
+.clicked {
+  animation: scaleUp 1s ease forwards;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.status-error {
+  background-image: url("./cash-out-status-image-error.svg") !important;
+}
+
+@include mediaMobile() {
+  .left-section {
+    padding-right: 0;
+  }
+  .gift {
+    display: none !important;
+  }
+  .bottom-data {
+    padding: 24px;
+  }
+}
+
+
+.binary-code {
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}

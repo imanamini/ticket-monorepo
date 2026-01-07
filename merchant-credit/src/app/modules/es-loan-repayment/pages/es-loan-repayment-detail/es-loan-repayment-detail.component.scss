@@ -1,0 +1,103 @@
+@import "@digipay/base-style/styleguide";
+
+:host {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--surface-back);
+}
+
+.body {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  width: 360px;
+  height: 100%;
+  overflow-y: auto;
+
+}
+
+.action {
+  background-image: url("../../../../../assets/icons/icon-back.svg");
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.arrow-up {
+  background-image: url("../../../../../assets/icons/arrow-up.svg");
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.arrow-down {
+  background-image: url("../../../../../assets/icons/arrow-down.svg");
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.box {
+  border-bottom: 1px dashed map-get($titanium, 'shade-80');
+}
+
+.gray-box {
+  background-color: map-get($titanium, 'shade-95');
+}
+
+.settlement-info-card {
+  padding: 6px;
+  position: relative;
+
+  .info-card-note-list {
+
+    position: relative;
+
+    &:before {
+      content: url('../../../../../assets/icons/line.svg');
+      width: 1px;
+      height: 24px;
+      position: absolute;
+      top: 8px;
+      bottom: 3px;
+      right: 15px;
+    }
+
+    .info-card-note-item {
+      position: relative;
+      padding-right: 30px;
+
+      &:after {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        content: url('../../../../../assets/icons/dot.svg');
+        top: 0;
+        right: 6px;
+      }
+
+      &:first-child {
+        &:before {
+          top: 6px;
+          bottom: 0;
+        }
+
+      }
+    }
+  }
+}
+
+.callout {
+  background-color: map-get($titanium, 'shade-95');
+}
+
+.blink-icon {
+  width: 24px;
+  height: 24px;
+  content: url('../../../../../assets/icons/blink.svg');
+}

@@ -1,0 +1,65 @@
+@import "variables";
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0 14px;
+
+  .close {
+    width: 24px;
+    height: 24px;
+    background-image: url("../../../../credit-assets-new/icons/close.svg");
+
+    &.disabled {
+      opacity: .3;
+    }
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: 500;
+    color: $swatch_steel_500;
+  }
+}
+
+.content-wrapper {
+  background-color: $swatch_steel_100;
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+
+.content {
+  font-size: 12px;
+  line-height: 20px;
+  color: $swatch_steel_500;
+  text-align: right;
+  direction: rtl;
+
+  .scrollbar {
+    height: 300px;
+  }
+}
+
+.content-iframe {
+  width: 100%;
+}
+
+.tick {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.action {
+  margin-bottom: 16px;
+}
+
+@media screen and (max-width: 1400px) {
+  .content {
+    .scrollbar {
+      height: 200px;
+    }
+  }
+}

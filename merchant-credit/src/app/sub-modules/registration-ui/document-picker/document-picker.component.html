@@ -1,0 +1,25 @@
+<div class="document l-row-vc">
+  <div class="info d-f">
+    <div class="icon" *ngIf="iconImageId"></div>
+    <div class="text">
+      <h4 class="doc-title" *ngIf="docTitle">{{ docTitle }}</h4>
+      <p class="doc-desc" *ngIf="description || errorMessage" [ngClass]="{'is-error': !!errorMessage}">
+        {{ errorMessage ? errorMessage : description }}
+      </p>
+    </div>
+  </div>
+  <div class="file-picker">
+    <div
+      (click)="pickFile()" class="pick-file-state"
+      [ngClass]="{
+         'is-error': !!errorMessage,
+         'is-uploaded': uploadState === 'UPLOADED',
+         'is-uploading': uploadState === 'UPLOADING',
+         'is-active': allowChange
+       }">
+      <img [src]="fileUrl" *ngIf="fileUrl" alt="image"/>
+      <ui-spinner color="WHITE" [opacity]="0.7" *ngIf="uploadState === 'UPLOADING'"></ui-spinner>
+    </div>
+    <input type="file" #fileInput (change)="onFilePick()">
+  </div>
+</div>

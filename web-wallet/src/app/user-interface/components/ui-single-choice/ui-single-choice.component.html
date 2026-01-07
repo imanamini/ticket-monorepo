@@ -1,0 +1,12 @@
+<div class="single-choice" *ngIf="items">
+  <div *ngFor="let item of items"
+       [ngClass]="{
+      'single-choice-item': true,
+      'is-selected': item['id'] === selectedItemId,
+      'full-width': fillWidthItems
+    }"
+       (click)="itemClicked(item)"
+  >
+    {{item[ 'title' ]}}
+  </div>
+</div>

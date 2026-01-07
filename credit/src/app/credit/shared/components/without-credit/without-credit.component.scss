@@ -1,0 +1,30 @@
+@mixin titles($font-size) {
+  text-align: center;
+  font-size: $font-size;
+  font-weight: 600;
+}
+
+.without-credit-box {
+  margin: 40px 0;
+
+h1 {
+@include titles(1.4em);
+}
+
+article {
+  text-align: right;
+  font-size: 0.7em;
+  font-weight: 600;
+  color: #808080;
+  margin: 20px 0 10px 0;
+
+p {
+  padding-bottom: 10px;
+  line-height: 22px;
+}
+}
+}
+
+.without-credit-box-header {
+  @include titles(1.4em);
+}

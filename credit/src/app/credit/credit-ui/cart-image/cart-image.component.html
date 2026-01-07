@@ -1,0 +1,19 @@
+<div class="cart-img">
+  <div class="back-layer" [ngStyle]="{backgroundColor: bgBack}"></div>
+  <div class="front-layer" [ngStyle]="{backgroundColor: bgFront}">
+    <div class="handle"></div>
+    <div class="cart-logo">
+      <digipay-image
+        *ngIf="imageId"
+        width="100%"
+        [imageId]="imageId"
+      ></digipay-image>
+      <img
+        *ngIf="!imageId"
+        [src]="defaultLogo"
+      >
+    </div>
+  </div>
+  <div class="white-light"></div>
+</div>
+<div class="bottom-shadow"></div>

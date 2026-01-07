@@ -1,0 +1,64 @@
+@import "../../../../layout/variables";
+@import "../../../../layout/mixins/device";
+
+.digiplus-box {
+  width: 100%;
+  border: 1px solid #dee3e7;
+  border-radius: 16px;
+  margin: 24px 0;
+  padding: 24px;
+}
+
+
+.title-box {
+  display: flex;
+  align-items: center;
+
+  .business-logo {
+    background: url("../../../../../assets/icon/digiplus.svg") no-repeat 0 0/100%;
+    width: 48px;
+    height: 48px;
+    border: 1px solid $light-gray;
+    border-radius: 8px;
+    margin-left: 12px;
+  }
+
+  .payment-type {
+    color: $swatch_steel_500;
+    font-size: 14px;
+    margin-bottom: 0.4em;
+  }
+
+  .payment-title {
+    color: $swatch_steel_900;
+    font-size: 14px;
+    font-weight: 700;
+  }
+}
+
+.separator {
+  height: 1px;
+  background: #dee3e7;
+  margin: 16px 0;
+}
+
+.details {
+  li {
+    display: flex;
+    justify-content: space-between;
+    color: $swatch_steel_900;
+    font-size: 14px;
+    padding: 6px 0;
+
+    > span:first-child {
+      color: $swatch_steel_500;
+      font-size: 14px;
+    }
+  }
+}
+
+@include mediaMobile(){
+  .digiplus-box {
+    padding: 14px;
+  }
+}

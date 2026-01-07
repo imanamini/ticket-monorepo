@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Dashboard/Icons/CreditDocState/Approved Copy</title>
+    <defs>
+        <path d="M12,22 C6.4771525,22 2,17.5228475 2,12 C2,6.4771525 6.4771525,2 12,2 C17.5228475,2 22,6.4771525 22,12 C22,17.5228475 17.5228475,22 12,22 Z" id="path-1"></path>
+        <path d="M15.3032108,8.30086103 C15.6913616,7.89971299 16.3207361,7.89971299 16.7088869,8.30086103 C17.0970377,8.70200906 17.0970377,9.35194643 16.7088869,9.75309446 L10.6643813,16 L7.29070955,12.513361 C6.90297726,12.1126455 6.90313803,11.4622152 7.29094474,11.0608843 C7.67894099,10.6598964 8.30831527,10.6600627 8.69638562,11.0611275 L10.6643813,13.0950215 L15.3032108,8.30086103 Z" id="path-3"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="element/wizard/completed" transform="translate(-257.000000, -18.000000)">
+            <g id="Person-info-verfication" transform="translate(60.000000, 16.000000)">
+                <g id="Icon-/-Checked-/-Outlined-Copy" transform="translate(195.000000, 0.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Mask"></g>
+                    <g id="Group" mask="url(#mask-2)" fill="#91E8B6">
+                        <g id="🎨-Color">
+                            <rect id="Surface" x="0" y="0" width="24" height="24"></rect>
+                        </g>
+                    </g>
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <g id="Mask"></g>
+                    <g id="Group" mask="url(#mask-4)" fill="#00A34D">
+                        <g id="🎨-Color">
+                            <rect id="Surface" x="0" y="0" width="24" height="24"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

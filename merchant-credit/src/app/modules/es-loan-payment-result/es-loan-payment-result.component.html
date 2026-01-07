@@ -1,0 +1,41 @@
+<div class="payment-result-page" *ngIf="result">
+  <div class="payment-result-card" [ngClass]="{paid: result.paymentResult === paymentResultEnum.SUCCESS}">
+    <div class="result-icon"></div>
+    <div class="title">
+      <div *ngIf="result.paymentResult === paymentResultEnum.SUCCESS">پرداخت موفق</div>
+      <div *ngIf="result.paymentResult !== paymentResultEnum.SUCCESS">پرداخت ناموفق</div>
+    </div>
+    <p>
+      {{result.paymentResult === paymentResultEnum.SUCCESS ?
+      'درخواست شما ثبت شد. نتیجه را به شما اطلاع خواهیم داد.' :
+      'متاسفانه درخواست شما ثبت نشد. لطفا دوباره امتحان کنید.'
+      }}
+    </p>
+    <br>
+    <div class="payment-info-row" *ngIf="result.amount">
+      <div class="key">مبلغ</div>
+      <div class="value">{{result.amount | number}} ریال</div>
+    </div>
+    <div class="payment-info-row" *ngFor="let item of result.activityInfo">
+      <div class="key">{{item.key}}</div>
+      <div class="value">{{item.value}}</div>
+    </div>
+    <div class="payment-message" *ngIf="result.message">
+      <div class="html" [innerHTML]="result.message"></div>
+    </div>
+    <ngx-button (clickHandler)="goToOwerview()"
+                size="medium"
+                mode="form"
+                [brandButton]="true"
+                style="link">
+      بازگشت به صفحه اصلی
+    </ngx-button>
+  </div>
+
+</div>
+<div class="payment-result-page" *ngIf="errorMode">
+  <div class="payment-result-card">
+    <div class="title">نتیجه پرداخت نامشخص است</div>
+  </div>
+</div>
+<page-loading [active]="!result && !errorMode"></page-loading>

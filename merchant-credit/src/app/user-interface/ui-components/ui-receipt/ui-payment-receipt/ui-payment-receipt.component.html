@@ -1,0 +1,40 @@
+<div class="receipt">
+  <div class="top-section">
+    <div class="status-icon" [ngClass]="{
+    'icon-success': paymentResult.paymentResult === 0,
+    'icon-failed': paymentResult.paymentResult === 1,
+    'icon-undetermined': paymentResult.paymentResult !== 1 && paymentResult.paymentResult !== 0
+    }"></div>
+    <div class="amount" [ngStyle]="{ 'color' :paymentResult.paymentResult === 0 ?  ' #2C3544' : '#FF811A'}">
+      {{ paymentResult.amount  | thousands }}
+      <span class="unit">ریال</span>
+    </div>
+    <p class="short-message"
+    >{{ paymentResult.status }}</p>
+    <div class="long-message-container">
+      <div class="long-message" [innerHtml]="paymentResult.message"
+           *ngIf="paymentResult.status !== 'پرداخت موفق'"></div>
+    </div>
+  </div>
+  <div class="numbers-pattern">
+  </div>
+  <div class="middle-section">
+    <div class="tracking-code" *ngIf="false">
+      <span></span>
+    </div>
+    <div class="transaction-details">
+      <div class="detail-row" *ngFor="let row of paymentResult.activityInfo">
+        <span class="label">{{ row.key }}</span>
+        <span class="value">{{ row.value }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-section">
+    <div class="binary-copy"></div>
+    <div class="footer">
+      <div class="logo"></div>
+      <ng-button *ngIf="paymentResult.redirectDetail" (clickHandler)="redirectToNextStep()" buttonType="tinted"
+                 [buttonText]="paymentResult.redirectDetail.text"></ng-button>
+    </div>
+  </div>
+</div>

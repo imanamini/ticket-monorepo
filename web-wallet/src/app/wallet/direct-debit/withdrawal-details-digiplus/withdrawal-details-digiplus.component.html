@@ -1,0 +1,95 @@
+<div *ngIf="isLoading; else showContent">
+  <ui-preparing [showSubtitle]="false"></ui-preparing>
+</div>
+
+<ng-template #showContent>
+
+  <ui-content-card
+    [hasFooter]="false"
+    [hasHeader]="true"
+    [hasHeaderAction]="true"
+    (headerCloseActionClicked)="cancel()"
+    [title]="'جزییات برداشت'">
+
+    <div class="flex-card-content">
+
+      <div class="top">
+        <p class="description">
+          با فعال‌سازی این سرویس، به دیجی‌کالا اجازه می‌دهید
+          <span class="bold">بابت تمدید اشتراک دیجی‌پلاس</span>
+          به‌صورت ماهیانه از کیف‌پول شما به‌صورت خودکار برداشت کند
+        </p>
+      </div>
+
+
+      <div class="center">
+        <div class="digiplus-box">
+
+          <div class="title-box">
+            <p class="digiplus-title">مبلغ پرداخت روزانه و مدت دسترسی</p>
+            <!--        Add Help Icon-->
+            <!--        <div class="general-help"></div>-->
+          </div>
+
+          <div class="content">
+            <ul>
+              <li>
+
+                <div class="business">
+                  <div class="icon"></div>
+                  <div class="text">
+                    <span>دیجی‌پلاس</span>
+                    <span>{{state?.maxDailyTransactionAmount | separator}} ریال</span>
+                  </div>
+                </div>
+
+              </li>
+              <li></li>
+              <li>
+                <div class="text">
+                  <span>اشتراک</span>
+                  <span>{{state?.duration?.count}} {{state?.duration?.timeUnit | translateTimeUnit}}</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="bottom">
+        <!--        <p class="rules">-->
+        <!--          فشردن دکمه تایید به معنی پذیرفتن-->
+        <!--          <a class="rules-link">شرایط وقوانین استفاده</a>-->
+        <!--          است.-->
+        <!--        </p>-->
+
+        <div class="button-box">
+          <ui-button
+            class="cancel-btn"
+            theme="digipay"
+            appearance="outline-light-blue"
+            (buttonClick)="cancel()"
+            [fullWidth]="true"
+            [hasIcon]="false">
+            انصراف
+          </ui-button>
+          <ui-button
+            class="submit-btn"
+            theme="digipay"
+            appearance="default"
+            [hasIcon]="false"
+            [fullWidth]="true"
+            (buttonClick)="submit()">
+            <mat-spinner class="spinner" *ngIf="submitLoading"></mat-spinner>
+            تایید و ادامه
+          </ui-button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </ui-content-card>
+
+</ng-template>

@@ -1,0 +1,12 @@
+<div class="checklist-item" [ngClass]="{'is-checked': checked}" (click)="onClick()">
+  <div class="title-bar flex-row">
+    <span class="checkbox"></span>
+    <h5 class="title">{{ itemTitle }}</h5>
+  </div>
+  <div *ngIf="subtitle" class="sub">
+    <h6 class="subtitle">{{ subtitle }}</h6>
+    <ul class="tags flex-row">
+      <li *ngFor="let tag of tags">{{ tag }}</li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+:host {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.body {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  width: 360px;
+  height: 100%;
+}
+
+@media screen and (min-width: 522px) {
+  :host {
+    background-color: var(--surface-back);
+  }
+}

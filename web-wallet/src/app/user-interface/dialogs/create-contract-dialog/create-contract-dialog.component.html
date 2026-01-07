@@ -1,0 +1,33 @@
+<ui-dialog
+  class="create-contract-dialog"
+  [fullWidthSubmitButton]="true"
+  [hasBackButton]="currentStep === 'HARVEST_DETAIL'"
+  [title]="modalTitle"
+  [submitButtonTitle]="'ادامه'"
+  [hasRejectButtonTitle]="false"
+  [disableSubmitButton]="(currentStep === 'SELECT_BANK' && !selectedBank) ||
+  (currentStep === 'HARVEST_DETAIL' && !(harvestDetailsShareData | async).isValidHarvestDetailsForm)"
+  [theme]="'secondary'"
+  (close)="cancel()"
+  (submit)="confirm()"
+  [id]="{
+  submit: (currentStep === 'SELECT_BANK' && selectedBank) || (currentStep === 'HARVEST_DETAIL' && (harvestDetailsShareData | async).isValidHarvestDetailsForm) ?
+          dialogData.id.submit: '' ,
+  closeButton:  currentStep === 'SELECT_BANK' ?
+                GA_DIRECT_DEBIT_CONTRACT_ID.CANCEL_BANK_SELECTION_CLICK:
+                GA_DIRECT_DEBIT_CONTRACT_ID.CANCEL_CONTRACT_CREATION }">
+  <ng-container *ngIf="currentStep === 'SELECT_BANK' && dialogData.banks && dialogData.banks.length">
+    <app-create-contract-select-bank-dialog
+      [selectedBank]="selectedBank"
+      [banks]="dialogData.banks"
+      (selectedBankEvent)="selectedBank = $event">
+    </app-create-contract-select-bank-dialog>
+  </ng-container>
+
+  <ng-container *ngIf="currentStep === 'HARVEST_DETAIL'">
+    <app-create-contract-harvest-details-dialog
+      [selectedBank]="selectedBank">
+    </app-create-contract-harvest-details-dialog>
+  </ng-container>
+
+</ui-dialog>

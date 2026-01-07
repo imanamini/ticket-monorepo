@@ -1,0 +1,53 @@
+<div class="d-flex flex-column h-100">
+  <div class="flex-grow overflow-auto">
+    <app-debtor-info
+      [fundProviderBusinessId]="userInfo().fundProviderDto.businessId"
+      [title]="debtorInfoTitle()"
+      [fullName]="(userInfo().fullName && userInfo().fullName !== 'null null') ? userInfo().fullName : undefined"
+    />
+
+    <div class="px-plus py-medium position-relative" dir="rtl">
+      @if (!userInfo().unPaidInstallments[ 0 ].payableInstallmentsLimit) {
+        <div class="select-all_wrapper pb-medium surface-back">
+          <div
+            class="d-flex align-items-center justify-content-space-between surface-elevated py-minus px-medium radius-plus select-all"
+          >
+            <ngx-checkbox
+              [(checked)]="checkAll"
+              (checkedChange)="onCheckAllChange($event)"
+              [size]="20"
+              [isIndeterminate]="true"
+            >
+              <span class="bt-3 mr-small mt-micro d-block">انتخاب همه</span>
+            </ngx-checkbox>
+            <div class="text-onback-low b-3">{{ userInfo().unPaidInstallments.length + ' مورد' }}</div>
+          </div>
+        </div>
+      }
+
+      @for (installment of serializedInstallments(); track installment.title) {
+        <app-credit-installment-card
+          class="mb-medium d-block"
+          [(checked)]="installment.checked"
+          (checkedChange)="onCheckChange($event, $index)"
+          [deActive]="installment.deActive"
+          (deActiveClicked)="deActiveClickHandler()"
+          [title]="installment.title"
+          [badge]="installment.badge"
+          [subtitle]="installment.dateTitle"
+          [amount]="installment.initialAmount"
+          [penaltyAmount]="installment.penaltyAmount"
+          [penaltyWaiverAmount]="installment.penaltyWaiverAmount"
+        />
+      }
+    </div>
+  </div>
+
+  <app-credit-installment-payment-footer
+    class="footer"
+    [class.hide-footer]="hideFooter()"
+    [finalAmount]="selectedAmounts().payable"
+    [rows]="paymentFooterRows()"
+    (cta)="onFooterPaymentClick()"
+  />
+</div>

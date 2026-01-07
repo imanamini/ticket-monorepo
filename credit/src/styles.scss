@@ -1,0 +1,166 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./digipay-material-theme";
+//@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import "variables";
+
+:root {
+  --full-height: 100vh;
+  @supports (height: 100dvh) {
+    --full-height: 100dvh;
+  }
+
+  --full-width: 100vw;
+  @supports (width: 100svw) {
+    --full-width: 100svw;
+  }
+}
+
+@media screen and (min-width: 550px) {
+  .all-width-container {
+    background: #424c5c99;
+
+    .bottom-sheet-container {
+      background: transparent !important;
+    }
+  }
+}
+
+.bottom-sheet-wrapper {
+  --container-width-large: 552px;
+  --container-height-large: 100vh;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.auth-container {
+  text-align: center;
+  padding: 0 16px;
+}
+
+.ticket-container {
+  padding: 50px !important;
+  margin: 15px 0;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+.otp-input .mat-form-field-underline {
+  height: 2px !important;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+.otp-input .mat-form-field-ripple {
+  height: 4px !important;
+}
+
+.warn-snack {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.mat-mdc-simple-snack-bar {
+  direction: rtl;
+}
+
+body {
+  margin: 0;
+  font-family: $primary-font;
+}
+
+body * {
+  font-family: $primary-font;
+}
+
+.block-display {
+  display: block;
+}
+
+.mat-mdc-form-field {
+  text-align: right !important;
+}
+
+.rtl {
+  direction: rtl;
+}
+
+router-outlet ~ * {
+  //display: flex;
+  //flex-direction: column;
+}
+
+.loading-btn {
+  padding: 5.5px 0;
+  margin-bottom: -15px;
+}
+
+.mat-mdc-list-base {
+  text-align: center;
+}
+
+.back-page {
+  transform: rotate(180deg);
+  cursor: pointer;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
+.mat-tab-body-wrapper {
+  height: 100%;
+}
+
+.mat-mdc-tab-group.mat-primary .mat-ink-bar,
+.mat-mdc-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: #294acc;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
+.mat-tab-label-active .mat-tab-label-content {
+  color: #294acc;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
+.mat-tab-label .mat-tab-label-content {
+  font-size: 14px;
+  min-width: 74px;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
+.mat-tab-label {
+  padding: 0 8px !important;
+}
+
+.mat-mdc-progress-spinner {
+  height: 25px !important;
+  width: 25px !important;
+  margin: 0 auto;
+}
+
+.mat-mdc-form-field-hint {
+  color: #294acc;
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.mat-mdc-form-field-error {
+  direction: rtl;
+}
+
+.mat-mdc-tab-group {
+  direction: rtl;
+  flex-grow: 1;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
+.mat-tab-body-wrapper {
+  flex-grow: 1;
+}
+
+.has-filter .activity-container {
+  margin-top: 58px;
+}
+
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+.center-align .mat-form-field-label-wrapper {
+  text-align: center;
+}

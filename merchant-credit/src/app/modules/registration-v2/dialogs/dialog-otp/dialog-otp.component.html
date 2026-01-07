@@ -1,0 +1,14 @@
+<div class="illustration"></div>
+<p>
+  کد فعالسازی ارسال شده به شماره زیر را وارد کنید.
+</p>
+<h2 class="mobile-number">{{ data.cellNumber }}</h2>
+
+<ui-form-field
+  formControlName="code"
+  [maxSize]="5" label="کد ارسال شده"></ui-form-field>
+
+<div class="actions">
+  <ui-button appearance="FLAT-BLUE">انصراف</ui-button>
+  <ui-button class="primary-action">تایید و ادامه</ui-button>
+</div>

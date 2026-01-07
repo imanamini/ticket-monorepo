@@ -1,0 +1,7 @@
+.service-item {
+  margin-bottom: 16px;
+  display: block;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

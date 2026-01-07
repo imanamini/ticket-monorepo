@@ -1,0 +1,22 @@
+<div class="top-section">
+  <ngx-status-result (clicked)="onCtaClick($event)"
+                     [buttons]="buttons()"
+                     [description]="description()"
+                     [title]="title()">
+    <ng-container status-image>
+      <div [class]="'message-image static-image-' + image()"></div>
+    </ng-container>
+  </ngx-status-result>
+  @if (hasTimer()) {
+    <div class="cta-wrapper">
+      <ngx-button
+        (clickHandler)="onCtaClick('return-to-merchant')"
+        [size]="'medium'"
+        (finished)="onCtaClick('return-to-merchant')"
+        [timer]="{timeInSeconds: 10, timerType: 'mm:ss'}"
+        [style]="'tinted-on-elevated'">
+        بازگشت به فروشگاه در&nbsp;
+      </ngx-button>
+    </div>
+  }
+</div>

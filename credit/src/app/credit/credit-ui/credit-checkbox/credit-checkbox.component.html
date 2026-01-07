@@ -1,0 +1,17 @@
+<div class="checkbox-box">
+  <input
+    [id]="id"
+    type="checkbox"
+    [ngClass]="{disabled: disabled}"
+    (change)='handleChange($event)'
+    (click)="handleClick($event)"
+    [(ngModel)]="checked"
+    [disabled]='disabled'
+  />
+  <label [for]="id" [ngClass]="['checkbox-label', type]">
+    <div class="mark-box">
+      <div class="mark"></div>
+    </div>
+    <ng-content></ng-content>
+  </label>
+</div>

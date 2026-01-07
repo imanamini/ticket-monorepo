@@ -1,0 +1,44 @@
+<div *ngIf="isLoading; else showContent">
+  <ui-preparing [showSubtitle]="false"></ui-preparing>
+</div>
+
+<ng-template #showContent>
+
+  <ui-content-card
+    class="receipt"
+    [title]="card.title"
+    [hasHeaderAction]="false"
+    [hasHeader]="false"
+    [hasFooter]="false">
+
+    <ui-error-request
+      *ngIf="!contract; else showContractsResult"
+      (clicked)="getTicketInfo()"
+    ></ui-error-request>
+
+    <ng-template #showContractsResult>
+      <div class="flex-card-content">
+        <ng-container [ngSwitch]="decodedData?.status">
+          <app-success-receipt
+            *ngSwitchCase="'SUCCESS'"
+            [contractDuration]="contract.duration">
+          </app-success-receipt>
+          <app-error-receipt
+            *ngSwitchCase="'FAILED'"
+            [contractDuration]="contract.duration">
+          </app-error-receipt>
+          <app-error-receipt
+            *ngSwitchCase="'CANCELED'"
+            [contractDuration]="contract.duration">
+          </app-error-receipt>
+        </ng-container>
+        <app-content
+          [ticketInfo]="ticketInfo"
+          [decodedData]="decodedData"
+          [contractInfo]="contract">
+        </app-content>
+      </div>
+    </ng-template>
+
+  </ui-content-card>
+</ng-template>

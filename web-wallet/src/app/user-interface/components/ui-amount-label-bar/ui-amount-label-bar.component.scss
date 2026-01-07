@@ -1,0 +1,105 @@
+@import "../../../layout/variables";
+@import "../../../layout/mixins/flex";
+@import "../../../layout/mixins/device";
+@import "../../../layout/mixins/font-size";
+
+.label-bar-wrapper {
+  width: 100%;
+  color: #263140;
+  min-height: 64px;
+  font-weight: 500;
+  padding-left: 16px;
+  border-radius: 16px;
+  @include fontSize(14);
+  border: solid 1px #F0F5FF;
+  @include flex-center-start;
+  background: #F0F5FF url("assets/shadow-layer.svg") no-repeat -72px -46px /115%;
+
+  * {
+    cursor: default;
+  }
+
+  &.theme-warning {
+    color: #f24024;
+    background-color: #fff5ee;
+  }
+
+  > .logo-wrapper {
+    min-width: 64px;
+    min-height: 64px;
+    @include flex-center;
+
+    &:before {
+      content: '';
+      width: 18px;
+      height: 27px;
+      display: block;
+      background: url("../../../../assets/logo/digipay.svg") no-repeat 0 0/100%;
+    }
+  }
+
+  > .content {
+    flex-grow: 1;
+    display: flex;
+    min-height: 64px;
+    flex-direction: column;
+    justify-content: center;
+
+    > .wallet-detail {
+      min-height: 24px;
+      @include flex-baseline-between;
+
+      > div {
+        @include fontSize(16);
+        font-weight: bold;
+
+        &.label-bar-title {
+          font-size: 14px;
+          color: inherit;
+
+          .user-name {
+            font-size: 12px;
+            font-weight: normal;
+            text-align: right;
+            color: $gray;
+            margin-top: 8px;
+          }
+        }
+
+        &.label-bar-value {
+          font-weight: 800;
+          @include fontSize(14);
+          @include flex-center-between;
+
+          > .value-amount {
+            font-size: inherit;
+          }
+
+          > .value-currency {
+            margin-right: 4px;
+            font-size: inherit;
+          }
+        }
+      }
+    }
+
+    > .user-info {
+      color: $gray;
+      min-height: 20px;
+      margin-right: 8px;
+      @include fontSize(12);
+      @include flex-center-start;
+    }
+  }
+}
+
+@include mediaMobile() {
+  .label-bar-wrapper {
+    > div {
+      &.label-bar-title,
+      &.label-bar-value {
+        @include fontSize(12);
+      }
+    }
+  }
+}

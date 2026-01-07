@@ -1,0 +1,16 @@
+<credit-ui-content-box *ngIf="errorHappened" [showHeader]="false">
+  <h2>بروز خطا فنی</h2>
+</credit-ui-content-box>
+
+<ng-container *ngIf="cancelRedirect">
+  <form #cancelForm [method]="formMethod"
+        action="{{formUrl}}" autocomplete="off" class="cancel-btn credit-buttons">
+    <input
+      *ngFor="let field of formData"
+      [name]="field.key"
+      [value]="field.value"
+      type="hidden"
+    >
+  </form>
+</ng-container>
+<page-loading [active]="!errorHappened"></page-loading>

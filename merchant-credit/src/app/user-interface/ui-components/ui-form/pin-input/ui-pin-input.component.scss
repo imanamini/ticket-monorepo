@@ -1,0 +1,82 @@
+@import "variables";
+
+@keyframes pinInputError {
+  33% {
+    transform: translateX(-5%);
+  }
+  50% {
+    transform: translateX(5%);
+  }
+  75% {
+    transform: translateX(-5%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.pin-input {
+  .desc {
+    text-align: center;
+    direction: rtl;
+    font-size: 12px;
+    color: #666666;
+  }
+
+  .inputs {
+    display: flex;
+    direction: ltr;
+    justify-content: space-between;
+    margin: 24px 0 0 0;
+    gap: 8px;
+
+    &.has-error {
+      animation: 0.4s pinInputError forwards;
+      animation-iteration-count: 1;
+
+      .circle, .circle.filled {
+        border-color: $swatch_red_500;
+        background: $swatch_red_500;
+      }
+
+      .input {
+        input, input:focus {
+          border-color: $swatch_red_500 !important;
+          background-color: $swatch_red_100 !important;
+        }
+      }
+    }
+
+    .input {
+
+      input {
+        text-align: center;
+        width: 56px;
+        height: 56px;
+        border: 1px solid $swatch_steel_200;
+        border-radius: 12px;
+        font-size: 18px;
+        font-weight: 530;
+        color: $swatch_steel_900;
+
+        &:focus {
+          background-color: $swatch_blue_100;
+          border-color: $swatch_blue_500;
+          outline: none;
+        }
+      }
+    }
+
+  }
+
+  .error-message {
+    margin-top: 8px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+    color: $swatch_red_500;
+
+  }
+}

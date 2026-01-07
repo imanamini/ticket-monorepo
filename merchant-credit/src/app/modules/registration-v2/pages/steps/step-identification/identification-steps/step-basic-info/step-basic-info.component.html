@@ -1,0 +1,100 @@
+<div *ngIf="!isError">
+  <div [formGroup]="form">
+    <p>
+      لطفا اطلاعات خواسته شده را بررسی و تکمیل کنید.
+    </p>
+    <form-section sectionTitle="اطلاعات اولیه">
+
+      <ui-key-value-list [items]="personBasicInfo"></ui-key-value-list>
+
+      <ui-form-field
+        formControlName="enName"
+        label="نام به زبان انگلیسی"
+        minlength="3"
+        [allowedKeyDown]="checkEnglishChar"
+        [error]="form.controls.enName.errors"
+      ></ui-form-field>
+
+      <ui-form-field
+        formControlName="enSurname"
+        label="نام خانوادگی به زبان انگلیسی"
+        minlength="3"
+        [allowedKeyDown]="checkEnglishChar"
+        [error]="form.controls.enSurname.errors"
+      ></ui-form-field>
+
+      <ui-form-field
+        formControlName="province"
+        type="select"
+        [error]="form.controls.province.errors"
+        [options]="provinceOptions"
+        label="استان محل تولد"
+      ></ui-form-field>
+
+      <ui-form-field
+        formControlName="city"
+        [error]="form.controls.city.errors"
+        type="select" [options]="cityOptions"
+        label="شهر محل تولد"
+      ></ui-form-field>
+
+      <ui-form-field
+        [maxSize]="10"
+        [error]="form.controls.postalCode.errors"
+        formControlName="postalCode"
+        label="کدپستی (جهت دریافت کارت بانکی)"
+        [isNumericKeyboard]="true"
+        [convertNonEnglishDigits]="true"
+      ></ui-form-field>
+
+    </form-section>
+
+    <form-section sectionTitle="اطلاعات شناسنامه‌ای">
+      <app-basic-info-card [basicInfo]="existNationalCodeInfo" [form]="form" (cardClicked)="onBasicInfoClick($event)"
+                           [selected]="existNationalCodeInfo.id === selectedId">
+        <ui-form-field
+          *ngIf="form.controls.idCardSerialNo"
+          formControlName="idCardSerialNo"
+          [error]="form.controls.idCardSerialNo.errors"
+          [maxSize]="10"
+          [errorMessageMapper]="{
+              pattern: 'فرمت شماره سریال کارت ‌ملی اشتباه است.'
+            }"
+          [ltrInput]="true"
+          [allowedKeyDown]="checkForbiddenChar"
+          label="شماره سریال کارت ملی"
+          hint="شماره سریال در پشت کارت ملی های هوشمند حک شده"
+        ></ui-form-field>
+      </app-basic-info-card>
+      <app-basic-info-card [basicInfo]="existNationalCardTrackingCodeInfo" [form]="form"
+                           (cardClicked)="onBasicInfoClick($event)"
+                           [selected]="existNationalCardTrackingCodeInfo.id === selectedId">
+        <ui-form-field
+          *ngIf="form.controls.nationalCardTrackingCode"
+          formControlName="nationalCardTrackingCode"
+          [error]="form.controls.nationalCardTrackingCode.errors"
+          [errorMessageMapper]="{
+              pattern: 'کد رهگیری کارت ملی اشتباه است.'
+            }"
+          [allowedKeyDown]="checkForbiddenCharForTrackingCode"
+          [maxSize]="10"
+          [ltrInput]="true"
+          label="کد رهگیری کارت ملی"
+          hint="کد رهگیری که هنگام درخواست کارت دریافت کردید."
+        ></ui-form-field>
+      </app-basic-info-card>
+
+    </form-section>
+  </div>
+
+  <step-footer
+    [buttonDisabled]="form.invalid || sendingData"
+    (buttonClick)="proceed()"
+    [buttonText]="sendingData ? 'در حال ارسال...' : 'تایید و ادامه'"
+  ></step-footer>
+</div>
+<div>
+  <app-no-service-error *ngIf="isError" [noServiceErrorData]="noServiceErrorData" (onASecondaryClick)="onRetry()"
+                        (onPrimaryClick)="onExit()"></app-no-service-error>
+</div>
+

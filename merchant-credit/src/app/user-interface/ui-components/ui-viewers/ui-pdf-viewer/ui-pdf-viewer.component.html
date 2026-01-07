@@ -1,0 +1,36 @@
+<div
+  class="doc-preview"
+  #docPreview
+  [ngClass]="{'fullscreen-mode': fullscreen}"
+  (fullscreenchange)="onFullscreenChange()"
+  (webkitfullscreenchange)="onFullscreenChange()"
+  (mozfullscreenchange)="onFullscreenChange()"
+>
+  <div class="page-number" *ngIf="totalPage > 1">
+    {{page}} / {{totalPage}}
+  </div>
+  <div class="full-screen-button" (click)="goToFullScreen()">
+    <mat-icon>{{!fullscreen ? 'fullscreen' : 'fullscreen_exit'}}</mat-icon>
+  </div>
+  <div class="zoom-buttons">
+    <div class="zoom-in-button" (click)="zoomIn()" [ngClass]="{disabled: zoom >= maxZoom}">
+      <mat-icon>zoom_in</mat-icon>
+    </div>
+    <div class="zoom-out-button" (click)="zoomOut()" [ngClass]="{disabled: zoom <= minZoom}">
+      <mat-icon>zoom_out</mat-icon>
+    </div>
+  </div>
+  <pdf-viewer
+    [src]="pdfFile"
+    [render-text]="true"
+    [original-size]="false"
+    [(page)]="page"
+    (pages-initialized)="onPage($event)"
+    [zoom-scale]="'page-width'"
+    [zoom]="zoom / 100"
+    *ngIf="pdfFile"
+    class="viewer"
+  >
+  </pdf-viewer>
+  <mat-spinner *ngIf="!pdfFile" [diameter]="20" [strokeWidth]="1"></mat-spinner>
+</div>

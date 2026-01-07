@@ -1,0 +1,33 @@
+<div class="content-box" [ngClass]="{'full-height-content': fullHeight}">
+  <div
+    class="box-header"
+    [ngClass]="{'with-powered-by': showLogo, 'gray-mode': grayMode, 'headerBorderBottom': headerBorderBottom}"
+    *ngIf="showHeader">
+    <span *ngIf="showBackButton" class="back-icon" (click)="backIconClick()"></span>
+    <span *ngIf="showCloseButton" class="close-icon" (click)="backIconClick()"></span>
+    <div class="title">
+      <div class="text">{{contentBoxTitle}}</div>
+    </div>
+    <div class="countdown" *ngIf="countDown">
+      <span class="icon"></span>
+      <span class="label">زمان باقی مانده</span>
+      <span class="time">
+        <countdown
+          class="count-down"
+          [config]="{leftTime: 60 * countDown, format: 'mm:ss'}"
+          (event)="countdownHandler($event)"
+        />
+      </span>
+    </div>
+  </div>
+
+  <div class="box-body" [ngClass]="{'no-padding': !bodyPadding}">
+    <ng-content></ng-content>
+  </div>
+
+  <div class="box-footer" *ngIf="footerItems.length > 0">
+    <ng-container *ngFor="let footerItem of footerItems">
+      <ng-template [ngTemplateOutlet]="footerItem.template"></ng-template>
+    </ng-container>
+  </div>
+</div>

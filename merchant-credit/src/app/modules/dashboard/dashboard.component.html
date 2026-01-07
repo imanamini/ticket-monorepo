@@ -1,0 +1,4 @@
+<app-splash-screen *ngIf="showLoadingScreen"></app-splash-screen>
+<ui-page-layout>
+  <router-outlet *ngIf="!showLoadingScreen"></router-outlet>
+</ui-page-layout>

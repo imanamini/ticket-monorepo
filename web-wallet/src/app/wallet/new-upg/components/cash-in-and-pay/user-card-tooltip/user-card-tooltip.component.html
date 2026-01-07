@@ -1,0 +1,7 @@
+<div
+  [matTooltip]="userCardHintText"
+  (mouseenter)="userCardHintTooltipService.stopPropagationInMobile($event)"
+  (mouseleave)="userCardHintTooltipService.stopPropagationInMobile($event)"
+  #tooltip="matTooltip" (click)="userCardHintTooltipService.toggleTooltipInMobile(tooltip)"
+  matTooltipClass="user-card-hint-tooltip"
+  class="blue-info"></div>

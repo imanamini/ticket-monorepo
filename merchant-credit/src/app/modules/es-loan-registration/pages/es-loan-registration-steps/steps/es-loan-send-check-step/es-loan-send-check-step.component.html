@@ -1,0 +1,52 @@
+<header class="d-flex flex-row align-items-center gap-small pt-pony pb-pony pl-medium pr-medium ">
+  <div class="action mt-tiny" (click)="closeClick()"></div>
+  <span class="t-6 text-onback-medium">ارسال چک اقساط</span>
+</header>
+@if(checkSendState() || showResult()){
+<div class="select-loan-check-step d-flex flex-column mt-medium mb-medium ml-plus mr-plus">
+<div class="mb-auto">
+<p class="b-3 text-onback-high mb-medium">
+در این مرحله لازم است چک اقساط خود را طبق راهنمای موجود در فرم نوشته و برای ما ارسال کنید.
+</p>
+<ngx-callout
+[mode]="'multiple'"
+[title]="'مراحل ارسال چک '"
+[messages]="[
+'دریافت شناسه صیادی',
+'نوشتن چک طبق راهنما',
+'ثبت چک در سامانه صیادی ',
+'بارگذاری تصویر واضح از چک',
+'ثبت آدرس جهت دریافت فیزیک چک'
+]"
+/>
+</div>
+
+<ngx-button
+class="mt-small"
+(clickHandler)="confirmEmail()"
+size="large"
+mode="form"
+style="fill"
+[fullWidth]="true"
+>
+تکمیل فرم
+</ngx-button>
+</div>
+}
+@if(checkWaitingState() && !showResult()){
+<div class="d-flex flex-column ml-medium mr-medium select-loan-check-step">
+<div class="d-flex flex-column mt-hulk mb-auto">
+<ngx-status-result
+[title]="messageData?.title!"
+[description]="messageData?.message!"
+[buttons]="messageData?.buttons!"
+(clicked)="onClick($event)"
+>
+<ng-container status-image>
+<img [src]="messageData?.staticImage" alt="">
+</ng-container>
+</ngx-status-result>
+</div>
+</div>
+}
+

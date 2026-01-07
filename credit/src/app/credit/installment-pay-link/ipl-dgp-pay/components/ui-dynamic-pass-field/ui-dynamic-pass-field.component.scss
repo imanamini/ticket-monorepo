@@ -1,0 +1,80 @@
+@import "variables";
+
+:host {
+  display: block;
+}
+
+:host * {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  position: relative;
+}
+
+/**
+  Action wrapper is meant for the iOS devices
+  to fix height issue
+*/
+.action-wrapper {
+  position: absolute;
+  left: 4px;
+  top: 0;
+  height: 100%;
+  padding: 4px 0;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 8px;
+  direction: rtl;
+  border-radius: 4px;
+  font-size: 12/16rem;
+  font-weight: 400;
+  user-select: none;
+
+  .icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.send-dynamic-pass {
+  background: $swatch_blue_100;
+  color: $swatch_blue_500;
+  cursor: pointer;
+
+  .icon {
+    background: url("./icon/pass-key.svg") no-repeat 0 0/100%;
+  }
+
+  &.disabled {
+    background: $swatch_steel_200;
+    color: $swatch_steel_700;
+    cursor: default;
+
+    .icon {
+      background: url("./icon/pass-key-disabled.svg") no-repeat 0 0/100%;
+    }
+  }
+}
+
+.in-progress {
+  border: 1px solid #e5e5e5;
+  background: #fff;
+}
+
+.countdown {
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  color: #B2B2B2;
+
+  .icon {
+    background: url("./icon/countdown-clock.svg") no-repeat 0 0/100%;
+  }
+}

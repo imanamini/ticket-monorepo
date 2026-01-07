@@ -1,0 +1,32 @@
+<div class="branch-info">
+  <h2 class="title">
+    مدارک لازم جهت ارائه به بانک سامان
+  </h2>
+  <div class="description">
+    <p>
+      لطفا در زمان مراجعه حضوری به بانک جهت امضای قرارداد، مدارک زیر را به همراه داشته باشید در غیر این صورت حد اعتباری
+      شما مورد تایید بانک نخواهد بود.
+    </p>
+    <ngx-divider
+      class="divider"
+      [color]="BorderColorsEnum.Air"
+      orientation="horizontal"></ngx-divider>
+    <div class="document">
+      <h3 class="document-title">لیست مدارک:</h3>
+      <div class="items">
+        <div class="item" *ngFor="let item of docItems">
+          <ngx-icon class="icon" name="docuemnt-file" iconSize="16px"></ngx-icon>
+          <span>{{item}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-section">
+    <ngx-button (clickHandler)="onClose()"
+                [style]="'tinted-on-elevated'"
+                [fullWidth]="true"
+                [mode]="'form'">
+      متوجه شدم!
+    </ngx-button>
+  </div>
+</div>

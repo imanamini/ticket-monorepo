@@ -1,0 +1,21 @@
+@import "variables";
+
+$max-wrapper-width: 650px;
+
+:host {
+  height: 100vh;
+  display: block !important;
+  line-height: normal;
+}
+
+.wrapper {
+  max-width: $max-wrapper-width;
+  margin: auto;
+}
+
+@media (min-width: $max-wrapper-width) {
+  .wrapper {
+    border-right: 1px solid $swatch_steel_200;
+    border-left: 1px solid $swatch_steel_200;
+  }
+}

@@ -1,0 +1,46 @@
+.bottom-sheet-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #CCCCCC;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  .close-icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+    background-image: url("/assets/icons/close.svg");
+    background-size: 100% 100%;
+  }
+  .title {}
+}
+.filter-list {
+  .filter-item {
+    padding: 20px 24px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid #CCCCCC;
+    &:last-child {
+      border-bottom: none;
+    }
+    .checkbox-icon {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background-image: url("./icon-general-check-box-blank.svg");
+      background-size: 100% 100%;
+      margin-left: 8px;
+    }
+    &.selected {
+      .checkbox-icon {
+        background-image: url("./icon-general-check-box-checked.svg");
+      }
+    }
+  }
+}
+.cta-wrapper {
+  padding: 20px 24px;
+  ui-button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,11 @@
+<div class="ui-digit-input" #digitInputEl>
+  <div *ngFor="let a of ' '.repeat(this.length).split(''); let i = index;" class="input-wrapper">
+    <input type="password"
+           class="input"
+           [id]="'pin-input-'+i"
+           [(ngModel)]="value[i]"
+           (keyup)="inputKeyUp($event,i)"
+           [disabled]="!enabled"
+           maxlength="1" autocomplete="off">
+  </div>
+</div>

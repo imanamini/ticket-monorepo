@@ -1,0 +1,43 @@
+@import "variables";
+
+.total-amount-title {
+  color: $swatch_steel_900;
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.total-amount {
+  line-height: 1.8;
+  color: $swatch_steel_900;
+  font-weight: 500;
+  font-size: 32px;
+  text-align: center;
+
+  small {
+    font-size: 18px;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.amount-section {
+}
+
+.progress-bar-section {
+  margin-top: 8px;
+}
+
+.message-section {
+  margin-top: 16px;
+}
+
+.steps-section {
+  margin-top: 64px;
+}
+
+.cta-section {
+  margin-top: 84px;
+}

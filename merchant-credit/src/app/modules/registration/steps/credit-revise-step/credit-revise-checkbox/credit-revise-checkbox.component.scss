@@ -1,0 +1,99 @@
+@import '../../../../../styles/layout/variables';
+
+.checkbox-box {
+  input {
+    display: none;
+  }
+  .checkbox-label {
+    width: 100%;
+    display: block;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid $swatch_steel_200;
+    margin-bottom: 16px;
+    cursor: pointer;
+    .row-1 {
+      width: 100%;
+      display: flex;
+      align-items: center;
+
+      .checkbox-check-mark {
+        flex: 0 0 auto;
+        position: relative;
+        display: block;
+        width: 22px;
+        height: 22px;
+        border: 3px solid $swatch_steel_200;
+        background-color: #FFFFFF;
+        border-radius: 6px;
+
+        &:after {
+          content: "";
+          width: 24px;
+          height: 24px;
+          background-image: url('./check-icon.svg');
+          display: block;
+          position: absolute;
+          top: -4px;
+          left: -4px;
+        }
+      }
+
+      .checkbox-text {
+        margin-right: 8px;
+        display: block;
+      }
+    }
+    .row-2 {
+      .checkbox-sub-items-text {
+        color: $swatch_steel_500;
+        font-size: 12px;
+        margin-top: 10px;
+      }
+      .checkbox-sub-items {
+        display: flex;
+        flex-wrap: wrap;
+        .checkbox-sub-item {
+          margin-left: 6px;
+          margin-top: 10px;
+          padding: 2px 4px;
+          border-radius: 4px;
+          font-size: 12px;
+          line-height: 20px;
+          border: 1px solid $swatch_steel_200;
+          background-color: $swatch_steel_100;
+          white-space: nowrap;
+          max-width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+  input:checked ~ .checkbox-label{
+    border-color: $swatch_blue_700;
+    background-color: $swatch_blue_100;
+    .checkbox-check-mark {
+      background-color: $swatch_blue_700;
+      border-color: $swatch_blue_700;
+    }
+    .checkbox-text {
+      color: $swatch_blue_500;
+      font-weight: bold;
+    }
+  }
+  input.disabled ~ .checkbox-label {
+    cursor: default;
+    border-color: $swatch_blue_700;
+    background-color: $swatch_blue_100;
+    .checkbox-check-mark {
+      background-color: $swatch_blue_700;
+      border-color: $swatch_blue_700;
+    }
+    .checkbox-text {
+      color: $swatch_blue_500;
+      font-weight: normal;
+    }
+  }
+}
+

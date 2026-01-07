@@ -1,0 +1,30 @@
+<ng-container *ngIf="status">
+  <app-page-title-bar
+    title="ساخت امضای دیجیتال"
+    [closeButton]="true"
+    (onCloseButtonClick)="close()"
+    alignment="RIGHT"
+  ></app-page-title-bar>
+  <div class="main-content" [ngClass]="{
+    'mi-error': status === 'MI_ERROR',
+    'huawei-error': status === 'HUAWEI_ERROR',
+    'wrong-url': status === 'INVALID_URL'
+  }"
+  >
+    <div class="top-section">
+      <div class="message-image"></div>
+      <div class="message-title">
+        {{dataMap[ status ].title}}
+      </div>
+      <div class="message-description">
+        {{dataMap[ status ].description}}
+      </div>
+    </div>
+    <div class="call-to-action">
+      <credit-ui-button [styles]="{width: '100%'}" (buttonClick)="onCtaClick(dataMap[status].cta.action)">
+        {{dataMap[ status ].cta.label}}
+      </credit-ui-button>
+    </div>
+  </div>
+</ng-container>
+<page-loading [active]="!status"></page-loading>

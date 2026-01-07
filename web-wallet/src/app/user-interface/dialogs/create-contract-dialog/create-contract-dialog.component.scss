@@ -1,0 +1,46 @@
+@import "../../../layout/variables";
+@import "../../../layout/mixins/font-size";
+@import "../../../layout/mixins/flex";
+@import "../../../layout/mixins/device";
+
+.create-contract-dialog {
+  direction: rtl;
+  text-align: right;
+}
+
+:host ::ng-deep {
+  .mat-mdc-dialog-content {
+    padding: 25px !important;
+  }
+
+  .dialog-body {
+    overflow-x: hidden;
+  }
+}
+
+@include mediaMobile() {
+
+  :host ::ng-deep {
+    .dialog-body {
+      direction: initial !important;
+    }
+
+    .wrapper {
+      width: unset !important;
+    }
+
+    .mat-mdc-dialog-content {
+      padding: 16px !important;
+    }
+
+    .dialog-footer {
+      padding: 16px 16px 4px 16px;
+      margin: 0 !important;
+      border-top: 1px solid $light-gray;
+    }
+
+    .bank-item {
+      direction: rtl;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+<ui-page-layout>
+
+  <ui-content-card cardTitle="طرح‌های تسویه" [close]="true" (backClicked)="onCloseClick()">
+
+    <ng-container card-body>
+      <div *ngIf="rules.length !== 0">
+        <p>
+          لطفا تامین کننده‌ ای از بین تامین کنندگان زیر انتخاب کنید:
+        </p>
+
+        <div class="cards">
+          <ui-rule-card
+            (cardClicked)="onRuleClick($event)"
+            [selected]="selectedRule === rule.uid"
+            [rule]="rule" *ngFor="let rule of rules"></ui-rule-card>
+        </div>
+      </div>
+      <div *ngIf="rules.length === 0">
+        <app-empty-state
+          [title]="'شما تمامی طرح‌های ‌تسویه را‌ فعال کرده‌اید.'"
+          [description]="'طرح تسویه ای وجود ندارد که شما فعال نکرده باشید.'">
+        </app-empty-state>
+      </div>
+    </ng-container>
+
+    <ng-container card-footer *ngIf="rules.length !== 0">
+      <ui-button
+        class="page-cta"
+        [disabled]="!selectedRule"
+        (clicked)="assignRule()">تایید و ادامه
+      </ui-button>
+    </ng-container>
+  </ui-content-card>
+</ui-page-layout>

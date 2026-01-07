@@ -1,0 +1,8 @@
+<div
+  class="wallet-activation-wrapper"
+  *ngIf="!preparingData && tacInfo">
+  <app-activation-intro
+    [ticket]="ticket"
+    [tacInfo]="tacInfo"
+  ></app-activation-intro>
+</div>

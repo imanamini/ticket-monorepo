@@ -1,0 +1,21 @@
+@import "variables";
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+
+  .label {
+    color: $swatch_steel_500;
+  }
+
+  .value {
+    color: $swatch_steel_900;
+  }
+}
+
+::ng-deep ui-form-field {
+  input {
+    font-family: IranYekan !important;
+  }
+}

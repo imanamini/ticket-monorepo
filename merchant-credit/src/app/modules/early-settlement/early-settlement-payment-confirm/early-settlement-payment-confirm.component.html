@@ -1,0 +1,84 @@
+<ng-container *ngIf="feeDetail && !profileDisabled">
+  <div class="top-section">
+    <div class="page-title">جزئیات تسویه زودتر هنگام شما به شرح زیر است:
+    </div>
+    <div class="payment-confirm-card">
+      <div class="primary-row">
+        <div class="key">
+          <div class="icon icon-money"></div>
+          <div class="key-title">
+            مبلغ پرداختی نهایی
+          </div>
+        </div>
+        <div class="value">
+          {{feeDetail.settlementAmount | number}}
+          <span class="unit"> ریال</span>
+        </div>
+      </div>
+      <div class="secondary-row">
+        <div class="key">{{feeDetail.fundProviderInterestLabel}}</div>
+        <div class="value">
+          {{( feeDetail.fundProviderInterest ) | number}}
+          <span class="unit"> ریال</span>
+        </div>
+      </div>
+      <div class="secondary-row">
+        <div class="key">طرح اعتباری</div>
+        <div class="value">
+          {{fundProviderName}}
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="primary-row">
+        <div class="key">
+          <div class="icon icon-calendar"></div>
+          <div class="key-title">زمان واریز</div>
+        </div>
+        <div class="value">
+          {{dueDateString}}
+        </div>
+      </div>
+    </div>
+    <div class="section-box">
+      <div class="box-content" *ngIf="payable">
+        کارمزد خدمات به مبلغ <b>{{( feeDetail.fundProviderFee + feeDetail.digipayFee ) | number}} ریال</b> را باید از
+        درگاه پرداخت کنید.
+      </div>
+      <div class="box-content" *ngIf="!payable">
+        کارمزد خدمات برای شما <b>رایگان</b> شده است.
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-section">
+    <div class="cta-info">
+      <div class="cta-info-title">
+        مبلغ کارمزد خدمات
+      </div>
+      <div class="cta-info-value">
+        <b>{{ payable ? ( ( feeDetail.fundProviderFee + feeDetail.digipayFee ) | number ) + 'ریال' : 'رایگان' }} </b>
+      </div>
+    </div>
+    <div class="cta-wrapper">
+      <ui-button [disabled]="loadingCta" (click)="onConfirm()">
+        <ng-container *ngIf="!loadingCta ">
+          {{payable ? 'تایید و پرداخت' : 'ثبت درخواست'}}
+        </ng-container>
+        <ng-container *ngIf="loadingCta && payable">
+          در حال انتقال به درگاه...
+        </ng-container>
+      </ui-button>
+    </div>
+  </div>
+</ng-container>
+<div class="error-container">
+  <ngx-status-result
+    *ngIf="profileDisabled"
+    [title]="'موقتا تامین‌کننده غیرفعال ‌است.'"
+    [description]="'لطفا تا فعال شدن تامین‌کننده، تامین کننده‌ی دیگری را انتخاب کنید.'"
+  >
+    <ng-container status-image>
+      <img src="assets/icons/signature-failed.svg" alt="">
+    </ng-container>
+  </ngx-status-result>
+</div>

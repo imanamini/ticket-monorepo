@@ -1,0 +1,102 @@
+<div class="max-credit-amount-step  pt-big pb-big pl-medium pr-medium"
+     *ngIf="steps()[currentStepIndex()] && !errorData()">
+  <ng-container *ngIf="stepSections() === 'select-amount'">
+    <ng-container>
+      <p class="st-8 text-onback-high mb-medium">
+        یکی از خط اعتباری‌ها را انتخاب کنید:
+      </p>
+      <div class="cards">
+        <es-loan-saman-max-credit-card
+          *ngFor="let creditAmount of steps()[0]?.maxCreditAmountDetails"
+          (cardClicked)="onClick($event)"
+          [selected]="selectedDoc() === creditAmount?.maxCreditAmount"
+          [creditAmount]="creditAmount"
+        ></es-loan-saman-max-credit-card>
+      </div>
+      <ui-checkbox class="bt-3 text-onback-low" [checked]="agreed()" (changed)="agreeTerms($event)">
+        با انتخاب حد اعتباری
+        <span class="bt-3 text-onback-brand ml-tiny mr-tiny" (click)="showTac()">قوانین و مقررات</span>
+        را می‌پذیرم.
+      </ui-checkbox>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="stepSections() === 'select-account'">
+    <div class="select-account-body">
+      <h2 class="c-2 text-onback-medium">
+        شماره شبای متعلق به بانک سامان خود را وارد کنید.
+      </h2>
+      <div class="iban-card-wrapper">
+        <div class="iban-card">
+          <div class="iban-card-title">
+            <div class="small-logo"></div>
+            <span>بانک سامان</span>
+          </div>
+          <div class="iban-text c-3">
+            {{splitAndDisplay(this.form.controls[ 'iban' ].value, '## ## ## ####################', '- ')}}
+          </div>
+        </div>
+
+        <div class="iban-form" [formGroup]="form">
+          <ui-form-field
+            [type]="'iban'"
+            [placeholder]="'شماره شبا را وارد کنید'"
+            formControlName="iban"
+            [error]="form.controls.iban.errors"
+            [errorMessageMapper]="{
+              pattern: 'شماره شبا متعلق به بانک سامان نیست.'
+            }"
+            hint="شماره شبا را بدون IR وارد کنید."
+            [hasCleaner]="true"
+            [autoFocus]="true"
+            [showError]="showError()"
+          ></ui-form-field>
+        </div>
+      </div>
+
+      <div class="mt-medium mb-medium">
+        <ngx-divider
+
+          [color]="BorderColorsEnum().Light"
+          orientation="horizontal"></ngx-divider>
+      </div>
+      <div class="d-flex flex-column gap-small">
+        <span class="st-8 text-onback-high mb-pony">حساب فعال سامان ندارید؟</span>
+        <span class="c-2 text-onback-medium mb-medium">برای افتتاح حساب آنلاین در بانک سامان وارد موبایلت شوید.</span>
+        <div class="d-flex justify-content-space-around">
+          <ngx-button (clickHandler)="openBankLink()"
+                      [style]="'link'"
+                      [mode]="'form'"
+          >
+            ورود به موبایلت
+          </ngx-button>
+        </div>
+
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div *ngIf="!errorData()" class="footer mt-small mb-massive ml-medium mr-medium">
+  <ngx-button (clickHandler)="onSubmit()"
+              size="large"
+              mode="form"
+              style="fill"
+              [fullWidth]="true"
+              [disabled]="!isValid() || !agreed()">
+    تایید و ادامه
+  </ngx-button>
+</div>
+
+<ngx-status-result
+  class="p-big mt-hulk"
+  *ngIf="errorData()"
+  [title]="errorData()?.title"
+  [description]="errorData()?.message"
+  [buttons]="errorData().buttons!"
+  [loading]="errorData()?.loading!"
+  (clicked)="closeClick($event)"
+>
+  <ng-container status-image>
+    <img [src]="errorData()?.staticImage" alt="">
+  </ng-container>
+</ngx-status-result>

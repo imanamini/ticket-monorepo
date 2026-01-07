@@ -1,0 +1,21 @@
+@use "./bnpl-pay-header-variables" as variables;
+@import "variables";
+
+.title {
+  border-bottom: 1px solid $swatch_steel_200;
+  height: variables.$header-title-height;
+}
+
+.info {
+  border-bottom: 1px solid $swatch_steel_200;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  height: variables.$header-info-height;
+}
+
+.info-amount {
+  font-size: 14px;
+  line-height: 24px;
+  color: $swatch_steel_900;
+  font-weight: 500;
+}

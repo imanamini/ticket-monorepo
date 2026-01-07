@@ -1,0 +1,25 @@
+<div #bankCard (mouseup)="clickedEvent()" [ngStyle]="{'cursor': selectable ? 'pointer' : 'default'}" class="bank-card">
+  <div [attr.style]="'--bg1:' + bg" [class.small]="small" class="card">
+    <div class="top-section">
+      <div class="bank-icon">
+        <ui-image
+          [imageId]="cardInfo.logoImageId"
+          height="32px"
+          width="32px"
+        ></ui-image>
+      </div>
+      <ng-content select="[extraBankTitle]"></ng-content>
+      <div
+              class="bank-name">{{ ( cardInfo.bankName.indexOf('بانک') === 0 && small ? '' : ' بانک ' ) + cardInfo.bankName }}
+      </div>
+    </div>
+    <div class="bank-card-number">{{ cardNumber }}</div>
+    <div class="owner">
+      <span>{{ cardInfo?.expireDate }}</span>
+      <span>{{ cardInfo.cardOwner || cardInfo.cardHolder }}</span>
+    </div>
+    <div class="back-ground">
+      <ui-image [imageId]="cardInfo.imageId"></ui-image>
+    </div>
+  </div>
+</div>

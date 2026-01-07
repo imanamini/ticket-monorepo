@@ -1,0 +1,18 @@
+@import '../../../../../styles/layout/variables';
+.limitation-documents-skeleton-holder {
+  margin-top: 10px;
+
+  .limitation-documents-skeleton {
+    width: 50%;
+    max-width: 360px;
+    height: 8px;
+    background-color: $swatch_steel_200;
+    border-radius: 100px;
+    &:not(:last-of-type) {
+      margin-bottom: 32px;
+    }
+    &::before {
+      background-color: $swatch_steel_200;
+    }
+  }
+}

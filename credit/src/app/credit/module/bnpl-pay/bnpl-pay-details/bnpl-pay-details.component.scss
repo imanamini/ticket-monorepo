@@ -1,0 +1,12 @@
+@import "variables";
+
+:host {
+  height: 100%;
+  direction: rtl;
+  background-color: #fff;
+}
+
+.full-width-button {
+  display: block;
+  width: 100%;
+}

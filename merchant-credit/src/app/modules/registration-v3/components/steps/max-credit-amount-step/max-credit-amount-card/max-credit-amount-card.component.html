@@ -1,0 +1,7 @@
+<div (click)="onCardClick()" class="document-card" [ngClass]="{'is-selected': selected}">
+  <div class="content">
+    <h3 class="title">{{ maxCreditAmount }} <span class="rial">ریال</span></h3>
+    <span class="description">{{ creditAmount.description }}</span>
+  </div>
+  <div class="selection-status" [ngClass]="{'is-selected': selected}"></div>
+</div>

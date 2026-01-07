@@ -1,0 +1,40 @@
+<div class="status-page" *ngIf="detail" [ngClass]="{'in-box-mode': inBoxMode}">
+  <div class="status-color-box" [ngStyle]="{backgroundColor: detail.color}"></div>
+  <div class="status-page-title-bar">
+    <div class="title-bar-right-action">
+      <div class="back-icon" (click)="onBack()"></div>
+    </div>
+    <div class="status-page-title">{{detail.status}}</div>
+    <div class="title-bar-left-action"></div>
+  </div>
+  <div class="status-page-card">
+    <div class="card-icon"></div>
+    <div class="status-amount-info" *ngIf="detail.header">
+      <div class="amount-title">{{detail.header.label}}</div>
+      <div class="amount-value">
+        {{detail.header.value | thousands}}
+      </div>
+    </div>
+    <div class="status-info-table" *ngIf="detail.details">
+      <div class="status-info-row" *ngFor="let item of detail.details">
+        <div class="status-info-title">{{item.key}}</div>
+        <div class="status-info-value" [ngClass]="{'important-info': item.copyable}">{{item.value}}</div>
+      </div>
+    </div>
+    <div class="status-message" *ngIf="warningMessage">{{warningMessage}}</div>
+    <div class="status-footer">
+      <div class="footer-logo"></div>
+    </div>
+  </div>
+  <div class="status-cta-wrapper">
+    <div class="cat-col-secondary">
+      <ui-button appearance="OUTLINE-STEEL" *ngIf="canCancel">لغو درخواست</ui-button>
+    </div>
+    <div class="cat-col-primary">
+      <a href="tel:+982153924000">
+        <ui-button>تماس با پشتیبانی</ui-button>
+      </a>
+    </div>
+  </div>
+</div>
+<page-loading [active]="!detail"></page-loading>

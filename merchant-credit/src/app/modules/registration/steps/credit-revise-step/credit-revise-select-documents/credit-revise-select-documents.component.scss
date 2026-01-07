@@ -1,0 +1,22 @@
+@import '../../../../../styles/layout/variables';
+:host {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.7;
+}
+.select-doc-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+.divider {
+  height: 24px;
+}
+.select-doc-subtitle {
+  font-size: 14px;
+  color: $swatch_steel_500;
+  margin-top: 8px;
+  line-height: 1.7;
+}

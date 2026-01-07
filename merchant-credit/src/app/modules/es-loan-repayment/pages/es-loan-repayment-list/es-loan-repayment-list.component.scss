@@ -1,0 +1,42 @@
+:host {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--surface-back);
+}
+
+.body {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  width: 360px;
+  height: 100%;
+}
+
+.action {
+  background-image: url("../../../../../assets/icons/icon-back.svg");
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.logo {
+  background-image: url("../../../../../assets/icons/saman-icon.svg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+}
+
+.arrow-icon {
+  background-image: url("../../../../../assets/icons/left-icon-blue.svg");
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+

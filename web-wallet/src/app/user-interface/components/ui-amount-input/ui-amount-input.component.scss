@@ -1,0 +1,191 @@
+@import "../../../layout/variables";
+@import "../../../layout/mixins/flex";
+@import "../../../layout/mixins/font-size";
+@import "../../../layout/mixins/device";
+
+.ui-amount-input {
+
+  .unchangeable-amount {
+    font-size: 32px;
+    font-family: $font-name;
+    margin-top: 10px;
+  }
+
+  .input-resizer {
+    align-items: center;
+    position: relative;
+    height: 40px;
+
+    .input-has-value {
+      text-align: left;
+    }
+
+    &::after,
+    input {
+      width: auto;
+      min-width: 1em;
+      grid-area: 1/2;
+      height: 40px;
+      margin: 2px 0 0 4px;
+      direction: ltr;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-family: $font-name;
+    }
+
+    input {
+      &:placeholder-shown {
+        color: #b2b2b2;
+        direction: rtl;
+        max-height: 46px;
+        font-weight: bold;
+        @include fontSize(14);
+      }
+    }
+  }
+
+  .input-wrapper {
+    width: 279px;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    label {
+      margin-top: 10px;
+      font-family: $font-name;
+      color: #2c3544;
+      font-weight: 500;
+      font-size: 18px;
+    }
+  }
+}
+
+:host ::ng-deep {
+
+  .read-only {
+    .mat-mdc-form-field-outline {
+      background-color: #f8f8f8;
+      border-radius: 16px;
+    }
+
+    &.mat-mdc-form-field-appearance-outline .mat-form-field-outline {
+      color: transparent !important;
+    }
+
+    input, label {
+      color: $gray !important;
+    }
+  }
+
+  mat-form-field {
+    .mdc-notched-outline__leading {
+      min-width: 16px !important;
+      border-radius: 16px 0 0 16px !important;
+    }
+
+    .mdc-notched-outline__trailing {
+      border-radius: 0 16px 16px 0 !important;
+    }
+
+    .mat-mdc-form-field-infix {
+      padding: 10px 0;
+      height: 56px;
+      border-top: none;
+      @include flex-center;
+    }
+
+    .mat-mdc-error {
+      line-height: 16px;
+      text-align: center;
+      @include fontSize(12);
+    }
+
+    .mat-mdc-form-field-hint {
+      line-height: 17px;
+      width: 100%;
+      text-align: center;
+      @include fontSize(12);
+      color: #666 !important;
+    }
+
+    .mat-mdc-form-field-hint-spacer {
+      display: none;
+    }
+
+    .mat-mdc-form-field-flex {
+      input {
+        padding: 0 50px;
+      }
+
+      .counter-spinner {
+        height: 32px;
+        min-width: 32px;
+        margin-top: 3px;
+        @include flex-center;
+        display: none !important;
+
+        &.counter-active-increase {
+          background: url('./images/counter-blue-plus.svg') no-repeat 0 0/100%;
+          cursor: pointer;
+        }
+
+        &.counter-active-decrease {
+          background: url('./images/counter-blue-minus.svg') no-repeat 0 0/100%;
+          cursor: pointer;
+        }
+
+        &.counter-disable-increase {
+          background: url('./images/spinner-plus.svg') no-repeat 0 0/100%;
+          cursor: not-allowed;
+        }
+
+        &.counter-disable-decrease {
+          background: url('./images/spinner-minus.svg') no-repeat 0 0/100%;
+          cursor: not-allowed;
+        }
+
+
+      }
+    }
+
+    &.has-counter {
+      .mat-mdc-form-field-flex {
+        input {
+          padding: 0;
+        }
+
+        .counter-spinner {
+          display: flex !important;
+        }
+      }
+    }
+
+    &:not(.has-counter) {
+      .mat-mdc-form-field-flex {
+        &::after {
+          top: 50%;
+          left: 15px;
+          width: 32px;
+          content: ' ';
+          height: 28px;
+          position: absolute;
+          transform: translateY(-50%);
+          background: url('./images/input-amount-rial.svg') no-repeat 0 0/100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .input-has-value {
+    font-size: 7vw !important;
+  }
+  label {
+    font-size: 4vw !important;
+  }
+}

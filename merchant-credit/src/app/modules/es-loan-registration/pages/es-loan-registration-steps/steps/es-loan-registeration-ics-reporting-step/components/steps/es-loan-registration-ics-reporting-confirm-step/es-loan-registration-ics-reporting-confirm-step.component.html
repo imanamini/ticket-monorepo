@@ -1,0 +1,37 @@
+<div class=" es-loan-ics-reporting-confirm-step d-flex flex-column gap-huge pt-big pb-big pl-medium pr-medium">
+  <p class="b-3 text-onback-high">
+    برای تعیین سقف تسهیلات و دریافت رتبه اعتباری، اطلاعات زیر را تایید کنید.
+  </p>
+  <div class="d-flex flex-column p-minus radius-minus border-color-light border-300">
+    <div class="b-2 text-onback-high d-flex justify-content-space-between ">
+      <span>نام</span>
+      <span>{{profile()?.merchantName}}</span>
+    </div>
+    <ngx-divider
+      class="mt-minus mb-minus"
+      [color]="BorderColorsEnum.Light"
+      orientation="horizontal"></ngx-divider>
+    <div class="b-2 text-onback-high d-flex justify-content-space-between ">
+      <span>کدملی</span>
+      <span>{{profile()?.nationalCode}}</span>
+    </div>
+    <ngx-divider
+      class="mt-minus mb-minus"
+      [color]="BorderColorsEnum.Light"
+      orientation="horizontal"></ngx-divider>
+    <div class="b-2 text-onback-high d-flex justify-content-space-between ">
+      <span>شماره موبایل</span>
+      <span>{{profile()?.cellNumber}}</span>
+    </div>
+  </div>
+</div>
+<div class="footer mt-small mb-medium ml-medium mr-medium">
+  <ngx-button (clickHandler)="onSubmit()"
+              size="large"
+              mode="form"
+              style="fill"
+              [fullWidth]="true"
+  >
+    تایید و ادامه
+  </ngx-button>
+</div>

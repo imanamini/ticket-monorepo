@@ -1,0 +1,43 @@
+.result {
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .illustration {
+    margin: 0 auto 35px;
+    width: 138px;
+    height: 112px;
+    background: transparent no-repeat center/100%;
+  }
+
+  &.is-failed {
+    .illustration {
+      width: 138px;
+      height: 112px;
+      background-image: url("./signature-failed.svg");
+    }
+  }
+
+  h2 {
+    color: #2C3544;
+    font-size: 16px;
+    margin-bottom: 1em;
+  }
+
+  p {
+    color: #6E798D;
+  }
+}
+
+.back-to-home {
+  min-width: 180px;
+  margin: 20px 0 0;
+}
+
+@media (max-width: 767px) {
+  .back-to-home {
+    width: 100%;
+  }
+}

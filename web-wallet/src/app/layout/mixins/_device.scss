@@ -1,0 +1,21 @@
+$MOBILE_MAX_WIDTH: 812px;
+$MOBILE_SM_MAX_WIDTH: 420px;
+
+@mixin mediaMobile {
+  @media (max-width: $MOBILE_MAX_WIDTH) {
+    @content
+  }
+}
+
+@mixin mediaDesktop {
+  @media (min-width: $MOBILE_MAX_WIDTH+1) {
+    @content
+  }
+}
+
+
+@mixin mediaMaxWidth($maxWidth) {
+  @media (max-width: $maxWidth) {
+    @content
+  }
+}

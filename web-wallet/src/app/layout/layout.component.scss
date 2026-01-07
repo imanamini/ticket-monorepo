@@ -1,0 +1,105 @@
+@import "./partials/reset";
+@import "fontiran";
+@import "./partials/text";
+@import "./partials/material";
+@import "./variables";
+@import "./mixins/device";
+@import "./custom-styles/shake-animation";
+@import "./custom-styles/customizing-material";
+@import "new-font";
+
+app-layout {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  background: #fff;
+  padding: 64px 0;
+  direction: rtl;
+  color: $text-color;
+}
+
+.full-height {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-full-height {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.route-component {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  justify-content: center;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+app-root > div {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+html {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  font-size: 14px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+#main-container {
+  width: 640px;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+#main-container {
+  > :not(router-outlet) {
+    @extend .route-component
+  }
+}
+
+@include mediaMobile() {
+  #main-container {
+    max-width: 100%;
+    width: 100%;
+    min-height: 50vh;
+  }
+  .route-component {
+    display: block;
+  }
+  body {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}

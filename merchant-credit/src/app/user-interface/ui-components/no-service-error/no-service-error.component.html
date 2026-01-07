@@ -1,0 +1,17 @@
+<div class="no-service-message">
+  <div class="top-section">
+    <div [class]="noServiceErrorData.staticImage"></div>
+    <div class="message-title">
+      {{noServiceErrorData.title}}
+    </div>
+    <div class="message-description">
+      {{ noServiceErrorData.message}}
+    </div>
+  </div>
+  <div class="footer-section">
+    <ui-button *ngIf="noServiceErrorData.primaryBtn" [ngStyle]="{'width': noServiceErrorData.secondaryBtn ? '40%' : '100%'}"  appearance="FLAT-BLUE"
+               (clicked)="onPrimary()">{{ noServiceErrorData.primaryBtn}}
+    </ui-button>
+    <ui-button *ngIf="noServiceErrorData.secondaryBtn" class="secondary-cta" (clicked)="onSecondary()"> {{ noServiceErrorData.secondaryBtn}}</ui-button>
+  </div>
+</div>

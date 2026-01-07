@@ -1,0 +1,8 @@
+<div class="container flex-full-height" [ngClass]="{'has-fade': hasFade, 'gray-fade': fadeColor === 'gray'}">
+  <ng-scrollbar class="flex-full-height" [disabled]="disableCustomScroll || disabled" [position]="leftScrollbarPosition ? 'invertAll' : 'invertX'">
+    <div [ngClass]="{'with-padding': withPadding, 'flex-full-height': fullHeightContent}">
+      <ng-content></ng-content>
+    </div>
+  </ng-scrollbar>
+</div>
+

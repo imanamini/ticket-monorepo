@@ -1,0 +1,322 @@
+@import "src/app/layout/mixins/font-size";
+@import "src/app/layout/mixins/device";
+@import "src/app/layout/mixins/flex";
+@import "src/app/layout/variables";
+
+.hidden-lg {
+  display: none;
+}
+
+.payment-method-container {
+  padding: 30px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .more-payment-methods {
+    color: $digipay-blue-primary;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+    text-align: right;
+  }
+}
+
+.features-title {
+  color: $gray;
+  min-height: 24px;
+  font-weight: bold;
+  line-height: 1.71;
+  @include fontSize(14);
+  @include flex-center-start;
+  margin-bottom: 16px !important;
+}
+
+.show-in-mobile {
+  display: none;
+}
+
+.payment-method:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.payment-method {
+  padding: 16px;
+  cursor: pointer;
+  min-height: 72px;
+  transition: 0.3s;
+  position: relative;
+  border-radius: 16px;
+  background-color: $white;
+  border: solid 1px $light-blue;
+  display: flex;
+  justify-content: space-between;
+
+  .icon {
+    background-color: $light-blue;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    margin-left: 16px;
+  }
+
+  > .payment-method-logo-wrapper {
+    width: 40px;
+    height: 40px;
+    transition: 0.3s;
+    margin-left: 16px;
+    border-radius: 12px;
+    filter: grayscale(100%);
+    @include flex-center;
+    background-color: $light-blue;
+
+    &::before {
+      width: 22px;
+      height: 20px;
+      position: absolute;
+      content: "";
+      top: 26%;
+      right: 20%;
+      opacity: 0.35;
+      background: #fffbfb;
+    }
+
+    > .item-logo {
+      display: block;
+      width: 40px;
+      height: 40px;
+      transition: 0.3s;
+    }
+  }
+
+  > .details {
+    flex-grow: 1;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+
+    > .title {
+      height: 20px;
+      color: $dark-gray;
+      font-weight: bold;
+      text-align: right;
+      @include fontSize(14);
+
+      > .description {
+        margin-top: 5px;
+        height: 21px;
+        color: $blue-gray;
+        font-size: 12px;
+        font-weight: normal;
+        line-height: 1.2;
+        @include flex-center-start;
+
+        ui-currency::ng-deep span {
+          color: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+        }
+      }
+
+    }
+
+    .badge {
+      @include flex-center;
+      min-width: 100px;
+      width: fit-content;
+
+      > .badge-item {
+        border: 1px solid #afb9c5;
+        color: blue;
+        background-color: #afb9c5;
+        font-weight: normal;
+        padding: 0 8px;
+        height: 20px;
+        border-radius: 16px;
+        @include flex-center;
+        @include fontSize(10);
+
+      }
+    }
+
+    .action-button {
+      @include flex-center;
+
+      .action-button-item {
+        border: 1px solid #f0f5ff;
+        color: blue;
+        background-color: #f0f5ff;
+        font-weight: bold;
+        padding: 0 16px;
+        height: 32px;
+        border-radius: 8px;
+        @include flex-center;
+        @include fontSize(12);
+      }
+    }
+
+  }
+
+  > .action {
+    top: 20px;
+    left: 16px;
+    position: absolute;
+    @include flex-center;
+
+    > .action-button {
+      height: 32px;
+      cursor: pointer;
+      font-size: 12px;
+      min-width: 96px;
+      font-weight: bold;
+      user-select: none;
+      padding-left: 8px;
+      padding-right: 8px;
+      border-radius: 8px;
+      color: $digipay-blue;
+      @include flex-center;
+      background-color: $digipay-blue-light;
+    }
+  }
+
+  .selection {
+    top: 24px;
+    left: 16px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    @include flex-center;
+
+    > div {
+      top: 0;
+      left: 0;
+      width: 24px;
+      height: 24px;
+      position: absolute;
+
+      &.selection-not-filled {
+        background: url("../../../../../assets/image/tgs/circle-gray.svg") no-repeat 0 0/100%;
+      }
+
+      &.selection-filled {
+        opacity: 0;
+        transition: 0.3s;
+        filter: grayscale(1) brightness(300%);
+        transform: scale(1.5);
+        background: url("../../../../../assets/image/tgs/checked-filled-blue.svg") no-repeat 0 0/100%;
+      }
+    }
+  }
+
+  &:hover {
+    border-color: $bright-gray;
+  }
+
+  &.item-selected {
+    transition: 0.15s;
+    border: solid 1px $digipay-blue-primary;
+
+    .icon {
+      background-color: $digipay-blue-light;
+    }
+
+    .selection {
+      > div {
+        &.selection-filled {
+          opacity: 1;
+          transition: 0.1s;
+          transform: scale(1);
+          filter: grayscale(0) brightness(100%);
+        }
+      }
+    }
+  }
+
+  &.item-disable {
+    border: solid 1px $disable-border;
+    transition: 0.7s;
+
+    .title {
+      cursor: not-allowed;
+      filter: grayscale(100%);
+      opacity: 0.3;
+    }
+
+    .icon {
+      cursor: not-allowed;
+      filter: grayscale(100%);
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes fallOverBadge {
+    0% {
+      transform: rotate(0);
+    }
+    40% {
+      transform: rotate(5deg);
+    }
+    100% {
+      transform: rotate(26deg);
+    }
+  }
+}
+
+
+@include mediaMobile() {
+
+  .loader-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hidden-lg {
+    display: block;
+  }
+
+  .payment-method-container {
+    display: grid;
+    grid-template-rows: 1fr auto 1fr auto auto 1fr;
+    align-items: center;
+    height: 100%;
+    justify-content: unset;
+  }
+
+  .show-in-mobile {
+    display: block;
+  }
+
+  .logo-wrapper {
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    width: 100%;
+
+    .logo {
+      background: url("../../../../../assets/image/tgs/logo-digipay.svg") no-repeat 0 0/100%;
+      max-width: 120px;
+      width: 100%;
+      display: block;
+    }
+  }
+
+  .features-title {
+    text-align: right;
+  }
+}
+
+.center {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.hide {
+  display: none !important;
+}

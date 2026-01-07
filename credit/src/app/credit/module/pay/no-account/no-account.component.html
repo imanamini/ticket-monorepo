@@ -1,0 +1,21 @@
+<credit-ui-content-box
+  class="error-content-box"
+  [contentBoxTitle]="title"
+  [showLogo]="false"
+  [showHeader]="true">
+  <img class="error-logo"
+       src="{{ image }}"
+       alt="logo">
+
+  <h2 class="error-title">{{message}}</h2>
+  <div class="try-again">
+    <p *ngFor="let item of description">
+      {{item}}
+    </p>
+  </div>
+  <div class="buttons">
+    <credit-ui-button (buttonClick)="goToFailUrl()" appearance="default" [styles]="{width: '100%'}">
+      بازگشت به دیجیکالا
+    </credit-ui-button>
+  </div>
+</credit-ui-content-box>

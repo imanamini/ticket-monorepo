@@ -1,0 +1,51 @@
+@import "../../../global-styles/variables";
+
+.ui-amount-input {
+  input {
+    direction: ltr;
+    font-family: $primary-font;
+    text-align: center;
+    font-size: 16px;
+  }
+}
+
+.field {
+  width: 100%;
+}
+
+:host ::ng-deep {
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+  .mat-form-field-outline-start {
+    min-width: 16px !important;
+    border-radius: 8px 0 0 8px !important;
+  }
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+  .mat-form-field-outline-end {
+    border-radius: 0 8px 8px 0 !important;
+  }
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+  .mat-form-field-infix {
+    padding: 0 0 0.5em;
+  }
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+  .mat-form-field-flex {
+    input {
+      padding: 0 50px;
+    }
+    &::after {
+      content: ' ';
+      position: absolute;
+      left: 15px;
+      background: url('./images/input-amount-rial.svg') no-repeat 0 0/100%;
+      width: 32px;
+      height: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+.empty-btn{
+  cursor: pointer;
+  font-size: 25px;
+  color: #C0C0C0;
+}

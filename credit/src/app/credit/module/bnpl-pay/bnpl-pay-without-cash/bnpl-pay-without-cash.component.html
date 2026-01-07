@@ -1,0 +1,20 @@
+<div class="wrapper">
+  @if (!isDesktop()) {
+    <div class="header">
+      <div class="icon" (click)="backHandler()"></div>
+      <div>پرداخت اعتباری دیجی‌پی</div>
+    </div>
+  }
+
+  <div [ngClass]="['body', isDesktop() ? 'isDesktop' : '']">
+    <app-bnpl-pay-friction
+      (onCancel)="backHandler()"
+      (onConfirm)="onPay.emit()"
+      [amount]="amount()"
+      [date]="installmentEffectiveDate()"
+      [installmentCount]="1"
+    />
+  </div>
+
+  <div class="footer"></div>
+</div>

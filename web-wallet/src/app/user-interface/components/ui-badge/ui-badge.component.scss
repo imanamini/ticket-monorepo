@@ -1,0 +1,27 @@
+@import "../../../layout/mixins/flex";
+
+.ui-badge {
+  height: 20px;
+  color: #ffffff;
+  display: block;
+  font-size: 10px;
+  text-align: right;
+  font-weight: bold;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 8px;
+  width: fit-content;
+  @include flex-center;
+
+  &.default {
+    background-color: #0040ff;
+  }
+
+  &.green {
+    background-color: #00cc6d;
+  }
+
+  &.red {
+    background-color: #ff2638;
+  }
+}

@@ -1,0 +1,27 @@
+<div class="gift-card">
+
+  <div class="header">
+    <span class="title">
+      کارت هدیه
+    </span>
+    <ui-button (buttonClick)="openAddGiftCardBottomSheet()" theme="digipay" appearance="outline-light-blue">
+      <div class="icon plus"></div>
+      افزودن کارت هدیه
+    </ui-button>
+  </div>
+
+  <div *ngIf="balances.length === 0;else GiftList" class="empty">
+    <img class="gift-img" src="/src/assets/image/gift-card/gift.svg">
+    <p class="empty-text">
+      موجودی کارت‌های هدیه این‌جا نمایش داده می‌شود
+    </p>
+  </div>
+
+  <ng-template #GiftList>
+    <app-gift-information
+      [balances]="balances"
+    ></app-gift-information>
+  </ng-template>
+
+
+</div>

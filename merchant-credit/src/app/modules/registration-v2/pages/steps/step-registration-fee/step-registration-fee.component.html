@@ -1,0 +1,52 @@
+<ui-content-card cardTitle="پرداخت هزینه" [backArrow]="true" (backClicked)="onBackClick()">
+
+  <ng-container card-body>
+    <ng-container *ngIf="!loading">
+      <div class="amount-box mb-3">
+        <div class="header">
+          <h4 class="title">
+            <div class="icon"></div>
+            هزینه ثبت‌نام
+          </h4>
+
+          <div class="amount">
+            {{ totalAmount | thousands }}
+            <span class="unit"> ریال</span>
+          </div>
+        </div>
+
+        <div class="detail" *ngIf="cardDescription">
+          <div class="label">بابت</div>
+          <div class="detail-text">{{ cardDescription }}</div>
+        </div>
+
+      </div>
+
+      <cost-details [items]="costItems"></cost-details>
+
+      <ui-note-box
+        noteTitle="توجه داشته باشید"
+        note="درصورت بروز هر گونه مشکل و یا رد شدن در مراحل ثبت‌نام، مابقی هزینه‌ی واریزی در مدت کمتر از ۲۴ ساعت به کارت مشتری بازمی‌گردد."
+      ></ui-note-box>
+    </ng-container>
+
+    <ui-spinner *ngIf="loading" title="در حال بارگذاری"></ui-spinner>
+  </ng-container>
+
+  <div card-footer class="footer" *ngIf="!loading">
+
+    <div class="total-payable-amount">
+      <div>مبلغ قابل پرداخت</div>
+      <span class="amount">
+        {{ totalAmount | thousands }}
+        <span class="unit">ریال</span>
+      </span>
+    </div>
+
+    <ui-button class="primary-action"
+               (clicked)="initializePayment()"
+               [disabled]="pendingAction">پرداخت هزینه</ui-button>
+  </div>
+
+</ui-content-card>
+

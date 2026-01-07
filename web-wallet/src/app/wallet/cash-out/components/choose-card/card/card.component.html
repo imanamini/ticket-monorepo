@@ -1,0 +1,41 @@
+<ng-container *ngIf="cards.length > 0 ; else Loading">
+
+  <ui-horizontal-swiper
+          (swiped)="saveCard(this.cards[$event])"
+          *ngIf="cards.length > 1 ; else singleCard"
+          [length]="cards.length"
+          [showDots]="cards.length <=5">
+    <ng-container *ngFor="let card of cards;let number = index">
+      <bank-card
+              *horizontalSwipeItem
+              [cardInfo]="card"
+              [id]="number"
+              [selectable]="true">
+      </bank-card>
+    </ng-container>
+  </ui-horizontal-swiper>
+
+  <ng-template #singleCard>
+    <bank-card [cardInfo]="cards[0]" [selectable]="true"></bank-card>
+  </ng-template>
+
+  <footer-with-currency
+          (submit)="submit.emit(selectedCard)"
+          [disabled]="isLoading"
+          [submitText]="'انتخاب کارت'">
+  </footer-with-currency>
+
+</ng-container>
+
+
+<ng-template #Loading>
+  <div *ngIf="!errorGetConfig; else ErrorMessage" class="loader-container">
+    <div class="loader"></div>
+  </div>
+  <ng-template #ErrorMessage>
+    <div class="alert-danger">
+      {{ errorGetConfig }}
+    </div>
+  </ng-template>
+</ng-template>
+

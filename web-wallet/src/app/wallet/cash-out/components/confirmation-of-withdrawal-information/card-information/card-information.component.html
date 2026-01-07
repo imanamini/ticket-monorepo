@@ -1,0 +1,8 @@
+<div class="card-information">
+  <div class="bank-logo">
+    <ui-image [imageId]="selectedCard.bankLogoImageId" width="32px"></ui-image>
+  </div>
+  <span class="amount">{{ amount | thousands }} ریال </span>
+  <span class="action"> واریز به کارت {{ selectedCard.cardHolder || selectedCard.cardOwner }}</span>
+  <span class="card-number">{{ userCardInformation.sourceCardNumber | cardNumber }}</span>
+</div>

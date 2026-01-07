@@ -1,0 +1,31 @@
+<app-card
+  *ngIf="featureInformation; else loading"
+  [submitText]="cardConfig?.submitText"
+  [amount]="featureInformation?.amount"
+  [headerTitle]="cardConfig?.headerTitle"
+  [headerCloseButtonType]="'BACK'"
+  [customizeBackAction]="true"
+  [hasFooter]="false"
+  (onBackClicked)="back()"
+  (submit)="cashIn()">
+
+  <div body class="cash-in-container">
+    <div class="cash-in">
+        <app-invalid-amount [info]="featureInformation"></app-invalid-amount>
+    </div>
+
+    <ui-button
+      (buttonClick)="cashIn()"
+      appearance="default"
+      theme="digipay"
+      [fullWidth]="true">
+      {{(selectedFeature?.protectionState === TGS_PROTECTION_STATE.NONE) ? 'تایید مبلغ و پرداخت' : 'تایید مبلغ و ادامه'}}</ui-button>
+  </div>
+
+</app-card>
+
+<ng-template #loading>
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+</ng-template>

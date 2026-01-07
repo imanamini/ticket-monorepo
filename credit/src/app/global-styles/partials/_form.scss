@@ -1,0 +1,18 @@
+.form-secondary-text,
+.form-primary-text {
+  text-align: center;
+  direction: rtl;
+  line-height: 1.5em;
+}
+
+.form-primary-text {
+  color: rgba(0,0,0,0.7);
+  font-size: 14px;
+}
+
+.form-secondary-text {
+  color: rgba(0,0,0,0.5);
+  font-size: 12px;
+  font-weight: 100;
+  margin-top: 8px;
+}

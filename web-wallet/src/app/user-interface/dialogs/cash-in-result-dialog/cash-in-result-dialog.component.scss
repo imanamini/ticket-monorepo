@@ -1,0 +1,42 @@
+@import "../../../layout/mixins/font-size";
+
+.cash-in-result-dialog {
+  .result-icon {
+    display: block;
+    width: 108px;
+    height: 90px;
+    margin: 12px auto 48px;
+
+    &.is-success {
+      background: url('./images/cash-in-dialog-success.svg') no-repeat 0 0/100%;
+    }
+
+    &.is-failed {
+      background: url('./images/cash-in-dialog-failed.svg') no-repeat 0 0/100%;
+    }
+  }
+
+  .result-text {
+    text-align: center;
+    @include fontSize(16);
+  }
+
+  .tracking-code {
+    text-align: center;
+    margin: 8px 0 0;
+    @include fontSize(12);
+
+    .code {
+      margin-right: 4px;
+      display: inline-block;
+    }
+  }
+
+  .action {
+    margin: 24px 0 0 0;
+  }
+
+  ui-button {
+    display: block;
+  }
+}

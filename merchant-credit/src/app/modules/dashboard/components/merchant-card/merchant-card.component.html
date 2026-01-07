@@ -1,0 +1,48 @@
+<div class="merchant-card-wrapper " [ngClass]="merchant.status === 0 ? 'border' : ''">
+  <header class="row-center" [ngStyle]="merchant.status === 1 ? {marginTop: '16px'} : {marginTop: '0'} ">
+    <div class="content ">
+      <span class="icon">
+        <ui-api-image *ngIf="merchant.imageId" [imageId]="merchant.imageId" width="32px" height="32px"></ui-api-image>
+      </span>
+      <h3 class="heading">{{merchant.title}} </h3>
+    </div>
+    <div class="options" *ngIf="merchant.status === 1">
+      <div class="more" (click)="openButtonSheet()"></div>
+    </div>
+  </header>
+  <div class="separator" *ngIf="merchant.status === 0"></div>
+  <div class="detail-row row-center" *ngIf="merchant.status === 1">
+    <div class="detail-row">
+      <div class="title row-center gap-2">اعتبار باقی مانده: <span
+        #tooltip="matTooltip"
+        [matTooltip]="'مبلغ مجازی که می توانید با آن درخواست تسویه بدهید.'"
+        (click)="tooltip.toggle()"
+        class="info-icon"></span></div>
+      <div class="value green"><span class="value-price">{{merchant.remainingCreditAmount | number }}</span> ریال
+      </div>
+    </div>
+    <ngx-divider
+      class="divider"
+      [color]="BorderColorsEnum.Light"
+      orientation="vertical"></ngx-divider>
+    <div class="detail-row">
+      <div class="title row-center">سقف اعتبار</div>
+      <div class="value"><span class="value-price">{{merchant.maxCreditAmount | number }}</span> ریال</div>
+    </div>
+  </div>
+  <div class="detail-row row-center" *ngIf="merchant.status === 0">
+    <div>
+      <div class="title row-center">
+        آخرین وضعیت: <span
+        #tooltip="matTooltip"
+        matTooltip="تا این مرحله شما در فرایند ثبت‌نام پیش رفته‌اید."
+        (click)="tooltip.toggle()"
+        [matTooltipPosition]="'above'"
+        class="info-icon"></span></div>
+      <div class="value">{{merchant.registrationStatus}}</div>
+    </div>
+    <div>
+      <button class="enroll-button" (click)="continueJourney(merchant.creditId)">ادامه ثبت نام</button>
+    </div>
+  </div>
+</div>

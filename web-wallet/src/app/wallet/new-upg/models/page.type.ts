@@ -1,0 +1,14 @@
+export type PageType =
+  'TERMS_AND_CONDITIONS'
+  | 'PAYMENT_METHOD'
+  | 'CASH_IN'
+  | 'WALLET_PAY'
+  | 'PROTECTION'
+  | 'ERROR_OFFLINE'
+  | 'OFFLINE'
+  | 'SERVICE_CONNECTION'
+  | 'CASH_IN_REDIRECT'
+  | 'TICKET_EXPIRED'
+  | 'OTP'
+  | 'PIN'
+  ;

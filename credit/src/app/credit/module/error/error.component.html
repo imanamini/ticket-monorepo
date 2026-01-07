@@ -1,0 +1,24 @@
+<credit-ui-content-box
+  [showHeader]="true"
+  [showLogo]="false"
+  class="error-content-box"
+  contentBoxTitle="عملیات ناموفق">
+  <img alt="logo"
+       class="error-logo"
+       src="credit-assets-new/images/credit-error.svg">
+
+  <h2 class="error-title">{{ message }}</h2>
+  <p class="try-again">در حال حاضر امکان پرداخت از اعتبار امکان پذیر نیست</p>
+  <p class="try-again">لطفا دوباره تلاش کنید</p>
+
+  @if (storageService.get('cancelRedirect')) {
+    <div class="cancel-wrapper">
+      <ngx-button
+        [size]="'medium'"
+        (clickHandler)="cancel()"
+      >
+        لغو پرداخت
+      </ngx-button>
+    </div>
+  }
+</credit-ui-content-box>

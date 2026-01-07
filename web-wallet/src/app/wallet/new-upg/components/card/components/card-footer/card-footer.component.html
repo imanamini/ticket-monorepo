@@ -1,0 +1,34 @@
+<div id="tgsFooter" class="footer" [ngClass]="{'too-small-resolution': weAreInBadArrange}">
+
+  <div *ngIf="amount" class="footer-description">
+
+    <div class="footer-label">
+      <div class="label-icon"></div>
+
+      <div class="label-text">
+        <span>{{currencyText}}</span>
+      </div>
+    </div>
+
+    <div class="amount">
+      <ui-currency
+        *ngIf="amount"
+        [value]="amount">
+      </ui-currency>
+    </div>
+  </div>
+
+  <div [ngStyle]="!amount ? {'width':'100%'} : null" class="button-container">
+    <ui-button
+      appearance="default"
+      theme="digipay"
+      class="submit-button full-width"
+      (buttonClick)="onSubmit.emit()"
+      [disabled]="disableButton"
+      [fullWidth]="true">
+      <span *ngIf="!submitLoading">{{submitText || 'ادامه'}}</span>
+      <div *ngIf="submitLoading" class="loader"></div>
+    </ui-button>
+  </div>
+
+</div>

@@ -1,0 +1,26 @@
+.bnpl-landing-footer {
+  padding: 8px 0;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    border: 1px solid rgba(6, 25, 98, .06);
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .bnpl-landing-footer .footer-content {
+    justify-content: left;
+  }
+}

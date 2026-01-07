@@ -1,0 +1,104 @@
+@import '../../../layout/mixins/flex';
+@import '../../../layout/mixins/device';
+@import '../../../layout/mixins/font-size';
+@import '../../../layout/mixins/line-height';
+@import "../../../layout/variables";
+
+:host {
+  width: calc(50% - 7px);
+}
+
+.bank-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  color: #263140;
+  background-color: #fff;
+  height: 52px;
+  padding: 0 10px;
+  font-weight: 700;
+  box-shadow: 0 0 0 1px #d5dde6 inset;
+  margin: 0 0 12px;
+  cursor: pointer;
+  @include fontSize(14);
+  @include lineHeight(20);
+  transition: 0.3s;
+
+  .title {
+    font-size: 14px;
+  }
+
+  .daily-harvest-ceiling {
+    height: 0;
+    opacity: 0;
+    width: 100%;
+    font-size: 10px;
+    transition: all 0.1s ease-in;
+
+    > span {
+      font-size: 12px;
+    }
+  }
+
+  > .icon {
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin-left: 12px;
+    margin-right: 10px;
+    border-radius: 8px;
+    background: url("../../../../assets/logo/icon-96x96.png") no-repeat 0 0/100%;
+
+    > ui-image {
+      transition: 0.3s;
+      background-color: #fff;
+    }
+  }
+
+  &.selected {
+    .bank-text {
+      position: relative;
+
+      .title {
+        font-size: 12px;
+        transition: all 0.2s ease-out;
+      }
+
+      .daily-harvest-ceiling {
+        opacity: 1;
+        height: 18px;
+        transition: opacity 0.2s ease-in;
+      }
+    }
+  }
+
+  &:hover,
+  &.selected {
+    transition: 0.15s;
+    background-color: $digipay-blue-light;
+    box-shadow: 0 0 0 2px $digipay-blue-primary inset;
+
+    p {
+      color: $digipay-blue-primary;
+    }
+
+    > .icon {
+      > ui-image {
+        transition: 0.15s;
+        background-color: $digipay-blue-light;
+      }
+    }
+  }
+}
+
+@include mediaMobile() {
+  .bank-item {
+    padding-left: 2px;
+    padding-right: 2px;
+
+    > .icon {
+      margin-left: 5px;
+    }
+  }
+}

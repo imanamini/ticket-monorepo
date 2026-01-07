@@ -1,0 +1,21 @@
+@import '../../../../../layout/variables';
+
+.icon {
+  width: 72px;
+  height: 72px;
+  display: block;
+  margin: 0 auto 12px;
+  background: url("../../../../../../assets/image/direct-debit-plus/checkmark-square-error.svg") no-repeat 0 0/100%;
+}
+
+.description {
+  color: $dark-gray;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0 0 32px;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  line-height: 1.7;
+  direction: rtl;
+}

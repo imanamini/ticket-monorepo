@@ -1,0 +1,35 @@
+<div class="inputs-wrapper">
+  <p>
+    کد هویت سنجی به شماره زیر ارسال می‌شود!
+  </p>
+  <h2 class="mobile-number">{{ cellNumber }}</h2>
+
+  <ui-pin-input
+    [value]="code"
+    (pinChange)="onCodeChange($event)"
+    [hasError]="!!errorMessage"
+    type="OTP"></ui-pin-input>
+  <div class="otp-error-message" *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+
+  <div class="mt-4 actions">
+
+    <ui-count-down-text
+      *ngIf="!resendEnabled"
+      (finished)="onCountdownFinish()"
+      [showIcon]="true" [seconds]="countdownSeconds"></ui-count-down-text>
+
+    <span class="resend-action" *ngIf="resendEnabled" (click)="sendOtpAgain()">
+      <ng-container *ngIf="!resendingOtp">ارسال مجدد کد</ng-container>
+      <ng-container *ngIf="resendingOtp">در حال ارسال...</ng-container>
+    </span>
+  </div>
+
+</div>
+
+<step-footer
+  (buttonClick)="proceed()"
+  [buttonDisabled]="!canProceed || verifyingOtp"
+  [buttonText]="verifyingOtp ? 'در حال بررسی...' : 'تایید و ادامه'"
+></step-footer>

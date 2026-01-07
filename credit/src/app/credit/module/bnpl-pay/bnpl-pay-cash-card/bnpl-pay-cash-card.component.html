@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="total">
+    <div class="title">
+      <div class="icon icon-cash"></div>
+      <div class="text">بخش نقدی</div>
+    </div>
+
+    <div class="total-amount">{{ totalAmount() | thousands }} <span>ریال</span></div>
+  </div>
+
+  @if (prePaymentAmount() || fee()) {
+    <div class="detail">
+      @if (prePaymentAmount()) {
+        <div class="detail-item">
+          <div class="item-title">پیش‌پرداخت</div>
+
+          <div>{{ prePaymentAmount() | thousands }} <span>ریال</span></div>
+        </div>
+      }
+
+      @if (fee()) {
+        <div class="detail-item">
+          <div class="item-title">کارمزد</div>
+
+          <div>{{ fee() | thousands }} <span>ریال</span></div>
+        </div>
+      }
+
+      @if (remainedAmount()) {
+        <div class="detail-item">
+          <div class="item-title">باقی‌مانده سبد خرید</div>
+
+          <div>{{ remainedAmount() | thousands }} <span>ریال</span></div>
+        </div>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,34 @@
+:host {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--surface-back);
+}
+
+.overview-body {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  width: 360px;
+  height: 100%;
+}
+
+.action {
+  background-image: url("../../../../../assets/icons/right-icon-blue.svg");
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.logo {
+  background-image: url("../../../../../assets/icons/digikala-logo.svg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}

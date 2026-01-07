@@ -1,0 +1,17 @@
+<div class="ics-step p-big mt-hulk" *ngIf="steps()[currentStepIndex()]">
+  <ngx-status-result
+    class="status-result"
+    [title]="errorData()?.title"
+    [description]="errorData()?.message"
+    [subDescription]="errorData()?.subDescription"
+    [buttons]="errorData()?.buttons"
+    [loading]="errorData()?.loading"
+    [timer]="errorData().timer"
+    (clicked)="onClick($event)"
+    (finished)="finishTimer()"
+  >
+    <ng-container status-image>
+      <img [src]="errorData()?.staticImage" alt="">
+    </ng-container>
+  </ngx-status-result>
+</div>

@@ -1,0 +1,22 @@
+<ui-dialog
+  class="subscription-dialog"
+  [id]="{
+       submit: GA.PROCEED_WITH_CASH_IN_CLICK,
+       cancel: GA.CANCEL_CASH_IN_CLICK,
+       view: GA.INSUFFICIENT_BALANCE_FOR_ACTIVATION_VIEW
+  }"
+  [title]="'موجودی ناکافی'"
+  [submitButtonTitle]="'افزایش موجودی'"
+  [theme]="'digipay'"
+  (close)="cancel()"
+  (submit)="confirm()"
+>
+  <div>
+    <p class="dialog-description">موجودی کیف‌پول شما برای پرداخت کافی نیست. لطفا موجودی خود را افزایش دهید.</p>
+    <ui-amount-label-bar
+      [title]="'کیف پول دیجی‌پی'"
+      [value]="walletBalance"
+      [theme]="'warning'"
+    ></ui-amount-label-bar>
+  </div>
+</ui-dialog>

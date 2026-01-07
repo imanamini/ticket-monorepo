@@ -1,0 +1,3 @@
+<form [action]="url | safeUrl" #formElement [attr.method]="method">
+  <input type="hidden" *ngFor="let row of data" [value]="row.value" [name]="row.key">
+</form>

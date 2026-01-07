@@ -1,0 +1,5 @@
+<div [style]="{fontSize: size+'px', opacity: opacity}" class="ui-preparing">
+  <p *ngIf="title" class="title">{{title}}</p>
+  <p *ngIf="subtitle" class="subtitle">{{subtitle}}</p>
+  <span class="loading" [ngClass]="'is-'+color.toLowerCase()"></span>
+</div>

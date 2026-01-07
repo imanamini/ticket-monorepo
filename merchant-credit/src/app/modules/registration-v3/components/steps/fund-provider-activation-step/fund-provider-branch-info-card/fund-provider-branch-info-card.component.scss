@@ -1,0 +1,55 @@
+@import "../../../../../../styles/layout/variables";
+
+.info-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 16px;
+  cursor: pointer;
+  border-radius: 16px;
+  border: 1px solid $swatch_steel_200;
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 8px;
+
+    .location {
+      background-color: $swatch_steel_100;
+      border-radius: 18px;
+      padding: 4px;
+      align-self: center;
+
+      .location-icon {
+        width: 24px;
+        height: 24px;
+        background: url("../../../../../../../assets/icons/bank-branch.svg") no-repeat center center;
+        background-size: auto 100%;
+
+      }
+    }
+
+    .title {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+      color: $swatch_steel_900;
+    }
+
+    .address {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 20px;
+      color: $swatch_steel_500;
+    }
+  }
+
+  .arrow-icon {
+    width: 24px;
+    height: 24px;
+    background: url("../../../../../../../assets/icons/arrow-left.svg") no-repeat center center;
+    background-size: auto 100%;
+  }
+
+}

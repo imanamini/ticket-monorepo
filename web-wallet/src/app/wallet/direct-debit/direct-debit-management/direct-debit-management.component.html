@@ -1,0 +1,72 @@
+<div *ngIf="this.isLoading; else showContent">
+  <ui-preparing [showSubtitle]="false"></ui-preparing>
+</div>
+
+<ng-template #showContent>
+
+  <ui-content-card
+    *ngIf="isPageLoaded"
+    [id]="{closeButton: GA_DIRECT_DEBIT_HOME_ID.CANCEL_BTN_CLICK}"
+    class="direct-debit"
+    [title]="'مدیریت قراردادهای خودکار'"
+    [hasHeaderAction]="true"
+    [hasFooter]="false"
+    (headerCloseActionClicked)="closeDirectDebit()"
+  >
+
+    <ui-error-request
+      *ngIf="tokenExpired; else showError"
+      [errorMessage]="'خطا در اعتبارسنجی'"
+      [hasButton]="false"
+    ></ui-error-request>
+
+    <ng-template #showError>
+      <ui-error-request
+        *ngIf="!tokenExpired && !contracts.length; else showContractsResult"
+        (clicked)="getTicketInfo()"
+      ></ui-error-request>
+    </ng-template>
+
+    <ng-template #showContractsResult>
+
+      <div class="actions-wrapper">
+        <a
+          id="{{GA_DIRECT_DEBIT_HOME_ID.CREATE_CONTRACT_CLICK}}"
+          (click)="goToDirectDebitContract()"
+          class="new-contract-button"
+        >
+          <div class="button-icon"></div>
+          <div
+            class="button-title">{{'ایجاد قرارداد جدید'}}
+          </div>
+        </a>
+      </div>
+      <div *ngIf="contracts.length>0" class="direct-debit-items content-scrollbar">
+
+        <div class="direct-debit-item" *ngFor="let contract of contracts">
+          <ui-template-card
+            [id]="{cancel: GA_DIRECT_DEBIT_HOME_ID.CANCEL_CONTRACT_CLICK}"
+            [imageId]="contract['bankIcon']"
+            [cardTitle]="cardTitle"
+            [cardAmountPrefix]="cardAmountPrefix"
+            [hasCancelAction]="true"
+            (cancel)="cancelContract(contract)"
+            [cardAmount]="contract['minWalletBalance']"
+            [firstField]="{
+          title: 'تاریخ شروع قرارداد',
+          value: contract['activationDate']
+        }"
+            [secondField]="{
+          title: 'تاریخ انقضا',
+          value: contract['expirationDate']
+        }"
+          ></ui-template-card>
+        </div>
+
+      </div>
+
+    </ng-template>
+
+  </ui-content-card>
+
+</ng-template>

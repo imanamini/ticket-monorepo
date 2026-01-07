@@ -1,0 +1,48 @@
+@import '../../../../../styles/layout/variables';
+:host::ng-deep {
+  .ngx-slider {
+    cursor: pointer;
+    margin: 35px 0 35px;
+    *:focus {
+      outline: none;
+    }
+
+    .ngx-slider-bar {
+      height: 12px;
+      background-color: $swatch_steel_100;
+      margin-top: -4px;
+      border-radius: 6px;
+    }
+
+    .ngx-slider-selection {
+      background-color: $swatch_blue_500;
+    }
+    .ngx-slider-bubble {
+      bottom: -42px;
+    }
+    .ngx-slider-pointer {
+      width: 24px;
+      height: 24px;
+      top: -10px;
+      background-color: $swatch_blue_500;
+    }
+
+    .ngx-slider-pointer:after {
+      top: 4px;
+      left: 4px;
+      width: 10px;
+      height: 10px;
+      background-color: transparent !important;
+      border-radius: 50%;
+      border: 3px solid #FFFFFF;
+    }
+
+    .ngx-slider-pointer.ngx-slider-active:after {
+      background-color: #FFFFFF;
+    }
+
+    .ngx-slider-pointer:hover{
+      transform: scale(1.1);
+    }
+  }
+}

@@ -1,0 +1,197 @@
+@import "../../../layout/variables";
+@import "../../../layout/mixins/flex";
+@import "../../../layout/mixins/font-size";
+
+.purchase-info {
+  border-radius: 12px;
+  border: solid 1px #d5dde6;
+
+  > .merchant-section {
+    padding: 22px;
+    min-height: 88px;
+    @include flex-center-start;
+    border-bottom: solid 1px #d5dde6;
+
+    > .merchant-logo {
+      width: 44px;
+      height: 44px;
+      margin-left: 16px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    > .merchant-details {
+      > .merchant-name {
+        height: 20px;
+        color: #263140;
+        font-weight: bold;
+        margin-bottom: 4px;
+        @include fontSize(14);
+        @include flex-center-start;
+      }
+
+      > .merchant-amount {
+        > .purchase-amount::ng-deep {
+
+          > .currency {
+            height: 19px;
+            color: #263140;
+            font-weight: bold;
+            @include fontSize(14);
+
+            > .unit {
+              color: inherit;
+              font-weight: normal;
+              @include fontSize(12);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  > .purchase-details-section {
+    padding: 0 19px;
+
+    > .purchase-detail-row {
+      height: 50px;
+      @include flex-center-between;
+      border-bottom: solid 1px #d5dde6;
+
+      > .purchase-icon {
+        display: inline-block;
+        vertical-align: middle;
+        width: 18px;
+        height: 18px;
+        margin-left: 8px;
+
+        &.wallet {
+          background: url('images/wallet-purchase.svg') no-repeat 0 0/100%;
+        }
+
+        &.cash-in {
+          background: url('images/cash-in-purchase.svg') no-repeat 0 0/100%;
+        }
+
+        &.prize {
+          background: url('./images/prize.svg') no-repeat 0 0/100%;
+        }
+      }
+
+      > .purchase-title {
+        color: #404040;
+        font-weight: 300;
+        @include fontSize(12);
+        display: inline-block;
+      }
+
+      > .purchase-amount::ng-deep {
+        margin-right: auto;
+
+        > .currency {
+          color: #263140;
+          font-weight: 500;
+          @include fontSize(12);
+
+          > .unit {
+            color: inherit;
+            font-size: inherit;
+            font-weight: normal;
+          }
+        }
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+
+//.sufficient-balance {
+//  border-radius: 12px;
+//  border: solid 1px #d5dde6;
+//  .merchant {
+//    display: flex;
+//    flex-direction: row;
+//    justify-content: space-between;
+//    align-items: center;
+//    .merchant-image, .merchant-name {
+//      display: inline-block;
+//      vertical-align: middle;
+//    }
+//    .merchant-image {
+//      width: 32px;
+//      margin-left: 8px;
+//    }
+//  }
+//
+//  .purchase-box {
+//    display: flex;
+//    flex-direction: row;
+//    justify-content: space-between;
+//    @include fontSize(12);
+//    .right {
+//      text-align: right;
+//    }
+//    .left {
+//      text-align: left;
+//      font-weight: 500;
+//    }
+//    .label, .value {
+//      display: block;
+//    }
+//    .value {
+//      margin: 8px 0 0;
+//    }
+//  }
+//}
+//
+//
+//.insufficient-balance {
+//  border-radius: 12px;
+//  border: solid 1px #d5dde6;
+//
+//  .merchant {
+//    display: flex;
+//    flex-direction: row;
+//
+//    .merchant-image {
+//      width: 48px;
+//      margin-left: 16px;
+//    }
+//    .purchase-info {
+//      @include fontSize(14);
+//      .purchase-title {
+//        margin-bottom: 8px;
+//      }
+//    }
+//  }
+//
+//  .icon {
+//    display: inline-block;
+//    vertical-align: middle;
+//    width: 16px;
+//    height: 16px;
+//    margin-left: 8px;
+//    &.prize {
+//      background: url('./images/prize.svg') no-repeat 0 0/100%;
+//    }
+//    &.wallet {
+//      background: url('./images/wallet-purchase.svg') no-repeat 0 0/100%;
+//    }
+//  }
+//
+//  .table-row {
+//    display: flex;
+//    flex-direction: row;
+//    justify-content: space-between;
+//    align-items: center;
+//    color: $text-color-lighter;
+//    @include fontSize(12);
+//    font-weight: 100;
+//  }
+//}
+
+

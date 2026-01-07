@@ -1,0 +1,30 @@
+:host {
+  text-align: center;
+}
+
+.illustration {
+  height: 120px;
+  background: url('./mail-icon.png') no-repeat center/auto 100%;
+  margin: 12px 0;
+}
+
+.mobile-number {
+  font-size: 24px;
+  margin: 20px 0;
+  letter-spacing: 1px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin: 24px 0 0;
+
+  ui-button {
+    flex: 1 1 auto;
+  }
+
+  .primary-action {
+    flex: 2 1 auto;
+    margin-right: 12px;
+  }
+}

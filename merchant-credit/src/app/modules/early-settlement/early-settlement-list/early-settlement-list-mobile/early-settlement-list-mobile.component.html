@@ -1,0 +1,44 @@
+<ng-container *ngIf="!loading">
+  <app-page-header></app-page-header>
+  <div class="page-content">
+    <div class="page-title">{{pageTitle}}</div>
+
+    <div class="settlement-list">
+      <div class="settlement-item-card" *ngFor="let item of data">
+        <div class="settlement-item">
+          <div class="settlement-item-row">
+            <div class="item-status"><span class="item-color"
+                                           [ngStyle]="{'background-color':settlementColor[item.status]}"></span> {{settlementStatusTranslated[ item.status ] || ''}}
+            </div>
+            <div class="item-factor">شماره فاکتور: {{item.providerId}}</div>
+          </div>
+          <div>
+            <button class="detail-button" (click)="onDetailClick.emit(item.trackingCode)">جزییات</button>
+          </div>
+        </div>
+        <div class="settlement-item-price">
+          <div>{{item.requestedAmount | number}} ریال</div>
+        </div>
+      </div>
+
+      <div class="empty-message" *ngIf="!data.length">
+        <app-early-settlement-empty-message
+          [hasFilter]="!!selectedStatusGroupIndex"
+          [statusName]="statusGroupList[selectedStatusGroupIndex].title || ''"
+        ></app-early-settlement-empty-message>
+      </div>
+    </div>
+    <div class="footer-section">
+      <ui-pagination
+        [currentPage]="page"
+        [totalPages]="totalPages"
+        [totalItems]="totalItems"
+        [itemPerPage]="perPage"
+        (pageChange)="onPageChange($event)"
+      ></ui-pagination>
+    </div>
+  </div>
+
+  <button class="filter-button" (click)="openFilterBox()">فیلتر بر اساس وضعیت</button>
+</ng-container>
+<page-loading [active]="loading"></page-loading>

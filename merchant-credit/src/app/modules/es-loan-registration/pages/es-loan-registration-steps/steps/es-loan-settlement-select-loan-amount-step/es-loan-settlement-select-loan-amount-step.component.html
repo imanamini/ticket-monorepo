@@ -1,0 +1,158 @@
+<header class="d-flex flex-row align-items-center gap-small pt-pony pb-pony pl-medium pr-medium ">
+  <div class="action mt-tiny" (click)="closeClick()"></div>
+  <span class="t-6 text-onback-medium">تعیین مبلغ تسهیلات</span>
+</header>
+
+<div class="select-loan-amount-step d-flex flex-column mt-big mb-big ml-medium mr-medium">
+  <div class="d-flex flex-column top-section">
+    <div class="d-flex flex-row align-items-center gap-tiny mb-huge">
+      <span class="st-8 text-onback-high">سقف تسهیلات قابل دریافت</span>
+      <div
+        class="icon"
+        [ngxTooltip]="'این سقف با در نظرگرفتن حد اعتباری شما و مبلغ تعیین شده توسط دیجی‌کالا مشخص شده است.'"
+        tooltipPosition="bottom" tooltipType="hover"
+      ></div>
+    </div>
+
+    <div class="mb-huge">
+      <div
+        class="d-flex justify-content-space-between align-items-center w-100 p-pony   border-300 radius-minus amount-input"
+        [ngClass]="isHint() ? 'surface-brand-tint border-color-brand': 'border-color-tint'">
+        <button
+          class="btn-plus d-flex justify-content-center align-items-center border-none radius-small"
+          [ngClass]="isHint() ? 'surface-elevated': 'surface-back'"
+          (click)="increaseAmount()"
+          [disabled]="isPlusDisabled()"
+        >
+          <ngx-icon name="plus" type="linear"></ngx-icon>
+        </button>
+
+        <div class="input-container d-flex felx-row">
+          @if (getData()) {
+            <input
+              #input
+              appNumericInput
+              class="amount-display d-flex b-2 border-none text-align-center"
+              [ngClass]="isHint() ? 'surface-brand-tint text-onback-low': 'text-onback-high'"
+              [value]="formattedAmount()"
+              [autofocus]="true"
+              [style.width.px]="getInputWidth(formattedAmount())"
+              (input)="onAmountChange($event)"
+              (focus)="editMode.set(true)"
+              (blur)="editMode.set(false)"
+            />
+            <span class="suffix b-2 text-onback-medium">ریال</span>
+          }
+
+        </div>
+        <button
+          class="btn-minus d-flex justify-content-center align-items-center border-none radius-small"
+          [ngClass]="isHint() ? 'surface-elevated': 'surface-back'"
+          (click)="decreaseAmount()"
+          [disabled]="isMinusDisabled()"
+        >
+          <ngx-icon name="minus" type="linear"></ngx-icon>
+        </button>
+      </div>
+      @if (isHint()) {
+        <p class="l-3 text-onback-brand pl-pony pr-pony mt-tiny">مبلغ وارد شده باید
+          بین {{ minAmount() | numberToString }}
+          تا {{ maxAmount() | numberToString }}
+          ریال باشد</p>
+      }
+    </div>
+    <div class="config-area d-flex flex-column gap-minus p-minus ">
+      <div class="d-flex flex-row justify-content-space-between b-2 text-onback-high">
+        <span>تعداد اقساط</span>
+        <span>۱ قسط</span>
+      </div>
+      <div class="d-flex flex-row justify-content-space-between b-2 text-onback-high">
+        <span>زمان بازپرداخت</span>
+        <span>۹۰ روز</span>
+      </div>
+      <div class="d-flex flex-row justify-content-space-between b-2 text-onback-high">
+        <span>روش بازپرداخت</span>
+        <span>چک صیادی بنفش</span>
+      </div>
+      <div class="d-flex flex-row justify-content-space-between b-2 text-onback-high">
+        <div class="d-flex flex-row  align-items-center gap-micro">
+          <span> کارمزد تسهیلات</span>
+          @if (showDetail()) {
+            <div class="arrow-up" (click)="toggleDetail()"></div>
+          } @else {
+            <div class="arrow-down" (click)="toggleDetail()"></div>
+          }
+
+        </div>
+        <span class="b-2">
+                 {{ (previewDetail().fundProviderFee + previewDetail().digipayFee + previewDetail().fundProviderInterest) | number }}
+          ریال
+                </span>
+      </div>
+      @if (showDetail()) {
+        <div class="early-settlement-info-card">
+          <div class="info-card-note-list">
+            <div class="info-card-note-item l-3 text-onback-medium">
+              <div class="d-flex flex-row  align-items-center justify-content-space-between gap-micro mb-small">
+                <span> هزینه مالی بانک(٪۲۳ سالیانه)</span>
+                <span class="c-2">
+      {{ (previewDetail().fundProviderInterest) | number }}  ریال
+      </span>
+              </div>
+            </div>
+            <div class="info-card-note-item l-3 text-onback-medium">
+              <div class="d-flex flex-row  align-items-center justify-content-space-between gap-micro">
+                <span>کارمزد خدمات</span>
+                <span class="c-2">
+      {{ (previewDetail().fundProviderFee + previewDetail().digipayFee) | number }} ریال
+     </span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+      <ngx-divider
+        class="divider"
+        [color]="BorderColorsEnum.Tint"
+        orientation="horizontal"></ngx-divider>
+      <div class="d-flex flex-row justify-content-space-between b-2 text-onback-high">
+        <span class="d-flex align-items-center">
+          دریافتی نهایی
+          <div
+            class="icon mr-micro"
+            [ngxTooltip]="'۲۳ ٪ کارمزد بانکی از مبلغ تسهیلات درخواستی شما کسر شده است.'"
+            tooltipPosition="top" tooltipType="hover"
+          ></div>
+        </span>
+
+        <span><span
+          class="st-7 text-onback-high">{{ previewDetail().settlementAmount | number }} </span> <span> ریال</span></span>
+      </div>
+      <div class="d-flex flex-row justify-content-space-between b-2 text-onback-high">
+        <span>بازپرداخت نهایی</span>
+        <span>
+                     <span
+                       class="st-7 text-onback-high">{{ amount() | number }}</span> <span> ریال</span>
+                     </span>
+      </div>
+    </div>
+  </div>
+
+  <ui-checkbox class="bt-3 text-onback-low mb-minus" [checked]="agreed()" (changed)="agreeTerms($event)">
+    با <span class="bt-3 text-onback-brand ml-tiny mr-tiny" (click)="showTac()">قوانین و مقررات</span>
+    استفاده از این سرویس موافقم.
+
+  </ui-checkbox>
+  <ngx-button
+    class="mt-small"
+    (clickHandler)="submit()"
+    size="large"
+    mode="form"
+    style="fill"
+    [fullWidth]="true"
+    [disabled]="!agreed() || isDisable() || amount() > maxAmount() || amount() < minAmount()"
+  >
+    تایید و ادامه
+  </ngx-button>
+</div>

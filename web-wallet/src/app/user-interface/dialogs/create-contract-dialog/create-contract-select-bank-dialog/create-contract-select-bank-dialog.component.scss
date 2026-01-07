@@ -1,0 +1,33 @@
+@import "../../../../layout/variables";
+@import "../../../../layout/mixins/font-size";
+@import "../../../../layout/mixins/flex";
+@import "../../../../layout/mixins/device";
+
+.select-bank-wrapper {
+  > .dialog-description {
+    text-align: center;
+    direction: rtl;
+    margin-bottom: 20px;
+    color: #2c3544;
+    font-weight: 700;
+    @include fontSize(14);
+  }
+
+  > .wrapper {
+    width: 362px;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@include mediaMobile() {
+  ui-bank-item {
+    width: 100%;
+  }
+  .select-bank-wrapper {
+    max-height: 450px;
+    height: 100%;
+  }
+}

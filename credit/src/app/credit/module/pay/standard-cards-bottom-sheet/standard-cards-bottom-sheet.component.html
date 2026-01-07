@@ -1,0 +1,31 @@
+<div class="standard-cards-bottom-sheet">
+
+  <ng-container *ngIf="!gettingData">
+    <div class="bottom-sheet-title">
+      مبلغ را با کدام کارت پرداخت می‌کنید؟
+    </div>
+    <app-selective-card
+      *ngFor="let item of cards; let i = index"
+      [title]="item.title"
+      [logo]="item.icon"
+      [color]="item.color"
+      [description]="item.description"
+      [isSelected]="selectedIndex === i"
+      (select)="selectedIndex = i"
+    ></app-selective-card>
+
+    <div class="cta-wrapper">
+      <credit-ui-button
+        class="primary-button"
+        (buttonClick)="onConfirm()"
+        [styles]="{width: '100%'}"
+        [disabled]="selectedIndex < 0">
+        تایید و پرداخت
+      </credit-ui-button>
+    </div>
+  </ng-container>
+
+  <div class="loading-wrapper" *ngIf="gettingData">
+    <mat-spinner [diameter]="20" [strokeWidth]="1"></mat-spinner>
+  </div>
+</div>

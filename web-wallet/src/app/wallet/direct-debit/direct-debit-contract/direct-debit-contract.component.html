@@ -1,0 +1,115 @@
+<div *ngIf="this.isLoading; else showContent">
+  <ui-preparing [showSubtitle]="false"></ui-preparing>
+</div>
+
+<ng-template #showContent>
+
+  <ui-content-card
+    *ngIf="!userVerified"
+    class="direct-debit-contract"
+    [hasHeaderAction]="!tokenExpired"
+    [hasFooter]="false"
+    [hasHeader]="false"
+    (headerCloseActionClicked)="handleCloseAction()"
+  >
+
+    <ui-error-request
+      *ngIf="tokenExpired; else showForm"
+      [errorMessage]="'خطا در اعتبارسنجی'"
+      [hasButton]="false"
+    ></ui-error-request>
+
+    <ng-template #showForm>
+
+      <ng-container>
+
+        <div>
+          <p class="direct-debit-title">شارژ خودکار کیف‌پول</p>
+
+          <div class="contract-logo"></div>
+
+          <p class="description">
+            با فعال‌سازی این سرویس، به دیجی‌پی اجازه می‌دهید زمانی که موجودی کیف‌پول شما از مبلغی که تعیین می‌کنید کم‌تر
+            شد، با برداشت از حساب به صورت خودکار کیف‌پول شما را شارژ کند.
+          </p>
+        </div>
+
+        <div>
+          <p class="input-description">
+            لطفا برای احراز هویت شماره ملی خود را وارد نمایید:
+          </p>
+
+          <div class="wrapper" [formGroup]="form">
+
+            <div class="form-field">
+              <fb-field
+                [inputId]="'nationalCode'"
+                [(value)]="formFields.nationalCode"
+                [hasCleaner]="true"
+                [hasFloatLabel]="false"
+                [customErrorMessages]="{invalidNationalCode:'شماره ملی نادرست است.'}"
+                [errors]="form.controls['nationalCode'].errors"
+              >
+                <input
+                  type="text"
+                  id="{{GA_DIRECT_DEBIT_HOME.NATIONAL_CODE_TYPE}}"
+                  placeholder="کد ملی"
+                  [(ngModel)]="formFields.nationalCode"
+                  formControlName="nationalCode"
+                  maxlength="10"
+                  numericKeyboard
+                  (click)="scrollToActivationButton()"
+                >
+              </fb-field>
+            </div>
+
+            <div class="form-field">
+              <fb-field
+                [inputId]="'customTicket'"
+                [(value)]="formFields.customTicket"
+                [hasCleaner]="true"
+                [hasFloatLabel]="false">
+                <input
+                  type="text"
+                  placeholder="تیکت خاص"
+                  [(ngModel)]="formFields.customTicket"
+                  formControlName="customTicket"
+                  (click)="scrollToActivationButton()">
+              </fb-field>
+            </div>
+
+            <div class="button-container">
+              <ui-button
+                [googleAnalyticId]="{buttonId:GA_DIRECT_DEBIT_HOME.CANCEL_BTN_CLICK}"
+                class="back-btn"
+                theme="digipay"
+                appearance="outline"
+                (buttonClick)="locationBack()"
+                [hasIcon]="false"
+              >
+                بازگشت
+              </ui-button>
+              <ui-button
+                id="direct-debit-activation-button"
+                class="activation-btn"
+                theme="digipay"
+                appearance="default"
+                [disabled]="!formFields.nationalCode || (form.controls['nationalCode'].errors !== null)|| activationButtonLoading"
+                [hasIcon]="false"
+                [googleAnalyticId]="{buttonId: (formFields.nationalCode && (form.controls['nationalCode'].errors === null) && !activationButtonLoading) ? GA_DIRECT_DEBIT_HOME.CREATE_CONTRACT_CLICK : ''}"
+                (buttonClick)="createContractDialog()">
+                <mat-spinner class="spinner" *ngIf="activationButtonLoading"></mat-spinner>
+                فعال‌سازی
+              </ui-button>
+            </div>
+
+          </div>
+        </div>
+
+
+      </ng-container>
+
+    </ng-template>
+  </ui-content-card>
+
+</ng-template>

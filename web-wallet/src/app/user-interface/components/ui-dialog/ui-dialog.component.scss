@@ -1,0 +1,256 @@
+@import "../../../layout/mixins/device";
+@import "../../../layout/variables";
+@import "../../../layout/mixins/flex";
+@import "../../../layout/mixins/font-size";
+
+::ng-deep {
+  ui-dialog, .mat-mdc-dialog-title, .mat-mdc-dialog-actions {
+    font-family: $font-name;
+  }
+
+  .cdk-overlay-dark-backdrop {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .mat-mdc-dialog-container {
+    padding: 0 0 12px;
+    border-radius: 12px !important;
+  }
+}
+
+.ui-dialog {
+  * {
+    box-sizing: border-box;
+  }
+
+  .mat-mdc-dialog-content, .mat-mdc-dialog-title {
+    direction: rtl;
+    margin: 0;
+  }
+
+  .mat-mdc-dialog-content {
+    padding: 32px;
+    font-size: 14px;
+    line-height: 1.6em;
+    text-align: start;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .mat-mdc-form-field {
+    direction: ltr !important;
+  }
+
+  .mat-mdc-dialog-title {
+    font-family: $font-name;
+    color: rgba(0, 0, 0, 0.7);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+  }
+
+  .mdc-dialog__title::before {
+    height: 20px;
+  }
+
+  .mat-mdc-dialog-actions {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0 5px;
+    margin: 0;
+  }
+
+  button.resolve {
+    color: $font-name;
+  }
+
+  .dialog-title {
+    position: relative;
+    @include fontSize(14);
+
+    .close-icon {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      transform: translate(0, -50%);
+      background: url('./dialog-close.svg') no-repeat 0 0/100%;
+    }
+
+    .back-icon {
+      position: absolute;
+      right: 16px;
+      top: 23px;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      transform: rotate(180deg);
+      background: url('../../../../assets/icon/back-black.svg') no-repeat 0 0/100%;
+    }
+
+    .title-text {
+      margin-right: 30px;
+      color: #2c3544;
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+
+  //  #############################
+  //  #####   Digipay Theme   #####
+  &.digipay-theme {
+    padding: 25px;
+
+    > .dialog-header {
+      margin-bottom: 28px;
+
+      > .header-title {
+        height: 32px;
+        color: #4d596b;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: right;
+        @include flex-center-start
+      }
+    }
+
+    > .dialog-body {
+      overflow: hidden;
+      min-height: 100px;
+      padding: 0 !important;
+    }
+
+    > .dialog-footer {
+      margin-top: 24px;
+      @include flex-center-between;
+
+      > .footer-reject-button {
+        margin-left: 24px;
+        width: 100%;
+      }
+
+      > .submit-button {
+        margin-right: auto;
+
+        &::ng-deep {
+          > button {
+            min-width: 208px !important;
+          }
+        }
+      }
+    }
+  }
+
+  //  #############################
+  //  ####   Secondary Theme   ####
+  &.secondary-theme {
+    > .dialog-header {
+      > .dialog-title {
+        text-align: right;
+      }
+    }
+
+    > .dialog-footer {
+      margin: 0 24px 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+
+      .submit-button {
+        flex-grow: 1;
+        width: 100%;
+
+        ::ng-deep button {
+          width: 100% !important;
+        }
+      }
+    }
+
+    .fullWidthButton {
+      width: 100%;
+    }
+  }
+
+  //  #############################
+  //  ###   Thin Dialog Theme   ###
+  &.thin-dialog-theme {
+    .mat-mdc-dialog-container {
+      border: solid 10px red !important;
+      border-radius: 40px !important;
+    }
+
+    > .dialog-header {
+      text-align: center;
+      border-bottom: solid 1px #dee3e7;
+
+      > .dialog-title {
+        height: 51px;
+        @include flex-center;
+
+        > .title-text {
+          color: $gray;
+          margin-right: 0;
+        }
+      }
+    }
+
+    > .dialog-body {
+      padding: 12px 20px 16px;
+    }
+
+    > .dialog-footer {
+      width: 100%;
+      display: flex;
+      padding-left: 16px;
+      padding-right: 16px;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+
+      > * {
+        min-width: 112px;
+      }
+    }
+
+    .fullWidthButton {
+      width: 100%;
+    }
+  }
+}
+
+//  #####   Responsive Styles   #####
+@include mediaMobile() {
+  .ui-dialog {
+    &.secondary-theme {
+      > .dialog-body {
+        height: calc(100vh - 250px);
+      }
+    }
+
+    &.digipay-theme {
+      padding: 12px 24px;
+
+      > .dialog-header {
+        > .header-title {
+          @include fontSize(14);
+        }
+      }
+
+      > .dialog-footer {
+        > .submit-button::ng-deep,
+        > .footer-reject-button::ng-deep {
+          width: 50%;
+
+          > button {
+            padding: 0;
+            height: 48px;
+            font-weight: 500;
+            border-radius: 8px;
+            @include fontSize(12);
+            width: 100% !important;
+            min-width: 50% !important;
+          }
+        }
+      }
+    }
+  }
+}

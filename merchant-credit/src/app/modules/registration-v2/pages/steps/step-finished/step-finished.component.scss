@@ -1,0 +1,42 @@
+:host {
+  text-align: center;
+  color: #2C3544;
+}
+
+.result {
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .illustration {
+    width: 138px;
+    height: 112px;
+    background: url("./account-creation-success.svg") no-repeat center/160px;
+    margin: 0 auto 35px;
+  }
+}
+
+.title, .message {
+  color: #2C3544;
+}
+
+.title {
+  font-size: 20px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.message {
+  font-size: 14px;
+}
+
+.submit-action {
+  margin: 32px 16px;
+
+  .primary-action {
+    width: 100%;
+  }
+}
+

@@ -1,0 +1,97 @@
+@import "../../../layout/variables";
+@import "../../../layout/mixins/font-size";
+@import "../../../layout/mixins/flex";
+
+ui-content-card::ng-deep {
+  .content-card {
+    .content-card-body {
+      max-height: 655px !important;
+    }
+  }
+}
+
+ui-content-card.show-less-templates::ng-deep {
+  .content-card {
+    .content-card-body {
+      max-height: 554px !important;
+    }
+  }
+}
+
+.wallet-cancel-subscription {
+
+  .contracts-select-title {
+    min-height: 20px;
+    line-height: 1.67;
+    font-weight: bold;
+    margin-bottom: 16px;
+    @include fontSize(12);
+    color: $text-color-lighter;
+    @include flex-center-start;
+  }
+
+  .cancellation-card {
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .contracts-loading {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    position: absolute;
+    @include flex-center;
+    flex-direction: column;
+
+    > .loading {
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      background: url('../assets/ui-preparing-loading-subscription.svg') no-repeat 0 0/100%;
+      animation: circularRotate 0.7s linear infinite;
+    }
+  }
+
+  .more-templates-button {
+    height: 24px;
+    cursor: pointer;
+    margin-top: 24px;
+    @include flex-center;
+
+    div {
+      font-weight: bold;
+      @include fontSize(14);
+      color: $digipay-blue-primary;
+    }
+
+    .more-icon {
+      width: 12px;
+      height: 7px;
+      display: block;
+      margin-right: 10px;
+      background: url('../assets/sign-down-blue.svg') no-repeat 0 0/100%;
+    }
+  }
+
+  @keyframes circularRotate {
+    from {
+      -ms-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -ms-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+}

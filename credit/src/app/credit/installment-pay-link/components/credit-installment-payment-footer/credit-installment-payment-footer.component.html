@@ -1,0 +1,51 @@
+<div class="p-plus surface-glass-high-contrast border-t-300 border-color-air">
+
+  @if (rows().length > 0) {
+    <div class="mb-minus">
+      @for (row of rows(); track row.title; let last = $last) {
+        <div
+          class="d-flex align-items-center justify-content-space-between"
+          [class.mb-low]="!last"
+        >
+          <div class="b-3 text-onback-medium">{{ row.title }}</div>
+          @switch (row.status) {
+            @case ('default') {
+              <div class="b-1 text-onback-medium">
+                <span>{{ row.value | thousands }}</span>
+                <span class="is-currency mr-tiny ml-pony">ریال</span>
+              </div>
+            }
+            @case ('increase') {
+              <div class="b-1 text-onback-error">
+                <span>{{ row.value | thousands }}</span>
+                <span class="is-currency mr-tiny">ریال</span>
+                <span>+</span>
+              </div>
+            }
+            @case ('decrease') {
+              <div class="b-1 text-onback-success">
+                <span>{{ row.value | thousands }}</span>
+                <span class="is-currency mr-tiny">ریال</span>
+                <span>-</span>
+              </div>
+            }
+          }
+        </div>
+      }
+    </div>
+  }
+  <div class="bt-2 mb-low">مبلغ پرداختی</div>
+  <div class="t-7 mb-minus text-onback-medium">
+    <span>{{ finalAmount() | thousands }}</span>
+    <span class="is-currency mr-tiny">ریال</span>
+  </div>
+  <ngx-button
+    [disabled]="!finalAmount()"
+    [size]="'large'"
+    [brandButton]="true"
+    [fullWidth]="true"
+    (clickHandler)="onCta()"
+  >
+    تایید و پرداخت
+  </ngx-button>
+</div>

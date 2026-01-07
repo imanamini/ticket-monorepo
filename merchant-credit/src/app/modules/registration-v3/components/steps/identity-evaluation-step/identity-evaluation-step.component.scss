@@ -1,0 +1,23 @@
+@import '../../../../../styles/layout/variables';
+
+:host {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  background-color: #fff;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+}
+
+.identity-evaluation-step {
+  margin: auto;
+}
+
+@media screen and (max-width: 522px) {
+  .identity-evaluation-step {
+    margin-top: 24px;
+  }
+}

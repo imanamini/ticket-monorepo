@@ -1,0 +1,219 @@
+@import "src/app/layout/mixins/device";
+@import "src/app/layout/mixins/font-size";
+@import "src/app/layout/mixins/device";
+@import "src/app/layout/mixins/flex";
+@import "src/app/layout/variables";
+
+.loader {
+  margin: auto;
+}
+
+:host ::ng-deep .mat-mdc-hint {
+  color: #6e798d !important;
+}
+
+.cash-in-container {
+  padding: 30px;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+
+  .cash-in {
+    font-family: $font-name;
+
+    .content {
+      .cash-in-logo {
+        width: 48px;
+        height: 48px;
+        min-height: 48px;
+        display: block;
+        margin: 0 auto;
+        background: url('../../../../../assets/icon/cash-in.svg') no-repeat 0 0/100%;
+      }
+
+      .description {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .title {
+          min-height: 32px;
+          @include flex-center;
+          font-size: 18px;
+          font-weight: bold;
+          display: flex;
+          align-items: center;
+          margin-bottom: 8px
+        }
+
+        .subtitle {
+          height: 20px;
+          @include flex-center;
+          padding: 16px;
+          background-color: #F2F5F8;
+          width: max-content;
+          justify-self: center;
+          margin: 8px auto;
+          border-radius: 12px;
+          display: flex;
+          gap: 16px;
+          align-items: center;
+          justify-content: center;
+
+          .balance-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+
+            span {
+              color: $gray;
+              height: 20px;
+              margin-left: 4px;
+              font-weight: 700;
+              @include flex-center;
+              font-size: 10px !important;
+            }
+
+            .balance-icon {
+              background: url('../../../../../assets/icon/balance.svg') no-repeat 0 0/100%;
+              width: 16px;
+              height: 16px;
+            }
+          }
+
+          ui-currency::ng-deep {
+            * {
+              color: $gray;
+              font-weight: normal;
+              @include fontSize(12);
+            }
+          }
+        }
+      }
+
+      .wrapper {
+        width: 360px;
+        max-width: 100%;
+        margin-top: 8px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .actions {
+      margin-top: 20px;
+      background-color: $white;
+    }
+  }
+}
+
+@include mediaMobile() {
+  :host {
+    height: 100%;
+  }
+
+  .loader-container {
+    padding: 15px;
+  }
+
+  .cash-in-container {
+    min-height: unset;
+    padding: 10px 30px 30px 30px;
+  }
+
+  .cash-in {
+    height: max-content !important;
+    position: relative;
+
+    &:not(.compact-theme) {
+      height: calc(100vh - 128px);
+
+      > .content {
+        padding-top: 0;
+        height: 100%;
+
+        .wrapper {
+          margin-top: 0 !important;
+
+          ::ng-deep input {
+            text-align: center;
+          }
+        }
+
+        .cash-in-logo {
+          display: none !important;
+        }
+
+        .description {
+          margin-top: 0 !important;
+          flex-direction: column !important;
+
+          .title {
+            font-size: 14px !important;
+            margin-bottom: 8px !important;
+          }
+
+          .subtitle-wrapper {
+            display: flex;
+            justify-content: center;
+
+            .has-hint {
+              display: none;
+            }
+
+            .subtitle {
+              background-color: #f2f5f8;
+              font-size: 10px;
+              padding: 8px;
+              max-width: fit-content;
+              height: unset !important;
+              border-radius: 12px;
+              margin-top: 0 !important;
+
+              > span {
+                &:after {
+                  content: '' !important;
+                  background: url("../../../../../assets/icon/wallet.svg");
+                  width: 16px;
+                  height: 16px;
+                  margin: 0 4px 0 16px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      > .actions {
+        margin-top: 4px;
+      }
+    }
+  }
+  ::ng-deep {
+    .content-card {
+      .content-card-body {
+        padding: 12px !important;
+      }
+    }
+  }
+}
+
+.hide-hint-with-animation {
+  transition: 1s ease all;
+  height: 0 !important;
+  padding: 0 !important;
+  transform: scale(0);
+  margin-top: 0 !important;
+}
+
+.display-none {
+  display: none;
+}
+
+.card-hint {
+  background-color: #f2f5f8;
+  border-radius: 12px;
+  height: 176px;
+  margin-top: 40px;
+}

@@ -1,0 +1,22 @@
+<div class="d-flex h-100 flex-column justify-content-space-between">
+  <div class="flex-grow px-plus">
+    <app-debtor-info
+      [fundProviderBusinessId]="userInfo().fundProviderDto.businessId"
+      [title]="debtorInfoTitle()"
+      [fullName]="(userInfo().fullName && userInfo().fullName !== 'null null') ? userInfo().fullName : undefined"
+    />
+    <ngx-callout
+      class="mt-mega mx-big"
+      [mode]="'single-without-title'"
+      [cta]="'دیجی‌پی'"
+      (ctaClick)="goToApp()"
+      message="برای مشاهده جزئیات بدهی و اقساط آینده با شماره همراهی که اعتبار را دریافت کردید وارد اپلیکیشن دیجی‌پی شوید."
+    />
+  </div>
+
+  <app-credit-installment-payment-footer
+    [finalAmount]="userInfo().totalDebt"
+    [rows]="paymentFooterRows()"
+    (cta)="goToCellNumber()"
+  />
+</div>

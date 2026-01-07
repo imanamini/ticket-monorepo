@@ -1,0 +1,12 @@
+.wrapper {
+  max-height: var(--full-height);
+  height: var(--full-height);
+}
+
+.not-shrink {
+  flex-shrink: 0;
+}
+
+.body {
+  overflow: auto;
+}

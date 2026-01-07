@@ -1,0 +1,13 @@
+<div (mouseenter)="showToolTip = true"
+     (mouseleave)="showToolTip = false"
+     class="amount-info">
+
+  <span class="amount-value">
+    {{ cashoutableBalance |thousands }} ریال
+  </span>
+
+  <span class="tool-tip-wrapper">
+      <span class="text"> موجودی قابل برداشت</span>
+         <div class="logo"></div>
+   </span>
+</div>

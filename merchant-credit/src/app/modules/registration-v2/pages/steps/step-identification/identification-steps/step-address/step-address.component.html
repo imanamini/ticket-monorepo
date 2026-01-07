@@ -1,0 +1,32 @@
+<div [formGroup]="form">
+  <p class="mb-3">
+    لطفا اطلاعات آدرس زیر را تایید و در صورت مغایرت اصلاح نمایید.
+  </p>
+  <ui-form-field
+    formControlName="provinceCode"
+    type="select"
+    [error]="form.controls.provinceCode.errors"
+    [options]="provinceOptions"
+    label="استان"
+  ></ui-form-field>
+  <ui-form-field
+    formControlName="cityCode"
+    [error]="form.controls.cityCode.errors"
+    type="select" [options]="cityOptions"
+    label="شهر"
+  ></ui-form-field>
+  <ui-form-field
+    label="آدرس محل سکونت خود را وارد کنید"
+    formControlName="address"
+    [error]="form.controls.address.errors"
+    [multiLine]="true"
+    [allowedKeyDown]="checkForbiddenChar"
+    hint="حروف و اعداد انگلیسی یا فارسی، فاصله و ویرگول مجاز است ."
+  ></ui-form-field>
+</div>
+
+<step-footer
+  [buttonDisabled]="form.invalid || submitting"
+  (buttonClick)="proceed()"
+  [buttonText]="submitting ? 'در حال ارسال...' : 'تایید و ادامه'"
+></step-footer>

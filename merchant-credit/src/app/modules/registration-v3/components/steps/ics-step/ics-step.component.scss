@@ -1,0 +1,24 @@
+@import '../../../../../styles/layout/variables';
+
+:host {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  background-color: #fff;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+}
+
+.ics-step {
+  padding: 16px;
+  margin: auto;
+}
+
+@media screen and (max-width: 522px) {
+  .ics-step {
+    margin-top: 24px;
+  }
+}

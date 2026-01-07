@@ -1,0 +1,33 @@
+@import "../../styles/layout/variables";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.card-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.rejection-image {
+  background: url("./es-provider-verification-failed.svg") no-repeat center center;
+  background-size: 100% 100%;
+  width: 141px;
+  height: 110px;
+  margin: 20px 0;
+}
+.reject-title {
+  margin-bottom: 12px;
+  font-size: 18px;
+  line-height: 32px;
+  font-weight: 600;
+  text-align: center;
+}
+.reject-description {
+  margin-bottom: 32px;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+}

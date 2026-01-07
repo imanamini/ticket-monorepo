@@ -1,0 +1,41 @@
+<ui-preparing *ngIf="!accessToken || !subscriptionAccessToken"></ui-preparing>
+
+<app-test-cash-out *ngIf="accessToken" [accessToken]="accessToken"></app-test-cash-out>
+
+<div style="margin: 20px 0;"></div>
+
+<app-test-tgs *ngIf="accessToken" [accessToken]="accessToken"></app-test-tgs>
+
+<div style="margin: 20px 0;"></div>
+
+<app-test-tgs-cash-in *ngIf="accessToken"></app-test-tgs-cash-in>
+
+<div style="margin: 20px 0;"></div>
+
+<app-test-direct-debit *ngIf="accessToken" [accessToken]="accessToken"></app-test-direct-debit>
+
+<div style="margin: 20px 0;"></div>
+
+<app-test-digiplus-direct-debit *ngIf="accessToken"></app-test-digiplus-direct-debit>
+
+<div style="margin: 20px 0;"></div>
+
+<app-test-digiplus-direct-debit-v2 *ngIf="accessToken"></app-test-digiplus-direct-debit-v2>
+
+<div style="margin: 20px 0;"></div>
+
+<app-test-subscription *ngIf="subscriptionAccessToken" [accessToken]="subscriptionAccessToken"></app-test-subscription>
+
+<div style="margin: 20px 0;"></div>
+
+<app-test-manage-subscription *ngIf="subscriptionAccessToken"
+                              [accessToken]="subscriptionAccessToken"></app-test-manage-subscription>
+
+<div style="margin: 20px 0;"></div>
+
+<app-test-cash-in *ngIf="accessToken" [accessToken]="accessToken"></app-test-cash-in>
+
+<div style="margin: 20px 0;"></div>
+
+<app-test-activate *ngIf="accessToken" [accessToken]="accessToken"></app-test-activate>
+

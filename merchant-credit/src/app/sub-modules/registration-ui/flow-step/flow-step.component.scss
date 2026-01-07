@@ -1,0 +1,140 @@
+@import "../../../styles/layout/variables";
+
+.step {
+  display: flex;
+  color: $swatch_steel_400;
+
+  .side {
+    flex: 0 0 32px;
+    margin-inline-end: 8px;
+    position: relative;
+
+    &::before {
+      content: ' ';
+      position: absolute;
+      top: 0;
+      right: calc(50% - 1px);
+      height: 100%;
+      border-right: 2px dashed $swatch_steel_200;
+    }
+  }
+
+  .step-icon {
+    border-radius: 50%;
+    font-size: 32px;
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: #fff no-repeat center center;
+    position: relative;
+    z-index: 1;
+
+    &.is-passed {
+      background: $swatch_blue_100 no-repeat center center url('./icon/step-passed.svg');
+      background-size: 24px 24px;
+    }
+
+    &.is-active {
+      background: no-repeat center center url('./icon/step-active.svg');
+      background-size: 100% 100%;
+    }
+  }
+
+  .content {
+    flex: 1 1;
+    padding-bottom: 24px;
+
+    .step-title {
+      padding: 4px 0 12px 0;
+      font-size: 14px;
+    }
+  }
+
+  .actions {
+    margin: 12px 0 0;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
+
+:host .actions ::ng-deep {
+  button {
+    font-size: 12px;
+    height: 36px;
+    min-width: 130px;
+    padding: 0 8px;
+
+    .cta-button-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .icon-arrow-left-blue {
+        width: 20px;
+        height: 20px;
+        background: url("../../../../assets/icons/arrow-left-blue-500.svg") center center no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+  }
+}
+
+.step.is-active {
+  .step-title {
+    color: $swatch_steel_900;
+  }
+
+  .side {
+    &::before {
+      border-color: $swatch_blue_200;
+    }
+  }
+}
+
+.step.is-last {
+  .side {
+    &::before {
+      display: none;
+    }
+  }
+}
+
+@keyframes pendingAnimation {
+  from {
+    filter: brightness(1.2);
+  }
+  to {
+    filter: brightness(0.9);
+  }
+}
+
+.step {
+  &.flow-active {
+
+  }
+
+  &.flow-pending {
+    .step-icon.is-active {
+      background: no-repeat center center url('./icon/step-active.svg');
+      background-size: 100% 100%;
+      animation-name: pendingAnimation;
+      animation-duration: 0.7s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+  }
+
+  &.flow-rejected {
+    .step-icon.is-active {
+      background: $swatch_red_100 no-repeat center center url('./icon/step-rejected.svg');
+      background-size: 24px 24px;
+    }
+
+    &.future-step {
+      opacity: 0.3;
+    }
+  }
+
+  &.flow-finished {
+
+  }
+}

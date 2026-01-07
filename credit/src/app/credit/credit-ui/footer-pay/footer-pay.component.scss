@@ -1,0 +1,45 @@
+@use "./footer-pay-variables" as variables;
+@import "variables";
+
+:host {
+  width: 100%;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  background-color: $swatch_steel_100;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top: 1px solid $swatch_steel_200;
+  height: variables.$footer-pay-height;
+
+  .pay-info {
+    margin-left: 4px;
+    color: $swatch_steel_900;
+
+    .title {
+      font-size: 12px;
+      line-height: 20px;
+    }
+
+    .amount {
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+
+      .amount-number {
+        font-size: 18px;
+        line-height: 32px;
+        margin-left: 4px;
+      }
+
+      .amount-unit {
+        font-size: 14px;
+        line-height: 24px;
+      }
+    }
+  }
+}

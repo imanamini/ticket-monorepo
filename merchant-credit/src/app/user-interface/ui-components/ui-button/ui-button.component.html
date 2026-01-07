@@ -1,0 +1,18 @@
+<ng-container *ngIf="!link; else anchorTag">
+  <button class="button" (click)="onClick($event)"
+          [ngClass]="appearance.toLowerCase()" [attr.disabled]="disabled ? 'disabled' : null">
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+  </button>
+</ng-container>
+<ng-template #anchorTag>
+  <a class="button" (click)="onClick($event)"
+     [attr.target]="linkTarget"
+     [attr.href]="link"
+          [ngClass]="appearance.toLowerCase()" [attr.disabled]="disabled ? 'disabled' : null">
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+  </a>
+</ng-template>
+
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>

@@ -1,0 +1,20 @@
+@import "@digipay/base-style/styleguide";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+.select-loan-check-step {
+  flex-grow: 1;
+}
+
+.action {
+  background-image: url("../../../../../../../assets/icons/icon-back.svg");
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}

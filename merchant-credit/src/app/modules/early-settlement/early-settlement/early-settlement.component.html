@@ -1,0 +1,30 @@
+<ng-container *ngIf="!loading &&  detail">
+  <ng-container [ngSwitch]="detail.settlement.status">
+    <app-early-settlement-revise-amount
+      *ngSwitchCase="settlementStatusEnum.INIT"
+      [detail]="detail"
+      [trackingCode]="trackingCode"
+    ></app-early-settlement-revise-amount>
+    <app-early-settlement-revise-amount
+      *ngSwitchCase="settlementStatusEnum.PROVIDER_VERIFICATION_COMPLETED"
+      [detail]="detail"
+      [trackingCode]="trackingCode"
+    ></app-early-settlement-revise-amount>
+    <app-early-settlement-revise-amount
+      *ngSwitchCase="settlementStatusEnum.PROVIDER_VERIFICATION_SKIPPED"
+      [detail]="detail"
+      [trackingCode]="trackingCode"
+    ></app-early-settlement-revise-amount>
+    <app-early-settlement-provider-verification-rejected
+      *ngSwitchCase="settlementStatusEnum.PROVIDER_VERIFICATION_REJECTED"></app-early-settlement-provider-verification-rejected>
+    <ng-container *ngSwitchCase="settlementStatusEnum.UNKNOWN">Error: Invalid status</ng-container>
+    <app-early-settlement-status-page
+      *ngSwitchDefault
+      [detail]="detail"
+      [trackingCode]="trackingCode"
+      (back)="onBack()"
+    >
+    </app-early-settlement-status-page>
+  </ng-container>
+</ng-container>
+<page-loading [active]="loading"></page-loading>

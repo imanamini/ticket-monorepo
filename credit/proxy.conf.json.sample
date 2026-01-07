@@ -1,0 +1,8 @@
+{
+    "/digipay/api": {
+        "target": "https://dev.mydigipay.info",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "info"
+    }
+}

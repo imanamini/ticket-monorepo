@@ -1,0 +1,58 @@
+@import "variables";
+
+.container-card {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 14px 16px;
+
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    padding: 6px 0;
+    gap: 8px;
+
+    .title {
+      display: flex;
+      align-items: center;
+
+      .info-icon {
+        background-image: url("./info-icon.svg");
+        width: 24px;
+        height: 24px;
+        margin-right: 4px;
+      }
+    }
+
+    .amount {
+      font-size: 16px;
+      text-align: left;
+
+      .currency {
+        font-size: 12px;
+      }
+    }
+
+    &.big {
+      .title {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .amount {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.divider {
+  height: 1px;
+  background-color: $swatch-steel-100;
+  margin: 12px 0;
+}

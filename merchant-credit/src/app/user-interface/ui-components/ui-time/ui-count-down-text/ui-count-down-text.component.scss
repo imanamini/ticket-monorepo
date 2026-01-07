@@ -1,0 +1,15 @@
+::ng-deep ui-count-down-text {
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 45px;
+  text-align: center;
+}
+
+.clock-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+  background: url('./count-down-clock.svg') no-repeat center/100%;
+  margin-inline-end: 6px;
+}

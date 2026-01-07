@@ -1,0 +1,129 @@
+<div class="text-field" [ngClass]="{
+  'has-value': form.controls.field.value,
+  'is-focused': focused,
+  'is-invalid': (form.controls.field.touched && form.controls.field.invalid) || errorState,
+  'is-clearable': clearable,
+  'is-disabled': form.controls.field.disabled,
+  'is-readonly': readonly
+}">
+
+  <form [formGroup]="form">
+    <ng-container *ngIf="multiline">
+      <textarea
+        formControlName="field"
+        #textField
+        class="field"
+        [autofocus]="autofocus"
+        [readonly]="readonly ? 'readonly' : null"
+        [attr.maxlength]="maxLength > 0 ? maxLength : null"
+        [attr.id]="inputId ? inputId : null"
+        (keyup)="keyUpEvent($event)"
+        (keydown)="keyDownEvent($event)"
+        (focusin)="focusIn($event)"
+        (click)="onClick($event)"
+        (focusout)="focusOut($event)" [rows]="multiline.rows"></textarea>
+    </ng-container>
+
+    <ng-container *ngIf="!multiline">
+
+      <ng-container *ngIf="dataType === 'TEXT' || dataType === 'PASSWORD'">
+        <input
+          #textField
+          [attr.maxlength]="maxLength > 0 ? maxLength : null"
+          formControlName="field"
+          class="field"
+          [autofocus]="autofocus"
+          [attr.type]="dataType === 'PASSWORD' ? 'password' : 'text'"
+          [attr.id]="inputId ? inputId : null"
+          [readonly]="readonly ? 'readonly' : null"
+          [attr.tabindex]="tabIndex ? tabIndex : null"
+          (keyup)="keyUpEvent($event)"
+          (keydown)="keyDownEvent($event)"
+          (click)="onClick($event)"
+          (focusin)="focusIn($event)" (focusout)="focusOut($event)">
+      </ng-container>
+
+      <ng-container *ngIf="dataType === 'NUMBER'">
+        <input
+          #textField
+          numpad
+          [attr.maxlength]="maxLength > 0 ? maxLength : null"
+          [attr.tabindex]="tabIndex ? tabIndex : null"
+          [attr.id]="inputId ? inputId : null"
+          formControlName="field"
+          class="field"
+          [autofocus]="autofocus"
+          [readonly]="readonly ? 'readonly' : null"
+          (keyup)="keyUpEvent($event)"
+          (keydown)="keyDownEvent($event)"
+          (click)="onClick($event)"
+          (focusin)="focusIn($event)" (focusout)="focusOut($event)">
+      </ng-container>
+
+      <ng-container *ngIf="dataType === 'CARD_PAN'">
+        <input
+          #textField
+          numpad="card-number"
+          autocomplete="off"
+          [attr.maxlength]="maxLength > 0 ? maxLength : null"
+          [attr.tabindex]="tabIndex ? tabIndex : null"
+          [attr.id]="inputId ? inputId : null"
+          formControlName="field"
+          class="field"
+          [autofocus]="autofocus"
+          [readonly]="readonly ? 'readonly' : null"
+          (keyup)="keyUpEvent($event)"
+          (keydown)="keyDownEvent($event)"
+          (paste)="pasteHandler($event, 'CARD_PAN')"
+          (click)="onClick($event)"
+          (focusin)="focusIn($event)" (focusout)="focusOut($event)">
+      </ng-container>
+
+      <ng-container *ngIf="dataType === 'IBAN'">
+        <input
+          #textField
+          numpad
+          realMaxLength="33"
+          formControlName="field"
+          class="field"
+          iban
+          [autofocus]="autofocus"
+          [readonly]="readonly ? 'readonly' : null"
+          [attr.tabindex]="tabIndex ? tabIndex : null"
+          [attr.id]="inputId ? inputId : null"
+          (keyup)="keyUpEvent($event)"
+          (keydown)="keyDownEvent($event)"
+          (focusin)="focusIn($event)"
+          (click)="onClick($event)"
+          (focusout)="focusOut($event)">
+      </ng-container>
+
+      <ng-container *ngIf="dataType === 'SECRET_NUMBER'">
+        <!--
+          formControlName has removed intentionally
+          check the keyDownEvent method for more info...
+        -->
+        <input
+          #textField
+          secretInput
+          [attr.maxlength]="maxLength > 0 ? maxLength : null"
+          [attr.tabindex]="tabIndex ? tabIndex : null"
+          [attr.id]="inputId ? inputId : null"
+          class="field secret-number"
+          [autofocus]="autofocus"
+          [readonly]="readonly ? 'readonly' : null"
+          (keyup)="keyUpEvent($event)"
+          (keydown)="keyDownEvent($event)"
+          (click)="onClick($event)"
+          (paste)="pasteHandler($event, 'SECRET_NUMBER')"
+          (focusin)="focusIn($event)" (focusout)="focusOut($event)">
+      </ng-container>
+
+    </ng-container>
+
+    <label (click)="labelClicked()">{{label}}</label>
+  </form>
+
+  <span (click)="clear()" class="clear-icon"
+        *ngIf="clearable && !disabled && form.controls.field.value"></span>
+</div>

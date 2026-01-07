@@ -1,0 +1,52 @@
+@import "../../../layout/mixins/flex";
+
+.custom-checkbox-container {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+
+  .checkbox-wrapper {
+    > .custom-checkbox {
+      display: flex;
+      width: 19px;
+      height: 19px;
+      border-radius: 4px;
+      align-items: center;
+      padding-bottom: 2px;
+      justify-content: center;
+      border: solid 1px black;
+
+      &::before {
+        opacity: 0;
+        content: '';
+        width: 10px;
+        height: 6px;
+        display: block;
+        transform: rotate(-45deg);
+        border-left: solid 2px white;
+        border-bottom: solid 2px white;
+      }
+    }
+  }
+
+  //  ##########################################
+  //  #####     Styles in Checked mode     #####
+  &.checked {
+    .checkbox-wrapper {
+      > .custom-checkbox {
+        border-color: #00cc6d;
+        background-color: #00cc6d;
+
+        &::before {
+          opacity: 1;
+          transition: 0.3s;
+        }
+      }
+    }
+
+    .title-wrapper {
+      font-weight: 500;
+      color: blue;
+    }
+  }
+}

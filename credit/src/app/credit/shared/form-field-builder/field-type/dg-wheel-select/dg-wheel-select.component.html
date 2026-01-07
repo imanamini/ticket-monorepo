@@ -1,0 +1,13 @@
+<div class="dd-wheel-select-wrapper">
+  <div class="dg-wheel-select" (scroll)="onScroll($event)" #wheelSelect>
+    <div
+      *ngFor="let item of options;let i = index"
+      [ngClass]="{'selected': i === selectedIndex}"
+      (click)="selectItem(i)"
+    >
+      {{item.title}}
+    </div>
+  </div>
+</div>
+<div class="dg-hint-message" *ngIf="!(form.touched && form.invalid && errorMessage)">{{hint}}</div>
+<div class="dg-error-message" *ngIf="form.touched && form.invalid && errorMessage">{{errorMessage}}</div>

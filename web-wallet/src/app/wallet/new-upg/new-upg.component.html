@@ -1,0 +1,19 @@
+<div class="tgs-container">
+  <div #container></div>
+</div>
+
+<div *ngIf="loadingApis" class="loader-container">
+  <div class="loader"></div>
+</div>
+
+
+<!--This part has to exist just for redirect to ipg after icp-->
+<div id="wrapper" style="display:none">
+  در حال انتقال به درگاه پرداخت...
+</div>
+
+<div id="errorContainer" style="display:none">
+  <div id="dp-text-title">متاسفانه مشکلی در پردازش درخواست شما به وجود آمده است</div>
+  <div>لطفا مجددا تلاش کنید</div>
+</div>
+

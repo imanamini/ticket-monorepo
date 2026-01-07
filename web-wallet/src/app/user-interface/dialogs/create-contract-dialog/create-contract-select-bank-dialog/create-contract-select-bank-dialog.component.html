@@ -1,0 +1,15 @@
+<div class="select-bank-wrapper">
+  <p class="dialog-description">با توجه به سقف برداشت هر بانک، بانکی که مایلید برداشت خودکار از آن انجام شود را انتخاب
+    کنید.</p>
+  <div class="wrapper">
+    <ui-bank-item
+      *ngFor="let bank of banks"
+      [bankName]="bank['name']"
+      [imageId]="bank['imageId']"
+      [dailyAmountMax]="bank?.directDebit?.dailyAmountMax || defaultDailyAmountMax"
+      [selected]="selectedBank && bank['code'] === selectedBank.code"
+      [googleAnalyticId]="{containerId:GA_DIRECT_DEBIT_ID_CONTRACT_SELECT_BANK_CLICK}"
+      (onClick)="selectBank(bank)"
+    ></ui-bank-item>
+  </div>
+</div>

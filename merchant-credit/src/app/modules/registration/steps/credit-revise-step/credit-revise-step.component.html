@@ -1,0 +1,41 @@
+<div class="revise-wrapper" *ngIf="!hideMode">
+  <div class="section-select-doc" [ngClass]="{'active-section': activeSection === 'select-doc'}">
+    <app-scrollable-view [fullHeightContent]="true" [hasFade]="true" fadeColor="white">
+      <div class="holder">
+        <app-credit-revise-select-documents
+          *ngIf="detail.needDocuments"
+          [registrationMaxAmount]="registrationMaxAmount"
+          [type]="type"
+          (changeMaxAmount)="newMaxAmount = $event"
+        ></app-credit-revise-select-documents>
+        <app-digipay-credit-revise-fee
+          [registrationMaxAmount]="registrationMaxAmount"
+          [type]="type"
+          (changeMaxAmount)="newMaxAmount = $event"
+          (valueChanged)="getData($event)"
+          *ngIf="!detail.needDocuments">
+        </app-digipay-credit-revise-fee>
+        <div class="change-section-button" *ngIf="!detail.needDocuments">
+          <ui-button class="full-width" [disabled]="!isFormValid" (click)="this.activeSection = 'result'">ادامه</ui-button>
+        </div>
+        <div class="change-section-button" *ngIf="detail.needDocuments">
+          <ui-button class="full-width"  (click)="this.activeSection = 'result'">ادامه</ui-button>
+        </div>
+      </div>
+    </app-scrollable-view>
+  </div>
+  <div class="section-result" [ngClass]="{'active-section': activeSection === 'result'}">
+
+    <div class="holder">
+      <app-credit-revise-select-documents-result
+        [maxAmount]="newMaxAmount"
+        [isFormValid]="isFormValid"
+        [type]="type"
+        [detail]="detail"
+        (back)="activeSection = 'select-doc'"
+        (cancel)="cancel.emit()"
+        (submit)="onSubmit()"
+      ></app-credit-revise-select-documents-result>
+    </div>
+  </div>
+</div>

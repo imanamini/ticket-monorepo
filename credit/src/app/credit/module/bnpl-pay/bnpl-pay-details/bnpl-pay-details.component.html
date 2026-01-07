@@ -1,0 +1,21 @@
+<app-location-trap (back)="onBack()" [canBack]="false" [canExit]="true"></app-location-trap>
+
+<ng-container *ngIf="!pageLoading && creditWallet">
+  <app-bnpl-pay-with-cash
+    (onEditCredit)="editAmount()"
+    (onPay)="onConfirm()"
+    [cashFee]="cashFee()"
+    [creditAmount]="creditWallet.creditAmount"
+    [creditFee]="creditFee()"
+    [disabled]="creditWallet.disable"
+    [installmentCount]="creditWallet.installmentCount"
+    [installments]="installmentsPreview()"
+    [payableAmount]="creditWallet.payableAmount"
+    [prePaymentAmount]="creditWallet.prepaymentAmount"
+    [purchaseAmount]="creditWallet.purchaseAmount"
+    [couponAmount]="creditWallet.couponAmount"
+    [xPay]="xPay()"
+  />
+</ng-container>
+
+<page-loading [active]="pageLoading"></page-loading>

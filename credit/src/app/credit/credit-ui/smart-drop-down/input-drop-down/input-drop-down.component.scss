@@ -1,0 +1,26 @@
+.input-drop-down {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 20;
+  .drop-down {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding: 8px 8px 0;
+    position: fixed;
+    &::after {
+      content: ' ';
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 10px;
+      background: url("dropdown-triangle.svg") no-repeat top center/40px;
+    }
+  }
+}

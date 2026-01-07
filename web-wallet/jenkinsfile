@@ -1,0 +1,94 @@
+def registryURL = "dk.mydigipay.info"
+def project = "${JOB_NAME}"
+pipeline {
+  agent {
+    kubernetes {
+      yaml """
+kind: Pod
+spec:
+  serviceAccountName: deployer-sa
+  containers:
+  - name: dind
+    image: ${registryURL}/kaniko-project/executor:v1.9.1-debug
+    imagePullPolicy: IfNotPresent
+    command:
+     - /busybox/cat
+    tty: true
+    resources:
+      requests:
+        ephemeral-storage: "4Gi"
+    volumeMounts:
+      - name: reg-ci-secret-kaniko
+        mountPath: /kaniko/.docker/config.json
+        subPath: config.json
+      - name: kaniko-cache
+        mountPath: /cache
+  volumes:
+    - name: reg-ci-secret-kaniko
+      secret:
+        secretName: kaniko-secret
+        defaultMode: 256
+        items:
+          - key:  config.json
+            path: config.json
+    - name: kaniko-cache
+      persistentVolumeClaim:
+        claimName: kaniko-cache
+"""
+    }
+  }
+    stages {
+        stage("Config vars") {
+            steps {
+                container('dind') {
+                    script {
+                        switch (env.GIT_BRANCH) {
+                            case 'origin/staging':
+                                env.DOCKER_REPO = "uat-dk.mydigipay.info"
+                                env.BUILD_BRANCH = 'staging'
+                                env.APP_CONFIGURATION = 'staging'
+                                break
+                            case "origin/master":
+                                env.DOCKER_REPO = "dk.mydigipay.info"
+                                env.BUILD_BRANCH = 'master'
+                                env.APP_CONFIGURATION = 'production'
+                                break
+                            default:
+                                println("Branch value error: " + "${env.GIT_BRANCH}")
+                        }
+                    }
+                    echo "Docker repository :: ${env.DOCKER_REPO}"
+                }
+            }
+        }
+      stage('Build') {
+        steps {
+          git(
+            url: "http://repo.mydigipay.info/frontend/web-wallet.git",
+            credentialsId: 'jenkins-user',
+            branch: "${env.BUILD_BRANCH}"
+          )
+            container('dind') {
+              sh """
+                /kaniko/executor \
+                  --context "`pwd`" \
+                  --dockerfile "`pwd`/Dockerfile" \
+                  --destination "${DOCKER_REPO}/${project}:latest" \
+                  --cache=true \
+                  --cache-run-layers \
+                  --cache-repo="${DOCKER_REPO}/${project}/cache" \
+                  --use-new-run \
+                  --log-timestamp=true \
+                  --snapshot-mode=redo \
+                  --build-arg configuration=${env.APP_CONFIGURATION}
+              """
+          }
+        }
+      }
+      stage('Build web.mydigipay project') {
+        steps {
+          build job: 'web-mydigipay'
+        }
+      }
+    }
+  }

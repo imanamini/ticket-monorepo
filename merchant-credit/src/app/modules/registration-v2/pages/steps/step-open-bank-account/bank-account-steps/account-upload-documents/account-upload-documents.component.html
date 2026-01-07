@@ -1,0 +1,18 @@
+<p class="mb-3">
+  لطفا تصاویر خواسته شده را به دقت آپلود نمایید.
+</p>
+
+<document-picker
+  *ngFor="let file of files"
+  [docTitle]="file.title"
+  [description]="file.description"
+  [uploadState]="filesStates[file.label]"
+  [errorMessage]="uploadErrors[file.label]"
+  (fileChanged)="onFilePick(file.label, $event)"
+></document-picker>
+
+
+<step-footer
+  (buttonClick)="proceedToNextStep()"
+  [buttonDisabled]="uploadedFilesCount < files.length"
+  buttonText="تایید و ادامه"></step-footer>

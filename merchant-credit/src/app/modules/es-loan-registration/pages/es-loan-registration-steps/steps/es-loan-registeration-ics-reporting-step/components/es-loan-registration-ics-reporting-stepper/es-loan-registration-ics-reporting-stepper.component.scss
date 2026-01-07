@@ -1,0 +1,33 @@
+@import "@digipay/base-style/styleguide";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+.step-content {
+  flex-grow: 1;
+}
+
+.progress-bar {
+  display: flex;
+  width: 100%;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 50px;
+}
+
+.progress-segment {
+  flex: 1;
+  height: 100%;
+  transition: background-color 0.3s ease;
+  background-color: map-get($shade-colors, onback-shade-80);
+  border-radius: 50px;
+
+  &:not(:last-child) {
+    margin-left: 2px;
+  }
+}

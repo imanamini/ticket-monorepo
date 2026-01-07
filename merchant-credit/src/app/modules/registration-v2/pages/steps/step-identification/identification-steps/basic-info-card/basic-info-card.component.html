@@ -1,0 +1,17 @@
+<div class="basic-info-card" [ngClass]="{'is-selected': selected}">
+  <header class="row-center" (click)="onCardClick()">
+    <div class="content row-center">
+      <div class="icon-container" [ngStyle]="selected ? {backgroundColor: '#F0F5FF'} : {backgroundColor: '#F2F5F8'}">
+        <div [class]="basicInfo.icon"
+             [ngStyle]="selected ? {filter: 'none'} : {filter: 'grayscale(100%) brightness(2.5)'}"></div>
+      </div>
+      <h3 class="heading">{{ basicInfo.cardTitle }}</h3>
+    </div>
+    <div class="selection-status" [ngClass]="{'is-selected': selected}"></div>
+  </header>
+  <div class="separator" *ngIf="selected"></div>
+  <div class="detail-row row-center" *ngIf="selected">
+    <span class="title">{{ basicInfo.content.title }}</span>
+    <ng-content></ng-content>
+  </div>
+</div>

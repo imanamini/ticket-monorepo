@@ -1,0 +1,32 @@
+
+.card-information {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.amount {
+  color: #2C3544;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.bank-logo {
+  background-color: #F2F5F8;
+  border-radius: 16px;
+  padding: 8px;
+}
+
+.action {
+  color: #2C3544;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.card-number {
+  color: #6E798D;
+  font-size: 14px;
+  font-weight: 400;
+}
+

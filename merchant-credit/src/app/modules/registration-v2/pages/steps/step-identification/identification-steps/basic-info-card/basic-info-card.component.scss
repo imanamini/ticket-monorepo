@@ -1,0 +1,136 @@
+@import "../../styles/layout/variables";
+
+:host {
+  display: block;
+}
+
+.basic-info-card {
+  border: 1px solid $swatch_steel_200;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: $swatch_steel_400;
+  cursor: pointer;
+  margin-bottom: 16px;
+
+  &.is-selected {
+    border-color: $swatch_blue_500;
+  }
+}
+
+.row-center {
+  display: flex;
+  align-items: center;
+}
+
+header {
+  padding: 24px 24px 16px 24px;
+
+  .content {
+    flex: 1 0;
+    gap: 8px;
+  }
+
+  .heading {
+    font-size: 14px;
+    font-weight: 700;
+    color: $swatch_steel_900;
+  }
+
+  .icon-container {
+    padding: 8px;
+    border-radius: 12px;
+
+    .credit-card {
+      vertical-align: middle;
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      background-image: url("../../../../../../../../assets/icons/credit-card.svg");
+    }
+
+    .receipt {
+      vertical-align: middle;
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      background-image: url("../../../../../../../../assets/icons/receipt.svg");
+    }
+  }
+
+
+  .selection-status {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid #979797;
+
+    &.is-selected {
+      position: relative;
+      z-index: 0;
+      border-color: $swatch_blue_500;
+
+      &::after {
+        background: url("../../../../../../../../assets/icons/status-checked.svg") no-repeat 0 0/100% 100%;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: inline-block;
+        content: ' ';
+        z-index: 1;
+      }
+    }
+  }
+
+  .badge {
+    color: #0040FF;
+    background: #F0F5FF;
+    display: inline-block;
+    margin-inline-start: 8px;
+    border-radius: 12px;
+    padding: 2px 8px;
+    font-size: 12px;
+  }
+}
+
+.separator {
+  height: 1px;
+  background: $swatch_steel_200;
+}
+
+.detail-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 24px 24px 24px;
+
+  .title {
+    color: $swatch_steel_900;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  .value {
+    color: $swatch_steel_700;
+  }
+}
+
+.more-info-action {
+  color: $swatch_blue_500;
+  text-align: center;
+
+  .icon {
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    //background: url('img/icon-info.svg') no-repeat 0 0;
+  }
+
+}
+

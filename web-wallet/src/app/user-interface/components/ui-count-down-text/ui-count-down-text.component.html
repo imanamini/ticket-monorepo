@@ -1,0 +1,4 @@
+<ng-container *ngIf="showParentheses">(
+</ng-container>
+<p *ngIf="timer|async">{{( timer | async ).minutes}}:{{( timer | async ).seconds}}</p>
+<ng-container *ngIf="showParentheses">)</ng-container>

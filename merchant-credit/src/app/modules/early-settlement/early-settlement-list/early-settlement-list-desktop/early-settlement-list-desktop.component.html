@@ -1,0 +1,73 @@
+<div class="list-container">
+  <app-page-header></app-page-header>
+  <div class="header-section">
+    <div class="page-title">{{pageTitle}}</div>
+    <div class="filters-wrapper">
+      <div class="filter-title">تفکیک طبق وضعیت</div>
+      <div class="filter-item" *ngFor="let item of statusGroupList; let i = index"
+           [ngClass]="{active: i === selectedStatusGroupIndex}" (click)="selectStatusGroup.emit(i)">
+        {{item.title}}
+      </div>
+    </div>
+  </div>
+  <div class="main-section">
+    <app-scrollable-view [leftScrollbarPosition]="true">
+      <table class="main-table">
+        <thead>
+        <tr>
+          <th>شماره فاکتور</th>
+          <th>
+            مبلغ
+            <div class="arrow-down"></div>
+          </th>
+          <th>وضعیت</th>
+          <th>
+            تاریخ درخواست
+            <div class="arrow-down"></div>
+          </th>
+          <th>تاریخ تسویه
+            <div class="arrow-down"></div>
+          </th>
+        </tr>
+        </thead>
+        <tbody *ngIf="!loading">
+        <tr *ngFor="let item of data" (click)="onDetailClick.emit(item.trackingCode)">
+          <td>{{item.providerId}}</td>
+          <td>{{item.requestedAmount | thousands}} ریال</td>
+          <td style="text-align: start"><span class="item-color"
+                                              [ngStyle]="{'background-color':settlementColor[item.status]}"></span>{{settlementStatusTranslated[ item.status ] || ''}}
+          </td>
+          <td>{{item.paidDate | persianDatePipe}}</td>
+          <td>{{item.expectedSettlementDate | persianDatePipe}}</td>
+        </tr>
+        <tr *ngIf="data.length <= 0">
+          <td colspan="5" class="empty-message">
+            <app-early-settlement-empty-message
+              [hasFilter]="!!selectedStatusGroupIndex"
+              [statusName]="statusGroupList[selectedStatusGroupIndex].title || ''"></app-early-settlement-empty-message>
+          </td>
+        </tr>
+        </tbody>
+        <tbody *ngIf="loading">
+        <tr>
+          <td colspan="5" class="empty-message">
+            <page-loading [active]="true"></page-loading>
+          </td>
+        </tr>
+        </tbody>
+
+      </table>
+    </app-scrollable-view>
+  </div>
+  <div class="footer-section">
+    <ui-pagination
+      *ngIf="!loading"
+      [styles]="{'width': '28px','height': '28px','font-size': '12px'}"
+      [currentPage]="page"
+      [totalPages]="totalPages"
+      [totalItems]="totalItems"
+      [itemPerPage]="perPage"
+      (pageChange)="onPageChange($event)"
+    ></ui-pagination>
+  </div>
+</div>

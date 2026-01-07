@@ -1,0 +1,57 @@
+<div class="step" [ngClass]="{
+  'is-active': isActive(),
+  'is-last':isLast(),
+'is-passed': isPassed()}">
+  <div class="side">
+    @if((esLoanStateModel()?.buttonType !== ButtonType.inprogress ||
+    esLoanStateModel()?.buttonType !== ButtonType.continue)){
+
+    <div class="step-icon d-flex justify-content-center align-items-center" [ngClass]="{'is-passed':isPassed(),
+    'is-active':isActive(),'border-none': isPassed(),'d-none': isActive()
+    && (esLoanStateModel()?.buttonType === ButtonType.continue || esLoanStateModel()?.buttonType ===
+    ButtonType.inprogress)}">
+      @if(!isActive() && !isPassed()){
+    <ui-api-image width="18px" height="18px"
+                  [imageId]="step()?.icon!"></ui-api-image>
+    }
+    @if(isActive() && !isPassed() && esLoanStateModel()?.buttonType !== ButtonType.continue ){
+    <ui-api-image width="18px" height="18px"
+                  [imageId]="esLoanStateModel()?.icon!"></ui-api-image>
+    }
+    </div>
+    }
+    @if(isActive() && (esLoanStateModel()?.buttonType === ButtonType.inprogress ||
+    esLoanStateModel()?.buttonType === ButtonType.continue)){
+    <div class="progress-icon">
+      <ui-api-image width="32px" height="32px"
+            [imageId]="esLoanStateModel()?.icon!"></ui-api-image>
+     </div>
+    }
+  </div>
+
+  <div class="content mb-low">
+    <div class="d-flex flex-row justify-content-space-between">
+      <h4 class="step-title st-8 mb-low" [ngClass]="{'text-onback-brand': isActive()}">{{step()?.label}}</h4>
+      @if( isActive() && esLoanStateModel()?.buttonType === ButtonType.inprogress){
+      <ngx-badge size="sm" [status]="buttonStyleMapper[badgeStatus()]" mode="fill">
+      {{esLoanStateModel()?.buttonLabel}}
+      </ngx-badge>
+      }
+    </div>
+    @if( isActive()){
+    <p class="c-3  mb-minus" [ngClass]="changeDescriptionColor()">
+    {{esLoanStateModel()?.pageDescription}}
+    </p>
+    }
+    @if( isActive() && esLoanStateModel()?.buttonType !== ButtonType.inprogress){
+    <div class="actions">
+      <ngx-button [leftIcon]="{name: 'arrow-2-left'}" size="tiny" mode="section" style="fill" (click)="onButtonClick('steps')">
+        <div class="cta-button-content">
+          <div>{{esLoanStateModel()?.buttonLabel}}</div>
+
+        </div>
+      </ngx-button>
+    </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="header">
+  <div (click)="closeButton()" class="close"></div>
+  <div class="title">{{ title }}</div>
+</div>
+<div class="iframe-container">
+  <iframe *ngIf="safeHtml && !gettingContent; else loading" [srcdoc]="safeHtml"></iframe>
+</div>
+
+<ng-template #loading>
+  <ui-spinner [size]="64"></ui-spinner>
+</ng-template>

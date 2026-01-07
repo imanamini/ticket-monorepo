@@ -1,0 +1,7 @@
+<app-early-settlement-payment-confirm
+  [profileDisabled]="profileDisabled"
+  [fundProviderName]="fundProviderName"
+  [feeDetail]="previewData || undefined"
+  [loadingCta]="submitting"
+  (confirm)="submit()"
+></app-early-settlement-payment-confirm>

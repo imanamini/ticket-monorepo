@@ -1,0 +1,89 @@
+@import "variables";
+
+:host {
+  margin: 16px 0;
+  display: block;
+  text-align: start;
+}
+
+.note {
+  background: $swatch_steel_100;
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.action {
+  text-align: end;
+  border-top: 1px solid $swatch_steel_200;
+  color: $swatch_blue_500;
+  padding: 8px 0 0;
+  margin: 24px 0 0;
+  cursor: pointer;
+}
+
+.icon {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.chevron-left {
+  width: 24px;
+  height: 24px;
+  background: url("./icons/more-info-icon.svg") no-repeat;
+}
+
+.info-square {
+  background: url('./icons/info-circle-icon.svg') no-repeat center/100%;
+  margin-inline-end: 4px;
+  width: 24px;
+  height: 24px;
+  margin-right: -24px;
+}
+
+.bold-circle {
+  border: 6px solid $swatch_blue_200;
+  background: $swatch_blue_400;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: -24px;
+}
+
+.note-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: $swatch_steel_900;
+  padding-right: 20px;
+}
+
+.note-text {
+  font-size: 12px;
+  font-weight: 900;
+  color: $swatch_steel_900;
+  padding-right: 20px;
+
+}
+
+.points {
+  text-indent: 0;
+  list-style-type: none;
+  margin: 12px 0 0;
+
+  li {
+    color: $swatch_steel_900;
+    font-size: 12px;
+    margin-bottom: 8px;
+
+    &::before {
+      content: ' ';
+      display: inline-block;
+      vertical-align: middle;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: $swatch_steel_500;
+      margin-left: 8px;
+    }
+  }
+}

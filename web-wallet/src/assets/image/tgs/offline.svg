@@ -1,0 +1,22 @@
+<svg width="160" height="140" viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path id="a" d="M0 0h160v140H0z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <mask id="b" fill="#fff">
+            <use xlink:href="#a"/>
+        </mask>
+        <g mask="url(#b)">
+            <path d="M126.601 43.723c3.982 4.745 4.025 12.155 7.348 9.911 3.323-2.245 4.205-11.17.223-15.916s-11.849-8.244-15.746-4.974c-3.896 3.27 4.193 6.233 8.175 10.979z" fill="#F2F5F8"/>
+            <path d="M79.3 62.798 55.302 34.537c13.255-12.985 34.744-12.985 48 0l-24 28.261z" stroke="#FFF" stroke-width="3" fill="#AFB9C5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path stroke="#FFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M79.551 40.798v-8M79.55 47.798a.248.248 0 0 0-.249.25.25.25 0 1 0 .249-.25"/>
+            <path d="M40.732 126.302V85.344c0-5.977 4.89-10.867 10.866-10.867h55.97c5.977 0 10.866 4.89 10.866 10.867v40.958" stroke="#AFB9C5" stroke-width="3" fill="#DEE3E7" stroke-linejoin="round"/>
+            <path d="M49.583 126.302V92.96c0-2.038 1.575-3.704 3.5-3.704h53c1.925 0 3.5 1.666 3.5 3.704v33.343" stroke="#AFB9C5" stroke-width="3" fill="#F2F5F8" stroke-linejoin="round"/>
+            <path d="M64.648 82.79a2.392 2.392 0 1 0-4.783 0 2.392 2.392 0 0 0 4.783 0zM70.655 83.478c-.819 0-1.488-.67-1.488-1.488 0-.819.67-1.488 1.488-1.488H88.51c.819 0 1.488.67 1.488 1.488s-.67 1.488-1.488 1.488H70.655z" fill="#AFB9C5"/>
+            <path d="M117.76 53.726a4.256 4.256 0 1 0-8.513 0 4.256 4.256 0 0 0 8.513 0zM41.247 27.469a5 5 0 1 0-10 0 5 5 0 0 0 10 0z" fill="#F2F5F8"/>
+            <path d="M58.247 18.969a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0z" stroke="#DEE3E7" stroke-width="1.2" stroke-linecap="round"/>
+            <path stroke="#DEE3E7" stroke-width="1.6" stroke-linecap="round" d="M47.784 56.263 41.222 49.7M41.222 56.263l6.562-6.562M131.54 74.73l-4.527-4.526M127.013 74.73l4.526-4.526M102.64 19.1l-4.525-4.525M98.115 19.1l4.525-4.525"/>
+            <path d="M29.908 62.155c-3.189-3.542-3.488-9.176-5.926-7.413-2.437 1.764-2.784 8.566.405 12.108 3.189 3.541 9.276 6.068 12.111 3.515 2.835-2.552-3.401-4.669-6.59-8.21z" fill="#F2F5F8"/>
+        </g>
+    </g>
+</svg>

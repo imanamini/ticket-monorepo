@@ -1,0 +1,40 @@
+<app-bnpl-pay-header
+  [purchaseAmount]="purchaseAmount() - couponAmount()"
+  [purchaseAmountTitle]="couponAmount() ? 'مبلغ نهایی سبد خرید' : 'مبلغ سبد خرید'"
+  [installmentCount]="installmentCount()"
+/>
+
+<div class="flex-grow py-plus px-big overflow-required">
+  @if (payableAmount()) {
+    <app-bnpl-pay-cash-card
+      class="mb-medium"
+      [totalAmount]="payableAmount()"
+      [prePaymentAmount]="prePaymentAmount()"
+      [fee]="cashFee()"
+    />
+  }
+
+  <app-bnpl-pay-credit-card
+    (onEditCredit)="onEditCredit.emit()"
+    [fee]="creditFee()"
+    [installments]="installments()"
+    [totalAmount]="creditAmount()"
+  />
+
+  @if (nearPay()) {
+    <div class="mt-minus">
+      <ngx-callout
+        [mode]="'single-without-title'"
+        message="در صورت مرجوع کردن کالا، مبلغ آن پس از تأیید فروشنده به کیف‌پول شما واریز می‌شود."
+      />
+    </div>
+  }
+</div>
+
+<app-footer-pay
+  (onActionClick)="onPay.emit()"
+  [amount]="payableAmount()"
+  [disabled]="disabled()"
+  [showAmount]="!!payableAmount()"
+  buttonText="تأیید و پرداخت"
+/>

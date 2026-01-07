@@ -1,0 +1,76 @@
+<ui-content-card cardTitle="انتخاب مدارک" [bottomPadding]="false">
+
+  <div title-action (click)="helpMe()">
+    <div class="title-action-content">
+      <div>راهنما</div>
+      <div class="info-icon"></div>
+    </div>
+  </div>
+
+  <ng-container card-body>
+
+    <div class="top-section">
+      <amount-box [amount]="amount" caption="سقف مبلغ اعتبار بر اساس مدارک شما"></amount-box>
+
+      <ng-container *ngIf="requiredDoc">
+        <h4 class="section-title">انتخاب ضروری</h4>
+        <checklist-item
+          [checked]="true"
+          [itemTitle]="requiredDoc.description"
+        ></checklist-item>
+      </ng-container>
+      <div class="divider">
+        <div class="text">
+          اطلاعات تماس
+        </div>
+        <div class="line"></div>
+      </div>
+      <div class="form" [formGroup]="form">
+        <ui-form-field
+          [label]="'شماره همراه'"
+          [hint]="'شماره همراه باید با کد ملی شما مطابقت داشته باشد.'"
+          [maxSize]="11"
+          formControlName="registerCellNumber"
+          [error]="form.controls.registerCellNumber.errors"
+          [isNumericKeyboard]="true"
+          [convertNonEnglishDigits]="true"
+          [errorMessageMapper]="{
+              pattern: 'فرمت شماره همراه اشتباه است.'
+            }"
+        ></ui-form-field>
+      </div>
+      <ng-container *ngIf="documents && documents.length > 0">
+        <h4 class="section-title">اعتبار بیشتر با مدارک بیشتر</h4>
+        <p class="desc">
+          <ng-container *ngIf="userType === merchantTypes.INDIVIDUAL">
+            شما می‌توانید با انتخاب و در دست داشتن مدارک بیشتر در مرحله افتتاح حساب، اعتبار بیشتری دریافت کنید.
+          </ng-container>
+        </p>
+
+        <div class="additional-documents">
+          <app-scrollable-view>
+            <checklist-item
+              *ngFor="let doc of documents"
+              [itemTitle]="doc.description"
+              [checked]="selectedDocumentIds.indexOf(doc.id) >= 0"
+              [subtitle]="doc.subItems ? 'یکی از مدارک زیر' : ''"
+              [tags]="doc.subItems ? doc.subItems : []"
+              (clicked)="onDocumentClick(doc.id)"
+            ></checklist-item>
+          </app-scrollable-view>
+        </div>
+      </ng-container>
+    </div>
+    <ui-checkbox class="bottom-section" [checked]="agreed" (changed)="agreed = $event">
+      با
+      <span class="link-style" (click)="showTac()">قوانین و مقررات</span>
+      استفاده از این سرویس موافقم
+    </ui-checkbox>
+    <ng-button class="mb-2" (clickHandler)="proceed()"
+               buttonSize="medium"
+               [fullWidth]="true"
+               [disabled]="!agreed || form.invalid"
+               [buttonText]="'تایید و ادامه'">
+    </ng-button>
+  </ng-container>
+</ui-content-card>

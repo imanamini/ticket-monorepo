@@ -1,0 +1,239 @@
+@import "variables";
+
+:host {
+  height: 100%;
+}
+
+.full-width-button {
+  display: block;
+  width: 100%;
+}
+
+.wrapper {
+  background-color: $swatch_steel_100;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.body-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 24px 0;
+
+  .header-title {
+    font-size: 16px;
+  }
+
+  .header-amount {
+    font-size: 32px;
+    line-height: 56px;
+
+    .currency {
+      font-size: 18px;
+    }
+  }
+
+  .collapse-button {
+    font-size: 14px;
+    color: $swatch_blue_500;
+    padding: 8px 4px;
+    border: none;
+    background-color: unset;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    outline-style: none;
+
+    &:disabled {
+      opacity: .5;
+    }
+
+    .arrow {
+      background-image: url("./arrow-down-icon.svg");
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 2px;
+      transition: .3s all ease-in-out;
+
+      &.up {
+        transition: .3s all ease-in-out;
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.body-content {
+  flex-grow: 1;
+  height: 150px;
+  padding-bottom: 10px;
+
+  &.hide {
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s all ease-in-out;
+  }
+
+  &.show {
+    opacity: 1;
+    transition: .3s all ease-in-out;
+  }
+
+  .content-container {
+    direction: rtl;
+    text-align: right;
+    padding: 0 24px 24px;
+
+    .card:not(:last-child) {
+      margin-bottom: 16px;
+      display: block;
+    }
+  }
+}
+
+.footer-placeholder {
+  padding: 24px;
+  position: relative;
+  background-color: #fff;
+
+}
+
+.footer {
+  position: absolute;
+  background-color: #fff;
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+
+  &::before {
+    display: block;
+    content: "";
+    background-color: $swatch-steel_200;
+    width: 40px;
+    height: 4px;
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 16px;
+    margin: auto;
+  }
+
+
+  .footer-content {
+    flex-grow: 1;
+    overflow: hidden;
+    padding: 40px 24px 24px;
+
+    &.show {
+      transition: .3s height ease-in-out, .3s padding ease-in-out;
+    }
+
+    &.hide {
+      padding: 20px 24px 0;
+      transition: .3s height ease-in-out, .3s padding ease-in-out;
+    }
+
+    .content-container {
+      padding-bottom: 24px;
+      direction: rtl;
+      text-align: right;
+
+      .description {
+        margin-bottom: 24px;
+        font-weight: 500;
+      }
+
+      .container-card {
+        border: 1px solid $swatch-steel-200;
+        border-radius: 16px;
+        padding: 16px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+
+        .card-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 12px;
+          background-position: center;
+          background-repeat: no-repeat;
+
+          &.cash {
+            background-image: url("./money-cash-banknote-coins.svg");
+            background-color: $swatch-blue_100;
+          }
+
+          &.credit {
+            background-image: url("./emails-calendar-schedule.svg");
+            background-color: #f2f0ff;
+          }
+        }
+
+        .card-content {
+          margin-right: 12px;
+          align-self: normal;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          .first {
+            font-weight: 500;
+          }
+
+          .second {
+            font-size: 12px;
+            color: $swatch_steel_500;
+            margin-right: 8px;
+          }
+
+          .amount {
+            font-size: 16px;
+            color: $swatch_steel_500;
+
+            .currency {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+
+      .edit {
+        color: $swatch_blue_500;
+        display: flex;
+        align-items: center;
+        padding: 6px 0;
+        font-weight: 500;
+        cursor: pointer;
+
+        .edit-icon {
+          background-image: url("./content_edit_pen_edit.svg");
+          width: 20px;
+          height: 20px;
+          margin-left: 4px;
+        }
+      }
+    }
+  }
+}
+
+.disabled-message-list {
+  .disabled-message {
+    font-size: 12px;
+    line-height: 24px;
+    margin-bottom: 8px;
+    background-color: $swatch_red_100;
+    border-radius: 8px;
+    padding: 4px 16px;
+    border: 1px solid $swatch_red_900;
+    color: $swatch_red_900;
+  }
+}

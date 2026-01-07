@@ -1,0 +1,27 @@
+<ui-content-card
+  [title]="'فعال‌سازی کیف‌پول'"
+  [confirmButtonTitle]="'بازگشت به پذیرنده'"
+  (confirm)="backToMerchant()"
+  [confirmButtonFullWidth]="true"
+  [showConfirmButtonRemaining]="true"
+  [confirmButtonRemainingTime]="30"
+  (finishedConfirmRemaining)="countdownFinished()"
+>
+
+  <div class="wrapper">
+
+    <div class="illustration"></div>
+
+    <h1 class="title">
+      کیف پول شما فعال شد.
+    </h1>
+
+    <p class="description">
+      برای برخورداری از مزایایی چون مدیریت تراکنش‌ها، کارت به کارت، پرداخت قبض، شرکت در قرعه‌کشی و ... اپلیکیشن
+      <a href="https://mydigipay.com" target="_blank">دیجی‌پی</a>
+      را دانلود کنید.
+    </p>
+
+  </div>
+
+</ui-content-card>

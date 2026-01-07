@@ -1,0 +1,27 @@
+<ui-content-card [contentPadding]="false">
+  <div card-body>
+
+    <flow-header *ngIf="headerDetails"
+                 [heading]="stepsHeader?.title"
+                 [headingNote]="stepsHeader?.topLeftLabel"
+                 [details]="headerDetails"
+                 [hasBackButton]="false"
+    ></flow-header>
+
+    <div class="steps">
+      <flow-step
+        (actionClicked)="onStepActionClick(step)"
+        *ngFor="let step of steps; let si = index;"
+        [step]="step" [isActive]="step.uid === currentStepName"
+        [isPassed]="si < activeStepIndex"
+        [isLastStep]="si === steps.length - 1"
+        [flowStatus]="flowStatus"
+      ></flow-step>
+
+      <div class="steps-overflow" *ngIf="flowStatus === flowStatusEnum.REJECTED">
+        <ui-button [appearance]="'FLAT-BLUE'" class="full-width" (clicked)="exit()">بازگشت به صفحه اصلی</ui-button>
+      </div>
+    </div>
+
+  </div>
+</ui-content-card>

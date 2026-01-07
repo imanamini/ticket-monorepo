@@ -1,0 +1,50 @@
+@import "../../../layout/mixins/font-size";
+@import "../../../layout/variables";
+
+ui-content-card::ng-deep {
+  .content-card {
+    .content-card-body {
+      padding-top: 64px !important;
+    }
+  }
+}
+
+.wrapper {
+  width: 320px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.illustration {
+  width: 256px;
+  height: 144px;
+  background: url('./images/wallet-activated.svg') no-repeat 0 0/100%;
+  margin: 0 auto;
+}
+
+.digipay-logo {
+  margin: 24px auto;
+}
+
+.title {
+  color: $digipay-green;
+  font-weight: bold;
+  margin: 36px 0 24px;
+  @include fontSize(18);
+}
+
+.description {
+  @include fontSize(14);
+  line-height: 1.7em;
+  margin-bottom: 40px;
+  font-weight: normal;
+  color: $text-color-lighter;
+
+  a {
+    text-decoration: none;
+    color: $text-color;
+    font-weight: bold;
+  }
+}

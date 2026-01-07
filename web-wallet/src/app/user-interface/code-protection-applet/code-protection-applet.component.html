@@ -1,0 +1,88 @@
+<div class="code-protection">
+
+  <div id="{{protectionData?.googleAnalyticId?.wrapperId || ''}}" class="code-protection">
+
+    <div
+      *ngIf="showWalletBalance && protectionData.walletBalance"
+      class="amount-wrapper"
+    >
+      <ui-amount-label-bar
+        [title]="'کیف پول دیجی‌پی'"
+        [value]="protectionData.walletBalance"
+        [userFullName]="userFullName"
+      ></ui-amount-label-bar>
+    </div>
+
+    <div
+      *ngIf="(!otpVerified && protectionData.protection==='OTP') || (!pinVerified && protectionData.protection==='PIN')"
+      class="description">
+
+      <div class="subscription-messages" *ngIf="showSubscriptionMessages; else DefaultMessage">
+        <div>فعال‌سازی و پرداخت</div>
+        <p>
+          'برای فعال‌سازی و پرداخت دوره اول، رمز ' +
+          {{protectionData.protection | passwordType}} +
+          ' را وارد کنید'
+        </p>
+      </div>
+
+      <ng-template #DefaultMessage>
+
+        <p *ngIf="protectionData.protection === 'OTP'">
+          <span>{{'برای تایید پرداخت '}}</span><br>
+          <span>{{'رمز ارسال شده به شماره '}}</span>
+          <span class="cell-number">{{protectionData.userDetail.cellNumber}}</span>
+          <span>{{' را وارد کنید.'}}</span>
+        </p>
+
+        <p *ngIf="protectionData.protection === 'PIN'">
+          <span>{{'برای تایید پرداخت'}}</span><br>
+          <span>{{'رمز کیف‌ پول خود را وارد کنید.'}}</span>
+        </p>
+
+      </ng-template>
+
+    </div>
+
+    <ui-in-page-otp
+      *ngIf="((!otpVerified && protectionData.protection==='OTP') || (!pinVerified && protectionData.protection==='PIN'))"
+      [ngClass]="{'otp-verified': (otpVerified && protectionData.protection==='OTP')}"
+      (entered)="inputEntered($event)"
+      (requestNewCode)="requestNewCode()"
+      [clearSignal]="clearSignal"
+      [length]="protectionData.protection === 'OTP' ? 5 : 4"
+      [disableInputs]="otpVerified"
+      [inputType]="protectionData.protection==='PIN' ? 'password' : 'text'"
+    >
+    </ui-in-page-otp>
+
+    <div class="protection-features">
+      <div
+        *ngIf="(!otpVerified && protectionData.protection === 'OTP');"
+        class="otp-resend-button"
+        [ngClass]="{'active': enableResendButton && !otpVerified}">
+        <span (click)="requestNewCode()">دریافت مجدد کد</span>
+        <div class="resend-remaining-wrapper" [ngClass]="{'hide-remaining': enableResendButton || otpVerified}">
+          <ui-count-down-text
+            *ngIf="!enableResendButton && !otpVerified"
+            (finished)="onFinishedResendRemaining()"
+            [seconds]="resendRemainingTime"
+          ></ui-count-down-text>
+        </div>
+      </div>
+
+<!--      <div class="loader-container"-->
+<!--           [ngClass]="{'hide': !verifying}">-->
+<!--        <div class="loader"></div>-->
+<!--      </div>-->
+
+    </div>
+
+    <div
+      class="pin-divider"
+      *ngIf="!otpVerified && protectionData.protection === 'PIN'"
+    ></div>
+
+  </div>
+
+</div>

@@ -1,0 +1,10 @@
+<h4 class="section-title">جزئیات پرداخت</h4>
+<div *ngFor="let item of items" class="row">
+  <div class="text">
+    <h5>{{ item.title }}</h5>
+    <h6 *ngIf="item.subtitle">{{ item.subtitle }}</h6>
+  </div>
+  <div class="amount">
+    {{ item.amount | thousands }} {{ unit }}
+  </div>
+</div>

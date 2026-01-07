@@ -1,0 +1,89 @@
+<app-location-trap [canExit]="true" [canBack]="false" (back)="cancelPay()"></app-location-trap>
+
+<credit-ui-content-box
+  *ngIf="!gettingData"
+  contentBoxTitle="پرداخت با دیجی‌پی"
+  (backClick)="cancelPay()"
+  [showHeader]="true"
+  [bodyPadding]="false"
+  [showCloseButton]="true"
+  [grayMode]="true"
+  [showLogo]="false"
+  [countDown]="0">
+
+  <div class="info-header" *ngIf="selectedCreditItem">
+    <div class="header-title">مبلغ سبدخرید</div>
+    <div class="header-value">
+      <credit-ui-currency fontSize="24px" [value]="selectedCreditItem.purchaseAmount"></credit-ui-currency>
+    </div>
+  </div>
+  <div class="info-body">
+    <div class="side-padding">
+      <div class="info-body-title">
+        مبلغ را با کدام کارت پرداخت می‌کنید؟
+      </div>
+    </div>
+    <div class="side-padding wallets-wrapper">
+
+      <ng-container *ngIf="!offerMode">
+        <app-selective-card
+          *ngFor="let item of creditInfo.creditDetails; let i = index"
+          [title]="item.fundProvider.title"
+          [subTitle]="item.installmentCount ? item.installmentCount + ' قسط' : ''"
+          [description]="item.balance ? ('موجودی: ' + (item.balance | iranianRials)) : 'موجودی: -'"
+          [disabled]="item.disable"
+          [logo]="item.fundProvider.icon"
+          [color]="item.color"
+          [isSelected]="selectedIndex === i"
+          (select)="onSelect(i)"
+        ></app-selective-card>
+      </ng-container>
+
+      <ng-container *ngIf="offerMode">
+        <app-offer-card
+          *ngFor="let offer of offers"
+          [offer]="offer"
+        ></app-offer-card>
+      </ng-container>
+
+    </div>
+  </div>
+  <div class="info-footer">
+    <div class="side-padding">
+      <div class="disabled-message" *ngIf="selectedCreditItem && selectedCreditItem.disable">
+        <p *ngFor="let message of selectedCreditItem.messages" class="wallet-notice-text">
+          {{ message.text }}
+        </p>
+      </div>
+      <div class="call-to-action-row">
+        <div class="primary-col">
+
+          <credit-ui-button
+            *ngIf="selectedCreditItem && !selectedCreditItem.disable"
+            class="primary-button"
+            (buttonClick)="onConfirm()"
+            [styles]="{width: '100%'}" [disabled]="gettingData
+              || routing
+              || !selectedCreditItem
+              || selectedCreditItem.disable
+              || selectedCreditItem.balance === 0">
+            <ng-container *ngIf="!routing">
+              تایید و پرداخت
+            </ng-container>
+            <mat-spinner [diameter]="12" [strokeWidth]="1" *ngIf="routing"></mat-spinner>
+          </credit-ui-button>
+
+          <credit-ui-button
+            *ngIf="selectedCreditItem && selectedCreditItem.disable"
+            class="primary-button"
+            appearance="outline"
+            (buttonClick)="cancelPay()"
+            [styles]="{width: '100%'}">
+            بازگشت به صفحه قبل
+          </credit-ui-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</credit-ui-content-box>
+<mat-spinner *ngIf="gettingData"></mat-spinner>

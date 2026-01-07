@@ -1,0 +1,209 @@
+@import "../../styles/layout/variables";
+
+:host {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .status-page {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 16px;
+    background: $swatch_steel_100;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+
+    &.in-box-mode {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .status-color-box {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 190px;
+      background: $swatch_orange_500;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 0;
+    }
+
+    .status-page-title-bar {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      color: #FFFFFF;
+
+      .title-bar-right-action {
+        flex: 0 0 24px;
+        width: 24px;
+        height: 24px;
+
+        .back-icon {
+          width: 24px;
+          height: 24px;
+          cursor: pointer;
+          background-image: url("./assets/icon-general-back-white.svg");
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          transform: rotate(180deg);
+        }
+      }
+
+      .title-bar-left-action {
+        flex: 0 0 24px;
+        width: 24px;
+        height: 24px;
+      }
+
+      .status-page-title {
+        flex: 1 1 auto;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: center;
+        padding: 0 8px;
+      }
+    }
+
+    .status-page-card {
+      position: relative;
+      z-index: 1;
+      padding: 48px 12px 12px;
+      background: #FFFFFF;
+      border-radius: 8px;
+      margin-top: 48px;
+
+      .card-icon {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        background-image: url("assets/digipay-logosign.svg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        border-radius: 50%;
+        width: 68px;
+        height: 68px;
+        border: 2px solid #FFFFFF;
+      }
+
+      .status-amount-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .amount-title {
+          font-size: 12px;
+          color: $db-black-50;
+          font-weight: 500;
+          margin-bottom: 8px;
+        }
+
+        .amount-value {
+          display: flex;
+          align-items: center;
+          font-size: 20px;
+          font-weight: 700;
+          color: $db-black-70;
+
+          .unit {
+            font-size: 10px;
+            color: $swatch_steel_500;
+            margin-right: 4px;
+          }
+        }
+      }
+
+      .status-info-table {
+        .status-info-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px 0;
+          border-bottom: 1px solid $border-color;
+          font-size: 12px;
+          font-weight: 500;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          .status-info-title {
+            color: $swatch_steel_500
+          }
+
+          .status-info-value {
+            color: $swatch_steel_900;
+
+            &.important-info {
+              color: $swatch_blue_500;
+            }
+          }
+        }
+      }
+
+      .status-message {
+        padding: 12px 8px;
+        margin-top: 4px;
+        border-radius: 8px;
+        background-color: $swatch_steel_100;
+        color: $swatch_steel_500;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .status-footer {
+        margin-top: 12px;
+        display: flex;
+        justify-content: center;
+
+        .footer-logo {
+          width: 76px;
+          height: 38px;
+          background-image: url("./assets/logo-digipay-logotype.svg");
+        }
+      }
+    }
+
+    .status-cta-wrapper {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+
+      ui-button {
+        width: 100%;
+      }
+
+      .cat-col-secondary {
+        flex: 0 0 auto;
+        width: calc(35% - 8px);
+      }
+
+      .cat-col-primary {
+        flex: 0 0 auto;
+        width: calc(65% - 8px);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  :host {
+    .status-page {
+      width: 100%;
+      max-width: 100%;
+      flex-grow: 1;
+      border-radius: 0;
+    }
+  }
+}

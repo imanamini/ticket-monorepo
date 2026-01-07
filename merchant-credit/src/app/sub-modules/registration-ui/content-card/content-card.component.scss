@@ -1,0 +1,134 @@
+@import "../../../styles/layout/variables";
+
+:host {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+
+  }
+
+  .card-body {
+    flex: 1 0;
+  }
+}
+
+.card-part {
+  background: #fff;
+  overflow: hidden;
+}
+
+.card-title {
+  color: $swatch_steel_500;
+  border-bottom: 1px solid $swatch_steel_200;
+  font-size: 18px;
+  padding: 16px;
+  line-height: 1.4em;
+  display: flex;
+  justify-content: space-between;
+
+  > span {
+
+  }
+
+  .title-action {
+    cursor: pointer;
+    font-size: 14px;
+  }
+}
+
+.card-body {
+  color: $swatch_steel_500;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  padding: 24px;
+  flex: 1 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 700px;
+
+  &.no-padding {
+    padding: 0;
+  }
+
+  &.no-bottom-padding {
+    padding-bottom: 0;
+  }
+}
+
+.card-footer {
+  display: flex;
+  background-color: #fff;
+  flex-direction: row-reverse;
+  padding: 8px 16px;
+  position: relative;
+}
+
+.card-footer:empty {
+  display: none;
+}
+
+:host ::ng-deep .important-text {
+  color: $swatch_steel_900;
+}
+
+.back-arrow {
+  background: url("../../../../assets/icons/content-card-back.svg") no-repeat center/24px;
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.close {
+  background: url("../../../../assets/icons/close.svg") no-repeat center/24px;
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.help {
+  background: url("../../../../assets/icons/question.svg") no-repeat center/24px;
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+
+@media (max-width: 767px) {
+  :host {
+    .card {
+      flex-grow: 1;
+      height: 100%;
+    }
+  }
+
+  .card-part {
+    border-radius: 0;
+  }
+  .card-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+
+}
+

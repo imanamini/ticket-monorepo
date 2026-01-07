@@ -1,0 +1,22 @@
+<div class="ui-card-number-input">
+  <div class="content">
+    <label [class.title-move]="inputFocused"
+           [style.color]="grayLabel ? '#6e798d' : '#0040ff'" class="card-number-title"
+           for="card-number">{{ placeHolder }}</label>
+    <ui-image *ngIf="imageId;else defaultBank" [imageId]="imageId" width="24px"></ui-image>
+    <ng-template #defaultBank>
+      <div class="default-bank-place-holder"></div>
+    </ng-template>
+    <div *ngIf="loadingSpinner" class="input-prefix-icon loader"></div>
+    <div (click)="clear()" [class.show]="inputFocused && !loadingSpinner"
+         class="icon-close-inp"></div>
+    <input #input (focus)="onFocus(true)" (focusout)="onFocus(false)"
+           (input)="onValueChanged($event)" class="card-number-input" id="card-number"
+           type="tel">
+  </div>
+  <div class="hint">
+    <div *ngIf="hint" class="hint-item">{{ hint }}</div>
+    <div *ngIf="!imageId && input.value.length > 6 && !hint" class="hint-item error">شماره کارت وارد شده اشتباه است.
+    </div>
+  </div>
+</div>

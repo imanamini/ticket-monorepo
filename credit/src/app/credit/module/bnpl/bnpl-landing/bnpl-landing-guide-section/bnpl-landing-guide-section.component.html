@@ -1,0 +1,18 @@
+<section class="section-with-padding">
+  <div class="container">
+    <div class="megaphone-image"></div>
+    <div class="guide-section-title">{{ title }}</div>
+    <ul class="faq_items d-flex flex-column">
+      <li *ngFor="let box of boxList"
+          class="faq_item collapsible">
+        <div (click)="openItemFaq(box)" class="faq_question">
+          <span>{{ box.title }}</span>
+          <div [ngClass]="!box.open ? 'rotate':''" class="icon" icon="icon-charon-up" size="24" ui-icon></div>
+        </div>
+        <div *ngIf="box.open" class="faq_answer">
+          {{ box.description }}
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

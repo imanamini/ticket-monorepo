@@ -1,0 +1,36 @@
+<div class="select-fee-title">
+  حداکثر مبلغی که ماهیانه نیاز به تسویه دارید:
+</div>
+<ng-container *ngFor="let fee of selectableFees">
+  <app-credit-revise-checkbox
+    [checked]="fee.checked"
+    [isNumber]="true"
+    (checkedChange)='onChange(fee.id);calculateMaxAmount()'
+    [document]="fee"
+  ></app-credit-revise-checkbox>
+</ng-container>
+<div class="divider">
+  <div class="text">
+    شماره شبا
+  </div>
+  <div class="line"></div>
+</div>
+<div class="iban-title">
+  لطفا شماره شبای حسابی که می خواهید تسویه فاکتورها به آن پرداخت شود را وارد کنید:
+</div>
+<div class="form" [formGroup]="form">
+  <ui-form-field
+    [placeholder]="'شماره شبا را وارد کنید'"
+    [type]="'iban'"
+    formControlName="iban"
+    [error]="form.controls.iban.errors"
+    [errorMessageMapper]="{
+              pattern: 'شماره شبا اشتباه وارد شده است.'
+            }"
+    [hasCleaner]="true"
+    [autoFocus]="true"
+  ></ui-form-field>
+</div>
+
+
+

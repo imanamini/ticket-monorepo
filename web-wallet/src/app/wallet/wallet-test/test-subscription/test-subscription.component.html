@@ -1,0 +1,22 @@
+<ui-content-box>
+  <div dir="ltr">
+    <h1>Test Subscription</h1>
+
+    <div class="column">
+      <label dir="ltr">Cell Number</label>
+      <input type="text" placeholder="Cell Number" dir="ltr" [(ngModel)]="cellNumber">
+    </div>
+
+    <div>
+      <label for="subscription-groups" dir="ltr">Template Group Id</label>
+      <select name="" id="subscription-groups" [(ngModel)]="templateGroupId" [disabled]="!subscriptionGroups.length">
+        <option *ngIf="!templateGroupId" value="">Choose a group</option>
+        <option *ngFor="let group of subscriptionGroups"
+                [value]="group.groupId">{{group.groupId + ' (' + group[ 'templates' ].length + ')'}}</option>
+      </select>
+    </div>
+
+    <ui-button (buttonClick)="getTestTicket()" [disabled]="gettingToken || !templateGroupId">Get Ticket</ui-button>
+
+  </div>
+</ui-content-box>

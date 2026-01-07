@@ -1,0 +1,32 @@
+<section class="faq section-with-padding">
+  <div class="container">
+    <h2 *ngIf="title" class="centered-text">{{ title() }}</h2>
+    <div *ngIf="subtitle" class="subtitle centered-text">{{ subtitle() }}</div>
+    <ul class="faq_items d-flex flex-column">
+      <li *ngFor="let item of visibleFaqs(); let itemIndex = index;" [id]="item.itemId || 'target' + (itemIndex + 1)"
+          class="faq_item collapsible">
+        <div (click)="openItemFaq(itemIndex)" class="faq_question">
+          <span>{{ item.question }}</span>
+          <div
+            [ngClass]="openItemIndex() === itemIndex ? 'open' : 'plus-close'"
+            class="collapsible-sign collapsible-selector"
+          >
+          </div>
+        </div>
+        <div *ngIf="openItemIndex() === itemIndex"
+             [innerHTML]="item.answer" class="faq_answer">
+          <a *ngIf="item.link" [href]="item.link.url" class="link">{{ item.link.title }}</a>
+        </div>
+      </li>
+    </ul>
+    <div class="cta">
+      <ngx-button
+        (clickHandler)="toggleShowAll()"
+        [style]="'link'">
+        {{ showAllButtonText() }}
+        <div [ngClass]="showAll() ? 'rotate':''" class="icon" icon="icon-charon-down-light-blue" size="24"
+             ui-icon></div>
+      </ngx-button>
+    </div>
+  </div>
+</section>

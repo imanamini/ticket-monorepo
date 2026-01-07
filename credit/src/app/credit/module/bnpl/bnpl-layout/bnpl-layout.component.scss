@@ -1,0 +1,17 @@
+.bnpl-layout {
+  direction: rtl;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.7;
+  * {
+    box-sizing: border-box;
+  }
+  .icon-powered-by {
+    width: 108px;
+    height: 11px;
+    background-image: url("../../../../../assets/bnpl/powered-by.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+}

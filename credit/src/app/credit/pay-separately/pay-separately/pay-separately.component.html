@@ -1,0 +1,51 @@
+<credit-ui-content-box
+  *ngIf="!loading"
+  [showLogo]="false"
+  [showHeader]="false">
+  <section class="amount-section">
+    <div class="total-amount-title">{{mainLabel}}</div>
+    <div class="total-amount">{{basketAmount | iranianRials:'hideRial'}} <small>{{currencyLabel}}</small></div>
+  </section>
+  <section class="progress-bar-section">
+    <app-step-progress-bar [steps]="steps"></app-step-progress-bar>
+  </section>
+  <section class="message-section">
+    <credit-ui-alert-message-box [status]="messageStatus">{{message}}</credit-ui-alert-message-box>
+  </section>
+  <section class="steps-section">
+    <app-pay-steps [steps]="steps"></app-pay-steps>
+  </section>
+  <section class="cta-section">
+    <form
+      *ngIf="redirectForm && redirectForm.url"
+      #hiddenPaymentForm
+      [action]="redirectForm.url"
+      [method]="redirectForm.method.toLocaleLowerCase()"
+    >
+      <input
+        *ngFor="let item of redirectForm.data"
+        type="hidden"
+        [name]="item.name"
+        [value]="item.value"
+      />
+    </form>
+    <credit-ui-button
+      class="full-width"
+      appearance="default"
+      [styles]="{width: '100%'}"
+      (buttonClick)="callToActionTrigger()"
+      [disabled]="redirectLoading"
+    >
+      <ng-container *ngIf="!redirectLoading">
+        <countdown
+          class="count-down"
+          [config]="{leftTime: countdownTime, format: 'mm:ss'}"
+          (event)="countdownHandler($event)"
+        />
+        {{buttonLabel}}
+      </ng-container>
+      <mat-spinner *ngIf="redirectLoading" [strokeWidth]="1" [diameter]="14" ></mat-spinner>
+    </credit-ui-button>
+  </section>
+</credit-ui-content-box>
+<page-loading [active]="loading"></page-loading>
