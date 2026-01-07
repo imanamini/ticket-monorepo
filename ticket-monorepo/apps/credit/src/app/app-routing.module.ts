@@ -37,7 +37,6 @@ const routes: Routes = [
   },
   {
     path: 'pay-receipt',
-    component: CreditRootComponent,
     loadComponent: () => import('./credit/payment-receipt/payment-receipt.component').then(m => m.PaymentReceiptComponent)
   },
 
