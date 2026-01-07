@@ -1,4 +1,4 @@
-# Ticket Monorepo
+# Limbo Monorepo
 
 This monorepo contains multiple Angular applications managed with Nx.
 
