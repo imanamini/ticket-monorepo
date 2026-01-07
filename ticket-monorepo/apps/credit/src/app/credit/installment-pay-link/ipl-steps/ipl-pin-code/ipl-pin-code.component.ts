@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IplService } from '../../services/ipl.service';
-import { MessageService } from 'src/app/credit/core/services/message.service';
+import { MessageService } from '../../../core/services/message.service';
 import { PinInvalidStatus } from '../../../api/login/pin-invalid-status';
 import { TokenService } from '../../services/token/token.service';
 import { IplPayService } from '../../services/ipl-pay/ipl-pay.service';
