@@ -7,12 +7,20 @@ const routes: Routes = [
   {
     path: '',
     component: CreditRootComponent,
-    loadChildren: () => import('./credit/module/credit.module').then(m => m.CreditModule)
-  },
-  {
-    path: 'purchase',
-    component: CreditRootComponent,
-    loadChildren: () => import('./credit/pay-separately/pay-separately.module').then(m => m.PaySeparatelyModule)
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./credit/module/credit.module').then(m => m.CreditModule)
+      },
+      {
+        path: 'purchase',
+        loadChildren: () => import('./credit/pay-separately/pay-separately.module').then(m => m.PaySeparatelyModule)
+      },
+      {
+        path: 'pay-receipt',
+        loadComponent: () => import('./credit/payment-receipt/payment-receipt.component').then(m => m.PaymentReceiptComponent)
+      }
+    ]
   },
   {
     path: 'bnpl',
@@ -21,7 +29,12 @@ const routes: Routes = [
   {
     path: 'bnpl-pay',
     component: BnplPayRootComponent,
-    loadChildren: () => import('./credit/module/bnpl-pay/bnpl-pay.module').then(m => m.BnplPayModule)
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./credit/module/bnpl-pay/bnpl-pay.module').then(m => m.BnplPayModule)
+      }
+    ]
   },
   {
     path: 'payment-callback-proxy',
@@ -34,13 +47,7 @@ const routes: Routes = [
   {
     path: 'ipl',
     loadChildren: () => import('./credit/installment-pay-link/ipl.module').then(m => m.IplModule)
-  },
-  {
-    path: 'pay-receipt',
-    component: CreditRootComponent,
-    loadComponent: () => import('./credit/payment-receipt/payment-receipt.component').then(m => m.PaymentReceiptComponent)
-  },
-
+  }
 ];
 
 @NgModule({
