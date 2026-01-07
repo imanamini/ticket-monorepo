@@ -1,0 +1,28 @@
+<div class="result-wrapper" *ngIf="contractInfo">
+
+  <ui-template-card
+    [imageId]="contractInfo['bankIcon']"
+    [cardTitle]="' بانک ' + DIRECT_DEBIT_BANKS_TRANSLATE[DIRECT_DEBIT_BANKS[contractInfo.bankCode]]"
+    [cardAmountPrefix]="'حداقل موجودی'"
+    [cardAmount]="contractInfo?.action?.minWalletBalance || 0"
+    [firstField]="{
+              title: 'تاریخ شروع قرارداد',
+              value: contractInfo?.activationDate | persianDate
+            }"
+    [secondField]="{
+              title: 'تاریخ انقضا',
+              value: contractInfo?.expirationDate | persianDate
+            }"
+  ></ui-template-card>
+
+</div>
+
+<ui-button
+  class="w-100"
+  theme="digipay"
+  appearance="default"
+  [googleAnalyticId]="{buttonId:GA_DIRECT_DEBIT_ID_CONTRACT.RETURN_TO_MERCHANT_CLICK}"
+  [fullWidth]="true"
+  (buttonClick)="navigateService.toCallback()">
+  بازگشت به پذیرنده
+</ui-button>

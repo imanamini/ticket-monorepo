@@ -1,0 +1,47 @@
+<div class="fund-provider-activation-step d-flex flex-column gap-medium pt-medium pb-medium pl-plus pr-plus"
+     *ngIf="steps()[currentStepIndex()]">
+  <ngx-status-result
+    class="status-result mt-hulk mb-auto p-big "
+    *ngIf="errorData"
+    [title]="errorData?.title!"
+    [description]="errorData?.message!"
+    [subDescription]="errorData?.subDescription!"
+    [buttons]="errorData?.buttons!"
+    [timer]="errorData?.timer!"
+    [loading]="errorData?.loading!"
+    (finished)="finishTimer()"
+    (clicked)="closeClick()"
+  >
+    <ng-container status-image>
+      <img [src]="errorData?.staticImage" alt="">
+    </ng-container>
+  </ngx-status-result>
+  <div class="support-wrapper d-flex justify-content-space-between mt-small mb-giant bt-2  p-medium radius-minus"
+       *ngIf="ICS_STATES.FUND_PROVIDER_ACTIVATION_REJECTED === errorStatus">
+    <span class="name">شماره پشتیبانی:</span>
+    <span class="phone">۰۲۱-۵۳۹۲۴۰۰۰ (داخلی۶)</span>
+  </div>
+
+  <div class="top-section" *ngIf="ICS_STATES.FUND_PROVIDER_ACTIVATION === errorStatus">
+    <p class="b-3 text-onback-high mb-medium">جهت امضای قرارداد نقدین (حد اعتباری) و دریافت تسهیلات به یکی از شعب بانک سامان مراجعه کنید. لطفا در زمان مراجعه حضوری به بانک جهت امضای قرارداد نقدین، مدارک زیر را به همراه داشته باشید در غیر این صورت حد اعتباری شما مورد تایید بانک نخواهد بود.
+    </p>
+    <ngx-callout
+      [title]="'مدارک لازم جهت ارائه به بانک'"
+      [mode]="'multiple'"
+      [messages]="docItems()"
+    />
+  </div>
+
+  <div class="mt-small mb-massive" *ngIf="ICS_STATES.FUND_PROVIDER_ACTIVATION === errorStatus">
+    <ngx-button (clickHandler)="showMap()"
+                size="large"
+                mode="form"
+                [style]="'fill'"
+                [fullWidth]="true">
+      مشاهده نقشه
+    </ngx-button>
+  </div>
+</div>
+
+
+

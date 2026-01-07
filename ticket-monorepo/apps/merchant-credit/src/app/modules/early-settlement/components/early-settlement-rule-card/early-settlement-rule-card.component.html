@@ -1,0 +1,21 @@
+<div class="rule-card"
+     (click)="onCardClick()"
+     [ngClass]="{'is-selected': selected}">
+  <div class="rule-card-detail">
+       <span class="rule-card-detail-icon">
+            <ui-api-image *ngIf="rule.imageId" [imageId]="rule.imageId"></ui-api-image>
+  </span>
+    <div class="rule-card-detail-content">
+      <div class="title">
+        <span>{{ rule.fundProviderName }}</span>
+        <div *ngIf="rule.enabled" class="selection-status" [ngClass]="{'is-selected': selected}"></div>
+        <span class="disable-status" *ngIf="!rule.enabled">
+   موقتا غیرفعال
+  </span>
+      </div>
+      <div class="description">
+        <span>اعتبار باقی مانده: {{ rule.merchantMaxCreditAmount | number}} ریال</span>
+      </div>
+    </div>
+  </div>
+</div>

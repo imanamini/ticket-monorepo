@@ -1,0 +1,33 @@
+<label class="ui-amount-input" (click)="wrapperClick($event)"
+       [ngClass]="{disabled: !enabled, 'has-error': errorState}">
+  <span class="unit">ریال</span>
+  <input class="price" type="text" [ngModel]="value"
+         #input
+         numpad="price"
+         [autofocus]="true"
+         (paste)="onInputPaste($event)"
+         (keydown)="onInputKeyDown($event)"
+         (focusin)="inputFocusIn()"
+         (focusout)="inputFocusOut()"
+         [attr.placeholder]="value && value.length > 0 ? null : placeholder"
+         [attr.maxlength]="maxLength ? maxLength : null"
+         (ngModelChange)="onValueChanged($event)"
+         [style.width]="inputWidth+'px'"
+         [attr.disabled]="!enabled ? 'disabled' : null">
+
+</label>
+<div class="hint">
+  <ng-container *ngIf="minAmount && maxAmount">
+    <span class="hint-text" *ngIf="!rangeError && !convertMessage">
+      مبلغ بایداز
+      {{ minAmount | number}}
+      ریال بزرگتر باشد
+  </span>
+    <span class="hint-text" *ngIf="convertMessage && !rangeError">
+    {{ descriptiveValue }}
+  </span>
+    <span class="hint-text  has-error" *ngIf="rangeError">
+    {{ descriptiveValue }}
+  </span>
+  </ng-container>
+</div>

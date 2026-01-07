@@ -1,0 +1,9 @@
+<div class="credit-service-list">
+  <credit-ui-service
+    class="service-item"
+    *ngFor="let item of items"
+    (clicked)="onClicked($event)"
+    [paymentOption]="item"
+    [isSelected]="selectedPaymentOptionId === item.id"
+  ></credit-ui-service>
+</div>

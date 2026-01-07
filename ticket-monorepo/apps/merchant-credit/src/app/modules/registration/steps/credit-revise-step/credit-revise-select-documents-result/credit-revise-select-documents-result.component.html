@@ -1,0 +1,136 @@
+<div class="revise-result" *ngIf="detail.needDocuments">
+  <div class="revise-result-main-desktop">
+  <div class="revise-result-main-text">
+      مبلغ اعتبار بر اساس مدارک شما
+    </div>
+    <div class="revise-result-amount">
+      {{maxAmount | number}}
+      <small class="unit">ریال</small>
+    </div>
+
+    <div class="back-link-wrapper">
+      <span class="back-link" (click)="back.emit()">
+        <img src="assets/icons/general-edit.svg" alt=""/>
+        ویرایش مدارک
+      </span>
+    </div>
+
+    <div class="next-steps-section-box" *ngIf="nextSteps[type]">
+      <div class="box-content">
+        {{nextSteps[ type ]}}
+      </div>
+      <div class="box-footer">
+        <a href="https://www.mydigipay.com/merchant-credit/" target="_blank">
+          <span>اطلاعات بیشتر</span>
+          <mat-icon>chevron_left</mat-icon>
+        </a>
+      </div>
+    </div>
+    <div class="revise-result-main-text"></div>
+  </div>
+  <div class="revise-result-main-mobile">
+    <div class="revise-result-main-text">
+      مبلغ اعتبار به انتخاب شما
+    </div>
+    <div class="revise-result-amount">
+      {{maxAmount | number}}
+      <small class="unit">ریال</small>
+    </div>
+    <div class="back-link-wrapper">
+      <span class="back-link" (click)="back.emit()">
+        <img src="assets/icons/general-edit.svg" alt=""/>
+        ویرایش مبلغ
+      </span>
+    </div>
+    <div class="next-steps-section-box">
+      <div class="box-content">
+        مبلغ سقف اعتباری در حال‌حاضر قابل ویرایش نیست لطفا به اندازه نیاز و با دقت مبلغ را انتخاب کنید.
+      </div>
+    </div>
+    <div>
+
+    </div>
+
+  </div>
+
+  <div class="revise-result-footer">
+    <div class="tac-accept">
+      <ui-checkbox (changed)="acceptedTac = $event" [checked]="acceptedTac">
+        <span>با  </span>
+        <span class="tac-link" (click)="showTacDialog()"> قوانین و مقررات </span>
+        <span> استفاده از این سرویس موافقم </span>
+      </ui-checkbox>
+    </div>
+    <div class="call-to-actions">
+      <div class="call-to-action-col">
+        <ui-button class="full-width" appearance="FLAT-BLUE" (click)="this.cancel.emit()">انصراف</ui-button>
+      </div>
+      <div class="call-to-action-col">
+        <ui-button class="full-width" [disabled]="!acceptedTac || !maxAmount" (click)="this.submit.emit()">ثبت درخواست
+        </ui-button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="revise-result" *ngIf="detail.needIban">
+  <div class="revise-result-main-desktop">
+    <div class="revise-result-main-text">
+      شما حداکثر می‌توانید
+    </div>
+    <div class="revise-result-amount">
+      {{maxAmount | number}}
+      <small class="unit">ریال</small>
+    </div>
+    <div class="revise-result-main-text">
+      اعتبار دریافت کنید
+    </div>
+
+    <div class="next-steps-section-box">
+      <div class="box-content">
+        مبلغ سقف اعتباری در حال‌حاضر قابل ویرایش نیست لطفا به اندازه نیاز و با دقت مبلغ را انتخاب کنید.
+      </div>
+    </div>
+  </div>
+  <div class="revise-result-main-mobile">
+    <div class="revise-result-main-text">
+      مبلغ اعتبار به انتخاب شما
+    </div>
+    <div class="revise-result-amount">
+      {{maxAmount | number}}
+      <small class="unit">ریال</small>
+    </div>
+    <div class="back-link-wrapper">
+      <span class="back-link" (click)="back.emit()">
+        <img src="assets/icons/general-edit.svg" alt=""/>
+        ویرایش مبلغ
+      </span>
+    </div>
+    <div class="next-steps-section-box">
+      <div class="box-content">
+        مبلغ سقف اعتباری در حال‌حاضر قابل ویرایش نیست لطفا به اندازه نیاز و با دقت مبلغ را انتخاب کنید.
+      </div>
+    </div>
+    <div>
+
+    </div>
+
+  </div>
+
+  <div class="revise-result-footer">
+    <div class="tac-accept">
+      <ui-checkbox (changed)="acceptedTac = $event" [checked]="acceptedTac">
+        <span>با  </span>
+        <span class="tac-link" (click)="showTacDialog()"> قوانین و مقررات </span>
+        <span> استفاده از این سرویس موافقم </span>
+      </ui-checkbox>
+    </div>
+    <div class="call-to-actions">
+      <div class="call-to-action-col">
+        <ui-button class="full-width" appearance="FLAT-BLUE" (click)="this.cancel.emit()">انصراف</ui-button>
+      </div>
+      <div class="call-to-action-col">
+        <ui-button class="full-width" [disabled]="!acceptedTac || !maxAmount || !isFormValid" (click)="this.submit.emit()">ثبت درخواست</ui-button>
+      </div>
+    </div>
+  </div>
+</div>

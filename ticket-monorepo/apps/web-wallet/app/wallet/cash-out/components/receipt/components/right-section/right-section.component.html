@@ -1,0 +1,28 @@
+<div class="right-section">
+
+  <div class="amount-detail">
+    <ui-image [imageId]="state.imageId"></ui-image>
+    <div class="amount-section">
+      <span class="currency">ریال</span>
+      <span class="amount">{{ state.amount | IRR }}</span>
+    </div>
+    <span class="status-description">{{ state.status }}</span>
+  </div>
+
+  <div class="description">{{ state.description }}</div>
+
+  <div class="transaction-code">
+    <div class="line"></div>
+    <span class="code">{{ state.trackingCode }}</span>
+    <div class="line"></div>
+  </div>
+
+  <div class="footer">
+    <div class="digipay-logo"></div>
+    <ui-button [fullWidth]="false" [theme]="'digipay'" (buttonClick)="navigateToMerchant()" appearance="primary-blue">
+      بازگشت
+      <span class="timer"> &nbsp;({{ '0' + timer }})</span>
+    </ui-button>
+  </div>
+
+</div>

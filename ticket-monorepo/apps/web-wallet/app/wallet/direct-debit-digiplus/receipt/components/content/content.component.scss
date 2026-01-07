@@ -1,0 +1,65 @@
+@import "../../../../../layout/mixins/device";
+
+.content-container {
+  border-top: 1px solid #f2f5f8;
+  direction: rtl;
+
+  .content {
+    margin-top: 32px;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      line-height: 2.5;
+
+      .title {
+        color: #6e798d;
+      }
+
+      .value {
+        color: #2c3544;
+        direction: rtl;
+      }
+
+      &:last-child {
+        margin-bottom: 90px;
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+
+    .icon {
+      width: 90px;
+      height: 48px;
+      background: url("../../../../../../assets/image/logo-digipay-logotype.svg") center no-repeat;
+    }
+  }
+}
+
+@include mediaMobile() {
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+
+  .footer {
+    gap: 32px;
+
+    .icon {
+      width: 180px !important;
+    }
+
+    ui-button {
+      width: 100%;
+    }
+  }
+
+
+}
+

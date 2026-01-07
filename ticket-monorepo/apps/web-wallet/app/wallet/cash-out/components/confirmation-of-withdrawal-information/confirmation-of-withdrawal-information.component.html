@@ -1,0 +1,12 @@
+<cash-out-header
+        *ngIf="screenMode === 'DESKTOP'"
+        [action]="'BACK'"
+        [title]="title"
+></cash-out-header>
+
+<div class="content-wrapper">
+  <span *ngIf="screenMode === 'MOBILE'" class="mobile-title">{{ title }}</span>
+  <card-information></card-information>
+  <cash-out-information></cash-out-information>
+  <confirmation-footer></confirmation-footer>
+</div>

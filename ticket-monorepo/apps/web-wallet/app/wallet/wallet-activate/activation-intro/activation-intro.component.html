@@ -1,0 +1,27 @@
+<ui-content-card
+  [title]="'فعال‌سازی کیف‌پول'"
+  [hasRejectAction]="true"
+  [hasHeaderLogo]="false"
+  [confirmButtonTitle]="'قبول شرایط و ادامه'"
+  (confirm)="confirm()"
+  (reject)="cancelActivation()"
+>
+
+  <div class="wrapper">
+
+    <ui-digipay-logo></ui-digipay-logo>
+
+    <h2 class="cell-number" dir="ltr">{{ tacInfo.userDetail.cellNumber | formattedCellNumber }}</h2>
+
+    <p class="description">
+      به منظور احراز هویت شماره همراه شما برای فعال سازی کیف پول، کد فعال‌سازی به شماره همراه بالا ارسال خواهد شد.
+    </p>
+
+    <div
+      class="rules-button"
+      (click)="tacButtonClick()"
+    >شرایط استفاده از کیف پول
+    </div>
+  </div>
+
+</ui-content-card>

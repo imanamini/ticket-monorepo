@@ -1,0 +1,29 @@
+<div
+  (click)="onClick.emit()"
+  id="{{googleAnalyticId?.containerId || ''}}"
+  [ngClass]="{
+    'bank-item': true,
+    'selected': selected
+  }"
+>
+
+  <div class="icon">
+    <ui-image
+      [imageId]="imageId"
+      height="32px"
+      width="32px"
+    ></ui-image>
+  </div>
+
+  <div class="bank-text">
+    <p class="title">
+      {{ bankName }}
+    </p>
+    <p class="daily-harvest-ceiling">
+      سقف
+      <span>{{dailyAmountMax | separator}}</span>
+      ریال
+    </p>
+  </div>
+
+</div>

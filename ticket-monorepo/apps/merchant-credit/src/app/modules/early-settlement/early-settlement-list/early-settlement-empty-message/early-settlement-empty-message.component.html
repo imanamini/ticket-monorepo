@@ -1,0 +1,22 @@
+<div class="message-image"></div>
+<div class="description" *ngIf="!hasFilter">
+  <b>
+    درخواست جدید ثبت کنید
+  </b>
+  <br />
+  <div>
+    تا به حال درخواست تسویه زودهنگام نداشته‌اید. برای شروع یک فاکتور انتخاب کنید.
+  </div>
+</div>
+
+<div class="description" *ngIf="hasFilter">
+  <b>
+    درخواست‌های تسویه
+    {{statusName}}
+  </b>
+  <br />
+  <div>
+    اینجا فعلا خالی‌ست. می‌توانید بقیه وضعیت‌ها را ببینید.
+  </div>
+</div>
+<ui-button (click)="onBack()" *ngIf="!hasFilter">مشاهده و انتخاب فاکتورها</ui-button>

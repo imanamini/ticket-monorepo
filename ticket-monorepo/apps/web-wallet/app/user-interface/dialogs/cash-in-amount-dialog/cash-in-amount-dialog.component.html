@@ -1,0 +1,21 @@
+<ui-dialog
+  class="cash-in-amount-dialog"
+  title="افزودن موجودی">
+  <div>
+    <p class="desc">مبلغ افزایش موجودی را وارد کنید.</p>
+    <ui-amount-input
+      (valueChange)="cashInAmountChanged($event)"
+      [value]="dialogData.defaultValue"
+      [minAmount]="dialogData.minAmount"
+      [maxAmount]="dialogData.maxAmount"></ui-amount-input>
+    <div class="action">
+      <ui-button
+        appearance="default"
+        (buttonClick)="confirm()"
+        [disabled]="!amount || pendingRequest">
+        <span *ngIf="!pendingRequest">افزایش موجودی</span>
+        <mat-spinner *ngIf="pendingRequest"></mat-spinner>
+      </ui-button>
+    </div>
+  </div>
+</ui-dialog>

@@ -1,0 +1,24 @@
+<div class="mt-small mb-big">
+  <p class="st-8 text-onback-high mb-medium">
+    حداقل یکی از موارد زیر در سابقه شما دیده شده:
+  </p>
+  <ngx-callout
+    [title]="''"
+    [mode]="'multiple'"
+    [showTitleBlink]="false"
+    [messages]="[
+  'بدحسابی در بازپرداخت تسهیلات بانکی',
+  'وجود چک برگشتی',
+  'داشتن تسهیلات باز و تسویه‌نشده'
+  ]"
+  />
+</div>
+<div class="mt-small">
+  <ngx-button (clickHandler)="onClose()"
+              size="large"
+              mode="section"
+              style="fill"
+              [fullWidth]="true">
+    متوجه شدم
+  </ngx-button>
+</div>

@@ -1,0 +1,55 @@
+@import "node_modules/@digipay/base-style/styleguide";
+
+:host {
+  @include flex-full-center;
+
+  ::ng-deep {
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      background: #fff;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--onback-shade-80);
+      transition: $transition-base;
+      border-radius: 24px;
+
+      &:hover {
+        background: var(--btn-text-neutral-link);
+      }
+    }
+
+    @include medium_screen {
+      ::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+      }
+    }
+  }
+}
+
+.main {
+  &-layout {
+    margin: auto auto;
+    display: flex;
+    flex-direction: column;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    width: 100%;
+    height: var(--full-height);
+    --container-width-large: 552px;
+    --container-height-large: 100vh;
+    max-width: min(map-get($container-width, 'large'), var(--full-width));
+    max-height: min(map-get($container-height, 'large'), var(--full-height));
+    overflow: auto;
+    position: relative;
+    @include medium_screen {
+      max-width: min(map-get($container-width, 'medium'), var(--full-width));
+      max-height: min(map-get($container-height, 'medium'), var(--full-height));
+    }
+    @include small_screen {
+      max-width: min(map-get($container-width, 'small'), var(--full-width));
+      max-height: min(map-get($container-height, 'small'), var(--full-height));
+    }
+  }
+}

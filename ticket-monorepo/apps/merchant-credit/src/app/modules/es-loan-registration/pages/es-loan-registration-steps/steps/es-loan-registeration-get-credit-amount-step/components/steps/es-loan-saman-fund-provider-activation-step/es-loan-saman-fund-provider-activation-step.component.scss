@@ -1,0 +1,26 @@
+@import "@digipay/base-style/styleguide";
+
+:host {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  background-color: #fff;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+}
+
+.fund-provider-activation-step {
+  flex-grow: 1;
+
+  .top-section {
+    margin-bottom: auto;
+  }
+}
+
+
+.support-wrapper {
+  border: 1px dashed map-get($titanium, 'shade-90');
+}

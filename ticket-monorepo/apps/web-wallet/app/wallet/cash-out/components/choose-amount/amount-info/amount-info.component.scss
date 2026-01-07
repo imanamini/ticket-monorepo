@@ -1,0 +1,57 @@
+
+@import "src/app/layout/mixins/device";
+
+.amount-info {
+  background-image: url("../../../assets/images/wallet-bg.svg");
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: default;
+  direction: ltr;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 16px;
+
+
+  .amount-value {
+    direction: rtl;
+    color: #2c3544;
+    font-weight: 600;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+    background-image: url("../../../assets/icons/question-mark.svg");
+    margin-right: 4px;
+  }
+
+  .logo {
+    width: 32px;
+    height: 32px;
+    background-image: url("../../../assets/icons/logo.svg");
+    margin-right: 4px;
+  }
+
+  .tool-tip-wrapper {
+    display: flex;
+    align-items: center;
+
+    .text {
+      font-size: .9rem;
+      font-weight: 500;
+    }
+  }
+}
+
+:host ::ng-deep .tool-tip-wrapper {
+  top: 0 !important;
+}
+
+@include mediaMobile {
+
+  .amount-info {
+    margin: 24px 24px 0 24px;
+  }
+}

@@ -1,0 +1,12 @@
+<div [class]="'step-result status-'+ status" *ngIf="!hiddenMode">
+  <div class="result-illustration" [ngStyle]="icon ? {backgroundImage: 'url(' + icon + ')'} : {}"></div>
+  <div class="result-title">{{title}}</div>
+  <div class="result-description">{{description}}</div>
+
+  <div class="warning-message-box" *ngIf="warningMessage">
+    <div class="html" [innerHTML]="warningMessage"></div>
+  </div>
+
+  <app-opening-bank-account-info class="full-width" [requiredDocuments]="requiredDocuments"
+                                 *ngIf="showBoxes"></app-opening-bank-account-info>
+</div>

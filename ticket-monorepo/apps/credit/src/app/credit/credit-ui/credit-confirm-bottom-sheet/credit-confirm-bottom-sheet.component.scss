@@ -1,0 +1,29 @@
+:host ::ng-deep {
+  strong {
+    font-weight: 500;
+  }
+}
+
+.body {
+  padding: 16px 8px;
+
+  .image {
+    background-image: url("../../../../assets/ui/Simple_Messages_Warning.svg");
+    width: 160px;
+    height: 122px;
+    margin: auto;
+  }
+
+  .description {
+    margin-top: 24px;
+    line-height: 24px;
+  }
+}
+
+.actions {
+  direction: rtl;
+  padding: 24px 8px 16px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 12px;
+}

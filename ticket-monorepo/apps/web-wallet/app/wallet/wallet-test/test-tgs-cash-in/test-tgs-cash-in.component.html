@@ -1,0 +1,27 @@
+<ui-content-box>
+  <div dir="ltr">
+    <h1>Test TGS Cash In</h1>
+
+    <div class="row">
+      <div class="column">
+        <label dir="ltr">Amount</label>
+        <input type="text" placeholder="Amount" dir="ltr" [(ngModel)]="state.amount">
+      </div>
+
+      <div class="column">
+        <label dir="ltr">Cell Number</label>
+        <input type="text" placeholder="Cell Number" dir="ltr" [(ngModel)]="state.cellNumber">
+      </div>
+
+      <form [action]="payUrl" #redirectPaymentForm method="post">
+        <input type="hidden" [value]="state.amount" name="amount">
+      </form>
+
+    </div>
+
+    <ui-button (buttonClick)="getTest()" [disabled]="loading">Get Ticket
+      <div *ngIf="loading" class="loader"></div>
+    </ui-button>
+
+  </div>
+</ui-content-box>

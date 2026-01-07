@@ -1,0 +1,22 @@
+<div class="footer">
+
+  <div class="amount-description">
+    <div class="action-title">
+      <div class="action-title-icon"></div>
+      <span class="title">دریافتی شما</span>
+    </div>
+    <div class="amount-section">
+      <span class="amount">{{ selectedUserAmount | thousands }}</span>
+      <span class="currency">ریال</span>
+    </div>
+  </div>
+
+  <ui-button [theme]="'digipay'" (buttonClick)="submit.emit()"
+             [disabled]="disabled">
+    <span *ngIf="!loadingApi ;else loading" class="edit-amount">{{ submitText }}</span>
+    <ng-template #loading>
+      <div class="loader"></div>
+    </ng-template>
+  </ui-button>
+
+</div>

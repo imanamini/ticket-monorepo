@@ -1,0 +1,52 @@
+<div class="result-box-wrapper">
+
+  <div class="result-box">
+    <label for="contact" class="result-box-title">اطلاعات مراجعه حضوری</label>
+    <input id="contact" type="checkbox"/>
+    <div class="result-box-content">
+      <div class="contact-data">
+        <div class="contact-item">
+          <div class="icon icon-location"></div>
+          <div class="contact-value">
+            تهران، میدان شیخ بهایی، خیابان سئول، نبش کوچه ماهتاب، پلاک 19
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon icon-call"></div>
+          <div class="contact-value">
+            <a href="tel:+982153924000" class="ltr">021-53924000</a>
+            <span> داخلی 6</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon icon-time"></div>
+          <div class="contact-value">شنبه تا چهارشنبه ساعت کاری 8 تا 13</div>
+        </div>
+      </div>
+    </div>
+    <div class="maps-wrapper">
+      <a href="https://goo.gl/maps/rCWgWBx6aSwvnqSM6" target="_blank">
+        <img src="assets/bank-location.png" alt="digipay-location"/>
+      </a>
+    </div>
+  </div>
+
+  <div class="result-box">
+    <label for="documents" class="result-box-title">مدارک مورد نیاز</label>
+    <input id="documents" type="checkbox"/>
+    <div class="result-box-content">
+      <ul class="document-list">
+        <li *ngFor="let doc of requiredDocuments">
+          {{doc.description}}
+          <span class="doc-sub-items-wrapper" *ngIf="doc.subItems && doc.subItems.length">
+            (<span class="doc-sub-items-text">یکی از مدارک: </span>
+            <span class="doc-sub-items">
+              <span class="doc-sub-item">{{doc.subItems.join('،')}}</span>
+            </span>)
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,23 @@
+@import "variables";
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 12px;
+  padding-bottom: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 28px;
+
+  .label {
+    color: $swatch_steel_400;
+  }
+
+  .value {
+    color: $swatch_steel_700;
+  }
+
+  &.is-separated {
+    border-bottom: 1px solid $swatch_steel_200;
+  }
+}

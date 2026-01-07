@@ -1,0 +1,41 @@
+<div *ngIf="!isError">
+  <div [formGroup]="form">
+    <p class="mb-4"> لطفا اطلاعات خواسته شده از مالک خط {{cellNumber}}
+      را بررسی و تکمیل کنید.</p>
+    <ui-form-field
+      [readonly]="true"
+      formControlName="identityNumber"
+      [error]="form.controls.identityNumber.errors"
+      [maxSize]="10" label="کد ملی"></ui-form-field>
+
+    <ui-form-field
+      formControlName="birthdate"
+      [dateRange]="'past'"
+      [error]="form.controls.birthdate.errors"
+      hint="تاریخ تولد مربوط به کدملی فوق را به دقت وارد کنید."
+      label="تاریخ تولد" type="date"></ui-form-field>
+  </div>
+  <step-footer
+    [buttonDisabled]="!enableAction || sendingData "
+    (buttonClick)="proceed()"
+    [buttonText]="sendingData ? 'در حال ارسال...' : 'تایید و ادامه'"
+  ></step-footer>
+
+</div>
+<div class="error-container" *ngIf="isError">
+  <ngx-status-result
+    class="status-result"
+    [title]="noServiceErrorData.title"
+    [description]="noServiceErrorData.message"
+    [buttons]="noServiceErrorData.buttons"
+    (clicked)="onClick($event)"
+  >
+    <ng-container status-image>
+      <img [src]="noServiceErrorData.staticImage" alt="">
+    </ng-container>
+  </ngx-status-result>
+  <div class="support-wrapper">
+    <span class="name">شماره پشتیبانی:</span>
+    <span class="phone">۰۲۱-۵۳۹۲۴۰۰۰ (داخلی۶)</span>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+
+.cash-out-header {
+  direction: ltr;
+  display: flex;
+  padding: 16px 10px;
+  align-items: center;
+  justify-content: space-between;
+
+  &.mobile-mod {
+    box-shadow: 1px 2px 2px 0 #e6e6e6;
+  }
+
+  &.desktop-mod {
+    border-bottom: 1px solid #dee3e7;
+  }
+
+  .right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .title {
+      font-size: 16px;
+      margin-right: 7px;
+      font-weight: 500;
+    }
+
+    .back-icon {
+      width: 24px;
+      cursor: pointer;
+      height: 24px;
+      background-image: url("../../assets/icons/icon-back.svg");
+      transform: rotateY(180deg);
+    }
+
+    .icon-exit {
+      width: 24px;
+      cursor: pointer;
+      height: 24px;
+      background-image: url("../../assets/icons/exit.svg");
+    }
+  }
+
+  .left {
+    .tac-icon {
+      position: relative;
+      cursor: pointer;
+      width: 20px;
+      text-align: right;
+      line-height: 20px;
+      height: 20px;
+      background: url('../../assets/icons/information.svg') no-repeat;
+      margin-left: 5px;
+
+      .dot {
+        height: 8px;
+        width: 8px;
+        background-color: red;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        top: -3px;
+        right: -3px;
+        border: 2px solid white;
+        box-sizing: content-box;
+      }
+    }
+  }
+}
+

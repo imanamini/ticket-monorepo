@@ -1,0 +1,184 @@
+@import "../../../layout/variables";
+@import "../../../layout/mixins/font-size";
+
+::ng-deep ui-button {
+  display: inline-block;
+}
+
+.ui-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 20px;
+  background: #294acc;
+  color: #fff;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  font-size: 1rem;
+  box-shadow: 0 2px 4px 0 rgba(41, 74, 204, 0.16), 0 2px 8px 0 rgba(41, 74, 204, 0.16);
+  cursor: pointer;
+  user-select: none;
+
+  &:focus {
+    outline: none !important;
+    border: solid 2px #191919;
+  }
+
+  &.has-icon {
+    padding-left: 16px;
+    padding-right: 16px;
+    justify-content: space-between;
+  }
+
+  &.default {
+    &[disabled] {
+      background: #294acc !important;
+      color: #fff !important;
+      opacity: 0.25;
+    }
+  }
+
+  &.outline {
+    box-shadow: none;
+    background: transparent;
+    color: #4c4c4c;
+    border: 1px solid #4c4c4c;
+  }
+
+  &.green {
+    background: #39bf7c;
+    box-shadow: 0 2px 4px 0 rgba(69, 230, 149, 0.16), 0 2px 8px 4px rgba(69, 230, 149, 0.16);
+    color: #fff;
+  }
+
+  &.clean {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    color: #4c4c4c;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.outline-light-blue {
+    background: $digipay-blue-light;
+    box-shadow: none;
+    border: none;
+    color: $digipay-blue-primary;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.blue-text {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    color: #0040ff;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.red-text {
+    background: #ffeef3;
+    box-shadow: none;
+    border: none;
+    color: $digipay-red;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.primary-blue {
+    background: $digipay-blue-primary;
+    box-shadow: none;
+    border: none;
+    color: white;
+    padding: 13px 70px;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.digipay-theme {
+    height: 48px;
+    font-size: 14px;
+    box-shadow: none;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 12px;
+
+    &.default {
+      color: #fff;
+      background-color: #0040ff;
+
+      &[disabled] {
+        color: #b2b2b2;
+        background-color: #e6e6e6;
+      }
+    }
+
+    &.outline {
+      color: #666;
+      border: 1px solid #4c4c4c;
+      background-color: transparent;
+
+      &[disabled] {
+        opacity: 0.4;
+      }
+    }
+
+    &.light-blue {
+      color: $digipay-blue-primary;
+      border: 1px solid $digipay-blue-light;
+      background-color: $digipay-blue-light;
+
+      &[disabled] {
+        opacity: 0.4;
+      }
+    }
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    box-shadow: none;
+
+    .input-icon {
+      filter: contrast(0.5);
+    }
+  }
+
+  &.is-full-width {
+    width: 100%;
+  }
+
+  &.small-button {
+    padding: 0;
+    min-width: 91px;
+    height: 32px;
+    font-weight: 500;
+    border-radius: 8px;
+    @include fontSize(12);
+  }
+}
+
+.left-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 15px;
+  margin-left: -4px;
+}
+
+.right-icon {
+  width: 24px;
+  height: 24px;
+  margin-left: 15px;
+  margin-right: -4px;
+}

@@ -1,0 +1,7 @@
+<div class="amount-box">
+  <p *ngIf="caption" class="caption">{{ caption }}</p>
+  <div class="amount">
+    <span>{{ amount | thousands }}</span>
+    <span class="unit">ریال</span>
+  </div>
+</div>

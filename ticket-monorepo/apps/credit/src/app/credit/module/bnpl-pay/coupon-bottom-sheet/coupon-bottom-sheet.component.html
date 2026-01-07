@@ -1,0 +1,47 @@
+<form [formGroup]="form()">
+  <div class="d-flex flex-column p-plus rtl">
+    <div class="p-big radius-rounded surface-back mx-auto">
+      <ngx-icon
+        name="discount"
+        type="bold"
+        [iconSize]="'48px'"
+        [classes]="'text-onback-success'"
+      />
+    </div>
+    <div class="st-3 mt-huge text-align-center">کد تخفیف مورد نظر را وارد کنید</div>
+    <ui-form-field
+      #couponFieldView
+      class="mt-huge"
+      label="کد تخفیف"
+      formControlName="couponCode"
+      [hasCleaner]="true"
+      (paste)="deleteNotAllowedChars($event)"
+      [error]="form().controls?.couponCode?.errors"
+      (click)="onInputClick()"
+      [errorMessageMapper]="{
+        backend: backendErrorMessage(),
+        pattern: 'با فرمت صحیح وارد نمایید'
+      }"
+    />
+    <div class="mt-giant d-flex align-items-center justify-content-space-between gap-minus">
+      <ngx-button
+        [disabled]="submitting()"
+        [size]="'large'"
+        [style]="'tinted-on-elevated'"
+        [fullWidth]="true"
+        (clickHandler)="onCancel()"
+      >
+        بازگشت
+      </ngx-button>
+      <ngx-button
+        [disabled]="submitting() || form().invalid"
+        [isLoading]="submitting()"
+        [size]="'large'"
+        [fullWidth]="true"
+        (clickHandler)="onSubmit()"
+      >
+        ثبت کد
+      </ngx-button>
+    </div>
+  </div>
+</form>

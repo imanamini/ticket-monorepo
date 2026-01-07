@@ -1,0 +1,17 @@
+<cash-out-header
+        [action]="'BACK'"
+        [title]="'انتخاب کارت بانکی'"
+></cash-out-header>
+
+<div class="content-wrapper">
+  <div class="header">
+    <p class="header-text">کارت بانکی خود را انتخاب کنید.</p>
+    <a (click)="goToAddNewCard()" class="new-card-action">
+      <span class="plus"> + </span>
+      <span>کارت جدید</span>
+    </a>
+  </div>
+  <card (submit)="goToConfirmation($event)">
+  </card>
+</div>
+

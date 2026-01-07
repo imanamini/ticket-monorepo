@@ -1,0 +1,35 @@
+<div class="surface-high-contrast h-100 d-flex flex-column">
+  <ipl-header backUrl="/"/>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="form" class="d-flex flex-column flex-grow">
+    <div class="flex-grow-1 p-big">
+      <div class="mb-medium">لطفا جهت پرداخت، شماره همراه خود را وارد کنید.</div>
+      <ui-form-field
+        [convertNonEnglishDigits]="true"
+        [errorMessageMapper]="{
+        invalidCellNumber: 'شماره همراه صحیح نمی‌باشد'
+      }"
+        [error]="form.controls.cellNumber.errors"
+        [hasCleaner]="true"
+        [isNumericKeyboard]="true"
+        [label]="'شماره همراه'"
+        [ltrInput]="true"
+        [required]="true"
+        formControlName="cellNumber"
+        inputType="number"
+      >
+      </ui-form-field>
+    </div>
+
+    <div class="p-big">
+      <ngx-button
+        (clickHandler)="onSubmit()"
+        [disabled]="iplService.pageInnerLoading() || form.invalid"
+        [fullWidth]="true"
+        [size]="'medium'"
+      >
+        ارسال کد فعالسازی
+      </ngx-button>
+    </div>
+  </form>
+</div>

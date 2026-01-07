@@ -1,0 +1,9 @@
+<div>
+  @if (transformedResult) {
+    <ui-ngx-payment-result
+      [paymentResult]="transformedResult"
+      [trackingCode]="transformedResult.trackingCode || ''"
+      (onBackIconClick)="finish.emit()"
+    ></ui-ngx-payment-result>
+  }
+</div>

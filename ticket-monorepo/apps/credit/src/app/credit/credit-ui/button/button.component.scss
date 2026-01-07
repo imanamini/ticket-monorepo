@@ -1,0 +1,53 @@
+@import "variables";
+
+::ng-deep credit-ui-button {
+  display: inline-block;
+}
+
+.credit-ui-button {
+  display: inline-block;
+  padding: 13px 25px;
+  background: $swatch_blue_500;
+  color: #fff;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-size: 1rem;
+  //box-shadow: 0 2px 4px 0 rgba(41, 74, 204, 0.16), 0 2px 8px 0 rgba(41, 74, 204, 0.16);
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.default {
+    &[disabled] {
+      background: #e5e5e5;
+      color: #b2b2b2;
+    }
+  }
+
+  &.outline {
+    box-shadow: none;
+    background: transparent;
+    color: #4c4c4c;
+    border: 1px solid #4c4c4c;
+  }
+
+  &.outline-primary {
+    box-shadow: none;
+    background: transparent;
+    color: $swatch_blue_500;
+    border: 1px solid $swatch_blue_500;
+  }
+
+  &.green {
+    background: $swatch_green_700;
+    box-shadow: 0 2px 4px 0 rgba(69, 230, 149, 0.16), 0 2px 8px 4px rgba(69, 230, 149, 0.16);
+    color: #fff;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}

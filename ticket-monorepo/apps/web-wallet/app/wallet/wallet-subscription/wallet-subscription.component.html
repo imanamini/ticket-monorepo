@@ -1,0 +1,110 @@
+<ui-content-card
+  class="wallet-subscription"
+  [ngClass]="{
+    'show-less-templates': !showAllTemplates,
+    'show-all-templates': showAllTemplates && templatesInfo.length > 4 && !selectedTemplate
+    }"
+  [id]="{
+  closeButton:GA_SUBSCRIPTION_ID?.CONTRACT?.CANCEL_TEMPLATE_ACTIVATION_CLICK,
+  submit:GA_SUBSCRIPTION_ID?.CONTRACT?.PROCEED_TEMPLATE_ACTIVATION_CLICK
+  }"
+  [title]="'پرداخت خودکار دیجی‌پی'"
+  [amount]="selectedTemplate ? selectedTemplate['periodicAmount'] : 0"
+  [hasHeaderAction]="true"
+  [hasHeaderBackAction]="!!selectedTemplate && (templatesInfo && templatesInfo.length > 1)"
+  [confirmButtonDisable]="!isAcceptTc || contractAlreadyExist"
+  [confirmButtonTitle]="'پرداخت و ثبت اشتراک'"
+  (confirm)="handleConfirmButton()"
+  [hasFooter]="!!selectedTemplate"
+  (headerBackActionClicked)="backToTemplateList()"
+  (headerCloseActionClicked)="closeSubscription()"
+  [extraLinkTitle]="'مدیریت اشتراک‌های فعلی'"
+  [extraLinkMobileTitle]="'مدیریت اشتراک‌ها'"
+  (extraLinkClicked)="redirectToActivities()"
+>
+  <div class="templates-loading" *ngIf="isLoading; else showResult">
+    <span class="loading"></span>
+    <div *ngIf="walletIsActivating" class="templates-loading-message">{{'در حال فعال‌سازی کیف پول'}}</div>
+  </div>
+  <ng-template #showResult>
+
+    <ui-error-request
+      *ngIf="tokenExpired"
+      [errorMessage]="'خطا در اعتبارسنجی'"
+      [hasButton]="false"
+      [id]="GA_SUBSCRIPTION_ID?.MANAGEMENT?.ERROR_ON_LOADING_DATA_ERROR"
+    ></ui-error-request>
+
+    <ui-error-request
+      *ngIf="!tokenExpired && !templatesInfo; else showTemplates"
+      (clicked)="tacResponse ? fetchTemplates() : getTac()"
+    ></ui-error-request>
+
+    <ng-template #showTemplates>
+      <div
+        class="template-select-title"
+        *ngIf="selectedTemplate"
+      >{{'جزئیات قرارداد پرداخت خودکار دوره‌ای:'}}</div>
+
+      <!--      <ui-template-card-->
+      <!--        *ngIf="selectedTemplate; else templateList"-->
+      <!--        [cardData]="selectedTemplate"-->
+      <!--      ></ui-template-card>-->
+
+      <ui-template-card
+        *ngIf="selectedTemplate; else templateList"
+        [trialDuration]="getTrialDuration()"
+        [cardTitle]="selectedTemplate.title"
+        [cardAmount]="selectedTemplate.periodicAmount"
+        [firstField]="{
+          title: 'بازه‌ تکرار پرداخت',
+          value: getPaymentPeriodDuration()
+        }"
+        [secondField]="{
+          title: 'طول مدت قرارداد',
+          value: getValidityDuration()
+        }"
+        [thirdField]="{
+          title: 'توضیحات قرارداد',
+          value: selectedTemplate['description']
+        }"
+      ></ui-template-card>
+
+      <div class="subscription-tc-wrapper" *ngIf="!!selectedTemplate">
+        <ui-checkbox
+          id="{{GA_SUBSCRIPTION_ID?.CONTRACT?.CHECK_T_C_BUTTON_CLICK}}"
+          [title]="''"
+          [checked]="isAcceptTc"
+          (click)="toggleAcceptTcStatus()"
+        ></ui-checkbox>
+        <div class="tc-action" id="SUBSCRIPTION_CONTRACT_VIEW_T_C_CLICK" (click)="showTcDialog()">متن قرارداد</div>
+        <div> را مطالعه کرده و تایید می‌نمایم.</div>
+      </div>
+      <ng-template #templateList>
+        <div
+          *ngIf="templatesInfo && templatesInfo.length"
+          class="template-select-title"
+        >{{'انتخاب نوع اشتراک:'}}</div>
+        <div *ngFor="let template of templatesInfo; let i = index"
+             id="SUBSCRIPTION_CONTRACT_GROUP_SELECTION_VIEW"
+        >
+          <ui-template-item
+            *ngIf="i < 4 || showAllTemplates"
+            [cardData]="template"
+            (click)="selectTemplateItem(template)"
+          ></ui-template-item>
+        </div>
+        <div
+          id="SUBSCRIPTION_CONTRACT_SHOW_MORE_GROUP_BUTTON_CLICK"
+          class="more-templates-button"
+          *ngIf="!showAllTemplates && templatesInfo && templatesInfo.length > 4"
+          (click)="showAllTemplates = !showAllTemplates"
+        >
+          <div>بیشتر</div>
+          <span class="more-icon"></span>
+        </div>
+      </ng-template>
+    </ng-template>
+
+  </ng-template>
+</ui-content-card>

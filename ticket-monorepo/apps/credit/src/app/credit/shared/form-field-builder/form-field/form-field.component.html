@@ -1,0 +1,81 @@
+<ng-container *ngIf="type === 'input'">
+  <app-dg-input
+    [form]="form"
+    [label]="label"
+    [hint]="hint"
+    [placeholder]="placeholder"
+    [errorMessage]="finalErrorMessage"
+    [readonly]="readonly"
+    [multiLine]="multiLine"
+    [inputType]="inputType"
+    [hasCleaner]="hasCleaner"
+    [ltrInput]="ltrInput"
+    [ltrPlaceholder]="ltrPlaceholder"
+    [maxSize]="maxSize"
+  ></app-dg-input>
+</ng-container>
+<ng-container *ngIf="type === 'amount'">
+  <app-dg-amount
+    [form]="form"
+    [label]="label"
+    [hint]="hint"
+    [placeholder]="placeholder"
+    [errorMessage]="finalErrorMessage"
+    [readonly]="readonly"
+    [hasCleaner]="hasCleaner"
+    [ltrInput]="ltrInput"
+    [ltrPlaceholder]="ltrPlaceholder"
+  ></app-dg-amount>
+</ng-container>
+<ng-container *ngIf="type === 'select'">
+  <app-dg-select
+    [form]="form"
+    [label]="label"
+    [hint]="hint"
+    [placeholder]="placeholder"
+    [errorMessage]="finalErrorMessage"
+    [readonly]="readonly"
+    [multiSelect]="multiSelect"
+    [options]="options"
+    [hasCleaner]="hasCleaner"
+    [ltrInput]="ltrInput"
+    [ltrPlaceholder]="ltrPlaceholder"
+  ></app-dg-select>
+</ng-container>
+<ng-container *ngIf="type === 'wheel-select'">
+  <app-dg-wheel-select
+    [form]="form"
+    [label]="label"
+    [hint]="hint"
+    [placeholder]="placeholder"
+    [errorMessage]="finalErrorMessage"
+    [readonly]="readonly"
+    [options]="options"
+    [hasCleaner]="hasCleaner"
+    [ltrInput]="ltrInput"
+    [ltrPlaceholder]="ltrPlaceholder"
+  ></app-dg-wheel-select>
+</ng-container>
+<ng-container *ngIf="type === 'slide-toggle'">
+  <app-dg-slide-toggle
+    [form]="form"
+    [label]="label"
+    [hint]="hint"
+  ></app-dg-slide-toggle>
+</ng-container>
+<ng-container *ngIf="type === 'date' || type === 'date-time' || type === 'date-end'">
+  <app-dg-date
+    [form]="form"
+    [label]="label"
+    [hint]="hint"
+    [placeholder]="placeholder"
+    [errorMessage]="finalErrorMessage"
+    [readonly]="readonly"
+    [hasCleaner]="hasCleaner"
+    [ltrInput]="ltrInput"
+    [ltrPlaceholder]="ltrPlaceholder"
+    [showTime]="type === 'date-time'"
+    [endPicker]="type === 'date-end'"
+    [dateRange]="dateRange"
+  ></app-dg-date>
+</ng-container>

@@ -1,0 +1,17 @@
+<div (click)="onCardClick()" class="rule-card" [ngClass]="{'is-selected': selected}">
+  <header class="row-center">
+    <div class="content row-center">
+      <span class="icon">
+        <ui-api-image *ngIf="rule.logoImageId" [imageId]="rule.logoImageId"></ui-api-image>
+      </span>
+      <h3 class="heading">{{ rule.fundProviderName }}</h3>
+      <span class="badge">{{ rule.label }}</span>
+    </div>
+    <div class="selection-status" [ngClass]="{'is-selected': selected}"></div>
+  </header>
+  <div class="separator"></div>
+  <div class="detail-row row-center" *ngFor="let row of details">
+    <span class="label">{{ row.label }}</span>
+    <span class="value">{{ row.value }}</span>
+  </div>
+</div>

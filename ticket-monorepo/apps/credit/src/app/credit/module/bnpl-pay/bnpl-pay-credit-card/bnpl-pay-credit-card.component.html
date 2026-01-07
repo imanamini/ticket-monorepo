@@ -1,0 +1,59 @@
+<div class="card">
+  <div class="title">
+    <div class="icon icon-credit"></div>
+    <div class="text">بخش اعتباری</div>
+  </div>
+
+  <div class="total-amount">{{ totalAmount() | thousands }} <span>ریال</span></div>
+
+  @if (fee()) {
+    <div class="fee-amount">
+      {{ '+ ' + ( fee() | thousands ) + ' ریال کارمزد' }}
+    </div>
+  }
+
+  <!--  <div (click)="onEditCredit.emit()" class="edit">-->
+  <!--    <div>ویرایش مبغ اعتبار</div>-->
+  <!--    <div class="edit-icon"></div>-->
+  <!--  </div>-->
+
+  <div class="details-wrapper"></div>
+  @if (installments()) {
+    <div class="divider"></div>
+
+    <div class="menu-header">
+      <div (click)="toggleMenu()" class="menu-button">
+        <div class="text">زمان‌بندی بازپرداخت</div>
+
+        <ngx-icon
+          [ngClass]="['icon', detailIsOpen() ? 'isOpen' : 'isClose']"
+          iconSize="16px"
+          name="arrow-2-down"
+          type="linear"
+        >
+        </ngx-icon>
+      </div>
+    </div>
+
+    <div
+      #detail
+      [ngClass]="['installments-detail', detailIsOpen() ? 'isOpen' : 'isClose']"
+      [ngStyle]="{'height.px': detailElementHeight()}"
+    >
+      <div class="installments-wrapper">
+        @for (installment of installmentsFormatted(); track installment.order) {
+          <div class="item">
+            <div>
+              <div class="item-title">{{ installment.date }}</div>
+              <div class="item-amount">{{ installment.amountTitle }}</div>
+            </div>
+
+            <!--            <div class="item-order">-->
+            <!--              {{ installment.order }}-->
+            <!--            </div>-->
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

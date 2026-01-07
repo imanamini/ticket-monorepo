@@ -1,0 +1,62 @@
+@import "src/app/layout/mixins/font-size";
+
+h1 {
+  @include fontSize(24);
+}
+
+.writable-input-label, .writable-input {
+  display: block;
+}
+
+.writable-input-label {
+  margin: 1em 0;
+}
+
+.writable-input {
+  width: 100%;
+  line-height: 35px;
+  border-radius: 4px;
+  box-shadow: none;
+  border: 1px solid #e5e5e5;
+  padding: 0 1em;
+}
+
+.hint {
+  direction: rtl;
+  text-align: right;
+  margin-top: 8px;
+
+  &.info {
+    color: goldenrod;
+  }
+
+  &.error {
+    color: red;
+  }
+}
+
+select {
+  width: 100%;
+  height: 37px;
+  padding: 0 1em;
+  box-shadow: none;
+  line-height: 35px;
+  border-radius: 4px;
+  background-color: transparent;
+  border: 1px solid #e5e5e5;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .column {
+    flex-basis: 48%;
+  }
+}
+
+ui-button {
+  margin: 24px 0 0;
+  display: block;
+}

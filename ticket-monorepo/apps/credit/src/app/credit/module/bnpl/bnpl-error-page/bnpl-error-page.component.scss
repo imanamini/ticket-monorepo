@@ -1,0 +1,110 @@
+@import "variables";
+
+:host {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  app-bnpl-title-bar {
+    flex-grow: 0;
+  }
+}
+
+.top-section {
+  flex-grow: 1;
+  padding: 24px;
+  direction: rtl;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.cta-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-grow: 0;
+}
+
+
+.warning-image-wrapper {
+  text-align: center;
+  padding: 8px 0;
+
+  .warning-image {
+    width: 120px;
+    height: 120px;
+    display: inline-block;
+    max-width: 90%;
+    background-image: url("../../../../../assets/bnpl/bnpl-default-error.svg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+  }
+}
+
+.message-image {
+  width: 164px;
+  height: 164px;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  &.static-image-bnpl-not-available-icon {
+    background-image: url("../assets/bnpl-not-available-icon.svg");
+  }
+
+  &.static-image-bnpl-national-id-error-icon {
+    background-image: url("../assets/bnpl-national-id-error-icon.svg");
+  }
+
+  &.static-image-bnpl-error-icon {
+    background-image: url("../assets/bnpl-error-icon.svg");
+  }
+
+  &.static-image-bnpl-invalid-token-icon {
+    background-image: url("../assets/bnpl-invalid-token-icon.svg");
+  }
+
+  &.static-image-bnpl-warn-icon {
+    background-image: url("../assets/bnpl-warn-icon.svg");
+  }
+
+  &.static-image-bnpl-block-icon {
+    background-image: url("../assets/bnpl-block-icon.svg");
+  }
+
+  &.static-image-bnpl-request-limit-icon {
+    background-image: url("../assets/bnpl-request-limit-icon.svg");
+  }
+
+  &.static-image-bnpl-died-icon {
+    background-image: url("../assets/bnpl-died-icon.svg");
+  }
+}
+
+.error-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: $swatch_red_500;
+  margin: 16px 0;
+  line-height: 1.7;
+  text-align: right;
+}
+
+.error-description {
+  color: $swatch_steel_700;
+  text-align: right;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 16px 0;
+
+  ::ng-deep b {
+    font-weight: 500;
+  }
+}
+
+@media (min-width: 727px) {
+  .top-section {
+    padding: 48px;
+  }
+}

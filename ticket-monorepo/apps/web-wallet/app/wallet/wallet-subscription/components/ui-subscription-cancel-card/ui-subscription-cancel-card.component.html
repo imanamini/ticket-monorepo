@@ -1,0 +1,33 @@
+<div class="cancel-card">
+  <div class="card-wrapper" [ngClass]="{'selected-as-cancel': setCanceled}">
+    <div class="card-logo" [ngClass]="cardLogo + '-logo'"></div>
+    <div class="card-content">
+      <div class="card-title">
+        <div>{{cardTitle}}</div>
+      </div>
+      <div class="card-amount-details">
+        <div class="amount">
+          <ui-currency [value]="cardAmount"></ui-currency>
+        </div>
+      </div>
+    </div>
+    <div
+      class="card-cancellation-action"
+      *ngIf="setCanceled; else cancelButton"
+      (click)="reverseCancel()"
+    >
+      {{'انصراف از لغو'}}
+    </div>
+    <ng-template #cancelButton>
+      <div
+        id="{{id || ''}}"
+        class="card-cancellation-action"
+        *ngIf="!setCanceled"
+        (click)="cancelClicked()"
+      >
+        {{'لغو'}}
+        <div class="card-cancel-icon"></div>
+      </div>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="digiplus-result-container">
+
+  <ul class="content">
+    <li>
+      <span class="title">سقف برداشت روزانه</span>
+      <span class="value">
+        {{contractInfo?.maxDailyTransactionAmount | separator}}
+        ریال
+      </span>
+    </li>
+    <li>
+      <span class="title">مدت اشتراک</span>
+      <span
+        class="value">{{contractInfo?.duration?.count}} {{contractInfo?.duration?.timeUnit | translateTimeUnit}}</span>
+    </li>
+    <li>
+      <span class="title">حساب پشتیبان</span>
+      <span class="value">&nbsp; بانک&nbsp;{{DIRECT_DEBIT_BANKS_TRANSLATE[ DIRECT_DEBIT_BANKS[ contractInfo.bankCode ] ]}}</span>
+    </li>
+  </ul>
+
+  <div class="footer">
+    <div class="icon"></div>
+    <ui-button
+      theme="digipay"
+      appearance="outline-light-blue"
+      [googleAnalyticId]="{buttonId:GA_DIRECT_DEBIT_ID_CONTRACT.RETURN_TO_MERCHANT_CLICK}"
+      [fullWidth]="true"
+      (buttonClick)="finish()">
+      بازگشت به دیجی کالا
+      &nbsp;
+      <ui-remaining-time
+        [hasDescription]="false"
+        [time]="10"
+        [timeType]="'SECOND'"
+        (finish)="finish()">
+      </ui-remaining-time>
+    </ui-button>
+  </div>
+</div>

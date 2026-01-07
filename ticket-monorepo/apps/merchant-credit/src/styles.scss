@@ -1,0 +1,200 @@
+@use '@angular/material' as mat;
+@import 'app/styles/font.scss';
+@import 'app/styles/layout/variables';
+@import '@angular/cdk/overlay-prebuilt.css';
+@import "@digipay/ui-swift/swift";
+@import "./digipay-material-theme";
+@import "@ng-select/ng-select/themes/material.theme.css";
+
+@include mat.core();
+
+*, *:before, *:after, h1, h2, h3, h4, h5, h6, p, ul, li, input, textarea {
+  font-family: YekanFa,
+  "Helvetica Neue",
+  Helvetica,
+  Arial,
+  sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+html {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  line-height: 1.7;
+  color: $swatch_steel_900;
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+app-root {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+app-root > :not(router-outlet) {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.mat-dialog-container {
+  // padding: 0 !important;
+  border-radius: 16px !important;
+  border: 1px solid $swatch_steel_200;
+  background: #fff;
+  direction: rtl;
+}
+
+.no-border {
+  border: none;
+
+  .mat-dialog-container {
+    border: none;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.ltr {
+  direction: ltr;
+}
+
+.ng-scroll-content {
+  min-height: 100%;
+  flex-grow: 1;
+  display: flex !important;
+  flex-direction: column;
+}
+
+.flex-full-height {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.digipay-bottom-sheet {
+  border-radius: 16px 16px 0 0;
+  direction: rtl;
+
+  &.no-padding {
+    padding: 0;
+  }
+}
+
+
+.digipay-dialog {
+  border-radius: 24px;
+  padding: 24px;
+  background: #fff;
+
+  .mat-dialog-container {
+    direction: rtl;
+    border: none;
+    color: $swatch_steel_500;
+    padding: 0 !important;
+  }
+}
+
+.mdc-dialog__container {
+  min-width: 375px !important;
+  direction: rtl;
+}
+
+.mat-mdc-dialog-surface {
+  padding: 24px 8px;
+  border-radius: 16px !important;
+}
+
+.cdk-overlay-backdrop {
+  background: rgba(66, 76, 92, 0.85) !important;
+}
+
+.mat-bottom-sheet-container {
+  background: #fff;
+  border-radius: 24px 24px 0 0;
+  direction: rtl;
+  position: relative;
+
+  &::after {
+    content: ' ';
+    background: #dee3e7;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    width: 40px;
+    height: 4px;
+    border-radius: 2px;
+    transform: translateX(-50%);
+  }
+}
+
+.mat-mdc-snack-bar-container {
+  background: $swatch_steel_900;
+  color: #fff;
+  border-radius: 12px !important;
+  direction: rtl;
+  text-align: start;
+
+  .mat-simple-snackbar-action {
+    color: $swatch_blue_300;
+    margin: -8px 8px -8px -8px;
+  }
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__label {
+  font-family: YekanFa, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+.mat-mdc-snack-bar-container.is-danger {
+  .mat-mdc-simple-snack-bar {
+    > div::before {
+      background: url("/assets/icons/snackbar/snack-warning.svg") no-repeat 0 0/100%;
+    }
+  }
+}
+
+.mat-mdc-snack-bar-container.is-success {
+  .mat-mdc-simple-snack-bar {
+    > div::before {
+      background: url("/assets/icons/snackbar/snack-success.svg") no-repeat 0 0/100%;
+    }
+  }
+}
+
+.mat-mdc-snack-bar-container.is-danger, .mat-mdc-snack-bar-container.is-success {
+  .mat-mdc-simple-snack-bar {
+    > div::before {
+      display: inline-block;
+      vertical-align: middle;
+      content: ' ';
+      width: 20px;
+      height: 20px;
+      margin-inline-end: 8px;
+    }
+  }
+}

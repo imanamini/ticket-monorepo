@@ -1,0 +1,50 @@
+<ui-content-box>
+  <div dir="ltr">
+    <h1>Test TGS</h1>
+
+    <hr>
+    <p> Balance: {{balance ? (balance | separator) : '-'}} Rial</p>
+    <hr>
+    <input [(ngModel)]="TestType" type="radio" id="defer-demount" name="defer-demount" [value]="TestTypeEnum.DEFER_DEMOUNT_CASH_IN">
+    <label for="defer-demount">Defer Demount Cash In </label><br>
+    <input [(ngModel)]="TestType" type="radio" id="custom" name="custom" [value]="TestTypeEnum.CUSTOM">
+    <label for="custom">UPG | Test with custom ticket</label><br>
+    <input [(ngModel)]="TestType" type="radio" id="normal" name="age" [value]="TestTypeEnum.NORMAL">
+    <label for="normal">UPG | Normal test</label><br>
+    <input [(ngModel)]="TestType" type="radio" id="credit" name="credit" [value]="TestTypeEnum.CREDIT">
+    <label for="credit">UPG | Credit feature test</label><br>
+    <input [(ngModel)]="TestType" type="radio" id="wallet" name="wallet" [value]="TestTypeEnum.WALLET">
+    <label for="wallet">UPG | Single wallet feature test</label><br>
+    <input [(ngModel)]="TestType" type="radio" id="ICP" name="ICP" [value]="TestTypeEnum.ICP">
+    <label for="ICP">UPG | Single ICP feature test</label><br>
+    <input [(ngModel)]="TestType" (ngModelChange)="updateCashInAndPayCellNumber($event)" type="radio" id="C&P"
+           name="C&P" [value]="TestTypeEnum.CASH_IN_AND_PAY">
+    <label for="C&P">Single cash in and pay feature test</label><br>
+
+    <div class="row">
+      <div class="column">
+        <label class="writable-input-label" dir="ltr">Cell Number</label>
+        <input class="writable-input" type="text"
+               placeholder="Cell Number" dir="ltr" [(ngModel)]="cellNumber">
+      </div>
+
+      <div class="column">
+        <label class="writable-input-label" dir="ltr">Custom Ticket (Optional)</label>
+        <input [disabled]="TestType !== TestTypeEnum.CUSTOM" class="writable-input" type="text"
+               placeholder="Custom Ticket" dir="ltr" [(ngModel)]="customTicket">
+      </div>
+    </div>
+
+    <div>
+      <label class="writable-input-label" dir="ltr">Amount</label>
+      <input [disabled]="TestType === TestTypeEnum.DEFER_DEMOUNT_CASH_IN" class="writable-input" type="text" placeholder="Amount" dir="ltr" [(ngModel)]="amount">
+      <p class="hint error">{{amountErrorMessage}}</p>
+    </div>
+
+
+    <ui-button
+      [fullWidth]="true"
+      (buttonClick)="test()">Test
+    </ui-button>
+  </div>
+</ui-content-box>

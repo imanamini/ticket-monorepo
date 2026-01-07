@@ -1,0 +1,341 @@
+@import '../../../../../styles/layout/variables';
+@import "@digipay/base-style/styleguide";
+
+:host {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  background-color: #fff;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+}
+
+.max-credit-amount-step {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  text-align: center;
+  width: 474px;
+  margin-top: 24px;
+
+  .title {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: right;
+
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    flex-direction: column;
+    margin-top: 16px;
+  }
+}
+
+.select-docs-header {
+  display: flex;
+  gap: 8px;
+  padding: 16px 0;
+  margin-bottom: 32px;
+
+  .logo {
+    width: 48px;
+    height: 48px;
+    background: url("../../../../../../assets/icons/saman-icon.svg") no-repeat center center;
+    background-size: auto 100%;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    color: $swatch_steel_900;
+
+    .amount {
+      font-size: 18px;
+      font-weight: 700;
+
+      .unit {
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+
+    .message {
+      font-size: 12px;
+      font-weight: 400;
+      text-align: right;
+      color: $swatch_steel_500;
+    }
+  }
+
+}
+
+.select-docs-body {
+  margin-bottom: 24px;
+
+  .title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: map-get($neutral, 'shade-0');
+  }
+
+  .description {
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+
+    .item {
+      display: flex;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 400;
+      padding: 8px 12px;
+      border-radius: 12px;
+      border: 1px solid $swatch_steel_200;
+
+      .item-id {
+        display: inline-block;
+        border-radius: 14px;
+        background-color: $swatch_steel_100;
+        font-size: 12px;
+        font-weight: 800;
+        line-height: 20px;
+        //padding: 4px;
+        width: 28px;
+        height: 28px;
+        text-align: center;
+      }
+
+      .item-icon {
+        width: 8px;
+        height: 8px;
+        background: url("../../../../../../assets/icons/star.svg") no-repeat center center;
+        background-size: auto 100%;
+        margin: 10px auto;
+      }
+
+      .item-name {
+        text-align: right;
+      }
+    }
+  }
+}
+
+.select-account-body {
+  .title {
+    font-size: 24px;
+    font-weight: 800;
+    color: map-get($neutral, 'shade-0');
+    margin-bottom: 8px;
+  }
+
+  .description {
+    font-size: 16px;
+    font-weight: 700;
+    color: #424C5C;
+    text-align: right;
+  }
+
+  .iban-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .iban-card {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 24px;
+      width: 294px;
+      height: 160px;
+      margin: 48px auto;
+      padding: 16px;
+      color: #fff;
+      background: url("../../../../../../assets/card-pattern.svg") no-repeat center center #0094FF;
+      box-shadow: 0 8px 48px 0 rgba(0, 148, 255, 0.24);
+      background-size: cover;
+      border-radius: 16px;
+
+      .iban-card-title {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        .small-logo {
+          width: 16px;
+          height: 16px;
+          background: url("../../../../../../assets/icons/saman-small-logo.svg") no-repeat center center;
+          background-size: auto 100%;
+        }
+
+      }
+
+      .iban-text {
+        font-family: YekanMono;
+        display: flex;
+        justify-content: center;
+        direction: ltr;
+        margin-top: 24px;
+        gap: 5px;
+      }
+    }
+
+    .iban-form {
+      width: 100%;
+      text-align: right;
+    }
+
+    .open-account-link {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 24px;
+      color: $swatch_blue_500;
+      padding: 11px 24px;
+      text-decoration: none;
+    }
+
+    .legal-notice {
+      margin-top: 38px;
+      padding-top: 38px;
+      border-top: 1px solid  map-get($titanium, 'shade-80');
+
+      .title {
+        font-size: 24px;
+        font-weight: 800;
+        color:  map-get($neutral, 'shade-0');
+        margin-bottom: 8px;
+      }
+
+      .description {
+        font-size: 16px;
+        font-weight: 700;
+        color: #424C5C;
+        text-align: right;
+      }
+    }
+  }
+}
+
+.footer {
+  width: 100%;
+  height: 92px;
+  flex: 0 0 auto;
+  border-top: 1px solid $swatch_steel_200;
+
+  .actions {
+    display: flex;
+    width: 474px;
+    justify-content: space-between;
+    margin: 22px auto;
+  }
+}
+
+.status-result {
+  margin: auto;
+
+  ::ng-deep .message-description {
+    white-space: break-spaces;
+  }
+}
+
+@media screen and (max-width: 522px) {
+
+  .max-credit-amount-step {
+    width: 100%;
+    padding: 16px;
+    margin-top: 0;
+
+    .select-docs {
+      border: 1px solid #DEE3E7;
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .select-docs-header {
+      padding: 0;
+      margin-bottom: 16px;
+    }
+
+    .select-docs-body {
+      margin-bottom: 0;
+
+      .title {
+        margin-top: 12px;
+      }
+
+      .description {
+        text-align: right;
+      }
+
+      .items {
+        margin-top: 8px;
+      }
+    }
+
+  }
+  .select-account-body {
+    .title {
+      font-size: 16px;
+      font-weight: 725;
+      line-height: 32px;
+      margin-bottom: 12px;
+    }
+
+    .description {
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 450;
+      line-height: 20px;
+      text-align: right;
+    }
+
+    .iban-card-wrapper {
+      .iban-card {
+        margin: 24px auto;
+      }
+
+      .legal-notice {
+        margin-top: 16px;
+        padding-top: 8px;
+        border-top: 1px solid  map-get($titanium, 'shade-80');
+
+        .title {
+          font-size: 16px;
+          font-weight: 725;
+          line-height: 32px;
+          margin-bottom: 12px;
+        }
+
+        .description {
+          font-size: 12px;
+          font-weight: 450;
+          line-height: 20px;
+          color: $swatch_steel_700;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  .footer {
+    padding: 22px 16px;
+
+    .actions {
+      width: 100%;
+      margin: 0;
+    }
+  }
+}

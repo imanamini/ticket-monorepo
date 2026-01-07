@@ -1,0 +1,7 @@
+@if (iplService.isLoading()) {
+  <app-progress-loading/>
+} @else {
+  <app-main-layout>
+    <router-outlet/>
+  </app-main-layout>
+}

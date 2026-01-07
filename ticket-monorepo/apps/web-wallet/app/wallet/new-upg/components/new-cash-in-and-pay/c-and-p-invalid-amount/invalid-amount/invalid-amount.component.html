@@ -1,0 +1,28 @@
+<div class="subtitle-wrapper">
+  <div class="current-balance-title">
+    <span>موجودی فعلی </span>
+    <div class="balance-icon"></div>
+  </div>
+  <ui-currency
+    [customColor]="'#2c3544'"
+    [value]="info?.walletBalance">
+  </ui-currency>
+</div>
+
+<div class="chargeable-amount-title">مبلغ مورد نیاز</div>
+
+<div class="description">
+  <div class="amount">
+    {{(info.amount - info.walletBalance) | separator}}
+  <span class="rial">ریال</span>
+  </div>
+  <div class="arrow-down"></div>
+  <div class="minimum-chargeable-amount">
+    <span class="minimum-chargeable-amount-title">حداقل مبلغ قابل پرداخت</span>
+    <app-user-card-tooltip [info]="info"></app-user-card-tooltip>
+  </div>
+</div>
+
+<div class="needed-chargeable-amount">
+  {{info.cashInAmount | separator}}
+  <span class="rial">ریال</span></div>

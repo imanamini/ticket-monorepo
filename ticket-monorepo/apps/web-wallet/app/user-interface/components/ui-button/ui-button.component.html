@@ -1,0 +1,9 @@
+<button class="ui-button"
+        [ngClass]="className"
+        [ngStyle]="styles"
+        (click)="clicked($event)"
+        [disabled]="disabled"
+        id="{{googleAnalyticId?.buttonId || ''}}"
+>
+  <ng-content></ng-content>
+</button>

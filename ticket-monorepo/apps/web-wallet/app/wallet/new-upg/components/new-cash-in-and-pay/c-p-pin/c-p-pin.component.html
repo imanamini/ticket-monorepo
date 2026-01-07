@@ -1,0 +1,53 @@
+<app-card
+  *ngIf="info; else loading"
+  [submitText]="cardConfig.submitText"
+  [submitLoading]="loadingSubmit"
+  [disableSubmitButton]="true"
+  currencyText="مبلغ موردنیاز"
+  [amount]="info.cashInAmount"
+  [headerTitle]="cardConfig.headerTitle"
+  [customizeBackAction]="true"
+  (onBackClicked)="back()"
+  [headerCloseButtonType]="'BACK'">
+
+  <div body class="protection-container">
+
+    <div class="code-protection">
+
+      <div class="amount-wrapper">
+        <ui-amount-label-bar
+          [title]="'کیف پول دیجی‌پی'"
+          [value]="info.walletBalance"
+          [userFullName]="(user?.name?.name || '') + ' ' + (user?.name?.surname || '')"
+        ></ui-amount-label-bar>
+      </div>
+
+      <div class="description">
+        <span>{{'برای تایید پرداخت'}}</span><br>
+        <span>{{'رمز کیف‌ پول خود را وارد کنید.'}}</span>
+      </div>
+
+      <ui-pin-input
+        (pinChange)="login($event)"
+        [type]="'PIN'"
+        [ngClass]="{'invalid': invalidMessage}">
+      </ui-pin-input>
+
+      <div
+        class="invalid-pin"
+        [ngStyle]="invalidMessage && {visibility: 'visible'}">
+        {{invalidMessage}}
+      </div>
+      <div
+        class="pin-divider">
+      </div>
+
+    </div>
+  </div>
+</app-card>
+
+<ng-template #loading>
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+</ng-template>

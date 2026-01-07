@@ -1,0 +1,66 @@
+<div class="tabs-wrapper">
+  <h1>طرح‌های تسویه</h1>
+
+  <div class="tabs">
+    <div class="index">
+      <ng-container *ngFor="let tab of tabs">
+        <label for="radio{{tab.status}}" (click)="toggleTabs(tab.status)"
+               [ngClass]="{active:currentOption === tab.status}">
+          <input type="radio" name="tabToggle" id="radio{{tab.status}}"
+                 [checked]="currentOption === tab.status">  {{tab.label}}
+        </label>
+      </ng-container>
+    </div>
+    <div class="contents border" *ngIf="merchantCategories[1] !== undefined && currentOption === 1">
+      <div class="merchant-card-header">
+        <span class="name">طرح‌های فعال</span>
+        <div class="action" (click)="showFactors()"> مشاهده و تسویه فاکتورها
+          <div class="arrow-icon"></div>
+        </div>
+      </div>
+      <ngx-divider
+        class="divider"
+        [color]="BorderColorsEnum.Light"
+        orientation="horizontal"></ngx-divider>
+      <div *ngFor="let tab of tabs" [ngClass]="currentOption === 1  ? 'merchant-cards' : ''"
+           [ngStyle]="currentOption !== tab.status ? {display: 'none'} : {display: 'block'}">
+        <div *ngFor="let merchant of merchantCategories[tab.status]">
+          <app-merchant-card
+            [merchant]="merchant"
+            [hidden]="currentOption !== merchant.status"
+            (continuedJourney)="continueJourney($event)">
+          </app-merchant-card>
+          <div [hidden]="currentOption !== merchant.status">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contents" *ngIf="merchantCategories[0] !== undefined && currentOption === 0">
+      <div *ngFor="let tab of tabs" [ngStyle]="currentOption !== tab.status ? {display: 'none'} : {display: 'block'}">
+        <div *ngFor="let merchant of merchantCategories[tab.status]">
+          <app-merchant-card
+            [merchant]="merchant"
+            [hidden]="currentOption !== merchant.status"
+            (continuedJourney)="continueJourney($event)">
+          </app-merchant-card>
+          <div [hidden]="currentOption !== merchant.status">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="merchantCategories[0] === undefined && currentOption === 0">
+      <app-empty-state
+        [title]="'هیچ ثبت‌نام تکمیل نشده ای ندارید.'"
+        [description]="'با ثبت‌نام در طرح جدید درآمد حاصل از فروش خود را زودتر از همیشه دریافت کنید.'">
+      </app-empty-state>
+    </div>
+    <div
+      *ngIf="merchantCategories[1] === undefined && currentOption === 1">
+      <app-empty-state
+        [title]="'هنوز در طرحی ثبت‌نام نکرده اید.'"
+        [description]="'با ثبت‌نام در طرح جدید درآمد حاصل از فروش خود را زودتر از همیشه دریافت کنید.'">
+      </app-empty-state>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+@import "../../../layout/mixins/font-size";
+
+h1 {
+  @include fontSize(24);
+}
+
+label, input {
+  display: block;
+}
+
+label {
+  margin: 1em 0;
+}
+
+input {
+  width: 100%;
+  line-height: 35px;
+  border-radius: 4px;
+  box-shadow: none;
+  border: 1px solid #e5e5e5;
+  padding: 0 1em;
+}
+
+ui-button {
+  margin: 24px 0 0;
+}

@@ -1,0 +1,81 @@
+@import "../../../layout/variables";
+@import "../../../layout/mixins/flex";
+@import "../../../layout/mixins/device";
+@import "../../../layout/mixins/font-size";
+
+.amount-suggestions {
+  display: flex;
+  direction: ltr;
+  flex-direction: row;
+  justify-content: center;
+  font-family: $font-name;
+
+  .suggestion {
+    color: #6e798d;
+    direction: rtl;
+    flex-basis: 21.5%;
+    border-radius: 20px;
+    text-align: center;
+    padding: 2px 11px;
+    margin-right: 8px;
+    cursor: pointer;
+    height: 40px;
+    @include flex-center;
+    background-color: #f2f5f8;
+
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.is-selected {
+      color: $digipay-blue-primary;
+      background: $digipay-blue-light;
+      border-color: $digipay-blue-primary;
+      box-shadow: 0 0 0 1px $digipay-blue-primary;
+    }
+
+    ui-currency::ng-deep {
+      color: inherit;
+
+      span.currency {
+        display: flex;
+        color: inherit;
+        font-size: 14px;
+
+        span.unit,
+        span.amount {
+          color: inherit;
+          font-weight: 600;
+          font-size: 14px;
+        }
+
+        span.unit {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}
+
+@include mediaMaxWidth(460px) {
+  .amount-suggestions {
+    .suggestion {
+      height: 32px;
+      @include fontSize(14);
+
+      ui-currency::ng-deep {
+        span.currency {
+          span.unit,
+          span.amount {
+            @include fontSize(12);
+          }
+
+          span.unit {
+            margin-right: 2px;
+          }
+        }
+      }
+    }
+  }
+}

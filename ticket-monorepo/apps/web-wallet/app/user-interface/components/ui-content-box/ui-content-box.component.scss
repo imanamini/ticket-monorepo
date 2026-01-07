@@ -1,0 +1,94 @@
+@import "../../../layout/variables";
+@import "../../../layout/mixins/font-size";
+@import "../../../layout/mixins/device";
+
+$sides-padding: 80px;
+
+.content-box {
+  background: #fff;
+  border-radius: 16px;
+  min-height: 480px;
+  overflow: hidden;
+  border: solid 1px #d3dbe1;
+
+  .header {
+    padding: 20px $sides-padding;
+    border-bottom: 1px solid #e6e6e6;
+  }
+
+  .body {
+    padding: 40px $sides-padding;
+  }
+
+  .title-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    &.with-logo {
+      margin-top: 40px;
+    }
+
+    .countdown {
+      color: $text-color-lighter;
+      font-weight: 100;
+      @include fontSize(12);
+
+      .icon {
+        width: 12px;
+        height: 12px;
+        display: inline-block;
+        vertical-align: middle;
+        background: url("./assets/clock-icon.svg") no-repeat 0 0/100%;
+        margin-left: 8px;
+      }
+
+      .time {
+        margin-right: 12px;
+      }
+    }
+  }
+
+  .digipay-tiny-logo {
+    width: 14px;
+    height: 21px;
+    display: inline-block;
+    vertical-align: middle;
+    background: url('./assets/digipay.svg') no-repeat 0 0/100%;
+    margin-left: 8px;
+  }
+}
+
+
+@include mediaMobile() {
+  ::ng-deep ui-content-box {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .content-box {
+    border-radius: 0;
+    flex-grow: 1;
+
+    .header, .body {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+}
+
+
+@include mediaMaxWidth(360px) {
+  .content-box {
+    .header .countdown {
+      .icon {
+        margin-left: 0;
+      }
+
+      .label {
+        display: none;
+      }
+    }
+  }
+}

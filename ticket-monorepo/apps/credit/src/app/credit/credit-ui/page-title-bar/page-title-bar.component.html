@@ -1,0 +1,37 @@
+<div class="page-title-bar" [ngStyle]="getStyles()" [ngClass]="{
+'invert-color': invertColor,
+'right-aligned': alignment === 'RIGHT'
+}">
+  <div class="left-action">
+    <mat-spinner *ngIf="actionSpinner"></mat-spinner>
+    <ng-container *ngIf="!actionSpinner">
+      <a (click)="actionTextClick($event)" *ngIf="actionText">{{actionText}}</a>
+    </ng-container>
+    <ng-content></ng-content>
+    <img *ngIf="infoButton"
+         class="invertable"
+         (click)="infoItemClicked($event)"
+         src="credit-assets-new/icons/page-title-bar-assets/title-bar-info-icon.svg"/>
+  </div>
+  <span class="title invert-text">
+    <span>{{title}}</span>
+    <span class="subtitle" *ngIf="subtitle">{{subtitle}}</span>
+  </span>
+  <div class="right-action">
+
+    <img *ngIf="closeButton"
+         class="invertable"
+         (click)="closeButtonClick($event)"
+         src="credit-assets-new/icons/page-title-bar-assets/title-bar-close-icon.svg">
+
+    <!-- back button with click callback  -->
+    <img *ngIf="backButton"
+
+         (click)="backButtonClick($event)"
+         class="go-back invertable" src="credit-assets-new/icons/page-title-bar-assets/title-bar-back-icon.svg">
+
+    <span *ngIf="closeText" class="close-text" (click)="closeButtonClick($event)">
+      {{ closeText }}
+    </span>
+  </div>
+</div>

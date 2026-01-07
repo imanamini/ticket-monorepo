@@ -1,0 +1,40 @@
+@import "variables";
+
+.bnpl-title-bar {
+  border-bottom: 1px solid $border-color;
+
+  .bnpl-title-bar-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 16px 24px;
+    box-sizing: border-box;
+    direction: rtl;
+
+    .right-box {
+      flex: 0 0 auto;
+    }
+
+    .title {
+      flex: 1 1 auto;
+      padding: 0 8px;
+      font-size: 18px;
+      color: $swatch_steel_500;
+      line-height: 32px;
+    }
+
+    .left-box {
+      flex: 0 0 auto;
+    }
+  }
+
+  .icon-close {
+    width: 24px;
+    height: 24px;
+    background-image: url("../../../../../../assets/bnpl/icon_close.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+}

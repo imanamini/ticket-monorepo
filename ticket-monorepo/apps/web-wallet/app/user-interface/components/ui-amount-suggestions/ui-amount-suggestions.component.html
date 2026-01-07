@@ -1,0 +1,7 @@
+<div class="amount-suggestions" *ngIf="config">
+  <div *ngFor="let item of amountsList"
+       class="suggestion" [ngClass]="{'is-selected': item === selected}"
+       (click)="itemClicked(item) ; detectEventCalled(item)">
+    <ui-currency [value]="item"></ui-currency>
+  </div>
+</div>

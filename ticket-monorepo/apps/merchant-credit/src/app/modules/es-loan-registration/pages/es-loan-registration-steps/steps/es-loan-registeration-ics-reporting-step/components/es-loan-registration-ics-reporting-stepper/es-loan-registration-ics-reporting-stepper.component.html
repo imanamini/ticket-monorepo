@@ -1,0 +1,24 @@
+<div class="w-100 d-flex flex-column gap-small pt-small pb-small pl-plus pr-plus border-b-300 border-color-air">
+  <div class="d-flex  justify-content-space-between align-item-center">
+    <span>
+      <span class="st-8 text-onback-high ml-tiny">{{ steps()[ activeStepIndex() ]?.title }}:</span> <span
+      class="b-3 text-onback-medium"> {{ steps()[ activeStepIndex() ]?.description }}</span>
+    </span>
+    <span class="b-3 text-onback-low">
+      {{ activeStepIndex() + 1 }} از {{ steps().length }}
+    </span>
+  </div>
+
+  <div class="progress-bar">
+    @for(step of steps(); track $index){
+    <div
+      class="progress-segment"
+      [class.surface-brand]="$index <= activeStepIndex()"
+    ></div>
+    }
+
+  </div>
+</div>
+<div class="step-content">
+  <ng-content/>
+</div>

@@ -1,0 +1,10 @@
+@if (ready) {
+  <div class="wrapper">
+    <ui-ngx-payment-result
+      [paymentResult]="result.paymentResult"
+      [trackingCode]="result.trackingCode"
+      [showBackIcon]="type === PaymentReceiptTrigger.Ipl"
+      (onBackIconClick)="onCloseHandler()"
+    />
+  </div>
+}

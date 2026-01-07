@@ -1,0 +1,14 @@
+<div
+  class="step-item"
+  [ngClass]="{
+    'is-first': isFirstItem,
+    'is-last': isLastItem
+  }"
+>
+  <div class="step-index-col">
+    <div class="index-number">{{index}}</div>
+  </div>
+  <div class="step-content">
+    <ng-content></ng-content>
+  </div>
+</div>

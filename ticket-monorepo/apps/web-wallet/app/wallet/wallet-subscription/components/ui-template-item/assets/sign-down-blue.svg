@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="7" viewBox="0 0 12 7">
+  <defs>
+    <rect id="down-a" width="24" height="24"/>
+    <rect id="down-b" width="24" height="24"/>
+    <path id="down-c" d="M17.295,9.295 C17.6843607,9.68436075 17.6843607,10.3156393 17.295,10.705 L12,16 L12,16 L6.705,10.705 C6.31563925,10.3156393 6.31563925,9.68436075 6.705,9.295 C7.09448505,8.90551495 7.72585884,8.90517069 8.11576839,9.29423077 L12,13.17 L12,13.17 L15.8842316,9.29423077 C16.2741412,8.90517069 16.905515,8.90551495 17.295,9.295 Z"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(-6 -9)">
+    <g transform="rotate(-90 12 12)"/>
+    <mask id="down-d" fill="#fff">
+      <use xlink:href="#down-c"/>
+    </mask>
+    <g fill="#0040FF" mask="url(#down-d)">
+      <rect width="24" height="24"/>
+    </g>
+  </g>
+</svg>

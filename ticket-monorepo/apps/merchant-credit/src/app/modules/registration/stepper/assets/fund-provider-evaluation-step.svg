@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/general/bank</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="24" height="24"></rect>
+        <rect id="path-3" x="0" y="0" width="24" height="24"></rect>
+        <path d="M7,12 L7,19 L7,19 L11,19 L11,12 C11,11.4477153 11.4477153,11 12,11 C12.5522847,11 13,11.4477153 13,12 L13,19 L13,19 L17,19 L17,12 C17,11.4477153 17.4477153,11 18,11 C18.5522847,11 19,11.4477153 19,12 L19,19 L19,19 L20,19 C20.5522847,19 21,19.4477153 21,20 C21,20.5522847 20.5522847,21 20,21 L4,21 C3.44771525,21 3,20.5522847 3,20 C3,19.4477153 3.44771525,19 4,19 L5,19 L5,19 L5,12 C5,11.4477153 5.44771525,11 6,11 C6.55228475,11 7,11.4477153 7,12 Z M12,3 L21,8 L21,9 C21,9.55228475 20.5522847,10 20,10 L4,10 C3.44771525,10 3,9.55228475 3,9 L3,8 L3,8 L12,3 Z M12,5.287918 L7.11825206,8.00000019 L16.8817479,8.00000019 L12,5.287918 Z" id="path-5"></path>
+    </defs>
+    <g id="icon/general/bank" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Bounds">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Mask"></g>
+            <mask id="mask-4" fill="white">
+                <use xlink:href="#path-3"></use>
+            </mask>
+            <g id="Border"></g>
+        </g>
+        <mask id="mask-6" fill="white">
+            <use xlink:href="#path-5"></use>
+        </mask>
+        <g id="Mask" fill-rule="nonzero"></g>
+        <g id="Group" mask="url(#mask-6)" fill="#0040ff">
+            <g id="🎨-Color">
+                <rect id="Surface" x="0" y="0" width="24" height="24"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

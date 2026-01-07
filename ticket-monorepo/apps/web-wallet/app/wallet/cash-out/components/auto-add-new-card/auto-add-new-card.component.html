@@ -1,0 +1,56 @@
+<cash-out-header
+        [action]="'BACK'"
+        [customRedirectPath]="PATH.chooseAmount"
+        [title]="title"
+></cash-out-header>
+
+<div *ngIf="banks.length>0 else Loading"
+     [ngClass]="{'without-margin':showDatePickerInMobile}"
+     class="content-wrapper">
+
+  <span class="explain">برای برداشت از کیف پول می‌بایست <span class="bold">کارت بانکی متعلق به خود </span>را وارد کنید.</span>
+
+  <form [formGroup]="form" class="inputs">
+    <ui-card-number-input
+            (cardNumber)="addCardNumber($event)"
+            (gotError)="invalidCard = $event"
+            [autoFocus]="true"
+            [banks]="banks"
+            [cardNumberValue]="form.controls['cardNumber'].value"
+            [hint]="
+     (form.controls['bank']?.value?.name || '') +
+     (form.controls['cardHolder']?.value ?  (' - ' + form.controls['cardHolder']?.value ) :'')"
+            [loadingSpinner]="loadingProfileApi"
+            [placeHolder]="'شماره کارت'"
+    ></ui-card-number-input>
+
+    <ui-form-field
+      [type]="'date'"
+      [label]="'تاریخ انقضا'"
+      [dateRange]="'future'"
+    ></ui-form-field>
+  </form>
+
+  <footer-with-currency
+          (submit)="onSubmit()"
+          *ngIf="!showDatePickerInMobile"
+          [disabled]="loadingSubmitApi || !form.valid"
+          [loadingApi]="loadingSubmitApi"
+          [submitText]="'تایید و ادامه'">
+  </footer-with-currency>
+
+</div>
+
+<ng-template #Loading>
+  <div *ngIf="!errorGetConfig; else ErrorMessage" class="loader-container">
+    <div class="loader"></div>
+  </div>
+  <ng-template #ErrorMessage>
+    <div class="alert-danger">
+      {{ errorGetConfig }}
+    </div>
+  </ng-template>
+</ng-template>
+
+
+

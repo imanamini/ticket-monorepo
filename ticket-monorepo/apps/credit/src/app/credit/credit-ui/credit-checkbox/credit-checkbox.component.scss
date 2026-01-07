@@ -1,0 +1,79 @@
+@import "variables";
+
+:host {
+  display: inline-flex;
+}
+
+.checkbox-box {
+  width: 100%;
+
+  input {
+    display: none;
+
+    &.disabled ~ .checkbox-label {
+      cursor: default;
+    }
+
+    &:checked ~ .checkbox-label {
+      &.primary .mark {
+        background-color: $swatch-blue-500;
+      }
+
+      &.success .mark {
+        background-color: $swatch-green-500;
+      }
+    }
+
+    &.disabled:checked ~ .checkbox-label {
+      &.primary .mark {
+        background-color: $swatch-blue-200;
+      }
+
+      &.success .mark {
+        background-color: $swatch-green-200;
+      }
+    }
+  }
+
+  input:checked ~ .checkbox-label .mark {
+    border: unset;
+    transition: .2s background-color ease-in-out;
+
+    &:after {
+      content: "";
+      width: 18px;
+      height: 18px;
+      background-image: url('credit-check-icon.svg');
+      display: block;
+      position: absolute;
+    }
+  }
+
+  .checkbox-label {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    margin: 0;
+
+    .mark-box {
+      width: 24px;
+      height: 24px;
+      box-sizing: border-box;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      .mark {
+        position: relative;
+        box-sizing: border-box;
+        width: 18px;
+        height: 18px;
+        border: 2px solid $swatch_steel_300;
+        background-color: #FFFFFF;
+        border-radius: 4px;
+      }
+    }
+  }
+}

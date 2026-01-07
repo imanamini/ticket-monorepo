@@ -1,0 +1,16 @@
+<div class="header">
+  <div class="row title-row">
+    <div class="title-bar">
+      <div class="exit-btn" *ngIf="hasBackButton" (click)="back.emit()">
+        <span class="arrow"></span>
+      </div>
+      <h3>{{ heading }}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="detail" *ngFor="let detail of details">
+      <span>{{ detail.label }}</span>
+      <span>{{ detail.value }}</span>
+    </div>
+  </div>
+</div>

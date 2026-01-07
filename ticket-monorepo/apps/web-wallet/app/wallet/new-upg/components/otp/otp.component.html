@@ -1,0 +1,51 @@
+<app-card
+  [submitText]="cardConfig.submitText"
+  [submitLoading]="loadingSubmit"
+  [disableSubmitButton]="true"
+  [headerTitle]="cardConfig.headerTitle"
+  [headerCloseButtonType]="'BACK'"
+>
+  <div body class="protection-container">
+    <div class="code-protection">
+      <div *ngIf="creditBalance()" class="amount-wrapper">
+        <ui-amount-label-bar
+          [title]="'اعتبار باقی‌مانده'"
+          [value]="creditBalance()"
+          [userFullName]="(user?.name?.name || '') + ' ' + (user?.name?.surname || '')"
+        ></ui-amount-label-bar>
+      </div>
+
+      <div class="description">
+        کد پیامک‌ شده به شماره
+        <span class="number">{{ user?.cellNumber }}</span>
+        را وارد کنید.
+      </div>
+
+      <ui-pin-input #otp [ngClass]="{invalid: invalidMessage}" (pinChange)="verifyingCode($event)" [type]="'OTP'"> </ui-pin-input>
+
+      <div class="invalid-otp" [ngStyle]="invalidMessage && {visibility: 'visible'}">
+        {{ invalidMessage }}
+      </div>
+
+      <ui-button
+        appearance="clean"
+        theme="digipay"
+        class="submit-button full-width resend-code-btn"
+        [ngClass]="enableResendButton && 'active-resend-code-btn'"
+        (buttonClick)="requestNewCode()"
+        [disabled]="!enableResendButton"
+        [fullWidth]="true"
+      >
+        دریافت مجدد کد &nbsp;
+        <ui-count-down-text *ngIf="!enableResendButton" (finished)="onFinishedResendRemaining()" [seconds]="timerService.timer">
+        </ui-count-down-text>
+      </ui-button>
+    </div>
+  </div>
+</app-card>
+
+<ng-template #loading>
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+</ng-template>

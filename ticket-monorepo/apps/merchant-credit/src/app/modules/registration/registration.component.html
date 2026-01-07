@@ -1,0 +1,39 @@
+<app-title-bar *ngIf="!cancelMode">ثبت‌نام تسویه زودتر از موعد</app-title-bar>
+<ng-container *ngIf="!gettingData && !cancelMode && currentStepIndex !== -1">
+  <app-stepper [steps]="steps" [currentIndex]="currentStepIndex" [status]="status">
+    <app-credit-revise-step
+      *ngIf="steps[currentStepIndex].uid === 'credit-revise-step' || steps[currentStepIndex].uid === 'digipay-credit-revise-step'"
+      [type]="type"
+      [detail]="detail"
+      [creditId]="creditId"
+      [registrationMaxAmount]="registrationMaxAmount"
+      [registrationStatus]="status"
+      (reloadData)="getData(creditId)"
+      (cancel)="goToCancel()"
+    ></app-credit-revise-step>
+    <div>
+      <app-step-result
+        [registrationStatus]="status"
+        [stepUID]="steps[currentStepIndex].uid"
+        [type]="type"
+        [registrationMaxAmount]="registrationMaxAmount"
+      ></app-step-result>
+    </div>
+  </app-stepper>
+</ng-container>
+<ng-container *ngIf="!gettingData && !cancelMode && currentStepIndex === -1">
+  <div class="success-message">
+    <app-step-result
+      [registrationStatus]="status"
+      [successful]="true"
+      [type]="type"
+      [registrationMaxAmount]="registrationMaxAmount"
+    ></app-step-result>
+  </div>
+</ng-container>
+<app-cancel-registration
+  [creditId]="creditId"
+  *ngIf="!gettingData && cancelMode"
+  (back)="cancelMode = false"
+></app-cancel-registration>
+<page-loading [active]="gettingData"></page-loading>

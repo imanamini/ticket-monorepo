@@ -1,0 +1,36 @@
+<section class="estimation-wrapper">
+  <div class="estimation-header">
+    <div class="estimation-header__title-holder">
+      <img class="estimation-header__close-icon" src="assets/icons/close.svg" alt="">
+      <span class="estimation-header__title">تخمین سقف اعتبار با توجه به مدارک موجود</span>
+    </div>
+    <img src="assets/icons/logo-digipay.svg" alt="">
+  </div>
+  <div class="estimation-body">
+    <div class="estimation-body__title-holder">
+      <span>برای سقف اعتبار
+        {{maxAmountString}}
+        ریال یا کمتر، به مدارک زیر نیاز دارید. در صورتی که هرکدام از موارد را ندارید، تیک کنار آن را بردارید. </span>
+    </div>
+    <div class="checkbox-box" *ngFor="let doc of documents">
+      <input [id]="doc.id"
+             type="checkbox"
+             [ngClass]="{disabled: minimumDocuments.indexOf(doc.id) !== -1}"
+             (change)='calculateMaxAmount()'
+             [(ngModel)]='selectedDocuments[doc.id]'
+             [disabled]='minimumDocuments.indexOf(doc.id) !== -1'
+      />
+      <label [for]='doc.id' class="checkbox-label">
+          <span class="checkbox-check-mark"></span>
+          <span class="checkbox-text">{{doc.description}}</span>
+      </label>
+    </div>
+  </div>
+  <div class="estimation-footer">
+    <div>
+      <div class="estimation-footer__title"><span>سقف اعتبار قابل دریافت برای شما</span></div>
+      <div class="estimation-footer__price"><span>{{tempMaxAmount | number}} ریال</span></div>
+    </div>
+    <ui-button (click)="selectAmount()">انتخاب سقف اعتبار</ui-button>
+  </div>
+</section>

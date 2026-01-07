@@ -1,0 +1,14 @@
+<div class="detail-wrapper">
+  <div class="detail-info" [ngClass]="{'disabled-mode': disabled, 'loading-mode': loading}">
+    <div class="detail-info-row" *ngFor="let item of detailInfoItems">
+      <div>{{item.key}}</div>
+      <div [ngClass]="{'has-loading': !item.withoutLoading}">{{item.value}}</div>
+    </div>
+  </div>
+  <div *ngIf="feeDetail" class="main-info" [ngClass]="{'disabled-mode': disabled, 'loading-mode': loading}">
+    <div class="main-info-row" *ngFor="let item of mainInfoItems">
+      <div>{{item.key}}</div>
+      <div [ngClass]="{'has-loading': !item.withoutLoading}">{{item.value}}</div>
+    </div>
+  </div>
+</div>

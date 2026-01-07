@@ -1,0 +1,86 @@
+@import "variables";
+
+.title-action-content {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  gap: 2px;
+}
+
+.section-title {
+  color: #2C3544;
+  margin: 12px 0;
+}
+
+.desc {
+  margin: 1em 0;
+  font-size: 12px;
+}
+
+
+.page-cta {
+  min-width: 160px;
+}
+
+checklist-item {
+  margin-bottom: 12px;
+}
+
+
+.additional-documents {
+  height: 300px;
+}
+
+.info-icon {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 24px;
+  width: 1em;
+  height: 1em;
+  background: url('./img/title-info-icon.svg') no-repeat 0 0/100%;
+}
+
+
+.divider {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  gap: 7px;
+
+  .text {
+    flex-grow: 0;
+    font-size: 12px;
+    font-weight: 400;
+    color: $swatch_steel_300;
+  }
+
+  .line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: $swatch_steel_200;
+  }
+
+}
+
+.cellNumber-title {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 28px;
+  margin-bottom: 16px;
+}
+
+.top-section {
+  margin-bottom: auto;
+}
+
+.bottom-section {
+  padding: 16px 0;
+
+  .link-style {
+    color: $swatch_blue_500;
+    padding: 0 4px 0 2px;
+  }
+}
+

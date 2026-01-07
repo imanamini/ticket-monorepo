@@ -1,0 +1,39 @@
+<cash-out-header
+        [action]="'EXIT'"
+        [title]="'برداشت از کیف پول'"
+></cash-out-header>
+
+<div *ngIf="!loading;else Loading" class="content-wrapper">
+
+  <amount-info
+          [maxAmount]="config.maxAmount"
+          [cashoutableBalance]="config.cashoutableBalance"
+  ></amount-info>
+
+  <div class="amount-wrapper">
+    <ui-form-field
+      [type]="'large-amount'"
+      [minAmount]="config.minAmount"
+      [maxAmount]="config.maxAmount"
+      [maxSize]="15"
+      [(ngModel)]="selectedAmount"
+      [autoFocus]="false">
+    </ui-form-field>
+  </div>
+
+  <choose-amount-footer
+          (next)="next($event)"
+          [isInvalidAmount]="isInvalidAmount || !selectedAmount"
+  ></choose-amount-footer>
+</div>
+<ng-template #Loading>
+  <div *ngIf="!errorGetConfig; else ErrorMessage" class="loader-container">
+    <div class="loader"></div>
+  </div>
+  <ng-template #ErrorMessage>
+    <div class="alert-danger">
+      {{ errorGetConfig }}
+    </div>
+  </ng-template>
+</ng-template>
+

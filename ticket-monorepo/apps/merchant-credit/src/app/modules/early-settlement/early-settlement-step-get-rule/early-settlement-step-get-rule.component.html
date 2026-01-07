@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="page-title">طرح تسویه خود را انتخاب کنید:</div>
+  <div class="cards">
+    <app-early-settlement-rule-card
+      (cardClicked)="onRuleClick($event)"
+      [selected]="selectedRule === rule.ruleId"
+      [rule]="rule"
+      *ngFor="let rule of rules">
+    </app-early-settlement-rule-card>
+    <!--      <p class="more-rules">سایر طرح‌‌های تسویه</p>-->
+  </div>
+  <div class="bottom-section">
+    <app-early-settlement-amounts
+      [totalInvoiceAmount]="invoiceAmount"
+      [maxCreditAmount]="maxAmount"
+    ></app-early-settlement-amounts>
+    <div class="section-box">
+      <div class="box-content">
+        توجه داشته باشید که مبلغ قابل تسویه ۹۰ درصد مبلغ کل فاکتور است.
+      </div>
+    </div>
+  </div>
+  <ng-button (clickHandler)="onSubmit()"
+             [fullWidth]="true"
+             buttonSize="medium"
+             [disabled]="!selectedRule || gettingConfig"
+             [buttonText]="'ادامه'">
+  </ng-button>
+</div>

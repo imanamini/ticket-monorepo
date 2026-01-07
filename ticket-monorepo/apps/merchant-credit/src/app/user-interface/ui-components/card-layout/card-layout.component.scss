@@ -1,0 +1,27 @@
+@import "../../../styles/layout/variables";
+
+:host {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card-layout {
+  border: 1px solid $border-color;
+  width: 100%;
+  max-width: 450px;
+  height: 700px;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 480px) {
+  .card-layout {
+    border-radius: 0;
+    border: none;
+    flex-grow: 1;
+  }
+}

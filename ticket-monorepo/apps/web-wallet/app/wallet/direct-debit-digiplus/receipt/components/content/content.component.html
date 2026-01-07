@@ -1,0 +1,49 @@
+<div class="content-container">
+
+  <ul class="content">
+    <li>
+      <span class="title">سقف برداشت ماهیانه</span>
+      <span class="value">
+        {{contractInfo?.maxDailyTransactionAmount | separator}}
+        ریال
+      </span>
+    </li>
+    <li>
+      <span class="title">مدت اشتراک</span>
+      <span class="value">
+        {{contractInfo?.duration?.count}} {{contractInfo?.duration?.timeUnit | translateTimeUnit}}
+        -
+        {{contractInfo.expirationDate | persianDate}}
+      </span>
+    </li>
+    <li>
+      <span class="title">حساب پشتیبان</span>
+      <span class="value">
+          <ui-image [imageId]="'bank_' + contractInfo.bankCode"
+                    height="32px"
+                    width="32px">
+          </ui-image>
+        <ng-container> بانک&nbsp;{{DIRECT_DEBIT_BANKS_TRANSLATE[ DIRECT_DEBIT_BANKS[ contractInfo.bankCode ] ]}}</ng-container>
+        <ng-container>- {{contractInfo.bankCode}}</ng-container>
+      </span>
+    </li>
+  </ul>
+
+  <div class="footer">
+    <div class="icon"></div>
+    <ui-button
+      theme="digipay"
+      appearance="outline-light-blue"
+      [fullWidth]="true"
+      (buttonClick)="finish()">
+      بازگشت
+      &nbsp;
+      <ui-remaining-time
+        [hasDescription]="false"
+        (finish)="finish()"
+        [timeType]="'SECOND'"
+        [time]="3">
+      </ui-remaining-time>
+    </ui-button>
+  </div>
+</div>

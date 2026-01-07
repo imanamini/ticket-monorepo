@@ -1,0 +1,83 @@
+<!--<ui-dialog [title]="'مبلغ قابل پرداخت:‌ '+(dialogData.amount | IRR)+' ریال'" class="pay-confirm-dialog">-->
+<ui-dialog
+  class="otp-dialog"
+  [id]="{submit: GA_SUBSCRIPTION_CONTRACT_ID.SUCCESSFUL_OTP_VIEW}"
+  [title]="'تایید پرداخت'"
+  [submitButtonTitle]="'پرداخت'"
+  [theme]="'digipay'"
+  [disableSubmitButton]="!otpVerified"
+  (submit)="confirm()"
+  (close)="cancel()"
+>
+
+  <div id="{{dialogData?.googleAnalyticId?.wrapperId || ''}}" class="wrapper">
+
+    <div class="otp-dialog-description">
+      <div
+        class="subscription-messages"
+        *ngIf="showSubscriptionMessages; else enterOtpMessage"
+      >
+        <div>فعال‌سازی و پرداخت</div>
+        <p *ngIf="this.step === 0">
+          برای فعال‌سازی و پرداخت دوره اول، رمز ارسال شده را وارد کنید
+        </p>
+        <p *ngIf="this.step === 1">
+          برای فعال‌سازی و پرداخت دوره اول، رمز کیف‌پول خود را وارد کنید
+        </p>
+      </div>
+      <ng-template #enterOtpMessage>
+        <p *ngIf="this.step === 0">
+          برای تایید پرداخت<br>
+          رمز ارسال شده به شماره
+          <span>{{dialogData.userDetail.cellNumber}}</span>
+          را وارد کنید.
+        </p>
+        <p *ngIf="this.step === 1">
+          برای تایید پرداخت<br>
+          رمز کیف‌پول خود را وارد کنید
+        </p>
+      </ng-template>
+    </div>
+
+    <ui-in-page-otp
+      *ngIf="!otpVerified"
+      [ngClass]="{'otp-verified': otpVerified}"
+      (entered)="inputEntered($event)"
+      (requestNewCode)="requestNewCode()"
+      [clearSignal]="clearSignal"
+      [length]="this.step === 0 ? 5 : 4"
+      [disableInputs]="otpVerified"
+      [inputType]="dialogData.protection==='PIN' ? 'password' : 'text'"
+    >
+    </ui-in-page-otp>
+
+    <div
+      *ngIf="!otpVerified && this.step === 0"
+      class="otp-resend-button"
+      [ngClass]="{'active': enableResendButton && !otpVerified}"
+    >
+      <span (click)="requestNewCode()">ارسال مجدد</span>
+      <div class="resend-remaining-wrapper" [ngClass]="{'hide-remaining': enableResendButton || otpVerified}">
+        <ui-count-down-text
+          *ngIf="!enableResendButton && !otpVerified"
+          (finished)="onFinishedResendRemaining()"
+          [seconds]="resendRemainingTime"
+        ></ui-count-down-text>
+      </div>
+    </div>
+
+    <ui-amount-label-bar
+      *ngIf="this.dialogData.walletBalance"
+      [title]="'کیف پول دیجی‌پی'"
+      [value]="this.dialogData.walletBalance"
+    ></ui-amount-label-bar>
+
+
+    <div
+      class="pin-divider"
+      *ngIf="!otpVerified && this.step === 1"
+    ></div>
+
+  </div>
+
+</ui-dialog>

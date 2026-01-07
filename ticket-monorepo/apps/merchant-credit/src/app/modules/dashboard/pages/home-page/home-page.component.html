@@ -1,0 +1,19 @@
+<ui-content-card cardTitle="تسویه‌ی زودهنگام دیجی‌پی"
+                 [contentPadding]="false"
+                 [close]="true"
+                 [help]="true"
+                 (backClicked)="onBackClick()"
+                 (helpClicked)="onHelpClick()">
+  <ng-container card-body>
+    <app-home-request-price
+      class="home-request-price"
+      [amount]="totalRemainingCreditAmount"
+      [description]="'مبلغ قابل درخواست'">
+    </app-home-request-price>
+    <app-home-status-tabs
+      [merchants]="merchants"
+      (continuedJourney)="continueJourney($event)">
+    </app-home-status-tabs>
+    <button class="enroll-button" (click)="enrollNew()">ثبت نام طرح جدید</button>
+  </ng-container>
+</ui-content-card>

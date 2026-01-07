@@ -1,0 +1,22 @@
+$icon-names: (
+        'icon-charon-down-light-blue',
+        'icon-charon-up',
+);
+
+:host {
+  display: inline-block;
+  vertical-align: middle;
+
+  span {
+    width: 100%;
+    height: 100%;
+    background: transparent no-repeat center/100%;
+    display: block;
+  }
+
+  @each $icon in $icon-names {
+    .#{$icon} {
+      background-image: url("./icons/#{$icon}.svg");
+    }
+  }
+}

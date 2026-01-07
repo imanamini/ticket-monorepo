@@ -1,0 +1,90 @@
+@import "../../../../../layout/variables";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.description-content {
+  padding: 16px;
+  display: flex;
+  gap: 6px;
+  min-height: 90px;
+
+  .point {
+    min-width: 24px;
+    width: 24px;
+    height: 24px;
+    background-color: #789aff69;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:before {
+      display: inline-block;
+      content: '';
+      width: 10px;
+      height: 10px;
+      background-color: #0040FF;
+      border-radius: 50%;
+      margin: 6px;
+    }
+  }
+
+  .wallet-inventory-text {
+    font-size: 14px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    line-height: 24px;
+    color: $swatch_steel_900;
+  }
+
+  .description {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    color: $swatch_steel_900;
+  }
+}
+
+.footer {
+  margin: 4px 12px;
+  height: 45px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #DEE3E7;
+
+  .link-button {
+    color: $swatch_blue_500;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    cursor: pointer;
+
+    &.next {
+      margin-right: auto;
+    }
+  }
+
+  .back {
+    .arrow-left {
+      transform: rotate(180deg);
+    }
+  }
+
+  .check-mark {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background-image: url("../../../../../../assets/image/gift-card/checkmark.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}

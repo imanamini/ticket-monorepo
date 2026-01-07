@@ -1,0 +1,23 @@
+<p class="description">برای احراز هویت، شماره ملی مطابق با شماره موبایل
+  <span class="private-cell-number">
+      {{cellNumber | privateCellNumber}}
+  </span>
+  را وارد نمایید.</p>
+<form [formGroup]="formService.state">
+  <fb-field
+    [inputId]="'nationalCode'"
+    [value]="formService.state.controls['nationalCode'].value"
+    [hasCleaner]="true"
+    [hasFloatLabel]="false"
+    [customErrorMessages]="{invalidNationalCode:'شماره ملی نادرست است.'}"
+    [errors]="formService.state.controls['nationalCode'].errors"
+    (valueChange)="clearInput()"
+  >
+    <input
+      type="text"
+      placeholder="کد ملی"
+      formControlName="nationalCode"
+      maxlength="10"
+      numericKeyboard>
+  </fb-field>
+</form>

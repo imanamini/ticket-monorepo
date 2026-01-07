@@ -1,0 +1,24 @@
+<div class="rejected-reason">
+  <div class="rejected-reason-title">
+    <div class="title">
+      موارد مؤثر بر نتیجۀ امکان‌سنجی:
+    </div>
+    <div class="close-icon">
+      <div class="close" (click)="onClose()"></div>
+    </div>
+  </div>
+  <ui-note-box
+    [points]="points"></ui-note-box>
+
+  <div class="footer-section">
+
+    <ngx-button (clickHandler)="onClose()"
+               size="medium"
+                [style]="'tinted-on-elevated'"
+                [fullWidth]="true"
+                [mode]="'form'"
+              >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

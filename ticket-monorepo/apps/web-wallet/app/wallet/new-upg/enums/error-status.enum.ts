@@ -1,0 +1,6 @@
+export enum ErrorStatus{
+  INVALID_OTP = 1089, // title : "DEVICE_INVALID_SMS_TOKEN"
+  INVALID_PIN = 2001, // "title" : "AUTHENTICATION_FAILURE"
+  INVALID_PIN_2 = 2008, // "title" : "AUTHENTICATION_FAILURE"
+  TICKET_EXPIRED= 1100 // "title": "INVALID_TICKET",
+}

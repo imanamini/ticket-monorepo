@@ -1,0 +1,84 @@
+@import "../../styles/layout/variables";
+
+.payment-result-page {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  align-items: center;
+
+  .payment-result-card {
+    width: 600px;
+    max-width: 90%;
+    padding: 16px;
+    border: 1px solid $swatch_steel_200;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .result-icon {
+      width: 100px;
+      height: 100px;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      margin: 16px 0;
+      background-image: url("assets/failed.svg");
+    }
+
+    .title {
+      font-size: 16px;
+      line-height: 30px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .payment-info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+      width: 100%;
+      position: relative;
+
+      .key {
+        background-color: #FFFFFF;
+        position: relative;
+        z-index: 1;
+        padding: 0 4px;
+        margin-left: 16px;
+      }
+
+      .value {
+        background-color: #FFFFFF;
+        position: relative;
+        z-index: 1;
+        padding: 0 4px;
+      }
+
+      &:before {
+        content: '';
+        height: 0;
+        border: 1px dashed $border-color;
+        position: absolute;
+        left: 5px;
+        right: 5px;
+        top: 50%;
+        z-index: 0;
+      }
+    }
+
+    &.paid {
+      .result-icon {
+        background-image: url("assets/success.svg");
+      }
+    }
+
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .payment-info-row {
+    font-size: 10px;
+  }
+}

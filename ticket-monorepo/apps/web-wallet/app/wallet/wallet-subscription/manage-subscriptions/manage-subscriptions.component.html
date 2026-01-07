@@ -1,0 +1,73 @@
+<ui-content-card
+  class="wallet-cancel-subscription"
+  [id]="{submit: GA_SUBSCRIPTION_MANAGEMENT_ID.SAVE_CONTRACT_CANCELLATION_CLICK}"
+  [ngClass]="{'show-less-templates': !showAllTemplates}"
+  [title]="'مدیریت پرداخت‌های خودکار'"
+  [hasBackAction]="true"
+  [confirmButtonDisable]="!cancelContractQueue.length"
+  [confirmButtonTitle]="'ذخیره تغییرات'"
+  (confirm)="execCancelQueue()"
+  [hasFooter]="contracts && !!contracts.length"
+  [rejectButtonTitle]="'انصراف'"
+  [hasRejectAction]="true"
+  [confirmButtonFullWidth]="ticketType === '2'"
+  (reject)="callbackToMerchant()"
+>
+  <div class="contracts-loading" *ngIf="isLoading; else showResult">
+    <span class="loading"></span>
+  </div>
+
+  <ng-template #showResult>
+
+    <ui-error-request
+      *ngIf="tokenExpired"
+      [errorMessage]="'خطا در اعتبارسنجی'"
+      [hasButton]="false"
+    ></ui-error-request>
+
+    <ui-error-request
+      *ngIf="!tokenExpired && !contracts; else showContractsResult"
+      (clicked)="getContracts()"
+    ></ui-error-request>
+
+    <ng-template #showContractsResult>
+
+      <ui-error-request
+        *ngIf="!contracts.length; else showContractsList"
+        [errorMessage]="'هیچ پرداخت خودکاری یافت نشد'"
+        [buttonTitle]="'بازگشت'"
+        (clicked)="callbackToMerchant()"
+      ></ui-error-request>
+    </ng-template>
+
+    <ng-template #showContractsList>
+      <div class="contracts-select-title">
+        {{'در این قسمت می‌توانید قراردادهای پرداخت خودکار خود را مشاهده و مدیریت کنید:'}}
+      </div>
+      <div
+        class="cancellation-card"
+        *ngFor="let contract of contracts; let i = index"
+      >
+        <ui-subscription-cancel-card
+          [id]="GA_SUBSCRIPTION_MANAGEMENT_ID.CANCEL_CONTRACT_CLICK"
+          *ngIf="i < 4 || showAllTemplates"
+          [cardTitle]="contract.title"
+          [cardLogo]="'digikala'"
+          [cardAmount]="contract.periodicAmount"
+          (cancel)="showCancelDialog(contract)"
+          [setCanceled]="contract.setCanceled"
+          (reverse)="reverseCancel(contract)"
+        ></ui-subscription-cancel-card>
+      </div>
+      <div
+        class="more-templates-button"
+        *ngIf="!showAllTemplates && contracts.length > 4"
+        (click)="showAllTemplates = !showAllTemplates"
+      >
+        <div>بیشتر</div>
+        <span class="more-icon"></span>
+      </div>
+    </ng-template>
+
+  </ng-template>
+</ui-content-card>

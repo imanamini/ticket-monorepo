@@ -1,0 +1,12 @@
+<ui-amount-label-bar
+  [title]="'کیف پول دیجی‌پی'"
+  [value]="info.walletBalance"
+></ui-amount-label-bar>
+
+<div class="amount-wrapper">
+  <span class="chargeable-amount-title">مبلغ مورد نیاز</span>
+  <div class="amount">{{(info.cashInAmount) | separator }}
+    <span class="rial">ریال</span>
+  </div>
+  <div class="toman-amount">{{tomanAmount}}</div>
+</div>

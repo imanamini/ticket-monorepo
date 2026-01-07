@@ -1,0 +1,11 @@
+<div class="overview-body">
+  <header class="d-flex flex-row align-items-center gap-small pt-pony pb-pony pl-medium pr-medium ">
+    <div class="action" (click)="goToDashboard()"></div>
+    <span class="t-6 text-onback-medium">دریافت تسهیلات</span>
+  </header>
+  <div class="d-flex flex-column pt-big pb-big pl-plus pr-plus">
+    @for( step of steps(); track $index){
+    <es-loan-step [step]="step" [esLoanStateModel]="esLoanStateModel()" [isPassed]="esLoanStateModel().activeStep > $index"  [isLast]="steps().length - 1 == $index"  [isActive]="esLoanStateModel().activeStep == $index" (actionClicked)="onStepActionClick()"></es-loan-step>
+    }
+  </div>
+</div>

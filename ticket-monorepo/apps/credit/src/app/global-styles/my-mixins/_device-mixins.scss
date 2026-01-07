@@ -1,0 +1,7 @@
+@import "variables";
+
+@mixin mediaDesktopFromXs {
+  @media (min-width: $DESKTOP_XS_MIN) {
+    @content
+  }
+}

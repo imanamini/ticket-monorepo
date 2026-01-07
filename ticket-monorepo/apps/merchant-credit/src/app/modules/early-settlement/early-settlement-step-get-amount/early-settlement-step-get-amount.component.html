@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="cards" *ngIf="!profileDisabled">
+    <ui-input-amount
+      class="amount-input"
+      (focusInChanged)="focusMode = $event"
+      (focusOutChanged)="focusMode = $event"
+      [value]="valueOfAmount"
+      [minAmount]="minAmount"
+      [maxAmount]="maxAmount"
+      [autoSelect]="true"
+      (valueChanged)="onAmountChange($event)"
+    ></ui-input-amount>
+  </div>
+  <div class="bottom-section" *ngIf="!profileDisabled">
+    <app-early-settlement-preview
+      [disabled]="!valueOfAmount"
+      [loading]="gettingPreview"
+      [totalInvoiceAmount]="invoiceAmount"
+      [maxCreditAmount]="maxAmount"
+      [amount]="valueOfAmount"
+      [feeDetail]="previewData || undefined"
+      [minFeeDifference]="minFeeDifference"
+      [minFeeDifferenceLabel]="minFeeDifferenceLabel"
+    ></app-early-settlement-preview>
+    <ng-button (clickHandler)="onSubmit()"
+               buttonSize="medium"
+               [fullWidth]="true"
+               [disabled]="valueOfAmount == 0 || valueOfAmount < minAmount || valueOfAmount > maxAmount || gettingPreview"
+               [buttonText]="'ادامه'">
+    </ng-button>
+  </div>
+  <div class="error-container">
+    <ngx-status-result
+      *ngIf="profileDisabled"
+      [title]="'موقتا تامین‌کننده غیرفعال ‌است.'"
+      [description]="'لطفا تا فعال شدن تامین‌کننده، تامین کننده‌ی دیگری را انتخاب کنید.'"
+    >
+      <ng-container status-image>
+        <img src="assets/icons/signature-failed.svg" alt="">
+      </ng-container>
+    </ngx-status-result>
+  </div>
+</div>
+

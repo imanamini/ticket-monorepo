@@ -1,0 +1,9 @@
+<div class="action-buttons">
+  <ui-button [fullWidth]="true" [theme]="'digipay'" (buttonClick)="register()" [disabled]="loadingApi" class="submit">
+    <span *ngIf="!loadingApi ;else loading" class="edit-amount">تایید و برداشت</span>
+    <ng-template #loading>
+      <div class="loader"></div>
+    </ng-template>
+  </ui-button>
+  <ui-button [fullWidth]="true" [theme]="'digipay'"  (buttonClick)="editAmount()" appearance="blue-text">ویرایش مبلغ</ui-button>
+</div>

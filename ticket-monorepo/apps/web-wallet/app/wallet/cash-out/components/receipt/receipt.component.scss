@@ -1,0 +1,52 @@
+
+@import "src/app/layout/mixins/device";
+.wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.receipt {
+  direction: rtl;
+  width: 864px;
+  height: 480px;
+  box-sizing: border-box;
+  display: flex;
+  border: 1px solid #DEE3E7;
+  border-radius: 12px;
+  background-color: white;
+  padding: 48px;
+
+  .right-section, .left-section {
+    flex-grow: 1;
+    flex-basis: 50%;
+  }
+
+  .right-section {
+    border-left: 1px solid #DEE3E7;
+  }
+
+}
+
+
+@include mediaMobile() {
+  .wrapper {
+    display: block;
+  }
+  .receipt {
+    flex-direction: column;
+    width: 100%;
+    border: none;
+    padding: 24px;
+
+    .right-section {
+      border: none;
+    }
+  }
+}
+

@@ -1,0 +1,13 @@
+<ui-content-box>
+  <div dir="ltr">
+    <h1>Test Cash-in</h1>
+
+    <div>
+      <label dir="ltr">Cell Number</label>
+      <input type="text" placeholder="Cell Number" dir="ltr" [(ngModel)]="cellNumber">
+    </div>
+
+    <ui-button (buttonClick)="getTestTicket()" [disabled]="gettingToken">Get Ticket</ui-button>
+
+  </div>
+</ui-content-box>

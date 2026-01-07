@@ -1,0 +1,431 @@
+@import "../../../layout/mixins/device";
+@import "../../../layout/variables";
+@import "../../../layout/mixins/flex";
+@import "../../../layout/mixins/font-size";
+
+.content-card {
+  width: 480px;
+  margin-left: auto;
+  position: relative;
+  margin-right: auto;
+  border-radius: 16px;
+  background-color: #fff;
+  border: solid 1px #d3dbe1;
+
+  > .content-card-header {
+    height: 65px;
+    padding-left: 17px;
+    padding-right: 21px;
+    @include flex-center-start;
+    border-bottom: solid 1px #d3dbe1;
+
+    > div {
+      height: 100%;
+      margin-left: 8px;
+
+      &.header-action {
+        cursor: pointer;
+        @include flex-center;
+
+        > .back-action {
+          width: 24px;
+          height: 24px;
+          transform: rotateY(180deg);
+          background: url("assets/back.svg") no-repeat 0 0/100%;
+        }
+
+        > .close-action {
+          width: 24px;
+          height: 24px;
+          background: url("../../../../assets/icon/close.svg") no-repeat 0 0/100%;
+        }
+      }
+
+      &.header-title {
+        flex-grow: 1;
+        color: #475466;
+        cursor: default;
+        font-size: 18px;
+        font-weight: 500;
+        font-family: $font-name-2;
+        @include flex-center-start;
+      }
+
+      &.header-remaining {
+        color: #778599;
+        font-weight: normal;
+        @include fontSize(14);
+        @include flex-center-start;
+
+        > .icon-clock {
+          width: 16px;
+          height: 16px;
+          margin-left: 5px;
+          display: inline-block;
+          vertical-align: middle;
+          background: url("./assets/clock.svg") no-repeat 0 0/100%;
+        }
+
+        > ui-count-down-text::ng-deep {
+          width: 40px;
+          margin-right: 6px;
+          text-align: center;
+        }
+
+      }
+
+      &.header-logo {
+        width: 25px;
+        margin-left: 0;
+        @include flex-center;
+
+        &::ng-deep {
+          ui-digipay-logo {
+            width: 16px;
+            height: 25px;
+
+            > div {
+              width: inherit;
+              height: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  > .content-card-body {
+    min-height: 338px;
+    overflow-y: auto;
+    position: relative;
+    padding: 40px 44px 30px;
+
+    &::-webkit-scrollbar {
+      width: 0;
+      background: transparent;
+    }
+  }
+
+  > .content-card-footer {
+    height: 96px;
+    padding: 25px;
+    @include flex-center-between;
+    border-top: solid 1px #d3dbe1 !important;
+    background-color: #fff;
+    border-radius: 0 0 16px 16px;
+
+    > .footer-back-button {
+      margin-left: 24px;
+      width: 100%;
+    }
+
+    > .footer-details {
+      @include flex-column;
+
+      > .footer-details-label {
+        color: #263140;
+        font-size: 12px;
+        text-align: right;
+        margin-bottom: 8px;
+        font-weight: normal;
+        display: flex;
+        align-items: center;
+
+        .footer-icon {
+          width: 24px;
+          height: 24px;
+          margin-left: 4px;
+        }
+      }
+
+      > .footer-details-amount {
+        color: inherit;
+        font-size: 12px;
+        text-align: right;
+        font-weight: normal;
+        @include flex-center-start;
+
+        .amount {
+          ui-currency::ng-deep span {
+            color: inherit !important;
+            font-weight: bold !important;
+          }
+        }
+
+        .currency {
+          color: inherit;
+          margin-right: 4px;
+          font-weight: normal;
+        }
+      }
+    }
+
+    > .submit-button {
+      margin-right: auto;
+
+      &::ng-deep {
+        > button {
+          min-width: 236px !important;
+        }
+      }
+
+      &.full-width::ng-deep {
+        width: 100%;
+      }
+    }
+
+    &.integrated-footer {
+      height: 90px;
+      padding: 10px 32px 32px;
+      border-top: none;
+    }
+  }
+
+  > .extra-link {
+    right: 24px;
+    bottom: -31px;
+    direction: rtl;
+    cursor: pointer;
+    font-weight: 400;
+    position: absolute;
+    @include fontSize(14);
+    @include flex-center-start;
+    color: $digipay-blue;
+
+    .extra-link-mobile-title {
+      display: none;
+    }
+
+    > .extra-link-icon {
+      width: 6px;
+      height: 12px;
+      margin-right: 12px;
+      background: url('./assets/sign-left-blue.svg') no-repeat 0 0/100%;
+    }
+  }
+
+  &.secondary-theme {
+    width: 440px;
+
+    > .content-card-footer {
+      padding: 20px;
+      border-top: none;
+      background-color: #f2f5f8;
+    }
+  }
+}
+
+@include mediaMobile() {
+  :host {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .content-card {
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    height: 100%;
+    position: relative;
+
+    > .content-card-header {
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      position: fixed;
+      z-index: 2;
+      background-color: white;
+
+      > div.header-title {
+        margin-left: 8px;
+        white-space: nowrap;
+        @include fontSize(14);
+      }
+
+      > div.header-remaining {
+        margin-left: 8px;
+        white-space: nowrap;
+        font-size: 10px !important;
+
+        > .icon-clock {
+          display: none;
+        }
+
+        ui-count-down-text::ng-deep {
+          margin-right: 0;
+          min-width: 35px;
+        }
+      }
+    }
+
+    > .content-card-body {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      padding-left: 12px;
+      padding-right: 12px;
+      flex-direction: column;
+      padding-top: 56px !important;
+      padding-bottom: 90px !important;
+      z-index: 1;
+
+      &.without-header {
+        top: 0;
+        padding-top: 0 !important;
+      }
+
+      &.without-footer {
+        padding: 16px 12px 0 !important;
+      }
+    }
+
+    > .content-card-footer {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: auto;
+      border-radius: 0;
+      position: fixed;
+      z-index: 2;
+      padding: 16px 12px 16px;
+
+      > .footer-details {
+        > .footer-details-label {
+          @include fontSize(10);
+        }
+      }
+
+      > .submit-button,
+      > .footer-back-button {
+        &::ng-deep {
+          > button {
+            min-width: 100% !important;
+            max-width: 100% !important;
+          }
+        }
+      }
+    }
+
+    ui-button::ng-deep {
+      width: 50% !important;
+
+      > button {
+        padding: 0;
+        min-width: 91px;
+        font-weight: 500;
+        border-radius: 8px;
+        @include fontSize(12);
+      }
+    }
+
+    ui-button.full-width::ng-deep {
+      width: 100% !important;
+    }
+
+    .extra-link {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 39px;
+      padding-right: 24px;
+      @include fontSize(12);
+      background-color: #fff;
+      border-top: solid 1px #d3dbe1;
+
+      .extra-link-title {
+        display: none;
+      }
+
+      .extra-link-mobile-title {
+        display: block;
+      }
+    }
+
+    &.has-footer {
+      > .content-card-body {
+      }
+    }
+
+    &.has-extra-link {
+      > .content-card-body {
+        bottom: 0;
+        padding-bottom: 40px !important;
+      }
+
+      > .content-card-footer {
+        bottom: 39px;
+        background-color: #fff;
+      }
+    }
+
+    &.secondary-theme {
+      width: 100%;
+
+      > .content-card-header {
+        height: 48px;
+        border-bottom: none;
+        padding-right: 16px;
+
+        > .header-logo,
+        > div.header-title,
+        div.header-remaining {
+          display: none;
+        }
+      }
+
+      > .content-card-body {
+        padding-top: 0;
+        padding-left: 16px;
+        padding-right: 16px;
+
+        > .digipay-mobile-logo {
+          display: flex;
+        }
+      }
+
+      > .content-card-footer {
+        height: 80px;
+        padding: 16px;
+        border: solid 1px #d3dbe1;
+        border-bottom: none;
+        border-radius: 16px 16px 0 0;
+
+        > .footer-details {
+          > .footer-details-label {
+            height: 20px;
+            color: $gray;
+            @include fontSize(12);
+            margin-bottom: 0;
+          }
+
+          > .footer-details-amount {
+            .amount {
+              ui-currency::ng-deep span {
+                color: $dark-gray !important;
+              }
+            }
+          }
+        }
+
+        > .submit-button {
+          &::ng-deep {
+            width: 160px !important;
+
+            > button {
+              height: 48px;
+              border-radius: 12px;
+              @include fontSize(14);
+              max-width: 160px !important;
+              min-width: initial !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

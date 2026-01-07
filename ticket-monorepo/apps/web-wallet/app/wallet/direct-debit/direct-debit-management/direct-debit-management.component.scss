@@ -1,0 +1,63 @@
+@import "../../../layout/variables";
+@import "../../../layout/mixins/flex";
+@import "../../../layout/mixins/device";
+@import "../../../layout/mixins/font-size";
+
+.direct-debit {
+
+  .actions-wrapper {
+    @include flex-center;
+
+    > .new-contract-button {
+      height: 32px;
+      cursor: pointer;
+      min-width: 147px;
+      border-radius: 8px;
+      padding-left: 16px;
+      padding-right: 16px;
+      border: solid 1px #6e798d;
+      @include flex-center-between;
+      text-decoration: none !important;
+
+      > .button-icon {
+        width: 20px;
+        height: 20px;
+        background: url('./assets/plus-black.svg') no-repeat 0 0/100%;
+      }
+
+      > .button-title {
+        height: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        @include flex-center;
+        color: $text-color-lighter;
+      }
+    }
+  }
+
+  .direct-debit-items {
+    direction: ltr;
+    margin-top: 36px;
+    max-height: 400px;
+    overflow-y: scroll;
+
+    > .direct-debit-item {
+      direction: rtl;
+      margin-bottom: 16px;
+    }
+  }
+}
+
+@include mediaMobile() {
+  .direct-debit {
+    .direct-debit-items {
+      max-height: initial;
+    }
+
+    &::ng-deep {
+      .content-card-body {
+        padding-bottom: 16px !important;
+      }
+    }
+  }
+}

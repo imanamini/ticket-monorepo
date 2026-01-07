@@ -1,0 +1,42 @@
+<div
+  class="date-picker-wrapper"
+>
+  <div class="dg-input-wrapper" [ngClass]="{
+    'dg-not-empty': !!this.form.controls[formControlName].value,
+    'dg-focused': !!isFocused,
+    'dg-error': form.touched && form.invalid,
+    'dg-cleanable': hasCleaner,
+    'dg-ltr-input': ltrInput,
+    'dg-ltr-placeholder': ltrPlaceholder
+  }">
+    <label>{{label}}</label>
+    <ng-container [formGroup]="form">
+      <input
+        #dateInput
+        [placeholder]="placeholder || ''"
+        [readonly]="true"
+        (focusin)="isFocused = true"
+        (focusout)="isFocused = false"
+        [value]="form.value[formControlName] && (showTime ? (form.value[formControlName] | persianDate:'D_H') : (form.value[formControlName] | persianDate))"
+        (click)="toggleDatePicker()"
+      />
+    </ng-container>
+    <div class="dg-clean-icon" (click)="clean($event)"></div>
+  </div>
+  <div class="dg-hint-message" *ngIf="!(form.touched && form.invalid && errorMessage)">{{hint}}</div>
+  <div class="dg-error-message" *ngIf="form.touched && form.invalid && errorMessage">{{errorMessage}}</div>
+</div>
+<div class="date-picker-wrapper">
+  <ui-calendar-date-picker
+    class="dg-date-picker"
+    label="انتخاب تاریخ"
+    [visible]="visibleDatePicker"
+    [value]="form.value[formControlName]"
+    [allowFuture]="dateRange !== 'past'"
+    [justFuture]="dateRange === 'future'"
+    (pick)="setDate($event)"
+    [input]="dateInput"
+    (close)="toggleDatePicker()"
+    [initialView]="initialCalendarView"
+  ></ui-calendar-date-picker>
+</div>

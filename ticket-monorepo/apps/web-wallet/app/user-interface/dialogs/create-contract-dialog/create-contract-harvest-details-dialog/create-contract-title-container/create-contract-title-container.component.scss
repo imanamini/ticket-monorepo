@@ -1,0 +1,14 @@
+@import "src/app/layout/variables";
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  color: $dark-gray;
+  margin-bottom: 4px;
+}
+
+.description {
+  font-size: 14px;
+  color: $gray;
+  margin-bottom: 16px;
+}

@@ -1,0 +1,7 @@
+<div class="table">
+  <ng-container *ngFor="let row of rows">
+    <div class="row">
+      <ng-template [ngTemplateOutlet]="row.template"></ng-template>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,89 @@
+@import "variables";
+
+.standard-cards-option-card {
+  display: flex;
+  margin-bottom: 8px;
+  border: 1px solid $swatch_steel_200;
+  border-radius: 16px;
+  cursor: pointer;
+  padding: 12px;
+
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+  .standard-card-icon {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    background-color: $swatch_steel_500;
+    background-image: url("./icon_standard_card.svg");
+    background-size: 24px 24px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+    margin-left: 12px;
+  }
+
+  .content-col {
+    flex: 1 1 auto;
+    width: 100%;
+
+    .primary-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      line-height: 24px;
+      font-weight: 600;
+      margin-bottom: 2px;
+
+      .main-title {
+        font-size: 14px;
+        font-weight: 600;
+        margin-left: 8px;
+      }
+
+      .images {
+        display: flex;
+        padding-right: 18px;
+
+        .fp-logo {
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          background-size: 100% 100%;
+          margin-right: -6px;
+        }
+
+        .ikco {
+          background-color: #4fbfa5;
+          background-image: url("ikco.png");
+        }
+
+        .mellat {
+          background-color: #ff3366;
+          background-image: url("mellat.png");
+        }
+
+        .melli {
+          background-color: #ffbe00;
+          background-image: url("melli.png");
+        }
+
+
+        .sepah {
+          background-color: #0029a3;
+          background-image: url("sepah.png");
+        }
+      }
+    }
+
+    .secondary-line {
+      display: flex;
+      align-items: center;
+      line-height: 20px;
+      font-size: 12px;
+      color: $swatch_steel_500;
+    }
+  }
+}

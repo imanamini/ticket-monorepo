@@ -1,0 +1,25 @@
+@import "../../styles/layout/variables";
+
+.amounts-card {
+  padding: 16px;
+  border: 1px dashed $border-color;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  border-radius: 16px;
+
+  .amounts-card-row {
+    display: flex;
+    margin: 8px 0;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .secondary-row {
+    color: $swatch_steel_400;
+  }
+
+  .primary-row {
+    color: $swatch_steel_900;
+  }
+}

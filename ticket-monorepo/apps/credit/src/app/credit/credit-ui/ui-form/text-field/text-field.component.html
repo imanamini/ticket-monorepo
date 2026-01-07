@@ -1,0 +1,17 @@
+<div class="text-field" [ngClass]="{
+  'has-value': hasValue,
+  'is-focused': focused,
+  'is-invalid': hasError,
+  'is-clearable': clearable,
+  'is-disabled': disabled
+}" #textField>
+  <ng-template [ngTemplateOutlet]="textFieldInput.first.template"></ng-template>
+  <label (click)="labelClicked()">{{label}}</label>
+  <span (click)="clear()" class="clear-icon"
+        *ngIf="clearable && !disabled && hasValue"></span>
+</div>
+<div class="text-field-subscript">
+  <ng-container *ngFor="let notice of notices">
+    <ng-template [ngTemplateOutlet]="notice.template"></ng-template>
+  </ng-container>
+</div>

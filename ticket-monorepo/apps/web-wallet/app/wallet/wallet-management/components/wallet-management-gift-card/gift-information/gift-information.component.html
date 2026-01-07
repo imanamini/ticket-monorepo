@@ -1,0 +1,26 @@
+<div *ngIf="giftCards" class="list-container">
+  <ng-container *ngFor="let giftCard of giftCards">
+
+    <div class="gift-info">
+      <div class="serial-number">
+        <span>سریال </span>
+        <span>{{giftCard.serialNumber}}</span>
+      </div>
+      <span>انقضا:&nbsp;{{giftCard.expirationDate | persianDate}}</span>
+    </div>
+
+    <!--    <div class="gift-card-progress-bar">-->
+    <!--      <mat-progress-bar-->
+    <!--        [mode]="mode"-->
+    <!--        [value]="value">-->
+    <!--      </mat-progress-bar>-->
+    <!--    </div>-->
+
+    <div class="expiration-date">
+      <div class="point green"></div>
+      باقی مانده
+      {{giftCard.balance | separator}}
+      ریال
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,38 @@
+:host {
+  display: flex;
+  gap: 16px;
+
+  .divider {
+    width: 2px;
+    height: 24px;
+    background-color: #DEE3E7;
+    border-radius: 16px;
+  }
+
+  .action-button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .plus {
+      background-image: url("../../../../../assets/icon/plus-border.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .send {
+      background-image: url("../../../../../assets/icon/send-border.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+}

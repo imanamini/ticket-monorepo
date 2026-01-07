@@ -1,0 +1,32 @@
+<div class="service" [ngClass]="{'is-disabled': paymentOption.disable, 'is-selected': isSelected}" (click)="onClick()">
+  <div class="card-col">
+    <div class="option-card">
+      <div
+        class="logo-col"
+        [ngStyle]="{'background-color': paymentOption.color}"
+        *ngIf="paymentOption.creditItem.fundProvider && paymentOption.creditItem.fundProvider.icon"
+      >
+        <digipay-image [imageId]="paymentOption.creditItem.fundProvider.icon" width="32px" height="32px"></digipay-image>
+      </div>
+      <div class="content-col">
+        <div class="primary-line">
+          <div class="main-title">{{ paymentOption.title }}</div>
+          <div class="small-title"
+               *ngIf="!paymentOption.disable && paymentOption.installmentCount">{{paymentOption.installmentCount}} قسط
+          </div>
+          <div *ngIf="paymentOption.disable" class="disabled-badge">غیرقابل استفاده</div>
+        </div>
+        <div class="secondary-line">
+          <div>موجودی:</div>
+          <div>
+            <ng-container *ngIf="paymentOption.balance">{{ paymentOption.balance | iranianRials }}</ng-container>
+            <ng-container *ngIf="!paymentOption.balance">-</ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="checkbox-col">
+    <div class="option-checkbox" [ngClass]="{checked: isSelected}"></div>
+  </div>
+</div>

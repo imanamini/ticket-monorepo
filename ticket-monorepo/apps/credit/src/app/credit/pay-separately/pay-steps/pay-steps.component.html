@@ -1,0 +1,10 @@
+<ng-container *ngIf="steps">
+  <div [class]="'step-item status-'+step.status" *ngFor="let step of steps" >
+    <div class="step-title">
+      {{step.title}}
+    </div>
+    <div class="step-amount">
+      {{step.amount | iranianRials:'hideRial'}} <small>{{step.currency}}</small>
+    </div>
+  </div>
+</ng-container>

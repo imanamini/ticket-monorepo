@@ -1,0 +1,51 @@
+<svg fill="none" height="41" viewBox="0 0 40 41" width="40" xmlns="http://www.w3.org/2000/svg">
+  <g id="icongift 1">
+    <g id="Final">
+      <g id="Desktop-HD">
+        <g id="campaign-copy-2">
+          <g id="Group-2">
+            <g id="icon">
+              <g id="icon/general/prize-copy">
+                <mask height="28" id="mask0_63_34699" maskUnits="userSpaceOnUse" style="mask-type:alpha" width="28" x="5"
+                      y="9">
+                  <g id="mask-6">
+                    <path d="M17.5 33.396V18.396H8.5V33.396H17.5ZM20.5 33.396H29.5V18.396H20.5V33.396ZM22.9514 15.396H29.5C31.1569 15.396 32.5 16.7391 32.5 18.396V33.396C32.5 35.0529 31.1569 36.396 29.5 36.396H8.5C6.84315 36.396 5.5 35.0529 5.5 33.396V18.396C5.5 16.7391 6.84315 15.396 8.5 15.396H15.0486L12.1411 12.7648C11.2863 11.9941 11.2863 10.7447 12.1411 9.97399C12.9958 9.20333 14.3816 9.20333 15.2364 9.97399L19 13.3673L22.7636 9.97399C23.6184 9.20333 25.0042 9.20333 25.8589 9.97399C26.7137 10.7447 26.7137 11.9941 25.8589 12.7648L22.9514 15.396Z"
+                          fill="white"
+                          id="Vector"/>
+                  </g>
+                </mask>
+                <g mask="url(#mask0_63_34699)">
+                  <g id="&#240;&#159;&#142;&#168;-Color">
+                    <path d="M37 4.896H1V40.896H37V4.896Z" fill="#3C6DFF" id="Surface"/>
+                  </g>
+                </g>
+              </g>
+              <g id="Group-Copy-2">
+                <path d="M35.3335 15.896H38.6668" id="Line" stroke="#789AFF" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path d="M37 14.4673V17.3244" id="Line_2" stroke="#789AFF" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+              </g>
+              <g id="Group-Copy-3">
+                <path d="M10.3335 2.896H13.6668" id="Line_3" stroke="#789AFF" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path d="M12 1.46729V4.32443" id="Line_4" stroke="#789AFF" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+              </g>
+              <path d="M22 4.896C22.5523 4.896 23 4.44828 23 3.896C23 3.34371 22.5523 2.896 22 2.896C21.4477 2.896 21 3.34371 21 3.896C21 4.44828 21.4477 4.896 22 4.896Z"
+                    fill="#B4C7FF"
+                    id="Oval-Copy-2"/>
+              <path d="M1.5 17.896C2.32843 17.896 3 17.2244 3 16.396C3 15.5676 2.32843 14.896 1.5 14.896C0.671573 14.896 0 15.5676 0 16.396C0 17.2244 0.671573 17.896 1.5 17.896Z"
+                    fill="#B4C7FF"
+                    id="Oval-Copy-3"/>
+              <path d="M3.5 5.396L5.5 8.396" id="Line-2-Copy-2" stroke="#3C6DFF" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+              <path d="M31.5 3.396L29.5 6.396" id="Line-2-Copy-3" stroke="#3C6DFF" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

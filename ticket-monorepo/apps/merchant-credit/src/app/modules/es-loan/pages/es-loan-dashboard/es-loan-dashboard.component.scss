@@ -1,0 +1,31 @@
+
+:host {
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  padding: 16px;
+  width: 360px;
+  margin: 0 auto;
+}
+
+.loan-body {
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+.arrow-icon-blue {
+  background-image: url("../../../../../assets/icons/left-icon-blue.svg");
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.arrow-icon-gray {
+  background-image: url("../../../../../assets/icons/left-icon-gray.svg");
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}

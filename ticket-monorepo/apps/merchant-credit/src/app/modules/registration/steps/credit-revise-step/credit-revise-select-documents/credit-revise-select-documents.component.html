@@ -1,0 +1,35 @@
+<div class="select-doc-title">
+  انتخاب ضروری
+</div>
+<ng-container *ngFor="let doc of selectableDocuments">
+  <app-credit-revise-checkbox
+    *ngIf="minimumDocuments.indexOf(doc.id) !== -1"
+    [document]="doc"
+    [checked]="true"
+    [disabled]="true"
+  ></app-credit-revise-checkbox>
+</ng-container>
+<ng-container *ngIf="selectableDocuments.length > minimumDocuments.length">
+  <div class="divider"></div>
+  <div class="select-doc-title">
+    اعتبار بیشتر با مدارک بیشتر
+    <div class="select-doc-subtitle">
+      <ng-container *ngIf="type === merchantTypeEnum.INDIVIDUAL">
+        تا ۲۰۰ میلیون تومان با انتخاب مدرک کسب‌وکار + محل سکونت
+        تا ۱ میلیارد تومان با انتخاب کد مالیاتی
+      </ng-container>
+      <ng-container *ngIf="type === merchantTypeEnum.LEGAL">
+        تا ۵ میلیارد تومان با انتخاب کد مالیاتی
+      </ng-container>
+    </div>
+  </div>
+
+  <ng-container *ngFor="let doc of selectableDocuments">
+    <app-credit-revise-checkbox
+      *ngIf="minimumDocuments.indexOf(doc.id) === -1"
+      [checked]="selectedDocuments[doc.id]"
+      (checkedChange)='selectedDocuments[doc.id] = $event;calculateMaxAmount()'
+      [document]="doc"
+    ></app-credit-revise-checkbox>
+  </ng-container>
+</ng-container>

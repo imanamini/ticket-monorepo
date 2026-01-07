@@ -1,0 +1,31 @@
+<ui-content-card
+  [title]="boxTitle"
+  [hasRejectAction]="true"
+  [confirmButtonTitle]="'ارسال مجدد'"
+  [confirmButtonDisable]="!enableResendButton"
+  (confirm)="requestNewCode()"
+  (reject)="cancel()"
+  [confirmButtonRemainingTime]="120"
+  (finishedConfirmRemaining)="finishedConfirmRemaining()"
+>
+
+  <div class="wrapper">
+
+    <div class="otp-logo"></div>
+
+    <div class="otp-info">
+      <h1 class="verification-title">تایید شماره</h1>
+      <h2 class="cell-number" dir="ltr">{{verificationData.cellNumber | formattedCellNumber}}</h2>
+    </div>
+    <p class="description">{{verificationData.description}}</p>
+
+    <div class="otp-wrapper">
+      <ui-in-page-otp
+        (entered)="otpEntered($event)"
+        (requestNewCode)="requestNewCode()"
+        [clearSignal]="clearSignal"
+        [length]="6"></ui-in-page-otp>
+    </div>
+  </div>
+
+</ui-content-card>

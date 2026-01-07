@@ -1,0 +1,9 @@
+@import "variables";
+
+:host:empty {
+  display: none;
+}
+
+.is-error {
+  color: $swatch_red-400;
+}

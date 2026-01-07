@@ -1,0 +1,25 @@
+<div
+  [ngClass]="{
+    'in-page-otp': true,
+    'password-input-type': inputType === 'password'
+  }"
+>
+  <form [formGroup]="otpForm" autocomplete="off">
+    <div class="otp-inputs-wrapper">
+      <div class="inputs" id="in-page-otp-activation-inputs">
+        <mat-form-field
+          class="otp-input"
+          id="{{id?.input}}"
+          *ngFor="let a of ' '.repeat(this.length).split(''), let x = index">
+          <input matInput
+                 numericKeyboard
+                 RealMaxlength="1"
+                 [formControlName]="'otp'+x"
+                 [id]="'otp'+x"
+                 (keyup)="nextInput(x,$event)"
+                 autocomplete="off">
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</div>

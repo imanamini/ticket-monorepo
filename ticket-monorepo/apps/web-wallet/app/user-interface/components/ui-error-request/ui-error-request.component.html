@@ -1,0 +1,16 @@
+<div
+  id="{{id || ''}}"
+  class="error-request-wrapper">
+  <div class="error-icon"></div>
+  <p class="template-error-message">
+    {{errorMessage}}
+  </p>
+  <ui-button
+    *ngIf="hasButton"
+    (buttonClick)="retryClicked()"
+    [appearance]="'outline'"
+    [size]="'small'"
+  >
+    {{buttonTitle}}
+  </ui-button>
+</div>

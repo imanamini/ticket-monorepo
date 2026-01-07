@@ -1,0 +1,31 @@
+<div class="d-flex flex-column gap-small  border-300 border-color-air radius-minus p-pony mb-medium"
+     (click)="onCardClick()">
+  <div class="card-header d-flex flex-row justify-content-space-between">
+    <div class="d-flex flex-row gap-small">
+      <div class="logo"></div>
+      <span class="st-8 text-onback-high">بانک سامان</span>
+    </div>
+    <ngx-radio-button [(checked)]="selected" [size]="20" [disabled]="false"></ngx-radio-button>
+  </div>
+  <div class="card-body d-flex flex-column gap-tiny p-minus radius-small">
+    <div class="d-flex flex-row justify-content-space-between">
+      <span class="b-3 text-onback-high">تسهیلات تا حداکثر</span>
+      <h3 class="c-1 text-onback-high">{{creditAmount()?.maxCreditAmount | thousands}} <span class="l-2">ریال</span>
+      </h3>
+    </div>
+    <div class="d-flex flex-row justify-content-space-between">
+      <span class="b-3 text-onback-high">کارمزد بانکی</span>
+      <span class="b-3 text-onback-high">٪۲۳</span>
+    </div>
+    <div class="d-flex flex-row justify-content-space-between">
+      <span class="b-3 text-onback-high">نحوه دریافت اعتبار</span>
+      <span class="b-3 text-onback-high">نیمه حضوری</span>
+    </div>
+    <div class="d-flex flex-row justify-content-space-between">
+      @if(creditAmount()?.requiredDocuments){
+      <span class="b-3 text-onback-high">مدرک ضروری</span>
+      }
+      <span class="b-3 text-onback-high">{{creditAmount()?.requiredDocuments}}</span>
+    </div>
+  </div>
+</div>

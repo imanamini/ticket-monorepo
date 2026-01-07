@@ -1,0 +1,20 @@
+$size: 24px;
+$checkmarkFat: 2px;
+
+.circle {
+  position: relative;
+  border-radius: 50%;
+  width: $size;
+  height: $size;
+}
+
+.checkmark {
+  position: absolute;
+  transform: rotate(45deg) translate(-50%, -50%);
+  left: 33%;
+  top: 45%;
+  height: $size/2;
+  width: $size/4;
+  border-bottom: $checkmarkFat solid;
+  border-right: $checkmarkFat solid;
+}

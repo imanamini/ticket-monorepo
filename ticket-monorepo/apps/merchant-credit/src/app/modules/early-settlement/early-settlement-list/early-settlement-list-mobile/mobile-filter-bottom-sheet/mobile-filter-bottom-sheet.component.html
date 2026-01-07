@@ -1,0 +1,18 @@
+<div class="bottom-sheet-header">
+  <div class="close-icon" (click)="close()"></div>
+  <div class="title">فیلتر بر اساس وضعیت درخواست</div>
+</div>
+<div class="filter-list">
+  <div
+    class="filter-item"
+    *ngFor="let item of data.statusGroupList; let i = index"
+    [ngClass]="{selected: (this.selected === i)}"
+    (click)="this.selected = i"
+  >
+    <div class="checkbox-icon"></div>
+    {{item.title}}
+  </div>
+</div>
+<div class="cta-wrapper">
+  <ui-button (click)="submitFilter()">اعمال تغییرات</ui-button>
+</div>

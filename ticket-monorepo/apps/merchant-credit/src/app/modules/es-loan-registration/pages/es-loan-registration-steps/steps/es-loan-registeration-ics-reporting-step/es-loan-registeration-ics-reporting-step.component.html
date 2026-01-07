@@ -1,0 +1,24 @@
+<header class="d-flex flex-row align-items-center gap-small pt-pony pb-pony pl-medium pr-medium ">
+  <div class="action mt-tiny" (click)="closeClick()"></div>
+  <span class="t-6 text-onback-medium">استعلام رتبه اعتباری</span>
+</header>
+<div class="es-loan-ics-reporting-step">
+  <es-loan-registration-ics-reporting-stepper
+    [steps]="[
+    { title: 'مرحله اول', description: 'تایید اطلاعات'},
+    { title: 'مرحله دوم', description: 'دریافت کد'},
+    { title: 'مرحله سوم', description: 'بررسی رتبه اعتباری'}
+  ]"
+    [activeStepIndex]="activeStepIndex()"
+  >
+    @if(activeStepIndex() === esLoanRegistrationIcsReportingSteps.ES_LOAN_ICS_REPORTING_CONFIRM){
+    <es-loan-registration-ics-reporting-confirm-step [registrationId]="registrationId()" [profile]="profile()" (activeStepIndex)="getActiveStepIndex($event)" (sendTrackingCode)="getTrackingCode($event)" (sendRemainTime)="getRemainingTime($event)"></es-loan-registration-ics-reporting-confirm-step>
+    }
+    @else if(activeStepIndex() === esLoanRegistrationIcsReportingSteps.ES_LOAN_ICS_REPORTING_SEND_OTP){
+    <es-loan-registration-ics-reporting-send-otp-step [registrationId]="registrationId()" [countdownSeconds]="remainTime()" [trackingCode]="trackingCode()" [profile]="profile()" (activeStepIndex)="getActiveStepIndex($event)"></es-loan-registration-ics-reporting-send-otp-step>
+    }
+    @else if(activeStepIndex() === esLoanRegistrationIcsReportingSteps.ES_LOAN_ICS_REPORTING_CHECK_SCORE){
+    <es-loan-registration-ics-reporting-check-score-step [esLoanStateModel]="esLoanStateModel()"></es-loan-registration-ics-reporting-check-score-step>
+    }
+  </es-loan-registration-ics-reporting-stepper>
+</div>

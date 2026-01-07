@@ -1,0 +1,94 @@
+<div
+  class="ui-dialog"
+  [ngClass]="{
+    'digipay-theme': theme === 'digipay',
+    'secondary-theme' : theme === 'secondary',
+    'thin-dialog-theme' : theme === 'thin-dialog'
+  }">
+
+  <ng-container [ngSwitch]="theme">
+    <div class="dialog-header" *ngSwitchCase="'digipay'">
+      <div class="header-title">
+        {{title}}
+      </div>
+    </div>
+    <ng-container *ngSwitchCase="'secondary'">
+      <div class="dialog-header">
+        <h3 mat-dialog-title class="dialog-title" *ngIf="title">
+          <span class="title-text">{{title}}</span>
+          <span
+            class="close-icon"
+            [ngClass]="{'back-icon' : hasBackButton}"
+            id="{{id?.closeButton}}" (click)="rejectClick()"></span>
+        </h3>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'thin-dialog'">
+      <div class="dialog-header">
+        <h3 class="dialog-title" *ngIf="title">
+          <span class="title-text">{{title}}</span>
+        </h3>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+      <div class="dialog-header">
+        <h3 mat-dialog-title class="dialog-title text-center" *ngIf="title">
+          {{title}}
+          <span id="{{id?.closeButton}}" class="close-icon" (click)="closeIcon()"></span>
+        </h3>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <div id="{{id?.view}}" class="dialog-body content-scrollbar" mat-dialog-content>
+    <ng-content></ng-content>
+  </div>
+
+  <div
+    class="dialog-footer"
+    *ngIf="(theme === 'digipay') || (theme === 'secondary') || (theme === 'thin-dialog'); else defaultDialogFooter">
+
+    <ui-button
+      *ngIf="hasRejectButtonTitle"
+      [googleAnalyticId]="{buttonId:id?.cancel}"
+      [appearance]="theme === 'thin-dialog' ? 'clean' : 'outline'"
+      theme="digipay"
+      class="footer-reject-button"
+      [disabled]="disableRejectButton"
+      [fullWidth]="true"
+      (click)="rejectClick()"
+    >
+      {{rejectButtonTitle}}
+    </ui-button>
+
+    <ui-button
+      [googleAnalyticId]="{buttonId:id?.submit}"
+      [ngClass]="{'submit-button':true, 'fullWidthButton':fullWidthSubmitButton}"
+      [fullWidth]="fullWidthSubmitButton"
+      [appearance]="
+        (theme === 'thin-dialog' && 'blue-text') ||
+        (theme === 'secondary' && 'default') ||
+        'outline'"
+      theme="digipay"
+      [disabled]="disableSubmitButton"
+      (buttonClick)="submitAction()">
+      {{submitButtonTitle}}
+    </ui-button>
+
+  </div>
+
+  <ng-template #defaultDialogFooter>
+    <div mat-dialog-actions *ngIf="title &&  (rejectText || confirmText)">
+      <ui-button
+        mat-button *ngIf="confirmText"
+        (click)="confirmButtonClick()" class="resolve">
+        {{confirmText}}
+      </ui-button>
+      <button mat-button *ngIf="rejectText"
+              (click)="rejectClick()" class="reject">
+        {{rejectText}}
+      </button>
+    </div>
+  </ng-template>
+
+</div>

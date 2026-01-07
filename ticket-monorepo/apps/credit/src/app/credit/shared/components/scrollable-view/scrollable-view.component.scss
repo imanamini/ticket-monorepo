@@ -1,0 +1,40 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.with-padding {
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.flex-full-height {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.scrollable-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.scrollable-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

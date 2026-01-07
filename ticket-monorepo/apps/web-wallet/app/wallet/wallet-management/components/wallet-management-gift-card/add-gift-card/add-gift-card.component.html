@@ -1,0 +1,38 @@
+<div class="add-gift-card-container">
+  <p class="title">افزودن کارت هدیه</p>
+  <div class="add-serial">
+    <fb-field
+      [inputId]="'serial-number'"
+      title="کد هدیه خود را وارد کنید*"
+      [value]="null">
+      <input
+        type="text"
+        [(ngModel)]="voucherCode"
+        placeholder="کد هدیه خود را وارد کنید*"
+        numericKeyboard>
+    </fb-field>
+
+    <div class="or">
+      <div class="line"></div>
+      <div class="text">یا</div>
+      <div class="line"></div>
+    </div>
+
+    <ui-button
+      [fullWidth]="true"
+      appearance="light-blue"
+      [theme]="'digipay'">
+      <div class="icon-scan"></div>
+      &nbsp;
+      اسکن کد با دوربین
+    </ui-button>
+
+  </div>
+  <ui-button
+    (buttonClick)="onSubmit()"
+    [disabled]="!voucherCode"
+    [fullWidth]="true"
+    [theme]="'digipay'">
+    بررسی و تایید
+  </ui-button>
+</div>

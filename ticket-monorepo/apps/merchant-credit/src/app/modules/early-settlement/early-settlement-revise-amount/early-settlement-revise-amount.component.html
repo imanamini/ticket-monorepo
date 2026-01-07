@@ -1,0 +1,62 @@
+<app-card-layout>
+  <app-title-bar [hasBackButton]="hasBackButton" (back)="prevSettlementStep()">
+    {{ steps[ activeStepIndex ].pageTitle }}
+  </app-title-bar>
+  <ng-container [ngSwitch]="steps[activeStepIndex].type">
+    <ng-container *ngSwitchCase="stepTypeEnum.GET_RULE">
+      <app-early-settlement-step-get-rule
+        [config]="config"
+        [rules]="rulesData"
+        [selectedRule]="selectedRule"
+        [gettingConfig]="gettingConfig"
+        [detail]="detail"
+        (nextStep)="nextSettlementStep()"
+        (prevStep)="prevSettlementStep()"
+        (changePayableStatus)="onChangePayableStatus($event)"
+        (emitRuleId)="getConfig($event)"
+      ></app-early-settlement-step-get-rule>
+    </ng-container>
+    <ng-container *ngSwitchCase="stepTypeEnum.GET_AMOUNT">
+      <early-settlement-step-get-amount
+        [config]="config"
+        [detail]="detail"
+        [trackingCode]="trackingCode"
+        [ruleId]="ruleId"
+        (nextStep)="nextSettlementStep()"
+        (prevStep)="prevSettlementStep()"
+        (changePayableStatus)="onChangePayableStatus($event)"
+        (changeAmount)="onChangeAmount($event)"
+      ></early-settlement-step-get-amount>
+    </ng-container>
+    <ng-container *ngSwitchCase="stepTypeEnum.CONFIRMATION_DIALOG">
+      <early-settlement-step-confirmation-dialog
+        [previewData]="previewData || undefined"
+        [trackingCode]="trackingCode"
+        [amount]="amount"
+        [ruleId]="ruleId"
+        [fundProviderName]="fundProviderName"
+        (nextStep)="nextSettlementStep()"
+        (prevStep)="prevSettlementStep()"
+        (response)="successResultData = $event"
+      ></early-settlement-step-confirmation-dialog>
+    </ng-container>
+    <ng-container *ngSwitchCase="stepTypeEnum.PAYMENT">
+      <early-settlement-step-payment
+        [previewData]="previewData || undefined"
+        [trackingCode]="trackingCode"
+        [amount]="amount"
+        [ruleId]="ruleId"
+        [fundProviderName]="fundProviderName"
+      ></early-settlement-step-payment>
+    </ng-container>
+    <ng-container>
+      <app-early-settlement-success-result
+        *ngSwitchCase="stepTypeEnum.RESULT"
+        [successResultData]="successResultData"
+        (nextStep)="nextSettlementStep()"
+      ></app-early-settlement-success-result>
+    </ng-container>
+  </ng-container>
+
+</app-card-layout>
+

@@ -1,0 +1,70 @@
+<ui-content-card cardTitle="تسویه‌ی زودهنگام دیجی‌پی" [close]="true" (backClicked)="onCloseClick()">
+
+  <ng-container card-body>
+    <div class="welcome-page-title">
+      به دیجی‌پی خوش آمدید
+      <div class="party-icon"></div>
+    </div>
+
+    <p class="welcome-page-desc">
+      با فعالسازی سرویس تسویه زودهنگام دیجی‌پی، در هر کجای ایران که باشید، می‌توانید درآمد حاصل از فروش خود را حداکثر تا
+      ۴۸ ساعت کاری بعد دریافت کنید. </p>
+
+    <div class="feature-list">
+      <section class="feature">
+        <div class="feature-title">
+          <div class="feature-icon ">
+            <div class="icon-fee"></div>
+          </div>
+          <h3 class="feature-icon-title ">کارمزد مناسب</h3>
+
+        </div>
+        <hr>
+        <div class="feature-body">
+          <p>
+            با توجه به نوع تامین کننده، کارمزد تسویه‌ به ازای هر یک میلیون تومان، حداکثر تا <strong>۱۰۰۰ تومان</strong>
+            متغیر است.
+          </p>
+        </div>
+
+      </section>
+      <section class="feature">
+        <div class="feature-title">
+          <div class="feature-icon">
+            <div class="icon-payment"></div>
+          </div>
+          <h3 class="feature-icon-title">پرداخت سریع</h3>
+        </div>
+        <hr>
+        <div class="feature-body">
+
+          <p>
+            <strong>حداکثر ۴۸ ساعت</strong> کاری طول می‌کشد تا درآمد حاصل از فروش شما پرداخت شود.
+          </p>
+
+        </div>
+      </section>
+      <section class="feature">
+        <div class="feature-title">
+          <div class="feature-icon">
+            <div class="icon-access"></div>
+          </div>
+          <h3 class="feature-icon-title">دسترسی آسان</h3>
+        </div>
+        <hr>
+        <div class="feature-body">
+          <p>
+            شما به راحتی از طریق پنل خود، امکان درخواست تسویه فاکتور موردنظرتان را دارید.
+          </p>
+        </div>
+      </section>
+    </div>
+  </ng-container>
+
+
+  <ng-container card-footer>
+    <ui-button class="page-cta" (clicked)="proceed()">
+      مشاهده طرح های تسویه
+    </ui-button>
+  </ng-container>
+</ui-content-card>

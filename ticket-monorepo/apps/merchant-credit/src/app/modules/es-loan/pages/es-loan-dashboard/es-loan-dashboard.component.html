@@ -1,0 +1,38 @@
+<div class="loan-body d-flex gap-medium flex-column align-items-start">
+  <h1 class="st-6">سرویس ارائه تسهیلات دیجی‌پی</h1>
+  <div
+    class="d-flex flex-row  align-items-start gap-pony w-100 radius-medium surface-back pt-medium pb-medium pl-minus pr-minus">
+    <div class="surface-brand-tint p-pony radius-giant">
+      <ngx-icon name="person" type="due" class="text-onback-brand"></ngx-icon>
+    </div>
+    <div class="d-flex flex-column">
+      <span class="st-8 text-onback-high">{{profile()?.merchantName}}</span>
+      <span class="b-2 text-onback-low">{{profile()?.cellNumber}}</span>
+    </div>
+  </div>
+  <div class="d-flex flex-column justify-content-space-between w-100">
+    <div
+      class="d-flex justify-content-space-between cursor-pointer align-items-center border-color-air border-b-300 pt-plus pb-plus"
+      (click)="goToRegistration()">
+      <div class="d-flex d-column  gap-small">
+        <ngx-icon name="money" type="linear"></ngx-icon>
+        <span class="bt-2 text-onback-high">دریافت تسهیلات</span>
+      </div>
+      <div class="arrow-icon"></div>
+    </div>
+    <div
+      class="d-flex justify-content-space-between cursor-pointer align-items-center border-color-air border-b-300 pt-plus pb-plus"
+      (click)="goToRepayment()"
+    >
+      <div class="d-flex d-column gap-small">
+        <ngx-icon name="credit"
+                  [ngClass]="(esSettlementList().length > 0 || esSettlementList() === undefined) ? 'text-onback-high' : 'text-onback-disabled '"
+                  type="linear"></ngx-icon>
+        <span class="bt-2"
+              [ngClass]="(esSettlementList().length > 0 || esSettlementList() === undefined) ? 'text-onback-high' : 'text-onback-disabled '">بازپرداخت تسهیلات اعطا شده</span>
+      </div>
+      <div
+        [ngClass]="(esSettlementList().length > 0 || esSettlementList() === undefined) ? 'arrow-icon-blue' : 'arrow-icon-gray'"></div>
+    </div>
+  </div>
+</div>

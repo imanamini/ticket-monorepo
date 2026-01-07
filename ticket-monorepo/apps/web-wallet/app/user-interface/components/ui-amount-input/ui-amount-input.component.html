@@ -1,0 +1,66 @@
+<div class="ui-amount-input" id="ui-amount-input">
+
+  <form [formGroup]="form" dir="ltr">
+    <mat-form-field
+      class="full-width field"
+      [ngClass]="{'has-counter': hasCounter , 'read-only':!changeable}"
+      appearance="outline">
+
+      <div
+        *ngIf="changeable"
+        [ngClass]="{'counter-disable-decrease' : (currentAmountOfInput <= minAmount || !inputElement.value) }"
+        id="{{(currentAmountOfInput > minAmount && inputElement.value) ? (googleAnalyticId?.inputClickEvent || '') : ''}}"
+        class="counter-spinner counter-active-decrease" (click)="decreaseValue()">
+      </div>
+
+      <div class="input-wrapper">
+        <label *ngIf="form.controls['amount'].value">ریال</label>
+        <div class="input-resizer" [attr.data-value]="form.controls['amount'].value">
+          <input
+            #inputElement
+            id="{{googleAnalyticId?.inputClickEvent || ''}}"
+            size="1"
+            autocomplete="off"
+            numericKeyboard="price"
+            matInput
+            type="text"
+            dir="ltr"
+            formControlName="amount"
+            [readonly]="!changeable"
+            [placeholder]="placeholder"
+            [ngStyle]="{minWidth: getMinInputWidth()}"
+            [ngClass]="{'input-has-value': currentAmountOfInput}"
+            (click)="detectEventCalled('user click on amount box')"
+            (keydown)="inputKeyDown($event)"
+          />
+        </div>
+      </div>
+
+      <mat-error *ngIf="(currentAmountOfInput > maxAmount ||currentAmountOfInput < minAmount) && changeable">
+        مبلغ وارد شده باید بین {{minAmount | IRR}}
+        تا {{maxAmount | IRR}} ریال باشد.
+      </mat-error>
+
+      <mat-hint class="rtl" align="end" *ngIf="(!hintText && changeable); else customHint">مبلغ وارد شده باید
+        بین {{minAmount | IRR}}
+        تا {{maxAmount | IRR}} ریال باشد.
+      </mat-hint>
+
+      <ng-template #customHint>
+        <mat-hint class="rtl" align="end">
+          {{hintText}}
+        </mat-hint>
+      </ng-template>
+
+      <div
+        *ngIf="changeable"
+        [ngClass]="{
+        'counter-disable-increase' : (inputElement.value && (currentAmountOfInput >= maxAmount)) ,
+        'counter-active-increase' : (!inputElement.value || (currentAmountOfInput < maxAmount)),
+        'counter-spinner': true}"
+        id="{{(!inputElement.value || (currentAmountOfInput < maxAmount)) ? (googleAnalyticId?.inputClickEvent || '') : ''}}"
+        (click)="increaseValue()">
+      </div>
+    </mat-form-field>
+  </form>
+</div>

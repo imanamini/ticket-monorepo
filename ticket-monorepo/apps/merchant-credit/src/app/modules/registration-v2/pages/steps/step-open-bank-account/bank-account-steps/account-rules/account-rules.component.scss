@@ -1,0 +1,37 @@
+@import "variables";
+
+.rules-header {
+  padding: 12px 0;
+  border-bottom: 1px solid $swatch_steel_200;
+  margin-bottom: 16px;
+
+  .header-title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+
+    .header-title-logo {
+      width: 20px;
+      height: 20px;
+      background: url("../../../../../img/middle-east-bank-logo.svg") no-repeat center/100%;
+    }
+
+    .header-title-text {
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 24px;
+    }
+  }
+
+  .header-subtitle {
+    font-size: 12px;
+    line-height: 24px;
+    color: $swatch_steel_500;
+  }
+}
+
+.rules-content {
+  overflow-y: hidden;
+  height: 500px;
+}

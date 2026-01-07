@@ -1,0 +1,15 @@
+<ui-dialog class="cash-in-result-dialog" [title]="dialogData.successful ? 'عملیات موفق' : 'عملیات ناموفق'">
+  <div class="result-icon is-success" *ngIf="dialogData.successful"></div>
+  <div class="result-icon is-failed" *ngIf="!dialogData.successful"></div>
+  <p class="result-text" *ngIf="dialogData.text">{{ dialogData.text }}</p>
+  <p class="tracking-code" *ngIf="dialogData.trackingCode">
+    <span>کد رهگیری:</span>
+    <span class="code">{{dialogData.trackingCode}}</span>
+  </p>
+
+  <div class="action">
+    <ui-button appearance="green" [fullWidth]="true" (buttonClick)="confirm()">
+      بستن
+    </ui-button>
+  </div>
+</ui-dialog>

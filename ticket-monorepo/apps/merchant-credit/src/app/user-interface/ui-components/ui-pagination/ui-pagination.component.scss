@@ -1,0 +1,49 @@
+.pagination {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  .pagination-pages {
+    button {
+      width: 24px;
+      height: 24px;
+      font-size: 12px;
+      background-color: #FFFFFF;
+      color: #666666;
+      border-radius: 8px;
+    }
+
+    .active {
+      color: #333;
+      background-color: #f2f5f8;
+      border: solid 1px #ccc;
+    }
+  }
+
+  .pagination-arrow {
+    background-color: transparent;
+
+    .icon-arrow-right {
+      width: 24px;
+      height: 24px;
+      background: url("../../../../assets/icons/arrow-right.svg") center center no-repeat;
+      background-size: 100% 100%;
+
+    }
+
+    .icon-arrow-left {
+      width: 24px;
+      height: 24px;
+      background: url("../../../../assets/icons/arrow-left.svg") center center no-repeat;
+      background-size: 100% 100%;
+    }
+  }
+
+
+}
+
+
+
+

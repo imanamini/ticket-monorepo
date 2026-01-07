@@ -1,0 +1,81 @@
+@import "../../../layout/mixins/device";
+@import "../../../layout/variables";
+
+::ng-deep app-page-dialog {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+iframe {
+  width: 100%;
+  flex-grow: 1;
+}
+
+.iframe-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+
+::ng-deep {
+  .page-dialog-component {
+    .mat-mdc-dialog-container {
+      overflow: hidden;
+    }
+  }
+  app-page-dialog {
+    ui-dialog, .ui-dialog {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .ui-dialog {
+      position: relative;
+      overflow: hidden;
+    }
+    .mat-mdc-dialog-content {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      max-height: 100%;
+      padding: 0 !important;
+      height: 100%;
+    }
+  }
+}
+
+
+
+@include mediaMobile() {
+  .iframe-container {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+  }
+
+  ::ng-deep .page-dialog-component .ui-dialog {
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+
+@include mediaMobile() {
+  ::ng-deep .page-dialog-component {
+    width: 100%;
+    height: 100%;
+
+    .mat-mdc-dialog-container {
+      border-radius: 0;
+    }
+  }
+}
+
+@include mediaDesktop() {
+  ::ng-deep .page-dialog-component {
+    width: 600px;
+    height: 90%;
+    max-width: 90% !important;
+  }
+}

@@ -1,0 +1,109 @@
+@import "variables";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.doc-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+  border: 1px solid $swatch_steel_200;
+  border-radius: 12px;
+  padding: 4px;
+  position: relative;
+  background-color: #FFFFFF;
+
+  .page-number {
+    position: absolute;
+    font-size: 12px;
+    top: 4px;
+    left: 4px;
+    display: block;
+    padding: 2px 20px;
+    border-radius: 8px;
+    background-color: $swatch_steel_700;
+    color: white;
+    opacity: 0.5;
+    z-index: 10;
+  }
+
+  .full-screen-button {
+    position: absolute;
+    font-size: 12px;
+    bottom: 4px;
+    right: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: $swatch_steel_700;
+    color: white;
+    opacity: 0.5;
+    z-index: 10;
+    cursor: pointer;
+  }
+
+  .zoom-buttons {
+    display: none;
+    position: absolute;
+    font-size: 12px;
+    bottom: 4px;
+    left: 4px;
+    align-items: center;
+    z-index: 10;
+
+    .zoom-in-button, .zoom-out-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background-color: $swatch_steel_700;
+      color: white;
+      opacity: 0.5;
+      cursor: pointer;
+
+      &.disabled {
+        opacity: 0.2;
+      }
+    }
+
+    .zoom-in-button {
+      margin-left: 8px;
+    }
+
+    .zoom-out-button {
+    }
+  }
+
+  .viewer {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+  }
+
+  &.fullscreen-mode {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-radius: 0;
+    z-index: 999;
+
+    .zoom-buttons {
+      display: flex;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.cards {
+  margin: 20px 0 0;
+
+  > * {
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.page-cta {
+  min-width: 156px;
+  flex: 1;
+}

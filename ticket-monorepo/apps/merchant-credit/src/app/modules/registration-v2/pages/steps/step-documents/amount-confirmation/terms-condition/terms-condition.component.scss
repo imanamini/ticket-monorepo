@@ -1,0 +1,69 @@
+@import "../../../../../../../styles/layout/variables";
+
+.tac-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+
+  .tac-info-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    .close-icon {
+      border-radius: 21px;
+      background-color: #F2F5F8;
+      padding: 4px;
+
+      .close {
+        background-image: url("../../../../../../../../assets/icons/close.svg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        vertical-align: middle;
+        cursor: pointer;
+      }
+    }
+
+
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 32px;
+    }
+  }
+
+  .tac-info-box {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    margin: 16px 0 24px 0;
+    max-height: 174px;
+    overflow: auto;
+
+    p {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 26px;
+    }
+  }
+
+  .tac-info-box::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .tac-info-box::-webkit-scrollbar-track {
+    background: #F2F5F8;
+  }
+
+  .tac-info-box::-webkit-scrollbar-thumb {
+    background-color: #789AFF;
+    border-radius: 20px;
+    border: 3px solid #F2F5F8;
+  }
+
+}

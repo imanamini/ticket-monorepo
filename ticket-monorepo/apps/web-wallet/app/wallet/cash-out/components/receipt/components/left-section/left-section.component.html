@@ -1,0 +1,19 @@
+<div class="left-section">
+
+  <div class="bottom-data">
+    <div (click)="copyItem(detail)"
+         *ngFor="let detail of state.paymentResult | slice:0:4"
+         [class.details-copy]="detail.copyable === true"
+         class="details">
+      <div class="title">{{ detail.key }}</div>
+      <div class="value">
+        <span #copyItem *ngIf="detail.copyable === true" class="copy-place-holder"> </span>
+        {{ detail.value }}
+      </div>
+    </div>
+  </div>
+
+  <div class="binary-code">
+    <app-binary-loop *ngIf="binary" [binary]="binary"></app-binary-loop>
+  </div>
+</div>

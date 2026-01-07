@@ -1,0 +1,52 @@
+@import "variables";
+
+.primary-action {
+  min-width: 160px;
+}
+
+.error-container {
+  text-align: -webkit-center;
+  margin-top: 100px;
+
+  .status-result {
+    margin: auto 24px;
+  }
+
+  .support-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    border: 1px dashed $swatch_steel_300;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 10px 16px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    .name {
+      color: $swatch_steel_300;
+    }
+
+    .phone {
+      color: $swatch_steel_900;
+    }
+  }
+}
+
+
+@media screen and (max-height: 768px) {
+  .error-container {
+    margin-top: 80px;
+
+    .support-wrapper {
+      position: absolute;
+      bottom: 100px;
+      left: 0;
+      right: 0;
+    }
+  }
+}

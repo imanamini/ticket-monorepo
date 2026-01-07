@@ -1,0 +1,38 @@
+@import "variables";
+
+.ui-alert-message-box {
+  padding: 12px 16px;
+  text-align: center;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  background-color: $swatch_steel_200;
+  color: $swatch_steel_900;
+
+  &.status {
+    &-disable {
+      color: $swatch_steel_500;
+      background-color: $swatch_steel_100;
+    }
+
+    &-primary {
+      color: $swatch_blue_500;
+      background-color: $swatch_blue_100;
+    }
+
+    &-success {
+      color: $swatch_green_500;
+      background-color: $swatch_green_100;
+    }
+
+    &-danger {
+      color: $swatch_red_500;
+      background-color: $swatch_red_100;
+    }
+
+    &-warning {
+      color: $swatch_orange_500;
+      background-color: $swatch_orange_100;
+    }
+  }
+}

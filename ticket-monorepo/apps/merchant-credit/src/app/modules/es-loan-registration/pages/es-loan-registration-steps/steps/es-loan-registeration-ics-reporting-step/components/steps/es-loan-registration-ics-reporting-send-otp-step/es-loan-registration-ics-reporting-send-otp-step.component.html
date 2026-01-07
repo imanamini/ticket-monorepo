@@ -1,0 +1,50 @@
+<div class="es-loan-ics-reporting-send-otp-step d-flex flex-column  pt-big pb-big pl-medium pr-medium">
+  <p class="b-3 text-onback-high ">
+    کد ارسال شده به شماره همراه <span class="st-8">{{profile().cellNumber}}</span> را وارد کنید. این کد برای دسترسی به
+    گزارش اعتباری شما(بازپرداخت وام‌ها) می‌باشد.
+  </p>
+  <div class="d-flex flex-column mt-huge">
+
+    <es-loan-otp-input
+      [value]="code()"
+      (otpChange)="onCodeChange($event)"
+      [hasError]="!!errorMessage()"
+      [errorMessage]="errorMessage()"
+      type="OTP"></es-loan-otp-input>
+    <div class="text-align-center text-onback-error mt-small l-3">{{errorMessage()}}</div>
+  </div>
+  @if(!resendEnabled()){
+  <div class="d-flex justify-content-center align-items-center mt-big gap-micro">
+    <span class="v-2"> ارسال مجدد کد در:  </span>
+  <ngx-count-down
+    (finished)="onCountdownFinish()"
+    [timeInSeconds]="countdownSeconds()"
+    [type]="'mm:ss'"
+  />
+  <ngx-icon iconSize="16px" name="circle-clock" type="linear"></ngx-icon>
+  </div>
+  }@else{
+  <div class="d-flex justify-content-center">
+    <ngx-button
+      (clickHandler)="resendOtp()"
+      [style]="'link'"
+      [mode]="'form'"
+      [isLoading]="resendingOtp()"
+      >
+      ارسال مجدد
+    </ngx-button>
+  </div>
+  }
+
+</div>
+<div class="footer mt-small mb-medium ml-medium mr-medium">
+  <ngx-button (clickHandler)="onSubmit()"
+              size="large"
+              mode="form"
+              style="fill"
+              [fullWidth]="true"
+              [disabled]="!canProceed() || verifyingOtp()"
+  >
+    {{verifyingOtp() ? 'در حال بررسی...' : 'تایید و ادامه'}}
+  </ngx-button>
+</div>

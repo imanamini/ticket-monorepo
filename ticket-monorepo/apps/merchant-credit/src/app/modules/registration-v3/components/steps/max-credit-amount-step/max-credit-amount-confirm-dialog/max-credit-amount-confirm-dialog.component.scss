@@ -1,0 +1,62 @@
+@import '../../../../../../styles/layout/variables';
+
+.confirm-message {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .top-section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .logo {
+      width: 160px;
+      height: 122px;
+      background-image: url("../../../../../../../assets/icons/warning-Message.svg");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 32px;
+
+      .rial {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 20px;
+      }
+    }
+
+    .description {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 20px;
+      color: $swatch_steel_500;
+    }
+  }
+
+  .hint {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 26px;
+  }
+
+  .link-style {
+    color: $swatch_blue_500;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.2em;
+    font-weight: 500;
+  }
+
+  .footer-section {
+    flex-grow: 1;
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+  }
+}
+

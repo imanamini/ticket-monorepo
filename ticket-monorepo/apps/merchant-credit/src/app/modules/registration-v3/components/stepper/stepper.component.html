@@ -1,0 +1,20 @@
+<div class="stepper-header" *ngIf="transformedSteps[currentIndex]">
+  <div class="stepper-header-container">
+    <div class="step-info">
+      <div class="step-info-title">
+        <b>مرحله {{numberMapper[ ( currentIndex + 1 ) ]}}:</b>
+        <span> {{transformedSteps[ currentIndex ].label}}</span>
+      </div>
+      <div class="step-number ltr">
+        {{currentIndex + 1}} / {{transformedSteps.length}}
+      </div>
+    </div>
+    <div [class]="'progress-bar progress-bar-'+transformedSteps[ currentIndex ].status">
+      <div class="progress" [style]="{width: (100 * (currentIndex + 1) / transformedSteps.length) + '%'}"></div>
+    </div>
+  </div>
+</div>
+<div class="stepper-body">
+  <ng-content></ng-content>
+</div>
+

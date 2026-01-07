@@ -1,0 +1,12 @@
+:root {
+  --mdc-outlined-text-field-outline-width: 1px;
+  --mdc-outlined-text-field-focus-outline-color: #0040ff;
+  --mat-bottom-sheet-container-background-color: #ffffff;
+  --mdc-snackbar-container-color: #2c3544;
+  --mdc-snackbar-container-shape: 12px;
+  --mdc-snackbar-supporting-text-size: 14px;
+}
+.mat-bottom-sheet-container {
+  direction: rtl;
+  border-radius: 16px 16px 0 0 !important;
+}

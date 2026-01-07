@@ -1,0 +1,36 @@
+@import "src/app/layout/mixins/device";
+
+.tgs-container {
+  display: flex;
+  justify-content: center;
+}
+
+.loader-container {
+  margin: auto;
+}
+
+::ng-deep .tgs-bottom-sheet {
+  padding: 0 !important;
+
+  .mat-bottom-sheet-container {
+    padding: 0 !important;
+  }
+}
+
+@include mediaMobile() {
+  .tgs-container {
+    display: block;
+    text-align: center;
+  }
+
+  .loader-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

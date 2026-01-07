@@ -1,0 +1,31 @@
+<div class="confirm-message" *ngIf="!tacShow">
+  <div class="top-section">
+    <div class="logo"></div>
+    <div class="title">{{selectedDoc}} <span>ریال</span></div>
+    <div class="description">اعتبار انتخاب شده</div>
+  </div>
+  <p class="hint">توجه داشته باشید که مبلغ اعتبار در ادامه قابل ویرایش نیست.آیا از انتخاب این مبلغ اطمینان دارید؟</p>
+  <ui-checkbox [checked]="agreed" (changed)="agreed = $event">
+    با
+    <span class="link-style" (click)="showTac()">قوانین و مقررات</span>
+    استفاده از این سرویس موافقم
+  </ui-checkbox>
+
+
+  <div class="footer-section">
+    <ng-button (clickHandler)="cancel()"
+               buttonSize="medium"
+               buttonType="tinted"
+               [buttonText]="'انصراف'">
+    </ng-button>
+    <ng-button (clickHandler)="submit()"
+               buttonSize="medium"
+               [fullWidth]="true"
+               [disabled]="!agreed"
+               [buttonText]="'تایید و ثبت درخواست'">
+    </ng-button>
+
+  </div>
+</div>
+
+<app-general-terms-conditions [tacShow]="tacShow" (closed)="onClose($event)"></app-general-terms-conditions>

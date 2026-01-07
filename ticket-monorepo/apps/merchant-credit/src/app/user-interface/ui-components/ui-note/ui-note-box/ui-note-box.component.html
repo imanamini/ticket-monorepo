@@ -1,0 +1,17 @@
+<div class="note">
+  <h3 *ngIf="noteTitle" class="note-title">
+    <span class="icon info-square"></span>
+    {{ noteTitle }}
+  </h3>
+  <p *ngIf="note" class="note-text">
+    <span *ngIf="!noteTitle" class="icon bold-circle"></span>
+    {{ note }}
+  </p>
+  <ul class="points" *ngIf="points.length > 0">
+    <li *ngFor="let point of points">{{ point }}</li>
+  </ul>
+  <div class="action" *ngIf="actionText">
+    {{ actionText }}
+    <span class="icon chevron-left"></span>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+@import "@digipay/base-style/styleguide";
+
+:host {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.max-credit-amount-step {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  .cards {
+    margin-bottom: auto;
+  }
+
+  .select-account-body {
+    .iban-card-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 16px 0;
+
+      .iban-card {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 24px;
+        width: 242px;
+        height: 132px;
+        color: #fff;
+        padding: 14px;
+        margin-bottom: 24px;
+        background: url("../../../../../../../../../../assets/card-pattern.svg") no-repeat center center #00AAE7;
+        box-shadow: 0 8px 48px 0 rgba(0, 148, 255, 0.24);
+        background-size: cover;
+        border-radius: 16px;
+
+        .iban-card-title {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+
+          .small-logo {
+            width: 16px;
+            height: 16px;
+            background: url("../../../../../../../../../../assets/icons/saman-small-logo.svg") no-repeat center center;
+            background-size: auto 100%;
+          }
+        }
+
+        .iban-text {
+          font-family: YekanMono;
+          display: flex;
+          justify-content: center;
+          direction: ltr;
+          margin-top: 24px;
+          gap: 5px;
+        }
+      }
+
+      .iban-form {
+        width: 100%;
+        text-align: right;
+      }
+
+
+      .legal-notice {
+        margin-top: 38px;
+        padding-top: 38px;
+        border-top: 1px solid map-get($titanium, 'shade-80');
+
+        .title {
+          font-size: 24px;
+          font-weight: 800;
+          color: map-get($neutral, 'shade-0');
+          margin-bottom: 8px;
+        }
+
+        .description {
+          font-size: 16px;
+          font-weight: 700;
+          color: #424C5C;
+          text-align: right;
+        }
+      }
+    }
+
+    .open-account-link {
+      text-decoration: none;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+<div
+  [ngClass]="{
+    'fb-field': true,
+    'invalid': showError,
+    'fill': value,
+    'has-cleaner': hasCleaner,
+    'show-currency': showCurrency,
+    'has-float-label': hasFloatLabel,
+    'has-two-action': hasCleaner && showCurrency,
+    'ltr-input': ltrInput,
+    'ltr-placeholder': ltrPlaceholder
+  }"
+>
+  <img
+    *ngIf="hasCleaner && value"
+    [ngClass]="{
+      'clean-input-action': true,
+      'has-sibling': hasCleaner && showCurrency
+    }"
+    [src]="'./assets/image/cleaner-icon.svg'"
+    alt="Clean input"
+
+    (click)="clearInputValue()"
+  >
+  <img
+    *ngIf="showCurrency"
+    class="currency-label"
+    [src]="'./assets/image/rial-currency.svg'"
+    alt="Rial currency"
+  >
+  <ng-content></ng-content>
+  <label *ngIf="hasFloatLabel" [for]="inputId">{{title}}</label>
+  <div
+    class="message"
+  >
+    <div class="error">
+      {{errorMessage}}
+    </div>
+    <div class="hint">
+      {{hint}}
+    </div>
+  </div>
+</div>

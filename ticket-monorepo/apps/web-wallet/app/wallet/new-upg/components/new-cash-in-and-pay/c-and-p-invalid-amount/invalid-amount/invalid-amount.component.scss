@@ -1,0 +1,123 @@
+@import "../../../../../../layout/mixins/device";
+
+.subtitle-wrapper {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  gap: 16px;
+  padding: 8px;
+  background-color: #f2f5f8;
+  border-radius: 12px;
+  margin: 0 auto 24px auto;
+
+  .current-balance-title {
+    color: #6E798D;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+
+    .balance-icon {
+      background: url('../../../../../../../assets/icon/balance.svg') no-repeat 0 0/100%;
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.chargeable-amount-title {
+  color: #424C5C;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 0 auto;
+}
+
+.description {
+  margin: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+
+  .amount {
+    display: flex;
+    padding: 0 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    border-radius: 16px;
+    background: #FFF5EE;
+    color: #FF811A;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 40px;
+
+    .rial {
+      color: #FF811A;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 24px;
+    }
+  }
+
+  .arrow-down {
+    background: url('../../../../../../../assets/icon/green-arrow-down.svg') no-repeat 0 0/100%;
+    width: 24px;
+    height: 24px;
+  }
+
+  .minimum-chargeable-amount {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+
+    .minimum-chargeable-amount-title {
+      color: #424C5C;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px;
+    }
+  }
+}
+
+.needed-chargeable-amount {
+  display: flex;
+  gap: 4px;
+  padding: 0 16px;
+  align-items: center;
+  border-radius: 16px;
+  background: #F2F5F8;
+  color: #2C3544;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 40px;
+  width: fit-content;
+  margin: 0 auto;
+
+  .rial {
+    color: #2C3544;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 171.429% */
+  }
+}
+
+
+@include mediaMobile() {
+  .subtitle-wrapper {
+    margin-top: 24px;
+  }
+}

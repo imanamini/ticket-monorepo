@@ -1,0 +1,69 @@
+@import "../../shared-styles/custom-bank-style.component";
+@import "../../shared-styles/shared-styles-cash-out";
+
+:host ::ng-deep .bank-card {
+  cursor: auto !important;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+
+:host ::ng-deep {
+  .unit {
+    color: #000;
+    font-weight: 500 !important;
+  }
+
+  .ui-amount-input input.has-placeholder {
+    color: #AFB9C5 !important;
+    font-size: 32px !important;
+    font-weight: 400 !important;
+    opacity: 0.5;
+  }
+}
+
+.amount-wrapper {
+  position: relative;
+}
+
+
+ui-c2c-transfer-amount {
+  padding: 0 !important;
+}
+
+.amount-wrapper {
+  position: relative;
+  z-index: 2;
+}
+
+
+@include mediaMobile() {
+  .content-wrapper {
+    padding: 24px;
+  }
+
+  :host ::ng-deep .ui-amount-input.has-error {
+    border-color: white !important;
+  }
+
+  :host ::ng-deep .ui-amount-input.blue-border {
+    border: solid 2px white !important;
+  }
+
+  .content-wrapper {
+    padding: 0;
+    height: calc(100% - 57px)
+  }
+
+  app-footer-without-currency {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    z-index: 1;
+  }
+}

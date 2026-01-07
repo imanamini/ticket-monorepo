@@ -1,0 +1,27 @@
+<div class="cash-out-information">
+  <div class="description">
+    مدت زمان واریز وجه برداشت شده از کیف پول به حساب بانکی، به طور معمول
+        تا یک ساعت بوده و در مواقع اختلال در شبکه بانکی ممکن است بین
+    <strong class="time"> 24 تا 72 </strong>
+    ساعت به طول انجامد.
+  </div>
+  <div class="data">
+    <div class="top-section">
+      <div class="amount">
+        <div class="title">مبلغ برداشت</div>
+        <div class="value">{{ amount | thousands }} ریال</div>
+      </div>
+      <div class="wage">
+        <div class="title">
+          <div class="main-title">کارمزد برداشت وجه</div>
+          <div class="badge">
+            <div class="title-badge">هدیه دیجی‌پی</div>
+          </div>
+        </div>
+        <div class="value">
+          <div class="real-value">{{ (feeCharge() | thousands) || '-' }} ریال</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

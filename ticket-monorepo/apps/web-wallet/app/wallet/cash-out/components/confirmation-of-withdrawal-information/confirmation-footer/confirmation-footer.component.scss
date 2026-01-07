@@ -1,0 +1,33 @@
+
+@import "src/app/layout/mixins/device";
+.action-buttons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  ui-button {
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  .submit {
+    flex-grow: 2;
+
+    .loader {
+      margin: auto;
+    }
+  }
+}
+
+@include mediaMobile() {
+  .action-buttons {
+    flex-direction: column;
+    margin-bottom: 24px;
+
+    ui-button {
+      width: 100%;
+    }
+  }
+}

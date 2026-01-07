@@ -1,0 +1,135 @@
+@import "swatch";
+/*colors*/
+
+$db-black: #000000;
+$db-black-40: #999999;
+$db-black-90: #191919;
+$db-black-80: #333333;
+$db-black-50: #7f7f7f;
+$db-black-70: #4c4c4c;
+$db-black-60: #666666;
+$db-black-30: #b2b2b2;
+$db-black-20: #cccccc;
+$db-black-02: #fafafa;
+$db-white: #ffffff;
+$db-black-05: #f2f2f2;
+$db-primary-dark: #152566;
+$db-black-10: #e5e5e5;
+$db-primary-very-light: #335cff;
+$db-primary-light: #294acc;
+$db-secondary-dark: #b32d4f;
+$db-secondary: #d93660;
+$db-secondary-light: #ff4071;
+$db-tertiary: #41a6d9;
+$db-tertiary-dark: #3689b3;
+$db-tertiary-light: #4cc3ff;
+$db-quaternary-dark: #00994d;
+$db-quaternary-light: #45e695;
+$db-quaternary: #39bf7c;
+$db-white-10: #ffffff;
+$db-white-10: rgba(255, 255, 255, 0.1);
+$db-white-10: rgba(255, 255, 255, 0.2);
+$db-orangey-yellow: #f5a623;
+$db-dusty-orange: #ff6f26;
+$db-rightel-light: #a6297c;
+$db-rightel-dark: #802060;
+$db-pale-olive-green: #b8e65c;
+$db-hamrah-avval-dark: #12a5b3;
+$db-hamrah-avval-light: #14bdcc;
+$db-taxi: #ffc619;
+$db-dolati: #cc2929;
+$db-nezami: #004d99;
+$db-sepah: #0b4d37;
+$db-diplomat: #148fcc;
+$db-artesh: #dac08d;
+$db-irancell-light: #ffb300;
+$db-irancell: #ffc905;
+$db-irancell-blue: #144b8e;
+$db-eqtesad-novin-violet: #5e1877;
+$db-eqtesad-novin-red: #ea1e26;
+$db-pasargad-tangerine: #f39314;
+$db-pasargad-red: #e31e24;
+$db-saman-azure: #04a9e8;
+$db-saman-blue: #024b8d;
+$db-parsian-clay: #af7d55;
+$db-shaparak-blue: #1579bc;
+$db-irancell-dark: #e6a100;
+$db-mellat-red: #c62127;
+$db-mellat-pod: #0b79a4;
+$db-maliat-green: #00581e;
+$db-shahrdari-green: #13843e;
+$db-ab-blue: #00368e;
+$db-gas-blue: #14489c;
+$db-rahdari-green: #0fa601;
+$db-black-40: #999999;
+$db-calendar: #39bf7c;
+
+
+//primary color
+$db-primary: #1f3799;
+$db-background: $db-black-10;
+
+
+$db-pending: #d4ad0e;
+
+
+// Card background
+$db-major-card-background: $db-primary;
+$db-minor-card-background: #0575E6;
+$main-bg : #1f3799;
+
+
+// statuses
+$status-red: #ea1e26;
+$status-red-bg: rgba(234, 30, 38, 0.2);
+$status-blue: #3689b3;
+$status-blue-bg: rgba(54, 137, 179, 0.2);
+$status-orange: #ff5722;
+$status-orange-bg: rgba(255, 87, 34, 0.16);
+$status-green: #2e9963;
+$status-green-bg: rgba(69, 230, 149, 0.16);
+$status-violet: #741f99;
+$status-violet-bg: rgba(116, 31, 153, 0.2);
+$status-yellow: #ffd500;
+$status-yellow-bg: rgba(255, 213, 38, 0.2);
+$status-dark-pink: #b32d4f;
+$status-dark-pink-bg: rgba(179, 45, 79, 0.16);
+
+// global variables
+$border-color: $swatch_steel_200;
+
+$background-0: $swatch_steel_100;
+$background-1: $swatch_steel_200;
+
+$background-active: $swatch_blue_100;
+$color-active: $swatch_blue_500;
+
+$status-color-success: $swatch_green_500;
+$status-bg-color-success: $swatch_green_100;
+$status-color-warning: $swatch_orange_500;
+$status-bg-color-warning: $swatch_orange_100;
+$status-color-danger: $swatch_red_500;
+$status-bg-color-danger: $swatch_red_100;
+$status-color-info: $swatch_blue_500;
+$status-bg-color-info: $swatch_blue_100;
+$status-color-disabled: $swatch_steel_500;
+$status-bg-color-disabled: $swatch_steel_100;
+$status-color-active: $swatch_purple_500;
+$status-bg-color-active: $swatch_purple_100;
+
+
+$DESKTOP_MIN_WIDTH: 614px;
+$DESKTOP_XS_MIN: $DESKTOP_MIN_WIDTH;
+$DESKTOP_SM_MIN: 727px;
+$DESKTOP_MD_MIN: 787px;
+$DESKTOP_LG_MIN: 871px;
+$DESKTOP_XL_MIN: 920px;
+$DESKTOP_XXL_MIN: 1149px;
+$MOBILE_IPHONE5_MIN: 320px;
+
+$DESKTOP_XS_MAX: $DESKTOP_SM_MIN - 1px;
+$DESKTOP_SM_MAX: $DESKTOP_MD_MIN - 1px;
+$DESKTOP_MD_MAX: $DESKTOP_LG_MIN - 1px;
+$DESKTOP_LG_MAX: $DESKTOP_XL_MIN - 1px;
+$DESKTOP_XL_MAX: $DESKTOP_XXL_MIN - 1px;
+$MOBILE_IPHONE5_MAX: 360px;

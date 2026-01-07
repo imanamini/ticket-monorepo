@@ -1,0 +1,30 @@
+<div
+  [class]="'step ' + flowStatusToClassMap[flowStatus]"
+  [ngClass]="{
+  'is-active': isActive,
+  'is-last': isLastStep,
+  'is-passed': isPassed,
+  'future-step': !isPassed && !isActive
+  }"
+
+>
+  <div class="side">
+    <div class="step-icon" [ngClass]="{'is-active': isActive, 'is-passed': isPassed}">
+      <ui-api-image *ngIf="step.icon && !isActive && !isPassed" [imageId]="step.icon"></ui-api-image>
+    </div>
+  </div>
+  <div class="content">
+    <h4 class="step-title">{{ step.label }}</h4>
+    <p *ngIf="isActive">
+      {{ step.description }}
+    </p>
+    <div class="actions" *ngIf="isActive && flowStatus === flowStatusEnum.ACTIVE">
+      <ui-button (clicked)="onActionClick()" appearance="FLAT-BLUE">
+        <div class="cta-button-content">
+          <div>{{ step.buttonLabel }}</div>
+          <div class="icon-arrow-left-blue"></div>
+        </div>
+      </ui-button>
+    </div>
+  </div>
+</div>

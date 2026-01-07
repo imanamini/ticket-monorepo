@@ -1,0 +1,7 @@
+<app-base-layout
+  [details]="details" (closeClicked)="closeClick()" (profileClicked)="profileClick()">
+  <app-stepper [steps]="steps" [currentIndex]="currentStepIndex" [status]="details?.status">
+    <div #container></div>
+  </app-stepper>
+</app-base-layout>
+

@@ -1,0 +1,13 @@
+<div #scroll (swipe)="swipe($event)" class="horizontal-scroll">
+  <ng-container *ngFor="let item of items; let i = index">
+    <div class="column">
+      <div class="content">
+        <ng-container [ngTemplateOutlet]="item.template"></ng-container>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<div *ngIf="showDots" class="nav-dots">
+  <span *ngFor="let item of items; let i = index" [ngClass]="{active: active === i}" class="dot">
+  </span>
+</div>

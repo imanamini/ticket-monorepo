@@ -1,0 +1,21 @@
+.close-icon {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: -3px;
+  margin-left: 6px;
+  background: url('../assets/icon-close.svg') no-repeat 0 0/100%;
+  position: absolute;
+  right: 24px;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid #F2F5F8;
+  padding: 24px
+}

@@ -1,0 +1,110 @@
+@import "../../../../global-styles/variables";
+
+$field-focus: rgba(63, 81, 181);
+$text-field-padding-in-sides: 1em;
+
+.label-floated-state {
+  top: -0.7em;
+  transform: scale(0.9);
+  right: 5px;
+  padding: 0 0.5em;
+}
+
+::ng-deep {
+  ui-select {
+    display: block;
+  }
+}
+
+:host ::ng-deep .select {
+  position: relative;
+  direction: rtl;
+  text-align: start;
+  width: 100%;
+  display: block;
+  padding: 4px $text-field-padding-in-sides;
+  box-sizing: border-box;
+  font-size: 14px;
+  box-shadow: 0 0 0 1px #666666;
+  transition: box-shadow 0.2s cubic-bezier(.25,.8,.25,1);
+  border-radius: 5px;
+
+  &::after {
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    width: 24px;
+    height: 11px;
+    content: ' ';
+    transform: translate(0, -50%);
+    background: url("./select-arrow-down.svg") no-repeat center/100%;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .body {
+    position: relative;
+    z-index: 1;
+  }
+
+  select {
+    border: none;
+    width: 100%;
+    font-size: 1em;
+    appearance: none;
+    background: #fff;
+    height: 33px;
+    &:focus {
+      outline: none;
+    }
+    &:focus + .label {
+      @extend .label-floated-state
+    }
+  }
+
+  .label {
+    position: absolute;
+    right: $text-field-padding-in-sides;
+    top: 50%;
+    cursor: pointer;
+    transform: translateY(-50%);
+    padding: 0;
+    background: #fff;
+    border-radius: 5px;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  }
+
+
+  &:hover:not(.is-disabled, .is-invalid) {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.87);
+  }
+
+  &.has-value {
+    .label {
+      @extend .label-floated-state
+    }
+  }
+
+  &.is-focused:not(.is-invalid) {
+    box-shadow: 0 0 0 2px $field-focus !important;
+    .label {
+      color: $field-focus !important;
+    }
+  }
+
+  &.is-invalid {
+    box-shadow: 0 0 0 2px #e91e63;
+    .label {
+      color: #e91e63;
+    }
+  }
+}
+
+
+.subscript {
+  font-size: 12px;
+  margin: 1.2em 0 0 0;
+  padding: 0 1em;
+}

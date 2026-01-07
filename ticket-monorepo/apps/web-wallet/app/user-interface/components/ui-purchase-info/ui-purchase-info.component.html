@@ -1,0 +1,41 @@
+<div class="purchase-info">
+
+  <div class="merchant-section">
+    <div class="merchant-logo">
+      <ui-image width="100%" [imageId]="purchaseInfo.purchase.business.userId"></ui-image>
+    </div>
+    <div class="merchant-details">
+      <div class="merchant-name">
+        {{'خرید از ' + purchaseInfo.purchase.business.name}}
+      </div>
+      <div class="merchant-amount">
+        <ui-currency [value]="purchaseInfo.purchase.amount"></ui-currency>
+      </div>
+    </div>
+  </div>
+
+  <div class="purchase-details-section">
+
+    <div class="purchase-detail-row">
+      <span class="purchase-icon wallet"></span>
+      <span class="purchase-title">موجودی کیف‌پول</span>
+      <ui-currency
+        class="purchase-amount"
+        [value]="purchaseInfo.walletBalance"
+      ></ui-currency>
+    </div>
+
+    <div class="purchase-detail-row" *ngIf="!sufficientBalance">
+      <span class="purchase-icon cash-in"></span>
+      <span class="purchase-title">
+        {{!!forcedPurchaseAmount ? 'حداقل مبلغ قابل افزایش' : 'نیازمند افزایش موجودی'}}
+      </span>
+      <ui-currency
+        class="purchase-amount"
+        [value]="forcedPurchaseAmount || (purchaseInfo.purchase.amount - purchaseInfo.walletBalance)"
+      ></ui-currency>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,50 @@
+@use '@angular/material' as mat;
+@import "./app/global-styles/variables";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+:root {
+  --mdc-text-button-container-height: 36px;
+  --mdc-text-button-label-text-size: 14px;
+  --mdc-snackbar-container-color: #2c3544;
+  --mdc-snackbar-container-shape: 12px;
+}
+
+$digipay-primary-palette: (
+  100: $swatch_blue_100,
+  200: $swatch_blue_200,
+  300: $swatch_blue_300,
+  400: $swatch_blue_400,
+  500: $swatch_blue_500,
+  700: $swatch_blue_700,
+  900: $swatch_blue_900,
+  contrast: (
+    100: $swatch_white_100,
+    200: $swatch_white_200,
+    300: $swatch_white_300,
+    400: $swatch_white_400,
+    500: $swatch_white_500,
+    700: $swatch_white_700,
+  )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$digipay-primary: mat.define-palette($digipay-primary-palette);
+$digipay-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$digipay-warn: mat.define-palette(mat.$pink-palette);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$digipay-theme: mat.define-light-theme($digipay-primary, $digipay-accent, $digipay-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme my-mixins for each component
+// that you are using.
+@include mat.all-component-themes($digipay-theme);

@@ -1,0 +1,171 @@
+<div class="body">
+  <header class="d-flex flex-row align-items-center gap-small  py-pony px-medium">
+    <div class="action" (click)="backToRepaymentList()"></div>
+    <span class="t-6 text-onback-medium">جزئیات تسهیلات</span>
+  </header>
+
+  <div class="d-flex flex-column gap-medium py-big  px-medium">
+    <div class="d-flex flex-row justify-content-space-between">
+      <span class="st-8 text-onback-high">تسهیلات درخواستی</span>
+      <span><span class="st-8 text-onback-medium">{{settlement().requestedAmount | number}}</span> <span
+        class="l-3 text-onback-medium"> ریال </span></span>
+    </div>
+    <div class="d-flex flex-column gap-minus pb-medium box ">
+      <div class="d-flex flex-row justify-content-space-between">
+        <span class="b-3 text-onback-medium">وضعیت </span>
+        <ngx-badge size="sm" [status]="badgeStatus()" mode="fill" type="text">
+          {{badgeSTitle()}}
+        </ngx-badge>
+      </div>
+      <ngx-divider
+        class="divider"
+        [color]="BorderColorsEnum.Light"
+        orientation="horizontal">
+      </ngx-divider>
+      <div class="d-flex flex-row justify-content-space-between">
+        <span class="b-3 text-onback-medium">بانک عامل </span>
+        <span class="c-3 text-onback-high">سامان</span>
+      </div>
+      <ngx-divider
+        class="divider"
+        [color]="BorderColorsEnum.Light"
+        orientation="horizontal">
+      </ngx-divider>
+      <div class="d-flex flex-row justify-content-space-between">
+        <span class="b-3 text-onback-medium">تعداد اقساط</span>
+        <span class="c-3 text-onback-high">۱ قسط</span>
+      </div>
+      <ngx-divider
+        class="divider"
+        [color]="BorderColorsEnum.Light"
+        orientation="horizontal">
+      </ngx-divider>
+      <div class="d-flex flex-row justify-content-space-between">
+        <span class="b-3 text-onback-medium">مهلت بازپرداخت</span>
+        <span class="c-3 text-onback-high">۹۰ روز</span>
+      </div>
+      <ngx-divider
+        class="divider"
+        [color]="BorderColorsEnum.Light"
+        orientation="horizontal">
+      </ngx-divider>
+      <div class="d-flex flex-column">
+        <div class="d-flex flex-row justify-content-space-between">
+          <div class="d-flex flex-row  align-items-center gap-micro">
+            <span class="b-3 text-onback-medium"> کارمزد تسهیلات</span>
+            @if(showDetail()){
+            <div class="arrow-up" (click)="toggleDetail()"></div>
+            }
+            @else{
+            <div class="arrow-down" (click)="toggleDetail()"></div>
+            }
+          </div>
+          <span class="b-2">{{ totalAmount() | number}} ریال </span>
+        </div>
+        @if(showDetail()){
+        <div class="settlement-info-card">
+          <div class="info-card-note-list">
+            <div class="info-card-note-item l-3 text-onback-low">
+              <div class="d-flex flex-row  align-items-center justify-content-space-between gap-micro mb-small">
+                <span> هزینه مالی بانک(٪۲۳ سالیانه)</span>
+                <span class="c-2">
+        {{( settlement().actualCreditAllocation?.fundProviderInterest ) | number}}  ریال
+                </span>
+              </div>
+            </div>
+            <div class="info-card-note-item l-3 text-onback-low">
+              <div class="d-flex flex-row  align-items-center justify-content-space-between gap-micro">
+                <span>کارمزد خدمات</span>
+                <span class="c-2">
+        {{bankAmount() | number}} ریال
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+      <ngx-divider
+        class="divider"
+        [color]="BorderColorsEnum.Light"
+        orientation="horizontal">
+      </ngx-divider>
+      <div class="d-flex flex-row justify-content-space-between">
+        <span class="b-3 text-onback-medium">تاریخ واریز تسهیلات</span>
+        <span
+          class="c-3 text-onback-high">{{settlement()?.actualCreditAllocation?.settlementDate | persianDatePipe}}</span>
+      </div>
+    </div>
+    <div class="d-flex flex-column gap-small">
+      <div class="d-flex flex-row justify-content-space-between">
+        <span class="st-8 text-onback-high">بازپرداخت</span>
+        @if(isConfirmedStatus()){
+        <span>پرداخت شده</span>
+        }@else{
+        <span>
+        <span>{{Math.abs(settlement().repaymentRemainPeriod)}}</span>
+        <span>{{settlement().repaymentRemainPeriod <= 0 ? ' روز گذشته ' : 'روز مانده'}}</span>
+        </span>
+        }
+      </div>
+      <div class="d-flex flex-column gap-minus radius-minus py-medium  px-small gray-box">
+        <div class="d-flex flex-row justify-content-space-between">
+          <span class="b-3 text-onback-medium">مبلغ بازپرداخت</span>
+          <span><span class="c-3 text-onback-medium">{{settlement()?.requestedAmount  | number}}</span> <span
+            class="l-3 text-onback-medium"> ریال </span></span>
+        </div>
+        <div class="d-flex flex-row justify-content-space-between">
+          <span class="b-3 text-onback-medium">تاریخ بازپرداخت</span>
+          <span class="b-3 text-onback-medium">{{settlement()?.repaymentDate ? (settlement()?.repaymentDate  | persianDatePipe) : (settlement()?.dueDate | persianDatePipe)}}</span>
+        </div>
+        @if(fineAmount() > 0){
+        <div class="d-flex flex-row justify-content-space-between">
+         <span class="b-3 text-onback-medium">جریمه روزانه (٪۷)</span>
+         <span class="text-onback-error"><span class="c-3 ">{{fineAmount() | number}}</span> <span
+              class="l-3 "> ریال </span></span>
+          </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="306" height="1" viewBox="0 0 306 1" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M1 0.499954H305V0.500054H1V0.499954Z" stroke="#C9CBCF" stroke-linecap="round" stroke-dasharray="3 3"/>
+        </svg>
+         <div class="d-flex flex-row justify-content-space-between">
+         <span class="b-3 text-onback-medium">مبلغ بازپرداخت+ جریمه روزانه</span>
+         <span class="text-onback-medium"><span class="c-3 ">{{(settlement().requestedAmount + fineAmount())  | number}}</span> <span
+              class="l-3 "> ریال </span></span>
+          </div>
+        }
+      </div>
+
+    </div>
+    @if(!isConfirmedStatus()){
+    <ngx-divider
+      class="divider"
+      [color]="BorderColorsEnum.Light"
+      orientation="horizontal">
+    </ngx-divider>
+    <div class="callout radius-medium p-medium ">
+    <div class="d-flex flex-column gap-small mb-medium">
+      <div class="d-flex flex-row gap-low">
+        <div class="blink-icon"></div>
+        <span class="st-8 text-onback-high">نحوه بازپرداخت</span>
+      </div>
+      <p class="c-2 text-onback-medium">قبل از تاریخ سررسید، مبلغ بازپرداخت را به شماره شبا بانک سامان خود که توسط
+        بانک برای واریز اقساط شما ایجاد شده، واریز کنید.</p>
+    </div>
+    <ngx-divider
+      class="divider"
+      [color]="BorderColorsEnum.Tint"
+      orientation="horizontal">
+    </ngx-divider>
+    <div class="d-flex flex-row p-low justify-content-space-between">
+  <span *ngIf="!isCopy()" (click)="copyToClipboard()" class="copy">
+    <img alt="copy-logo" src="assets/icons/copy-blue.svg"/>
+  </span>
+      <ngx-badge *ngIf="isCopy()" size="sm" status="success" mode="fill">
+        کپی شد!
+      </ngx-badge>
+      <span class="b-2 text-onback-high">{{settlement().iban}}</span>
+      </div>
+    </div>
+    }
+  </div>
+</div>

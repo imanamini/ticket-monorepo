@@ -1,0 +1,72 @@
+@import "../../../styles/layout/variables";
+
+:host {
+  display: block;
+}
+
+.checklist-item {
+  font-size: 14px;
+  color: $swatch_steel_700;
+  border-radius: 8px;
+  border: 1px solid $swatch_steel_200;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.checkbox {
+  width: 1em;
+  height: 1em;
+  font-size: 20px;
+  border: 2px solid #979797;
+  border-radius: 50%;
+  margin-inline-end: 8px;
+}
+
+.is-checked {
+  background: $swatch_blue_100;
+  border-color: $swatch_blue_500;
+
+  .title {
+    color: $swatch_blue_500;
+  }
+
+  .checkbox {
+    border-color: $swatch_blue_500;
+    background: url("check-blue.svg") no-repeat 0 0/100%;
+  }
+}
+
+.flex-row {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-size: 14px;
+  color: $swatch_steel_700;
+}
+
+.title-bar {
+
+}
+
+.subtitle {
+  font-size: 10px;
+  margin-bottom: 12px;
+  color: #6E798D;
+}
+
+.tags {
+  flex-wrap: wrap;
+  list-style-type: none;
+  gap: 8px;
+
+  li {
+    color: #2C3544;
+    padding: 0 8px;
+    background: $swatch_steel_100;
+    border: 1px solid $swatch_steel_200;
+    border-radius: 4px;
+  }
+}
+

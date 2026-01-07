@@ -1,0 +1,80 @@
+@import "variables";
+@import "partials/reset";
+@import "partials/page-content";
+@import "partials/text";
+@import "partials/form";
+@import "partials/buttons";
+@import "partials/bottom-sheet";
+@import "partials/dialog";
+@import "partials/mat-customizations";
+@import "font";
+
+/* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
+body, input, textarea, label, select, button, .mat-mdc-simple-snack-bar, .mat-mdc-form-field-error, .mat-tab-label-content,
+.mat-line {
+  font-family: $primary-font !important;
+}
+
+#global-styles {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  > :not(router-outlet) {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+app-root, #main-wrapper, app-global-styles {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+html {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.container {
+  margin: auto;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.section-with-padding {
+  padding: 64px 0;
+}
+
+#layout > *:nth-child(2) > .section-with-padding {
+  padding-top: 128px;
+}
+
+@media (max-width: 1280px) {
+  .container {
+    max-width: 650px;
+  }
+  .section-with-padding {
+    padding: 32px 0;
+  }
+}
+
+@media (max-width: 744px) {
+  .container {
+    max-width: 92%;
+  }
+  #layout > *:nth-child(2) > .section-with-padding {
+    padding-top: 80px;
+  }
+  .section-with-padding {
+    padding: 16px 0;
+  }
+}

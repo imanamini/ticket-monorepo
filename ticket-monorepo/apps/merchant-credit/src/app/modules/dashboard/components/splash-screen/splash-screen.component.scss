@@ -1,0 +1,57 @@
+.loading-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.logo {
+  position: absolute;
+  opacity: 0;
+}
+
+.digipay {
+  width: 72px;
+  height: 72px;
+  animation: showLogoDigipay 0.5s forwards 0.5s;
+}
+
+.digipay-long {
+  width: 96px;
+  height: 48px;
+  bottom: 64px;
+  animation: showLogoDigipayLong 0.5s forwards 1s;
+}
+
+@keyframes showLogoDigipay {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes showLogoDigipayLong {
+  0% {
+    opacity: 0;
+    transform: translateY(64px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .digipay {
+    width: 54px;
+    height: 54px;
+    animation: showLogoDigipay 0.5s forwards 0.5s;
+  }
+}

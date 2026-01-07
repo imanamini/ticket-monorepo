@@ -1,0 +1,57 @@
+@import "@digipay/base-style/styleguide";
+
+@keyframes pinInputError {
+  33% {
+    transform: translateX(-5%);
+  }
+  50% {
+    transform: translateX(5%);
+  }
+  75% {
+    transform: translateX(-5%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.pin-input {
+  .inputs {
+    direction: ltr;
+
+    &.has-error {
+      animation: 0.4s pinInputError forwards;
+      animation-iteration-count: 1;
+
+      .circle, .circle.filled {
+        border: 1px solid var(--border-error);
+        background-color: var(--surface-error-tint);
+      }
+
+      .input {
+        input, input:focus {
+          border: 1px solid var(--border-error);
+          background-color: var(--surface-error-tint);
+        }
+      }
+    }
+
+    .input {
+
+      input {
+        text-align: center;
+        width: 48px;
+        height: 48px;
+        border: 1px solid var(--border-light);
+        border-radius: 12px;
+
+        &:focus {
+          background-color: var(--surface-brand-tint);
+          border-color: var(--surface-brand);
+          outline: none;
+        }
+      }
+    }
+
+  }
+}

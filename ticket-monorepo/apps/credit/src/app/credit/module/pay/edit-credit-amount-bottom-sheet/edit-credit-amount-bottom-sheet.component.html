@@ -1,0 +1,23 @@
+<div class="edit-amount-bottom-sheet">
+  <div class="enter-amount">
+    <p class="label">مبلغی که از اعتبار شما برداشت می‌شود:</p>
+    <ui-form-field
+      [type]="'large-amount'"
+      [ngModel]="creditAmount"
+      (ngModelChange)="amountValueChanged($event)"
+      [minAmount]="minAmount"
+      [maxAmount]="maxAmount"
+      [maxSize]="14"
+    >
+    </ui-form-field>
+  </div>
+  <div class="cta-wrapper">
+    <credit-ui-button
+      class="full-width-button"
+      (buttonClick)="confirmButton()"
+      [disabled]="!amountIsValid"
+      [styles]="{width: '100%'}">
+      تایید و ادامه
+    </credit-ui-button>
+  </div>
+</div>

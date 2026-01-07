@@ -1,0 +1,48 @@
+@import "variables";
+
+.ui-hint-message {
+  background-color: $swatch_steel_100;
+  border-radius: 12px;
+  padding: 0 16px;
+
+  .ui-hint-message-content {
+    padding: 16px 30px 16px 0;
+    position: relative;
+    font-size: 12px;
+    line-height: 20px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      box-sizing: border-box;
+      border-radius: 50%;
+      background-color: $swatch_blue_400;
+      border: 6px solid $swatch_blue_200;
+      top: 18px;
+      right: 2px;
+    }
+  }
+}
+
+.ui-hint-message-footer {
+  border-top: 1px solid $swatch_steel_200;
+  display: flex;
+  justify-content: flex-end;
+
+  .cta-button-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    line-height: 20px;
+
+    .icon-arrow-left-blue {
+      width: 20px;
+      height: 20px;
+      background: url("../../../../assets/icons/arrow-left-blue-500.svg") center center no-repeat;
+      background-size: 100% 100%;
+    }
+  }
+}

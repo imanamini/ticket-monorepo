@@ -1,0 +1,60 @@
+<div *ngIf="this.isLoading; else showContent">
+  <ui-preparing [showSubtitle]="false"></ui-preparing>
+</div>
+
+
+<ng-template #showContent>
+  <ng-container *ngIf="resultData?.result?.status !== 9208">
+    <ui-content-card
+      class="direct-debit-result"
+      [id]="{closeButton: GA_DIRECT_DEBIT_ID_CONTRACT.RETURN_TO_MERCHANT_CLICK}"
+      [title]="card.title"
+      [hasHeaderAction]="true"
+      [hasFooter]="false"
+      (headerCloseActionClicked)="navigateService.toCallback()"
+    >
+
+      <ui-error-request
+        *ngIf="tokenExpired; else showError"
+        [errorMessage]="'خطا در اعتبارسنجی'"
+        [hasButton]="false"
+      ></ui-error-request>
+
+      <ng-template #showError>
+        <ui-error-request
+          *ngIf="!tokenExpired && !contract; else showContractsResult"
+          (clicked)="getTicketInfo()"
+        ></ui-error-request>
+      </ng-template>
+
+      <ng-template #showContractsResult>
+
+        <ng-container>
+
+          <p class="description" [ngStyle]="card.description.style">
+            <span class="icon" [style.background]="'url(' + card.iconPath + ') center no-repeat'"></span>
+            {{card.description.text}}
+          </p>
+
+          <ng-container [ngSwitch]="resultData.action.type">
+
+            <ng-container *ngSwitchCase="ActionTypeEnum.CASH_IN">
+              <app-cash-in-result [contractInfo]="contractInfo"></app-cash-in-result>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="ActionTypeEnum.DEFAULT">
+              <app-digiplus-result [contractId]="resultData.contractId"
+                                   [resultData]="resultData"
+                                   [contractInfo]="contractInfo">
+              </app-digiplus-result>
+            </ng-container>
+
+          </ng-container>
+
+        </ng-container>
+
+      </ng-template>
+
+    </ui-content-card>
+  </ng-container>
+</ng-template>

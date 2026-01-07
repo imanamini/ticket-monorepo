@@ -1,0 +1,12 @@
+<div class="index" [id]="uniqueId">
+  <ng-container *ngFor="let tab of tabs">
+    <label for="radio{{tab.status}}" (click)="toggleTabs(tab.status)"
+           [ngClass]="{active:currentOption === tab.status}">
+      <input type="radio" name="tabToggle" id="radio{{tab.status}}"
+             [checked]="currentOption === tab.status">  {{tab.label}}
+    </label>
+  </ng-container>
+</div>
+<div class="contents">
+  <ng-content></ng-content>
+</div>

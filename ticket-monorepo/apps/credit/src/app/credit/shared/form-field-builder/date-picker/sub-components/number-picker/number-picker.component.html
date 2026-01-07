@@ -1,0 +1,8 @@
+<div class="wrapper">
+  <app-form-field
+    type="wheel-select"
+    [options]="list"
+    [ngModel]="value"
+    (ngModelChange)="selectChange($event)"
+  ></app-form-field>
+</div>

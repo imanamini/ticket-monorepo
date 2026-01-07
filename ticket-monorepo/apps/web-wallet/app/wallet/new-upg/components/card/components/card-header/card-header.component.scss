@@ -1,0 +1,94 @@
+@import "src/app/layout/mixins/device";
+@import "src/app/layout/mixins/flex";
+@import "src/app/layout/variables";
+
+.tgs-header {
+  @include flex-center-between;
+  padding: 0 24px;
+  height: 64px;
+  border-bottom: 1px solid #d3dbe1;
+
+  .right-box {
+    display: flex;
+    align-items: center;
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-left: 16px;
+      cursor: pointer;
+
+      &.exit-icon {
+        background-image: url("../../../../../../../assets/icon/close.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      &.back-icon {
+        background-image: url("../../../../../../../assets/icon/back.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        transform: rotate(180deg);
+      }
+    }
+
+    .header-title {
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.11;
+      letter-spacing: normal;
+      color: #4d596b;
+    }
+  }
+
+  .left-box {
+    @include flex-center;
+
+    .header-logo {
+      width: 24px;
+      height: 24px;
+      background-image: url("../../../../../../../assets/logo/digipay.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    ::ng-deep {
+      .header-remaining {
+        font-size: 10px !important;
+      }
+    }
+  }
+}
+
+
+@include mediaMobile() {
+  .tgs-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 2;
+    border-bottom: none;
+    background-color: white;
+
+    .right-box {
+      .header-title {
+        display: none;
+      }
+    }
+
+    .left-box {
+      .header-logo {
+        display: none;
+      }
+    }
+  }
+
+  ::ng-deep .tgs-bottom-sheet {
+    max-height: unset !important;
+
+    .tgs-header {
+      display: none !important;
+    }
+  }
+}

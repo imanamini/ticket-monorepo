@@ -1,0 +1,13 @@
+<div class="pagination" *ngIf="pages">
+  <button class="pagination-arrow" [style]="styles" [class.disabled]="currentPage === 0" (click)="goToPreviousPage()">
+    <div class="icon-arrow-right"></div>
+  </button>
+  <div class="pagination-pages" *ngFor="let page of pages">
+    <button [style]="styles" (click)="goToPage(page.value)" [ngClass]="{'active':currentPage === page.value }">
+      <span>{{ page.label }}</span>
+    </button>
+  </div>
+  <button class="pagination-arrow" [disabled]="getLastPage() === currentPage + 1" (click)="goToNextPage()">
+    <div class="icon-arrow-left"></div>
+  </button>
+</div>

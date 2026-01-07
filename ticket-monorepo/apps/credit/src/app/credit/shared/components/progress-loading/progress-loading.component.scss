@@ -1,0 +1,45 @@
+.progress {
+    background: #F2F5F8;
+    justify-content: flex-start;
+    position: relative;
+    display: flex;
+    height: 4px;
+    width: 140px;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 25px;
+}
+
+.progress-value {
+    animation: load 3s normal forwards;
+    background: #3C6DFF;
+    height: 4px;
+    width: 0;
+}
+
+@keyframes load {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+#credit-home {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 140px;
+        height: auto;
+    }
+}

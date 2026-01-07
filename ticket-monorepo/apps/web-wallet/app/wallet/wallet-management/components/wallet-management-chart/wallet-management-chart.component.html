@@ -1,0 +1,16 @@
+<div class="chart">
+  <canvas
+    baseChart
+    [data]="chartData"
+    [options]="options"
+    [legend]="false"
+    [type]="'doughnut'">
+  </canvas>
+
+  <div class="gift-card-chart-detail">
+    <div class="total-text">کل موجودی</div>
+    <div class="amount">{{balanceInformation?.balance | separator}}</div>
+    <div class="rial-text">ریال</div>
+  </div>
+
+</div>

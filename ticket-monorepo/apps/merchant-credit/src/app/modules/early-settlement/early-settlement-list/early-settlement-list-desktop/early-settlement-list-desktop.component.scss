@@ -1,0 +1,133 @@
+@import "../../../../styles/layout/variables";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: $swatch_steel_100;
+  height: 100vh;
+}
+
+.list-container {
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 15px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.header-section {
+  flex: 0 0 auto;
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  overflow: auto;
+
+  .page-title {
+    font-size: 18px;
+  }
+
+  .filters-wrapper {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    font-size: 12px;
+
+    .filter-title {
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+
+    .filter-item {
+      padding: 6px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      color: $swatch_steel_500;
+
+      &:hover {
+        background-color: $swatch_steel_100;
+        color: $swatch_steel_700;
+      }
+
+      &.active {
+        background-color: $swatch_blue_100;
+        color: $swatch_blue_500;
+      }
+    }
+  }
+}
+
+.main-section {
+  flex: 1 1 auto;
+  padding: 15px;
+  background-color: white;
+  border-radius: 16px;
+  width: 100%;
+  overflow: hidden;
+
+  .main-table {
+    min-width: 100%;
+    border-spacing: 0;
+
+    thead {
+      background-color: $swatch_steel_100;
+      text-align: right;
+
+      th {
+        padding: 12px;
+        background-color: $swatch_steel_100;
+
+        &:first-child {
+          border-radius: 0 5px 5px 0;
+        }
+
+        &:last-child {
+          border-radius: 5px 0 0 5px;
+        }
+      }
+
+      .arrow-down {
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        vertical-align: bottom;
+        background: url("../../../../../assets/icons/arrow-down.svg") center center no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: 12px 16px;
+
+          &.empty-message {
+            padding-top: 48px;
+            text-align: center;
+          }
+        }
+      }
+
+      .item-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 100px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 8px;
+      }
+    }
+  }
+}
+
+.footer-section {
+  flex: 0 0 auto;
+  padding: 24px;
+}
+

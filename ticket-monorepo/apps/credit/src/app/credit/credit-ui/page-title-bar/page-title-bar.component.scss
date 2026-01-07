@@ -1,0 +1,85 @@
+@import "../../../global-styles/variables";
+
+$bar-padding: 18px;
+
+.page-title-bar {
+  display: flex;
+  text-align: center;
+  padding: $bar-padding;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  align-items: center;
+  direction: ltr;
+
+  .title {
+    flex-grow: 1;
+    color: rgba(0, 0, 0, 0.70);
+    direction: rtl;
+
+    span {
+      display: block;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      font-weight: 200;
+      margin: 8px 0 0;
+    }
+  }
+
+  .right-action, .left-action {
+    display: flex;
+    align-items: center;
+    top: $bar-padding - 2;
+  }
+
+  .right-action {
+    right: $bar-padding;
+
+    .right-title {
+      padding-right: 5px;
+    }
+  }
+
+  .left-action {
+    left: $bar-padding;
+
+    a {
+      cursor: pointer;
+      color: $primary-color;
+      font-size: 14px;
+    }
+  }
+
+  img {
+    height: 24px;
+    cursor: pointer;
+  }
+
+  .go-back {
+    transform: rotateY(180deg); // icon should be flipped
+  }
+
+  .close-text {
+    color: $secondary-color;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  &.invert-color {
+    .invert-text {
+      color: #fff;
+    }
+
+    .invertable {
+      filter: invert(1);
+    }
+  }
+
+  &.right-aligned {
+    .title {
+      padding-right: 16px;
+      text-align: right;
+    }
+  }
+}
