@@ -1,0 +1,243 @@
+@switch (mode()) {
+  @case ('horizontal') {
+    @if (!isLoading()) {
+      <div class="d-flex align-items-center gap-small  {{ classes() }}">
+        <div class="d-flex justify-content-center align-items-center radius-minus surface-back p-small">
+          <ui-api-image
+            [imageId]="store().logoImageId"
+            [width]="'24px'"
+            [height]="'24px'"
+            [fallbackImage]="'assets/fallback/digipay-logo-24x24-fallback.svg'"
+            [showLoading]="loadingEffect()"
+            [lazy]="true"
+            [lazyConfig]="{ root: '.dpx-main-layout-body' }"
+          ></ui-api-image>
+        </div>
+        <span class="c-2 text-onback-high">{{ store().title }}</span>
+      </div>
+    } @else {
+      <div class="d-flex align-items-center gap-small">
+        <lib-ngx-skeleton-loading
+          [width]="'40px'"
+          [height]="'40px'"
+          [loadingEffect]="loadingEffect()"
+        ></lib-ngx-skeleton-loading>
+        <lib-ngx-skeleton-loading
+          [width]="'100px'"
+          [height]="'18px'"
+          [loadingEffect]="loadingEffect()"
+        ></lib-ngx-skeleton-loading>
+      </div>
+    }
+  }
+  @case ('vertical-medium') {
+    @if (!isLoading()) {
+      <div class="d-flex flex-column gap-small  {{ classes() }}">
+        <div class="cover-container size-80 radius-medium overflow-hidden">
+          <ui-api-image
+            [imageId]="store().coverImageId"
+            [width]="'120%'"
+            [height]="'110%'"
+            class="vertical-ui-image"
+            [fallbackImage]="'assets/fallback/product-on-back-fallback.png'"
+            [styles]="{ borderRadius: '16px', objectFit: 'cover' }"
+            [showLoading]="loadingEffect()"
+            [lazy]="true"
+            [lazyConfig]="{ root: '.dpx-main-layout-body' }"
+          ></ui-api-image>
+          <div class="logo-container radius-rounded p-tiny surface-glass-high-contrast">
+            <ui-api-image
+              [classes]="'radius-rounded'"
+              [imageId]="store().logoImageId"
+              [width]="'21px'"
+              [height]="'21px'"
+              [showLoading]="loadingEffect()"
+              [fallbackImage]="'assets/fallback/digipay-logo-24x24-fallback.svg'"
+              [lazy]="true"
+              [lazyConfig]="{ root: '.dpx-main-layout-body' }"
+            ></ui-api-image>
+          </div>
+        </div>
+        <span class="c-3 text-onback-medium">{{ store().title }}</span>
+      </div>
+    } @else {
+      <div class="d-flex flex-column gap-small">
+        <lib-ngx-skeleton-loading
+          [width]="'80px'"
+          [height]="'80px'"
+          [borderRadius]="'16px'"
+          [loadingEffect]="loadingEffect()"
+        ></lib-ngx-skeleton-loading>
+        <lib-ngx-skeleton-loading
+          [width]="'100%'"
+          [height]="'21px'"
+          [loadingEffect]="loadingEffect()"
+        ></lib-ngx-skeleton-loading>
+      </div>
+    }
+  }
+  @case ('vertical-large') {
+    @if (!isLoading()) {
+      <div class="position-relative pt-tiny">
+        @if (store().badges && store().badges.length > 0) {
+          <div class="badges">
+            <ngx-badge
+              [status]="store()?.badges?.[0]?.status ?? 'info'"
+              [type]="'text'"
+              [mode]="store()?.badges?.[0]?.mode ?? 'fill'"
+            >
+              {{ store()?.badges?.[0]?.content }}
+            </ngx-badge>
+          </div>
+        }
+        <div class="d-flex flex-column  {{ classes() }}">
+          <div class="cover-container size-112 radius-medium overflow-hidden mb-small">
+            <ui-api-image
+              [imageId]="store().coverImageId"
+              [width]="'120%'"
+              [height]="'110%'"
+              class="vertical-ui-image"
+              [styles]="{ borderRadius: '16px', objectFit: 'cover' }"
+              [fallbackImage]="'assets/fallback/product-on-back-fallback.png'"
+              [showLoading]="loadingEffect()"
+              [lazy]="true"
+              [lazyConfig]="{ root: '.dpx-main-layout-body' }"
+            ></ui-api-image>
+            <div class="logo-container radius-rounded p-tiny surface-glass-high-contrast">
+              <ui-api-image
+                [classes]="'radius-rounded'"
+                [imageId]="store().logoImageId"
+                [width]="'24px'"
+                [height]="'24px'"
+                [fallbackImage]="'assets/fallback/digipay-logo-24x24-fallback.svg'"
+                [showLoading]="loadingEffect()"
+                [lazy]="true"
+                [lazyConfig]="{ root: '.dpx-main-layout-body' }"
+              ></ui-api-image>
+            </div>
+          </div>
+          <span class="st-8 text-onback-high text-wrap">{{ store().title }}</span>
+          <span class="c-3 text-onback-mediums w-112 text-ellipsis text-nowrap overflow-hidden">{{ store().subtitle }}</span>
+        </div>
+      </div>
+    } @else {
+      <div class="d-flex flex-column gap-small">
+        <lib-ngx-skeleton-loading
+          [width]="'80px'"
+          [height]="'80px'"
+          [borderRadius]="'16px'"
+          [loadingEffect]="loadingEffect()"
+        ></lib-ngx-skeleton-loading>
+        <lib-ngx-skeleton-loading
+          [width]="'100%'"
+          [height]="'21px'"
+          [loadingEffect]="loadingEffect()"
+        ></lib-ngx-skeleton-loading>
+      </div>
+    }
+  }
+  @case ('logo-only') {
+    <div class="d-flex flex-column align-items-center justify-content-start cursor-pointer">
+      <div
+        class="icon-only-logobox radius-rounded d-flex align-items-center justify-content-center p-pony {{
+          backgroundMode() === 'back' ? 'surface-back' : 'surface-elevated'
+        }}"
+      >
+        @if (store().auction) {
+          <div class="icon-only-auction-badge">
+            <ngx-badge
+              [status]="'error'"
+              [type]="'icon'"
+              [circularIcon]="true"
+              [size]="'lg'"
+            >
+              <ngx-icon
+                [type]="'due'"
+                [secondaryColor]="'#F9441F'"
+                [name]="'discount'"
+                [iconSize]="'24px'"
+              />
+            </ngx-badge>
+          </div>
+        }
+        <ui-api-image
+          [height]="'44px'"
+          [width]="'44px'"
+          [classes]="'radius-rounded'"
+          [imageId]="store().logoImageId"
+          [showLoading]="loadingEffect()"
+          [lazy]="true"
+          [lazyConfig]="{ root: '.dpx-main-layout-body' }"
+        ></ui-api-image>
+      </div>
+      <div class="text-align-center c-2 mt-low text-onback-medium">{{ store().title | summarize: 15 }}</div>
+    </div>
+  }
+  @case ('with-details') {
+    @if (store()?.trackingCode) {
+      <div
+        class="with-details"
+        [style.width.px]="size() === 'large' ? 182 : 151"
+        [ngClass]="{ 'surface-elevated': backgroundMode() === 'elevated', 'surface-back': backgroundMode() !== 'elevated' }"
+      >
+        <div class="cover">
+          <ui-api-image
+            [classes]="'store-img'"
+            [imageId]="store()?.coverImageId ?? ''"
+            [width]="'100%'"
+            [showLoading]="loadingEffect()"
+            [lazy]="true"
+            [lazyConfig]="{ root: '.dpx-main-layout-body' }"
+          ></ui-api-image>
+          <common-stores-logo-with-rate
+            [logoImageId]="store()?.logoImageId ?? ''"
+            [score]="store()?.score?.score"
+          ></common-stores-logo-with-rate>
+          <common-stores-payment-method-badges [paymentMethods]="store()?.paymentMethods ?? []"></common-stores-payment-method-badges>
+        </div>
+        <div class="mx-small">
+          <span class="c-1 mt-low mb-tiny">{{ store()?.title }}</span>
+          <div class="d-flex align-items-center gap-micro l-2 text-onback-low">
+            @if (storeCategoryTitle()) {
+              <ngx-icon
+                [name]="StoreCategoryToIconMapper[store().categories[0]]"
+                [iconSize]="'16px'"
+              ></ngx-icon>
+              <span>{{ storeCategoryTitle() }}</span>
+            }
+
+            @if (distance() && (distance() ?? 0) < 2000000) {
+              <div class="mr-auto">
+                <ngx-badge
+                  [status]="'info'"
+                  [mode]="'fill'"
+                  [size]="'tiny'"
+                >
+                  {{ distance() ?? 0 | distance }}
+                </ngx-badge>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    } @else {
+      <div class="d-flex flex-column gap-tiny">
+        <lib-ngx-skeleton-loading
+          [width]="size() === 'large' ? '182px' : '151px'"
+          [height]="'71px'"
+          [loadingEffect]="loadingEffect()"
+        ></lib-ngx-skeleton-loading>
+        <lib-ngx-skeleton-loading
+          [width]="'50px'"
+          [height]="'18px'"
+          [loadingEffect]="loadingEffect()"
+        ></lib-ngx-skeleton-loading>
+        <lib-ngx-skeleton-loading
+          [width]="'70px'"
+          [height]="'18px'"
+          [loadingEffect]="loadingEffect()"
+        ></lib-ngx-skeleton-loading>
+      </div>
+    }
+  }
+}

@@ -1,0 +1,47 @@
+<div class="w-100 surface-elevated">
+  @if (showGrid()) {
+    <div
+      class="posts-grid w-100 no-select"
+      [ngStyle]="gridColumns()"
+      commonUtilitiesScrolledToEnd
+      (scrolledToEnd)="handleScrolledToEnd()"
+    >
+      @for (post of posts(); track post.documentId) {
+        <common-social-post-preview
+          [loading]="false"
+          [mode]="gridMode()"
+          [postData]="post"
+          (click)="handlePostClick(post.postId)"
+        ></common-social-post-preview>
+      }
+      @if (loading()) {
+        @for (_ of rangeCreator(columns()); track $index) {
+          <common-social-post-preview
+            [mode]="gridMode()"
+            [loading]="true"
+          ></common-social-post-preview>
+        }
+      }
+    </div>
+  }
+
+  @if (showFirstLoadingSkeleton()) {
+    <div class="posts-grid w-100">
+      @for (_ of rangeCreator(6); track $index) {
+        <common-social-post-preview
+          [loading]="true"
+          [mode]="gridMode()"
+        ></common-social-post-preview>
+      }
+    </div>
+  }
+  <!-- End Posts Grid -->
+
+  <!-- No Item -->
+  @if (isNoItemsVisible()) {
+    <div class="w-100 d-flex justify-content-center align-items-center">
+      <common-ui-components-no-item [description]="'هیچ محصولی وجود ندارد!'"></common-ui-components-no-item>
+    </div>
+  }
+  <!-- End No Item -->
+</div>

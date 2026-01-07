@@ -1,0 +1,27 @@
+<div class="d-flex gap-plus flex-column justify-content-space-between">
+  <div class="d-flex gap-small">
+    <ngx-icon type="bold" [name]="'link'" iconSize="30px"></ngx-icon>
+    <span class="fw-bold fs-16">لینک پرداخت</span>
+  </div>
+
+  <div class="d-flex flex-column">
+    <div class="d-flex justify-content-space-between pb-pony border-b-100 border-color-air w-100">
+      <span class="b-2 text-onback-disabled">مبلغ توافق شده</span>
+      <span class="b-2 text-onback-low">{{ data().paymentLink.amount| number }} ریال</span>
+    </div>
+    <div class="d-flex justify-content-space-between py-pony border-b-100 border-color-air w-100">
+      <span class="b-2 text-onback-disabled">کسب‌وکار</span>
+      <span class="b-2 text-onback-low">{{ data().requestInfo.merchantName }}</span>
+    </div>
+    <div class="d-flex justify-content-space-between py-pony border-b-100 border-color-air w-100">
+      <span class="b-2 text-onback-disabled">زمان اعتبار</span>
+      <span class="b-2 text-onback-low">{{ time() }} دقیقه</span>
+    </div>
+  </div>
+
+  <escrow-payment-link-description [config]="descriptionConfig" (done)="onNavigate()"></escrow-payment-link-description>
+  <ngx-button [mode]="'form'" [size]="'large'" [style]="'fill'" [fullWidth]="true" [isLoading]="loading()"
+    (clickHandler)="onSubmit()">
+    تایید و ساخت
+  </ngx-button>
+</div>

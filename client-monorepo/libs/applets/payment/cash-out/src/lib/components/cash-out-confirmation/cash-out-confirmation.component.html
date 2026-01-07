@@ -1,0 +1,85 @@
+<div class="d-flex flex-column h-100 justify-content-space-between gap-huge">
+  <div class="d-flex flex-column gap-medium">
+    <span class="d-flex fw-bold fs-16 gap-small align-items-center">
+      <common-icon-dp-icon
+        [icon]="'wallet'"
+        [iconType]="'bold'"
+      ></common-icon-dp-icon>
+      بررسی اطلاعات برداشت
+    </span>
+
+    <div class="d-flex flex-column gap-small">
+      <div class="d-flex justify-content-space-between align-items-center pb-small border-b-100 border-color-air">
+        <p class="b-2 text-onback-disabled">برداشت از</p>
+        <p class="b-1 text-onback-low">کیف پول</p>
+      </div>
+      <div class="d-flex justify-content-space-between align-items-center pb-small gap-small">
+        <p class="b-2 text-onback-disabled">انتقال به</p>
+        <div class="d-flex gap-small text-onback-low pan align-items-center">
+          {{ formattedPan() }}
+          <ui-api-image
+            [imageId]="data().card.bankLogoImageId || ''"
+            width="32px"
+          ></ui-api-image>
+        </div>
+      </div>
+      <div class="d-flex p-minus flex-row align-items-start radius-minus surface-back gap-small mb-small pb-mega">
+        <span class="fs-14 text-onback-medium">
+          <div class="d-flex gap-small">
+            <div class="point"></div>
+            <span class="fs-16 fw-bold">نکات مهم</span>
+          </div>
+          <div class="note d-flex flex-column my-medium mx-pony">
+            <div class="d-flex gap-small align-items-start">
+              <div class="dot"></div>
+              <span class="message">{{ transferTimeMessage() }}</span>
+            </div>
+            <div class="d-flex gap-small align-items-end">
+              <div class="dot"></div>
+              <span class="last">در شرایط اختلال شبکه بانکی، امکان افزایش زمان واریز تا ۷۲ ساعت وجود دارد.</span>
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer p-plus border-t-100 border-color-air surface-glass">
+    <div class="d-flex justify-content-space-between align-items-center pb-medium">
+      <div class="d-flex gap-small align-items-center b-2 text-onback-low">
+        <span> کارمزد برداشت وجه </span>
+      </div>
+      <div class="b-1 text-onback-low">
+        <div class="d-flex gap-minus align-items-center">
+          @if (hasFeeCharge()) {
+            <div class="discount-value text-onback-low">{{ feeCharge() | thousands }} ریال</div>
+          }
+          <div class="real-value">{{ feeChargeAfterDiscount }} ریال</div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex gap-small">
+      <ngx-button
+        [mode]="'form'"
+        [size]="'large'"
+        [style]="'tinted-on-elevated'"
+        [fullWidth]="true"
+        (clickHandler)="closeBottomSheet()"
+      >
+        انصراف
+      </ngx-button>
+      <ngx-button
+        [mode]="'form'"
+        [size]="'large'"
+        [style]="'fill'"
+        [fullWidth]="true"
+        [brandButton]="true"
+        [isLoading]="loading()"
+        [disabled]="loading()"
+        (clickHandler)="registerCashOut()"
+      >
+        تایید و پرداخت
+      </ngx-button>
+    </div>
+  </div>
+</div>

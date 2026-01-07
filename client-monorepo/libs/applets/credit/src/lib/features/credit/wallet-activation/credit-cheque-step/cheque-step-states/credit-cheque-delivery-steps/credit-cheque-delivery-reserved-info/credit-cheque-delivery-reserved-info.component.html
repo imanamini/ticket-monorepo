@@ -1,0 +1,54 @@
+@if (!showLoading()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="close.emit()"
+    [backButton]="true"
+    title="چک ضمانت"
+  ></app-credit-app-bar>
+  <div class="d-flex flex-column flex-grow">
+    <div class="flex-grow justify-content-center pb-plus">
+      <ngx-status-result
+        (clicked)="onButtonClick($event)"
+        [buttons]="buttons()"
+        [description]="description()"
+        [title]="title()"
+        [type]="statusType()"
+        [iconState]="'waiting'"
+      >
+        @if (deliveryMethod() && chequeStatus() === ChequeStatus.PHYSICS_DELIVERY_RESERVED) {
+          <div
+            html-content
+            class="d-flex flex-column radius-plus px-plus py-medium gap-small border-300 border-color-light"
+          >
+            @for (item of reservedInfoDetails(); track item.title; let last = $last) {
+              <div class="d-flex flex-row w-100 align-items-center justify-content-space-between">
+                <span class="st-8 text-onback-medium">{{ item.title }}</span>
+                @if (item.badge) {
+                  <ngx-badge
+                    mode="fill"
+                    size="md"
+                  >
+                    {{ item.badge }}
+                  </ngx-badge>
+                }
+              </div>
+              @if (item.description) {
+                <span class="b2 text-onback-high">
+                  {{ item.description }}
+                </span>
+              }
+              @if (!last) {
+                <ngx-divider
+                  [color]="BorderColorsEnum.Air"
+                  [orientation]="'horizontal'"
+                  class="w-100"
+                ></ngx-divider>
+              }
+            }
+          </div>
+        }
+      </ngx-status-result>
+    </div>
+  </div>
+} @else {
+  <credit-page-loading [active]="showLoading()!"></credit-page-loading>
+}

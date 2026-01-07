@@ -1,0 +1,76 @@
+@import "globals";
+
+.skeleton-container {
+  display: flex;
+  gap: 16px;
+}
+
+.single-product-skeleton {
+  padding: 16px;
+  width: 241px;
+
+  .image-skeleton {
+    width: 209px;
+    height: 196px;
+    border-radius: 16px;
+    background: $swatch_steel_100;
+    background: #f6f7f8 linear-gradient(
+                    to right,
+                    #f6f7f8 0%,
+                    #edeef1 20%,
+                    #f6f7f8 40%,
+                    #f6f7f8 100%
+    ) no-repeat;
+    animation: 1s placeholderShimmer infinite forwards linear;
+  }
+
+  .content-skeleton {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .long {
+      height: 22px;
+      width: 65px;
+      background: $swatch_steel_100;
+      background: #f6f7f8 linear-gradient(
+                      to right,
+                      #f6f7f8 0%,
+                      #edeef1 20%,
+                      #f6f7f8 40%,
+                      #f6f7f8 100%
+      ) no-repeat;
+      animation: 1s placeholderShimmer infinite forwards linear;
+    }
+
+    .short {
+      background: $swatch_steel_100;
+      width: 49px;
+      height: 24px;
+      background: #f6f7f8 linear-gradient(
+                      to right,
+                      #f6f7f8 0%,
+                      #edeef1 20%,
+                      #f6f7f8 40%,
+                      #f6f7f8 100%
+      ) no-repeat;
+      animation: 1s placeholderShimmer infinite forwards linear;
+    }
+  }
+
+  @keyframes placeholderShimmer {
+    0% {
+      background-position: -468px 0;
+    }
+
+    100% {
+      background-position: 468px 0;
+    }
+  }
+}

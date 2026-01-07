@@ -1,0 +1,40 @@
+<div class="banner banner__top">
+  <div class="banner-lg">
+    <a
+      (click)="!banner.link ? openDialog() : null"
+      [attr.href]="banner.link ? banner.link : null"
+      [target]="banner.link ? '_blank' : ''"
+      [title]="banner.title"
+    >
+      <ng-container *ngIf="banner.imageDesktop.url !== ''">
+        <img
+          [alt]="banner.title"
+          [src]="banner.imageDesktop.url ? banner.imageDesktop.url : null"
+          class="banner_image"
+          height="80"
+          width="80"
+        />
+      </ng-container>
+    </a>
+  </div>
+
+  <div
+    *ngIf="banner.imageMobile.url"
+    class="banner-xs"
+  >
+    <a
+      (click)="!banner.link ? openDialog() : null"
+      [attr.href]="banner.link ? banner.link : null"
+      [target]="banner.link ? '_blank' : ''"
+      [title]="banner.title"
+    >
+      <img
+        [alt]="banner.title"
+        [src]="banner.imageMobile.url ? banner.imageMobile.url : null"
+        class="banner_image"
+        height="80"
+        width="80"
+      />
+    </a>
+  </div>
+</div>

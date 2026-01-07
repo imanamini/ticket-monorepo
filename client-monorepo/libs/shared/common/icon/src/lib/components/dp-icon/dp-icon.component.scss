@@ -1,0 +1,15 @@
+:host ::ng-deep ngx-icon {
+  &.tint {
+    .icon-container {
+      i {
+        &:first-child {
+          &::before {
+            background: linear-gradient(to top right, currentcolor 30%, white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+        }
+      }
+    }
+  }
+}

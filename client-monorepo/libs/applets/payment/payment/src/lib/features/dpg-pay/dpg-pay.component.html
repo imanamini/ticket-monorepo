@@ -1,0 +1,107 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  title="پرداخت"
+>
+  @if (!loading) {
+    <div class="page-content">
+      <div class="body">
+        <div
+          class="form"
+          [formGroup]="form"
+        >
+          <div class="form-columns">
+            <div class="full-col">
+              <ui-form-field
+                [errorMessageMapper]="{
+                  bankCardNumberValidator: 'شماره کارت وارد شده اشتباه است.',
+                }"
+                [error]="form.controls['cardNumber'].errors"
+                [formControlName]="'cardNumber'"
+                [label]="'شماره کارت'"
+                [disabled]="form.controls['cardNumber'].disabled"
+                [type]="'card-number'"
+                [hasCleaner]="true"
+              ></ui-form-field>
+            </div>
+          </div>
+
+          <div class="form-columns">
+            <div class="col">
+              <ui-form-field
+                [autoFocus]="autoFocusCvv2"
+                [formControlName]="'cvv2'"
+                label="CVV2"
+                [maxSize]="4"
+                [inputType]="'password'"
+              ></ui-form-field>
+            </div>
+
+            <div class="col">
+              <ui-form-field
+                label="تاریخ انقضا"
+                [formControlName]="'expirationDate'"
+                [type]="'date'"
+                [dateRange]="'future'"
+                [datePickerMode]="'bottomSheet'"
+                [datePickerConfig]="{
+                  year: true,
+                  month: true,
+                  day: false,
+                  monthNumber: true,
+                }"
+              ></ui-form-field>
+            </div>
+          </div>
+
+          <common-ui-dynamic-pass-field
+            (countdownFinished)="dynamicPassCountdownFinished()"
+            (sendButtonClicked)="sendDynamicPass()"
+            [autofocus]="autoFocusPassword"
+            [countdownSeconds]="countdownDynamicPasswordSeconds"
+            [enableSendButton]="
+              form.controls['cardNumber'].valid && form.controls['expirationDate'].valid && enableSendDynamicPasswordButton
+            "
+            [inProgress]="gettingDynamicPassword"
+            [parentForm]="form"
+            [validationRules]="validationRules.password"
+            [value]="form.value.password"
+            controlName="password"
+          ></common-ui-dynamic-pass-field>
+        </div>
+      </div>
+
+      <!-- Footer -->
+
+      <div class="footer">
+        <div class="footer-details">
+          <span class="title-wrapper d-flex align-items-center gap-low">
+            <common-icon-dp-icon
+              [icon]="'money'"
+              [iconSize]="'24'"
+              [iconType]="'linear'"
+              [classes]="'text-onback-brand'"
+            ></common-icon-dp-icon>
+            مبلغ
+          </span>
+          <span class="amount">
+            {{ amount | thousands }}
+            <span class="unit">ریال</span>
+          </span>
+        </div>
+        <div class="actions">
+          <ngx-button
+            [size]="'medium'"
+            (clickHandler)="pay()"
+            [disabled]="form.invalid || paying"
+            [fullWidth]="true"
+            [isLoading]="paying"
+          >
+            پرداخت
+          </ngx-button>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <lib-ngx-skeleton-loading></lib-ngx-skeleton-loading>
+  }
+</common-ui-components-page-layout>

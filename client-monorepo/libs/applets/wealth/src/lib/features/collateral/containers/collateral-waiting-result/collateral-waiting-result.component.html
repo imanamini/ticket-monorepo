@@ -1,0 +1,42 @@
+<ngx-app-bar
+  class="w-100"
+  [title]="'توثیق دارایی'"
+  [rightButton]="{
+    icon: 'arrow-right',
+    style: 'neutral-link',
+    mode: 'icon-only',
+    size: 'medium',
+  }"
+  (onRightButtonClick)="onBackHandler()"
+/>
+
+<div class="d-flex flex-wrap w-100 container">
+  <div class="detail px-medium">
+    <img
+      src="./wealth-assets/svg/collateral-pending.svg"
+      alt=""
+    />
+
+    <div class="w-100 mt-big">
+      <p class="title">درخواست شما توسط مدیر صندوق در حال بررسی است</p>
+    </div>
+
+    <div class="w-100 mt-small">
+      <p class="description">بعد از ۱ تا ۲ روز کاری، نتیجه درخواست را از طریق پیامک به شما اطلاع می‌دهیم.</p>
+    </div>
+  </div>
+
+  <div class="button-container mt-medium">
+    <div class="w-100 px-medium">
+      <ngx-button
+        [style]="'fill'"
+        [fullWidth]="true"
+        (clickHandler)="continue()"
+        [size]="'medium'"
+        [buttonId]="'COLLATERAL_WAITING'"
+      >
+        متوجه شدم
+      </ngx-button>
+    </div>
+  </div>
+</div>

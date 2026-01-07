@@ -1,0 +1,42 @@
+#container-internet-connection-lost {
+  .btn-style-retry {
+    background: radial-gradient(circle at 0 100%, #F8F9FB50, #93949550) !important;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .ngx-button {
+    min-width: unset !important;
+
+    .button-label {
+      font-size: 12px !important;
+    }
+  }
+}
+
+@media screen and (max-width: 328px) {
+  .ngx-button {
+    .button-label {
+      font-size: 11px !important;
+    }
+  }
+}
+
+button.ngx-button:focus-visible {
+  outline: none !important;
+}
+
+
+.third-party-regulations {
+  action-buttons {
+    .deActive-button {
+      flex-grow: 1;
+      width: auto !important;
+    }
+
+    .active-button {
+      flex-grow: 1;
+      width: auto !important;
+    }
+  }
+}

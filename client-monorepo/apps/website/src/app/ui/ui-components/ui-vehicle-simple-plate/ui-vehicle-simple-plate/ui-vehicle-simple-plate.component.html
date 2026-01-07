@@ -1,0 +1,44 @@
+<div
+  [ngClass]="withoutBorder ? 'withoutBorder' : ''"
+  class="simple-plate"
+>
+  <div
+    *ngIf="plateParts[0]"
+    class="plate-part"
+  >
+    {{ plateParts[0] }}
+  </div>
+  <span
+    *ngIf="plateDetail && plateDetail.imageId"
+    class="plate-letter"
+  >
+    <ui-api-image
+      [imageId]="plateDetail.imageId"
+      width="24px"
+    ></ui-api-image>
+  </span>
+  <div
+    *ngIf="plateParts[1]"
+    class="plate-part"
+  >
+    {{ plateParts[1] }}
+  </div>
+  <div
+    *ngIf="withoutBorder"
+    class="dash"
+  >
+    -
+  </div>
+  <div
+    *ngIf="plateParts[2]"
+    class="plate-part province-number"
+  >
+    {{ plateParts[2] }}
+  </div>
+  <div
+    *ngIf="withoutBorder"
+    class="country-name"
+  >
+    ایران
+  </div>
+</div>

@@ -1,0 +1,36 @@
+@if (isOpen()) {
+  <div class="d-flex flex-column gap-medium px-small pt-minus">
+    <!-- Row -->
+    @for (item of filters(); track $index) {
+      <div class="d-flex flex-row py-tiny gap-small">
+        <div class="d-flex justify-content-center align-items-center">
+          <ngx-radio-button
+            [size]="20"
+            [checked]="item.id === selectedFilter().id"
+            (checkedChange)="handleCheckChange(item.id, $event)"
+          ></ngx-radio-button>
+        </div>
+        <div
+          class="d-flex justify-content-start align-items-center b-2"
+          (click)="handleCheckChange(item.id, item.id !== selectedFilter().id)"
+        >
+          {{ item.label }}
+        </div>
+      </div>
+    }
+    <!-- End Row -->
+  </div>
+} @else {
+  @if (selectedFilter().id) {
+    <div class="d-flex flex-row gap-small">
+      <ngx-chip
+        [id]="selectedFilter().id"
+        [size]="'MEDIUM'"
+        [pressed]="true"
+        [disableAnimations]="true"
+        [label]="selectedFilter().label"
+        [disableClick]="true"
+      ></ngx-chip>
+    </div>
+  }
+}

@@ -1,0 +1,30 @@
+<div
+  class="d-flex justify-content-space-between gap-small align-items-center radius-minus border-300 border-color-air surface-elevated py-small px-minus"
+>
+  <div class="d-flex justify-content-start gap-small align-items-center">
+    <img
+      ngSrc="assets/images/product-default.png"
+      width="56"
+      height="56"
+    />
+
+    @if (order()) {
+      <div>
+        <p class="b-2 text-onback-medium">{{ order().title }}</p>
+        @if (showPrice()) {
+          <span class="c-3 text-onback-low">مبلغ: {{ orderPrice() }} ریال</span>
+        }
+      </div>
+    }
+  </div>
+  @if (showDetailButton()) {
+    <ngx-button
+      [mode]="'icon-only'"
+      [size]="'tiny'"
+      [style]="'fill'"
+      [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+      (clickHandler)="goToOrderDetail()"
+    >
+    </ngx-button>
+  }
+</div>

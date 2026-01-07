@@ -1,0 +1,23 @@
+@if (displayTitle) {
+  <p class="title-insert-phone">کد ملی خود را وارد کنید.</p>
+}
+
+<div [formGroup]="nationalIdForm">
+  <ui-form-field
+    label="کد ملی"
+    [isNumericKeyboard]="true"
+    [maxSize]="10"
+    formControlName="nationalId"
+    [hasCleaner]="true"
+    (ngModelChange)="nationalIdChanged()"
+  ></ui-form-field>
+  @if (nationalIdForm.controls['nationalId'].value.length == 10 && nationalIdForm.invalid) {
+    <div class="error-message">
+      <span>{{ nationalIdErrorMessage }}</span>
+    </div>
+  } @else if (nationalIdForm.controls['nationalId'].value.length == 10 && nationalIdNotMatchError) {
+    <div class="error-message">
+      <span>{{ customeErrorMessage }}</span>
+    </div>
+  }
+</div>

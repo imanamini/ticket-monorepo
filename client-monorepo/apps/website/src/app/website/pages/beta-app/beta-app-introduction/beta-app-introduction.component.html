@@ -1,0 +1,43 @@
+<section class="za-intro">
+  <div class="container">
+    <div class="za-intro__content">
+      <div class="za-intro__text">
+        <div class="section-title">
+          <div class="za-intro__row">
+            <span class="color-blue font-xxl-heavy">دیجی پی </span>
+            <i><span class="font-xxl-heavy color-beta">بتا</span></i>
+          </div>
+          <p
+            *ngIf="templateData"
+            class="font-xl-med"
+          >
+            {{ templateData.introSubtitle }}
+          </p>
+        </div>
+        <div>
+          <p
+            *ngIf="templateData"
+            class="font-m-med"
+          >
+            {{ templateData.introDescription }}
+          </p>
+        </div>
+        <app-ui-button
+          (click)="openBetaAppDialog()"
+          *ngIf="templateData"
+          [className]="'za-button__simple'"
+          >{{ templateData.introCtaText }}
+        </app-ui-button>
+      </div>
+      <div class="za-intro__img">
+        <i>
+          <img
+            *ngIf="templateData && templateData.introArtwork"
+            [src]="templateData.introArtwork.url"
+            alt="دیجی‌پی بتا"
+          />
+        </i>
+      </div>
+    </div>
+  </div>
+</section>

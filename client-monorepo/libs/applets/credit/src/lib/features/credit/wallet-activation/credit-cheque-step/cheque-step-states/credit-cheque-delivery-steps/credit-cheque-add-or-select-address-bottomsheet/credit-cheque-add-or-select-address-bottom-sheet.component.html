@@ -1,0 +1,32 @@
+<ngx-bottom-sheet-header
+  [showResizable]="false"
+  [title]="'انتخاب آدرس'"
+></ngx-bottom-sheet-header>
+<div class="d-flex flex-column w-100 gap-minus p-plus rtl">
+  @for (type of items(); track type.label) {
+    <div
+      class="w-100 d-flex flex-row align-items-center px-plus py-minus gap-medium border-300 border-color-light radius-medium cursor-pointer"
+      (click)="selectItem(type.id)"
+    >
+      <div class="icon-container radius-rounded d-flex flex-column justify-content-center align-items-center">
+        <div class="radius-rounded surface-back p-low">
+          <ngx-icon
+            [name]="type.icon"
+            [classes]="'text-onback-medium'"
+            [iconSize]="'24px'"
+          ></ngx-icon>
+        </div>
+      </div>
+      <span class="st-8 text-onback-high">{{ type.label }} </span>
+      <ngx-button
+        class="mr-auto"
+        [size]="'tiny'"
+        [style]="'link'"
+        ngxTrackableId
+        trackerId="chequeDeliveryNewLocation"
+        [leftIcon]="{ name: 'arrow-2-left' }"
+      >
+      </ngx-button>
+    </div>
+  }
+</div>

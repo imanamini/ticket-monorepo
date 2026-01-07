@@ -1,0 +1,76 @@
+<div class="d-flex flex-column w-100 complete-info-wrapper">
+  <div class="d-flex align-items-center header">
+    <floki-header
+      (iconClickHandler)="goToExitFloki()"
+      [hasIcon]="true"
+      [iconName]="'arrow-right'"
+      [iconTitle]="'قبلی'"
+      [title]="'بارگذاری مدارک'"
+      class="icon-color"
+      titleTextAlign="center"
+    >
+    </floki-header>
+  </div>
+
+  <div class="d-flex flex-column gap-minus pb-plus px-plus info-container">
+    <ngx-alert
+      (clickAction)="clickAction()"
+      [actionButton]="{link: 'راهنمای تصویری'}"
+      [color]="'blue'"
+      [hasCloseIcon]="false"
+      text="با شماره‌گیری #06#* کد IMEI دستگاه شما نمایان می‌شود. لطفا از صفحه IMEI اسکرین‌شات گرفته و آن‌را بارگذاری کنید."
+      title=""
+    ></ngx-alert>
+    <div [formGroup]="form">
+      <div class="st-8 text-onback-high py-tiny">
+        مشخصات گوشی
+      </div>
+      <ui-form-field
+        [error]="form.controls.assetName.errors"
+        formControlName="assetName"
+        label="برند و مدل">
+      </ui-form-field>
+      <extract-imei (set-imei)="form.get('serialNumber').setValue($event)"
+                    [serialNumber]="form.get('serialNumber').value"></extract-imei>
+      <div class="st-8 text-onback-high py-tiny">
+        اطلاعات بیمه‌گذار
+      </div>
+      <ui-form-field
+        [error]="form.controls.firstName.errors"
+        formControlName="firstName"
+        label="نام">
+      </ui-form-field>
+      <ui-form-field
+        [error]="form.controls.lastName.errors" formControlName="lastName"
+        label=" نام خانوادگی">
+      </ui-form-field>
+
+      <ui-form-field
+              [error]="form.controls.nationalCode.errors"
+              formControlName="nationalCode"
+              [label]="'کد ملی'"
+              [required]="true"
+              [inputType]="'text'"
+              [isNumericKeyboard]="true"
+              [maxSize]="10"
+              [convertNonEnglishDigits]="true"
+              [errorMessageMapper]="{
+              invalidNotionalCode: 'کد ملی وارد شده معتبر نیست',
+            }"
+              [type]="'input'"
+      ></ui-form-field>
+    </div>
+  </div>
+
+  <div class="p-plus">
+    <ngx-button
+      (click)="handleSubmitInfo()"
+      [disabled]="form.invalid"
+      [fullWidth]="true"
+      [size]="'large'"
+      [style]="'fill'">
+      ثبت بیمه
+    </ngx-button>
+  </div>
+</div>
+

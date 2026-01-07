@@ -1,0 +1,13 @@
+<car-info-box text="مشخصات خودرو خود را وارد کنید:"
+              (activeButtonClicked)="handleActiveButtonsClicked()"
+              (deActiveButtonClicked)="handleDeActiveButtonClicked()">
+  <div class="car-info">
+    <car-info-form [showUsage]="true"
+                   [carInfoForm]="carInfoForm"
+                   [(showError)]="showError"></car-info-form>
+
+    <ins-alert [size]="AlertSizeEnum.Small"
+               [hasIcon]="true"
+               text="بر روی کارت خودرو قابل مشاهده است."></ins-alert>
+  </div>
+</car-info-box>

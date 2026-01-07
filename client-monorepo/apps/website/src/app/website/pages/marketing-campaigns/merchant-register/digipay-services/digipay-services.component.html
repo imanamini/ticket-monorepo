@@ -1,0 +1,19 @@
+<section>
+  <div class="container digipay-services d-flex flex-column gap-huge">
+    <p class="title fs-27">{{ servicesSection.title }}</p>
+    <div class="services d-flex">
+      <div
+        class="services-list p-huge d-flex flex-column gap-minus flex-wrap"
+        *ngFor="let item of servicesSection.services"
+      >
+        <span>
+          <img
+            [src]="item.icon?.url"
+            alt=""
+          />
+        </span>
+        <span> {{ item.title }}</span>
+      </div>
+    </div>
+  </div>
+</section>

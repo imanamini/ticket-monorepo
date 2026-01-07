@@ -1,0 +1,147 @@
+@import "globals";
+
+
+
+.blog-archive {
+  background-color: $swatch_blue_100;
+  padding: 64px 0;
+}
+
+.container {
+  padding: 96px 0;
+  display: flex;
+  flex-direction: column;
+
+  .archive-content {
+    margin-top: 64px;
+    display: flex;
+    gap: 24px;
+  }
+
+  .filters {
+    width: 384px;
+    padding: 40px 24px;
+    border-radius: 8px;
+    background-color: #fff;
+    height: max-content;
+    position: sticky;
+    top: 160px;
+
+    .mobile {
+      display: none;
+    }
+  }
+
+  .blog-posts {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .post {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    ::ng-deep {
+      .non-mobile {
+        display: flex;
+        width: 100%;
+        height: 212px;
+
+        .image {
+          img {
+            border-radius: 0 14px 14px 0;
+            width: 212px;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .content {
+          flex-grow: 1;
+
+          .description {
+            min-height: unset;
+          }
+
+          .read-more {
+            width: unset;
+            margin-top: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .container {
+    padding: 48px 0;
+
+    .breadcrumbs {
+      a,
+      span {
+        font-size: 14px;
+      }
+    }
+
+    .archive-content {
+      margin-top: 32px;
+      flex-direction: column;
+    }
+
+    .filters {
+      padding: 8px;
+      width: 100%;
+      position: unset;
+      top: unset;
+
+      .desktop {
+        display: none;
+      }
+
+      .mobile {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .title {
+          font-size: 10px;
+          font-weight: 700;
+        }
+      }
+    }
+
+    .blog-posts {
+      gap: 24px;
+
+      ::ng-deep {
+        .non-mobile {
+          height: 236px;
+
+          .image {
+            height: 100%;
+            flex-grow: unset;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .container {
+    padding: 16px 0;
+
+    .blog-posts {
+      ::ng-deep {
+        .non-mobile {
+          display: none;
+        }
+      }
+    }
+  }
+}

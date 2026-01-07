@@ -1,0 +1,31 @@
+<div *ngIf="templateReady" class="confirm-step">
+  <div class="body">
+    <div class="inner-body">
+      <div class="general-info">
+        <policy-general-info
+                [electronicEquipment]="policy.electronicEquipment"
+                [policyStatus]="policy.policyStatus.identifier"
+        ></policy-general-info>
+      </div>
+      <div class="transfer-from">
+        <div class="heading">انتقال از</div>
+        <div class="item">
+          <div class="key">نام و نام خانوادگی بیمه گزار فعلی</div>
+          <div class="value">{{ policy.buyer.fullName }}</div>
+        </div>
+      </div>
+      <div class="transfer-to">
+        <div class="heading">انتقال به</div>
+        <div *ngFor="let item of transferTo" class="item">
+          <div class="key">{{ item.key }}</div>
+          <div class="value">{{ item.value }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <ui-button (click)="submitted()" [ngStyle]="{'max-width': '48%'}">تایید و انتقال مالکیت</ui-button>
+    <ui-button (click)="close()" [ngStyle]="{'max-width': '48%'}" appearance="BLUE-TEXT"> نه، منتقل نکن</ui-button>
+  </div>
+
+</div>

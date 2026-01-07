@@ -1,0 +1,81 @@
+<div class="single-category-filter">
+  <div
+    (click)="headerClicked()"
+    class="header"
+  >
+    <div
+      [ngClass]="{
+        selected: selectedCategoryId === categoryData.id,
+        isOpen: isOpen,
+      }"
+      class="category"
+    >
+      <div
+        *ngIf="categoryData.icon && categoryData.icon.url"
+        class="icon"
+      >
+        <span
+          *ngIf="isOpen"
+          icon="icon-minus"
+          size="24"
+          appUiIcon
+        ></span>
+        <img
+          *ngIf="!isOpen"
+          [alt]="categoryData.icon.altText"
+          [ngSrc]="categoryData.icon.url"
+          height="24"
+          width="24"
+        />
+      </div>
+      <div
+        *ngIf="categoryData.title"
+        class="title"
+      >
+        {{ categoryData.title }}
+      </div>
+    </div>
+    <div
+      *ngIf="categoryData.children.length > 0"
+      class="charon"
+    >
+      @if (isOpen) {
+        <ngx-icon
+          [name]="'arrow-2-up'"
+          class="text-onback-brand"
+        ></ngx-icon>
+      }
+      @if (!isOpen) {
+        <ngx-icon
+          [name]="'arrow-2-down'"
+          class="text-onback-brand"
+        ></ngx-icon>
+      }
+    </div>
+  </div>
+  <div
+    *ngIf="isOpen"
+    class="children"
+  >
+    <div class="dot start"></div>
+    <div
+      (click)="selectCategory(subCategory.id)"
+      *ngFor="let subCategory of categoryData.children"
+      [ngClass]="{ selected: selectedCategoryId === subCategory.id }"
+      class="child"
+    >
+      <div
+        *ngIf="selectedCategoryId === subCategory.id"
+        class="selected-icon"
+      >
+        <span
+          icon="icon-check-blue"
+          size="24"
+          appUiIcon
+        ></span>
+      </div>
+      <div class="name">{{ subCategory.title }}</div>
+    </div>
+    <div class="dot end"></div>
+  </div>
+</div>

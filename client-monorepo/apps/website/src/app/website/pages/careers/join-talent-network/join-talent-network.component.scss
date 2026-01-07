@@ -1,0 +1,32 @@
+@import "globals";
+
+:host {
+  display: block;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 1em;
+}
+
+.accordion-title {
+  border: 1px solid $swatch_steel_200;
+  border-radius: 12px;
+  font-size: 16px;
+  padding: 24px;
+  background: url('./icons/talent-network-arrow-down.svg') no-repeat left 16px center/24px;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $swatch-blue_500;
+  }
+
+  &.is-open {
+    background-image: url('./icons/talent-network-arrow-up.svg');
+  }
+}
+
+application-form {
+  margin: 20px 0 0;
+}

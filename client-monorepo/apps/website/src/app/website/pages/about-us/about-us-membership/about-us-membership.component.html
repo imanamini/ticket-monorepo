@@ -1,0 +1,71 @@
+<section class="about-membership sec-about-membership">
+  <div class="container">
+    <h2 class="text-align-center">
+      {{ templateData?.mainMembership?.title }}
+    </h2>
+    <div
+      class="membership-swiper-container"
+      *ngIf="templateData && templateData.mainMembership"
+    >
+      <swiper-container
+        appSwiper
+        #swiper="appSwiper"
+        [config]="config"
+        class="membership-swiper swiper-wrapper"
+      >
+        <swiper-slide
+          *ngFor="let item of templateData.mainMembership.membership; let itemIndex = index"
+          class="swiper-slide membership-swiper-item"
+        >
+          <div>
+            <div class="membership-swiper-body">
+              <div class="membership-swiper__img">
+                <div>
+                  <img
+                    [src]="item.image.url"
+                    alt=""
+                    class="membership"
+                  />
+                </div>
+              </div>
+              <div class="membership-desc">
+                <span>{{ item.title }}</span>
+                <span>{{ item.description }}</span>
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+      <div class="swiper-navigation">
+        <div>
+          <div
+            (click)="swiper.slideNext()"
+            aria-label="Next slide"
+            class="icon-square-left"
+            role="button"
+            tabindex="0"
+          ></div>
+          <div
+            (click)="swiper.slidePrev()"
+            aria-label="Previous slide"
+            class="icon-square-right"
+            role="button"
+            tabindex="0"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      *ngIf="templateData && templateData.mainMembership"
+      class="cta"
+    >
+      <div class="description membership-cta-desc">
+        {{ templateData.mainMembership.ctaText }}
+      </div>
+      <div class="text-align-center">
+        <app-ui-button routerLink="../careers">{{ templateData.mainMembership.ctaBtnText }}</app-ui-button>
+      </div>
+    </div>
+  </div>
+</section>

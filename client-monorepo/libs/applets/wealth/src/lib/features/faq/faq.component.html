@@ -1,0 +1,40 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100">
+  @if (isLoading()) {
+    <app-spinner />
+  }
+  <ngx-app-bar
+    class="w-100"
+    [title]="'سوالات متداول'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="d-flex justify-content-space-between px-plus">
+    <ngx-tabs
+      [direction]="'vertical'"
+      class="w-100"
+    >
+      @for (tab of tabs(); track $index) {
+        <ngx-tab
+          [label]="tab.label"
+          [state]="selectedTabType() === tab.type ? 'selected' : 'enabled'"
+          (stateChange)="selectedTabType.set(tab.type)"
+        >
+          <div class="w-100 d-flex flex-wrap mt-medium">
+            @for (faq of tab.faqs; track faq; let last = $last) {
+              <app-faq-item
+                [data]="faq"
+                [isLastItem]="last"
+              />
+            }
+          </div>
+        </ngx-tab>
+      }
+    </ngx-tabs>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<!-- TODO: refactor this component -->
+<div class="w-100 d-flex price-container">
+  <div class="price-unit-title">
+    <span class="unit-name">{{ props()?.title }}</span>
+    <ngx-badge
+      [status]="'info'"
+      [mode]="'fill'"
+      [size]="'sm'"
+    >
+      {{
+        props().type === 'Gold'
+          ? 'مبتنی بر طلا'
+          : props().type === 'FixedIncome'
+            ? 'درامد ثابت'
+            : props().type === 'Index'
+              ? 'شاخصی'
+              : 'سهامی'
+      }}
+    </ngx-badge>
+  </div>
+  <div class="price-detail">
+    <div class="price-cost">
+      <span class="price-cost-text">{{ props().sectionType === 'BUY' ? 'قیمت خرید هر واحد' : 'قیمت فروش هر واحد' }}</span>
+      <span class="price-cost-value is-currency">
+        {{ (props().sectionType === 'BUY' ? props().purchaseNav : props().sellNav) | number }}
+        ریال
+      </span>
+    </div>
+    @if (props().sectionType === 'SELL') {
+      <div class="price-amount">
+        <span class="price-amount-text">
+          موجودی قابل برداشت شما
+          <img
+            src="wealth-assets/icons/question.svg"
+            alt="موجودی قابل برداشت شما"
+            ngxTooltip="این موجودی ممکن است به دلیل در انتظار بودن تعدادی از واحد‌ها برای فروش، با موجودی کلی شما متفاوت باشد."
+            [tooltipPosition]="'bottom'"
+          />
+        </span>
+        <span class="price-amount-value"> {{ props().customerPortfolioUnit }} واحد </span>
+      </div>
+    }
+  </div>
+</div>

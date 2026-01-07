@@ -1,0 +1,30 @@
+
+p {
+  margin: 0;
+}
+.info-container {
+  border-radius: 12px;
+}
+
+.info-data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+
+  &:nth-child(1) {
+    border-bottom: 1px solid var(--onback-shade-95);
+  }
+}
+
+.first-value, .second-value {
+  font-size: 12px;
+  color: var(--onback-shade-30);
+  font-weight: 400;
+}
+
+.first-value {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

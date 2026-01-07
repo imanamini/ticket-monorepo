@@ -1,0 +1,26 @@
+.claim-list {
+  position: relative;
+  overflow: hidden;
+
+
+  .claim-list-content {
+    overflow: auto;
+
+    .history-list {
+      padding-bottom: 160px;
+    }
+  }
+
+  .loading-container {
+    flex: 1 1 auto;
+  }
+
+  .footer-fab {
+    position: absolute;
+    bottom: 90px;
+    left: 0;
+    visibility: visible;
+    transition: width 1s ease;
+  }
+}
+

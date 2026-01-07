@@ -1,0 +1,29 @@
+<form [formGroup]="exInsurerMotorForm()"
+      class="ex-insurer-motor-form">
+  <ui-form-field [autoFocus]="false"
+                 [errorMessageMapper]="errorMapper"
+                 [error]="exInsurerMotorForm()?.controls.name.errors"
+                 [options]="insurers"
+                 [searchable]="true"
+                 [showError]="showError()?'show':'hidden'"
+                 [overflowToContainer]="true"
+                 [showRadioOptions]="showRadioButton"
+                 selectOpenType="auto"
+                 formControlName="name"
+                 label="شرکت بیمه‌گر قبلی"
+                 placeholder="جستجو..."
+                 type="select"></ui-form-field>
+
+  @if (exInsurerMotorForm()?.controls.name.value === extraInsurerForm.NewCar) {
+    <ui-form-field [errorMessageMapper]="errorMapper"
+                   [error]="exInsurerMotorForm()?.controls.releaseDate?.errors"
+                   [searchable]="false"
+                   [showError]="showError()?'show':'hidden'"
+                   [datePickerMode]="'auto'"
+                   [customDateRange]="[-1539506197000, endDateRange()]"
+                   formControlName="releaseDate"
+                   label="تاریخ ترخیص موتور سیکلت"
+                   placeholder="00/00/00"
+                   type="date"></ui-form-field>
+  }
+</form>

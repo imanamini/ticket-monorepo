@@ -1,0 +1,13 @@
+:host {
+  height: 100%;
+}
+
+.flex-grow {
+  flex-grow: 1 !important;
+}
+
+.image {
+  background-image: url("./cut-off.svg");
+  width: 96px;
+  height: 96px;
+}

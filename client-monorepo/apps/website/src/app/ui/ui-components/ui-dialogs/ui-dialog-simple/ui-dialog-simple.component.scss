@@ -1,0 +1,88 @@
+@import "globals";
+
+::ng-deep {
+  .mat-mdc-dialog-container {
+    padding: 40px 40px 48px 40px;
+    border-radius: 24px;
+  }
+
+  .mat-bottom-sheet-container {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .modal-simple {
+    direction: rtl;
+
+    .dialog-body {
+      flex-direction: column;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 24px;
+
+      .image {
+        margin-bottom: 24px;
+      }
+    }
+
+    .close {
+      cursor: pointer;
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      background: #f2f5f8;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      margin-right: auto;
+      margin-bottom: 12px;
+
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .title {
+      font-weight: 700;
+      font-size: 18px;
+      color: #061962;
+      margin-bottom: 4px;
+    }
+
+    .description {
+      color: #061962;
+      font-weight: 400;
+      font-size: 14px;
+
+      ol {
+        list-style: auto !important;
+      }
+    }
+
+    .ctas {
+      app-ui-button {
+        display: block;
+      }
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .modal-simple .title {
+      font-size: 18px;
+    }
+    .modal-simple .description {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 744px) {
+    .modal-simple .title {
+      font-size: 14px;
+    }
+    .modal-simple .description {
+      font-size: 12px;
+    }
+  }
+}

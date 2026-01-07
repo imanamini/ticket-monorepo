@@ -1,0 +1,47 @@
+@import "globals";
+
+.packages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .package {
+    flex: 0 0 48%;
+
+    &:nth-child(n + 3) {
+      margin-top: 12px;
+    }
+  }
+}
+
+.cell-number-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .more-link {
+    font-weight: 400;
+    font-size: rem(12, 16);
+    color: $swatch_blue_500;
+    cursor: pointer;
+
+    &::after {
+      content: ' ';
+      display: inline-block;
+      vertical-align: middle;
+      background: url('./icon/blue-chevron-left.svg') no-repeat center/100%;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .cell-number {
+    .text {
+      font-size: rem(16, 16);
+      direction: ltr;
+      display: inline-block;
+      margin-right: 8px;
+    }
+  }
+}

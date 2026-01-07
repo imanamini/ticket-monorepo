@@ -1,0 +1,17 @@
+@import "globals";
+
+:host {
+  display: block;
+}
+
+p {
+  color: $swatch_blue_500;
+  font-size: rem(12, 16);
+  line-height: em(12, 20);
+  padding: 0.5em 0 0;
+  font-weight: 600;
+
+  &.is-error {
+    color: $swatch_red_500;
+  }
+}

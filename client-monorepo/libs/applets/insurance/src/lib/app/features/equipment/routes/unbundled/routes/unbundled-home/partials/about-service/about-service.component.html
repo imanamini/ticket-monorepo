@@ -1,0 +1,41 @@
+<div class="wrapper">
+  <div class="inner" id="coverages">
+    <div class="image wrapper-item">
+      <img
+              alt="insurance image"
+              class="image-source"
+              src="assets/icons/phone-insurance-2.svg" srcset="">
+    </div>
+    <div class="content wrapper-item">
+      <div class="header">
+        <div class="main-header">پوشش و جبران خسارات گوشی و سایر لوازم دیجیتال شما تا ۹۰ درصد</div>
+        <div class="third-header">بیمه گوشی موبایل دیجی‌پی بخش زیادی از خسارات حوادث زیر رو برات جبران می‌کنه:</div>
+      </div>
+      <div class="main-content">
+        <div *ngFor="let item of items" class="item">
+          <div class="top">
+            <img
+                    alt=""
+                    height="40"
+                    src="./assets/icons/{{item.iconName}}.svg">
+            <div class="title">{{ item.title }}</div>
+          </div>
+          <div class="description">{{ item.description }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cards" id="advantages">
+  <div class="header">مزایای خرید بیمه از دیجی پی</div>
+  <div class="card-list">
+    <div *ngFor="let item of cardItems" class="card-item">
+      <img
+              alt=""
+              height="40"
+              src="./assets/icons/{{item.iconName}}.svg">
+      <div class="title">{{ item.faTitle }}</div>
+    </div>
+  </div>
+</div>

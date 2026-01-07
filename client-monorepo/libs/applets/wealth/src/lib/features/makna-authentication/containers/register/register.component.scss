@@ -1,0 +1,114 @@
+@import "@digipay/base-style/swatch";
+
+:host {
+    display: flex;
+    flex-direction: column;
+    background: $swatch_white_900;
+
+    &::ng-deep {
+        .dg-error-message {
+            margin-top: 0.3333rem !important;
+            color: $swatch_red_500 !important;
+        }
+    }
+}
+
+.container {
+    background-color: $swatch_white_900;
+    display: flex;
+    padding-top: 1rem;
+    align-content: flex-start;
+    padding: 0 2rem;
+    position: relative;
+    width: 27rem;
+    margin: 0;
+    flex-direction: column;
+    height: 100dvh;
+    overflow: auto;
+
+    @media screen and (min-width: 648px) {
+        width: 28rem;
+        margin: 0 auto;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 2.666rem;
+
+    .title {
+        font-weight: 800;
+        font-size: 1.33rem;
+        margin-right: 1rem;
+    }
+}
+
+.content-container {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    .content {
+        flex: 1;
+    }
+
+    .title-insert-phone {
+        margin-bottom: 1.333rem;
+        font-weight: 400;
+        font-size: 1.1666rem;
+        color: $swatch_steel_900;
+    }
+
+    .footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 2rem 0;
+
+        &:has(#register) {
+            position: relative;
+            margin-bottom: 2rem;
+            margin-top: 5.5rem;
+            width: 100%;
+        }
+
+        .has-account {
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            font-size: 1.166rem;
+
+            .login {
+                margin-right: 1rem;
+                font-weight: 700;
+                color: $swatch_blue_500;
+            }
+        }
+
+        .button-container {
+            display: grid;
+            gap: 1rem;
+            width: 100%;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+
+.national-id-error,
+.otp-error {
+    color: $swatch_red_500;
+    margin-top: -1.5rem;
+    margin-bottom: 2rem;
+    padding-right: 0.8rem;
+    font-size: 0.833rem;
+}
+
+.otp-error {
+    margin-top: 1rem;
+}

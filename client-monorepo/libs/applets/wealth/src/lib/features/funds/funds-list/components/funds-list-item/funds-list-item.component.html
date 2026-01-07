@@ -1,0 +1,67 @@
+<!-- ? name, logo, profit -->
+<div class="d-flex align-items-center justify-content-space-between mb-tiny">
+  <div class="d-flex flex-grow align-items-center">
+    <!-- ? logo -->
+    <div class="d-flex align-items-center justify-content-center radius-rounded border-100 border-color-air circle-logo">
+      <app-image
+        [imageUrl]="fund()?.thumbnailLogoAddress"
+        [defaultImage]="'wealth-assets/icons/default-instrument.svg'"
+      />
+    </div>
+
+    <!-- ? name -->
+    <p class="st-8 text-onback-high mr-tiny fund-name">
+      {{ fund().title }}
+    </p>
+  </div>
+
+  <!-- ? profit badge -->
+  <ngx-badge
+    size="md"
+    status="info"
+    mode="fill"
+    type="text"
+  >
+    {{ profitBadgeText() }}
+    <span dir="ltr"> {{ fund().profit | number: '1.0-2' }} </span>%
+  </ngx-badge>
+</div>
+
+<!-- ? Display Symbol -->
+<div class="d-flex align-items-center justify-content-space-between pr-mega mb-minus">
+  @if (fund().displaySymbol) {
+    <span> (نماد: {{ fund().displaySymbol }}) </span>
+  }
+  @if (fund().symbol === 'IRTKZARV0001') {
+    <span> آغاز معاملات: 1403/10/02 </span>
+  }
+</div>
+
+<app-risk-bar [riskLevel]="fund().riskLevel" />
+
+<app-fund-statistics [fund]="fund()" />
+
+@if (ready()) {
+  <div
+    class="buttons-container"
+    [ngClass]="{ 'auto-columns': actionButtons().length < 2 }"
+  >
+    @for (button of actionButtons(); track button) {
+      <ngx-button
+        class="mt-plus"
+        [style]="button.style"
+        [fullWidth]="true"
+        [mode]="'section'"
+        size="small"
+        (clickHandler)="button.id === 'DETAIL_' ? goToDetail() : goToBuy()"
+        [buttonId]="button.id + fund().symbol"
+      >
+        {{ button.title }}
+      </ngx-button>
+    }
+  </div>
+} @else {
+  <div class="w-100 d-flex align-items-center justify-content-center p-plus">
+    <span class="b-1"> به زودی </span>
+  </div>
+}

@@ -1,0 +1,104 @@
+@if (!loading()) {
+  <div class="d-flex flex-column justify-content-space-between h-100 p-medium">
+    <div class="d-flex flex-column gap-huge">
+      <div class="d-flex flex-column pb-small gap-small">
+        <span class="fs-16 fw-bold">انتخاب کارت مقصد</span>
+        <span class="fs-12">
+          برای برداشت از کیف‌پول، اطلاعات یکی از کارت‌های بانکی متعلق به خودتان را وارد کرده و یا یکی از کارت‌های ذخیره شده خود را انتخاب
+          کنید.
+        </span>
+      </div>
+      <div class="card-carousel">
+        @if (cards() && cards().length > 0) {
+          <ngx-dp-carousel
+            [mode]="'CARD'"
+            [visibleItemCount]="1.25"
+            [index]="carouselIndex()"
+            [centerMode]="true"
+            [showNavigation]="false"
+            [showButtons]="false"
+            [isFixedGap]="true"
+            [fixedGap]="16"
+            [changeStepThresholdPercentage]="20"
+            [isFixedWidth]="false"
+            [swipeThreshold]="30"
+            [disableScaling]="true"
+            (indexChange)="swiped($event)"
+          >
+            @for (card of cards(); track $index) {
+              <ng-template ngxDpCarouselSlide>
+                <div class="w-100 pt-small pr-small">
+                  <ngx-card
+                    class="w-100 bank-card"
+                    [cardMode]="'bank'"
+                    [cardSize]="'default'"
+                    [cardNumber]="card.pan"
+                    [ownerName]="card.cardOwner || ''"
+                    [disabled]="!card.activeBank"
+                    [expireDate]="card.expireDate"
+                    [alias]="card.alias"
+                    commonUtilitiesAppletOnHold
+                    [pinned]="card.pinned"
+                  ></ngx-card>
+                </div>
+              </ng-template>
+            }
+          </ngx-dp-carousel>
+        } @else {
+          <daily-bank-card-preview
+            [config]="{
+              classes: 'w-100 bank-card',
+            }"
+            (click)="navigateToNewCard()"
+          ></daily-bank-card-preview>
+        }
+      </div>
+
+      @if (cards().length !== 0) {
+        <ngx-button
+          class="footer-button"
+          [mode]="'form'"
+          [size]="'large'"
+          [style]="'link'"
+          [fullWidth]="true"
+          (clickHandler)="navigateToNewCard()"
+        >
+          اضافه کردن کارت جدید
+        </ngx-button>
+      }
+    </div>
+
+    <div class="footer">
+      <ngx-button
+        [mode]="'form'"
+        [size]="'large'"
+        [style]="'fill'"
+        [fullWidth]="true"
+        [isLoading]="loading()"
+        [disabled]="!selectedCard()"
+        (clickHandler)="confirm()"
+      >
+        ادامه
+      </ngx-button>
+    </div>
+  </div>
+} @else {
+  <lib-ngx-skeleton-loading
+    [height]="'150px'"
+    [width]="'80%'"
+    [classes]="'mr-huge'"
+  ></lib-ngx-skeleton-loading>
+  <lib-ngx-skeleton-loading
+    [height]="'56px'"
+    [classes]="'mt-big'"
+  ></lib-ngx-skeleton-loading>
+  <lib-ngx-skeleton-loading
+    [height]="'25px'"
+    [width]="'90px'"
+    [classes]="'mt-mega'"
+  ></lib-ngx-skeleton-loading>
+  <lib-ngx-skeleton-loading
+    [height]="'200px'"
+    [classes]="'mt-plus'"
+  ></lib-ngx-skeleton-loading>
+}

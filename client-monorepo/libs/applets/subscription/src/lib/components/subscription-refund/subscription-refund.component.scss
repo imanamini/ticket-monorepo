@@ -1,0 +1,62 @@
+
+
+.image {
+  width: 160px;
+  height: 122px;
+  background: url("apps/dpx/src/assets/subscription/icons/refund/warning-refund.svg") no-repeat center;
+}
+
+.amount-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // TODO
+  //color: $swatch_steel_700;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 24px;
+  width: 100%;
+}
+
+.row-value {
+  // TODO
+  //color: $swatch_steel_900;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  &:after {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    content: 'ریال';
+  }
+}
+
+.description {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 16px;
+  // TODO
+  //color: $swatch_steel_500;
+  display: flex;
+  gap: 4px;
+
+  &:before {
+    content: '';
+    display: block;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    background: url("apps/dpx/src/assets/subscription/icons/warning-gold.svg") no-repeat center;
+  }
+}
+
+.divider {
+  width: 100%;
+  margin: 8px 0;
+}
+

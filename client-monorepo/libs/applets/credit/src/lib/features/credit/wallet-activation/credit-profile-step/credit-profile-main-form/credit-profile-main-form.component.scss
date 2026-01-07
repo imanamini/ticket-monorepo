@@ -1,0 +1,38 @@
+.main-section {
+  .top-section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    .form-section {
+      direction: rtl;
+      padding: 24px;
+    }
+  }
+
+  .call-to-actions-section {
+    flex-grow: 0;
+    padding: 24px;
+  }
+}
+
+.form-message {
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.field-wrapper {
+  margin-bottom: 16px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 16px;
+
+  .form-column {
+    width: 48%;
+    box-sizing: border-box;
+  }
+}

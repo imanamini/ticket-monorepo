@@ -1,0 +1,87 @@
+<div
+  (click)="onCardClick($event)"
+  [ngClass]="{
+    'transfer-layout': transferLayout,
+    'with-more-button': moreButton,
+    'disable-card': disableBank,
+  }"
+  [ngStyle]="style"
+  [style.background]="background"
+  class="bank-card"
+>
+  <ng-container *ngIf="!transferLayout">
+    <div class="title-bar">
+      <div
+        style="height: 28px; padding: 0 8px; background: rgba(255, 255, 255, 0.15); border-radius: 8px; display: flex; align-items: center"
+      >
+        <div class="bank-image">
+          <ui-api-image
+            [imageId]="cardProfile.logoImageId"
+            width="16px"
+          ></ui-api-image>
+          <span
+            *ngIf="isPinned"
+            class="pinned-icon"
+          ></span>
+        </div>
+        <div class="bank-title">بانک {{ cardProfile.bankName }}</div>
+      </div>
+
+      <div class="card-number">
+        <span class="part">{{ cardProfile.pan }}</span>
+      </div>
+    </div>
+
+    <div
+      class="card-footer"
+      dir="ltr"
+    >
+      <div class="right-side">
+        <div class="value">{{ cardProfile.cardHolder }}</div>
+      </div>
+      <!--        <div class="right-side" *ngIf="cardProfile.expirationDate && !disableBank">-->
+      <!--          <div class="mask-expire-date" *ngIf="!cardProfile.expirationDate">-->
+      <!--            <span class="mask-bullet" *ngFor="let bullet of [0,2]"></span> /-->
+      <!--            <span class="mask-bullet" *ngFor="let bullet of [0,2]"></span>-->
+      <!--          </div>-->
+      <!--          <div *ngIf="cardProfile.expirationDate" class="value">{{cardProfile.expirationDate}}</div>-->
+      <!--        </div>-->
+    </div>
+  </ng-container>
+
+  <div
+    *ngIf="transferLayout"
+    class="transfer-layout-content"
+  >
+    <div class="bank-image">
+      <ui-api-image
+        [imageId]="cardProfile.logoImageId"
+        width="100%"
+      ></ui-api-image>
+    </div>
+    <div class="body">
+      <div class="info-row">
+        <span class="label">{{ transferType === 'out' ? 'پرداخت از کارت' : 'واریز به کارت' }}</span>
+        <span class="pan">
+          <span class="part">{{ cardProfile.pan }}</span>
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="bank-title">{{ cardProfile.bankName }}</span>
+        <span class="holder-name">{{ cardProfile.cardHolder }}</span>
+      </div>
+    </div>
+  </div>
+
+  <span
+    (click)="moreIconClick()"
+    *ngIf="moreButton"
+    class="more-button"
+  ></span>
+</div>
+<div
+  *ngIf="disableBank"
+  class="disable-bank"
+>
+  خارج از دسترس
+</div>

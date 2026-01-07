@@ -1,0 +1,40 @@
+<div class="draw-card d-flex flex-column px-tiny pt-tiny pb-minus surface-elevated cursor-pointer">
+  <div
+    class="image mb-small"
+    [style.background-image]="
+      'url(' + IMAGES_PATH.banners[lottery.info.imageId].img + '),url(' + IMAGES_PATH.banners[lottery.info.imageId].bg + ')'
+    "
+  ></div>
+  <div class="content d-flex flex-column px-minus flex-grow">
+    <div class="middle-section">
+      <h3 class="content-title d-flex justify-content-space-between gap-small mb-tiny">
+        <span class="lottery-title st-8">{{ lottery.info.title }}</span>
+        <div class="point d-flex align-items-center surface-brand-tint py-tiny px-pony">
+          <span class="icon-coin ml-tiny"></span>
+          <span class="c-1">{{ lottery.info.score }}</span>
+        </div>
+      </h3>
+      <p class="remaining-capacity d-flex align-items-center gap-tiny l-3">
+        <span class="text-onback-low">ظرفیت باقی‌مانده:</span>
+
+        @if (lottery.info.capacity.type === capacityType.UNLIMITED) {
+          <span class="text-onback-error l-1">نامحدود</span>
+        } @else {
+          <span class="text-onback-error l-1">{{ lottery?.info?.capacity?.remainingCount }} نفر </span>
+        }
+      </p>
+    </div>
+    @if (!lottery.acquisitionResult.trackingCode) {
+      <div class="timer">
+        <h4 class="timer-title l-3 mb-tiny">زمان باقی‌مانده تا ثبت‌نام:</h4>
+        <pay-club-applet-ui-modern-countdown [seconds]="lottery.info.remainingTimePurchase || 0"></pay-club-applet-ui-modern-countdown>
+      </div>
+    }
+    @if (lottery.acquisitionResult.trackingCode) {
+      <div class="timer">
+        <h4 class="timer-title l-3 mb-tiny">زمان باقی‌مانده تا انجام قرعه‌کشی:</h4>
+        <pay-club-applet-ui-modern-countdown [seconds]="lottery.info.remainingTimeExecution || 0"></pay-club-applet-ui-modern-countdown>
+      </div>
+    }
+  </div>
+</div>

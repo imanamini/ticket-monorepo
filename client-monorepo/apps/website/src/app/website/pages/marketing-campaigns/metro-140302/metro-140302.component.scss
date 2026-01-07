@@ -1,0 +1,160 @@
+@import "globals";
+
+.container {
+  .hero {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 128px;
+
+    .metro-slogan,
+    .other-slogan {
+      font-size: 27px;
+      font-weight: 950;
+      line-height: 140%;
+      margin-bottom: 16px;
+    }
+
+    .gif {
+      margin-bottom: 10px;
+      display: block;
+      max-width: 556px;
+      max-height: 80px;
+      width: auto;
+      height: auto;
+    }
+
+    .blue {
+      color: $swatch_blue_500;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 170%;
+      letter-spacing: -0.6px;
+    }
+  }
+
+  .call-us {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $swatch_blue_100;
+    border-radius: 16px;
+    padding: 40px 0;
+    margin-bottom: 64px;
+    text-align: center;
+
+    .text {
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 850;
+      line-height: 145%;
+      letter-spacing: -0.24px;
+      margin-bottom: 16px;
+    }
+
+    ::ng-deep {
+      .button {
+        width: 436px;
+      }
+
+      .contact-us {
+        font-size: 16px;
+        font-weight: 375;
+        line-height: 28px;
+
+        .tell {
+          font-size: 14px;
+          font-weight: 375;
+          line-height: 24px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .container {
+    .hero {
+      .other-slogan,
+      .metro-slogan {
+        margin-bottom: 12px;
+        font-size: 19px;
+        font-weight: 690;
+        line-height: 155%;
+        letter-spacing: -0.57px;
+      }
+
+      .gif {
+        margin-bottom: 8px;
+        display: block;
+        max-width: 328px;
+        max-height: 85px;
+        width: auto;
+        height: auto;
+      }
+
+      .subtitle {
+        font-size: 16px;
+        font-weight: 200;
+        line-height: 200%;
+        letter-spacing: -0.48px;
+      }
+    }
+
+    .call-us {
+      margin-bottom: 40px;
+      padding: 24px 0;
+
+      .text {
+        font-size: 15px;
+        font-weight: 850;
+        line-height: 165%;
+        letter-spacing: -0.15px;
+      }
+
+      ::ng-deep {
+        .button {
+          width: 244px;
+        }
+
+        .contact-us {
+          font-size: 14px;
+          font-weight: 450;
+          line-height: 24px;
+
+          .tell {
+            font-size: 11px;
+            font-weight: 300;
+            line-height: 200%;
+            letter-spacing: -0.55px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .container {
+    .hero {
+      padding-top: 80px;
+
+      .other-slogan,
+      .metro-slogan {
+        margin-bottom: 12px;
+      }
+    }
+
+    .call-us {
+      ::ng-deep {
+        .button {
+          width: 244px;
+        }
+      }
+    }
+  }
+}

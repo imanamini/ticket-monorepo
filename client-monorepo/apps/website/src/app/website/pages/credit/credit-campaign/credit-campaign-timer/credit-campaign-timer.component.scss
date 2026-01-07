@@ -1,0 +1,288 @@
+.section-counter {
+  background: #f2f5f8;
+
+  .title ::ng-deep {
+    line-height: 1.5;
+    font-weight: 900;
+    font-size: 40px;
+    color: #fff;
+  }
+
+  .subtitle ::ng-deep h1 , .subtitle ::ng-deep span  {
+    line-height: 1.5;
+    font-weight: 875;
+    font-size: 24px !important;
+    color: #fff;
+    margin-bottom: 24px;
+  }
+  .subtitle ::ng-deep h1 {
+    font-size: 32px !important;
+  }
+
+  .content-custom {
+    background: #E30F44 !important;
+  }
+
+  .colorsBg{
+    background: linear-gradient(96deg, #C33474 17.28%, #7966EF 86.66%) !important;
+  }
+
+
+  .content {
+    position: relative;
+    background: #002FA3;
+    border-radius: 24px;
+    width: 100%;
+    padding: 48px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .artwork {
+
+      img {
+        max-width: 100%;
+      }
+    }
+
+    .dent {
+      cursor: pointer;
+      position: absolute;
+      left: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      bottom: -21px;
+      transform: translate(-50%, -50%);
+
+      img {
+        display: block;
+      }
+
+      div {
+        position: absolute;
+      }
+
+      i {
+        position: absolute;
+        cursor: pointer;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  .counter > div {
+    width: min-content;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.22);
+    border-radius: 16px;
+    padding: 16px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+  }
+
+  .big-prize__counter-title > div {
+    font-size: 14px;
+    line-height: 1.5;
+
+    ::ng-deep p {
+      width: max-content;
+    }
+  }
+
+  .counter {
+    margin-bottom: 24px;
+  }
+
+
+  #as__big_prize__counter_contain > div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 50px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  #as__big_prize__counter_contain {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+  }
+
+  #as__big_prize__counter_contain > div > span:first-child {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    position: relative;
+    font-size: 18px;
+    font-weight: bold;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  #as__big_prize__counter_contain > div > span:last-child {
+    font-size: 14px;
+  }
+
+  #as__big_prize__counter_contain > div > span:first-child:before {
+    content: ":";
+    position: absolute;
+    right: 0;
+  }
+
+  #as__big_prize__counter_contain > div:last-child > span:first-child:before {
+    content: "";
+  }
+
+  .button-red ::ng-deep button {
+    outline-color: #D33F5E;
+    background: #D33F5E;
+  }
+
+  .button-red ::ng-deep a {
+    outline-color: #D33F5E;
+    background: #D33F5E;
+  }
+
+  .button-white ::ng-deep button, .button-white ::ng-deep a {
+    outline-color: #fff;
+    background: #fff;
+    color: #E30F44;
+    border: 1px solid #fff;
+    font-size: 16px;
+  }
+  .button-white-blue ::ng-deep button, .button-white-blue ::ng-deep a {
+    outline: none;
+    background: #fff;
+    color: #1159FC;
+    border: 1px solid #fff;
+    font-size: 14px;
+  }
+
+  .full-width {
+    display: block;
+    width: 80% !important;
+  }
+}
+
+@media (max-width: 1280px) {
+  .section-counter {
+
+    .title ::ng-deep p {
+      font-size: 36px;
+    }
+
+
+    .subtitle ::ng-deep p {
+      font-size: 20px;
+    }
+
+
+    .content {
+      padding: 48px 44px;
+
+      .artwork {
+        max-width: 264px;
+      }
+    }
+
+
+  }
+
+  .big-prize__counter-title > div {
+
+    ::ng-deep p {
+      width: auto !important;
+    }
+  }
+  .big-prize__counter-title {
+    width: 25%;
+  }
+  .big-prize__counter-contain{
+    width: 75%;
+  }
+}
+
+@media (max-width: 744px) {
+  .section-counter {
+    .title ::ng-deep p {
+      font-size: 24px;
+    }
+
+    .subtitle ::ng-deep p {
+      font-size: 14px;
+    }
+    .subtitle ::ng-deep h1 {
+      font-size: 14px !important;
+    }
+    .button-red {
+      width: 100%;
+    }
+
+    .content {
+      flex-direction: column;
+      text-align: center;
+
+      .cta {
+        margin-bottom: 28px;
+      }
+    }
+  }
+
+  .section-counter .big-prize__counter-title > div {
+    font-size: 12px;
+  }
+  .section-counter #as__big_prize__counter_contain > div > span:last-child {
+    font-size: 12px;
+  }
+  .section-counter #as__big_prize__counter_contain > div > span:first-child {
+    font-size: 12px;
+  }
+  .section-counter #as__big_prize__counter_contain > div {
+    width: 34px;
+  }
+  .section-counter .counter > div {
+    margin: auto;
+    width: auto;
+  }
+  .section-counter .counter{
+    width: 215px;
+    margin : 0 auto 24px;
+  }
+
+  .big-prize__counter-title {
+    width: 30%;
+  }
+  .big-prize__counter-contain{
+    width: 70%;
+  }
+  .section-counter .full-width{
+    margin : auto;;
+  }
+
+}

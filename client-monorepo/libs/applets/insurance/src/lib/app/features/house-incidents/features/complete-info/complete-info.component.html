@@ -1,0 +1,103 @@
+<div class="d-flex flex-column h-100">
+  <main-header
+          title="تکمیل اطلاعات"
+          (rightIconClicked)="leaveJourney()"
+          [faqCategory]="FaqCategoryTypeEnum.HOUSE_INCIDENTS"
+          leftIconName="headphone"
+          leftIconType="linear"
+  ></main-header>
+  <div class="px-plus pt-small">
+    <house-incidents-stepper
+            [selectedStep]="HouseIncidentsStepsEnum.COMPLETE_INFO"
+    ></house-incidents-stepper>
+  </div>
+  @if (form()) {
+    <form class="flex-grow d-flex flex-column align-items-center justify-content-space-between p-plus gap-plus pt-medium"
+          [formGroup]="form()">
+      <div class="d-flex flex-column gap-tiny w-100">
+        <div class="w-100">
+          <div class="st-8 text-onback-high">اطلاعات بیمه‌گزار</div>
+          <div class="d-flex flex-column mt-plus">
+            <ui-form-field
+                    label="نام"
+                    [required]="true"
+                    formControlName="firstName"
+                    [error]="form().controls?.firstName.errors"
+                    [showError]="showError()?'show':'hidden'"
+            ></ui-form-field>
+            <ui-form-field
+                    label="نام خانوادگی"
+                    [required]="true"
+                    formControlName="lastName"
+                    [error]="form().controls?.lastName.errors"
+                    [showError]="showError()?'show':'hidden'"
+            ></ui-form-field>
+            <ui-form-field
+                    label="کد ملی"
+                    [error]="form().controls?.nationalCode?.errors"
+                    [required]="true"
+                    formControlName="nationalCode"
+                    [isNumericKeyboard]="true"
+                    [maxSize]="10"
+                    [showError]="showError()?'show':'hidden'"
+            ></ui-form-field>
+            <ui-form-field
+                    label="شماره موبایل"
+                    [error]="form().controls?.mobile.errors"
+                    [required]="true"
+                    formControlName="mobile"
+                    [isNumericKeyboard]="true"
+                    [maxSize]="11"
+                    [showError]="showError()?'show':'hidden'"
+            ></ui-form-field>
+          </div>
+        </div>
+        <div class="w-100">
+          <div class="st-8 text-onback-high">مشخصات ساختمان</div>
+          <div class="d-flex flex-column mt-plus">
+            <ui-form-field
+                    label="کد پستی"
+                    [error]="form().controls?.postalCode.errors"
+                    [required]="true"
+                    formControlName="postalCode"
+                    [isNumericKeyboard]="true"
+                    [maxSize]="10"
+                    [showError]="showError()?'show':'hidden'"
+            ></ui-form-field>
+            <ui-form-field
+                    label="آدرس"
+                    [error]="form().controls?.address.errors"
+                    [required]="true"
+                    formControlName="address"
+                    [multiLine]="true"
+                    [showError]="showError()?'show':'hidden'"
+            ></ui-form-field>
+          </div>
+        </div>
+        <div class="mb-plus">
+          <ngx-alert
+                  [color]="'yellow'"
+                  text="طبق بخشنامه بیمه مرکزی، صدور بیمه‌نامه تنها با کدپستی ثبت‌شده در سامانه املاک امکان‌پذیر است. لطفاً در صورت عدم ثبت کدپستی، از طریق لینک زیر اقدام کنید."
+                  title="توجه کنید"
+                  [hasCloseIcon]="false"
+                  [actionButton]="{
+              link: 'سامانه املاک و اسکان >',
+            }"
+                  (clickAction)="goToAmlak()"
+          ></ngx-alert>
+        </div>
+      </div>
+    </form>
+  }
+  <div class="w-100 px-plus pb-plus">
+    <ins-button
+            (clickHandler)="submitForm()"
+            [text]="progressButtonText()"
+            [size]="InsButtonSizeEnum.Large"
+            [style]="InsButtonStyleEnum.Fill"
+            [fullWidth]="true"
+            [isLoading]="isSubmitting()"
+            type="submit"
+    ></ins-button>
+  </div>
+</div>

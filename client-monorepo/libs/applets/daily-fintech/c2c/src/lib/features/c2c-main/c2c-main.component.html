@@ -1,0 +1,28 @@
+<ng-container>
+  @switch (C2C_STEPS[activeStepIndex()]?.name) {
+    @case (C2cStepsEnum.SOURCE) {
+      <c2c-applet-c2c-source-card-step></c2c-applet-c2c-source-card-step>
+    }
+
+    @case (C2cStepsEnum.NEW_CARD) {
+      <c2c-applet-c2c-new-card-step></c2c-applet-c2c-new-card-step>
+    }
+
+    @case (C2cStepsEnum.DESTINATION) {
+      <c2c-applet-c2c-destination-card-step></c2c-applet-c2c-destination-card-step>
+    }
+
+    @case (C2cStepsEnum.CREDENTIALS) {
+      <c2c-applet-c2c-credentials-step></c2c-applet-c2c-credentials-step>
+    }
+  }
+</ng-container>
+
+<!--we download bank logo images immediately and then we can show them on the bottom sheet without lag -->
+@for (bank of allBanks(); track bank.uid) {
+  <ui-api-image
+    width="0px"
+    height="0px"
+    [imageId]="bank.imageId"
+  ></ui-api-image>
+}

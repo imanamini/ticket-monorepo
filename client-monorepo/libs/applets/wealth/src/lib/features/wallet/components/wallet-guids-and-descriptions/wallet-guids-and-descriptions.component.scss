@@ -1,0 +1,38 @@
+.stepper {
+  width: 100%;
+  margin-top: 2.333rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    margin-bottom: 1.333rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 3px;
+      height: calc(100% + 10px);
+      border-left: 2px dashed #eaeaea;
+      right: 0;
+      top: 10px;
+    }
+
+    &:last-child::before {
+      display: none;
+    }
+
+    .circle {
+      min-width: 0.666rem;
+      min-height: 0.666rem;
+      border-radius: 50%;
+      background-color: #3479ff;
+      margin-left: 1rem;
+      margin-top: 0.5rem;
+      position: relative;
+    }
+  }
+}

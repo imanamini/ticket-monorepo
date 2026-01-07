@@ -1,0 +1,25 @@
+<div class="custom-brand-model">
+  <div class="hint">
+    اطلاعات گوشی خود را وارد کنید.
+  </div>
+  <ng-container [formGroup]="form">
+    <div class="form">
+      <ui-form-field
+              formControlName="brand"
+              label="برند">
+      </ui-form-field>
+      <ui-form-field
+              formControlName="model"
+              label="مدل">
+      </ui-form-field>
+    </div>
+  </ng-container>
+
+  <div class="buttons">
+    <ui-button
+            (clicked)="closeDialog()"
+            [disabled]="form.invalid">
+      تایید و ادامه
+    </ui-button>
+  </div>
+</div>

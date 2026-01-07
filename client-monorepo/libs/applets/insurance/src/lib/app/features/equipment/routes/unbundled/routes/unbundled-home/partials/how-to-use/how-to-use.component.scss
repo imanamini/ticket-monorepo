@@ -1,0 +1,47 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.faq {
+  padding: 60px;
+  line-height: 1.8;
+  background: linear-gradient(0, #FFF calc(100% - 350px), #f4f6fc 350px);
+
+  .header, .description {
+    text-align: center;
+    margin: 25px;
+    z-index: 2;
+  }
+
+  .header {
+    font-weight: 700;
+    font-size: 24px;
+    color: #061962;
+  }
+
+  .description {
+    color: #061962;
+    font-weight: 300;
+    font-size: 22px;
+  }
+
+  .expansion-wrapper {
+    padding: 25px;
+    z-index: 2;
+  }
+}
+
+@include mediaTablet() {
+  .faq {
+    padding: 20px 0;
+
+    .header {
+      font-size: 24px;
+      font-weight: 300;
+    }
+
+    .description {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+
+}

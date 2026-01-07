@@ -1,0 +1,48 @@
+<div class="d-flex flex-wrap p-big">
+  @if (profile().investmentType === 'ETF' && (profile().type === 'Gold' || profile()?.type === 'Index')) {
+    <div class="w-100 align-content-center d-grid">
+      <p class="w-100 bt-3 text-onback-medium">قیمت پایانی هر واحد</p>
+      <p class="w-100 bt-2 text-onback-high text-align-end">
+        <span class="st-7">
+          {{ profile()?.purchaseNav | thousands }}
+        </span>
+        ریال
+      </p>
+    </div>
+  } @else {
+    <div class="w-100 align-content-center d-flex justify-content-space-between">
+      <div class="d-flex flex-column justify-content-center">
+        <p class="bt-3 text-onback-medium">قیمت خرید هر واحد</p>
+        <p class="mt-small bt-2 text-onback-high text-align-center">
+          <span class="st-7">
+            {{ profile()?.purchaseNav | thousands }}
+          </span>
+          ریال
+        </p>
+      </div>
+      <ngx-divider
+        class="h-100"
+        [color]="BorderColorsEnum.Tint"
+        orientation="vertical"
+      ></ngx-divider>
+      <div class="price">
+        <p class="bt-3 text-onback-medium">قیمت فروش هر واحد</p>
+        <p class="mt-small bt-2 text-onback-high text-align-center">
+          <span class="st-7">
+            {{ profile()?.saleNav | thousands }}
+          </span>
+
+          ریال
+        </p>
+      </div>
+    </div>
+  }
+
+  <!-- ? last update -->
+  <div class="w-100 text-align-center mt-plus">
+    <p class="text-onback-medium l-1">
+      آخرین به‌روز رسانی:
+      {{ profile()?.latestNavUpdate | formatedDate }}
+    </p>
+  </div>
+</div>

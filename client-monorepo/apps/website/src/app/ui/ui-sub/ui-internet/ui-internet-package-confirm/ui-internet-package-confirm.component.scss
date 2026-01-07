@@ -1,0 +1,53 @@
+@import "globals";
+
+::ng-deep .mat-mdc-dialog-container {
+  padding: 24px;
+  border-radius: 24px;
+}
+
+.message {
+  line-height: 1.6em;
+  margin-bottom: 16px;
+
+  ::ng-deep {
+    strong {
+      font-weight: 500;
+    }
+  }
+}
+
+.pay-buttons {
+  margin: 24px 0 0;
+}
+
+:host ::ng-deep {
+  .card {
+    .details {
+      .detail-item:nth-child(2) .value {
+        direction: ltr;
+      }
+    }
+  }
+}
+
+@include mediaMaxWidth(744px) {
+  ::ng-deep .mat-mdc-dialog-container {
+    padding: 0;
+  }
+
+  .pay-buttons {
+    flex-wrap: wrap;
+
+    ::ng-deep {
+      .wallet,
+      .ipg {
+        width: 100%;
+        margin: 0;
+      }
+
+      .ipg {
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

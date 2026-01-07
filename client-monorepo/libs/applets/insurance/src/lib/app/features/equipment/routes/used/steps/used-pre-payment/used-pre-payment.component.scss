@@ -1,0 +1,154 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.pre-payment {
+  @include flex-column();
+  gap: 28px;
+  width: 100%;
+
+  .payment-description {
+    @include flex-row();
+    @include flex-center-between();
+    width: 100%;
+
+    .description-more-details {
+      @include flex-row();
+      @include flex-center();
+      gap: 8px;
+      color: #0040ff;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+    }
+  }
+
+  .payment-details {
+    @include flex-row();
+    gap: 32px;
+
+    .price-info {
+      @include column-center-between;
+      gap: 10px;
+      width: 100%;
+
+      .title {
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .price {
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 56px;
+      }
+
+    }
+
+    &.mobile {
+      @include flex-column();
+      gap: 16px;
+    }
+
+    .details-item {
+      flex: 1;
+    }
+
+    .details-first {
+      @include flex-column();
+
+      .first-item {
+        padding: 16px 0;
+      }
+
+      .first-device {
+        @include flex-row();
+        gap: 14px;
+
+        .device-name {
+          @include flex-column();
+          @include flex-start-center();
+          gap: 4px;
+
+          .title {
+            font-size: 14px;
+            color: #6e798d;
+            font-weight: 400;
+            line-height: 24px;
+          }
+
+          .name {
+            font-size: 14px;
+            color: #2c3544;
+            font-weight: 400;
+            line-height: 24px;
+          }
+        }
+      }
+    }
+
+    .details-second {
+      @include flex-column();
+      justify-content: space-between;
+      gap: 14px;
+
+      .discount-code {
+        @include flex-column;
+        gap: 8px;
+
+        .success {
+          font-size: 12px;
+          color: #00cc6d;
+        }
+
+        .error {
+          font-size: 12px;
+          color: #ff2638;
+        }
+      }
+    }
+  }
+
+  .payment-payable-price {
+    @include flex-row();
+    @include flex-center-between();
+    background-color: #f2f5f8;
+    padding: 24px 32px;
+    border-radius: 16px;
+    width: 100%;
+
+    .price-title {
+      color: #6e798d;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .price-amount {
+      color: #2c3544;
+      font-weight: 700;
+      font-size: 22px;
+    }
+  }
+
+  .discount-code-container {
+    background-color: #eefff6;
+    @include flex-center();
+    padding: 12px 8px;
+    border-radius: 6px;
+
+    span {
+      color: #424c5c;
+      font-size: 14px;
+      font-weight: 400;
+      flex: 1;
+      margin-right: 12px;
+      @include flex-center-start();
+    }
+
+    div {
+      width: 36px;
+      height: 36px;
+      background-color: #fff;
+      @include flex-center();
+      border-radius: 8px;
+    }
+  }
+}

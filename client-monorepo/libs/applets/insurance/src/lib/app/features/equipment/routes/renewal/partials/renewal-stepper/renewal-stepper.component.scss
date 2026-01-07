@@ -1,0 +1,179 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+$iconSize: 26px;
+$imageSize: 20px;
+$nodeSize: 40px;
+$mobileNodeSize: 12px;
+$lineHeight: 4px;
+$wrapperMargin: 16px 0;
+
+.stepper-mobile-title {
+  @include flex-row();
+  @include flex-center-between();
+  font-size: 14px;
+  padding: 0 24px;
+  margin-bottom: 12px;
+
+  .title-wrapper {
+    @include flex-row();
+    @include flex-center-start();
+    gap: 4px;
+    font-size: 14px;
+
+    .step {
+      font-weight: 700;
+      color: #2c3544;
+    }
+
+    .title {
+      font-weight: 400;
+      color: #2c3544;
+    }
+  }
+
+  .steps-indicator {
+  }
+}
+
+.renewal-stepper {
+  margin: $wrapperMargin;
+  width: 100%;
+  @include flex-row();
+  @include flex-start-around();
+  flex-wrap: nowrap;
+
+  &.mobile {
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  .node-wrapper {
+    @include flex-column();
+    @include flex-center();
+    min-width: 64px;
+    gap: 4px;
+
+    &.pointer {
+      cursor: pointer;
+    }
+
+    &.mobile {
+      min-width: auto !important;
+      max-width: 12px;
+    }
+
+    .node {
+      @include flex-column();
+      @include flex-center();
+      border-radius: 100%;
+      width: $nodeSize;
+      height: $nodeSize;
+      margin: 0 8px;
+
+      &.mobile {
+        width: $mobileNodeSize !important;
+        height: $mobileNodeSize !important;
+        margin: 0 !important;
+      }
+
+      &.regular {
+        border: 3px solid #dee3e7;
+
+        &.mobile {
+          border: none;
+          background-color: #dee3e7;
+        }
+      }
+
+      &.reached {
+        border: 3px solid #789aff;
+
+        &.mobile {
+          border: none;
+          background-color: #789aff;
+        }
+      }
+
+      &.active {
+        border: 3px solid #0040ff;
+
+        &.mobile {
+          border: none;
+          background-color: #0040ff;
+        }
+      }
+
+      .node-icon {
+        @include flex-row();
+        @include flex-center();
+        width: $iconSize;
+        height: $iconSize;
+        border-radius: 100%;
+
+        img {
+          width: $imageSize;
+          height: $imageSize;
+        }
+
+        &.regular {
+          background-color: #dee3e7;
+        }
+
+        &.reached {
+          background-color: #789aff;
+        }
+
+        &.active {
+          background-color: #0040ff;
+        }
+      }
+    }
+
+    .title {
+      line-height: 20px;
+      font-size: 12px;
+
+      &.regular {
+        color: #8d99a8;
+        font-weight: 500;
+      }
+
+      &.reached {
+        color: #789aff;
+        font-weight: 500;
+      }
+
+      &.active {
+        color: #0040ff;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .line {
+    flex: 1;
+    height: $lineHeight;
+    min-width: 32px;
+    margin-top: 20px;
+
+    &.mobile {
+      margin-top: 0 !important;
+    }
+
+    &.regular {
+      background-color: #dee3e7;
+    }
+
+    &.reached {
+      background-color: #789aff;
+    }
+
+    &:first-child {
+      border-radius: 0 8px 8px 0;
+    }
+
+    &:last-child {
+      border-radius: 8px 0 0 8px;
+    }
+  }
+}

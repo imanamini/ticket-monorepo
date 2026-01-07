@@ -1,0 +1,29 @@
+<section>
+  <div class="container">
+    <div class="catalog-container">
+      <div class="d-flex flex-column gap-large catalog-desc">
+        <div class="title fs-34">{{ bannerSection.title }}</div>
+        <div class="subtitle fs-16">{{ bannerSection.subtitle }}</div>
+        <div class="cta">
+          <app-ui-button
+            [withoutHref]="true"
+            [link]="bannerSection.cta.link ? bannerSection.cta.link : ''"
+            appearance="FLAT-BLUE"
+          >
+            {{ bannerSection.cta.title }}
+            <ngx-icon
+              [name]="'arrow-left'"
+              class="text-onback-brand mr-tiny"
+            ></ngx-icon>
+          </app-ui-button>
+        </div>
+      </div>
+      <div class="catalog-img">
+        <img
+          [src]="bannerSection?.image?.url"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</section>

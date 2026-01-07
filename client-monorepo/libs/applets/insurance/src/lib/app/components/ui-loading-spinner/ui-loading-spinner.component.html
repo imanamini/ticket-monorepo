@@ -1,0 +1,25 @@
+<div class="loading-spinner">
+  <div
+          [ngStyle]="{
+      width: (size + 'px'),
+      height: (size + 'px')
+    }"
+          class="loader"
+  >
+    <svg
+            [ngStyle]="{stroke: color}"
+            class="circular-loader"
+            viewBox="25 25 50 50"
+    >
+      <circle
+              class="loader-path"
+              cx="50"
+              cy="50"
+              fill="none"
+              r="20"
+              stroke="inherit"
+              stroke-width="4"
+      />
+    </svg>
+  </div>
+</div>

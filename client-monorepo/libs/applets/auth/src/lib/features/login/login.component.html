@@ -1,0 +1,44 @@
+<common-ui-components-page-layout
+  [showBackIcon]="headerIcon() === 'arrow-right'"
+  [closeButton]="headerIcon() === 'close'"
+  [showBorder]="false"
+  (onBackAction)="handelHeaderAction()"
+  [hasBackAction]="false"
+>
+  <div class="h-100 surface-elevated d-flex flex-column justify-content-center position-relative">
+    @switch (state()) {
+      @case (LoginState.PHONENUMBER) {
+        <auth-applet-enter-phone-number (okReturned)="prepareStatesForOtp()"></auth-applet-enter-phone-number>
+      }
+      @case (LoginState.OTP) {
+        <common-otp-fill-otp
+          class="px-plus"
+          [otpLength]="6"
+          [phoneNumber]="phoneNumber()"
+          (okReturned)="otpFilled($event)"
+        ></common-otp-fill-otp>
+      }
+      @case (LoginState.PIN) {
+        <common-pin-layout
+          class="px-plus"
+          [pinConfig]="{
+            phoneNumber: phoneNumber(),
+            type: true,
+            isCallTac: isCallTac(),
+            resetPinCallbackUrl: resetPinCallbackUrl(),
+          }"
+          (callbackFunction)="pinCallback($event)"
+        ></common-pin-layout>
+      }
+      @case (LoginState.RULES) {
+        <auth-applet-rules
+          class="px-plus"
+          (onBackClicked)="goToState(LoginState.PHONENUMBER)"
+        ></auth-applet-rules>
+      }
+      @case (LoginState.REPRESENTATIVE) {
+        <auth-applet-presentative-code class="px-plus"></auth-applet-presentative-code>
+      }
+    }
+  </div>
+</common-ui-components-page-layout>

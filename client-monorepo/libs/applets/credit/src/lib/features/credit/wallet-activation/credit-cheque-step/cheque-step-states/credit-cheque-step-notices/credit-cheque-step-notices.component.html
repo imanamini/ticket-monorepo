@@ -1,0 +1,30 @@
+<app-credit-app-bar
+  (onBackButtonClick)="prevStep.emit()"
+  (onTextClick)="openGuideVideoDialog()"
+  [backButton]="true"
+  actionImage="play"
+  actionText="فیلم راهنما"
+  title="نکات مهم"
+></app-credit-app-bar>
+<div class="d-flex flex-column flex-grow">
+  <div class="d-flex flex-column flex-grow">
+    <app-credit-scrollable-view [fullHeightContent]="true">
+      <div class="d-flex flex-column flex-grow align-items-center justify-content-center rtl px-plus pt-small">
+        <app-credit-notices
+          [notices]="notices"
+          title="برای جلوگیری از رد چک موارد زیر را رعایت کنید:"
+        ></app-credit-notices>
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+  <div class="d-flex flex-column w-100 align-items-center justify-content-center px-plus pb-mega pt-pony">
+    <ngx-button
+      (clickHandler)="nextStep.emit()"
+      [fullWidth]="true"
+      [style]="'fill'"
+      ngxTrackableId
+      trackerId="chequeNoticeConfirmButtonClick"
+      >متوجه شدم
+    </ngx-button>
+  </div>
+</div>

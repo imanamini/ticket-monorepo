@@ -1,0 +1,37 @@
+<div class="surface-back p-minus my-minus radius-medium">
+  <div class="d-flex gap-minus align-items-center">
+    <ngx-button
+      [mode]="'icon-only'"
+      [size]="'medium'"
+      [style]="'tinted-on-back'"
+      [leftIcon]="{ name: 'add-friend', type: 'linear' }"
+    >
+    </ngx-button>
+    <div>
+      <p class="l-1 text-onback-low">
+        @if (!isLoading()) {
+          @if (user()?.name || user()?.surname) {
+            {{ user()?.name + ' ' + user()?.surname }}
+          } @else {
+            بدون نام
+          }
+        } @else {
+          <lib-ngx-skeleton-loading
+            [height]="'12px'"
+            [width]="'100px'"
+            [classes]="'radius-medium'"
+          ></lib-ngx-skeleton-loading>
+        }
+      </p>
+      @if (!isLoading()) {
+        <p class="b-2">{{ user()?.cellNumber }}</p>
+      } @else {
+        <lib-ngx-skeleton-loading
+          [height]="'16px'"
+          [width]="'80px'"
+          [classes]="'radius-medium'"
+        ></lib-ngx-skeleton-loading>
+      }
+    </div>
+  </div>
+</div>

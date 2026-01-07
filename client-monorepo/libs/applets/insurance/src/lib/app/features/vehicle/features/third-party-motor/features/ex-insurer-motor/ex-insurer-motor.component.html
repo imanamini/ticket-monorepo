@@ -1,0 +1,7 @@
+<motor-info-box class="ex-insurer-motor"
+                text="شرکت بیمه‌گر قبلی خود را وارد کنید: "
+                (activeButtonClicked)="onSubmit()"
+                (deActiveButtonClicked)="handleDeActiveButtonClicked()">
+  <ex-insurer-motor-form [exInsurerMotorForm]="exInsurerMotorForm()"
+                         [showError]="showError()"></ex-insurer-motor-form>
+</motor-info-box>

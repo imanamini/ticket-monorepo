@@ -1,0 +1,71 @@
+<common-ui-components-page-layout title="دعوت از دوستان">
+  <div class="px-plus pt-huge">
+    <div class="st-3">
+      میتونی هر بار
+      <span class="text-onback-warning"> ۳۰ سکه </span>
+      پی‌کلاب برنده شی!
+    </div>
+    <p class="text-onback-low b-2">دوستاتو دعوت کن و به ازای هر نفر، ۳۰ عدد پی‌کوین هدیه بگیر!</p>
+
+    <div class="w-100 d-flex justify-content-center">
+      <img
+        ngSrc="assets/referral.svg"
+        alt="referral"
+        width="312"
+        height="272"
+      />
+    </div>
+
+    <div class="st-6 mt-medium">دعوت از طریق</div>
+    <div *ngIf="!data()">
+      <lib-ngx-skeleton-loading
+        [width]="'100%'"
+        [height]="'119px'"
+        [classes]="'radius-medium'"
+      ></lib-ngx-skeleton-loading>
+    </div>
+
+    <div class="px-medium border-300 border-color-air radius-medium">
+      <div class="d-flex justify-content-space-between align-items-center py-minus">
+        <div class="c-2 text-onback-low">کد دعوت</div>
+        <div class="d-flex align-items-center gap-small b-2">
+          <div>{{ data()?.url }}</div>
+          <div
+            class="copy-icon-button border-300 border-color-air radius-tiny p-low"
+            [cdkCopyToClipboard]="data()?.url || ''"
+          >
+            <common-icon-dp-icon
+              [icon]="'document-copy'"
+              [iconType]="'linear'"
+            ></common-icon-dp-icon>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex border-color-air justify-content-space-between align-items-center py-minus border-t-300">
+        <div class="c-2 text-onback-low">لینک</div>
+        <div class="d-flex align-items-center gap-small b-2 text-align-left">
+          <div>{{ this.invitationUrl() + data()?.url }}</div>
+          <div
+            class="copy-icon-button border-300 border-color-air radius-tiny p-low"
+            [cdkCopyToClipboard]="invitationUrl() + data()?.url"
+          >
+            <common-icon-dp-icon
+              [icon]="'document-copy'"
+              [iconType]="'linear'"
+            ></common-icon-dp-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="my-medium">
+      <ngx-button
+        [style]="'tinted-on-elevated'"
+        [fullWidth]="true"
+        (clickHandler)="shareButton()"
+      >
+        اشتراک
+      </ngx-button>
+    </div>
+  </div>
+</common-ui-components-page-layout>

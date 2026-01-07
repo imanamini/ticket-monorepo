@@ -1,0 +1,248 @@
+<div class="landing-container">
+  <div class="landing-header">
+    <div
+      class="header-item"
+      (click)="scrollToElement('steps')"
+    >
+      مراحل سرمایه‌گذاری
+    </div>
+    <div
+      class="header-item"
+      (click)="scrollToElement('sejam')"
+    >
+      ثبت‌نام در سامانه سجام
+    </div>
+    <div
+      class="header-item"
+      (click)="scrollToElement('faq')"
+    >
+      سوالات متداول
+    </div>
+  </div>
+  <div class="banner">
+    <div class="banner-desktop">
+      <div class="titles-container">
+        <div class="title">
+          <span>سرمایـــت رو تبدیــل به ثــروت کن</span>
+        </div>
+        <div class="description">
+          <span>با هر مبلغی که داری سرمایه گذاری کن و ارزش پولت رو در برابر تورم نه تنها حفظ کن بلکه افزایش بده</span>
+        </div>
+        <div class="buttons">
+          <ngx-button
+            class="btn-retry"
+            [fullWidth]="true"
+            (clickHandler)="goToLogin()"
+            [brandButton]="true"
+          >
+            ورود
+          </ngx-button>
+
+          <ngx-button
+            class="btn-retry"
+            [fullWidth]="true"
+            (clickHandler)="goToRegister()"
+            [brandButton]="true"
+          >
+            ثبت نام
+          </ngx-button>
+        </div>
+      </div>
+      <div class="bottom-cta">
+        <img
+          height="36"
+          src="wealth-assets/svg/dent.svg"
+          width="208"
+        />
+        <img
+          class="icon-charon-down-light-blue"
+          height="36"
+          src="wealth-assets/icons/chevron-down-navy.svg"
+          width="30"
+        />
+      </div>
+    </div>
+    <div class="outer-buttons">
+      <ngx-button
+        (clickHandler)="goToRegister()"
+        [brandButton]="true"
+      >
+        ثبت نام
+      </ngx-button>
+
+      <ngx-button
+        (clickHandler)="goToLogin()"
+        [brandButton]="true"
+      >
+        ورود
+      </ngx-button>
+    </div>
+  </div>
+  <div
+    class="steps-container"
+    id="steps"
+  >
+    <div class="step-header">
+      <span>برای سرمایه گذاری چه مراحلی رو باید طی کنم؟</span>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-img"><img src="wealth-assets/icons/check.svg" /></div>
+        <div class="step-title">
+          <span>ثبت‌نام در سامانه سجام</span>
+        </div>
+        <div class="separator"></div>
+        <div class="step-description">
+          <span>احراز هویت و دریافت کد بورسی در سامانه سجام</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-img"><img src="wealth-assets/icons/check.svg" /></div>
+        <div class="step-title">
+          <span>انتخاب صندوق</span>
+        </div>
+        <div class="separator"></div>
+        <div class="step-description">
+          <span>انتخاب صندوق مناسب در بخش سرمایه گذاری اپلیکیشن</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-img"><img src="wealth-assets/icons/check.svg" /></div>
+        <div class="step-title">
+          <span>خرید صندوق</span>
+        </div>
+        <div class="separator"></div>
+        <div class="step-description">
+          <span>انتخاب تعداد واحد مورد نظر ، ثبت سفارش و پرداخت هزینه</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-img"><img src="wealth-assets/icons/check.svg" /></div>
+        <div class="step-title">
+          <span>تایید و دریافت واحد های خریداری شده</span>
+        </div>
+        <div class="separator"></div>
+        <div class="step-description">
+          <span>دریافت واحد‌ها تا ۳ روز کاری </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="investment-method">
+    <div class="method-header">
+      <div class="method-title">
+        <span>چطور در بازار سرمایه تجربه‌ای مثبت داشته باشیم؟</span>
+      </div>
+      <div class="method-description">
+        <span
+          >سرمایه گذاری درست در بازار سرمایه به عوامل مختلفی بستگی داره که با در نظر گرفتن این موارد قطعا به بهترین تجربه سرمایه گذاری
+          میرسیم.</span
+        >
+      </div>
+    </div>
+    <div class="effective-cases">
+      <div class="effective-cases-title">
+        <div class="image-wrapper">
+          <img src="wealth-assets/icons/reload.svg" />
+        </div>
+        <span>موارد تاثیرگذار:</span>
+      </div>
+      <div class="effective-cases-description">
+        <img src="wealth-assets/icons/limped-arrow.svg" />
+        <span>جهت سرمایه گذاری درست و موفق در بازار بورس و سرمایه توجه به یک سری موارد ضروریست.</span>
+      </div>
+      <div class="effective-cases-items">
+        <div class="effective-cases-item">
+          <img src="wealth-assets/icons/info-circle.svg" />
+          <span>افق زمانی بلند مدت</span>
+        </div>
+        <div class="effective-cases-item">
+          <img src="wealth-assets/icons/light-bulb.svg" />
+          <span>آشنایی با انواع طرح های سرمایه گذاری و انتخاب طرح متناسب با اهداف و نوع نگرش خود</span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="sejam-register"
+      id="sejam"
+    >
+      <div class="chart-image"><img src="wealth-assets/svg/charts.svg" /></div>
+      <div class="register-section">
+        <div class="register">
+          <div class="register-title">
+            <span>ثبت‌نام در سامانه سجام</span>
+          </div>
+          <div class="register-description">
+            <div class="check-img"><img src="wealth-assets/icons/check.svg" /></div>
+            <div>
+              <span>برای شروع سرمایه‌گذاری در بازار سرمایه، ابتدا سجامی شوید.</span>
+            </div>
+          </div>
+        </div>
+        <div class="register-button">
+          <ngx-button
+            [fullWidth]="true"
+            (clickHandler)="registerSejam()"
+          >
+            ثبت‌نام در سامانه سجام
+          </ngx-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="download-app-section">
+    <div class="content">
+      <div class="download-app">
+        <div class="digipay-app">
+          <span>اپلیکیشـــن دیجی‌پی</span>
+        </div>
+        <div class="download-now">
+          <span>همین حالا نصب کن!</span>
+        </div>
+        <div class="download-button">
+          <ngx-button
+            [brandButton]="true"
+            (clickHandler)="goToDownloadPage()"
+          >
+            دانلود اپلیکیشن
+          </ngx-button>
+          <span></span>
+        </div>
+        <div class="all-devices">
+          <span>برای همه دستگاه‌ها</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="background-wrapper"
+    id="faq"
+  >
+    <div class="faq">
+      <div class="faq-header">
+        <span>سوالات متداول</span>
+      </div>
+      <div class="faq-list">
+        @for (faq of faqItems; track faq; let idx = $index) {
+          <div
+            class="faq-item"
+            (click)="switchExpand(faq.isExpanded, idx)"
+          >
+            <div class="item-header">
+              <span>{{ faq.question }}</span>
+              <img src="wealth-assets/icons/{{ faq.isExpanded ? 'collapse' : 'expand' }}-circle.svg" />
+            </div>
+            <div
+              class="item-description"
+              [style]="{ display: faq.isExpanded ? 'flex' : 'none' }"
+            >
+              <span>{{ faq.answer }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+    <app-landing-footer></app-landing-footer>
+  </div>
+</div>

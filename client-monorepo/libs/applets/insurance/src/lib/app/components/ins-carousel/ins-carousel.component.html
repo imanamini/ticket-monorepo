@@ -1,0 +1,80 @@
+<div
+  #mainContainer
+  [attr.id]="id"
+  [class]="'carousel d-flex flex-column ' + mainContainerClasses()"
+  [ngStyle]="{ padding: carouselPadding() }"
+>
+  <div
+    #itemsContainer
+    class="items-container d-flex flex-rows justify-center"
+    [ngClass]="{ cards: mode() === 'CARD' }"
+    (transitionstart)="handleAnimationRunning(true)"
+    (transitionend)="handleAnimationRunning(false)"
+    commonUtilitiesSwipeDetector
+    [axisToLockOn]="'X'"
+    [swipeThreshold]="swipeThreshold()"
+    (swipeStart)="onSwipeStart($event)"
+    (swiping)="swiping($event)"
+    (isSwipingVertically)="handleSwipingVertically($event)"
+    (singleTap)="handleSingleTap()"
+    (swipedX)="onSwipeX()"
+    (swipeEnd)="onSwipeEnd()"
+  >
+    <ng-content select="[commonUiCarouselSlide]"></ng-content>
+  </div>
+  <!-- Navigation -->
+  @if (showNavigation()) {
+    <div
+      #navigationContainer
+      [class]="'navigation-container px-medium pt-minus d-flex flex-row radius-minus align-items-center ' + navigationContainerClasses()"
+      [ngClass]="{
+        'justify-content-space-between': showDots() && showNavigation() && !onlyOneNavigation(),
+        'justify-content-center': onlyOneNavigation(),
+      }"
+    >
+      <!-- Dots -->
+      @if (showDots() && dots()?.length > 0) {
+        <div
+          [class]="'dots radius-big d-flex flex-row gap-tiny surface-back ' + navigationDotsContainerClasses()"
+          [ngClass]="disableNavigationDots() ? 'surface-transparent' : ''"
+        >
+          @for (dot of dots(); track dot) {
+            <div
+              [ngClass]="{ active: dot === index() }"
+              class="dot radius-giant"
+            ></div>
+          }
+        </div>
+      }
+      <!-- End Dots -->
+
+      <!-- Navigation Buttons -->
+      @if (showButtons()) {
+        <div class="buttons d-flex flex-row gap-medium">
+          @if (index() !== 0) {
+            <ins-button
+              [mode]="!!navigationButtonPrevText() ? InsButtonModeEnum.Section : InsButtonModeEnum.IconOnly"
+              [style]="InsButtonStyleEnum.TintedOnElevated"
+              [size]="navigationButtonSize()"
+              [leftIcon]="{ name: 'arrow-right', type: 'linear' }"
+              (clickHandler)="handleNavigationBtnClick('PREV')"
+            >
+              {{ navigationButtonPrevText() }}
+            </ins-button>
+          }
+
+          <ins-button
+            [mode]="!!navigationButtonNextText()? InsButtonModeEnum.Section : InsButtonModeEnum.IconOnly"
+            [size]="navigationButtonSize()"
+            [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+            (clickHandler)="handleNavigationBtnClick('NEXT')"
+          >
+            {{ navigationButtonNextText() }}
+          </ins-button>
+        </div>
+      }
+      <!-- End Navigation Buttons -->
+    </div>
+  }
+  <!-- End Navigation -->
+</div>

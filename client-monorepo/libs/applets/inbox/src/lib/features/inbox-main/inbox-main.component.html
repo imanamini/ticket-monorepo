@@ -1,0 +1,45 @@
+<common-ui-components-page-layout
+  [title]="'پیام‌ها'"
+  [actionText]="isShowAllReadButton() ? 'خواندن همه' : ''"
+  (onTextClick)="onAllReadCalled()"
+  [actionImage]="isShowAllReadButton() ? 'check-square' : ''"
+  [leftButtonDisabled]="isDisableAllReadButton()"
+>
+  <div id="filter-container">
+    @if (pageStatus() !== 'empty') {
+      <div class="position-sticky surface-elevated">
+        <inbox-applet-inbox-filters (filterClicked)="onFilterClicked($event)"></inbox-applet-inbox-filters>
+      </div>
+    }
+    @switch (pageStatus()) {
+      @case ('empty') {
+        <div class="no-result-margin">
+          <inbox-applet-inbox-empty-state></inbox-applet-inbox-empty-state>
+        </div>
+      }
+      @case ('no-filter-result') {
+        <div class="no-result-margin">
+          <inbox-applet-inbox-empty-state [emptyMode]="'no-filter-result'"></inbox-applet-inbox-empty-state>
+        </div>
+      }
+      @case ('loading') {
+        <inbox-applet-inbox-skeleton-loading></inbox-applet-inbox-skeleton-loading>
+      }
+      @case ('loaded') {
+        <div
+          commonUtilitiesScrolledToEnd
+          (scrolledToEnd)="listEnded()"
+        >
+          @for (message of messages(); track message.messageId; let i = $index) {
+            <div class="border-b-100 border-color-light">
+              <common-message-management-main
+                [message]="message"
+                [viewMode]="MessageViewEnum.MESSAGE"
+              ></common-message-management-main>
+            </div>
+          }
+        </div>
+      }
+    }
+  </div>
+</common-ui-components-page-layout>

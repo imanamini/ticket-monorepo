@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
+}
+
+
+
+.number {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+}

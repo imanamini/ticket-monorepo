@@ -1,0 +1,116 @@
+<div
+  class="request-form"
+  [ngClass]="submittedForm ? 'submitted' : ''"
+>
+  <div class="artwork"></div>
+  <div class="content">
+    <ng-container *ngIf="!submittedForm; else submitted">
+      <div class="title">الان بخــر بعــدا پرداخــت کــن!</div>
+      <div class="subtitle">
+        <img
+          ngSrc="../../../../../../../assets/images/bnpl/icon-bnpl-gold.svg"
+          width="24"
+          height="24"
+        />
+        ( BNPL ) دریافت اعتبـار بدون سـود و ضامن
+      </div>
+      <div
+        *ngIf="contactForm"
+        [formGroup]="contactForm"
+        class="forms"
+      >
+        <ui-form-field
+          [formControlName]="'firstName'"
+          label="نام"
+          type="input"
+          [errorMessageMapper]="{
+            required: 'نام را وارد کنید.',
+          }"
+        ></ui-form-field>
+        <ui-form-field
+          [formControlName]="'lastName'"
+          label="نام خانوادگی"
+          type="input"
+          [errorMessageMapper]="{
+            required: 'نام خانوادگی را وارد کنید.',
+          }"
+        ></ui-form-field>
+        <ui-form-field
+          [formControlName]="'cellNumber'"
+          label="شماره موبایل"
+          maxSize="11"
+          type="input"
+          [readonly]="true"
+        ></ui-form-field>
+        <div>
+          <ui-form-field
+            [formControlName]="'nationalCode'"
+            label="کد ملی"
+            maxSize="10"
+            [errorMessageMapper]="{
+              required: 'کد ملی را وارد کنید.',
+              invalidNationalCode: 'کد ملی وارد شده معتبر نیست.',
+            }"
+            [error]="contactForm.controls.nationalCode.errors"
+            [isNumericKeyboard]="true"
+          ></ui-form-field>
+          <ui-form-field
+            *ngIf="dateInputBounds && dateInputBounds.startTimestamp && dateInputBounds.endTimestamp"
+            type="date"
+            [customDateRange]="[dateInputBounds.startTimestamp, dateInputBounds.endTimestamp]"
+            label="تاریخ تولد"
+            [dateRange]="'past'"
+            [formControlName]="'birthDate'"
+          ></ui-form-field>
+        </div>
+      </div>
+      <div class="ctas">
+        <app-ui-button
+          class="cta"
+          size="BIG"
+          (clicked)="submitRequest()"
+          [disabled]="!contactForm.valid || isSubmitting"
+        >
+          ثبت درخواست
+        </app-ui-button>
+        <app-ui-button
+          appearance="FLAT-BLUE"
+          class="cta"
+          size="BIG"
+          (clicked)="goToCBnpl()"
+          [disabled]="isSubmitting"
+        >
+          <span
+            appUiIcon
+            icon="icon-arrow-right"
+          ></span>
+          بازگشت به خرید اعتباری
+        </app-ui-button>
+      </div>
+    </ng-container>
+    <ng-template #submitted>
+      <div class="title">درخواست شما با موفقیت ثبت شد.</div>
+      <div class="subtitle">در صورت تایید اعتبار از طریق پیامک به شما اعلام می گردد.</div>
+      <div class="ctas">
+        <app-ui-button
+          size="BIG"
+          (clicked)="goToApp()"
+          >ورود به اپ دیجی پی</app-ui-button
+        >
+        <app-ui-button
+          appearance="FLAT-BLUE"
+          class="cta"
+          size="BIG"
+          (clicked)="goToCBnpl()"
+        >
+          <span
+            appUiIcon
+            icon="icon-arrow-right-blue"
+            size="24"
+          ></span>
+          بازگشت به خرید اعتباری
+        </app-ui-button>
+      </div>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<app-credit-app-bar
+  (onBackButtonClick)="back.emit()"
+  [backButton]="true"
+  title="امضای دیجیتال"
+></app-credit-app-bar>
+<div class="main-section d-flex flex-column flex-grow">
+  <div class="flex-grow d-flex justify-content-center rtl pb-plus">
+    <ngx-status-result
+      [type]="'Status'"
+      [iconState]="'error'"
+      [description]="subtitle()"
+      [title]="title()"
+      [buttons]="buttons()"
+      (clicked)="onTakeAgain()"
+    >
+      <div
+        html-content
+        class="d-flex flex-column flex-grow justify-content-flex-end"
+      >
+        @if (hints().length) {
+          <ngx-callout
+            [mode]="'multiple'"
+            [showTitleBlink]="true"
+            [messagesDashed]="false"
+            [title]="calloutTitle()"
+            [messages]="hints()"
+          />
+        }
+      </div>
+    </ngx-status-result>
+  </div>
+</div>

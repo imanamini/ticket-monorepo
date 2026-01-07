@@ -1,0 +1,128 @@
+@import "globals";
+
+.internet-package {
+  border: 1px solid black;
+  color: $swatch_steel_900;
+  font-size: rem(24, 16);
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .body {
+    padding: 16px 16px 0 0;
+    display: flex;
+    justify-content: space-between;
+
+    .spec {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+
+      &.time-spec {
+        flex-grow: 1;
+      }
+
+      .spec-heading {
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  .footer {
+    padding: 4px 12px;
+    border-top: 1px solid;
+    border-top-color: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .chevron {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background: url('./icon/chevron-left.svg') no-repeat 0 0/100%;
+    }
+  }
+}
+
+.more-details {
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  //border-top: 1px solid;
+  border-top-color: inherit;
+
+  .detail-text {
+    margin-bottom: 4px;
+  }
+}
+
+.detail-text {
+  color: $swatch_steel_500;
+  text-align: right;
+  font-size: 14px;
+  font-weight: 700;
+
+  &::before {
+    content: ' ';
+    display: none;
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  &.nightly-text,
+  &.gift-text {
+    &::before {
+      display: inline-block;
+    }
+  }
+
+  &.gift-text::before {
+    background: url('./icon/package-gift.svg') no-repeat 0 0/100%;
+  }
+
+  &.nightly-text::before {
+    background: url('./icon/night-icon.svg') no-repeat 0 0/100%;
+  }
+}
+
+.usage-limit {
+  font-size: rem(24, 16);
+}
+
+.days {
+  font-size: rem(16, 16);
+}
+
+.internet-package {
+  &.is-mtn {
+    border-color: $swatch_yellow_300;
+
+    .footer {
+      background: $swatch_yellow_100;
+    }
+  }
+
+  &.is-rightel {
+    border-color: $swatch_purple_300;
+
+    .footer {
+      background: $swatch_purple_100;
+    }
+  }
+
+  &.is-mci {
+    border-color: $swatch_teal_300;
+
+    .footer {
+      background: $swatch_teal_100;
+    }
+  }
+}

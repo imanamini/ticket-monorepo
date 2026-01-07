@@ -1,0 +1,32 @@
+<div class="wrapper flex-grow w-100 d-flex flex-column align-items-center px-plus">
+  <div class="alert-img mt-huge radius-minus"></div>
+  <div class="text text-onback-high bt-2 my-big">توجه داشته باشید که با حذف کارت بانکی، تراکنش پرتکرار متصل به آن نیز حذف می‌شود.</div>
+
+  <div
+    class="show-recommendation w-100 d-flex flex-column pb-big"
+    [class.one-recommendation]="recommendations.length === 1"
+  >
+    <c2c-applet-c2c-frequent-transaction-card
+      class="item d-block mx-low mb-low"
+      *ngFor="let i of recommendations"
+      [transaction]="i"
+      [mode]="'preview'"
+    ></c2c-applet-c2c-frequent-transaction-card>
+  </div>
+</div>
+<div class="actions w-100 justify-content-space-between gap-medium surface-elevated d-flex pt-small pb-huge px-plus">
+  <ngx-button
+    class="cancel-button"
+    [style]="'tinted-on-elevated'"
+    (clickHandler)="cancel()"
+  >
+    انصراف
+  </ngx-button>
+  <ngx-button
+    class="save-button"
+    [fullWidth]="true"
+    (clickHandler)="save()"
+  >
+    ادامه و حذف
+  </ngx-button>
+</div>

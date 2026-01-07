@@ -1,0 +1,18 @@
+<section>
+  <div class="container custom-width">
+    <div class="section-title text-align-center">
+      <h2>{{ registrationForm.title }}</h2>
+      <div
+        *ngIf="registrationForm.subtitle"
+        class="subtitle"
+      >
+        {{ registrationForm.subtitle }}
+      </div>
+    </div>
+    <app-custom-merchant-register-form
+      *ngIf="merchantRegisterForm"
+      [contactFormDefinition]="merchantRegisterForm"
+    >
+    </app-custom-merchant-register-form>
+  </div>
+</section>

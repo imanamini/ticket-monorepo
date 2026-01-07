@@ -1,0 +1,65 @@
+<div class="w-100 cursor-pointer surface-elevated radius-plus d-flex align-items-center treasury">
+  <button
+    class="d-flex align-items-center w-100 px-small cursor-pointer position-relative"
+    [id]="'HOME_TREASURY_WALLET_WRAPPER'"
+    (click)="redirectToWallet()"
+  >
+    <div class="treasury-image surface-back">
+      <img
+        [src]="treasuryIconPath()"
+        width="100%"
+        height="100%"
+        [id]="'HOME_TREASURY_WALLET_IMAGE'"
+        alt="wealth-wallet"
+      />
+    </div>
+    <div class="d-flex flex-wrap pr-6">
+      <span
+        class="w-100 c-2 text-onback-high text-align-right"
+        [id]="'HOME_TREASURY_WALLET_TEXT'"
+      >
+        کیف ثروت
+      </span>
+      <span
+        class="w-100 c-2 text-onback-low text-align-right"
+        [id]="'HOME_TREASURY_WALLET_DESCRIPTIONS'"
+      >
+        رشد پولت رو ببین، خریدت رو قسطی کن!
+      </span>
+    </div>
+  </button>
+</div>
+<div class="d-grid mt-minus gap-medium">
+  @for (category of categories(); track category) {
+    <div class="cursor-pointer surface-elevated radius-plus d-flex align-items-center category {{ category?.className }}">
+      <button
+        class="d-flex align-items-center w-100 position-relative px-small text-onback-high cursor-pointer"
+        [id]="'HOME_CATEGORY_' + category.id + '_WRAPPER'"
+        (click)="openFunds(category)"
+      >
+        <img
+          [src]="category.iconPath"
+          width="100%"
+          height="100%"
+          [id]="'HOME_CATEGORY_' + category.id + '_IMAGE'"
+          alt="{{ category.query }}"
+        />
+        <span
+          class="c-2 text-onback-high text-align-right"
+          [id]="'HOME_CATEGORY_' + category.id + '_TEXT'"
+          >{{ category.text }}</span
+        >
+        @if (category.comingSoon) {
+          <ngx-badge
+            class="soon-badge"
+            size="sm"
+            mode="fill"
+            status="info"
+          >
+            به زودی
+          </ngx-badge>
+        }
+      </button>
+    </div>
+  }
+</div>

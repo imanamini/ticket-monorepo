@@ -1,0 +1,115 @@
+<div
+  [ngClass]="{ 'pop-open': popupOpen, fixed: fixed }"
+  class="btn-popup"
+>
+  <div class="fly-contain">
+    <div class="top-contain">
+      <ul>
+        <li
+          (click)="selectPlatform('ANDROID')"
+          [ngClass]="{ active: selectedPlatform === 'ANDROID' }"
+        >
+          <div>
+            <i class="icon-android icon-white-filter"></i>
+            <span>اندروید</span>
+          </div>
+        </li>
+        <li
+          (click)="selectPlatform('IOS')"
+          [ngClass]="{ active: selectedPlatform === 'IOS' }"
+        >
+          <div>
+            <i class="icon-apple icon-white-filter"></i>
+            <span>آیفون</span>
+          </div>
+        </li>
+        <li
+          (click)="selectPlatform('WEB')"
+          [ngClass]="{ active: selectedPlatform === 'WEB' }"
+        >
+          <div>
+            <i class="icon-web icon-white-filter"></i>
+            <span>نسخه وب</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="bottom-contain">
+      <ul [ngClass]="{ active: selectedPlatform === 'ANDROID' }">
+        <ng-container *ngFor="let marketplace of downloadApp?.androidMarketplaces">
+          <li>
+            <div>
+              <a
+                href="{{ marketplace.address }}"
+                title="{{ marketplace.title }}"
+              >
+                <span>
+                  {{ marketplace.title }}
+                </span>
+                <i class="arrow-left"></i>
+              </a>
+            </div>
+          </li>
+        </ng-container>
+      </ul>
+      <ul [ngClass]="{ active: selectedPlatform === 'IOS' }">
+        <ng-container *ngFor="let marketplace of downloadApp?.iosMarketplaces">
+          <li>
+            <div>
+              <a
+                href="{{ marketplace.address }}"
+                title="{{ marketplace.title }}"
+              >
+                <span>
+                  {{ marketplace.title }}
+                </span>
+                <i class="arrow-left"></i>
+              </a>
+            </div>
+          </li>
+        </ng-container>
+      </ul>
+      <ul [ngClass]="{ active: selectedPlatform === 'WEB' }">
+        <li>
+          <div>
+            <a
+              href="{{ downloadApp?.web?.address }}"
+              target="_blank"
+              title="{{ downloadApp?.web?.title }}"
+            >
+              <span>
+                <b> {{ downloadApp?.web?.title }}</b>
+              </span>
+              <i class="arrow-left"></i>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <ng-container *ngIf="link !== ''">
+    <a
+      [href]="link"
+      [title]="btnText"
+      class="popup-cta"
+      target="_blank"
+    >
+      <div>
+        <i> </i>
+        <span>{{ btnText }}</span>
+      </div>
+    </a>
+  </ng-container>
+  <ng-container *ngIf="link === ''">
+    <a
+      (click)="togglePopup()"
+      [title]="btnText"
+      class="popup-cta"
+    >
+      <div>
+        <i> </i>
+        <span>{{ btnText }}</span>
+      </div>
+    </a>
+  </ng-container>
+</div>

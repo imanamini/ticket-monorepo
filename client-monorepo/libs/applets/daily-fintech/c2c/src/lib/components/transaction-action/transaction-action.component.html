@@ -1,0 +1,17 @@
+<div
+  class="wrapper"
+  [class.is-disabled]="!active"
+  (click)="onAction()"
+>
+  <div class="image-wrapper">
+    <div
+      class="save-card"
+      *ngIf="type === 'save'"
+    ></div>
+    <div
+      class="repeat-txn"
+      *ngIf="type === 'repeat'"
+    ></div>
+  </div>
+  <div class="title-wrapper">{{ title }}</div>
+</div>

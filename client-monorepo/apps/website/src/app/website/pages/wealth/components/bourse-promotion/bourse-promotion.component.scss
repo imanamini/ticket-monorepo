@@ -1,0 +1,337 @@
+@import "globals";
+
+
+
+.section-bourse-promotion {
+  padding: 64px 0;
+
+  .title {
+    text-align: center;
+  }
+
+  .subtitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+
+    span {
+      color: $swatch_steel_500;
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: -0.6px;
+      text-align: center;
+      max-width: 575px;
+    }
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .boxes {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    width: 792px;
+  }
+
+  .cool-background {
+    width: 676px;
+    height: 778px;
+    background: url('../shared-assets/cool-background.png') center center/cover no-repeat;
+    position: absolute;
+    left: 0;
+    top: 208px;
+  }
+
+  .box {
+    z-index: 1;
+    border-radius: 16px;
+    background: rgba(222, 227, 231, 0.4);
+    backdrop-filter: blur(20px);
+    border: 2px solid #fff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .title {
+      text-align: unset;
+    }
+  }
+
+  .effective-parameters {
+    padding: 24px;
+    display: flex;
+    gap: 20px;
+
+    .top-part {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .icon {
+        border-radius: 8px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        margin-left: 8px;
+      }
+    }
+
+    .description {
+      padding-right: 4px;
+      color: $swatch_steel_900;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: -0.55px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .items {
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
+
+      .item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 16px;
+        border-radius: 12px;
+        background-color: #fff;
+        color: $swatch_steel_900;
+        font-size: 12px;
+        font-weight: 300;
+      }
+    }
+  }
+
+  .bottom-boxes {
+    position: relative;
+    margin-top: 64px;
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .stock-fund {
+    width: 384px;
+    padding: 40px;
+    position: relative;
+
+    .outer-title {
+      position: absolute;
+      top: 555px;
+      right: 136px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      span {
+        color: $swatch_steel_900;
+        font-size: 24px;
+        font-weight: 875;
+      }
+    }
+  }
+
+  .fixed-income-fund {
+    width: 384px;
+    margin-top: 93px;
+    position: relative;
+
+    .outer-title {
+      position: absolute;
+      top: -82px;
+      right: 120px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      span {
+        color: $swatch_steel_900;
+        font-size: 24px;
+        font-weight: 875;
+      }
+    }
+  }
+
+  .stock-fund,
+  .fixed-income-fund {
+    gap: 40px;
+    height: fit-content;
+
+    .title {
+      color: $swatch_steel_900;
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: -0.6px;
+    }
+
+    .description p {
+      color: $swatch_steel_500;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 210%;
+      letter-spacing: -0.48px;
+    }
+
+    .items {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .item {
+        display: flex;
+        gap: 12px;
+        padding: 8px;
+        border-radius: 16px;
+        align-items: center;
+        overflow: hidden;
+        color: $swatch_steel_900;
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: -0.42px;
+        background-color: #fff;
+      }
+
+      .icon-wrapper {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background-color: $swatch_green_100;
+      }
+    }
+  }
+
+  .bottom-to-top-arrow {
+    background: url('./bottom-to-top-arrow.svg') center center/cover no-repeat;
+    width: 101px;
+    height: 442px;
+    position: absolute;
+    right: -38px;
+    top: 143px;
+  }
+
+  .top-to-bottom-arrow {
+    background: url('./top-to-bottom-arrow.svg') center center/cover no-repeat;
+    width: 101px;
+    height: 442px;
+    position: absolute;
+    left: -41px;
+    top: -73px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .section-bourse-promotion {
+    .cool-background {
+      display: none;
+    }
+
+    .boxes {
+      width: 100%;
+    }
+
+    .stock-fund,
+    .fixed-income-fund {
+      width: 315px;
+      padding: 24px 16px;
+    }
+
+    .stock-fund {
+      .outer-title {
+        top: 497px;
+        right: 95px;
+      }
+    }
+
+    .fixed-income-fund {
+      .outer-title {
+        right: 90px;
+      }
+    }
+
+    .bottom-to-top-arrow,
+    .top-to-bottom-arrow {
+      width: 87px;
+      height: 383px;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .section-bourse-promotion {
+    .subtitle {
+      span {
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+
+    .boxes {
+      width: 100%;
+    }
+
+    .effective-parameters {
+      padding: 0;
+      padding-top: 16px;
+      background-color: #fff;
+      gap: 16px;
+
+      .items .item {
+        background-color: rgba(222, 227, 231, 0.4);
+      }
+    }
+
+    .bottom-boxes {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .fixed-income-fund,
+    .stock-fund {
+      width: 100%;
+      gap: 24px;
+
+      .outer-title {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        top: unset;
+        right: unset;
+      }
+    }
+
+    .fixed-income-fund {
+      margin-top: 0;
+    }
+
+    .bottom-to-top-arrow,
+    .top-to-bottom-arrow {
+      display: none;
+    }
+  }
+}

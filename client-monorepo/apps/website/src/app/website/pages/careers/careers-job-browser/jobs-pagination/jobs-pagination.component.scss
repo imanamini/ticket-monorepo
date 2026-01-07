@@ -1,0 +1,62 @@
+@import "globals";
+
+.jobs-pagination {
+  direction: ltr;
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+
+  .pagination-item {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid $swatch_steel_200;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover:not(.is-disabled) {
+      border-color: $swatch-blue_500;
+      color: $swatch-blue_500;
+    }
+
+    &.is-selected {
+      background: $swatch-blue_200;
+      color: $swatch-blue_500;
+      border-color: inherit;
+    }
+
+    &.is-placeholder {
+      width: 15px;
+      cursor: none;
+      border: none;
+    }
+
+    &.is-disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.arrow-left,
+.arrow-right {
+  background: no-repeat center/24px;
+}
+
+.arrow-left {
+  background-image: url('./icons/paginatio-left.svg');
+
+  &:hover {
+    background-image: url('./icons/paginatio-left-h.svg');
+  }
+}
+
+.arrow-right {
+  background-image: url('./icons/paginatio-right.svg');
+
+  &:hover {
+    background-image: url('./icons/paginatio-right-h.svg');
+  }
+}

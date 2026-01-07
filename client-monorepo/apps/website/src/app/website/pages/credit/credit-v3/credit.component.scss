@@ -1,0 +1,12 @@
+::ng-deep {
+  .section-similar-services section {
+    background: #fff;
+
+    .swiper-slide {
+      & > div {
+        background: #f0f5ff;
+        box-shadow: none;
+      }
+    }
+  }
+}

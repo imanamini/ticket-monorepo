@@ -1,0 +1,7 @@
+<div class="hint-container {{hintOptions.type}}">
+  <img *ngIf="hintOptions.icon" alt="" class="icon" src="insurance-assets/icons/{{hintOptions.icon}}.svg">
+  <span class="message">{{ hintOptions.message }}</span>
+  <div *ngFor="let action of hintOptions.actions" class="actions">
+    <span (click)="actionClick(action)" class="action-title">{{ action.title }}</span>
+  </div>
+</div>

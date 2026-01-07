@@ -1,0 +1,39 @@
+.size-6 {
+  width: 6px;
+  height: 6px;
+}
+
+.conditions-image {
+  position: relative;
+  width: 162px;
+  height: 162px;
+  overflow: hidden;
+
+  &_icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    z-index: 1;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 200px;
+    background-image: url("../../../assets/icons/public-icons/pre-registration-conditions.webp");
+  }
+
+  &_blur-bg {
+    position: absolute;
+    top: 55%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 105px;
+    opacity: 0.52;
+    filter: blur(24px);
+    border-radius: 50px;
+    z-index: 0;
+    background: rgba(108, 105, 243, 0.46);
+  }
+}

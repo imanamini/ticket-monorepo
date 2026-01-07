@@ -1,0 +1,18 @@
+<div class="d-flex p-tiny radius-minus surface-back">
+  @for (tab of tabs(); track tab) {
+    <div
+      class="tab-header-container p-pony c-2"
+      (click)="activateTab($index)"
+      [ngClass]="tab.isActive() ? 'radius-small surface-elevated' : 'text-onback-disabled'"
+    >
+      {{ tab.label() }}
+    </div>
+  }
+</div>
+@for (tab of tabs(); track tab) {
+  @if (tab.isActive()) {
+    <div class="pt-minus flex-grow">
+      <ng-container *ngComponentOutlet="tab.component()"></ng-container>
+    </div>
+  }
+}

@@ -1,0 +1,55 @@
+@if (data()) {
+  <div class="d-flex flex-column align-items-center introduction-bottom-sheet-container p-plus">
+    @if (data().image) {
+      <img
+        class="w-25"
+        [src]="data().image"
+        [alt]="data().title"
+      />
+    }
+    <p class="text-align-center text-onback-high st-3 mt-big">{{ data().title }}</p>
+    <div class="d-flex flex-wrap content">
+      <div class="d-flex flex-column gap-small">
+        <div class="stepper">
+          @for (bullet of data().bullets; track $index) {
+            <div class="step">
+              <div class="circle"></div>
+              <span>
+                {{ bullet }}
+              </span>
+            </div>
+          }
+        </div>
+      </div>
+      @if (data().descriptions?.length > 0) {
+        <div class="w-100 my-medium">
+          @for (description of data().descriptions; track description; let i = $index) {
+            @if (i === 1 && data().chartImage) {
+              <div class="w-100">
+                <img
+                  class="w-100"
+                  [src]="data().chartImage"
+                  alt="chart"
+                />
+              </div>
+            }
+            <div class="mt-big">
+              <span class="text-align-justify">{{ description }}</span>
+            </div>
+          }
+        </div>
+      }
+
+      <div class="w-100 d-flex surface-elevated mt-medium">
+        <ngx-button
+          [fullWidth]="true"
+          mode="form"
+          [size]="'medium'"
+          (clickHandler)="close()"
+        >
+          متوجه شدم
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+}

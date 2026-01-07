@@ -1,0 +1,28 @@
+<div class="surface-elevated mx-medium radius-minus">
+  <div class="content">
+    <div class="service">
+      @for (service of services; track service) {
+        <subscription-applet-service-item
+          class="service-item"
+          [service]="service"
+          [template]="getTemplate(service.type)"
+          (selectService)="selectService(service)"
+        >
+        </subscription-applet-service-item>
+      }
+    </div>
+  </div>
+</div>
+
+<ng-template
+  #cashbackTemplate
+  let-service="service"
+>
+  @if (service && cashbackProgressData[service.type]; as cashbackData) {
+    <subscription-applet-progress-bar
+      class="progress"
+      [progressData]="cashbackData"
+    >
+    </subscription-applet-progress-bar>
+  }
+</ng-template>

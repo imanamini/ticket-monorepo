@@ -1,0 +1,21 @@
+:host {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.dots {
+  direction: ltr;
+  display: flex;
+  justify-content: space-between;
+  .dot {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.2s all ;
+    &.center {
+      margin: 0 0.5em;
+    }
+  }
+}

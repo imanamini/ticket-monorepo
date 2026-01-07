@@ -1,0 +1,553 @@
+@import "globals";
+
+:host ::ng-deep {
+  .container .image > .title {
+    display: none;
+  }
+
+  .introduction-default > .container > div {
+    text-align: center;
+    margin: 4rem 0;
+  }
+
+  .introduction-default > .container > div > h1 {
+    display: inline-block;
+    background-color: #001a66;
+    color: #fff;
+    font-weight: 900;
+    line-height: normal;
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .introduction-default > .container > div > h2 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .introduction-default > .container > div > h3 {
+    font-weight: 300;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+}
+
+.introduction-default > .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+.introduction-default > .container .image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  max-width: 100%;
+
+  div {
+    width: 760px;
+    display: block;
+    margin: -65px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+// introduction-value
+
+:host ::ng-deep {
+  .introduction-value > .container > div {
+    text-align: center;
+    margin-bottom: 32px;
+    //margin: 4rem 0;
+  }
+
+  .introduction-value > .container .ctas {
+    margin-top: 42px;
+    text-align: right;
+    //margin-bottom: 32px;
+    //margin: 4rem 0;
+  }
+
+  .introduction-value > .container .image {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    max-width: 100%;
+    gap: 64px;
+
+    > div {
+      width: 50%;
+
+      &:last-child {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      &:first-child {
+        display: block;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }
+
+  .introduction-value .feature-card {
+    display: flex;
+    flex: 1 1 auto;
+    //align-items: center;
+    // border: 1px solid #D0D9F5;
+    border-radius: 1rem;
+    // box-shadow: 0px 0.5rem 2rem -0.5rem #e5e9f5;
+    //height: 100%;
+    text-align: right;
+    //margin: .5rem 1rem;
+    //padding: 1.5rem;
+    cursor: default;
+  }
+
+  .introduction-value .feature-card-icon {
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 44px;
+    //height: 4rem;
+    //padding: 12px;
+    width: 44px;
+    height: 44px;
+    background: #ffffff;
+    box-shadow: 2px 2px 5px rgba(24, 63, 245, 0.1);
+    border-radius: 8px;
+  }
+
+  .introduction-value .feature-card-icon > img {
+    object-fit: contain;
+    object-position: center;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .introduction-value .feature-card-content {
+    display: flex;
+    flex-direction: column;
+    color: #001a66;
+    padding-right: 8px;
+  }
+
+  .introduction-value .feature-card-content > .card-title {
+    color: $text-color;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: normal;
+  }
+
+  .introduction-value .feature-card-content > .card-description {
+    color: $text-color;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2;
+    margin-top: 8px;
+
+    &:before {
+      content: '• ';
+      margin-left: 8px;
+      margin-right: 8px;
+    }
+  }
+
+  .introduction-value .feature-cards {
+    //width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 28px;
+  }
+
+  @media (max-width: 1280px) {
+    .introduction-value > .container {
+      ::ng-deep .ctas {
+        text-align: center;
+      }
+
+      .image {
+        flex-direction: column;
+        gap: 32px;
+
+        div {
+          width: 100%;
+
+          &:first-child img {
+            width: 70%;
+          }
+        }
+      }
+    }
+
+    .introduction-value > .container .image .title {
+      display: block;
+    }
+
+    :host ::ng-deep .introduction-value > .container > div.title {
+      display: none;
+    }
+
+    .introduction-value .feature-cards {
+      flex-direction: row;
+    }
+    .introduction-value .feature-cards > li {
+      flex: 0 0 calc(50% - 2rem);
+    }
+
+    .introduction-value .feature-card-content > span {
+      font-size: 18px;
+    }
+  }
+  @media (max-width: 744px) {
+    .introduction-value .feature-cards > li {
+      flex: 1 1 100%;
+    }
+
+    .introduction-value .feature-card-content > span {
+      font-size: 15px;
+    }
+  }
+}
+
+// introduction-value2
+
+:host ::ng-deep {
+  .introduction-value2 > .container > div {
+    text-align: center;
+    //margin-bottom: 32px;
+    //margin: 4rem 0;
+  }
+
+  .introduction-value2 > .container .ctas {
+    margin-top: 42px;
+    text-align: right;
+    //margin-bottom: 32px;
+    //margin: 4rem 0;
+  }
+
+  .introduction-value2 > .container .image {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    max-width: 100%;
+    //gap: 64px;
+    flex-direction: row-reverse;
+
+    .title {
+      text-align: right;
+    }
+
+    > div {
+      width: 50%;
+
+      &:last-child {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      &:first-child {
+        display: block;
+
+        img {
+          width: 100%;
+          object-fit: contain;
+          max-height: 484px;
+        }
+      }
+    }
+  }
+
+  .introduction-value2 .feature-card {
+    margin-top: 56px;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 calc(50% - 2rem);
+    //align-items: center;
+    // border: 1px solid #D0D9F5;
+    border-radius: 1rem;
+    // box-shadow: 0px 0.5rem 2rem -0.5rem #e5e9f5;
+    //height: 100%;
+    text-align: right;
+    //margin: .5rem 1rem;
+    //padding: 1.5rem;
+    cursor: default;
+  }
+
+  .introduction-value2 .feature-card-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 44px;
+    //height: 4rem;
+    //padding: 12px;
+    width: 44px;
+    height: 44px;
+    background: rgba(24, 63, 245, 0.12);
+    backdrop-filter: blur(4px);
+    //box-shadow: 2px 2px 5px rgba(24, 63, 245, 0.1);
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+
+  .introduction-value2 .feature-card-icon > img {
+    object-fit: contain;
+    object-position: center;
+    width: 60%;
+    max-height: 100%;
+  }
+
+  .introduction-value2 .feature-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #001a66;
+    //padding-right: 1.5rem;
+  }
+
+  .introduction-value2 .feature-card-content > .card-title {
+    color: $text-color;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .introduction-value2 .feature-card-content > span {
+    color: $text-color;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .introduction-value2 .feature-cards {
+    //width: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 1280px) {
+    .introduction-value2 > .container {
+      ::ng-deep .ctas {
+        text-align: center;
+      }
+
+      .image {
+        flex-direction: column;
+        gap: 32px;
+
+        > div {
+          width: 100%;
+
+          &:first-child img {
+            width: 70%;
+            max-height: 290px;
+          }
+        }
+      }
+    }
+
+    //:host ::ng-deep .introduction-value2 > .container > div.title {
+    //  display: none;
+    //}
+
+    .introduction-value2 .feature-cards {
+      flex-direction: row;
+    }
+    .introduction-value2 .feature-cards > li {
+      flex: 0 0 calc(50% - 2rem);
+    }
+
+    .introduction-value2 .feature-card-content > span {
+      font-size: 16px;
+    }
+  }
+  @media (max-width: 744px) {
+    //.introduction-value2 .feature-cards > li {
+    //  flex: 1 1 100%;
+    //}
+
+    .introduction-value2 .feature-card-content > .card-title {
+      font-size: 14px;
+    }
+    .introduction-value2 .feature-card-content > span {
+      font-size: 12px;
+    }
+  }
+}
+
+// introduction-blue
+
+.introduction-blue {
+  background-color: #0834a4;
+  border-bottom-right-radius: 48px;
+  border-bottom-left-radius: 48px;
+}
+
+.introduction-blue > .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+:host ::ng-deep {
+  .introduction-blue > .container > div {
+    text-align: center;
+    margin: 2rem 0;
+    max-width: 100%;
+
+    .image,
+    img {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+    }
+  }
+
+  .introduction-blue > .container > div > h1 {
+    display: inline-block;
+    background-color: #fff;
+    color: #0834a4;
+    font-weight: 900;
+    line-height: normal;
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .introduction-blue > .container > div > h2 {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .introduction-blue > .container > div > h3 {
+    color: #fff;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .introduction-blue > .container > img {
+    max-height: 50vh;
+    max-width: 100%;
+    margin: 4rem 0;
+  }
+}
+
+.introduction-booklet > .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.introduction-booklet > .container > div > h1 {
+  display: inline-block;
+  background-color: #001a66;
+  color: #fff;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: normal;
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.introduction-booklet > .container > div > h2 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+
+::ng-deep .introduction-booklet > .container > div > .subtitle {
+  font-size: 16px;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.introduction-booklet .anchor-button-default-icon {
+  display: inline-flex;
+}
+
+.introduction-booklet > .container > div img {
+  height: auto;
+  max-height: 570px;
+  width: 100%;
+}
+
+video {
+  border-radius: 12px;
+}
+
+@media (max-width: 1280px) {
+  .introduction-booklet > .container {
+    flex-direction: column-reverse;
+  }
+
+  .introduction-value .feature-card-content > .card-title {
+    font-size: 18px;
+  }
+
+  .introduction-value .feature-card-content > .card-description {
+    font-weight: 400;
+    font-size: 14px;
+  }
+}
+
+:host ::ng-deep {
+  @media (max-width: 1280px) {
+    .introduction-booklet .container div {
+      &:first-child {
+        max-width: 100%;
+        text-align: center;
+      }
+
+      &:last-child {
+        max-width: 100%;
+      }
+    }
+
+    .introduction-booklet > .container > div > .subtitle {
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+  }
+
+  @media (max-width: 744px) {
+    .introduction-booklet .container > div {
+      &:first-child {
+        //text-align: right;
+      }
+    }
+
+    .introduction-booklet > .container > div > .subtitle {
+      font-size: 12px;
+      margin-bottom: 40px;
+    }
+  }
+}

@@ -1,0 +1,61 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.steps-mobile-header {
+  @include flex-row();
+  @include flex-center-between();
+  width: 100%;
+
+  background: #ffffff;
+  border-bottom: 1px solid #dee3e7;
+  padding: 14px 16px;
+
+
+  &.hidden-divider {
+    border-bottom: unset !important;
+  }
+
+  .title-wrapper {
+    gap: 16px;
+    @include flex-row();
+    @include flex-center-start();
+
+    img {
+      transform: scaleX(-1);
+    }
+
+    .page-title {
+      color: #6e798d;
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+
+  .actions {
+    color: #8d99a8;
+    font-size: 16px;
+    font-weight: 400;
+    justify-self: end;
+    @include flex-center;
+    @include flex-row-reverse;
+    gap: 8px;
+
+    .profile {
+      height: 24px;
+      width: 24px;
+    }
+
+    .custom-btn {
+      @include flex-row;
+      align-items: center;
+      gap: 4px;
+      padding: 8px;
+
+      .text {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 24px;
+        color: #0040ff;
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<form [formGroup]="exInsurerMotorDateForm()"
+      class="ex-insurer-motor-date-form">
+  <ui-form-field [errorMessageMapper]="errorMapper"
+                 [error]="exInsurerMotorDateForm()?.controls.start?.errors"
+                 [searchable]="false"
+                 [showError]="showError()?'show':'hidden'"
+                 [customDateRange]="startDateRange"
+                 [datePickerMode]="'auto'"
+                 formControlName="start"
+                 label="تاریخ شروع بیمه‌نامه قبلی"
+                 placeholder="00/00/00"
+                 type="date"></ui-form-field>
+
+  <ui-form-field [customDateRange]="endDateRange"
+                 [errorMessageMapper]="errorMapper"
+                 [error]="exInsurerMotorDateForm()?.controls.end?.errors"
+                 [showError]="showError()?'show':'hidden'"
+                 [datePickerMode]="'auto'"
+                 [readonly]="exInsurerMotorDateForm()?.controls.end?.disabled"
+                 formControlName="end"
+                 label="تاریخ انقضای بیمه‌نامه قبلی"
+                 placeholder="00/00/00"
+                 type="date"></ui-form-field>
+</form>

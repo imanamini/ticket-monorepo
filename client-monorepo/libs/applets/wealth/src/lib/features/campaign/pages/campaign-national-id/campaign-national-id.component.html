@@ -1,0 +1,45 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100dvh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'بررسی حساب سجام'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="flex-1 d-flex flex-column w-100 px-plus mt-mega">
+    <div class="w-100 d-flex flex-wrap">
+      <p class="b-2 text-onback-high">کد ملی مالک شماره {{ state().phoneNumber }} را وارد کنید.</p>
+      <ui-form-field
+        class="w-100 mt-big h-100 pl-4"
+        label="ورود کد ملی"
+        [maxSize]="10"
+        [isNumericKeyboard]="true"
+        [formControl]="nationalIdController"
+        [error]="nationalIdController.errors ?? {}"
+        [errorMessageMapper]="{
+          invalidNotionalCode: 'کد ملی وارد شده اشتباه است.',
+          nationalIdErrorMessage: nationalIdErrorMessage(),
+        }"
+      ></ui-form-field>
+    </div>
+  </div>
+
+  <div class="w-100 surface-elevated px-plus py-medium sticky-action-group">
+    <ngx-button
+      buttonId="CAMPAIGN_SEJAM_CHECK"
+      [style]="'fill'"
+      size="large"
+      [fullWidth]="true"
+      [isLoading]="isLoading()"
+      (clickHandler)="onNationalCodeSubmit()"
+      [disabled]="nationalIdController.invalid"
+    >
+      بررسی حساب سجام
+    </ngx-button>
+  </div>
+</div>

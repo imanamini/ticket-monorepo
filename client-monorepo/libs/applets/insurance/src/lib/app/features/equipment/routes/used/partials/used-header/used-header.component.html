@@ -1,0 +1,43 @@
+@if (isMobile) {
+  <div class="steps-mobile-header">
+    <div class="title-wrapper">
+      @if (headerData.showBackBtn) {
+        @if (!headerData.customIcon) {
+          <img (click)="handleBackClick()"
+               src="insurance-assets/icons/icon-general-back.svg"/>
+        }
+        @if (headerData.customIcon) {
+          <img (click)="handleBackClick()"
+               [src]="headerData.customIcon"/>
+        }
+      }
+      <span class="page-title">
+    {{ headerData.headerTitle }}
+  </span>
+    </div>
+
+    <div class="actions">
+      <ngx-icon [name]="IconEnum.Support"
+                [type]="'linear'"
+                [iconSize]="'24px'"
+                (click)="handleFAQClicked()"
+                class="cursor-pointer text-onback-high"></ngx-icon>
+      @for (item of headerData.actionButtons; track item) {
+        @if (item?.mode === HeaderButtonModes.CUSTOM_BUTTON) {
+          <div (click)="handleCustomBtnClick(item)"
+               class="custom-btn">
+            @if (item?.text) {
+              <span class="text">
+            {{ item.text }}
+          </span>
+            }
+            @if (item.icon) {
+              <img [alt]="item.text"
+                   [src]="item.icon ">
+            }
+          </div>
+        }
+      }
+    </div>
+  </div>
+}

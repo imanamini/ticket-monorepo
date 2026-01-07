@@ -1,0 +1,25 @@
+<section class="bnpl-form-section">
+  <div class="container">
+    <h2 class="text-align-center">{{ title }}</h2>
+    <div class="segment-content">
+      <div
+        class="form"
+        role="form"
+      >
+        <div class="description">
+          {{ description }}
+        </div>
+        <app-contact-form
+          *ngIf="contactForm"
+          [contactFormDefinition]="contactForm"
+        ></app-contact-form>
+      </div>
+      <div class="image">
+        <img
+          [attr.alt]="title"
+          [src]="image?.url"
+        />
+      </div>
+    </div>
+  </div>
+</section>

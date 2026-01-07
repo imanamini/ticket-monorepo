@@ -1,0 +1,9 @@
+---
+.trigger-options:
+  changes:
+    - "apps/pillar/**/*"
+    - "libs/applets/pillar/**/*"
+  dependent-projects:
+    - PROJECT_NAME: "pillar"
+      DOCKERFILE_NAME: "Dockerfile"
+      FILE_PATH: "app/frontend/pillar-values.yml"

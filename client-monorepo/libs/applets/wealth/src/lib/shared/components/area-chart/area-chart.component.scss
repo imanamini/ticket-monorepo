@@ -1,0 +1,23 @@
+.area-chart-container {
+    .time-buttons {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        margin-top: 2rem;
+
+        .period {
+            padding: 0.5rem 1rem;
+            border: 1px solid #DFE1E5;
+            background-color: #FFF;
+            border-radius: 3rem;
+            cursor: pointer;
+            user-select: none;
+
+            &.selected {
+                border-color: #1159FC;
+                color: #1159FC;
+                background-color: #DEEDFF;
+            }
+        }
+    }
+}

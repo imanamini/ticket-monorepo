@@ -1,0 +1,14 @@
+@import '@digipay/base-style/styleguide';
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.stores-search {
+  &-box {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+  }
+}

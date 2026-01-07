@@ -1,0 +1,21 @@
+<app-credit-app-bar
+  (onCloseButtonClick)="close()"
+  (onTextClick)="changeNoteTypeClicked.emit()"
+  [actionText]="switchTypePossible() ? 'تغییر نوع سفته' : null!"
+  [closeButton]="true"
+  [title]="'صدور سفته'"
+  [actionImage]="switchTypePossible() ? 'edit-square' : null!"
+></app-credit-app-bar>
+<div class="top-section d-flex flex-column w-100 flex-grow rtl">
+  <div class="flex-grow d-flex justify-content-center rtl pb-plus">
+    <ngx-status-result
+      (clicked)="close()"
+      [buttons]="buttons"
+      [description]="message"
+      [title]="title"
+      [type]="'Empty'"
+      [iconState]="'waiting'"
+    >
+    </ngx-status-result>
+  </div>
+</div>

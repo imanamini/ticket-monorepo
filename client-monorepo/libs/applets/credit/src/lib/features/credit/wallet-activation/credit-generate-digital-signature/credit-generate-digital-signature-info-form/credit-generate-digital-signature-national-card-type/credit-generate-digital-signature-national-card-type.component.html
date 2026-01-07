@@ -1,0 +1,44 @@
+<div class="pt-medium d-flex flex-column w-100 gap-minus mb-mega rtl">
+  @for (type of types; track type.label) {
+    <div
+      class="w-100 d-flex flex-row align-items-center p-medium gap-minus border-300 radius-medium cursor-pointer"
+      [class.border-color-brand]="type.isActive"
+      [class.border-color-light]="!type.isActive"
+      (click)="toggleItem(type.id)"
+    >
+      <div class="icon-container radius-rounded d-flex flex-column justify-content-center align-items-center">
+        <ngx-icon
+          [name]="type.icon"
+          type="Bold"
+          [classes]="type.isActive ? 'text-onback-brand' : 'text-onback-medium'"
+        ></ngx-icon>
+      </div>
+      <div class="d-flex flex-column">
+        <span
+          class="st-8"
+          [class.text-onback-medium]="!type.isActive"
+          [class.text-onback-brand]="type.isActive"
+          >{{ type.label }}</span
+        >
+        @if (type.description) {
+          <span class="c-3 text-onback-low">{{ type.description }}</span>
+        }
+      </div>
+      <span
+        class="check mr-auto"
+        [class.is-active]="type.isActive"
+      ></span>
+    </div>
+  }
+</div>
+<div class="tac-cta">
+  <ngx-button
+    ngxTrackableId
+    trackerId="digitalSignatureNationalCardTypeButton"
+    (clickHandler)="confirm()"
+    [fullWidth]="true"
+    [style]="'fill'"
+  >
+    تایید و ادامه
+  </ngx-button>
+</div>

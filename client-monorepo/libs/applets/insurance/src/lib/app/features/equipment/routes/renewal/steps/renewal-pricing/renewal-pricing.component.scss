@@ -1,0 +1,42 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+:host {
+  display: block;
+  height: 100vh;
+}
+
+form {
+  width: 100%;
+}
+
+.pricing-wrapper {
+  @include flex-row();
+  width: 100%;
+  height: 60%;
+  overflow-y: auto;
+  padding-left: 4px;
+}
+
+.pricing {
+  @include flex-column();
+  gap: 24px;
+  width: 100%;
+  height: 90%;
+  overflow-y: auto;
+
+  .pricing-description {
+    color: #6e798d;
+    @include flex-row();
+    @include flex-center();
+    line-height: normal;
+
+    &.mobile {
+      justify-content: flex-start;
+    }
+  }
+
+  .buttons {
+    width: 100%;
+    margin-top: 24px;
+  }
+}

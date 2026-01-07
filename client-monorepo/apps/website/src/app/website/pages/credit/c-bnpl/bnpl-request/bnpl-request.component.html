@@ -1,0 +1,15 @@
+<app-base-layout [loaded]="loaded">
+  <div
+    class="container"
+    *ngIf="loaded"
+  >
+    <app-available-bnpl
+      *ngIf="hasAvailableBnpl"
+      (navigateCBnplClicked)="navigateToCBnpl()"
+    ></app-available-bnpl>
+    <app-request-form
+      *ngIf="!hasAvailableBnpl"
+      (navigateToCBnplClicked)="navigateToCBnpl()"
+    ></app-request-form>
+  </div>
+</app-base-layout>

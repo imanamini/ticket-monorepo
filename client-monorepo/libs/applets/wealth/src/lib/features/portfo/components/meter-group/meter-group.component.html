@@ -1,0 +1,25 @@
+<div
+  class="w-100 radius-minus d-flex meter-container"
+  [ngClass]="{ 'surface-back': !meters() }"
+>
+  @for (meter of meters(); track meter) {
+    <div
+      [style.width]="meter.percent + '%'"
+      [style.background-color]="meter.color"
+    ></div>
+  }
+</div>
+
+<div class="mt-medium d-flex flex-wrap gap-medium">
+  @for (meter of meters(); track meter) {
+    @if (meter.percent) {
+      <div class="d-flex flex-row align-items-center">
+        <span
+          class="radius-rounded ml-tiny meter-color"
+          [style.background-color]="meter.color"
+        ></span>
+        <span class="b-3 text-onback-medium"> {{ meter.title }} - {{ (meter.percent | number: '1.0-1') + ' %' }} </span>
+      </div>
+    }
+  }
+</div>

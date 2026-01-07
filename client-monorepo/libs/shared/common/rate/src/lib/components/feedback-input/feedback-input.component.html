@@ -1,0 +1,28 @@
+<div class="d-flex flex-column gap-minus">
+  <div class="d-flex justify-content-center b-2">{{ title() }}</div>
+  <div class="d-flex flex-wrap gap-low justify-content-center px-medium">
+    @if (chips().length) {
+      @for (chip of chips(); track $index) {
+        <ngx-chip
+          [id]="String($index)"
+          [disableAnimations]="true"
+          [label]="chip"
+          [size]="'LARGE'"
+          [disabled]="isChipDisabled(chip)"
+          (click)="handleChipSelect(chip)"
+        ></ngx-chip>
+      }
+    }
+  </div>
+  @if (showCommentInput()) {
+    <div
+      [formGroup]="form"
+      class="mt-giant"
+    >
+      <ui-form-field
+        [label]="'نظر خود را بنویسید'"
+        formControlName="comment"
+      ></ui-form-field>
+    </div>
+  }
+</div>

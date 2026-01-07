@@ -1,0 +1,10 @@
+<div class="progress-bar-container align-items-center">
+  <div class="progress-bar-wrapper surface-back">
+    <div
+      class="progress-bar"
+      [style.width.%]="progress"
+      [style.background-color]="progressColor"
+    ></div>
+  </div>
+  <span class="label">{{ total + "/" + used }}</span>
+</div>

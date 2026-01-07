@@ -1,0 +1,47 @@
+@import "@digipay/base-style/swatch";
+
+:host {
+  flex-grow: 1;
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  margin: 24px 24px 16px;
+  font-size: 14px;
+  line-height: 24px;
+  color: $swatch_steel_900;
+}
+
+.body {
+  padding: 0 24px 12px;
+  display: flex;
+  flex-direction: column;
+  direction: rtl;
+
+  .icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &.due {
+      background-color: $swatch_red_100;
+      background-image: url("../images/due-icon.svg");
+    }
+
+    &.current {
+      background-color: $swatch_steel_100;
+      background-image: url("../images/current-icon.svg");
+    }
+  }
+
+  .category-title {
+    margin-right: 8px;
+    font-size: 14px;
+    line-height: 24px;
+    color: $swatch_steel_900;
+  }
+}

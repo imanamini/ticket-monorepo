@@ -1,0 +1,17 @@
+:host ::ng-deep {
+
+  #layout > *:nth-child(2) > ui-basic-segment > section {
+    padding-top: 128px;
+  }
+
+  @media (max-width: 1280px) {
+    .introduction-value2 > .container .image .title {
+      text-align: center !important;
+    }
+  }
+  @media (max-width: 744px) {
+    #layout > *:nth-child(2) > ui-basic-segment > section {
+      padding-top: 80px;
+    }
+  }
+}

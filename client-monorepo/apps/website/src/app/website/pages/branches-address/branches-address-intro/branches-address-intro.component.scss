@@ -1,0 +1,83 @@
+@import "globals";
+
+.section-branches-intro {
+
+  .maps {
+    .item {
+      width: 100%;
+      gap: 16px;
+      padding: 48px 0;
+      border-bottom: 1px solid #dee3e7;
+
+      &:last-child {
+        border-bottom: unset;
+      }
+    }
+
+    .map {
+      width: 352px;
+      height: 258px;
+      background: #eee;
+      border-radius: 16px;
+
+      ::ng-deep .ol-viewport {
+        border-radius: 16px;
+      }
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .address {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    .open {
+      color: $swatch_steel_500;
+      font-size: 16px;
+      font-weight: 600;
+
+      span {
+        font-weight: 400;
+      }
+    }
+
+    .city,
+    .phone {
+      color: $swatch_steel_500;
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .section-branches-intro {
+    .card {
+      flex-direction: column;
+    }
+
+    .maps {
+      .item {
+        flex-direction: column;
+
+        .content {
+          flex-direction: column;
+          gap: 20px;
+
+          .d-flex {
+            gap: 16px !important;
+          }
+        }
+      }
+
+      .map {
+        width: 100%;
+      }
+    }
+  }
+}
+

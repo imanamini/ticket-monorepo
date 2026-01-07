@@ -1,0 +1,52 @@
+<div class="modal-simple">
+  <div
+    (click)="closeDialog()"
+    class="close"
+  >
+    <ngx-icon
+      class="cursor-pointer"
+      [name]="'close'"
+      [iconSize]="'24px'"
+    ></ngx-icon>
+  </div>
+  <div class="dialog-body">
+    <div class="image">
+      <img
+        ngSrc="/assets/dialog/thanks-msg.svg"
+        width="174"
+        height="148"
+      />
+    </div>
+    <div class="title">
+      <span>
+        {{ templateData.title }}
+      </span>
+    </div>
+    <div
+      [innerHTML]="templateData.description"
+      class="description"
+    ></div>
+  </div>
+  <div class="ctas">
+    <app-ui-button
+      *ngIf="templateData.secondCta && templateData.secondCta.link && templateData.secondCta.title"
+      [appearance]="'BLUE-TEXT'"
+      [linkTarget]="'_blank'"
+      [link]="templateData.secondCta.link"
+      >{{ templateData.secondCta.title }}
+    </app-ui-button>
+    <app-ui-button
+      *ngIf="templateData.firstCta && templateData.firstCta.link && templateData.firstCta.title"
+      [linkTarget]="'_blank'"
+      [link]="templateData.firstCta.link"
+      >{{ templateData.firstCta.title }}
+    </app-ui-button>
+    <app-ui-button
+      appearance="FLAT-BLUE"
+      (click)="closeDialog()"
+      *ngIf="!templateData.firstCta && !templateData.secondCta"
+    >
+      بستن
+    </app-ui-button>
+  </div>
+</div>

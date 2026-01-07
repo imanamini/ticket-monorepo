@@ -1,0 +1,25 @@
+<div class="premium-services">
+  <div
+    class="w-100 px-medium surface-elevated d-flex align-items-start d-grid premium-grid-container radius-medium pt-medium pb-minus px-medium"
+  >
+    @for (service of PREMIUM_SERVICES; track $index) {
+      <common-ui-components-framed-icon
+        ngxRouterLoading
+        (click)="handleClick(service)"
+        class="framed-icon cursor-pointer"
+        [size]="64"
+        [showText]="true"
+        [enableMixedBlendMode]="true"
+        [type]="ServiceImagesType.ICON"
+        [text]="service.title"
+        [showBadge]="false"
+        [icon]="service.icon"
+        [trackerIdPrefix]="service.icon"
+        [bg]="'surface-glass-onelevated'"
+        [iconType]="'bold'"
+        [enableGradient]="true"
+        [gradientConfig]="createGradientConfig(service.primaryColor, service.secondaryColor)"
+      ></common-ui-components-framed-icon>
+    }
+  </div>
+</div>

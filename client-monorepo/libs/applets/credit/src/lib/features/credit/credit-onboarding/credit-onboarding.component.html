@@ -1,0 +1,91 @@
+<app-credit-app-bar
+  (onCloseButtonClick)="closeOnBoarding()"
+  [closeButton]="true"
+  [internalTitle]="true"
+></app-credit-app-bar>
+<div class="onboarding-page">
+  <div class="paper">
+    <div class="paper-body">
+      <div class="close">
+        <span (click)="closeOnBoarding()">بستن</span>
+      </div>
+      @if (pages().length > 0) {
+        <ngx-dp-carousel
+          [mode]="'CARD'"
+          [visibleItemCount]="1"
+          [index]="currentSlide()"
+          [loopMode]="false"
+          [centerMode]="true"
+          [showNavigation]="true"
+          [showButtons]="false"
+          [isFixedGap]="true"
+          [fixedGap]="0"
+          [isFixedWidth]="false"
+          [swipeThreshold]="30"
+          [disableScaling]="true"
+          (indexChange)="onIndexChange($event)"
+        >
+          @for (page of pages(); track page; let number = $index) {
+            <ng-template ngxDpCarouselSlide>
+              <div class="slide-page-content">
+                <div class="image-wrapper">
+                  @if (page.imageId) {
+                    <credit-digipay-image
+                      [imageId]="page.imageId"
+                      heightSkeleton="200px"
+                      width="100%"
+                    ></credit-digipay-image>
+                  }
+                </div>
+                @defer {
+                  <h1 class="slide-title">{{ page.title }}</h1>
+                } @placeholder {
+                  <lib-ngx-skeleton-loading
+                    class="skeleton-title"
+                    height="24px"
+                  ></lib-ngx-skeleton-loading>
+                }
+                @defer {
+                  <div
+                    [innerHTML]="page.content | safeHtml"
+                    class="slide-content"
+                  ></div>
+                } @placeholder {
+                  <lib-ngx-skeleton-loading height="64px"></lib-ngx-skeleton-loading>
+                }
+              </div>
+            </ng-template>
+          }
+        </ngx-dp-carousel>
+
+        <div class="page-nav">
+          @defer {
+            <ngx-button
+              (clickHandler)="nextStep()"
+              [isLoading]="actionSpinner()"
+              [disabled]="actionSpinner()"
+              [leftIcon]="currentSlide() < pages().length - 1 ? { name: 'arrow-left' } : undefined"
+            >
+              @if (currentSlide() === pages().length - 1) {
+                <span> شروع مسیر </span>
+              }
+              @if (currentSlide() < pages().length - 1) {
+                <span>صفحه بعد</span>
+              }
+            </ngx-button>
+          }
+
+          @if (currentSlide() > 0) {
+            <ngx-button
+              [style]="'tinted-on-elevated'"
+              (clickHandler)="prevStep()"
+              [rightIcon]="{ name: 'arrow-right' }"
+            >
+              صفحه قبل
+            </ngx-button>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

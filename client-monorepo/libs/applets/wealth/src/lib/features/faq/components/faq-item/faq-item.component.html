@@ -1,0 +1,23 @@
+<div class="w-100 d-flex flex-wrap pb-medium">
+  <div
+    class="w-100 d-flex align-items-center justify-content-space-between cursor-pointer"
+    (click)="isExpand.set(!isExpand())"
+  >
+    <span class="b-3 text-onback-high">{{ data().question }}</span>
+    <img
+      src="wealth-assets/icons/chevron-{{ isExpand() ? 'up' : 'bottom' }}-gray.svg"
+      alt="expand"
+    />
+  </div>
+  <div class="w-100 b-3 text-onback-medium pl-big faq-answer {{ isExpand() && 'expand' }}">
+    <span>{{ data().answer }}</span>
+  </div>
+
+  @if (!isLastItem()) {
+    <ngx-divider
+      class="d-flex w-100 mt-medium"
+      [color]="BorderColorsEnum.Tint"
+      orientation="horizontal"
+    ></ngx-divider>
+  }
+</div>

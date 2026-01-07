@@ -1,0 +1,28 @@
+.app-spinner {
+  height: 100dvh;
+}
+
+.cashin-container {
+  height: 100dvh;
+
+  .cashin-content {
+    height: calc(100dvh - 26.5rem);
+    min-height: fit-content;
+  }
+}
+
+ngx-checkbox {
+  .check-box-text {
+    height: 26px;
+    align-items: center;
+  }
+}
+
+.cashin-content-max-heigh {
+  height: calc(100dvh - 24rem) !important;
+}
+
+
+.d-grid{
+  grid-template-columns:1.3fr 1fr;
+}

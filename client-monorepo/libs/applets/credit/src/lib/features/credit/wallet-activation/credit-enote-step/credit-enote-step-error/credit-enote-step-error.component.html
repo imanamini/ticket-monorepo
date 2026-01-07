@@ -1,0 +1,31 @@
+@if (data().showTitleBar) {
+  <app-credit-app-bar
+    (onBackButtonClick)="back.emit()"
+    [backButton]="true"
+    [title]="data().pageTitle"
+  ></app-credit-app-bar>
+}
+<div class="top-section d-flex flex-column w-100 flex-grow rtl">
+  <div
+    class="flex-grow justify-content-center rtl"
+    [class.pb-plus]="padding()"
+  >
+    <ngx-status-result
+      [title]="data().title"
+      (finished)="submitted.emit()"
+      [buttons]="data().buttons"
+      (clicked)="onActionClick($event)"
+      [description]="data().description"
+      [iconState]="data().iconState"
+      [type]="data().type"
+      [hasCloseIcon]="data().hasCloseIcon"
+      (closed)="back.emit()"
+    >
+      @if (state() === 'ENOTE_ERROR') {
+        <ng-container status-image>
+          <div [class]="'error-image'"></div>
+        </ng-container>
+      }
+    </ngx-status-result>
+  </div>
+</div>

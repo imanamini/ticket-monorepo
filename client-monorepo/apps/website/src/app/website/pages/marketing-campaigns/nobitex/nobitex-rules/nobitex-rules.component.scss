@@ -1,0 +1,67 @@
+.nobitex-rules {
+  display: flex;
+  flex-direction: column;
+
+  .content-separator {
+    border: 1px solid #dee3e7;
+    width: 100%;
+    border-radius: 16px;
+  }
+
+  .rule-section {
+    border-radius: 16px;
+    border: 1px solid #dee3e7;
+    background: #fff;
+    display: flex;
+    padding: 16px 24px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    align-self: stretch;
+    margin-bottom: 10px;
+
+    .rule-header {
+      display: flex;
+      justify-content: space-between;
+      color: #000d33;
+      text-align: right;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 24px; /* 171.429% */
+    }
+
+    .rule-body {
+      color: var(--Text-High-Emphasis, #2c3544);
+      text-align: right;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px; /* 166.667% */
+    }
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+
+    .content-title {
+      color: var(--Gray-06, #424c5c);
+      text-align: right;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+  }
+
+  .content-body {
+    .content-body-title {
+      color: #424c5c;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+  }
+}

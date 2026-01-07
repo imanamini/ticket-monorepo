@@ -1,0 +1,52 @@
+@if (loading$ | async) {
+  <ui-loading-spinner></ui-loading-spinner>
+} @else {
+  <div
+          class="payment-result">
+    <journey-action-result
+            [data]="actionResultData">
+      <!-- Payment Success -->
+      @if (showPaymentSuccess()) {
+        برای فعال سازی بیمه نامه اطلاعات را تکمیل کنید.
+      }
+      <!-- End Payment Success -->
+
+      <!-- Payment Failed -->
+      @if (( paymentResultData
+        && !paymentResultData.paymentSuccess ) || providerId === '0') {
+        مشکلی در فرآیند پرداخت حق بیمه رخ داده است. لطفا مجددا تلاش فرمایید
+      }
+      <!-- END Failed -->
+    </journey-action-result>
+
+    @if (paymentResultData && paymentResultData.paymentSuccess) {
+      <div class="result-info bg-white bt-1">
+        <p>
+          * درصورت عدم تکمیل اطلاعات و سلامت سنجی، وجه پرداختی به حساب شما باز خواهد گشت.
+        </p>
+      </div>
+    }
+  </div>
+  <div class="button">
+    @if (showPaymentSuccess()) {
+      <journey-buttons
+              (nextClicked)="continueProcess()"
+              [disableNext]="(loading$ | async)"
+              [hideBackBtn]="true"
+              [idValue]="'used-payment-result-continue'"
+              [isReversed]="false"
+              [nextText]="'ادامه'">
+      </journey-buttons>
+    }
+    @if (showRetryBtn()) {
+      <journey-buttons
+              (nextClicked)="goToStepper()"
+              [disableNext]="(loading$ | async)"
+              [hideBackBtn]="true"
+              [idValue]="'used-payment-result-retry'"
+              [isReversed]="false"
+              nextText="تلاش مجدد">
+      </journey-buttons>
+    }
+  </div>
+}

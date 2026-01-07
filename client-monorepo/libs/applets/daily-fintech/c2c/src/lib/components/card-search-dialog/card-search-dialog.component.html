@@ -1,0 +1,61 @@
+<div class="surface-elevated d-flex flex-column h-100 flex-grow-1">
+  <!-- Header Section -->
+  <header class="header d-flex align-items-center px-plus py-minus">
+    <span
+      class="back-arrow cursor-pointer p-minus"
+      (click)="closeDialog()"
+    >
+      <common-icon-dp-icon
+        [icon]="'Arrow-Right'"
+        [iconType]="'linear'"
+        [iconSize]="'24'"
+      ></common-icon-dp-icon>
+    </span>
+
+    <div class="field flex-grow-1">
+      <common-ui-components-search
+        [(searchText)]="keyword"
+        [mode]="'section'"
+        placeHolder="جستجو در کارت‌های پر مراجعه"
+      ></common-ui-components-search>
+    </div>
+  </header>
+
+  <!-- Search Results Section -->
+  <main
+    class="px-plus pb-huge mt-tiny d-flex flex-column gap-small flex-grow-1"
+    commonUtilitiesScrolledToEnd
+    (scrolledToEnd)="loadNewPage()"
+  >
+    @for (card of cards(); track card.cardIndex) {
+      <daily-bank-card-preview
+        commonUtilitiesAppletOnHold
+        [config]="{
+          classes: 'w-100',
+          cardNumber: card.pan,
+          ownerName: card.cardOwner || '',
+          isPinned: card.pinned,
+          isMinimized: true,
+          alias: card.alias,
+          isDestination: true,
+        }"
+        (click)="chooseCard(card)"
+        (handleOnHold)="cardActions(card)"
+      ></daily-bank-card-preview>
+    }
+
+    @if (isSearchResulEmpty()) {
+      <div class="d-flex flex-column align-items-center mt-hulk">
+        <div class="surface-back radius-rounded p-big">
+          <common-icon-dp-icon
+            [classes]="'text-onback-medium'"
+            [iconSize]="'48'"
+            [icon]="'bank-card-remove'"
+            [iconType]="'due'"
+          ></common-icon-dp-icon>
+        </div>
+        <p class="text-onback-high st-6 mt-huge">کارت مقصد مورد نظر یافت نشد</p>
+      </div>
+    }
+  </main>
+</div>

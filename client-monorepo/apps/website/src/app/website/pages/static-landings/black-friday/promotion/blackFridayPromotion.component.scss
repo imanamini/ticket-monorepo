@@ -1,0 +1,82 @@
+@import "@digipay/base-style/styleguide";
+
+.black-friday-promotion {
+  gap: map-get($spacing-sizes, 'pony');
+  margin: 120px 0 0;
+
+  .image {
+
+    img {
+      width: 270px;
+      height: auto;
+    }
+  }
+
+  .content {
+
+    .title {
+      text-align: center;
+      font-size: 37px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 67px; /* 181.081% */
+      color: #fff;
+    }
+
+    .bold-text {
+      font-size: 61px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 74px;
+      color: #fff;
+    }
+
+    .subtitle {
+      margin: map-get($spacing-sizes, 'minus') 0;
+      color: #fff;
+    }
+  }
+}
+
+:host ::ng-deep {
+  ngx-button.custom-button-cta {
+    .ngx-button {
+      color: #000 !important;
+      font-weight: 800 !important;
+    }
+  }
+}
+
+
+@media (max-width: 1280px) {
+  .black-friday-promotion {
+    flex-direction: column;
+    width: 215px;
+    margin: 50px auto 0;
+    text-align: center;
+    gap: 16px !important;
+    position: relative;
+
+    .image {
+      img {
+        width: 240px;
+      }
+    }
+
+    .content {
+      .title {
+        font-size: 24px;
+        line-height: 32px !important;
+      }
+
+      .bold-text {
+        font-size: 40px;
+      }
+
+      .subtitle {
+        font-size: 12px !important;
+        margin: 4px 0 20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<div class="services__intro-right">
+  <div>
+    <ul [ngClass]="{ act: act }">
+      <li class="services__intro-right-item">
+        <div
+          *ngFor="let image of images; let i = index"
+          [ngClass]="{ show: visibleImageIndex.includes(i) }"
+          [ngStyle]="{ backgroundImage: 'url(' + image.image.url + ')' }"
+        ></div>
+      </li>
+    </ul>
+  </div>
+</div>

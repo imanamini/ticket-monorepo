@@ -1,0 +1,8 @@
+export enum DetailCardEnum {
+  PRICE = 'PRICE',
+  NUMBER = 'NUMBER',
+  PLATE_NUMBER = 'PLATE_NUMBER',
+  TAXI_PLATE = 'TAXI_PLATE',
+  PHONE_NUMBER = 'PHONE_NUMBER',
+  STRING = 'STRING',
+}

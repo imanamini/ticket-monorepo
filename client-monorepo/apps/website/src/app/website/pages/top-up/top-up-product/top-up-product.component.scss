@@ -1,0 +1,79 @@
+::ng-deep {
+  #layout {
+    background: #f6f8ff;
+  }
+}
+
+.section-top-up-product {
+  background-image: linear-gradient(
+    to bottom,
+    #0040ff 376px,
+    rgba(0, 0, 0, 0) 120px
+  );
+
+  .content {
+    text-align: center;
+    padding-top: 48px;
+    padding-bottom: 128px;
+
+    h1 {
+      display: inline-block;
+      position: relative;
+
+      &:before {
+        display: block;
+        content: '';
+        position: absolute;
+        background-image: url('/assets/images/marked-arrow.svg');
+        background-position: center center;
+        margin: 0;
+        height: 121px;
+        width: 100px;
+        right: -116px;
+      }
+    }
+
+    h1,
+    .subtitle {
+      color: #ffffff;
+    }
+  }
+
+  .top-up {
+    max-width: 526px;
+    margin: -85px auto 0;
+  }
+
+  .providers {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .section-top-up-product {
+    .content {
+      padding-top: unset;
+      padding-bottom: 128px;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .section-top-up-product {
+    .content h1:before {
+      content: unset;
+    }
+
+    .top-up {
+      margin: unset;
+      max-width: unset;
+    }
+  }
+
+  .section-top-up-product .content {
+    padding-bottom: unset;
+  }
+}

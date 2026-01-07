@@ -1,0 +1,92 @@
+@import "../../../../style/globals";
+
+:host ::ng-deep {
+
+  .history-wrapper {
+    width: 1200px;
+    position: relative;
+    z-index: 2;
+
+    .content {
+      width: 508px;
+    }
+
+    .gallery {
+      width: 596px;
+      height: 560px;
+      position: relative;
+
+      .year {
+        position: absolute;
+        top: 24px;
+        right: 30px;
+        background: #fff;
+        border-radius: 100px;
+        padding: 4px 16px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .description {
+        position: absolute;
+        bottom: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 16px;
+        background: rgba(16, 17, 19, 0.44);
+        padding: 16px;
+        width: 548px;
+        text-align: center;
+      }
+    }
+  }
+
+
+  @media (max-width: 1280px) {
+    .history-wrapper {
+      width: 100%;
+      flex-direction: column;
+
+      .history-title {
+        .title {
+          font-size: 18px !important;
+          text-align: center;
+        }
+
+        .subtitle {
+          font-size: 14px !important;
+          text-align: center;
+        }
+      }
+
+      .content {
+        width: 100%;
+
+        .history-list {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+      }
+
+      .gallery {
+        display: none;
+      }
+    }
+
+  }
+
+  @media (max-width: 744px) {
+
+
+  }
+
+  @media (max-width: 557px) {
+
+  }
+}
+

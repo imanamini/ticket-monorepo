@@ -1,0 +1,45 @@
+<div id="qr-scanner">
+  <div
+    class="wrapper"
+    *ngIf="isSupport()"
+    [ngStyle]="{ visibility: hasPermission ? 'visible' : 'hidden' }"
+  >
+    <div class="custom-scanner-wrapper">
+      <zxing-scanner
+        (permissionResponse)="permissionHandler($event)"
+        [formats]="scanFormats"
+        (scanSuccess)="scanSuccessHandler($event)"
+        (scanError)="scanErrorHandler($event)"
+        (camerasNotFound)="camerasNotFoundHandler()"
+      >
+      </zxing-scanner>
+    </div>
+
+    <div class="mask">
+      <div class="icon">
+        <span class="icon-rounded"></span>
+        <div class="hole"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <ngx-button
+      (clickHandler)="acceptorClicked()"
+      class="footer-button"
+      [mode]="'form'"
+      [size]="'large'"
+      [style]="'tinted-on-back'"
+      [fullWidth]="true"
+    >
+      کد پذیرنده
+    </ngx-button>
+
+    <scanner-applet-permission-denied
+      (nativePermissionResult)="permissionHandler($event)"
+      class="has-permission-style"
+      *ngIf="!hasPermission && !isLoading"
+    >
+    </scanner-applet-permission-denied>
+  </div>
+</div>

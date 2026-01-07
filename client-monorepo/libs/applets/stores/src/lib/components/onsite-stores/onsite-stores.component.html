@@ -1,0 +1,70 @@
+<div class="mb-small mx-plus">
+  <stores-applet-shopping-guide-promotion
+    [text]="'در خرید حضوری چطور پرداخت کنم؟'"
+    [linkToGo]="'/stores/onsite-shopping-guide'"
+  ></stores-applet-shopping-guide-promotion>
+</div>
+<div class="d-flex flex-column align-items-stretch justify-content-start gap-plus">
+  <common-app-banners-shared-common-banners
+    [bannersData]="bannersData()"
+    [categoryToShow]="BannerCategory.STORE_ONSITE_1"
+  >
+  </common-app-banners-shared-common-banners>
+
+  <div
+    class="px-plus position-relative d-flex justify-content-center align-items-center cursor-pointer"
+    (click)="goToMap()"
+  >
+    <img
+      src="assets/stores/my-location-stores.png"
+      alt="فروشگاه‌های اطراف من"
+      class="my-location-stores-img"
+    />
+    <div class="absolute-btn">
+      <ngx-button
+        [mode]="'section'"
+        [size]="'medium'"
+        [style]="'fill'"
+        [rightIcon]="{ name: 'location', type: 'bold' }"
+        >فروشگاه‌های اطراف من</ngx-button
+      >
+    </div>
+  </div>
+  <stores-applet-personalized-onsite-stores></stores-applet-personalized-onsite-stores>
+  <common-app-banners-shared-common-banners
+    [bannersData]="bannersData()"
+    [categoryToShow]="BannerCategory.STORE_ONSITE_2"
+  >
+  </common-app-banners-shared-common-banners>
+
+  @defer (on viewport) {
+    <common-app-banners-shared-common-banners
+      [bannersData]="bannersData()"
+      [categoryToShow]="BannerCategory.STORE_ONSITE_3"
+    >
+    </common-app-banners-shared-common-banners>
+  } @placeholder (minimum 500ms) {
+    <div class="px-plus">
+      <lib-ngx-skeleton-loading
+        [height]="'300px'"
+        [classes]="'radius-medium'"
+        [width]="'100%'"
+      ></lib-ngx-skeleton-loading>
+    </div>
+  }
+  @defer (on viewport) {
+    <common-app-banners-shared-common-banners
+      [bannersData]="bannersData()"
+      [categoryToShow]="BannerCategory.STORE_ONSITE_4"
+    >
+    </common-app-banners-shared-common-banners>
+  } @placeholder (minimum 1000ms) {
+    <div class="px-plus">
+      <lib-ngx-skeleton-loading
+        [height]="'300px'"
+        [classes]="'radius-medium'"
+        [width]="'100%'"
+      ></lib-ngx-skeleton-loading>
+    </div>
+  }
+</div>

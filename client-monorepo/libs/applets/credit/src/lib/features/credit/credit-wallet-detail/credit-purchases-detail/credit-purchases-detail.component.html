@@ -1,0 +1,47 @@
+<app-credit-app-bar
+  (onBackButtonClick)="goBack()"
+  [backButton]="true"
+  [title]="data()?.title"
+></app-credit-app-bar>
+<div class="main-section flex-full-height">
+  <div class="top-section">
+    <app-credit-scrollable-view [fullHeightContent]="true">
+      @if (!messageMode()) {
+        <div>
+          @if (!selectedGroup()) {
+            <div class="page-content">
+              @for (group of data().businessTransactionDetails; track group) {
+                <div class="group-card-wrapper">
+                  <app-credit-purchase-group-card
+                    (click)="selectedGroup.set(group)"
+                    [imageId]="group.businessImageId"
+                    [merchantName]="group.businessName"
+                    [totalAmount]="group.totalAmount"
+                  ></app-credit-purchase-group-card>
+                </div>
+              }
+            </div>
+          }
+          @if (selectedGroup()) {
+            <app-credit-purchase-group-detail
+              [pageUrl]="pageUrl()!"
+              [purchaseGroup]="selectedGroup()!"
+            ></app-credit-purchase-group-detail>
+          }
+        </div>
+      }
+      @if (messageMode()) {
+        <div class="message-mode-section">
+          @if (data().message.imageId) {
+            <credit-digipay-image
+              [imageId]="data().message?.imageId"
+              [width]="'100px'"
+            ></credit-digipay-image>
+          }
+          <div class="message-title">{{ data().message?.title }}</div>
+          <div class="message-description text-onback-low">{{ data().message?.description }}</div>
+        </div>
+      }
+    </app-credit-scrollable-view>
+  </div>
+</div>

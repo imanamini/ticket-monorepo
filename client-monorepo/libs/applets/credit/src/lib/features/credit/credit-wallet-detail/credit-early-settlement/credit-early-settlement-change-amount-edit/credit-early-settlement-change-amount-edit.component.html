@@ -1,0 +1,43 @@
+<span class="bt-2 text-onback-high">{{ amountPayableLabel }}</span>
+
+<!-- Edit amount -->
+<div
+  class="mt-small"
+  [formGroup]="form"
+>
+  <ui-form-field
+    [type]="'large-amount'"
+    formControlName="editAmount"
+    [minAmount]="minAmount()"
+    [maxAmount]="maxAmount()"
+    [autoFocus]="true"
+    [maxSize]="11"
+  >
+  </ui-form-field>
+</div>
+<!-- End Edit amount -->
+
+<!-- Buttons -->
+<div class="d-flex mt-huge gap-medium">
+  <ngx-button
+    size="large"
+    [style]="'tinted-on-elevated'"
+    [mode]="'form'"
+    [fullWidth]="true"
+    (clickHandler)="handleCancelChangeAmountClick()"
+  >
+    {{ declineButtonLabel }}
+  </ngx-button>
+
+  <ngx-button
+    size="large"
+    [style]="'fill'"
+    [mode]="'form'"
+    [fullWidth]="true"
+    (clickHandler)="handleAcceptChangeAmountClick()"
+    [disabled]="form.invalid"
+  >
+    {{ acceptButtonLabel }}
+  </ngx-button>
+</div>
+<!-- End Buttons -->

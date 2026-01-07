@@ -1,0 +1,9 @@
+.operators-container {
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  gap: 8px 16px;
+}
+
+.nowrap-text {
+  white-space: nowrap;
+}

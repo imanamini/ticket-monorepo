@@ -1,0 +1,59 @@
+@if (!gettingData()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="prevStep.emit()"
+    (onTextClick)="onTextClick()"
+    [actionImage]="'info-circle'"
+    [backButton]="true"
+    actionText="نکات مهم"
+    title="راهنمای نوشتن ضمانت"
+  >
+  </app-credit-app-bar>
+  <div class="main-section flex-full-height">
+    <div class="top-section">
+      <div class="page-content">
+        <p class="title">سفته را دقیقا با اطلاعات زیر بنویسید:</p>
+        <div class="note-image"></div>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <app-credit-scrollable-view>
+        <div class="rtl">
+          <div class="guides">
+            @for (item of guides(); track item; let index = $index) {
+              <div class="guide">
+                <div class="number">
+                  {{ index + 1 }}
+                </div>
+                <div>
+                  <div class="title">
+                    {{ item.title }}
+                  </div>
+                  <div class="value">
+                    {{ item.value }}
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+          <div class="cta">
+            <div
+              [class]="{ 'warning-shack-x': warningShake() }"
+              class="confirm-checkbox d-flex"
+            >
+              <ngx-checkbox [(checked)]="accepted"> ضمانت را دقیقا با اطلاعات بالا نوشتم </ngx-checkbox>
+            </div>
+            <ngx-button
+              (clickHandler)="onSubmit()"
+              [disabled]="!accepted()"
+              [fullWidth]="true"
+            >
+              تایید و ادامه
+            </ngx-button>
+          </div>
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+  </div>
+}
+
+<credit-page-loading [active]="gettingData()"></credit-page-loading>

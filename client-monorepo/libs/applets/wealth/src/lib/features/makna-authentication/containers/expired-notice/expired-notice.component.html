@@ -1,0 +1,25 @@
+<div class="expired-notice-container">
+  <div class="expired-notice-content">
+    <div class="expired-notice-description">
+      <div class="expired-image">
+        <img
+          src="wealth-assets/svg/expired-password.svg"
+          alt="news"
+        />
+      </div>
+      <div class="expired-description">
+        <span>رمز عبور شما منقضی شده است.</span>
+        <span>لطفا رمز جدید بسازید.</span>
+      </div>
+    </div>
+    <div class="expired-notice-button">
+      <ngx-button
+        [fullWidth]="true"
+        [brandButton]="true"
+        (clickHandler)="onBtnClicked()"
+      >
+        متوجه شدم
+      </ngx-button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+:host ::ng-deep {
+  #layout {
+    background: #f6f8ff;
+  }
+
+  #credit-calculator section {
+    background: #f3f6fe;
+  }
+}
+
+.title.mobile {
+  display: none;
+}
+
+@media (max-width: 1280px) {
+  .title.desktop {
+    display: none;
+  }
+  .title.mobile {
+    display: block;
+    margin-bottom: 32px;
+  }
+}

@@ -1,0 +1,18 @@
+@if (initialized()) {
+  <div class="d-flex flex-column flex-grow w-100">
+    <div class="flex-grow justify-content-center rtl w-100">
+      <ngx-status-result
+        [type]="'Retry'"
+        [iconState]="'retry'"
+        [description]="'این سرویس‌دهنده به دلیل مشکلات فنی تا اطلاع ثانوی در دسترس نیست.'"
+        [title]="'اختلال در سرویس‌دهنده رتبه‌بندی اعتباری ایرانیان'"
+        [buttons]="buttons"
+        [hasCloseIcon]="true"
+        (closed)="exit()"
+        (clicked)="exit()"
+      >
+      </ngx-status-result>
+    </div>
+  </div>
+}
+<credit-page-loading [active]="!initialized()"></credit-page-loading>

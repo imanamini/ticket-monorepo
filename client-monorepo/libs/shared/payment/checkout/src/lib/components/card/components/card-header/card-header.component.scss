@@ -1,0 +1,50 @@
+.tgs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;;
+  padding: 0 24px;
+  height: 64px;
+  border-bottom: 1px solid #d3dbe1;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  border-bottom: none;
+  background-color: white;
+
+  .right-box {
+    align-items: center;
+    display: none;
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-left: 16px;
+      cursor: pointer;
+
+      &.exit-icon {
+        // todo fix svg
+        // background-image: url("../../../../../../../assets/icon/close.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      &.back-icon {
+        // todo fix svg
+        // background-image: url("../../../../../../../assets/icon/back.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        transform: rotate(180deg);
+      }
+    }
+
+    .header-title {
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.11;
+      letter-spacing: normal;
+      color: #4d596b;
+    }
+  }
+}

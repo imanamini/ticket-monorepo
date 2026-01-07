@@ -1,0 +1,18 @@
+@import "@digipay/base-style/styleguide";
+
+.credit-api-blocked-error {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #{map-get($neutral, "shade-100")};
+  direction: rtl;
+  max-width: 500px;
+
+  &.not-blocker {
+    position: static;
+  }
+}
+
+

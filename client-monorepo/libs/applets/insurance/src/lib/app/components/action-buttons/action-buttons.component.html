@@ -1,0 +1,31 @@
+<div
+  [ngClass]="{'surface-back': backgroundMode()==='gray','surface-high-contrast':backgroundMode()!=='gray','border-t-300 border-color-light radius-medium':backgroundMode()!=='transparent'}"
+  class="d-flex flex-column gap-small p-medium">
+  <ng-content select="[topContent]"></ng-content>
+  <div class="d-flex flex-row justify-content-between align-items-center gap-medium">
+    @if (showDeActiveButton()) {
+      <ins-button
+        [style]="backgroundMode()==='gray' ? InsButtonStyleEnum.TintedOnBack : InsButtonStyleEnum.TintedOnElevated"
+        [mode]="InsButtonModeEnum.Form"
+        [size]="InsButtonSizeEnum.Large"
+        [fullWidth]="true"
+        [text]="deActiveButtonText()"
+        (clickHandler)="handleDeActiveButtonClicked($event)"
+        class="deActive-button"
+        id="deActive-button">
+      </ins-button>
+    }
+    <ins-button [brandButton]="activeButtonBackground() === InsButtonStyleEnum.Brand"
+                [style]="activeButtonBackground()"
+                [mode]="InsButtonModeEnum.Form"
+                [size]="InsButtonSizeEnum.Large"
+                [fullWidth]="true"
+                [text]="activeButtonText()"
+                [isLoading]="activeButtonLoading()"
+                (clickHandler)="handleActiveButtonClicked($event)"
+                class="active-button"
+                id="active-button">
+    </ins-button>
+  </div>
+
+</div>

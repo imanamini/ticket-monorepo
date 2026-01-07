@@ -1,0 +1,116 @@
+<div class="d-flex flex-column surface-high-contrast h-100svh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'فروش'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  @if (isLoading()) {
+    <app-spinner></app-spinner>
+  } @else {
+    <div class="w-100 d-flex align-items-center justify-content-center sell-price-unit">
+      <div class="w-100 d-flex align-items-center p-plus">
+        <app-price-unit
+          class="w-100"
+          [props]="priceProps()"
+        />
+      </div>
+    </div>
+    <div class="w-100 d-flex flex-column h-100">
+      <div class="flex-1 w-100 d-flex px-plus flex-column pb-plus">
+        <span class="b-2 text-onback-high">{{
+          assetData()?.investmentType === 'ETF' || assetData()?.type === 'Stock'
+            ? 'تعداد واحدهای مورد نظر برای فروش را وارد کنید.'
+            : 'تعداد واحدهای مورد نظر برای ابطال را وارد کنید.'
+        }}</span>
+        <div
+          [formGroup]="form"
+          class="w-100 mt-medium d-flex flex-column sell-price-form"
+        >
+          <ui-form-field
+            label="تعداد واحد"
+            [isNumericKeyboard]="true"
+            formControlName="count"
+            [hasCleaner]="true"
+            type="input"
+            [maxSize]="10"
+            [readonly]="!this.availableUnits()"
+            [error]="form.controls['count'].errors"
+            [errorMessageMapper]="errorMessageMapper()"
+            [hint]="tomanValue() ? 'معادل ' + tomanValue() + ' تومان' : ''"
+          ></ui-form-field>
+        </div>
+        <div class="w-100 d-flex align-items-end mt-mesium">
+          <ngx-callout
+            class="w-100"
+            [title]="''"
+            [showTitleBlink]="false"
+            [mode]="'multiple'"
+            [messages]="[
+              {
+                text: 'نهایی شدن فروش در این صندوق ها حداکثر ۲ روز کاری زمان می‌برد.',
+                showDot: true,
+                showLine: true,
+              },
+              {
+                text: 'می توانید مبلغ حاصل از فروش را از کیف پول ETF خود برداشت کنید.',
+                showDot: true,
+                showLine: true,
+              },
+            ]"
+          />
+        </div>
+      </div>
+      <div class="w-100 d-flex flex-column gap-small surface-elevated px-plus py-medium sticky-action-group">
+        <ngx-checkbox
+          class="d-flex align-items-center"
+          [(checked)]="agreementChecked"
+        >
+          <span class="d-flex gap-tiny">
+            <span>شرایط</span>
+            <span
+              (click)="agreementView(pdfType.PROSPECTUS)"
+              class="text-onback-brand"
+              >امیدنامه</span
+            >
+            @if (fundProfile()?.investmentType === 'ETF') {
+              ،
+            } @else {
+              <span>و</span>
+            }
+            <span
+              (click)="agreementView(pdfType.STATUTE)"
+              class="text-onback-brand"
+              >اساسنامه</span
+            >
+            @if (fundProfile()?.investmentType === 'ETF') {
+              <span>و</span>
+              <span
+                (click)="agreementView(pdfType.REGULATIONS)"
+                class="text-onback-brand"
+              >
+                قوانین و مقررات
+              </span>
+            }
+            <span>را می‌پذیرم.</span>
+          </span>
+        </ngx-checkbox>
+        <div class="w-100">
+          <ngx-button
+            [fullWidth]="true"
+            (clickHandler)="onShowDetail()"
+            [disabled]="disabled()"
+          >
+            فروش
+          </ngx-button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

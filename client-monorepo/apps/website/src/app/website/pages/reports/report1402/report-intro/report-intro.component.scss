@@ -1,0 +1,68 @@
+@import "../../../../../style/globals";
+
+.report-intro {
+  .container {
+    height: 600px;
+    position: relative;
+  }
+
+  .artwork {
+    background: url('../images/intro-background.png') no-repeat center center/cover;
+    border-radius: 24px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: $swatch_blue_900;
+  }
+
+  .overlay {
+    background: url('../images/report-overlay.svg') no-repeat center center/cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  .cta {
+    position: absolute;
+    right: 360px;
+    top: 421px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .report-intro {
+    .container {
+      height: 378px;
+    }
+
+    .artwork {
+      background-position-x: initial;
+    }
+
+    .cta {
+      right: 175px;
+      top: 265px;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .report-intro {
+    .container {
+      height: unset;
+    }
+
+    .artwork {
+      width: 100%;
+      aspect-ratio: 2/1;
+    }
+
+    .cta {
+      margin-top: 12px;
+      position: relative;
+      width: 100%;
+      display: block;
+      right: unset;
+      top: unset;
+    }
+  }
+}

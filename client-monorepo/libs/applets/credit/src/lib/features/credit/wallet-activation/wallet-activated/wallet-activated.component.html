@@ -1,0 +1,32 @@
+<app-credit-app-bar
+  (infoClick)="infoClicked()"
+  [backButton]="true"
+  [buttonLink]="creditHomeUrl()!"
+  [infoButton]="true"
+  [invertColor]="true"
+  [subtitle]="wallet()?.title"
+  title="فعال‌سازی کیف اعتباری"
+>
+</app-credit-app-bar>
+<app-credit-scrollable-view>
+  <div class="page-content">
+    <div >
+      <div class="image"></div>
+      <h3 class="title">{{ title() }}</h3>
+      <p
+        class="description"
+        dir="rtl"
+      >
+        {{ description() }}
+      </p>
+      <div class="buttons">
+        <ngx-button
+          (clickHandler)="goToWalletDetailsPage()"
+          [fullWidth]="true"
+        >
+          کیف پول من
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+</app-credit-scrollable-view>

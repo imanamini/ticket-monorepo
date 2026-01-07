@@ -1,0 +1,81 @@
+<div
+  [class]="{
+    'is-empty': step()?.statusText === 'INITIATE',
+    'is-editable': step()?.statusText === 'OPERATIONAL_REJECTION',
+    'is-success': step()?.statusText === 'COMPLETED',
+    'is-uploading': uploading(),
+    'is-error': uploadError(),
+    'is-disabled': step()?.disabled,
+  }"
+  class="upload-file-tile"
+>
+  <div class="header">
+    <p class="title-upload">
+      {{ title() }}
+    </p>
+    @if (step()?.stepResult || fileImageSrc()) {
+      <label class="edit centered">
+        <span class="warning-badge">ویرایش</span>
+        <ngx-icon
+          [name]="'edit-square'"
+          [type]="'linear'"
+        >
+        </ngx-icon>
+        <input
+          (click)="pickAgain($event)"
+          [disabled]="step()?.disabled"
+          type="button"
+        />
+      </label>
+    }
+  </div>
+
+  <div class="image">
+    @if (step()?.stepResult || fileImageSrc()) {
+      <label
+        (click)="openImageDialog()"
+        class="image-data"
+      >
+        @if (!fileImageSrc()) {
+          <credit-digipay-image
+            [imageId]="step()?.stepResult"
+            apiEndpoint="CREDIT"
+            width="100%"
+          ></credit-digipay-image>
+        }
+        @if (fileImageSrc()) {
+          <img
+            [src]="fileImageSrc()"
+            alt="image"
+          />
+        }
+      </label>
+    }
+
+    <label class="add-image">
+      <span class="icon"></span>
+      <input
+        (click)="pickFile()"
+        [disabled]="step()?.disabled"
+        type="button"
+      />
+    </label>
+
+    <div class="uploading centered-icon">
+      <ngx-spinner
+        size="md"
+        color="primary"
+      ></ngx-spinner>
+    </div>
+
+    <div class="check-icon centered-icon"></div>
+
+    <div
+      (click)="retryUpload()"
+      class="warning centered"
+    >
+      <div class="warning-icon"></div>
+      <span class="warning-badge">تلاش مجدد</span>
+    </div>
+  </div>
+</div>

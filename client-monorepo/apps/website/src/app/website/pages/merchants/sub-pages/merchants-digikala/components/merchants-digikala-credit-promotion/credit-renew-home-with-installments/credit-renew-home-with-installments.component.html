@@ -1,0 +1,137 @@
+<div class="credit-home-appliances">
+  <h2 class="centered-text">{{ renewHomeWithInstallmentsData.title }}</h2>
+  <div class="renew-home-list-desktop">
+    <ng-container *ngFor="let category of renewHomeWithInstallmentsData.categories">
+      <div
+        [ngStyle]="{ backgroundColor: category.themeColor }"
+        class="list-item"
+      >
+        <div class="titles">
+          <div class="title">{{ category.title }}</div>
+          <div class="subtitle">{{ category.subtitle }}</div>
+        </div>
+        <div class="artwork">
+          <img
+            *ngIf="category.banner && category.banner.url"
+            [src]="category.banner.url"
+          />
+        </div>
+        <div class="ctas">
+          <app-ui-button
+            *ngIf="category.firstCta.title && category.firstCta.link"
+            [color]="category.themeColor"
+            [link]="category.firstCta.link"
+            appearance="CUSTOM"
+            backgroundColor="#fff"
+            class="cta"
+            classes="first-cta"
+            >{{ category.firstCta.title }}
+          </app-ui-button>
+          <app-ui-button
+            *ngIf="category.secondCta.title && category.secondCta.link"
+            [backgroundColor]="category.themeColor"
+            [link]="category.secondCta.link"
+            appearance="CUSTOM"
+            class="cta"
+            classes="second-cta"
+            color="#fff"
+            >{{ category.secondCta.title }}
+          </app-ui-button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="renew-home-list-mobile">
+    <swiper-container
+      appSwiper
+      #swiper="appSwiper"
+      [config]="swiperConfig"
+      class="swiper"
+    >
+      <swiper-slide *ngFor="let category of renewHomeWithInstallmentsData.categories">
+        <div
+          [ngStyle]="{ backgroundColor: category.themeColor }"
+          class="list-item"
+        >
+          <div class="titles">
+            <div class="title">{{ category.title }}</div>
+            <div class="subtitle">{{ category.subtitle }}</div>
+          </div>
+          <div class="artwork">
+            <img
+              *ngIf="category.banner && category.banner.url"
+              [src]="category.banner.url"
+            />
+          </div>
+          <div class="ctas">
+            <app-ui-button
+              *ngIf="category.firstCta.title && category.firstCta.link"
+              [color]="category.themeColor"
+              [link]="category.firstCta.link"
+              appearance="CUSTOM"
+              backgroundColor="#fff"
+              class="cta"
+              classes="first-cta"
+              >{{ category.firstCta.title }}
+            </app-ui-button>
+            <app-ui-button
+              *ngIf="category.secondCta.title && category.secondCta.link"
+              [backgroundColor]="category.themeColor"
+              [link]="category.secondCta.link"
+              appearance="CUSTOM"
+              class="cta"
+              classes="second-cta"
+              color="#fff"
+              >{{ category.secondCta.title }}
+            </app-ui-button>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+    <!--    <swiper [config]="swiperConfig">-->
+    <!--      <ng-container-->
+    <!--        *ngFor="let category of renewHomeWithInstallmentsData.categories"-->
+    <!--      >-->
+    <!--        <ng-template swiperSlide>-->
+    <!--          <div-->
+    <!--            [ngStyle]="{ backgroundColor: category.themeColor }"-->
+    <!--            class="list-item"-->
+    <!--          >-->
+    <!--            <div class="titles">-->
+    <!--              <div class="title">{{ category.title }}</div>-->
+    <!--              <div class="subtitle">{{ category.subtitle }}</div>-->
+    <!--            </div>-->
+    <!--            <div class="artwork">-->
+    <!--              <img-->
+    <!--                *ngIf="category.banner && category.banner.url"-->
+    <!--                [src]="category.banner.url"-->
+    <!--              />-->
+    <!--            </div>-->
+    <!--            <div class="ctas">-->
+    <!--              <app-ui-button-->
+    <!--                *ngIf="category.firstCta.title && category.firstCta.link"-->
+    <!--                [color]="category.themeColor"-->
+    <!--                [link]="category.firstCta.link"-->
+    <!--                appearance="CUSTOM"-->
+    <!--                backgroundColor="#fff"-->
+    <!--                class="cta"-->
+    <!--                classes="first-cta"-->
+    <!--                >{{ category.firstCta.title }}-->
+    <!--              </app-ui-button>-->
+    <!--              <app-ui-button-->
+    <!--                *ngIf="category.secondCta.title && category.secondCta.link"-->
+    <!--                [backgroundColor]="category.themeColor"-->
+    <!--                [link]="category.secondCta.link"-->
+    <!--                appearance="CUSTOM"-->
+    <!--                class="cta"-->
+    <!--                classes="second-cta"-->
+    <!--                color="#fff"-->
+    <!--                >{{ category.secondCta.title }}-->
+    <!--              </app-ui-button>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--        </ng-template>-->
+    <!--      </ng-container>-->
+    <!--    </swiper>-->
+  </div>
+</div>

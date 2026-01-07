@@ -1,0 +1,61 @@
+<div class="image-container">
+  @switch (imageConfig().type) {
+    @case ('image') {
+      <img [src]="imageConfig().url ?? fallback" />
+    }
+    @case ('avatar') {
+      <common-icon-dp-icon
+        [icon]="'person'"
+        [iconType]="'bold'"
+      ></common-icon-dp-icon>
+    }
+    @case ('logo') {
+      <ui-api-image
+        [styles]="{ height: '100%', width: '100%', borderRadius: '50%' }"
+        [imageId]="imageConfig()?.id ?? ''"
+        [fallbackImage]="fallback"
+      ></ui-api-image>
+    }
+    @case ('logo-on-back') {
+      <div class="w-100 h-100 d-flex justify-content-center align-items-center surface-back radius-rounded">
+        <ui-api-image
+          [styles]="{ height: '24px', width: '24px', borderRadius: '50%' }"
+          [imageId]="imageConfig()?.id ?? ''"
+          [fallbackImage]="fallback"
+        ></ui-api-image>
+      </div>
+    }
+    @case ('icon') {
+      <div class="w-100 h-100 d-flex justify-content-center align-items-center surface-back radius-rounded">
+        <common-icon-dp-icon
+          [icon]="icon.icon"
+          [iconType]="icon.iconType"
+          [iconSize]="icon.iconSize"
+          [classes]="icon.classes"
+        ></common-icon-dp-icon>
+      </div>
+    }
+  }
+  @if (imageConfig().badge) {
+    @switch (imageConfig().badge) {
+      @case ('error') {
+        <img
+          src="assets/error.svg"
+          class="badge"
+        />
+      }
+      @case ('add') {
+        <img
+          src="assets/add.svg"
+          class="badge"
+        />
+      }
+      @case ('pending') {
+        <img
+          src="assets/pending.svg"
+          class="badge"
+        />
+      }
+    }
+  }
+</div>

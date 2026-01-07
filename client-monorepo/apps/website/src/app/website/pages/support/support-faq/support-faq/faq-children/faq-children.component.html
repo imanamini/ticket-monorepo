@@ -1,0 +1,54 @@
+<div class="children-wrapper">
+  <div class="card">
+    <div class="card-header">
+      <div class="category-title">
+        <div
+          *ngIf="category.icon"
+          [ngStyle]="{ backgroundImage: 'url(' + category.icon.url + ')' }"
+          class="icon"
+        ></div>
+        <div class="content">
+          <h3>{{ category.name }}</h3>
+          <span *ngIf="category.entriesCount">
+            {{ category.entriesCount }}
+            پاسخ
+          </span>
+        </div>
+      </div>
+      <div
+        (click)="backToParents()"
+        class="back-to-category-list"
+      >
+        <span>بازگشت</span>
+        <img
+          alt=""
+          height="19"
+          ngSrc="assets/faq/back-icon.svg"
+          width="19"
+        />
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="card-grid">
+      <div class="children-list-title">دنبال چه موضوعی در {{ category.name }} هستی؟</div>
+      <div class="children-items">
+        <ng-container *ngFor="let child of category.children; let ci = index">
+          <div
+            (click)="onChildClick(child)"
+            class="item"
+          >
+            <div class="content">
+              <h3>{{ child.name }}</h3>
+            </div>
+            <img
+              alt=""
+              height="19"
+              ngSrc="/assets/faq/child-icon.svg"
+              width="19"
+            />
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

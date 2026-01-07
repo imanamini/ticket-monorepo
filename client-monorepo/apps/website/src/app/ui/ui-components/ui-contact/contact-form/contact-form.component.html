@@ -1,0 +1,233 @@
+<div
+  class="component-contact-form form"
+  *ngIf="form"
+>
+  <div
+    *ngFor="let row of contactFormDefinition.rows"
+    [formGroup]="form"
+    class="contact-form-row"
+  >
+    <ng-container *ngFor="let field of row">
+      <ng-container [ngSwitch]="field.type">
+        <ng-container *ngSwitchCase="'TEXT'">
+          <label
+            [ngClass]="{
+              focus: focusState[field.id] || (form.value[field.id] !== '' && form.value[field.id] !== null),
+            }"
+            class="segment-half"
+          >
+            <ui-form-field
+              [errorMessageMapper]="{
+                required: mapContactForm.get(field.id).label + ' را وارد کنید',
+              }"
+              [error]="form.controls[field.id].errors"
+              [formControlName]="field.id"
+              [hint]="field.hint"
+              [inputType]="field.pattern ? 'tel' : 'text'"
+              [isNumericKeyboard]="false"
+              [label]="field.label"
+              [required]="field.mandatory"
+            ></ui-form-field>
+          </label>
+        </ng-container>
+        <ng-container *ngSwitchCase="'MULTILINE_TEXT'">
+          <label
+            [ngClass]="{
+              focus: focusState[field.id] || (form.value[field.id] !== '' && form.value[field.id] !== null),
+            }"
+            class="segment-half"
+          >
+            <app-form-field
+              [formControlName]="field.id"
+              [label]="field.label"
+              [mandatory]="field.mandatory"
+              multiLine="true"
+              type="input"
+            ></app-form-field>
+          </label>
+        </ng-container>
+        <ng-container *ngSwitchCase="'CHECKBOX'">
+          <label>
+            <input
+              [formControlName]="field.id"
+              type="checkbox"
+              value="1"
+            />
+            {{ field.label }}
+          </label>
+        </ng-container>
+        <ng-container *ngSwitchCase="'DROPDOWN'">
+          <label
+            [ngClass]="{
+              focus: focusState[field.id] || (form.value[field.id] !== '' && form.value[field.id] !== null),
+            }"
+            class="segment-half"
+          >
+            <ui-form-field
+              [errorMessageMapper]="{
+                required: mapContactForm.get(field.id).label + ' را وارد کنید',
+              }"
+              [error]="form.controls[field.id].errors"
+              [formControlName]="field.id"
+              [label]="field.label"
+              [options]="field.options"
+              [required]="field.mandatory"
+              type="select"
+            >
+            </ui-form-field>
+          </label>
+        </ng-container>
+        <ng-container *ngSwitchCase="'DATE'">
+          <label
+            [ngClass]="{
+              focus: focusState[field.id] || (form.value[field.id] !== '' && form.value[field.id] !== null),
+            }"
+            class="segment-half"
+          >
+            <div class="dg-input-wrapper">
+              <span class="label-title">
+                <span
+                  *ngIf="field.mandatory"
+                  class="label-mandatory"
+                  >*</span
+                >
+                {{ field.label }}
+              </span>
+              <span class="input">
+                <span>
+                  <input
+                    #dateInput
+                    (focusin)="showDatePicker[field.id] = true"
+                    [formControlName]="field.id"
+                    [name]="field.id"
+                    aria-invalid="false"
+                    aria-required="true"
+                    autocomplete="off"
+                    readonly
+                    size="40"
+                    type="text"
+                  />
+                </span>
+              </span>
+            </div>
+          </label>
+
+          <app-ui-calendar-date-picker-dep
+            (emitClose)="showDatePicker[field.id] = false"
+            (pick)="onDatePick(field.id, $event)"
+            *ngIf="platformId !== 'server'"
+            [allowFuture]="field.datePickerOptions.allowFuture"
+            [allowPast]="field.datePickerOptions.allowPast"
+            [endPicker]="true"
+            [initialView]="'years'"
+            [input]="dateInput"
+            [label]="field.label"
+            [showTime]="false"
+            [value]="datePickersTimestamp[field.id]"
+            [visible]="showDatePicker[field.id]"
+          ></app-ui-calendar-date-picker-dep>
+        </ng-container>
+        <ng-container *ngSwitchCase="'TAB'">
+          <label class="segment-half">
+            <span class="label-title">
+              <span
+                *ngIf="field.mandatory"
+                class="label-mandatory"
+                >*</span
+              >
+              {{ field.label }}
+            </span>
+            <div class="switch-form">
+              <span class="form-control-wrap">
+                <span class="radio">
+                  <ng-container *ngFor="let option of field.options; let itemIndex = index">
+                    <span class="list-item">
+                      <label>
+                        <input
+                          [formControlName]="field.id"
+                          [id]="'radio' + itemIndex"
+                          [name]="field.id"
+                          [value]="option.value"
+                          aria-invalid="false"
+                          aria-required="true"
+                          type="radio"
+                        />
+                        <span class="list-item-label">{{ option.label }}</span>
+                      </label>
+                    </span>
+                  </ng-container>
+                </span>
+              </span>
+            </div>
+          </label>
+        </ng-container>
+        <ng-container *ngSwitchCase="'CELL_NUMBER'">
+          <label
+            [ngClass]="{
+              focus: focusState[field.id] || (form.value[field.id] !== '' && form.value[field.id] !== null),
+            }"
+            class="segment-half"
+          >
+            <ui-form-field
+              [errorMessageMapper]="{
+                required: 'شماره همراه را وارد کنید.',
+                invalidCellNumber: 'شماره همراه وارد شده معتبر نیست.',
+              }"
+              [error]="form.controls[field.id].errors"
+              [formControlName]="field.id"
+              [hint]="field.hint"
+              [isNumericKeyboard]="true"
+              [label]="field.label"
+              [maxSize]="11"
+              [required]="field.mandatory"
+              showError="auto"
+            ></ui-form-field>
+          </label>
+        </ng-container>
+        <ng-container *ngSwitchCase="'NATIONAL_ID'">
+          <label
+            [ngClass]="{
+              focus: focusState[field.id] || (form.value[field.id] !== '' && form.value[field.id] !== null),
+            }"
+            class="segment-half"
+          >
+            <ui-form-field
+              [errorMessageMapper]="{
+                required: 'کدملی را وارد کنید.',
+                invalidNotionalCode: 'کدملی معتبر نمی‌باشد',
+              }"
+              [error]="form.controls[field.id].errors"
+              [formControlName]="field.id"
+              [hint]="field.hint"
+              [isNumericKeyboard]="true"
+              [label]="field.label"
+              [maxSize]="10"
+              [required]="field.mandatory"
+            ></ui-form-field>
+          </label>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+<div
+  *ngIf="responseMessage && errors && errors.length === 0"
+  class="response-output icon-check-blue-fill"
+>
+  <span>
+    {{ contactFormDefinition.successMessage || responseMessage }}
+  </span>
+</div>
+<app-ui-button
+  (clicked)="onSubmit()"
+  [disabled]="form.invalid || submitting"
+  class="submit-button"
+>
+  {{ submitBtn }}
+</app-ui-button>
+<ul
+  *ngIf="errors.length > 0"
+  class="form-errors"
+>
+  <li *ngFor="let error of errors">{{ error }}</li>
+</ul>

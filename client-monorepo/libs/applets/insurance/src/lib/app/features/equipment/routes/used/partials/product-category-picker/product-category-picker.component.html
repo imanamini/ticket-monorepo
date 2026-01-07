@@ -1,0 +1,19 @@
+<div class="product-category-picker">
+  <div class="picker-hint">
+    لطفا نوع دستگاه خود را انتخاب کنید:
+  </div>
+  <div class="picker-categories">
+    <div (click)="handleItemClick(category)"
+         *ngFor="let category of categoriesSet"
+         [ngClass]="{'active' : isActive(category)}"
+         class="category-item">
+      <div class="item-image-wrapper">
+        <img [alt]="category.name"
+             [src]="isActive(category)? category.activeImage : category.image"/>
+      </div>
+      <div class="item-title">
+        {{ category.name }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../../../shared/styles/styles.scss';
+
+.password{
+  width: 100%;
+  --full-width: 100vw;
+  --container-width-large: 552px;
+  max-width: min(var(--container-width-large), var(--full-width));
+}

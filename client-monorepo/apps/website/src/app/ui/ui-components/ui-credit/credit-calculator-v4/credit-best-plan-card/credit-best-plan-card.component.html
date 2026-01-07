@@ -1,0 +1,50 @@
+<div class="credit-card d-flex flex-column px-big pb-medium pt-big radius-plus border-300 border-color-light text-onback-high">
+  <div class="flex-grow">
+    <div class="d-flex flex-column gap-medium">
+      @for (row of detailsRows(); track $index) {
+        <div class="d-flex justify-content-space-between align-items-center">
+          <div class="bt-1">{{ row.title }}</div>
+          <div class="d-flex align-items-center gap-tiny">
+            @if (row.value.type === 'price') {
+              <div class="st-4">{{ row.value.value | IRR: 'hideRial'  }}</div>
+              <div class="b-2">ریال</div>
+            }
+            @if (row.value.type === 'text') {
+              <div class="bt-2">{{ row.value.value }}</div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    @if (dataToShow().subscriptionName) {
+      <div
+        class="subscription d-flex justify-content-space-between py-minus px-medium mt-medium radius-plus align-items-center surface-back"
+        (click)="showSubscriptionInfo(dataToShow().subscriptionName, dataToShow()?.subscriptionType)"
+      >
+        <div class="b-3">اشتراک مورد نیاز</div>
+        <div class="d-flex align-items-center gap-small c-1">
+          <span
+            [size]="20"
+            class="icon"
+            [icon]="'icon-diamond-' + dataToShow()?.subscriptionType?.toLowerCase()"
+            appUiIcon
+          ></span>
+          <span>{{ dataToShow().subscriptionName }}</span>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="mt-pony pt-pony border-t-300 border-color-light border-dashed">
+    <div class="plan-total-row-content d-flex justify-content-space-between align-items-center">
+      <div class="st-5">بازپرداخت نهایی</div>
+      <div>
+        <div class="d-flex align-items-center gap-tiny">
+          <div class="st-1">{{ dataToShow().totalRepaymentAmount | IRR: 'hideRial' }}</div>
+          <div class="st-8">ریال</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,130 @@
+@if (indexesToShow()) {
+  <div
+    ngxSwipeDetector
+    (swiping)="handleSwiping($event)"
+    (swipedDown)="next()"
+    (swipedUp)="prev()"
+    (swipeEnd)="handleSwipeEnd($event)"
+    (isSwipingHorizontally)="handleSwipingHorizontally($event)"
+    class="card-section"
+    [axisToLockOn]="'Y'"
+    [ngClass]="{
+      active: isActive(),
+    }"
+  >
+    @for (card of cards(); track $index) {
+      <div
+        #cardItem
+        [@cards]="generateStates($index)"
+        (@cards.start)="handleAnimationRunning(true)"
+        (@cards.done)="handleAnimationRunning(false)"
+        [class]="'card-item no-select'"
+        [ngClass]="{
+          active: $index === indexesToShow()[0],
+          'first-in-collapsed': isFirstInCollapsed($index),
+        }"
+        (click)="onClick($index)"
+      >
+        <div class="card-wrapper">
+          @switch (cardsTypeMapper[cardsType()]) {
+            @case ('bank') {
+              @if (cardsType() === 'dp_card') {
+                <ngx-card
+                  [aliasDirection]="'ltr'"
+                  [alias]="card.alias || ''"
+                  [cardType]="'digipayCard'"
+                  [cardMode]="cardsTypeMapper[cardsType()]"
+                  [cardSize]="'default'"
+                  [cardNumber]="removeSpace(card.card.mainValue.value)"
+                  [amount]="card.balance || '0'"
+                  [rightDetail]="rightDetail"
+                  [leftDetail]="leftDetail"
+                ></ngx-card>
+                <ng-template #rightDetail>
+                  @if (card.status === CardStatus.ACTIVE && card.expirationDate) {
+                    <p class="card-title fs-12 m-atom text-oninvert-medium">{{ formatExpirationDate(card.expirationDate) }}</p>
+                  }
+                  @if (card.status !== CardStatus.ACTIVE && getDpCardBadge(card.status); as badge) {
+                    <ngx-badge
+                      [size]="'tiny'"
+                      [status]="badge.status"
+                      [mode]="'bold'"
+                    >
+                      {{ badge.label }}
+                    </ngx-badge>
+                  }
+                </ng-template>
+                <ng-template #leftDetail>
+                  <img
+                    alt=""
+                    width="52"
+                    height="14"
+                    [src]="cardIcons.DIGI_SIGN"
+                  />
+                </ng-template>
+              } @else {
+                <ngx-card
+                  [cardMode]="cardsTypeMapper[cardsType()]"
+                  [cardSize]="'default'"
+                  [cardNumber]="removeSpace(card.card.mainValue.value)"
+                  [ownerName]="card.card.leftLabel?.value ? toPersianChar(card.card.leftLabel?.value!) : ''"
+                  [maskCardNumber]="true"
+                ></ngx-card>
+              }
+            }
+            @case ('wallet') {
+              <ngx-card
+                [cardMode]="cardsTypeMapper[cardsType()]"
+                [cardSize]="'default'"
+                [amount]="removeRialAndComma(card.card.mainValue.value)"
+                [ownerName]="userNameForWalletCards()"
+              ></ngx-card>
+            }
+            @case ('credit') {
+              <ngx-card
+                [cardMode]="cardsTypeMapper[cardsType()]"
+                [cardSize]="'default'"
+                [amount]="removeRialAndComma(card.card.mainValue.value)"
+                [cardLabel]="card.card.alias.value ? 'وام ' + card.card.alias.value : ''"
+                [ownerName]="card.card.leftLabel?.value ? card.card.leftLabel?.value! : ''"
+                [cardLogo]="card.card.logoImageId!"
+                [cardBackground]="card.card.color[0]"
+              ></ngx-card>
+            }
+            @case ('bnpl') {
+              <ngx-card
+                [cardMode]="cardsTypeMapper[cardsType()]"
+                [cardSize]="'default'"
+                [cardBackground]="card.card.color[0]"
+                [cardLabel]="generateBnplTitle(card?.card?.installmentCount)"
+                [amount]="removeRialAndComma(card.card.mainValue.value)"
+                [ownerName]="card.card.leftLabel?.value ? card.card.leftLabel?.value! : ''"
+                [leftDetail]="leftDetail"
+                [rightDetail]="rightDetail"
+              ></ngx-card>
+              <ng-template #leftDetail>
+                @if (card.card.accountStatus === AccountStatus.BLOCK) {
+                  <ngx-badge
+                    [size]="'tiny'"
+                    [status]="'error'"
+                    [mode]="'bold'"
+                    [classList]="'white-space-no-wrap'"
+                  >
+                    غیر قابل استفاده
+                  </ngx-badge>
+                } @else {
+                  <span class="text-oninvert-high c-3">
+                    {{ card.card.leftLabel?.value }}
+                  </span>
+                }
+              </ng-template>
+              <ng-template #rightDetail>
+                <span class="text-oninvert-high c-3">{{ card.card.rightLabel?.value }}</span>
+              </ng-template>
+            }
+          }
+        </div>
+      </div>
+    }
+  </div>
+}

@@ -1,0 +1,42 @@
+<div class="black-friday-hot-deals d-flex flex-column align-items-center gap-small container">
+  @if (hotDeals().title) {
+    <div class="title text-oninvert-high" [innerHTML]="sanitize(hotDeals()?.title)"></div>
+  }
+  @if (hotDeals().subtitle) {
+    <div class="subtitle st-1">{{ hotDeals()?.subtitle }}</div>
+  }
+  @if (hotDeals().narrowTitle) {
+    <div class="narrow-text text-oninvert-high st-2">{{ hotDeals()?.narrowTitle }}</div>
+  }
+
+  <div class="products mt-giant d-flex flex-wrap">
+    @for (product of hotDeals().products; track product) {
+      <div class="product-item radius-big"
+           (mouseenter)="handleProductHover(product)"
+           (mouseleave)="handleProductLeave(product)"
+           (click)="handleProductClick(product)"
+      >
+        <img class="radius-big" src="{{product.image?.url}}" alt="">
+
+        @if (!product.link && activeOverlay() === product) {
+          <div
+            class="overlay d-flex flex-column justify-content-center align-items-center">
+            <span class="st-8 mb-small overlay-text">۷ آذر</span>
+            <span class="st-8 mb-medium overlay-text">خرید فقط با اعتبار در اپ دیجی‌پی</span>
+           <span class="cursor-pointer">
+              <ngx-button
+                [size]="!mobileMode() ? 'small' : 'tiny'"
+                [mode]="'section'"
+                [class]="'custom-button'"
+                [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+                (clickHandler)="openLink()"
+              >
+              دریافت اعتبار
+            </ngx-button>
+           </span>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="header-container">
+  @if (showBackIcon()) {
+    <ngx-icon
+      class="cursor-pointer"
+      (click)="handleCloseIconClicked()"
+      name="arrow-right"
+      iconSize="24px"
+      type="linear"
+    ></ngx-icon>
+  }
+  <p class="title">
+    {{ title() }}
+  </p>
+</div>

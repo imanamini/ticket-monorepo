@@ -1,0 +1,32 @@
+<app-ui-section *ngIf="packagesCount > 0">
+  <div class="cell-number-row">
+    <div class="cell-number">
+      <app-ui-carrier-icon
+        [carrier]="group.operatorId"
+        [round]="true"
+        [size]="40"
+      ></app-ui-carrier-icon>
+      <span class="text">{{ group.cellNumber | formattedCellNumber }}</span>
+    </div>
+    <span
+      (click)="showAll = !showAll"
+      *ngIf="packagesCount > 2 && !showAll"
+      class="more-link"
+    >
+      مشاهده همه
+    </span>
+  </div>
+  <div class="packages">
+    <ng-container *ngFor="let bundleGroup of group.bundles">
+      <ng-container *ngFor="let internetPackage of bundleGroup.internetPackages">
+        <app-ui-internet-package
+          (clicked)="onPackageClick(internetPackage)"
+          *ngIf="(!showAll && internetPackage.index <= 1) || showAll"
+          [carrier]="group.operatorId"
+          [package]="internetPackage"
+          class="package"
+        ></app-ui-internet-package>
+      </ng-container>
+    </ng-container>
+  </div>
+</app-ui-section>

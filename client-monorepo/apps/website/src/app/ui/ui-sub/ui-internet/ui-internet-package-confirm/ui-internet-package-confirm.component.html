@@ -1,0 +1,19 @@
+<app-ui-dialog-base (rejected)="onReject()">
+  <ng-container *ngIf="cardData">
+    <div
+      [innerHTML]="data.internetPackage.approvalMessage"
+      class="message"
+    ></div>
+
+    <app-ui-payment-card [cardData]="cardData"></app-ui-payment-card>
+
+    <app-ui-pay-buttons
+      (ipgClick)="onIpgPay()"
+      (walletClick)="onWalletPay()"
+      [enableWallet]="data.isLoggedIn"
+      [isLoggedIn]="data.isLoggedIn"
+      [sufficientBalance]="walletBalanceIsSufficient"
+      class="pay-buttons"
+    ></app-ui-pay-buttons>
+  </ng-container>
+</app-ui-dialog-base>

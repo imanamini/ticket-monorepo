@@ -1,0 +1,141 @@
+<div id="card-container">
+  <section id="info-card-wrapper"
+           class="d-flex flex-column gap-medium surface-elevated radius-tl-big radius-tr-big radius-bl-medium radius-br-medium pr-medium pb-medium pl-medium">
+    <div class="d-flex gap-tiny ltr pl-small">
+      @if (item().creditEnabled) {
+        <div class="tag l-2 d-flex gap-tiny pt-low pb-low pr-small pl-minus radius-br-minus radius-bl-minus credit-enabled surface-brand text-oninvert-high">
+          <ngx-icon iconSize="16px" name="bnpl" type="bold" class="text-oninvert-high"></ngx-icon>
+          اعتباری
+        </div>
+      }
+      @if (item()?.company?.extraDetails?.text?.length > 0) {
+        <div class="tag l-2 d-flex gap-tiny pt-low pb-low pr-small pl-minus radius-br-minus radius-bl-minus digipay-proposal surface-success text-oninvert-high">
+          <ins-icon [name]="IconEnum.TicketWhite"></ins-icon>
+          پیشنهاد دیجی‌پی
+        </div>
+      }
+    </div>
+    <div class="d-flex justify-content-space-between">
+      <div class="d-flex gap-small">
+        <div class="d-flex justify-content-center align-items-center p-minus radius-medium surface-back">
+          <ins-icon
+                  [height]="32"
+                  [iconSubstitution]="IconEnum.EmptyInsurance"
+                  [name]="item().company?.logo"
+                  [width]="32"
+          ></ins-icon>
+        </div>
+
+        <div class="d-flex flex-column justify-content-space-between">
+          <p [textContent]="item().company?.name" class="st-8 text-onback-high"></p>
+          <rate [rate]="item().company?.details?.score"></rate>
+        </div>
+      </div>
+    </div>
+    @if (item().company?.details) {
+      <div id="info-insurance">
+        <ul id="info-items">
+          <li>
+            <p class="b-3">شعب فعال</p>
+            <b class="c-1">{{ item().company.details.activeBranches }} شعبه</b>
+          </li>
+          <li>
+            <p class="b-3">توانگری مالی</p>
+            <b class="c-1">{{ item().company?.details.financialSolvency }} از ۵</b>
+          </li>
+          <li>
+            <p class="b-3">رتبه بیمه مرکزی</p>
+            <b class="c-1">رتبه {{ item().company.details.rank }}</b>
+          </li>
+        </ul>
+        @if (item().company.details.gift) {
+          <div id="gift-card-item">
+            <ins-icon
+                    [name]="IconEnum.GiftYellow"
+                    [width]="24"
+                    [height]="24"
+            ></ins-icon>
+            <p [textContent]="item().company.details.gift"></p>
+          </div>
+        }
+      </div>
+    }
+    @if (item().company?.gifts?.length > 0) {
+      <ul id="gift-digipay-container">
+        @for (item of item().company.gifts; track item.id) {
+          <li>
+            <div>
+              <ins-icon
+                      [name]="IconEnum.PercentBlue"
+                      [width]="24"
+                      [height]="24"
+              ></ins-icon>
+              <p [textContent]="item.text"></p>
+            </div>
+            <ins-icon
+                    [name]="IconEnum.InfoBlue"
+                    [width]="16"
+                    [height]="16"
+                    (click)="onClickGiftInfo.emit(item)"
+            ></ins-icon>
+          </li>
+        }
+      </ul>
+    }
+  </section>
+  <div class="container-border-dashed">
+    <div class="line"></div>
+  </div>
+  <section id="price-card-wrapper"
+           class="surface-elevated radius-tl-medium radius-tr-medium radius-bl-big radius-br-big p-medium">
+    @if (item().price.penaltyPrice > 0) {
+      <div class="with-late-fees info-price-item">
+        <ins-icon
+                [name]="IconEnum.WarningRedTriangle"
+                [width]="24"
+                [height]="24"
+        ></ins-icon>
+        <span>
+        <span>جریمه دیرکرد</span>
+        <span class="bt-2">{{ item().price.penaltyPrice / 10 | thousands }} تومان</span>
+     </span>
+      </div>
+    } @else if (item().price.penaltyPrice === null) {
+      <div class="without-late-fees info-price-item">
+        <ins-icon
+                [name]="IconEnum.WarningGreenTriangle"
+                [width]="24"
+                [height]="24"
+        ></ins-icon>
+        <span>
+        شامل بخشودگی جریمه دیرکرد
+        </span>
+      </div>
+    }
+    <div id="price-item">
+      @if (item().price.discountedPrice && item().price.discountedPercent) {
+        <p id="price-discount">
+          <span>٪{{ item().price.discountedPercent }}</span>
+          <span class="bt-2"> {{ item().price.total / 10 | thousands }} تومان</span>
+        </p>
+      }
+      <p>
+        <span class="st-8">مبلغ قابل پرداخت</span>
+        <span class="bt-2">{{ ( item().price.discountedPrice && item().price.discountedPercent ? item().price.discountedPrice : item().price.total ) / 10 | thousands }}
+          تومان</span>
+      </p>
+    </div>
+<!--    <button-->
+
+<!--            [attr.data-tracking-id]="aaa()"></button>-->
+    <ins-button
+            (clickHandler)="onSelectItem.emit(item().company?.id)"
+            [fullWidth]="true"
+            [size]="InsButtonSizeEnum.Large"
+            [style]="InsButtonStyleEnum.Fill"
+            text="سفارش">
+    </ins-button>
+  </section>
+</div>
+
+

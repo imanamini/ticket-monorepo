@@ -1,0 +1,30 @@
+<div class="no-item d-flex align-items-center justify-content-center w-100 flex-column gap-huge">
+  <!-- Pic and Title -->
+  <div class="d-flex flex-column gap-big align-items-center justify-content-center">
+    <img
+      [style.width]="imageWidth()"
+      [src]="imageSrc()"
+    />
+    <div class="d-flex flex-column gap-micro justify-content-center">
+      @if (header()) {
+        <div class="no-item-text st-3 text-onback-high">{{ header() }}</div>
+      }
+      <div class="no-item-text bt-2 text-onback-medium">{{ description() }}</div>
+    </div>
+  </div>
+  <!-- End Pic and Title -->
+
+  <!-- Button -->
+  @if (buttonTitle()) {
+    <div class="d-flex justify-content-center">
+      <ngx-button
+        [mode]="'section'"
+        [style]="'fill'"
+        (clickHandler)="handleBtnClick($event)"
+      >
+        {{ buttonTitle() }}
+      </ngx-button>
+    </div>
+  }
+  <!-- End Button -->
+</div>

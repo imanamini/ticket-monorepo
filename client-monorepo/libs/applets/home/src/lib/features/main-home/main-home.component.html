@@ -1,0 +1,84 @@
+<div class="d-flex flex-column pt-medium">
+  <div class="pb-medium">
+    <common-user-assets-assets-slider></common-user-assets-assets-slider>
+  </div>
+  @if (allActionsDone()) {
+    <common-journey-management-graceful-journey></common-journey-management-graceful-journey>
+  } @else if (mainActionDisplayState() !== 'hidden') {
+    <div
+      class="main-action"
+      id="main-action-walkthrough"
+    >
+      @if (mainActionDisplayState() === 'pending') {
+        <div class="main-action-skeleton px-plus">
+          <common-journey-management-main-action-skeleton></common-journey-management-main-action-skeleton>
+        </div>
+      }
+      <div class="px-plus">
+        <common-ui-components-title-summary
+          [title]="'پیشنهاد دیجی‌پی'"
+          [showButton]="false"
+        ></common-ui-components-title-summary>
+        @if (mainAction()) {
+          <common-journey-management-jm-factory
+            [mode]="JmMode.JOURNEY_MANAGEMENT"
+            [data]="mainAction()"
+          ></common-journey-management-jm-factory>
+        }
+      </div>
+    </div>
+  }
+
+  <div class="px-plus py-big">
+    <common-app-services-selected-services-preview
+      [services]="services()"
+      [isLoading]="servicesLoading()"
+    ></common-app-services-selected-services-preview>
+  </div>
+
+  @if (!allActionsDone() || otherActionsDisplayState() !== 'hidden') {
+    <div
+      class="other-actions"
+      id="other-walkthrough"
+    >
+      @if (otherActionsDisplayState() === 'pending') {
+        <div class="other-actions-skeleton px-plus">
+          <div class="surface-elevated radius-big">
+            <common-journey-management-other-actions-skeleton></common-journey-management-other-actions-skeleton>
+            <common-journey-management-other-actions-skeleton></common-journey-management-other-actions-skeleton>
+            <common-journey-management-other-actions-skeleton></common-journey-management-other-actions-skeleton>
+          </div>
+        </div>
+      }
+      @if (otherActionsDisplayState() !== 'hidden') {
+        <div class="px-plus">
+          <common-ui-components-title-summary
+            [title]="'دیگر فعالیت‌های پیشنهادی'"
+            [showButton]="false"
+          ></common-ui-components-title-summary>
+          <div class="p-plus radius-big surface-elevated">
+            @for (action of otherActions(); track $index) {
+              @if (action.displayState !== 'hidden') {
+                <common-journey-management-jm-factory
+                  [mode]="JmMode.NEXT_ACTION"
+                  [data]="action"
+                ></common-journey-management-jm-factory>
+                @if (!$last && otherActions()?.length > 1) {
+                  <div class="my-pony">
+                    <ngx-divider [color]="BorderColorsEnum.Air"></ngx-divider>
+                  </div>
+                }
+              }
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+  @defer (on idle) {
+    <div class="px-plus py-big">
+      <transactions-applet-frequent-transactions-summary [location]="'home'"></transactions-applet-frequent-transactions-summary>
+    </div>
+  }
+</div>

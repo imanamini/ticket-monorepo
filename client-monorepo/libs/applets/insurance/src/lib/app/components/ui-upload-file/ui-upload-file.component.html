@@ -1,0 +1,60 @@
+<div class="main-container">
+  <div [ngClass]="{'has-error': uploadHasError().value}"
+       class="upload-file-container">
+    @if (( uploadType() === UploadStatesModel.Initial ) || ( uploadType() === UploadStatesModel.Failed )) {
+      <ng-container *ngTemplateOutlet="initialCard"></ng-container>
+    } @else {
+      <ng-container *ngTemplateOutlet="previewCard"></ng-container>
+    }
+  </div>
+  <div class="info">
+    <img alt="pic" src="insurance-assets/icons/yellow-alert.svg">
+    <p [ngClass]="{'has-error': uploadHasError().value}">
+      {{ uploadHasError().text }}
+    </p>
+  </div>
+</div>
+<ng-template #initialCard>
+  <div (click)="inputElement.click()"
+       class="upload-file-card">
+    <img alt="gallery" src="insurance-assets/icons/gallery.svg">
+    <p>{{ title() }}</p>
+  </div>
+</ng-template>
+
+<ng-template #previewCard>
+  <div (click)="openPreviewDialog()" [ngStyle]="{'background-image': 'url(' + url() + ')'}"
+       class="preview-container">
+    @if (uploadType() === UploadStatesModel.Uploading) {
+      <img src="insurance-assets/icons/white-gallery.svg" alt="">
+      <p>تصویر صفحه نمایش</p>
+    } @else {
+      <img src="insurance-assets/icons/eye-view.svg" alt="">
+      <p>{{ textUploaded() }}</p>
+    }
+  </div>
+  <div class="detail-container">
+    @switch (uploadType()) {
+      @case (UploadStatesModel.Uploading) {
+        <mat-progress-bar class="progress-bar" mode="determinate" [value]="percent()" dir="rtl"></mat-progress-bar>
+      }
+      @case (UploadStatesModel.Success) {
+        <div class="upload-again" (click)="resetData(true)">
+          <img alt="" src="insurance-assets/icons/repeat-general.svg">
+          <span>بارگذاری مجدد</span>
+        </div>
+      }
+    }
+    <div class="detail">
+      <p class="filename">{{ fileUploaded() ? fileUploaded().name : fileUploadedName() }}</p>
+      <img (click)="deleteData()" alt="" src="insurance-assets/icons/reset-data.svg">
+    </div>
+  </div>
+</ng-template>
+
+<input #inputElement
+       (change)="fileSelected($event)"
+       accept="image/jpg, image/jpeg, image/png, image/webp, image/jfif"
+       style="display: none"
+       type="file"
+>

@@ -1,0 +1,27 @@
+@if (!hasRetry()) {
+  <div class="user-info d-flex flex-column h-100">
+    <div class="user-info-content pb-giant d-flex flex-column">
+      <p class="content-text text-onback-medium">
+        تکمیل اطلاعات و مدارک مالک موتور جهت صدور بیمه‌نامه نهایی الزامی است.
+      </p>
+
+      <motor-user-info-form [userInfoForm]="userInfoForm()"
+                            [showError]="showError()"
+                            [userInfo]="userInfo()"></motor-user-info-form>
+
+      <ins-alert [hasIcon]="true"
+                 [size]="AlertSizeEnum.Small"
+                 text="صاحب پلاک شخصی است که نام او بر روی (کارت موتور) و یا (برگ سبز موتور) درج شده است.">
+      </ins-alert>
+
+    </div>
+    <action-buttons [showDeActiveButton]="false"
+                    (activeButtonClicked)="handleActiveButtonClick()"
+                    (deActiveButtonClicked)="handleDeActiveButtonClicked()"
+                    backgroundMode="gray"
+                    deActiveButtonText="بازگشت"
+                    activeButtonText="تایید و ادامه"></action-buttons>
+  </div>
+} @else {
+  <retry-error (retryButtonClicked)="getUserInfo()"></retry-error>
+}

@@ -1,0 +1,39 @@
+@if (!gettingData()) {
+  @if (ibanRequired()) {
+    <app-credit-enote-step-info-form
+      (back)="onBack()"
+      (finish)="onFinish()"
+      (goToSana)="goToSana.emit()"
+      [creditId]="creditId()"
+      [description]="description()!"
+      [hintMessage]="hintMessage()!"
+      [iban]="iban()!"
+      [imageId]="imageId()!"
+      [pageTitle]="pageTitle()"
+      [payAmount]="payAmount()!"
+      [hasRenew]="hasRenew()!"
+      [switchTypePossible]="switchTypePossible()"
+      (changeNoteTypeClicked)="changeNoteTypeClicked.emit()"
+      class="flex-full-height"
+    >
+    </app-credit-enote-step-info-form>
+  }
+  @if (!ibanRequired()) {
+    <app-credit-enote-step-info-show
+      (back)="onBack()"
+      (finish)="onFinish()"
+      (goToSana)="goToSana.emit()"
+      [creditId]="creditId()"
+      [guaranteeAmount]="guaranteeAmount()!"
+      [imageId]="imageId()!"
+      [pageTitle]="pageTitle()"
+      [payAmount]="payAmount()!"
+      [switchTypePossible]="switchTypePossible()"
+      (changeNoteTypeClicked)="changeNoteTypeClicked.emit()"
+      class="flex-full-height"
+    >
+    </app-credit-enote-step-info-show>
+  }
+}
+
+<credit-page-loading [active]="gettingData()!"></credit-page-loading>

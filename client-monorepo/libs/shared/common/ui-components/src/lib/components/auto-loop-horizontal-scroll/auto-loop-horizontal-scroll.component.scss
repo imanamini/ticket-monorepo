@@ -1,0 +1,30 @@
+.scroll-container {
+  z-index: 50;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  display: flex;
+
+  .just-for-padding {
+    min-width: 8px;
+    height: 8px;
+  }
+}
+
+.scroll-content {
+  padding-left: 8px;
+  display: flex;
+  gap: 8px;
+  animation: moveLeft 10s linear infinite;
+}
+
+@keyframes moveLeft {
+  from {
+    transform: translatex(0);
+  }
+  to {
+    transform: translatex(50%);
+  }
+}

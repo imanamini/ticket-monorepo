@@ -1,0 +1,67 @@
+@font-face {
+  font-family: 'primary-font';
+  src: url('https://app.mydigipay.com/mini-app/insurance/assets/fonts/yekan-bakh-fanum/woff/yekan-bakh-fanum_variable.woff') format('woff'),
+  url('https://app.mydigipay.com/mini-app/insurance/assets/fonts/yekan-bakh-fanum/woff2/yekan-bakh-fanum_variable.woff2') format('woff2');
+}
+
+.pro-search-bimeh,
+.slick-list,
+.inquiry-part,
+.after-payment > button:first-child,
+.bread-crumb > li,
+.buy-insurance__img-wrapper,
+div[id^='react-joyride-step'],
+div[id*='react-joyride-step'],
+#react-joyride-portal,
+#share-handler,
+.error-container .retry-div,
+.payment-confirm-section .payment-contact,
+#plp-parent > div.buy-insurance.plan-list-page.has-more-details.motor-plan-list.ins-icon > div > div:nth-child(1) > div:nth-child(2) > div > div > div > div.ant-col.container.flex-column.p-0.ant-col-xs-6,
+.footerpro {
+  display: none !important;
+}
+
+.buy-insurance.info-page .container,
+.buy-insurance.address-page .container,
+.buy-insurance.data-check-page .container {
+  margin-bottom: 100px;
+}
+
+.payment__info__container .gates-wrapper .radio__item.border-green {
+  background: #fff !important;
+}
+
+#scrollTo-gateWay > div > div > div > div:nth-child(4) > div > div > div > label > span:nth-child(2) > img,
+.payment-container.buy-insurance .address-page .gates-wrapper .radio__item .image__gate {
+    height: initial !important;
+}
+
+#nationalCode_extra {
+  .form-item-extra {
+    display: flex !important;
+    align-items: center !important;
+
+    .text {
+      margin: 0 !important;
+    }
+  }
+}
+
+.plaque-history-dropdown {
+  background: white !important;
+  overflow: hidden !important;
+  border-radius: 12px !important;
+}
+
+* {
+  font-family: 'primary-font', sans-serif !important;
+}
+
+
+.inquiry-confirm:nth-child(3) {
+  display: none !important;
+}
+
+.inquiry-confirm .payment-type {
+  display: none
+}

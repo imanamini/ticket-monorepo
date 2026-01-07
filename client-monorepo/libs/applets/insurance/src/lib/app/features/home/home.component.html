@@ -1,0 +1,24 @@
+<div class="home-container surface-back d-flex flex-column align-items-center h-100 w-100">
+
+  @if (headerService.isShowHeader()) {
+    <main-header (rightIconClicked)="backButtonClicked()"
+                 leftIconName="headphone"
+                 leftIconType="linear"
+                 [hide-icon-right]="hideIconRight()"
+                 class="w-100" title="بیمه"></main-header>
+  }
+
+  <div class="home-container-content-box w-100 d-flex flex-column">
+    <div class="home-container-content d-flex h-100 flex-column pt-plus gap-big"
+         scrollDirection>
+      <ins-carousel-banners class="px-plus" [banners]="mainBanners()"></ins-carousel-banners>
+      <insurance-products class="px-plus"></insurance-products>
+      <insurance-promotion
+              title="بیمه دیجی‌پی"
+              firstSubtitle="استعلام، مقایسه و خرید اعتباری انواع بیمه"
+              secondSubtitle="در هر زمان و هرجا با سریع‌ترین زمان صدور"
+              [promotions]="promotions()"
+              class="pt-huge pb-hulk px-plus pb-plus"></insurance-promotion>
+    </div>
+  </div>
+</div>

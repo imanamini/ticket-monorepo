@@ -1,0 +1,94 @@
+<div
+  class="surface-elevated p-medium radius-plus border-300"
+  [class.border-transparent]="!checked()"
+  [class.border-color-brand]="checked()"
+  (click)="onCardClick()"
+>
+  <div class="d-flex">
+    @if (showCheckBox()) {
+      <ngx-checkbox
+        click-stop-propagation
+        class="ml-small"
+        [(checked)]="checked"
+        [size]="20"
+        [disabled]="disabled()"
+      />
+    }
+
+    <div class="flex-grow">
+      <div class="d-flex justify-content-space-between align-items-center">
+        <div class="st-7">{{ title() }}</div>
+
+        @switch (badge()) {
+          @case ('settled') {
+            <ngx-badge
+              [status]="'neutral'"
+              [mode]="'fill'"
+              [size]="'sm'"
+            >
+              پرداخت‌شده
+            </ngx-badge>
+          }
+          @case ('penaltyWaiver') {
+            <ngx-badge
+              [status]="'success'"
+              [mode]="'fill'"
+              [size]="'sm'"
+            >
+              بخشش جریمه
+            </ngx-badge>
+          }
+          @case ('penalty') {
+            <ngx-badge
+              [status]="'error'"
+              [mode]="'fill'"
+              [size]="'sm'"
+            >
+              جریمه‌شده
+            </ngx-badge>
+          }
+        }
+      </div>
+
+      <div class="d-flex justify-content-space-between mt-low align-items-flex-end">
+        <div>
+          @if (subtitle()) {
+            <div class="b-3 text-onback-medium mb-low">{{ subtitle() }}</div>
+          }
+          @if (caption()) {
+            <div class="c-3 text-onback-medium">{{ caption() }}</div>
+          }
+        </div>
+
+        @if (buttonText()) {
+          <ngx-button
+            click-stop-propagation
+            (clickHandler)="onCta()"
+            [size]="'tiny'"
+            [style]="'link'"
+            [leftIcon]="{
+              name: 'arrow-2-left',
+            }"
+            [classNames]="['p-atom']"
+          >
+            {{ buttonText() }}
+          </ngx-button>
+        }
+      </div>
+    </div>
+  </div>
+  <ngx-divider class="my-minus d-block divider-color"/>
+  <div class="d-flex align-items-center flex-row-reverse">
+    <div>
+      <span class="st-4">{{ amount() | thousands }}</span>
+      <span class="is-currency st-6 mr-micro">ریال</span>
+    </div>
+    @if (penaltyAmount()) {
+      <div class="mx-micro text-onback-error">+</div>
+      <div [class.line-through]="waiverRemovesPenalty()">
+        <span class="st-8 text-onback-error">{{ penaltyAmount() | thousands }}</span>
+        <span class="is-currency bt-2 mr-micro text-onback-error">ریال</span>
+      </div>
+    }
+  </div>
+</div>

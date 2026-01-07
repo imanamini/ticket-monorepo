@@ -1,0 +1,41 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.brand-card-wrapper {
+  @include flex-row;
+  @include flex-center;
+  min-width: 148px;
+  max-width: 100%;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: white;
+  border: 1px solid #f2f5f8;
+
+  &.active {
+    background-color: #f0f5ff;
+    border: 1px solid #0040ff;
+  }
+
+  .brand-img {
+    @include flex-column;
+    @include flex-center;
+    width: fit-content;
+
+    img {
+      max-height: 32px;
+      min-height: 32px;
+      width: auto;
+    }
+  }
+
+  .brand-name {
+    flex: 1;
+    color: #2c3544;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

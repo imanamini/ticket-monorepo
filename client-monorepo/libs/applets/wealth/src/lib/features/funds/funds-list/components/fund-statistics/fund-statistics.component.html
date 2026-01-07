@@ -1,0 +1,50 @@
+<!-- ? Statistic info -->
+<div class="mt-medium p-medium radius-medium surface-back">
+  @for (keyValue of getFundStatistics() | keyvalue: sortStatistic; track keyValue; let last = $last) {
+    <div
+      class="w-100 d-flex align-items-center justify-content-space-between"
+      [ngClass]="{ 'pb-minus': !last }"
+    >
+      <p class="text-onback-medium bt-3 title">
+        @if (keyValue.key === 'fundType') {
+          نوع صندوق
+        } @else if (keyValue.key === 'dividendPeriod') {
+          تقسیم سود دوره‌ای
+        } @else if (keyValue.key === 'expectedProfit') {
+          بازده مورد انتظار
+        }
+      </p>
+      <p class="text-onback-high b-2">
+        @if (keyValue.key === 'fundType') {
+          {{
+            keyValue.value === 'Gold'
+              ? 'مبتنی بر طلا'
+              : keyValue.value === 'FixedIncome'
+                ? 'درامد ثابت'
+                : keyValue.value === 'Index'
+                  ? 'شاخصی'
+                  : 'سهامی'
+          }}
+        } @else if (keyValue.key === 'dividendPeriod') {
+          @if (!keyValue.value) {
+            ندارد
+          } @else if (keyValue.value === 'Monthly') {
+            ماهانه
+            <span class="text-onback-medium"> | </span>
+            {{ '%' + fund().dividendPeriodProfit }}
+          }
+        } @else {
+          {{ keyValue.value ? keyValue.value : 'ندارد' }}
+        }
+      </p>
+    </div>
+    @if (!last) {
+      <ngx-divider
+        class="d-flex mb-minus"
+        [dividerStyle]="'dashed'"
+        [color]="BorderColorsEnum.Tint"
+        orientation="horizontal"
+      ></ngx-divider>
+    }
+  }
+</div>

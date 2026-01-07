@@ -1,0 +1,31 @@
+<li class="blog-post-card">
+  <a [routerLink]="'/mag/' + blogPost.category?.slug + '/' + blogPost?.slug + '/.'">
+    <div class="blog-post-card-badge">
+      <span
+        *ngIf="blogPost.category"
+        class="blog-post-card-category"
+        >{{ blogPost.category.title }}</span
+      >
+      <span class="blog-post-card-time"></span>
+    </div>
+    <img
+      *ngIf="blogPost.image"
+      [alt]="blogPost.title"
+      [src]="blogPost.image.url"
+      class="blog-post-card-image"
+    />
+    <div class="blog-card__item-content">
+      <div class="blog-card__item__text">
+        <div class="blog-card__item-title">
+          <div class="blog-card__item-date">
+            <span>{{ blogPost.createdAtAgo }}</span>
+          </div>
+          <span>{{ blogPost.title }}</span>
+        </div>
+        <div class="blog-card__item-more">
+          <span class="icon-blog-arrow"></span>
+        </div>
+      </div>
+    </div>
+  </a>
+</li>

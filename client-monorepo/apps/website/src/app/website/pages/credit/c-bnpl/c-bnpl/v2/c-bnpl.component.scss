@@ -1,0 +1,68 @@
+@import "@digipay/base-style/styleguide";
+
+.bnpl-wrapper {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+
+  .bg-wrapper {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    animation: infinityPath 5s ease-in-out infinite;
+    top: 18%;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+
+@keyframes infinityPath {
+  0% {
+    transform: translate(0, 0);
+  }
+  12.5% {
+    transform: translate(50px, -30px);
+  }
+  25% {
+    transform: translate(100px, 0px);
+  }
+  37.5% {
+    transform: translate(50px, 30px);
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  62.5% {
+    transform: translate(-50px, -30px);
+  }
+  75% {
+    transform: translate(-100px, 0px);
+  }
+  87.5% {
+    transform: translate(-50px, 30px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@media (max-width: 1280px) {
+  .bnpl-wrapper {
+    .bg-wrapper {
+      top: 12%;
+      right: -100%;
+    }
+    .intro {
+      margin-top: map-get($spacing-sizes , 'big') !important;
+
+    }
+
+    .mt-giant-mobile{
+      margin-top: map-get($spacing-sizes , 'giant') !important;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+<div class="d-flex flex-column flex-grow">
+  <div class="flex-grow justify-content-center pb-plus">
+    <ngx-status-result
+      (clicked)="closeStep()"
+      [buttons]="buttons"
+      [title]="title"
+      [iconState]="'error'"
+      [type]="'Status'"
+    >
+      <div
+        html-content
+        class="d-flex flex-column flex-grow justify-content-flex-end gap-medium"
+      >
+        @if (message()) {
+          <ngx-alert
+            [color]="'yellow'"
+            [hasCloseIcon]="false"
+            [text]="message()!"
+          />
+        }
+        <ngx-callout
+          [mode]="'multiple'"
+          [title]="''"
+          [showTitleBlink]="false"
+          [messages]="messages()"
+        />
+      </div>
+    </ngx-status-result>
+  </div>
+</div>

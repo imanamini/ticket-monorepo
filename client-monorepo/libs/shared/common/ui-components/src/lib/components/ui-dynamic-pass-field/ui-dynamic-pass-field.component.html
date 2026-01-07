@@ -1,0 +1,62 @@
+<div class="wrapper">
+  <ng-container [formGroup]="parentForm">
+    <ui-form-field
+      label="رمز دوم (پویا)"
+      [autoFocus]="autofocus"
+      [errorMessageMapper]="{
+        required: 'لطفا رمز دوم (پویا) را وارد کنید.',
+      }"
+      [formControlName]="controlName"
+      [maxSize]="12"
+      (click)="onFocusIn($event)"
+      [inputType]="'masked'"
+      [isNumericKeyboard]="true"
+      [error]="parentForm.controls[controlName].errors ?? {}"
+      [convertNonEnglishDigits]="true"
+      [autoComplete]="'one-time-code'"
+      [buttonTemplate]="buttonTemplate"
+    ></ui-form-field>
+  </ng-container>
+
+  <div class="action-wrapper">
+    <ng-template #buttonTemplate>
+      @if (countdownSeconds === null) {
+        <ngx-button
+          [mode]="'form'"
+          [size]="'small'"
+          [isLoading]="inProgress"
+          [style]="'tinted-on-elevated'"
+          [disabled]="!enableSendButton"
+          (clickHandler)="onSend()"
+          >درخواست رمز پویا</ngx-button
+        >
+      }
+      @if (countdownSeconds !== null) {
+        <ngx-button
+          [mode]="'form'"
+          [size]="'small'"
+          [style]="'tinted-on-elevated'"
+        >
+          <div class="d-flex align-items-center">
+            <span class="icon">
+              <common-icon-dp-icon
+                [icon]="'circle-clock'"
+                [iconType]="'linear'"
+                [iconSize]="'24'"
+              ></common-icon-dp-icon>
+            </span>
+            <div class="countdown-text">
+              @if (showParentheses) {
+                (
+              }
+              {{ formattedTime.minutes }}:{{ formattedTime.seconds }}
+              @if (showParentheses) {
+                )
+              }
+            </div>
+          </div>
+        </ngx-button>
+      }
+    </ng-template>
+  </div>
+</div>

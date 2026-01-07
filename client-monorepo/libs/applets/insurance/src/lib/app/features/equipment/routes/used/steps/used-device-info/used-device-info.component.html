@@ -1,0 +1,18 @@
+@if (loading$ | async) {
+  <ui-loading-spinner></ui-loading-spinner>
+} @else {
+<!--  @if (showDeviceList$ | async) {-->
+<!--    @if (userInfo$ | async) {-->
+<!--      @defer {-->
+<!--        <used-devices-list (deviceSelected)="handleDeviceSelect($event)">-->
+<!--        </used-devices-list>-->
+<!--      }-->
+<!--    }-->
+<!--  } @else {-->
+<!--    @defer {-->
+<!--      <used-select-brand-model-->
+<!--        (dataCompleted)="handleBrandModelCompletion($event)">-->
+<!--      </used-select-brand-model>-->
+<!--    }-->
+<!--  }-->
+}

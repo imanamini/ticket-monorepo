@@ -1,0 +1,142 @@
+<div class="d-flex flex-column bg-gradiant flex-grow main-section rtl">
+  <div class="surface-high-contrast">
+    <app-credit-app-bar
+      (onBackButtonClick)="prevStep.emit()"
+      [backButton]="true"
+      title="پرداخت هزینه‌ها"
+    ></app-credit-app-bar>
+  </div>
+  <div class="d-flex flex-column gap-medium px-plus py-medium">
+    <div
+      class="d-flex flex-column w-100 surface-glass-onback radius-medium px-plus py-medium gap-tiny align-items-center justify-content-center z-2"
+    >
+      <span class="st-1 text-onback-high">
+        {{ subscriptionDetail()?.initialBalance | IRR: 'hideRial' }}<span class="is-currency b-1 mr-tiny">ریال</span>
+      </span>
+      <span class="c-1 text-onback-low">مبلغ وام درخواستی شما</span>
+    </div>
+    @if (subscriptionDetail()?.stampPrice) {
+      <div
+        class="d-flex flex-column w-100 surface-glass-onback radius-medium px-plus py-medium gap-small align-items-center justify-content-center border-300 border-color-air z-2"
+      >
+        <div class="d-flex flex-row w-100 align-items-center justify-content-space-between">
+          <span class="st-7 text-onback-high">هزینه تمبر</span>
+          <span class="st-6 text-onback-high">
+            {{ subscriptionDetail()?.stampPrice | IRR: 'hideRial' }}<span class="is-currency b-1 mr-tiny">ریال</span>
+          </span>
+        </div>
+        <ngx-divider
+          [color]="BorderColorsEnum.Air"
+          orientation="horizontal"
+        ></ngx-divider>
+        <span class="c-1 text-onback-medium w-100">
+          این هزینه بابت قراردادهای شماست و
+          <span class="b-3">از وام شما کسر خواهد شد</span>.
+        </span>
+      </div>
+    }
+  </div>
+  <div class="d-flex flex-column flex-grow">
+    <app-credit-scrollable-view [fullHeightContent]="true">
+      <div class="d-flex flex-column flex-grow align-items-center w-100 gap-medium pb-plus px-plus rtl">
+        <div
+          class="d-flex flex-column w-100 radius-medium px-plus py-medium gap-small align-items-center justify-content-center border-300 border-color-air"
+        >
+          <div class="w-100 d-flex flex-row align-items-center justify-content-space-between">
+            <div class="d-flex flex-row align-items-center gap-small">
+              <div [class]="'subscription-icon ' + subscriptionDetail()?.type.toLowerCase()"></div>
+              <span class="st-7 text-onback-high">هزینه اشتراک</span>
+            </div>
+            <span class="st-6 text-onback-high">
+              {{ subscriptionDetail()?.amount | IRR: 'hideRial' }}<span class="is-currency b-1 mr-tiny">ریال</span>
+            </span>
+          </div>
+          <ngx-divider
+            [color]="BorderColorsEnum.Air"
+            orientation="horizontal"
+          ></ngx-divider>
+          @if (pecuniaryCreditEnabled()) {
+            <span class="b-3 text-onback-high mb-micro w-100"> روش پرداخت حق اشتراک: </span>
+            <div class="d-flex flex-row align-items-center flex-grow gap-minus w-100">
+              @for (item of paymentOptions(); track index; let index = $index) {
+                <common-ui-components-selection-box
+                  class="w-100"
+                  (selectedOption)="selectOption(item, index)"
+                  [config]="item"
+                  [checkboxType]="true"
+                >
+                  <span class="c-1 text-onback-high">
+                    {{ description[item.value] }}
+                  </span>
+                </common-ui-components-selection-box>
+              }
+            </div>
+          } @else {
+            <span class="c-1 text-onback-medium w-100">
+              برای دریافت این وام، خرید اشتراک {{ subscriptionDetail()?.title }} ضروری است.
+            </span>
+          }
+        </div>
+        <ngx-callout
+          class="w-100"
+          [mode]="'single-with-title'"
+          [title]="'لازم به ذکر است'"
+          [message]="'پرداخت هزینه تمبر و خرید اشتراک برای دریافت این وام الزامیست.'"
+        />
+        <div class="d-flex flex-row align-items-center w-100">
+          <div class="d-flex flex-column w-100 surface-back radius-plus px-medium py-plus">
+            <div class="d-flex flex-row justify-content-space-between align-items-center mb-tiny">
+              <span class="b-3 text-onback-high">وام درخواستی</span>
+              <span class="st-8 text-onback-high"
+                >{{ subscriptionDetail()?.initialBalance | IRR: 'hideRial' }}<span class="b-2 mr-tiny is-currency">ریال</span></span
+              >
+            </div>
+            @if (selectedOption()?.value === 'CREDIT') {
+              <div class="d-flex flex-row justify-content-space-between align-items-center mb-minus">
+                <span class="b-3 text-onback-error">هزینه اشتراک</span>
+                <span class="st-8 text-onback-error"
+                  >{{ subscriptionDetail()?.amount | IRR: 'hideRial' }}-<span class="b-2 mr-tiny is-currency">ریال</span></span
+                >
+              </div>
+            }
+
+            @if (subscriptionDetail()?.stampPrice) {
+              <div class="d-flex flex-row justify-content-space-between align-items-center mb-minus">
+                <span class="b-3 text-onback-error">هزینه تمبر</span>
+                <span class="st-8 text-onback-error"
+                  >{{ subscriptionDetail()?.stampPrice | IRR: 'hideRial' }}-<span class="b-2 mr-tiny is-currency">ریال</span></span
+                >
+              </div>
+            }
+            <ngx-divider
+              [color]="BorderColorsEnum.Tint"
+              class="w-100"
+              dividerStyle="dashed"
+              orientation="horizontal"
+            >
+            </ngx-divider>
+            <div class="d-flex flex-row justify-content-space-between align-items-center mt-minus">
+              <span class="b-3 text-onback-high">مبلغ وام واریزی</span>
+              <span class="st-5 text-onback-high"
+                >{{ totalAmount() | IRR: 'hideRial' }}<span class="st-6 mr-tniy is-currency">ریال</span></span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+  <div class="bottom-section px-plus pb-plus">
+    <ngx-button
+      (clickHandler)="onNext()"
+      [isLoading]="loading()"
+      [disabled]="loading() || !selectedOption()"
+      [fullWidth]="true"
+      [style]="'fill'"
+      ngxTrackableId
+      trackerId="subscriptionBuyInfoContinueButton"
+    >
+      {{ buttonLabel() }}
+    </ngx-button>
+  </div>
+</div>

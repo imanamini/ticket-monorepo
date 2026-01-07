@@ -1,0 +1,1 @@
+export type EWithdrawType = 'BTN_DEPOSIT' | 'BTN_WITHDRAW' | 'BTN_BNPL_REQUEST' | 'BTN_TRANSACTIONS';

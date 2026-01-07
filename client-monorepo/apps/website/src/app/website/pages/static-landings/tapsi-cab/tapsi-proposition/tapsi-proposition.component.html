@@ -1,0 +1,8 @@
+<div class="proposition d-flex justify-content-center align-items-center gap-huge">
+  @for ( item of templateData().propositionSection; track $index) {
+    <span>
+    <img src="{{item.desktopImage?.url}}" class="radius-mega desktop" alt="">
+    <img src="{{item.mobileImage?.url}}" class="radius-big mobile" alt="">
+  </span>
+  }
+ </div>

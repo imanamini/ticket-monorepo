@@ -1,0 +1,21 @@
+.login {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('libs/shared/common/assets/src/lib/images/login.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+  }
+
+  &__content {
+    z-index: 1;
+  }
+}

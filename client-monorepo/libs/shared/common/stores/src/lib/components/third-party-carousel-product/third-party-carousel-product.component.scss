@@ -1,0 +1,34 @@
+.product-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 88px;
+  height: 88px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface-back) 100%);
+  backdrop-filter: blur(9px);
+
+  .product-image-container {
+    width: 88px;
+    height: 88px;
+    mix-blend-mode: darken;
+    position: relative;
+
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .discount-badge {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+    }
+  }
+
+}
+
+
+

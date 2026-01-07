@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.page-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.message-image {
+  background-image: url("./credit-digipay-app.svg");
+  height: 164px;
+  width: 164px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}

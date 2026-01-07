@@ -1,0 +1,38 @@
+<div class="d-flex flex-column gap-medium">
+  <div
+    class="px-plus py-minus st-8 wrapper-title d-flex flex-row align-items-center  gap-small border-color-light border-b-100">
+    <p class="st -6">افزودن کد تخفیف</p>
+  </div>
+  <div class="px-big">
+    <ui-form-field
+      [errorMessageMapper]="messageErrorMapper"
+      [error]="voucherCode.errors"
+      [formControl]="voucherCode"
+      [showError]="'show'"
+      label="کد تخفیف">
+    </ui-form-field>
+    @if (messageErrorMapper.invalid) {
+      <span class="error-invalid-message" [textContent]="messageErrorMapper.invalid"></span>
+    }
+  </div>
+  <div class="px-big d-flex gap-small pb-big">
+    <div class="w-100">
+      <ngx-button
+        (clickHandler)="closeDialog()"
+        [fullWidth]="true"
+        [size]="'large'"
+        [style]="'tinted-on-elevated'">
+        انصراف
+      </ngx-button>
+    </div>
+    <div class="w-100">
+      <ngx-button
+        (click)="submitDiscount()"
+        [fullWidth]="true"
+        [size]="'large'"
+        [style]="'fill'">
+        تایید
+      </ngx-button>
+    </div>
+  </div>
+</div>

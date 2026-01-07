@@ -1,0 +1,154 @@
+@import '../../style/from-field-builder';
+
+.dg-input-wrapper {
+  width: 100%;
+  border: $base-border-size solid $border-color-default;
+  background-color: $background-color-default;
+  border-radius: $base-border-radius;
+  position: relative;
+  overflow: hidden;
+  transition: $transition;
+
+  label {
+    position: absolute;
+    color: #8d99a8;
+    margin: 0;
+    top: $label-top;
+    right: $label-right;
+    font-size: $label-font-size;
+    line-height: $label-line-height;
+    transition: $transition;
+    z-index: 1;
+
+    &.float-top {
+      top: $label-active-top;
+      right: $label-active-right;
+      font-size: $label-active-font-size;
+      line-height: $label-active-line-height;
+    }
+  }
+
+  input,
+  textarea {
+    display: block;
+    width: 100%;
+    background-color: #f2f5f8;
+    border: $base-border-size solid transparent;
+    padding: $base-pt $base-pr $base-pb $base-pl;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    direction: rtl;
+    text-align: right;
+
+    &::placeholder,
+    &:placeholder-shown {
+      direction: rtl;
+      text-align: right;
+      transition: $transition;
+      opacity: 0;
+      font-size: $placeholder-font-size;
+      line-height: $placeholder-line-height;
+    }
+  }
+
+  .label-mandatory {
+    color: #ff2638;
+    vertical-align: text-top;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  .dg-clean-icon {
+    display: none;
+    width: $placeholder-line-height;
+    height: $placeholder-line-height;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: $base-pl;
+    top: $base-pt;
+    background-image: url('../../assets/cleaner-icon.svg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+  &.dg-ltr-placeholder {
+    input,
+    textarea {
+      direction: rtl;
+      text-align: right;
+
+      &::placeholder,
+      &:placeholder-shown {
+        direction: ltr;
+        text-align: left;
+      }
+    }
+  }
+
+  &.dg-ltr-input {
+    input,
+    textarea {
+      direction: ltr;
+      text-align: left;
+    }
+  }
+
+  &.dg-not-empty {
+    border-color: $border-color-not-empty;
+    background-color: $background-color-not-empty;
+
+    label {
+      color: $color-not-empty;
+      //background-color: $background-color-not-empty;
+      @extend .float-top;
+    }
+
+    &.dg-cleanable {
+      //padding-left: $base-pl + $base-pl + $base-line-height;
+
+      .dg-clean-icon {
+        display: block;
+      }
+    }
+  }
+
+  &.dg-focused {
+    border-color: $border-color-focus;
+    background-color: $background-color-focus;
+
+    label {
+      color: $color-focus;
+      @extend .float-top;
+    }
+
+    input,
+    textarea {
+      &::placeholder,
+      &:placeholder-shown {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.dg-error {
+    border-color: $border-color-error;
+    background-color: $background-color-error;
+
+    label {
+      color: $color-error;
+      background-color: $background-color-error;
+    }
+  }
+}
+
+.dg-error-message {
+  margin: 0 0 4px;
+  font-size: 10px !important;
+  line-height: 20px;
+  min-height: 20px;
+  color: #d82137 !important;
+}

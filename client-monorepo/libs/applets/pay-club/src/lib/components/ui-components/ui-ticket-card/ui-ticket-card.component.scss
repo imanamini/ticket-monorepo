@@ -1,0 +1,116 @@
+@use 'sass:map';
+@import '@digipay/base-style/styleguide';
+
+.ticket {
+  text-align: start;
+  cursor: pointer;
+  user-select: none;
+}
+
+.title {
+  font-size: 16px;
+  margin: 0 0 0.8em;
+  line-height: 1.5em;
+  font-weight: 400;
+}
+
+.desc {
+  font-size: 12px;
+  margin-bottom: 0.8em;
+  line-height: 1.5em;
+}
+
+.middle-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+
+  .points-text {
+    display: flex;
+    align-items: center;
+
+    .points {
+      display: inline-flex;
+      align-items: center;
+      color: #2746c5;
+
+      .icon-coin {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background: url('apps/dpx/src/assets/pay-club/coin-small.svg') no-repeat center;
+        margin-left: 2px;
+      }
+    }
+  }
+
+  .capacity {
+    .capacity-valid {
+      color: #00cc6d;
+    }
+
+    .capacity-invalid {
+      color: #ff2638;
+    }
+  }
+}
+
+.shade-99-color {
+  background-color: map.get($shade-colors, onback-shade-99) !important;
+}
+
+.separator {
+  height: 12px;
+  display: flex;
+  align-items: center;
+  margin: 0 -16px;
+  position: relative;
+  overflow: hidden;
+
+  > span {
+    border-top: 1px dashed #dcdcdc;
+    width: 100%;
+    display: block;
+  }
+
+  &::after,
+  &::before {
+    position: absolute;
+    display: block;
+    background: #f2f3f6;
+    width: 12px;
+    height: 12px;
+    content: ' ';
+    border-radius: 12px;
+  }
+
+  &::before {
+    left: -6px;
+  }
+
+  &::after {
+    right: -6px;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.provider {
+  display: flex;
+  align-items: center;
+
+  .logo {
+    width: 32px;
+    height: 32px;
+    margin-left: 4px;
+  }
+}
+
+.provider-name {
+  color: #061962;
+}

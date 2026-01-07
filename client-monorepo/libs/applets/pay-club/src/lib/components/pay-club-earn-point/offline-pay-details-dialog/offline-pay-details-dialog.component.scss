@@ -1,0 +1,45 @@
+:host ui-dialog-btm-sheet ::ng-deep {
+  .header {
+    border-bottom: 1px solid #DEE3E7;
+  }
+}
+
+.content {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  color: #424C5C;
+
+  .description {
+    line-height: normal;
+    padding: 16px 0;
+
+    strong {
+      font-weight: 700;
+    }
+  }
+}
+
+.note-wrapper {
+  border-radius: 12px;
+  padding: 16px;
+  background: #F2F5F8;
+
+  .title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #2C3544;
+  }
+
+  .title:before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    background: url("apps/dpx/src/assets/note.svg") no-repeat center center;
+  }
+}

@@ -1,0 +1,38 @@
+.image-wrapper {
+  display: flex;
+  height: 100%;
+  align-items: center;
+
+  img{
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.container-error {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  padding: 24px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.image-error {
+  width: 160px;
+  height: 122px;
+  background: url("images/ic-error-fine.svg") no-repeat top;
+}
+
+.title-error {
+  margin-top:32px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 370;
+  line-height: 24px;
+}
+
+.button-retry {
+  display: flex;
+  margin-top: 40px;
+}

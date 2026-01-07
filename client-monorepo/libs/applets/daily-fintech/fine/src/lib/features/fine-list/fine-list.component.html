@@ -1,0 +1,110 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  [title]="'گزارش استعلام'"
+  [hasBackAction]="false"
+  [showBorder]="true"
+  [bodyClasses]="'surface-back'"
+  [headerClasses]="'surface-back'"
+  (onBackAction)="onBack()"
+>
+  @if (!gettingReport()) {
+    <div class="d-flex flex-grow flex-column">
+      <div class="flex-grow d-flex flex-column py-medium px-medium gap-medium">
+        <ngx-callout
+          [mode]="'multiple'"
+          [messages]="noticeList()"
+          [cta]="'استعلام جدید'"
+          (ctaClick)="newInquiry()"
+        ></ngx-callout>
+
+        <div class="d-flex justify-content-space-between">
+          <div></div>
+          <div>
+            <ngx-plate
+              [size]="'small'"
+              [readonly]="true"
+              [plate]="fineResponse.trafficFinesDto.plateNo"
+            ></ngx-plate>
+          </div>
+        </div>
+
+        @if (fineResponse.trafficFinesDto.fines.length === 0) {
+          <div class="p-huge d-flex flex-column justify-content-center align-items-center">
+            <div class="b-1 text-onback-high text-align-center">این پلاک خلافی ندارد!</div>
+            <div class="b-2 text-onback-low text-align-center">جریمه‌ها ۲۴ ساعت پس از پرداخت، در ‌پلیس +۱۰ ثبت می‌شوند.</div>
+          </div>
+        }
+
+        @for (fine of fineResponse.trafficFinesDto.fines; track $index) {
+          @if (fine.status === FineStatus.READY_TO_PAY) {
+            <fine-applet-item
+              [fine]="fine"
+              [trackingCode]="trackingCode"
+              [inquiryType]="fineResponse.trafficFinesDto.inquiryType"
+            ></fine-applet-item>
+          }
+        }
+        @for (fine of fineResponse.trafficFinesDto.fines; track $index) {
+          @if (fine.status === FineStatus.PAID) {
+            <fine-applet-item
+              [fine]="fine"
+              [trackingCode]="trackingCode"
+              [inquiryType]="fineResponse.trafficFinesDto.inquiryType"
+            ></fine-applet-item>
+          }
+        }
+
+        @for (fine of fineResponse.trafficFinesDto.fines; track $index) {
+          @if (fine.status === FineStatus.NOT_PAYABLE) {
+            <fine-applet-item
+              [fine]="fine"
+              [trackingCode]="trackingCode"
+              [inquiryType]="fineResponse.trafficFinesDto.inquiryType"
+            ></fine-applet-item>
+          }
+        }
+      </div>
+    </div>
+    @if (fineResponse.trafficFinesDto.inquiryType === InquiryType.PARTIAL) {
+      <div class="footer">
+        <div class="border-t-300 border-color-air surface-elevated px-medium py-plus">
+          <div class="bt-2 text-onback-high">مجموع بدهی</div>
+          <div class="t-7 text-onback-high">
+            {{ fineResponse.trafficFinesDto.totalAmount.amount | thousands }}
+            <span class="is-currency">ریال</span>
+          </div>
+          <div class="pt-minus">
+            <ngx-button
+              [mode]="'form'"
+              [brandButton]="true"
+              [fullWidth]="true"
+              [size]="'large'"
+              [disabled]="!fineResponse.trafficFinesDto.billId"
+              (clickHandler)="payTotalDebt()"
+            >
+              پرداخت کل بدهی
+            </ngx-button>
+          </div>
+        </div>
+      </div>
+    }
+  }
+  @if (errorPage()) {
+    <div class="p-huge d-flex flex-column flex-grow justify-content-center align-items-center">
+      <div class="b-1 text-onback-high text-align-center">ارتباط با سرویس‌دهنده برقرار نشد</div>
+      <div class="pt-big text-align-center">
+        <ngx-button
+          [mode]="'section'"
+          [size]="'large'"
+          [style]="'fill'"
+          [rightIcon]="{
+            name: 'plus',
+          }"
+          (click)="retry()"
+        >
+          تلاش مجدد
+        </ngx-button>
+      </div>
+    </div>
+  }
+</common-ui-components-page-layout>

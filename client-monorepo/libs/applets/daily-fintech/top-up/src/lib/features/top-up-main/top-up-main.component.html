@@ -1,0 +1,83 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  [showBorder]="false"
+  title="خرید شارژ سریع"
+>
+  <div class="top-page-wrapper">
+    @if (isLoaded()) {
+      <div class="py-big px-plus">
+        <daily-fintech-touch-point></daily-fintech-touch-point>
+        <form [formGroup]="topUpForm()">
+          <div class="cell-number-field">
+            <ui-form-field
+              [errorMessageMapper]="errorMessageMapper()"
+              [error]="topUpForm()?.controls['cellNumber'].errors"
+              [hasCleaner]="true"
+              [hint]="contactName()"
+              [isNumericKeyboard]="true"
+              [showError]="errorStatus()"
+              [formControlName]="'cellNumber'"
+              [maxSize]="11"
+              class="flex-grow"
+              inputType="tel"
+              label="شماره همراه"
+              placeholder="مثال: ۰۹۰۰۰۰۰۰۰۰۰"
+              type="input"
+            >
+            </ui-form-field>
+            <div
+              class="cell-number-option surface-back d-flex justify-content-center align-items-center radius-medium p-small"
+              (click)="onSetNumberClicked()"
+            >
+              <span class="text-onback-brand">خودم</span>
+            </div>
+            @if (isSupportContact()) {
+              <div
+                class="cell-number-option surface-back d-flex justify-content-center align-items-center radius-medium p-small"
+                (click)="onSetContactClicked()"
+              >
+                <common-icon-dp-icon
+                  [icon]="'simcard'"
+                  [iconType]="'linear'"
+                  styles="color: #1159FC"
+                ></common-icon-dp-icon>
+              </div>
+            }
+          </div>
+          <p class="tarabord-notice b-2 pt-large pb-minus">در صورتی که ترابرد کرده‌اید، اپراتور خود را تغییر دهید.</p>
+          <daily-fintech-button-toggle
+            class="button-toggle-container"
+            (toggleChange)="operatorSwitchChange($event)"
+            [enabled]="shouldSwitchBeEnabled()"
+            [options]="operatorSwitchOptions()"
+            [selectedOption]="getSelectedOperatorOption()"
+          ></daily-fintech-button-toggle>
+
+          <div class="button-container">
+            <div class="cashback-banner d-flex mb-minus w-100"></div>
+            <ngx-button
+              (clickHandler)="onSubmit()"
+              [style]="'fill'"
+              [fullWidth]="true"
+              [isLoading]="isSubmitting()"
+              [disabled]="!topUpForm()?.valid || !this.topUpForm()?.controls['cellNumber']?.value || isSubmitting()"
+            >
+              خرید شارژ
+            </ngx-button>
+          </div>
+        </form>
+
+        <daily-fintech-recommendation-list
+          class="daily-fintech-recommendation-list"
+          (handleClick)="recentlyUsedNumberClick($event)"
+          [hasSpinner]="[]"
+          [itemType]="recommendationType()"
+          title="شماره‌های من"
+        >
+        </daily-fintech-recommendation-list>
+      </div>
+    } @else {
+      <top-up-applet-main-skeleton></top-up-applet-main-skeleton>
+    }
+  </div>
+</common-ui-components-page-layout>

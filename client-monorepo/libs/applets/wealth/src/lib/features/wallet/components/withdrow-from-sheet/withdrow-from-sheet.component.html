@@ -1,0 +1,38 @@
+<div class="w-100 d-flex flex-column">
+  <p class="st-8 text-onback-high">طرح مورد نظر برای فروش را انتخاب کنید:</p>
+
+  @for (wallet of wallets(); track $index; let last = $last) {
+    <div
+      class="w-100 px-plus py-big d-flex align-items-center justify-content-space-between gap-small radius-medium mt-medium item cursor-pointer"
+      (click)="handleSelectedDestination(wallet)"
+    >
+      <div class="d-flex align-items-center gap-small">
+        <img
+          [src]="getImageUrl(wallet.walletName)"
+          alt="fixed income deposit"
+        />
+        <div class="d-flex flex-column">
+          <p class="st-8 text-onback-high">
+            {{ wallet.title }}
+          </p>
+          <p class="b-3 text-onback-low">
+            قابل فروش: {{ wallet.withdrawalBalance | thousands }}
+            <span class="is-currency"> ریال </span>
+          </p>
+        </div>
+      </div>
+
+      @if (loadingWallet() === wallet.walletName) {
+        <ngx-spinner
+          size="sm"
+          color="black"
+        ></ngx-spinner>
+      } @else {
+        <ngx-icon
+          [name]="'arrow-left'"
+          [type]="'linear'"
+        />
+      }
+    </div>
+  }
+</div>

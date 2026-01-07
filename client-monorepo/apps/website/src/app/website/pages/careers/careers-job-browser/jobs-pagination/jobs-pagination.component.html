@@ -1,0 +1,23 @@
+<div class="jobs-pagination">
+  <div
+    (click)="onPrevClick()"
+    [ngClass]="{ 'is-disabled': currentPage <= 1 }"
+    class="pagination-item arrow-left"
+  ></div>
+  <div
+    (click)="onPageClick(page)"
+    *ngFor="let page of pages"
+    [ngClass]="{
+      'is-selected': '' + currentPage === page,
+      'is-placeholder': page === '...',
+    }"
+    class="pagination-item"
+  >
+    {{ page }}
+  </div>
+  <div
+    (click)="onNextClick()"
+    [ngClass]="{ 'is-disabled': currentPage >= totalPages }"
+    class="pagination-item arrow-right"
+  ></div>
+</div>

@@ -1,0 +1,35 @@
+<p class="text-onback-high t-6 text-align-center">خرید و فروش اعتباری امن دیجی‌پی</p>
+<p class="text-onback-low b-2 my-small text-align-center">برای تغییر شماره همراه؛ لطفا شماره همراه خود را وارد کنید.</p>
+
+<form [formGroup]="form">
+  <div class="h-80"
+  >
+    <ui-form-field
+      formControlName="phoneNumber"
+      [label]="'شماره همراه'"
+      [inputType]="'text'"
+      [isNumericKeyboard]="true"
+      [maxSize]="11"
+      [convertNonEnglishDigits]="true"
+      [error]="form.controls['phoneNumber'].errors ?? {}"
+      [hasValidationMark]="true"
+      [errorMessageMapper]="{
+      invalidCellNumber: 'شماره همراه وارد شده معتبر نیست',
+    }"
+      (keydown)="checkKeyCode($event)"
+    ></ui-form-field>
+  </div>
+
+  <div class="d-flex flex-wrap justify-content-space-between">
+    <ngx-button
+      [mode]="'form'"
+      [size]="'large'"
+      [style]="'fill'"
+      [fullWidth]="true"
+      (click)="getCode()"
+      [disabled]="form.invalid"
+    >
+      ثبت شماره همراه
+    </ngx-button>
+  </div>
+</form>

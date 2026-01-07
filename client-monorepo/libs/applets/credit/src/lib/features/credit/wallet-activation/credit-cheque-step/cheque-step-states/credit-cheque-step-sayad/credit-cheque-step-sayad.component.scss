@@ -1,0 +1,43 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.rtl {
+  direction: rtl;
+
+  * {
+    direction: rtl;
+  }
+}
+
+.hint-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+
+  &::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    backdrop-filter: blur(7.5px);
+  }
+}
+
+.hint-image{
+  background-image: url("../../assets/sayad-hint.svg");
+  height: 115px;
+  width: 115px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}

@@ -1,0 +1,92 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.has-time {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 32px;
+  width: 620px;
+
+  .counter {
+    .counter-header {
+      text-align: center;
+      color: #6e798d;
+      font-weight: 500;
+    }
+
+    ui-scheduler {
+      margin: 20px 0 30px;
+      display: block;
+    }
+  }
+
+  .hint {
+    margin: 20px 0;
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.4;
+    background: #f2f5f8;
+    border-radius: 8px;
+    padding: 8px;
+
+    .img {
+      padding-left: 8px;
+    }
+
+    .hint-message {
+      align-self: center;
+      font-size: .95rem;
+    }
+  }
+
+  .buttons {
+    display: flex;
+
+    .submit-button {
+      min-width: 65%;
+      display: block;
+      margin-right: 12px;
+    }
+  }
+
+  .device-detail {
+    border: 1px solid #dee3e7;
+    border-radius: 8px;
+    padding: 18px;
+
+    .detail-info-item {
+      @include flex-center-between;
+      padding: 16px;
+      border-bottom: 1px solid #dee3e7;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .title, .value {
+        font-size: .9rem;
+      }
+
+      .value {
+        font-weight: 500;
+        direction: ltr;
+      }
+
+      .title {
+        color: #6e798d;
+      }
+    }
+  }
+}
+
+@include mediaTablet {
+  .has-time {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .buttons {
+      margin-top: auto;
+    }
+  }
+}

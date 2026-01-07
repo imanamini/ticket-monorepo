@@ -1,0 +1,69 @@
+<div class="w-100 d-flex flex-wrap">
+  <span class="etf-title">موجودی کیف پول ETF</span>
+
+  <div class="wallet-wrapper">
+    <ngx-alert
+      class="mt-small"
+      [color]="'blue'"
+      text=" مبالغ حاصل از فروش صندوق‌های ETF بعد از تایید نهایی آن سفارش به کیف پول ETF شما واریز می‌شود. "
+      [hasCloseIcon]="false"
+    />
+    <div class="banner-etf mt-medium">
+      <img
+        class="img-template"
+        src="wealth-assets/icons/union.svg"
+      />
+      <img
+        class="icon-etf"
+        src="wealth-assets/icons/etf.svg"
+      />
+      <span class="title-etf">موجودی </span>
+
+      @if (canSee()) {
+        <div class="amount-etf">
+          <span>{{ balance() | thousands }}</span>
+          <span class="rial is-currency"> ریال</span>
+        </div>
+      } @else {
+        <div class="amount-etf h-2rem">********</div>
+      }
+    </div>
+
+    <div class="etf-actions mt-medium">
+      <div
+        class="d-flex flex-column align-items-center"
+        [ngClass]="cashoutAction.active && balance() && showWithdrawButton() ? 'eft-active' : 'eft-de-active'"
+      >
+        <div
+          class="action-button"
+          (click)="cashout()"
+        >
+          <ngx-icon
+            [name]="cashoutAction.icon"
+            [type]="cashoutAction.type"
+            [iconSize]="'32px'"
+          ></ngx-icon>
+        </div>
+        <span class="action-title mt-small c-2">{{ cashoutAction.title }}</span>
+      </div>
+      <div
+        class="d-flex flex-column align-items-center"
+        [ngClass]="cashinAction.active ? 'eft-active' : 'eft-de-active'"
+        id="CASH_IN_WRAPPER"
+      >
+        <div
+          class="action-button"
+          (click)="cashin()"
+          id="CASH_IN"
+        >
+          <ngx-icon
+            [name]="cashinAction.icon"
+            [type]="cashinAction.type"
+            [iconSize]="'32px'"
+          ></ngx-icon>
+        </div>
+        <span class="action-title mt-small c-2">{{ cashinAction.title }}</span>
+      </div>
+    </div>
+  </div>
+</div>

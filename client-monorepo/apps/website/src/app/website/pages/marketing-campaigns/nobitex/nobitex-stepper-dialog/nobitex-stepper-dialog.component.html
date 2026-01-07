@@ -1,0 +1,32 @@
+<div class="modal-full-page">
+  <div class="dialog-header">
+    <div
+      (click)="closeDialog()"
+      class="close"
+    >
+      <ngx-icon
+        [name]="'close'"
+        classes="text-onback-high cursor-pointer"
+      ></ngx-icon>
+    </div>
+  </div>
+  <section class="dialog-body">
+    <div class="right-side">
+      <ng-container>
+        <app-custom-form
+          [image]="image"
+          [contactForm]="contactForm"
+          (emitClose)="closeDialog()"
+        ></app-custom-form>
+      </ng-container>
+    </div>
+    <div class="left-side">
+      <div class="image-container">
+        <img
+          [src]="image?.url"
+          alt=""
+        />
+      </div>
+    </div>
+  </section>
+</div>

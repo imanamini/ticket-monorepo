@@ -1,0 +1,21 @@
+@import "globals";
+
+:host {
+  display: block;
+}
+
+.icon {
+  background: url('./icon/danger-icon.svg') no-repeat 0 0/100%;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: -21px;
+}
+
+p {
+  color: #666666;
+  font-size: rem(12, 16);
+  line-height: em(12, 20);
+  padding-right: em(12, 24);
+}

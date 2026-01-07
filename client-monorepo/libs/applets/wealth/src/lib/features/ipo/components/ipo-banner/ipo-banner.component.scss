@@ -1,0 +1,26 @@
+.container {
+  grid-template-columns: 0.4fr 3fr;
+
+  @media screen and (max-width: 480px) {
+    grid-template-columns: 0.5fr 3fr;
+  }
+}
+
+.logo-container {
+  width: 3.1666rem;
+  height: 3.1666rem;
+  z-index: 2;
+}
+
+.remaining-container {
+  z-index: 2;
+  position: absolute;
+  top: 0.8rem;
+  left: 0.8rem;
+}
+
+.typography-logo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}

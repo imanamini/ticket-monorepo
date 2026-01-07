@@ -1,0 +1,81 @@
+<div class="square-post">
+  <div class="image">
+    <img [src]="post.image.url" />
+  </div>
+  <div class="title">
+    <a
+      [href]="'/mag/' + post.category.slug + '/' + post.slug + '/'"
+      target="_blank"
+    >
+      {{ post.title }}
+    </a>
+  </div>
+  <div class="subtitle">
+    {{ post.description }}
+  </div>
+  <div class="details">
+    <div class="category-stats">
+      <div
+        (click)="goToCategory(post.category)"
+        class="category"
+      >
+        {{ post.category.title }}
+      </div>
+      <div class="stats">
+        <div
+          *ngIf="post.commentCount"
+          [ngClass]="post.updatedAt ? 'margin-left' : ''"
+          class="comment"
+        >
+          <img
+            alt=""
+            class="icon"
+            height="24"
+            ngSrc="/assets/blog/eye.svg"
+            width="24"
+          />
+          {{ post.commentCount }}
+        </div>
+        <div
+          *ngIf="post.viewCount"
+          [ngClass]="post.updatedAt ? 'margin-left' : ''"
+          class="view"
+        >
+          <img
+            alt=""
+            class="icon"
+            height="24"
+            ngSrc="/assets/blog/eye.svg"
+            width="24"
+          />
+          {{ post.viewCount }}
+        </div>
+        <div
+          *ngIf="post.updatedAt"
+          class="date"
+        >
+          {{ post.updatedAt.formatted }}
+          <img
+            alt=""
+            class="icon"
+            height="24"
+            ngSrc="/assets/blog/clock.svg"
+            width="24"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      (click)="goToBlogPost(post)"
+      class="read-more"
+    >
+      <span>جزئیات بیشتر</span>
+      <img
+        alt=""
+        height="19"
+        ngSrc="assets/blog/blue-arrow.svg"
+        width="19"
+      />
+    </div>
+  </div>
+</div>

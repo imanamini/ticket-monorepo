@@ -1,0 +1,20 @@
+:host {
+  height: 100%;
+
+  .transactions-wrapper {
+    position: relative;
+
+    .purchases-list {
+      //padding-bottom: 96px;
+      flex-grow: 1;
+    }
+
+    .submit-button {
+      position: sticky;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+  }
+}
+

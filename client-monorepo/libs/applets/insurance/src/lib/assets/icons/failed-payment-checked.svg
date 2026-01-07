@@ -1,0 +1,25 @@
+<svg width="88" height="88" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path id="a" d="M0 0h36v36H0z"/>
+        <path id="b" d="M0 0h36v36H0z"/>
+        <path d="M10.06 7.94a1.5 1.5 0 0 0-2.12 2.12L15.876 18 7.94 25.94a1.5 1.5 0 0 0 0 2.12l.142.125a1.5 1.5 0 0 0 1.98-.124L18 20.122l7.94 7.939a1.5 1.5 0 0 0 2.12-2.122L20.123 18l7.939-7.94a1.5 1.5 0 0 0 0-2.12l-.142-.125a1.5 1.5 0 0 0-1.98.124L18 15.877 10.06 7.94z" id="c"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <circle fill="#FFC3D1" opacity=".221" cx="44" cy="44" r="44"/>
+            <circle fill="#FFC3D1" opacity=".563" cx="44" cy="44" r="36.667"/>
+            <circle fill="#FF6572" opacity=".644" cx="44" cy="44" r="31.778"/>
+        </g>
+        <g transform="translate(18 17)">
+            <circle fill="#FF3243" cx="27" cy="27" r="27"/>
+            <g transform="translate(9 9)">
+                <mask id="d" fill="#fff">
+                    <use xlink:href="#c"/>
+                </mask>
+                <g mask="url(#d)" fill="#FFF">
+                    <path d="M0 0h36v36H0z"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,10 @@
+@if (errorState() && !showLoading()) {
+  <app-credit-enote-step-error
+    [state]="errorState()"
+    (submitted)="retryClick()"
+    (back)="closeStep()"
+  >
+  </app-credit-enote-step-error>
+}
+
+<credit-page-loading [active]="showLoading()"></credit-page-loading>

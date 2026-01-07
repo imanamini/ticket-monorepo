@@ -1,0 +1,59 @@
+@import "@digipay/base-style/swatch";
+
+.main-section {
+  box-sizing: border-box;
+  direction: rtl;
+
+  * {
+    box-sizing: border-box;
+    direction: rtl;
+  }
+
+  .top-section {
+    flex-grow: 1;
+    flex-direction: column;
+    display: flex;
+  }
+
+  .page-content {
+    flex-grow: 1;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    direction: rtl;
+  }
+
+  .warning-message {
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 24px;
+    text-align: center;
+    color: $swatch_red_500;
+  }
+
+  .bottom-section {
+    flex-grow: 0;
+    padding: 24px;
+  }
+
+  .check-countdown {
+    background-color: $swatch_red_100;
+    color: $swatch_red_500;
+    line-height: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 24px;
+    border-radius: 18px;
+  }
+}
+
+.message-image {
+  background-image: url("./credit-account-block-in-progress.svg");
+  height: 164px;
+  width: 164px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}

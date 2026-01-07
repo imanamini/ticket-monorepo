@@ -1,0 +1,66 @@
+<div class="plate d-flex flex-column align-items-center justify-content-between h-100">
+  <div class="plate-content d-flex flex-column p-medium gap-big">
+    <p class="content-message">شماره پلاک خودرو و کدملی صاحب پلاک را وارد کنید:</p>
+
+    @defer (on viewport) {
+      <enter-plate
+        (isValid)="handleEnterPlateValidity($event)"
+        [(data)]="plateData"
+        (dataChange)="dataChanged()"
+        [showError]="showError"
+      >
+      </enter-plate>
+    } @placeholder {
+      <lib-ngx-skeleton-loading
+        width="100%"
+        height="200px"
+      ></lib-ngx-skeleton-loading>
+    }
+
+    @defer {
+      <digipay-divider></digipay-divider>
+    }
+
+    <div
+      data-tracking-id="open-modal-my-plates"
+      (click)="handleClickedOnMyPlates()"
+      class="my-plates d-flex align-items-center justify-content-center gap-small cursor-pointer"
+    >
+      @defer {
+        <ins-icon
+          [height]="24"
+          [name]="IconEnum.ArrowLeftCircleBlue"
+          [width]="24"
+        >
+        </ins-icon>
+      } @placeholder {
+        <lib-ngx-skeleton-loading
+          width="24px"
+          height="24px"
+        ></lib-ngx-skeleton-loading>
+      }
+      <p class="my-plates-text cursor-pointer">انتخاب از پلاک‌های من</p>
+    </div>
+    <p
+      class="no-plate b-2 text-onback-medium"
+      (click)="onNoPlate()"
+    >
+      در صورتی که صاحب پلاک نیستید
+      <strong class="cursor-pointer fw-extra-bold"> اینجا کلیک </strong>
+      کنید.
+    </p>
+
+    @defer {
+      <digipay-divider></digipay-divider>
+    }
+  </div>
+  @defer {
+    <action-buttons
+      (activeButtonClicked)="handleActiveClicked()"
+      (deActiveButtonClicked)="handleDeActiveClicked()"
+      [activeButtonLoading]="activeButtonLoading"
+      backgroundMode="gray"
+      deActiveButtonText="بازگشت"
+    ></action-buttons>
+  }
+</div>

@@ -1,0 +1,37 @@
+<div class="w-100 d-flex flex-wrap surface-elevated">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'قوانین و مقررات'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="w-100 d-flex flex-wrap px-plus mt-big">
+    <p class="st-8 text-onback-high">
+      {{ terms().title }}
+    </p>
+
+    <p class="b-2 text-onback-medium mt-medium">
+      {{ terms().value }}
+    </p>
+
+    <div class="w-100 mt-big">
+      @for (term of terms().items; track term) {
+        <p class="st-8 text-onback-high">
+          {{ term.title }}
+        </p>
+
+        @for (value of term.value; track value) {
+          <p class="b-2 text-onback-medium my-medium">
+            {{ value }}
+          </p>
+        }
+      }
+    </div>
+  </div>
+</div>

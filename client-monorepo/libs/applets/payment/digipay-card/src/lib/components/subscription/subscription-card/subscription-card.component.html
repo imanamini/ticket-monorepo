@@ -1,0 +1,36 @@
+<div
+  (click)="onSelectPlan.emit()"
+  [class]="'card-wrapper d-flex flex-column px-big py-pony surface-back radius-plus border-600' + (isActive() ? ' active' : '')"
+>
+  <div class="d-flex pb-tiny border-b-300 border-color-light">
+    <div class="mt-low">
+      <ngx-radio-button
+        [checked]="isActive()"
+        [size]="20"
+        [disabled]="false"
+      >
+      </ngx-radio-button>
+    </div>
+    <div class="mr-small d-flex w-100 justify-content-space-between">
+      <span class="st-7 text-onback-high">اشتراک {{ title() }}</span>
+      <span class="bt-2 text-onback-high">{{ amount() | thousands }} <span class="is-currency">ریال</span> </span>
+    </div>
+  </div>
+  <div class="d-flex align-items-center justify-content-space-between pt-tiny">
+    @if (services() && services().length) {
+      <span class="gift-item l-1 text-onback-medium">{{ cashbackService()?.description?.keywords }}</span>
+    }
+    <div class="mt-auto">
+      <ngx-button
+        [mode]="'form'"
+        [size]="'tiny'"
+        [style]="'link'"
+        [fullWidth]="false"
+        [leftIcon]="{ name: 'info-circle', type: 'linear' }"
+        (clickHandler)="onOpenDetail.emit()"
+      >
+        جزییات
+      </ngx-button>
+    </div>
+  </div>
+</div>

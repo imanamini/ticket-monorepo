@@ -1,0 +1,39 @@
+<section>
+  <div class="container b2o p-hulk p-s-medium">
+    <div class="section-title text-align-center d-flex flex-column gap-medium">
+      <h2 class="fs-l-28 fs-s-24 text-oninvert-high">{{ registrationForm.title }}</h2>
+      @if (registrationForm.subtitle) {
+        <div class="subtitle text-oninvert-high">{{ registrationForm.subtitle }}</div>
+      }
+    </div>
+    @if (b2oRegisterForm) {
+      <app-custom-b2o-form [contactFormDefinition]="b2oRegisterForm"> </app-custom-b2o-form>
+    }
+
+    <div class="detail d-flex flex-column gap-huge">
+      <span class="text-oninvert-high"> سایر راه‌های ارتباطی:</span>
+      <span class="text-oninvert-high">
+        <a href="tel:02153924000">
+          <span class="phone-number">
+            <span> {{ registrationForm.telText }}</span>
+            <span>&nbsp;</span>
+            <span class="divider"></span>
+            <span class="area-code">021 </span>
+            <span> - </span>
+            <span class="number">53924000</span>
+            <span>: شماره تماس </span>
+          </span>
+        </a>
+      </span>
+
+      <span class="text-oninvert-high english-font">
+        ایمیل :
+        <a
+          href="mailto:{{ registrationForm.email }}"
+          class="text-onback-brand"
+          >{{ registrationForm.email }}</a
+        ></span
+      >
+    </div>
+  </div>
+</section>

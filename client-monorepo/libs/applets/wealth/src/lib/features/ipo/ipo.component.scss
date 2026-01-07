@@ -1,0 +1,31 @@
+@import "@digipay/base-style/swatch";
+
+.cover-logo {
+  min-height: 4rem;
+}
+
+.info-container {
+  grid-template-columns: 2rem auto;
+}
+
+.symbol-image-container {
+  width: 2rem;
+  height: 2rem;
+}
+
+.item-container {
+  .key, .value {
+    max-width: 55%;
+  }
+}
+
+.buttons-container {
+  grid-template-columns: 1fr;
+  position: sticky;
+  bottom: 0;
+}
+
+.two-columns {
+  gap: 1.333rem;
+  grid-template-columns: 1fr 1fr;
+}

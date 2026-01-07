@@ -1,0 +1,7 @@
+<p
+  *ngIf="formControlVisibilityCheck ? formControlVisibilityCheck.invalid && formControlVisibilityCheck.touched : true"
+  [ngClass]="'is-' + appearance"
+  dir="rtl"
+>
+  <ng-content></ng-content>
+</p>

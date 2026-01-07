@@ -1,0 +1,43 @@
+<div (click)="backdropClick($event)" *ngIf="visible && withBackdrop"
+     class="dropdown-wrapper">
+  <div (click)="backdropChildClick($event)">
+    <div #dropDownEl [ngClass]="{'is-initialized': initializedPosition}"
+         [ngStyle]="{
+          width:  dropdownData.width ? dropdownData.width + 'px' : '',
+          height: dropdownData.height ? (dropdownData.height  + 'px') : '',
+          maxHeight: dropdownData.maxHeight ? (dropdownData.maxHeight  + 'px') : '',
+          left: dropDownPosition.left + 'px',
+          top: dropDownPosition.top + 'px',
+          opacity: (hiddenWhileCalculatingPosition && calculatingPosition) ? 0 : 1
+        }"
+         class="ui-dropdown">
+      <div class="inside">
+        <ng-container *ngTemplateOutlet="templateRef"></ng-container>
+      </div>
+      <span [ngStyle]="topArrowStyles" class="arrow arrow-top"></span>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="!withBackdrop && visible">
+  <div #dropDownEl [ngClass]="{'is-initialized': initializedPosition}"
+       [ngStyle]="{
+        width:  dropdownData.width ? dropdownData.width + 'px' : '',
+        height: dropdownData.height ? (dropdownData.height  + 'px') : '',
+        maxHeight: dropdownData.maxHeight ? (dropdownData.maxHeight  + 'px') : '',
+        left: dropDownPosition.left + 'px',
+        top: dropDownPosition.top + 'px',
+        opacity: (hiddenWhileCalculatingPosition && calculatingPosition) ? 0 : 1
+      }"
+       class="ui-dropdown">
+    <div class="inside">
+      <ng-container *ngTemplateOutlet="templateRef"></ng-container>
+    </div>
+    <span [ngStyle]="topArrowStyles" class="arrow arrow-top"></span>
+  </div>
+</ng-container>
+
+
+<ng-template #templateRef>
+  <ng-content></ng-content>
+</ng-template>

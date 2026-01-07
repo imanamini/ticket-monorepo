@@ -1,0 +1,14 @@
+<ngx-app-bar
+  [title]="title()"
+  [rightButton]="{
+    icon: 'arrow-right',
+    style: 'neutral-link',
+    mode: 'icon-only',
+    size: 'medium',
+  }"
+  (onRightButtonClick)="goBack()"
+></ngx-app-bar>
+
+@for (carousel of subCarousels(); track carousel.title) {
+  <stores-applet-okala-carousel [carousel]="carousel"></stores-applet-okala-carousel>
+}

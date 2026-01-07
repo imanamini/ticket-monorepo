@@ -1,0 +1,34 @@
+<ui-loading-spinner *ngIf="loading$ | async; else mainContent"></ui-loading-spinner>
+<ng-template #mainContent>
+  <div class="get-phone-number-wrapper">
+    <div class="image">
+      <img
+        alt="phone number"
+        src="insurance-assets/images/used-device/get-phone-number-bottom-sheet.svg"
+      />
+    </div>
+
+    <div class="hint">لطفا شماره موبایل خود را وارد کنید</div>
+    <div class="inputs-wrapper">
+      <ng-container [formGroup]="form">
+        <ui-form-field
+          [autoFocus]="true"
+          [error]="form.controls.phoneNumber.errors"
+          formControlName="phoneNumber"
+          inputType="tel"
+          label="شماره موبایل"
+          type="input"
+        >
+        </ui-form-field>
+      </ng-container>
+
+      <ui-button
+        (clicked)="closeDialog()"
+        [disabled]="form.invalid"
+        appearance="DEFAULT"
+      >
+        تایید و ادامه
+      </ui-button>
+    </div>
+  </div>
+</ng-template>

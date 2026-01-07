@@ -1,0 +1,123 @@
+<common-ui-components-page-layout
+  [title]="'شارژ خودکار کیف‌پول'"
+  [showBorder]="true"
+  [hasBackAction]="false"
+  (onBackAction)="onBack()"
+>
+  @if (form) {
+    <div class="d-flex flex-column m-plus justify-content-space-between h-100">
+      <div class="d-flex flex-column mb-big">
+        <p class="c-3 text-onback-medium">
+          هر زمان موجودی کیف‌پول شما به مبلغ حداقل رسید، افزایش موجودی کیف‌پول به مبلغ دلخواه انجام خواهد شد.
+        </p>
+        <img
+          height="250"
+          src="assets/direct-debit/auto-cash-in.png"
+        />
+        <div class="d-flex flex-column gap-minus">
+          <ng-container [formGroup]="form">
+            <div class="d-flex flex-column gap-small">
+              <label
+                for="minimumBalance"
+                class="bt-3 text-onback-low"
+                >حداقل موجودی کیف‌پول</label
+              >
+              <div>
+                <ui-form-field
+                  [required]="true"
+                  [errorMessageMapper]="{
+                    required: '',
+                  }"
+                  [error]="form.controls.cashInAmount.errors ?? {}"
+                  [hasCleaner]="true"
+                  [allowZero]="true"
+                  [type]="'amount-chip'"
+                  [maxSize]="10"
+                  [stepValue]="50_000"
+                  [unitCurrency]="'toman'"
+                  [label]="'مبلغ مورد نظر'"
+                  id="minimumBalance"
+                  formControlName="minimumBalance"
+                ></ui-form-field>
+                <div class="d-flex gap-small justify-content-space-between chips">
+                  @for (item of [100_000, 500_000, 1_000_000]; track $index) {
+                    <span
+                      [ngClass]="{
+                        'surface-glass-invert text-oninvert-high': form.controls.minimumBalance.value === item,
+                      }"
+                      (click)="patchSuggestionMinimumBalance(item)"
+                      class="p-small st-8 chips-item surface-back radius-small"
+                      >{{ item | number }} تومان
+                    </span>
+                  }
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-column gap-small">
+              <label
+                for="cashInAmount"
+                class="bt-3 text-onback-low"
+                >میزان افزایش موجودی کیف پول</label
+              >
+              <div>
+                <ui-form-field
+                  #datePickerUi
+                  [required]="true"
+                  [error]="form.controls.cashInAmount.errors ?? {}"
+                  [hasCleaner]="true"
+                  [type]="'amount-chip'"
+                  [maxSize]="10"
+                  [stepValue]="50_000"
+                  [unitCurrency]="'toman'"
+                  [label]="'مبلغ مورد نظر'"
+                  id="cashInAmount"
+                  formControlName="cashInAmount"
+                ></ui-form-field>
+                <div class="d-flex gap-small justify-content-space-between chips">
+                  @for (item of defaultSuggest; track $index) {
+                    @if (this.cashInAmountSuggest().length) {
+                      <span
+                        (click)="isSuggestActive(item) ? patchSuggestionCashInAmount(item) : null"
+                        [ngClass]="{
+                          'surface-glass-invert text-oninvert-high': isSuggestActive(item)
+                            ? form.controls.cashInAmount.value === item
+                            : null,
+                          'text-onback-disabled': !isSuggestActive(item),
+                        }"
+                        class="p-small st-8 chips-item surface-back radius-small cursor-pointer"
+                        >{{ item | number }} تومان
+                      </span>
+                    }
+                  }
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="d-flex justify-content-space-between gap-small surface-elevated actions">
+        @if (config() && config().active) {
+          <ngx-button
+            [size]="'large'"
+            [style]="'tinted-on-elevated'"
+            [fullWidth]="true"
+            (clickHandler)="deactivate()"
+            [isLoading]="loading()"
+          >
+            غیرفعال‌سازی
+          </ngx-button>
+        }
+
+        <ngx-button
+          [disabled]="form.invalid || form.pristine"
+          [size]="'large'"
+          [fullWidth]="true"
+          [isLoading]="loading()"
+          (clickHandler)="onSubmit()"
+        >
+          تایید
+        </ngx-button>
+      </div>
+    </div>
+  }
+</common-ui-components-page-layout>

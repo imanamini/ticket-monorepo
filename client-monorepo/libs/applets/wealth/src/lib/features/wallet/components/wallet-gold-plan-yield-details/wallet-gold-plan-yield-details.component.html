@@ -1,0 +1,40 @@
+<div class="w-100 d-flex flex-wrap gap-tiny">
+  <img
+    class="icon"
+    src="./wealth-assets/images/wallets/gold.svg"
+    alt="gold wallet"
+  />
+  <div class="flex-1 d-flex flex-column">
+    <div class="w-100 d-flex align-items-center justify-content-space-between gap-tiny">
+      <p class="c-2 text-onback-medium">قیمت لحظه‌ای طلای 24 عیار</p>
+      <p class="text-onback-high">
+        <span class="st-8">
+          <span class="st-8">
+            {{ (goldPricePublisher()?.value ?? wallet().indexValue) || 0 | number: '1.0-0' }}
+          </span>
+        </span>
+        <span class="is-currency"> ریال </span>
+      </p>
+    </div>
+    <div class="w-100 d-flex align-items-center justify-content-space-between position-relative">
+      <p class="l-3 text-onback-medium">درصد تغییرات نسبت به روز گذشته</p>
+      <p class="c-1">
+        <span
+          dir="ltr"
+          [ngClass]="{
+            'text-onback-success': goldPricePublisher()?.changePercent > 0 || wallet().profit.changePercent > 0,
+            'text-onback-error': goldPricePublisher()?.changePercent < 0 || wallet().profit.changePercent < 0,
+            'text-onback-low': goldPricePublisher()?.changePercent === 0 || wallet().profit.changePercent === 0,
+          }"
+        >
+          {{ goldPricePublisher()?.changePercent > 0 || wallet().profit.changePercent > 0 ? '+' : '' }}
+          {{
+            goldPricePublisher()?.changePercent === 0 || wallet().profit.changePercent === 0
+              ? 0
+              : (goldPricePublisher()?.changePercent || wallet().profit.changePercent | number: '1.2-2')
+          }}%
+        </span>
+      </p>
+    </div>
+  </div>
+</div>

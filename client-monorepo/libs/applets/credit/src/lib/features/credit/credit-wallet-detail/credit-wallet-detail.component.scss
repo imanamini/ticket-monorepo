@@ -1,0 +1,20 @@
+.content-wrapper {
+  margin-top: -20px;
+  border-radius: 18px 18px 0 0;
+  overflow: hidden;
+  transition: all 0.3s;
+  flex-grow: 1;
+
+  &.remove-curves {
+    border-radius: 0 0 0 0;
+  }
+}
+
+.detail-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  direction: rtl;
+  background: white;
+  padding: 24px 16px;
+}

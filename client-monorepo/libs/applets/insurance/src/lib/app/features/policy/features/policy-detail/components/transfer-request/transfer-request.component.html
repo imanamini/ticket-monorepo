@@ -1,0 +1,33 @@
+<ng-container [ngSwitch]="currentStep">
+  <app-get-new-insurer-info
+          (setNewInsurerInfo)="newInsurerInfo = $event"
+          *ngSwitchCase="1"
+  ></app-get-new-insurer-info>
+
+  <app-transfer-confirm
+          (throwErrorMessage)="errorMessage = $event" *ngSwitchCase="2"
+          [newInsurerInfo]="newInsurerInfo"
+          [policyDetailInfo]="dialogData.policyDetailInfo || sheetData.policyDetailInfo"
+  ></app-transfer-confirm>
+
+  <div *ngSwitchCase="3">
+    <ui-result-action
+            (primaryButtonOnClick)="onClickResultButton()"
+            [description]="'پس از تایید توسط بیمه گزار جدید انتقال به طور کامل انجام می گردد.'"
+            [primaryButtonText]="'متوجه شدم'"
+            [title]="'درخواست انتقال با موفقیت انجام شد.'"
+            status="SUCCESS"
+    ></ui-result-action>
+  </div>
+
+  <div *ngSwitchCase="4">
+    <ui-result-action
+            (primaryButtonOnClick)="onClickResultButton()"
+            [description]="errorMessage"
+            [primaryButtonText]="'متوجه شدم'"
+            [title]="'انتقال انجام نشد'"
+            status="FAILED">
+    </ui-result-action>
+  </div>
+
+</ng-container>

@@ -1,0 +1,37 @@
+<div class="top-section">
+  <app-credit-scrollable-view [fullHeightContent]="true">
+    <div class="page-content">
+      <div>
+        <div class="image"></div>
+        <h3 class="title">{{ title }}</h3>
+        <p
+          class="description"
+          dir="rtl"
+        >
+          برای ادامه ثبت‌نام دریافت {{ serviceTypeName() }} باید با شماره
+          <b>{{ toCellNumber() }}</b>
+          وارد دیجی‌پی شوید.
+        </p>
+      </div>
+    </div>
+  </app-credit-scrollable-view>
+</div>
+<div class="call-to-actions">
+  <ngx-button
+    (clickHandler)="onCancelSwitch()"
+    [fullWidth]="true"
+    [style]="'tinted-on-elevated'"
+    ngxTrackableId
+    trackerId="cancelRegisterButtonClick"
+  >
+    انصراف از ثبت‌نام
+  </ngx-button>
+  <ngx-button
+    (clickHandler)="onSwitchCellNumber()"
+    [fullWidth]="true"
+    ngxTrackableId
+    trackerId="submitRegisterButtonClick"
+  >
+    ورود با شماره‌ بالا
+  </ngx-button>
+</div>

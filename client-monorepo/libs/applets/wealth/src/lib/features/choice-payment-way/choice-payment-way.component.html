@@ -1,0 +1,55 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100dvh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'انتخاب روش سرمایه‌گذاری'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="d-flex flex-column flex-1 w-100 px-plus">
+    <p class="b-2 py-plus">یکی از روش‌های زیر را برای سرمایه‌گذاری انتخاب کنید :</p>
+
+    <div class="d-flex flex-column gap-plus">
+      @for (method of paymentMethods(); track method) {
+        <div
+          class="border-100 border-color-light radius-medium p-medium"
+          (click)="selectedMethodId.set(method.id)"
+        >
+          <div class="d-flex justify-content-space-between pb-small">
+            <span class="st-8">
+              {{ method.title }}
+            </span>
+
+            <ngx-radio-button
+              [checked]="method.id === selectedMethodId()"
+              [size]="20"
+              [disabled]="false"
+            >
+            </ngx-radio-button>
+          </div>
+
+          <span class="c-3">
+            {{ method.description }}
+          </span>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="sticky-action-group px-plus py-medium gap-minus">
+    <ngx-button
+      [style]="'fill'"
+      [fullWidth]="true"
+      (clickHandler)="continue()"
+      [size]="'medium'"
+      [buttonId]="'IPO_CHOICE_PAYMENT_' + selectedMethodId()"
+    >
+      تایید و ادامه
+    </ngx-button>
+  </div>
+</div>

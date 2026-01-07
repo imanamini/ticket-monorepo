@@ -1,0 +1,30 @@
+<div
+  class="widget-penalty-payment-card d-flex align-items-center radius-giant py-minus px-medium gap-small surface-glass-high-contrast-invert elevation-sticky-blur"
+  (click)="paymentClick.emit()"
+>
+  <div class="circle-error m-micro">
+    <div class="core"></div>
+    <div class="pulse"></div>
+  </div>
+
+  <div class="payment-info d-flex flex-column flex-grow gap-tiny">
+    <div class="d-flex align-items-center gap-micro">
+      <span class="l-1 text-oninvert-low">{{ modifiedTitle() }}: </span>
+
+      <div class="amount c-1 text-oninvert-high">
+        <span>{{ amount() | thousands }}</span>
+        <span class="currency is-currency"> ریال </span>
+      </div>
+    </div>
+    <div class="c-1 text-onback-error">{{ subtitle() }}</div>
+  </div>
+
+  <ngx-button
+    [mode]="'section'"
+    [style]="'tinted-on-back'"
+    [size]="'small'"
+    [classNames]="['text-onback-high']"
+  >
+    {{ ctaText() }}
+  </ngx-button>
+</div>

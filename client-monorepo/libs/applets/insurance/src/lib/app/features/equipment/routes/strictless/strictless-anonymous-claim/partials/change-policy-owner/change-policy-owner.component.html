@@ -1,0 +1,46 @@
+<app-card
+  (closeEvent)="close()"
+  [contentSpace]="0"
+  [hasHeader]="currentStepValue !== changeStepsEnum.result"
+  cardTitle="انتقال مالکیت"
+>
+
+  <div
+    [ngSwitch]="currentStepValue"
+    card-body>
+    <div *ngIf="currentStepValue === changeStepsEnum.confirm"
+         class="header"> آیا از انتقال مالکیت بیمه‌نامه {{ policy.policyDraftNo }}  برای خود اطمینان دارید؟
+    </div>
+    <div class="body">
+
+      <ng-container *ngSwitchCase="changeStepsEnum.registerNewOwner">
+        <div class="has-space">
+          <electronic-equipment-register
+            (submitted)="registerSubmitted($event)">
+          </electronic-equipment-register>
+        </div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="changeStepsEnum.confirm">
+        <change-policy-owner-confirm
+          (closeEvent)="close()"
+          (submittedEvent)="transferClaim($event)"
+          [newPerson]="registeredValue"
+          [policy]="policy"
+        ></change-policy-owner-confirm>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="changeStepsEnum.result">
+
+        <ui-result-action
+          (primaryButtonOnClick)="redirectUser()"
+          [description]="describeStatus.description"
+          [status]="status"
+          [title]="describeStatus.title">
+        </ui-result-action>
+      </ng-container>
+
+    </div>
+  </div>
+</app-card>
+

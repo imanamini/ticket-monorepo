@@ -1,0 +1,91 @@
+<div
+  #componentArea
+  class="d-flex flex-column flex-grow rtl overflow-hidden position-relative align-items-center justify-content-center"
+>
+  <video
+    #videoElement
+    [class]="{ 'd-none': !capturing() }"
+    disablePictureInPicture="true"
+    muted
+    autoplay
+    playsinline
+    poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAMSURBVBhXY/j//z8ABf4C/qc1gYQAAAAASUVORK5CYII="
+    webkit-playsinline
+    x5-playsinline
+  ></video>
+  <canvas
+    #canvasElement
+    class="d-none"
+  ></canvas>
+  <div
+    [class]="{ capturing: capturing() }"
+    class="content-container w-100 d-flex flex-column flex-grow justify-content-center align-items-center gap-giant"
+  >
+    @if (!capturing()) {
+      <div class="title text-onback-high d-flex flex-column gap-small justify-content-center align-items-center">
+        <h1 class="st-1 px-plus">تصویر روی چک</h1>
+        <p class="b-2 text-onback-high m-atom text-align-center px-plus text-align-center">
+          توجه داشته باشید که متن روی چک باید کاملا خوانا باشد و نباید تار باشد.
+        </p>
+      </div>
+    }
+    <div
+      #captureContainer
+      [class]="{ active: capturing(), 'surface-back': capturedFile() }"
+      [style]="backgroundImage()"
+      [style.width.px]="capturedMode() ? 320 : rectangleWidth()"
+      [style.height.px]="capturedMode() ? 165 : rectangleHeight()"
+      class="capture-rectangle radius-plus d-flex justify-content-center align-items-center"
+    >
+      @if (!capturing() && !capturedImage()) {
+        <ngx-spinner size="md"></ngx-spinner>
+      }
+    </div>
+  </div>
+  @if (capturing()) {
+    <div
+      (click)="takePhoto()"
+      class="capture-btn cursor-pointer"
+      [class.disabled]="loadingCamera()"
+      ngxTrackableId
+      trackerId="chequeCaptureButtonClick"
+    ></div>
+  }
+
+  @if (!capturing()) {
+    <div class="d-flex flex-column gap-medium p-plus w-100">
+      <ngx-button
+        ngxTrackableId
+        trackerId="chequeCaptureConfirmButtonClick"
+        (clickHandler)="onConfirm()"
+        [style]="'fill'"
+        [fullWidth]="true"
+        [disabled]="!capturedImage()"
+        >تایید و ارسال
+      </ngx-button>
+      <ngx-button
+        ngxTrackableId
+        trackerId="chequeReCaptureButtonClick"
+        (clickHandler)="reCapture()"
+        [style]="'tinted-on-elevated'"
+        [fullWidth]="true"
+        >ویرایش عکس
+      </ngx-button>
+    </div>
+  }
+</div>
+@if (showHint() && capturing()) {
+  <div class="hint-overlay rtl d-flex flex-column align-items-center justify-content-center flex-grow px-big">
+    <div class="hint-image mb-huge"></div>
+    <span class="st-1 text-oninvert-high mb-massive text-align-center">اکنون اطلاعات چک را مانند نمونه نمایش‌داده‌شده بنویسید.</span>
+    <ngx-button
+      ngxTrackableId
+      trackerId="chequeCaptureHintButtonClick"
+      [fullWidth]="false"
+      [mode]="'section'"
+      [style]="'tinted-on-elevated'"
+      (clickHandler)="initCamera()"
+      >اسکن
+    </ngx-button>
+  </div>
+}

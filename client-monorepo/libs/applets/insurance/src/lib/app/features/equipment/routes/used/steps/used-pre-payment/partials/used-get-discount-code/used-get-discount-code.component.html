@@ -1,0 +1,21 @@
+<div class="get-discount-code">
+  <p>افزودن کد تخفیف</p>
+  <div id="form-container">
+    <ui-form-field
+      [errorMessageMapper]="messageErrorMapper"
+      [error]="voucherCode.errors"
+      [showError]="'show'"
+      [formControl]="voucherCode"
+      label="کد تخفیف خود را وارد کنید">
+    </ui-form-field>
+    @if (messageErrorMapper.invalid) {
+      <span class="error-invalid-message" [textContent]="messageErrorMapper.invalid"></span>
+    }
+  </div>
+  <ui-button
+    (clicked)="reserveDiscount()"
+    [appearance]="'DEFAULT'"
+    [disabled]="voucherCode.invalid || isSubmitting()">
+    بررسی کد
+  </ui-button>
+</div>

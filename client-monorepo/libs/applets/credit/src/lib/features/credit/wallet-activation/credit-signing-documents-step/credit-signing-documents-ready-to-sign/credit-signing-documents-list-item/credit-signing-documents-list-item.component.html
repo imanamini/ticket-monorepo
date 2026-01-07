@@ -1,0 +1,29 @@
+<div class="d-flex flex-column align-items-center justify-content-flex-start gap-minus document-item rtl">
+  <div
+    class="border-900 border-color-air p-tiny radius-minus document-preview w-100 overflow-hidden d-flex flex-column align-items-center justify-content-center"
+  >
+    @if (fileData()) {
+      <pdf-viewer
+        [original-size]="false"
+        [page]="1"
+        [render-text]="true"
+        [src]="fileData()"
+        [zoom-scale]="'page-width'"
+        [zoom]="1"
+        class="w-100 h-100 flex-grow"
+      >
+      </pdf-viewer>
+    } @else {
+      <div class="document-thumbnail"></div>
+    }
+  </div>
+
+  <div class="d-flex flex-column justify-content-center align-items-center w-100">
+    <div class="l-1 text-onback-high w-100 text-align-center">
+      {{ document()?.title }}
+    </div>
+    <div class="l-3 text-onback-low w-100 text-align-center">
+      {{ signedDate() | jalaliDate: 'jD jMMMM - HH:mm' }}
+    </div>
+  </div>
+</div>

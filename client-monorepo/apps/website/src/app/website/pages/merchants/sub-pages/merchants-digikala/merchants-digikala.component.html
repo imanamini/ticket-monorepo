@@ -1,0 +1,54 @@
+<app-base-layout [loaded]="loaded">
+  <ng-container *ngIf="merchantsDigikalaPage && merchantsDigikalaPage.templateData">
+    <!--    section 1-->
+    <app-ui-section-sliding-introduction
+      *ngIf="merchantsDigikalaPage?.templateData?.sectionSlidingIntroduction"
+      [data]="merchantsDigikalaPage.templateData.sectionSlidingIntroduction"
+      scrollToElementId="digikala-credit-roadmap"
+    >
+    </app-ui-section-sliding-introduction>
+
+    <!--    section 2-->
+    <app-merchants-digikala-credit-roadmap
+      *ngIf="merchantsDigikalaPage?.templateData?.sectionCreditRoadmap"
+      [creditRoadmapData]="merchantsDigikalaPage.templateData.sectionCreditRoadmap"
+      id="digikala-credit-roadmap"
+    >
+    </app-merchants-digikala-credit-roadmap>
+
+    <!--    section 3-->
+    <app-merchants-digikala-credit-promotion
+      *ngIf="merchantsDigikalaPage.templateData.sectionCreditPromotion"
+      [creditPromotionData]="merchantsDigikalaPage.templateData.sectionCreditPromotion"
+    ></app-merchants-digikala-credit-promotion>
+
+    <!--        section 4-->
+    <app-credit-digikala-products
+      [creditConfig]="creditConfig"
+      [digikalaProducts]="digikalaProducts"
+      [productSingle]="productSingle"
+      [templateData]="merchantsDigikalaPage.templateData.sectionDigikalaProducts"
+    ></app-credit-digikala-products>
+
+    <!--    section 5-->
+    <!--    <app-credit-stores-->
+    <!--      *ngIf="merchants"-->
+    <!--      [creditStores]="merchants"-->
+    <!--    ></app-credit-stores>-->
+
+    <!--    &lt;!&ndash;    section 6&ndash;&gt;-->
+
+    <app-ui-seo
+      *ngIf="merchantsDigikalaPage.templateData.sectionSeoContent"
+      [seoContent]="merchantsDigikalaPage.templateData.sectionSeoContent"
+    ></app-ui-seo>
+
+    <!--    section 7-->
+    <!--    <app-ui-faq-->
+    <!--      *ngIf="merchantsDigikalaPage.templateData.faq && faqItems && faqItems.length > 0"-->
+    <!--      [faqs]="faqItems"-->
+    <!--      [subtitle]="merchantsDigikalaPage.templateData.faq.subtitle"-->
+    <!--      [title]="merchantsDigikalaPage.templateData.faq.title"-->
+    <!--    ></app-ui-faq>-->
+  </ng-container>
+</app-base-layout>

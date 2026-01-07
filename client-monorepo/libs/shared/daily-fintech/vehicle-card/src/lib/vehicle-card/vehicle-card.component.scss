@@ -1,0 +1,14 @@
+@import "@digipay/base-style/styleguide";
+
+.vehicle-card {
+  .vehicle-name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+.non-clickable {
+  pointer-events: none;
+  cursor: not-allowed;
+}

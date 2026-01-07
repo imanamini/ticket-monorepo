@@ -1,0 +1,17 @@
+<div class="nobitex-rules">
+  <ng-container>
+    <div
+      class="rule-section"
+      *ngFor="let section of ruleSections"
+    >
+      <div class="rule-header">
+        <span>{{ section.title }}</span>
+        <span *ngIf="section.period">{{ section.period }}</span>
+      </div>
+      <hr class="content-separator" />
+      <div class="rule-body">
+        <span>{{ section.subtitle }} </span>
+      </div>
+    </div>
+  </ng-container>
+</div>

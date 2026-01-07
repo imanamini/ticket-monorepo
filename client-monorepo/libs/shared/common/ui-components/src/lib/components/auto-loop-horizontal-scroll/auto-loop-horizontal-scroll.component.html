@@ -1,0 +1,9 @@
+<div
+  class="scroll-container"
+  [id]="uniqueId()"
+>
+  <div class="scroll-content no-select {{ classes() }}">
+    <ng-content></ng-content>
+  </div>
+  <div class="just-for-padding"></div>
+</div>

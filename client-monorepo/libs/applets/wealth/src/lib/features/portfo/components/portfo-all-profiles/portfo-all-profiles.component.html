@@ -1,0 +1,70 @@
+@if (loading()) {
+  <app-spinner></app-spinner>
+}
+
+<ngx-app-bar
+  class="w-100"
+  [title]="title()"
+  [rightButton]="{
+    icon: 'arrow-right',
+    style: 'neutral-link',
+    mode: 'icon-only',
+    size: 'medium',
+  }"
+  (onRightButtonClick)="onBackHandler()"
+/>
+
+<div class="w-100 h-40">
+  @if (filteredData()?.length) {
+    <div class="profile-asset-list-container">
+      <div class="w-100 d-flex flex-row align-items-center justify-content-space-between h-6 border-bottom">
+        <span class="text-onback-high c-1"> مجموع دارایی </span>
+        <span class="balance-profile-asset">
+          {{ balance() | number }}
+          <span class="rial is-currency"> ریال </span>
+        </span>
+      </div>
+
+      @for (item of filteredData(); let last = $last; track $index) {
+        <div>
+          <div
+            class="items py-minus"
+            [style.padding-bottom]="last ? '0 !important' : ''"
+          >
+            <div class="d-flex flex-row gap-8">
+              <div class="item-logo">
+                @if (item.investmentType === 'CrowdFund') {
+                  <img
+                    src="./wealth-assets/svg/crowd-logo.svg"
+                    [alt]="item.title"
+                  />
+                } @else {
+                  <app-image
+                    [imageUrl]="item?.logoAddress"
+                    defaultImage="wealth-assets/icons/default-instrument.svg"
+                  ></app-image>
+                }
+              </div>
+              <div class="d-flex flex-column gap-7">
+                <span
+                  class="item-title"
+                  (click)="goToDetail(item)"
+                  >{{ item.title }}</span
+                >
+                <span class="item-date">{{ item.lastUpdatedAt | jalaliDate }}</span>
+              </div>
+            </div>
+
+            <span class="item-price line-h-3">
+              {{ item.price | number }}
+              <span class="item-rial is-currency"> ریال </span>
+            </span>
+          </div>
+          @if (!last) {
+            <hr class="items-divider" />
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

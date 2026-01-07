@@ -1,0 +1,31 @@
+<div class="h-100 pb-plus d-flex flex-column gap-medium surface-elevated">
+  <ngx-app-bar
+    [title]="''"
+    (onRightIconClick)="onNavigate()"
+    [rightIcon]="'close'"
+  />
+  <div class="d-flex flex-column mt-small px-medium py-small align-items-center">
+    <ng-lottie
+      [options]="{ path: animationPath }"
+      width="100%"
+    ></ng-lottie>
+    <div class="d-flex flex-column">
+      <div class="st-3 mt-big text-onback-high text-align-center">درخواست صدور دیجی‌کارت ثبت شد</div>
+      <div class="b-2 text-onback-medium mt-tiny mb-big">
+        بعد از دریافت، کارت خود را از طریق دکمه «فعال‌سازی» فعال کنید.
+        <br />
+        با دیجی‌کارت، علاوه بر امکانات کیف‌پول می‌توانید به صورت حضوری هم خرید کنید.
+      </div>
+
+      <ngx-button
+        [mode]="'form'"
+        [size]="'large'"
+        [style]="'fill'"
+        [fullWidth]="true"
+        (clickHandler)="onNavigate()"
+      >
+        متوجه شدم
+      </ngx-button>
+    </div>
+  </div>
+</div>

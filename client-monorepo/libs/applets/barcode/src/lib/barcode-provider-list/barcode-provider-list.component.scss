@@ -1,0 +1,32 @@
+@use 'sass:map';
+@import '@digipay/base-style/styleguide';
+
+::ng-deep {
+  .bottom-sheet-content {
+    .actions-container {
+      padding: 20px;
+      background: map.get($surface-colors, 'glass-high-contrast');
+      border-top: 1px solid map.get($border-colors, 'air');
+    }
+
+    .content-container {
+      padding: 2rem 1.2rem 1rem;
+    }
+  }
+
+  .skeleton-dot {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border-radius: 100%;
+      transform: translate(-50%, -50%);
+      background: map.get($surface-colors, 'back');
+      width: 6px;
+      height: 6px;
+    }
+  }
+}

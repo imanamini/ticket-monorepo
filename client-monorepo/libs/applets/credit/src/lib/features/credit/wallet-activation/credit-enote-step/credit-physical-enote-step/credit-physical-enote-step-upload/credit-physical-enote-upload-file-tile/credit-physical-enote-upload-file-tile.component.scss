@@ -1,0 +1,213 @@
+.upload-file-tile {
+  border-radius: 16px;
+  width: 100%;
+  margin: 0 auto;
+
+  .description {
+    text-align: right;
+    flex-grow: 1;
+    padding-left: 8px;
+    display: flex;
+
+    .icon {
+      margin-left: 12px;
+      width: 24px;
+      flex-grow: 0;
+
+      img {
+        width: 24px;
+      }
+    }
+
+    .text {
+      .title {
+        font-size: 16px;
+
+        .more-info {
+          color: #335cff;
+          font-size: 12px;
+          margin-right: 2px;
+          cursor: pointer;
+        }
+      }
+
+      .desc {
+        margin: 8px 0 0;
+        color: #7f7f7f;
+        font-size: 10px;
+        line-height: 1.4em;
+      }
+    }
+  }
+
+  .image {
+    width: 100%;
+    height: 140px;
+    position: relative;
+    background: #f2f2f2;
+    overflow: hidden;
+    border-radius: 16px;
+
+    .image-data {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 140px;
+      border: 1px solid #e6e6e6;
+      border-radius: 16px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .add-image,
+    .edit,
+    .warning,
+    .check-icon,
+    .uploading {
+      display: none;
+    }
+
+    .add-image {
+      border: 2px dashed #0040ff;
+      height: 100%;
+      width: 100%;
+      border-radius: 16px;
+      cursor: pointer;
+      box-sizing: border-box;
+
+      .icon {
+        display: block;
+        height: 100%;
+        width: 100%;
+        background: url("./assets/upload-file-tile-add.svg") no-repeat center
+          center/24px;
+      }
+    }
+
+    .centered-icon,
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .centered {
+      width: 90%;
+    }
+
+    .centered-icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .check-icon {
+      background: url("assets/upload-file-tile-checkbox.svg") no-repeat 0 0/100%;
+    }
+  }
+}
+
+.upload-file-tile {
+  &.is-empty {
+    .image {
+      .add-image {
+        display: block;
+      }
+    }
+  }
+
+  &.is-editable {
+    border-color: rgb(256, 111, 38);
+
+    .image {
+      .edit {
+        display: block;
+      }
+    }
+  }
+
+  &.is-success {
+    border-color: rgb(56, 191, 124);
+
+    .image {
+      .check-icon {
+        display: block;
+      }
+    }
+  }
+
+  &.is-uploading {
+    .image {
+      .image-data {
+        opacity: 0.3;
+      }
+
+      .uploading {
+        display: block;
+      }
+    }
+  }
+
+  &.is-error {
+    border-color: rgb(256, 111, 38);
+
+    .image {
+      .warning {
+        display: block;
+      }
+    }
+  }
+
+  &.is-disabled {
+    filter: grayscale(1) opacity(0.4);
+  }
+}
+
+.title-upload {
+  font-size: 14px;
+  color: #2c3544;
+  line-height: 1.5;
+}
+
+.header {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input[type="file"],
+input[type="button"] {
+  position: absolute;
+  z-index: -1;
+  visibility: hidden;
+}
+
+.edit,
+.warning {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.warning-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.warning-icon {
+  background: url("assets/upload-file-tile-warning.svg") no-repeat 0 0/100%;
+}
+
+.warning-badge {
+  color: #0040ff;
+  font-size: 14px;
+  cursor: pointer;
+}

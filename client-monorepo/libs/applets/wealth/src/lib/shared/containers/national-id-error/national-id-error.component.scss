@@ -1,0 +1,36 @@
+@import "@digipay/base-style/swatch";
+
+.national-id-error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $swatch_white_900;
+  height: 100dvh;
+  flex-direction: column;
+  padding: 0 1rem;
+
+  .national-id-error-content {
+    display: flex;
+    width: 26rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.16667rem;
+    color: $swatch_steel_900;
+    flex: 1;
+
+    .national-id-error-description {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      line-height: 2rem;
+      margin-top: 2rem;
+    }
+  }
+
+  .national-id-error-buttons {
+    display: flex;
+    margin: 1rem;
+  }
+}

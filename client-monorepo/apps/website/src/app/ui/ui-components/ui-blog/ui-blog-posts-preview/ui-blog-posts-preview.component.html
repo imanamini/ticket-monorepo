@@ -1,0 +1,277 @@
+<section [ngSwitch]="type">
+  <!-- SINGLE-SQUARE-DETAILED-COLLECTION = ssdc -->
+  <div
+    *ngSwitchCase="'SINGLE-SQUARE-DETAILED-COLLECTION'"
+    [ngClass]="containerBackGround.toLowerCase()"
+  >
+    <div class="container ssdc">
+      <div class="category-header">
+        <div class="title">
+          <img
+            *ngIf="category.icon && category.icon.url"
+            [src]="category.icon.url"
+          />
+          <span>{{ category.title }}</span>
+        </div>
+        <div class="non-mobile category-link">
+          <app-ui-button
+            [link]="'/mag/' + category.slug + '/'"
+            appearance="BLUE-TEXT"
+            linkTarget="_blank"
+            size="BIG"
+          >
+            مشاهده همه مقالات
+            <img
+              alt=""
+              height="19"
+              ngSrc="assets/blog/blue-arrow.svg"
+              width="19"
+            />
+          </app-ui-button>
+        </div>
+      </div>
+      <div class="category-content">
+        <app-ui-blog-square-post-card
+          [post]="mainPost"
+          class="non-mobile"
+        >
+        </app-ui-blog-square-post-card>
+        <div class="non-mobile rest-posts">
+          <app-ui-blog-horizontal-post-card
+            *ngFor="let post of restPosts"
+            [post]="post"
+            [showDescription]="false"
+          >
+          </app-ui-blog-horizontal-post-card>
+        </div>
+        <div class="mobile">
+          <app-ui-blog-vertical-post-card [post]="mainPost"> </app-ui-blog-vertical-post-card>
+          <app-ui-blog-mobile-post-card
+            *ngFor="let post of restPosts"
+            [post]="post"
+            class="mobile rest-post"
+          >
+          </app-ui-blog-mobile-post-card>
+          <app-ui-button
+            [link]="'/mag/' + category.slug + '/'"
+            appearance="DEFAULT"
+            linkTarget="_blank"
+            size="BIG"
+          >
+            مشاهده همه مقالات
+            <img
+              alt=""
+              height="19"
+              ngSrc="assets/blog/white-arrow.svg"
+              width="19"
+            />
+          </app-ui-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- HORIZONTAL-CARDS-COLLECTION = hcc -->
+  <div
+    *ngSwitchCase="'HORIZONTAL-CARDS-COLLECTION'"
+    [ngClass]="containerBackGround.toLowerCase()"
+  >
+    <div class="container hcc">
+      <div class="category-header">
+        <div class="title">
+          <img
+            *ngIf="category.icon && category.icon.url"
+            [src]="category.icon.url"
+          />
+          <span>{{ category.title }}</span>
+        </div>
+        <div class="non-mobile category-link">
+          <app-ui-button
+            [link]="'/mag/' + category.slug + '/'"
+            appearance="BLUE-TEXT"
+            linkTarget="_blank"
+            size="BIG"
+          >
+            مشاهده همه مقالات
+            <img
+              alt=""
+              height="19"
+              ngSrc="assets/blog/blue-arrow.svg"
+              width="19"
+            />
+          </app-ui-button>
+        </div>
+      </div>
+      <div class="category-content">
+        <app-ui-blog-horizontal-post-card
+          *ngFor="let post of posts"
+          [post]="post"
+          class="non-mobile"
+        >
+        </app-ui-blog-horizontal-post-card>
+        <div class="mobile">
+          <app-ui-blog-mobile-post-card
+            *ngFor="let post of posts"
+            [post]="post"
+          >
+          </app-ui-blog-mobile-post-card>
+          <app-ui-button
+            [link]="'/mag/' + category.slug + '/'"
+            appearance="DEFAULT"
+            linkTarget="_blank"
+            size="BIG"
+          >
+            مشاهده همه مقالات
+            <img
+              alt=""
+              height="19"
+              ngSrc="assets/blog/white-arrow.svg"
+              width="19"
+            />
+          </app-ui-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  VERTICAL-CARDS-COLLECTION = vcc-->
+  <div
+    *ngSwitchCase="'VERTICAL-CARDS-COLLECTION'"
+    [ngClass]="containerBackGround.toLowerCase()"
+  >
+    <div class="container vcc">
+      <div class="category-header">
+        <div class="title">
+          <img
+            *ngIf="category.icon && category.icon.url"
+            [src]="category.icon.url"
+          />
+          <span>{{ category.title }}</span>
+        </div>
+        <div class="non-mobile category-link">
+          <app-ui-button
+            [link]="'/mag/' + category.slug + '/'"
+            appearance="BLUE-TEXT"
+            linkTarget="_blank"
+            size="BIG"
+          >
+            مشاهده همه مقالات
+            <img
+              alt=""
+              height="19"
+              ngSrc="assets/blog/blue-arrow.svg"
+              width="19"
+            />
+          </app-ui-button>
+        </div>
+      </div>
+      <div class="category-content">
+        <app-ui-blog-vertical-post-card
+          *ngFor="let post of posts"
+          [post]="post"
+          class="desktop"
+        >
+        </app-ui-blog-vertical-post-card>
+
+        <app-ui-blog-horizontal-post-card
+          *ngFor="let post of posts"
+          [post]="post"
+          class="tablet"
+        >
+        </app-ui-blog-horizontal-post-card>
+
+        <div class="mobile">
+          <app-ui-blog-mobile-post-card
+            *ngFor="let post of posts"
+            [post]="post"
+          >
+          </app-ui-blog-mobile-post-card>
+          <app-ui-button
+            [link]="'/mag/' + category.slug + '/'"
+            appearance="DEFAULT"
+            linkTarget="_blank"
+            size="BIG"
+          >
+            مشاهده همه مقالات
+            <img
+              alt=""
+              height="19"
+              ngSrc="assets/blog/white-arrow.svg"
+              width="19"
+            />
+          </app-ui-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngSwitchCase="'ACADEMY'"
+    [ngClass]="containerBackGround.toLowerCase()"
+  >
+    <div class="container vcc">
+      <div class="category-header">
+        <div class="title">
+          <img
+            *ngIf="category.icon && category.icon.url"
+            [src]="category.icon.url"
+          />
+          <span>{{ category.title }}</span>
+        </div>
+        <div class="non-mobile category-link">
+          <app-ui-button
+            [link]="'/mag/' + category.slug + '/'"
+            appearance="BLUE-TEXT"
+            linkTarget="_blank"
+            size="BIG"
+          >
+            مشاهده همه مقالات
+            <img
+              alt=""
+              height="19"
+              ngSrc="assets/blog/blue-arrow.svg"
+              width="19"
+            />
+          </app-ui-button>
+        </div>
+      </div>
+      <div class="category-content">
+        <app-ui-blog-vertical-post-card
+          *ngFor="let post of posts"
+          [post]="post"
+          class="desktop"
+          type="VIDEO"
+        >
+        </app-ui-blog-vertical-post-card>
+
+        <app-ui-blog-horizontal-post-card
+          *ngFor="let post of posts"
+          [post]="post"
+          class="tablet"
+          type="VIDEO"
+        >
+        </app-ui-blog-horizontal-post-card>
+
+        <div class="mobile">
+          <app-ui-blog-mobile-post-card
+            *ngFor="let post of posts"
+            [post]="post"
+            type="VIDEO"
+          >
+          </app-ui-blog-mobile-post-card>
+          <app-ui-button
+            [link]="'/mag/' + category.slug + '/'"
+            appearance="DEFAULT"
+            linkTarget="_blank"
+            size="BIG"
+          >
+            مشاهده همه مقالات
+            <img
+              alt=""
+              height="19"
+              ngSrc="assets/blog/white-arrow.svg"
+              width="19"
+            />
+          </app-ui-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

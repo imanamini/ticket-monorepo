@@ -1,0 +1,101 @@
+<div
+  [formGroup]="form"
+  class="application-form"
+  dir="rtl"
+>
+  <h5 class="form-area-title">اطلاعات فردی</h5>
+  <div class="form-row">
+    <app-form-field
+      formControlName="name"
+      label="نام و نام خانوادگی (فارسی) *"
+      placeholder="فارسی"
+    ></app-form-field>
+    <app-form-field
+      [ltrInput]="true"
+      [ltrPlaceholder]="true"
+      formControlName="enName"
+      label="نام و نام خانوادگی (انگلیسی) *"
+      placeholder="Your Name"
+    ></app-form-field>
+  </div>
+  <div class="form-row">
+    <app-form-field
+      [ltrInput]="true"
+      [ltrPlaceholder]="true"
+      formControlName="email"
+      label="آدرس ایمیل *"
+      placeholder="johndoe@gmail.com"
+    ></app-form-field>
+    <app-form-field
+      [ltrInput]="true"
+      [ltrPlaceholder]="true"
+      formControlName="mobile"
+      label="شماره تلفن همراه *"
+      placeholder="09*********"
+    ></app-form-field>
+  </div>
+
+  <div class="form-row">
+    <app-form-field
+      *ngIf="!jobPostId"
+      [options]="departmentOptions"
+      dir="rtl"
+      formControlName="department"
+      label="واحد موردنظر"
+      type="select"
+    ></app-form-field>
+
+    <app-form-field
+      [ltrInput]="true"
+      [ltrPlaceholder]="true"
+      [placeholder]="'https://www.linkedin.com/in/...'"
+      formControlName="linkedinProfile"
+      label="آدرس پروفایل لینکدین (اختیاری)"
+    ></app-form-field>
+  </div>
+
+  <div class="form-row">
+    <app-form-field
+      [multiLine]="true"
+      formControlName="coverLetter"
+      label="جمله کاور (اختیاری)"
+      placeholder="انگیزه یا تجاربی که فکر می‌کنید می‌تواند برای دیجی‌پی مفید باشد"
+    ></app-form-field>
+  </div>
+
+  <h5 class="form-area-title">رزومه *</h5>
+  <p class="file-desc">لطفا فایل رزومه خود را بارگذاری کنید</p>
+
+  <div class="choose-attachment">
+    <app-ui-button
+      (clicked)="pickFile()"
+      appearance="SECONDARY"
+      >انتخاب فایل رزومه</app-ui-button
+    >
+    <p class="file-info">
+      <span>فرمت قابل قبول: PDF</span>
+      <span *ngIf="selectedFile">فایل انتخاب شد: {{ selectedFile.name }}</span>
+    </p>
+    <input
+      #fileInput
+      (change)="onFileInputChange($event)"
+      style="visibility: hidden"
+      type="file"
+    />
+  </div>
+</div>
+
+<app-ui-form-hint
+  *ngFor="let error of errors"
+  appearance="error"
+  >{{ error }}</app-ui-form-hint
+>
+
+<div class="submit-section">
+  <app-ui-button
+    (clicked)="submitRequest()"
+    [disabled]="!selectedFile || submitting"
+  >
+    ثبت درخواست
+  </app-ui-button>
+</div>

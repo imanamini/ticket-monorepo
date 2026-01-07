@@ -1,0 +1,9 @@
+:host ::ng-deep ngx-list-item ngx-badge .ngx-badge {
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  border: none !important;
+  width: 100px !important;
+  display: block !important;
+  padding: 4px 8px !important;
+}

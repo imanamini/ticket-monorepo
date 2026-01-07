@@ -1,0 +1,57 @@
+@if (loading() || (socialStores() && socialStores()!.length)) {
+  <div class="mb-small">
+    <common-ui-components-title-summary
+      [title]="title() ?? 'فروشنده‌های جدید'"
+      [isLoading]="loading()"
+      [showButton]="false"
+      [wrapperClasses]="'px-plus'"
+    ></common-ui-components-title-summary>
+  </div>
+  @if (socialStores()) {
+    <ngx-dp-carousel
+      [mode]="'CARD'"
+      [visibleItemCount]="1.1"
+      [index]="0"
+      [centerMode]="false"
+      [showNavigation]="false"
+      [showButtons]="false"
+      [isFixedGap]="true"
+      [fixedGap]="10"
+      [isFixedWidth]="true"
+      [fixedWidth]="284"
+      [changeStepThresholdPercentage]="10"
+      [swipeThreshold]="60"
+      [disableNavigationDots]="true"
+      [disableScaling]="true"
+      [enableAutoPlay]="false"
+      [(index)]="activeIndex"
+      (singleTapped)="handleSingleTap()"
+      (isSwiping)="handleSwiping($event)"
+      (isAnimationRunning)="handleAnimating($event)"
+    >
+      @for (store of socialStores(); track store.storeTrackingCode) {
+        <ng-template ngxDpCarouselSlide>
+          <common-social-store-preview
+            [store]="store"
+            (click)="handleClickStore(store)"
+          ></common-social-store-preview>
+        </ng-template>
+      }
+    </ngx-dp-carousel>
+  } @else {
+    <div class="d-flex gap-medium px-plus">
+      <lib-ngx-skeleton-loading
+        [height]="'264px'"
+        [width]="'264px'"
+        [loadingEffect]="false"
+        [classes]="'surface-glass-onback'"
+      ></lib-ngx-skeleton-loading>
+      <lib-ngx-skeleton-loading
+        [height]="'264px'"
+        [width]="'264px'"
+        [loadingEffect]="false"
+        [classes]="'surface-glass-onback'"
+      ></lib-ngx-skeleton-loading>
+    </div>
+  }
+}

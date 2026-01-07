@@ -1,0 +1,40 @@
+<ng-container body>
+  <div class="container">
+    <div
+      class="image"
+      [style.background-image]="'url(' + detail()?.icon + ')'"
+    ></div>
+    <p class="st-7 pb-tiny">{{ detail()?.title }}</p>
+    <p class="c-2 text-onback-low">{{ detail()?.subtitle }}</p>
+    <p class="c-2 text-onback-low">{{ detail()?.secondSubtitle }}</p>
+    @for (item of detail()?.contents; track item) {
+      <ul class="points-wrapper">
+        @if (item?.firstPoint) {
+          <li>
+            <span>{{ item?.firstPoint }}</span>
+          </li>
+        }
+        <span class="second-title">{{ item?.title }}</span>
+        @for (point of item?.points; track point) {
+          <li>
+            <span>{{ point }}</span>
+          </li>
+        }
+      </ul>
+    }
+    @if (detail()?.info) {
+      <div class="d-flex flex-column mt-big">
+        <div class="c-2 text-onback-low">{{ detail().info.title }}</div>
+        <div class="c-2 text-onback-high">{{ detail().info.infoMessage }}</div>
+      </div>
+    }
+  </div>
+</ng-container>
+<ng-container footer>
+  <ngx-button
+    [fullWidth]="true"
+    (clickHandler)="clickButton()"
+  >
+    متوجه شدم
+  </ngx-button>
+</ng-container>

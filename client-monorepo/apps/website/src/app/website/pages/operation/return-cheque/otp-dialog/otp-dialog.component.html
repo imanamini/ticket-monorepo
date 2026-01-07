@@ -1,0 +1,54 @@
+<div class="p-big d-flex flex-column text-align-center">
+  <div class="mt-huge">
+    <img
+      ngSrc="assets/images/operation/envelope.png"
+      width="97"
+      height="97"
+    />
+  </div>
+
+  <p class="my-big fs-14">کد ارسال شده به شماره خود را وارد کنید</p>
+
+  <div class="mb-huge mx-auto otp-container">
+    <ngx-otp
+      [(otp)]="otp"
+      [otpLength]="4"
+      [supportText]="otpErrorMessage"
+      [status]="status"
+      [disabled]="disabled()"
+    />
+  </div>
+
+  <div class="d-l-flex gap-l-low mt-auto">
+    <div class="w-100 w-l-50 mb-low mb-l-atom">
+      <ngx-button
+        (clickHandler)="sendOtp()"
+        [mode]="'form'"
+        [style]="'tinted-on-elevated'"
+        [fullWidth]="true"
+        [disabled]="counter !== 0"
+        [size]="'medium'"
+      >
+        @if (counter === 0) {
+          ارسال مجدد کد
+        } @else {
+          {{ leftTime }}
+        }
+      </ngx-button>
+    </div>
+    <div class="w-100 w-l-50">
+      <ngx-button
+        [disabled]="disabled() || invalidToken()"
+        [isLoading]="loading()"
+        (clickHandler)="verifyOtp()"
+        [mode]="'form'"
+        [fullWidth]="true"
+        [style]="'fill'"
+        [brandButton]="true"
+        [size]="'medium'"
+      >
+        تایید کد یکبار مصرف
+      </ngx-button>
+    </div>
+  </div>
+</div>

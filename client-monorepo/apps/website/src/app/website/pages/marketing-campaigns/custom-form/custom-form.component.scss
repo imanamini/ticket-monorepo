@@ -1,0 +1,56 @@
+@import "globals";
+
+.form-section {
+  .container {
+  }
+
+  .segment-content {
+    display: flex;
+    width: 1200px;
+    padding: 64px 64px 0 64px;
+    background: #fff;
+    flex-direction: column;
+    align-items: center;
+    border-radius: var(--Radius-Big, 24px);
+
+    h2 {
+      color: var(--Steel-S-700, #424c5c);
+      text-align: center;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 1000;
+      line-height: normal;
+    }
+  }
+
+  ::ng-deep {
+    .submit-button {
+      width: auto;
+
+      button {
+        background: #061962;
+        border-color: #061962;
+      }
+    }
+
+    .input {
+      background: #fff;
+    }
+  }
+
+  .title {
+    font-size: 16px;
+    color: #2c3544;
+    font-weight: 400;
+
+    span {
+      margin: 0 10px;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .cta {
+    margin-top: 10px;
+  }
+}

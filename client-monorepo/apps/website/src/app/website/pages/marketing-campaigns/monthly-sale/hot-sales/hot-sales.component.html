@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="hot-sales radius-big">
+    <div class="hot-sales-header d-flex justify-content-center align-items-center st-1 text-oninvert-high" *ngIf="templateData.discounts.title">
+      {{ templateData.discounts.title }}
+    </div>
+    <div class="hot-sales-content d-flex flex-wrap align-items-center gap-giant py-giant justify-content-center">
+      <div class="hot-sales-item" *ngFor="let item of templateData.discounts.items">
+        {{item?.image?.link}}
+        <a href="{{item?.link}}" target="_blank"><span><img src="{{item?.image?.url}}" alt=""></span></a>
+      </div>
+
+    </div>
+  </div>
+</div>

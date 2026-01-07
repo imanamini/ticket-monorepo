@@ -1,0 +1,38 @@
+@if (!gettingData()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="exit()"
+    (onTextClick)="onActionClick()"
+    [actionImage]="actionImage()"
+    [actionText]="actionText()"
+    [actionTextMode]="actionTextMode()"
+    [backButton]="true"
+    [title]="data()?.pageTitle || ''"
+  ></app-credit-app-bar>
+  @if (showSuggestedPlans()) {
+    <app-credit-scoring-step-result-suggested-plans
+      [plans]="suggestedPlans()"
+      [loading]="loading()"
+      (confirmPlan)="confirmPlan($event)"
+    ></app-credit-scoring-step-result-suggested-plans>
+  } @else {
+    <app-credit-scoring-step-result-status
+      [loading]="loading()"
+      [status]="finalStatus()"
+      [trackingCode]="trackingCode()"
+      (report)="report.emit()"
+      (goToActivation)="goToActivation()"
+      (cancelActivation)="cancelActivation()"
+      (close)="exit()"
+      [showSuggestedPlanButton]="!!suggestedPlans().length"
+      (showSuggestedPlans)="showSuggestedPlans.set(true)"
+    ></app-credit-scoring-step-result-status>
+  }
+}
+@if (gettingData()) {
+  <div class="w-100 d-flex flex-grow flex-column justify-content-center align-items-center">
+    <ngx-spinner
+      size="md"
+      color="primary"
+    ></ngx-spinner>
+  </div>
+}

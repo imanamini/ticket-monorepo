@@ -1,0 +1,39 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.dialog-container {
+  width: 100%;
+
+  .dialog-body {
+    height: 100%;
+    @include flex-column;
+
+    .content-description {
+      padding: 16px 24px 18px;
+      color: #2c3544;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 24px;
+    }
+
+    .content-wrapper {
+      @include flex-column;
+      padding: 16px;
+      background-color: #f2f5f8;
+      border-top: 1px solid #dee3e7;
+      border-bottom: 1px solid #dee3e7;
+
+      .content {
+        @include flex-column;
+        border-radius: 12px;
+        background-color: #ffffff;
+        padding: 22px 16px 16px;
+      }
+    }
+  }
+
+  .card-footer {
+    padding: 16px;
+  }
+
+}
+

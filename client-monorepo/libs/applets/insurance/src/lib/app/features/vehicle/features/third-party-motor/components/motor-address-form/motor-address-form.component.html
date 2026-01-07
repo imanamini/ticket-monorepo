@@ -1,0 +1,101 @@
+<div [formGroup]="addressForm()"
+     class="address">
+  <div class="d-flex gap-small">
+    <ui-form-field [errorMessageMapper]="errorMapper()"
+                   [error]="addressForm()?.controls?.province?.errors"
+                   [options]="provinces()"
+                   [overflowToContainer]="true"
+                   [required]="true"
+                   [searchable]="true"
+                   [showError]="showError()?'show':'hidden'"
+                   [showRadioOptions]="showRadioButton"
+                   formControlName="province"
+                   label="استان"
+                   class="w-100"
+                   placeholder="جستجو..."
+                   selectOpenType="auto"
+                   type="select"></ui-form-field>
+
+    <ui-form-field [errorMessageMapper]="errorMapper()"
+                   [error]="addressForm()?.controls?.city?.errors"
+                   [options]="cities()"
+                   [overflowToContainer]="true"
+                   [readonly]="addressForm()?.controls?.city?.disabled"
+                   [required]="true"
+                   [searchable]="true"
+                   [showError]="showError()?'show':'hidden'"
+                   [showRadioOptions]="showRadioButton"
+                   formControlName="city"
+                   class="w-100"
+                   label="شهر"
+                   placeholder="جستجو..."
+                   selectOpenType="auto"
+                   type="select"></ui-form-field>
+  </div>
+
+  <ui-form-field [convertNonEnglishDigits]="true"
+                 [errorMessageMapper]="errorMapper()"
+                 [error]="addressForm()?.controls?.address?.errors"
+                 [maxSize]="500"
+                 [multiLine]="true"
+                 [required]="true"
+                 [showError]="showError()?'show':'hidden'"
+                 formControlName="address"
+                 inputType="text"
+                 label="آدرس"
+                 placeholder="مثال: آدرس پستی خود را وارد کنید."
+                 type="input"></ui-form-field>
+
+  <div class="d-flex gap-small">
+    <ui-form-field [convertNonEnglishDigits]="true"
+                   [errorMessageMapper]="errorMapper()"
+                   [error]="addressForm()?.controls?.number?.errors"
+                   [maxSize]="8"
+                   [required]="true"
+                   [showError]="showError()?'show':'hidden'"
+                   formControlName="number"
+                   class="w-100"
+                   inputType="text"
+                   label="پلاک"
+                   placeholder="مثال: ۷"
+                   type="input"></ui-form-field>
+
+    <ui-form-field [convertNonEnglishDigits]="true"
+                   [errorMessageMapper]="errorMapper()"
+                   [error]="addressForm()?.controls?.apt?.errors"
+                   [maxSize]="8"
+                   [required]="true"
+                   [showError]="showError()?'show':'hidden'"
+                   formControlName="apt"
+                   class="w-100"
+                   inputType="text"
+                   label="واحد"
+                   placeholder="مثال: ۷"
+                   type="input"></ui-form-field>
+  </div>
+
+  <ui-form-field [convertNonEnglishDigits]="true"
+                 [errorMessageMapper]="errorMapper()"
+                 [error]="addressForm()?.controls?.postalCode?.errors"
+                 [maxSize]="10"
+                 [required]="true"
+                 [showError]="showError() ? 'show' : 'hidden'"
+                 formControlName="postalCode"
+                 inputType="text"
+                 label="کد پستی"
+                 type="input"></ui-form-field>
+
+  <div class="mb-plus">
+    <ngx-alert
+            [color]="'yellow'"
+            text="طبق بخشنامه بیمه مرکزی، صدور بیمه‌نامه تنها با کدپستی ثبت‌شده در سامانه املاک امکان‌پذیر است. لطفاً در صورت عدم ثبت کدپستی، از طریق لینک زیر اقدام کنید."
+            title="توجه کنید"
+            [hasCloseIcon]="false"
+            [actionButton]="{
+              link: 'سامانه املاک و اسکان',
+            }"
+            (clickAction)="goToAmlak()"
+    ></ngx-alert>
+  </div>
+
+</div>

@@ -1,0 +1,14 @@
+<div class="container">
+  <section>
+    <div class="digipayServices d-flex flex-column gap-medium align-items-center justify-content-center text-align-center">
+      <div class="title fs-l-24 fs-s-20">{{ services.title }}</div>
+      <div class="title fs-l-24 fs-s-20">{{ services.description }}</div>
+      <div class="subtitle fs-16">{{ services.subtitle }}</div>
+    </div>
+  </section>
+  <div class="content d-flex justify-content-center flex-wrap gap-plus align-items-center">
+    @for (item of services.values; track $index) {
+      <app-b2o-financiali-item [item]="item"></app-b2o-financiali-item>
+    }
+  </div>
+</div>

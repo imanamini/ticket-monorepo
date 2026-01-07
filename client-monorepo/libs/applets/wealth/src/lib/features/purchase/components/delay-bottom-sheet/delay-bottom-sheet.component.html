@@ -1,0 +1,33 @@
+<div class="w-100 d-flex flex-wrap">
+  <div class="w-100 d-flex gap-medium flex-column gap-big align-items-center mt-big delay-bottom-sheet">
+    <img
+      src="wealth-assets/svg/calendar-time.svg"
+      alt="calender"
+    />
+    <span class="b-1 px-big text-align-center">
+    با توجه به تصمیم ارکان بازار سرمایه مبتنی بر تعطیلی بازارهای معاملاتی، درخواست خرید یا فروش شما در اولین روز کاری بازار سرمایه اعمال خواهد شد.
+  </span>
+  </div>
+
+  <div class="w-100 d-flex gap-medium mt-medium">
+    <ngx-button
+      buttonId="close"
+      [style]="'tinted-on-elevated'"
+      size="large"
+      [fullWidth]="true"
+      (clickHandler)="close()"
+    >
+      بستن
+    </ngx-button>
+    <ngx-button
+      buttonId="CONFIRM_AND_PAY"
+      [style]="'fill'"
+      size="large"
+      [fullWidth]="true"
+      (clickHandler)="confirm()"
+    >
+      تایید و ادامه
+    </ngx-button>
+  </div>
+
+</div>

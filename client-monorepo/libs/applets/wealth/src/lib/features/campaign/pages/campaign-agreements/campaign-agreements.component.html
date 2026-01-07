@@ -1,0 +1,70 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100dvh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'امضای قراردادها'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+  @if (loading()) {
+    <app-spinner />
+  } @else {
+    <div class="flex-1 d-flex flex-column w-100 px-plus mt-big">
+      <p class="b-2 text-onback-high">برای سرمایه‌گذاری در این صندوق نیاز است قرارداد‌های زیر را به صورت الکترونیکی امضا کنید:</p>
+
+      <div class="w-100 d-flex flex-column border-100 border-color-light radius-medium px-plus py-minus mt-big">
+        @for (agreement of agreements(); track agreement.key; let last = $last) {
+          <div class="w-100 d-flex flex-wrap align-items-center justify-content-space-between">
+            <p class="b-2 text-onback-high">
+              {{ agreement.description }}
+            </p>
+
+            <ngx-button
+              [style]="'link'"
+              [leftIcon]="{
+                name: 'arrow-left',
+              }"
+              (clickHandler)="displayAgreement(agreement)"
+              [size]="'small'"
+            >
+              مشاهده
+            </ngx-button>
+          </div>
+
+          @if (!last) {
+            <ngx-divider
+              class="my-minus"
+              [color]="BorderColorsEnum.Light"
+              orientation="horizontal"
+            />
+          }
+        }
+      </div>
+
+      <ngx-checkbox
+        class="mt-medium"
+        [checked]="checked()"
+        (checkedChange)="checked.set($event)"
+      >
+        با پذیرفتن شرایط این پنج قرارداد، آن‌ها را امضا میکنم.
+      </ngx-checkbox>
+    </div>
+    <div class="w-100 surface-elevated px-plus py-medium sticky-action-group">
+      <ngx-button
+        [buttonId]="'CAMPAIGN_' + state()?.campaignCode + '_CONFIRM_REGISTRATION'"
+        [style]="'fill'"
+        size="medium"
+        [fullWidth]="true"
+        [disabled]="!checked() || isUploading()"
+        (clickHandler)="confirmAgreement()"
+        [isLoading]="isUploading()"
+      >
+        تایید
+      </ngx-button>
+    </div>
+  }
+</div>

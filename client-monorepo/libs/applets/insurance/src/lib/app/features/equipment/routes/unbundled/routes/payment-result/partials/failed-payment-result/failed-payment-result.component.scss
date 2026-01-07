@@ -1,0 +1,199 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.payment-result-content {
+  @include column-center;
+
+  .describe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .icon {
+      width: 90px;
+      height: 90px;
+      background: url("/insurance-assets/icons/failed-payment-checked.svg") no-repeat center;
+      background-size: contain;
+    }
+
+    .title {
+      font-size: 1.2rem;
+      color: #d82137;
+      margin: 30px 0;
+      font-weight: 600;
+    }
+
+    .description-error {
+      .line-one {
+        font-weight: 600;
+        margin-bottom: 10px;
+        text-align: center;
+        color: #424c5c;
+      }
+
+      .line-two {
+        color: #6e798d;
+      }
+    }
+  }
+
+  .buttons {
+    @include flex-center;
+    margin: 40px auto;
+  }
+
+  .more-info-error {
+    @extend %radius-norm;
+    width: 800px;
+    background: #f2f5f8;
+    margin: 0 auto;
+
+    .header {
+      padding: 20px;
+      @include flex-center;
+      border-bottom: 2px solid #ffffff;
+      cursor: pointer;
+
+      .text {
+        text-align: center;
+      }
+
+      .icon {
+        width: 24px;
+        height: 24px;
+        background: url('/insurance-assets/icons/info-border-circle.svg') right 0 no-repeat;
+      }
+    }
+
+    .body {
+      padding: 20px;
+
+      .list {
+        @include flex-center;
+
+        .list-item {
+          padding: 15px;
+          border-left: 1px solid #afb9c5;
+          width: 150px;
+          font-size: .9rem;
+          font-weight: 600;
+
+          &.clickable {
+            cursor: pointer;
+          }
+
+          &:last-child {
+            border: none;
+          }
+
+          .title {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #6e798d;
+            display: flex;
+            justify-content: center;
+
+            .copy-place-holder {
+              background-image: url("/assets/icons/copy.svg");
+              width: 16px;
+              height: 16px;
+              display: block;
+              margin: 0 3px;
+            }
+          }
+
+          .value {
+            direction: ltr;
+            text-align: center;
+            @extend %ellipsis;
+            cursor: default;
+          }
+        }
+      }
+    }
+  }
+
+  .mobile-list {
+    display: none;
+
+    .mobile-list-item {
+      @include flex-start-between;
+      border-bottom: 1px solid #dee3e7;
+      font-size: .9rem;
+      padding: 10px 0;
+
+      &:nth-last-child(2) {
+        border: unset !important;
+      }
+
+      .title {
+        color: #6e798d;
+      }
+
+      .value {
+        color: #2c3544;
+      }
+    }
+
+    .notification {
+      margin-top: 20px;
+      text-align: center;
+      line-height: 1.6;
+      background: #f2f5f8;
+      padding: 10px;
+      font-size: .8rem;
+      @extend %radius-norm;
+    }
+  }
+}
+
+
+@include mediaTablet() {
+  .payment-result-content {
+    .describe {
+      margin-bottom: 24px;
+
+      .icon {
+        width: 60px;
+        height: 60px;
+      }
+
+      .title {
+        margin: 15px 0;
+      }
+
+      .description-error, .title {
+        text-align: center;
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+
+      .description-error {
+        .line-one, .line-two {
+          font-size: .9rem;
+          text-align: center;
+          line-height: 1.7rem;
+        }
+      }
+    }
+
+    .buttons {
+      order: 4;
+      flex-direction: column;
+      width: 100%;
+
+      ui-button {
+        margin: 0 0 10px 0 !important;
+        width: 100% !important;
+      }
+
+    }
+
+    .more-info-error {
+      display: none;
+    }
+
+    .mobile-list {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,83 @@
+<div class="w-100 d-flex flex-wrap surface-elevated h-100 pb-medium">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'بررسی اعتبار'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+  <div class="w-100 d-flex flex-wrap align-items-center justify-content-center px-plus content-container">
+    <img
+      [src]="
+        state()?.cancelResult?.status === ECreditStatus.Failed
+          ? './wealth-assets/svg/failed-credit-icon.svg'
+          : './wealth-assets/svg/check-credit-icon.svg'
+      "
+      alt=""
+    />
+    <div class="w-100 text-align-center mt-big">
+      <p class="st-7 text-onback-high">
+        @if (state()?.cancelResult?.status === ECreditStatus.InClosure) {
+          در حال بررسی لغو اعتبار شما هستیم...
+        } @else if (state()?.cancelResult?.status === ECreditStatus.Failed) {
+          امکان لغو اعتبار شما وجود ندارد
+        } @else {
+          در حال بررسی امکان دریافت اعتبار برای شما هستیم...
+        }
+      </p>
+    </div>
+
+    <div class="w-100 text-align-center mt-small">
+      <p class="bt-2 text-onback-medium">
+        @if (state().cancelResult) {
+          {{ state().cancelResult.message }}
+        } @else {
+          @if (state()?.cancelResult?.status === ECreditStatus.InClosure) {
+            حداکثر تا ۱ روز آینده می‌توانید وضعیت لغو اعتبار خود را در قسمت جزییات اعتبار مشاهده کنید.
+          } @else {
+            حداکثر تا ۲۴ ساعت آینده وضعیت اعتبار شما مشخص خواهد شد و در کیف ثروت قابل مشاهده است. تا پایان بررسی، موجودی شما غیر قابل برداشت
+            خواهد بود.
+          }
+        }
+      </p>
+    </div>
+
+    @if (state()?.cancelResult?.status !== ECreditStatus.InClosure) {
+      <div class="w-100 mt-big">
+        <wealth-applet-bnpl-banner
+          class="d-flex"
+          [bnplTitle]="bnplTitle()"
+          [bnplDescription]="bnplDescription()"
+          [bnplWallet]="true"
+          [displayFee]="true"
+        />
+      </div>
+    }
+
+    @if (trackingCode()) {
+      <p class="st-8 mt-huge text-onback-medium gap-minus">
+        کد رهگیری پرداخت:
+        <span class="text-onback-brand">
+          {{ trackingCode() }}
+        </span>
+      </p>
+    }
+  </div>
+
+  <div class="w-100 cashin-buttons px-plus">
+    <ngx-button
+      [buttonId]="'WALLET_BNPL_DETAIL_CONFIRM'"
+      [style]="'fill'"
+      [fullWidth]="true"
+      [mode]="'form'"
+      size="medium"
+      (clickHandler)="onBackHandler()"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

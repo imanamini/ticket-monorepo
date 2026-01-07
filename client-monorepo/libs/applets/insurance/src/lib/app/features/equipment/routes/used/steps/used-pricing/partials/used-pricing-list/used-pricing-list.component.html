@@ -1,0 +1,35 @@
+<div class="pricing-list-container">
+
+  <div class="title">
+    <p>تعرفه بیمه پیش‌فرض بر اساس ارزش دستگاه</p>
+  </div>
+
+  <div class="suggested-price-card">
+    <div class="suggested-price-card-title">
+      <div class="header-item">
+        ارزش تقریبی
+      </div>
+      <div class="header-item">
+        حق بیمه
+      </div>
+    </div>
+    <div class="suggested-price-card-container">
+      <div *ngFor="let price of pricing" class="pricing-row">
+        <div class="suggest">
+          {{ price?.title }}
+        </div>
+        <div class="price">
+          {{ ( price?.fixedWageAmount / 10 ) | thousands }} تومان
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <ui-button
+            (click)="close()"
+            matDialogClose>
+      متوجه شدم
+    </ui-button>
+  </div>
+</div>

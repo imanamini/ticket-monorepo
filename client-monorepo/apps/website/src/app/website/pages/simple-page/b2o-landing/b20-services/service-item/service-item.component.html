@@ -1,0 +1,14 @@
+<div class="service-item d-flex gap-medium flex-column p-mega">
+  <div><img [src]="item?.featureIcon?.url" alt="{{item.featureTitle}}"></div>
+  <div class="fs-18 title"> {{ item.featureTitle }}</div>
+  <div class="subtitle text-onback-medium fs-12">{{ item.featureText }}</div>
+  <span class="custom-divider"> </span>
+  <div>
+    مورد استفاده:
+  </div>
+  <ul>
+    @for (usage of item.usageList ; track $index){
+      <li class="fs-14">{{ usage.usage }}</li>
+    }
+  </ul>
+</div>

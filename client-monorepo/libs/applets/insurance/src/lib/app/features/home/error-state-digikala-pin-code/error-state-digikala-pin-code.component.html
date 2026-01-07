@@ -1,0 +1,27 @@
+<div
+  class="d-flex flex-grow flex-column justify-content-center gap-huge p-medium surface-elevated align-items-center h-100 w-100"
+  style="position:relative;">
+  @if (isSuperWeb()) {
+    <div
+      class="d-flex flex-row align-items-center justify-content-space-between gap-minus"
+      style="border: 1px solid #e0e0e2; background: white; border-radius: 8px; padding: 12px; position: absolute; top: 16px; left: 16px; cursor: pointer;"
+      (click)="goToDigikala()">
+      رفتن به دیجیکالا
+      <ngx-icon [type]="'linear'"
+                [iconSize]="'24px'"
+                [name]="'arrow-2-left'"></ngx-icon>
+    </div>
+  }
+  <ngx-illustration-icon
+    [icon]="'rocket'"
+    [mode]="'info'"
+  />
+  <div class="mt-huge">
+    <ngx-alert
+      [color]="'blue'"
+      [hasCloseIcon]="false"
+      text="امکان استفاده از این بخش هنوز برای همه کاربران فعال نشده و به زودی در دسترس شما قرار خواهد گرفت."
+      title="این سرویس در حال راه‌اندازی است"
+    ></ngx-alert>
+  </div>
+</div>

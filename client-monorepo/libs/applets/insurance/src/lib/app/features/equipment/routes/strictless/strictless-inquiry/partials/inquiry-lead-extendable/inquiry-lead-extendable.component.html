@@ -1,0 +1,40 @@
+<div class="extendable">
+  <div class="describe">
+    <div class="title">درخواست تمدید مهلت صدور بیمه‌نامه</div>
+    <div class="description">در صورتی که هنوز تمایل به صدور بیمه برای دستگاه با اطلاعات زیر هستید می‌توانید درخواست خود
+      را برای تمدید زمان خرید بیمه‌نامه ثبت کنید تا همکاران ما در اولین فرصت درخواست شما را بررسی کنند و از طریق پیامک
+      نتیجه را به شما اعلام می‌کنیم.
+    </div>
+  </div>
+  <div class="policy-detail">
+
+    <div class="device-name">
+      <div class="title">اطلاعات دستگاه:</div>
+      <div class="value">{{ purchase.electronicEquipment.brand + ' ' + purchase.electronicEquipment.model }}</div>
+    </div>
+    <div class="device-buyer">
+      <div class="title">نام بیمه گر:</div>
+      <div class="value">{{ purchase.policyHolder.fullName }}</div>
+    </div>
+    <div class="buy-date">
+      <div class="title">تاریخ خرید دستگاه:</div>
+      <div class="value">{{ purchase.orderedAt }}</div>
+    </div>
+  </div>
+  <div class="call-detail">
+    <div class="call">
+      <div class="title">شماره تماس:</div>
+      <a class="value" href="tel:02153924000">۰۲۱-53924000</a>
+    </div>
+    <div class="email">
+      <div class="title">ایمیل:</div>
+      <div (click)="openEmail()" class="value">support"&#64;"mydigipay.com</div>
+    </div>
+  </div>
+  <div class="hint">
+    <img class="img" src="assets/icons/hint-warning.svg"/>
+    <div class="hint-message">
+      توجه داشته باشید درخواست تمدید مهلت برای مدت کوتاهی فعال است و بعد از آن دیگر امکان صدور بیمه‌نامه وجود ندارد.
+    </div>
+  </div>
+</div>

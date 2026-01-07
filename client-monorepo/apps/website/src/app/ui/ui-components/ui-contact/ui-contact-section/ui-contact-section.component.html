@@ -1,0 +1,33 @@
+<section class="digipay-contact-form">
+  <div class="container">
+    <div class="form-contain">
+      <div class="section-title text-align-center">
+        <h2>{{ title }}</h2>
+        <div
+          *ngIf="description"
+          class="subtitle"
+        >
+          {{ description }}
+        </div>
+      </div>
+      <div
+        *ngIf="notice"
+        class="notice-bordered"
+      >
+        <span>{{ notice }}</span>
+      </div>
+
+      <ng-container [ngTemplateOutlet]="switchBtn"></ng-container>
+
+      <div
+        class="form"
+        role="form"
+      >
+        <app-contact-form
+          *ngIf="contactForm"
+          [contactFormDefinition]="contactForm"
+        ></app-contact-form>
+      </div>
+    </div>
+  </div>
+</section>

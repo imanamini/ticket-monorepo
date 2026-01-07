@@ -1,0 +1,238 @@
+<!doctype html>
+<html
+  lang="fa"
+  dir="rtl"
+>
+  <head>
+    <script>
+      window.digipayHybridApp = window.digipayHybridApp || {};
+      window.digipayHybridApp.setPermissions = function () {};
+      window.digipayHybridApp.setCurrentLifeCycle = function () {};
+      window.digipayHybridApp.setOtpCode = function () {};
+      window.digipayHybridApp.getMarketName = function () {};
+      window.digipayHybridApp.setContact = function () {};
+      window.digipayHybridApp.setDynamicPassword = function () {};
+      window.digipayHybridApp.setGPSStatus = function () {};
+      window.digipayHybridApp.setBiometricResult = function () {};
+      window.addEventListener('error', function (event) {
+        const filename = event && event.filename ? event.filename : '';
+
+        const isJsChunk = filename.endsWith('.js');
+
+        if (isJsChunk) {
+          console.warn('JS file failed to load:', filename);
+
+          if (!sessionStorage.getItem('chunkRetry')) {
+            sessionStorage.setItem('chunkRetry', 'true');
+            window.location.reload();
+          } else {
+            console.error('JS chunk still failed after retry.');
+          }
+        }
+      });
+
+      window.addEventListener('unhandledrejection', (event) => {
+        const message = event?.reason?.message || '';
+
+        if (message.indexOf('Loading chunk') < -1 && message.indexOf('failed') < -1) {
+          console.warn('Lazy chunk load failure:', message);
+          if (!sessionStorage.getItem('chunkRetry')) {
+            sessionStorage.setItem('chunkRetry', 'true');
+            window.location.reload();
+          } else {
+            console.error('Lazy chunk failed even after retry.');
+          }
+          window.location.reload();
+        }
+      });
+    </script>
+    <meta charset="utf-8" />
+    <title>دیجی‌پی | خدمات مالی و پرداخت</title>
+    <base href="/" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover maximum-scale=1.0"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no"
+    />
+    <meta
+      name="color-scheme"
+      content="light"
+    />
+    <meta
+      name="supported-color-schemes"
+      content="light"
+    />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta
+      http-equiv="Pragma"
+      content="no-cache"
+    />
+    <meta
+      http-equiv="Expires"
+      content="0"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="favicon.ico"
+    />
+    <style>
+      .env {
+        position: fixed;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        background: yellow;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+        border-radius: 0 50% 50% 0;
+        padding: 0 10px 0 4px;
+        z-index: 2;
+      }
+      body {
+        position: relative;
+        height: 100dvh;
+        width: 100svw;
+        margin: 0;
+      }
+    </style>
+    <script>
+      var now = Date.now();
+
+      // Function to safely check if localStorage is available
+      function isLocalStorageAvailable() {
+        try {
+          const test = '__localStorage_test__';
+          localStorage.setItem(test, test);
+          localStorage.removeItem(test);
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      // Function to safely get from localStorage
+      function safeGetLocalStorage(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (e) {
+          console.warn('localStorage access denied:', e);
+          return null;
+        }
+      }
+
+      // Function to safely set to localStorage
+      function safeSetLocalStorage(key, value) {
+        try {
+          localStorage.setItem(key, value);
+          return true;
+        } catch (e) {
+          console.warn('localStorage write denied:', e);
+          return false;
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        if (isLocalStorageAvailable()) {
+          const splashTime = safeGetLocalStorage('splashTime');
+          if (!splashTime) {
+            showSplash();
+          } else {
+            if (now - parseInt(splashTime) > 60 * 60 * 1000) {
+              showSplash();
+            }
+          }
+        } else {
+          showSplash();
+        }
+      });
+
+      const showSplash = function () {
+        try {
+          if (document.getElementById('nativeSplash')) {
+            document.getElementById('nativeSplash').style.display = 'flex';
+          }
+          if (document.getElementById('angularSplash')) {
+            document.getElementById('angularSplash').style.display = 'flex';
+          }
+        } catch (e) {
+          console.warn(e);
+        }
+
+        // Safely store the splash time
+        if (isLocalStorageAvailable()) {
+          safeSetLocalStorage('splashTime', now.toString());
+        }
+      };
+    </script>
+    <link
+      rel="manifest"
+      href="manifest.stg.webmanifest"
+    />
+    <meta
+      name="theme-color"
+      content="#005DFF"
+    />
+    <script>
+      // iOS webview detection and service worker fix
+      (function () {
+        var isIOSWebView = function () {
+          var ua = window.navigator.userAgent.toLowerCase();
+          var isIOS = /iphone|ipod|ipad/.test(ua);
+          var isWebView = !window.navigator.standalone && !/safari/.test(ua);
+          return isIOS && (isWebView || window.webkit);
+        };
+
+        var clearServiceWorkerCache = function () {
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function (registrations) {
+              registrations.forEach(function (registration) {
+                registration.unregister();
+              });
+            });
+
+            if ('caches' in window) {
+              caches.keys().then(function (names) {
+                names.forEach(function (name) {
+                  caches.delete(name);
+                });
+              });
+            }
+          }
+        };
+
+        // Check if we're in iOS webview
+        if (isIOSWebView()) {
+          console.log('iOS WebView detected');
+
+          // Check for force refresh flag
+          var shouldForceRefresh = safeGetLocalStorage('dpx_force_refresh');
+          if (shouldForceRefresh === 'true') {
+            console.log('Force refresh requested, clearing caches');
+            clearServiceWorkerCache();
+            safeSetLocalStorage('dpx_force_refresh', 'false');
+          }
+
+          // Store iOS webview flag for later use
+          window.__IS_IOS_WEBVIEW__ = true;
+        }
+      })();
+    </script>
+  </head>
+  <body
+    class="light surface-back no-select"
+    id="body"
+  >
+    <dpx-root></dpx-root>
+    <span class="env">STG</span>
+  </body>
+</html>

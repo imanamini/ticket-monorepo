@@ -1,0 +1,21 @@
+
+:host {
+  display: flex;
+  width: 100%;
+}
+
+.d-grid {
+  grid-template-columns: 1.5fr 1fr;
+  position: relative;
+  overflow: hidden;
+  min-height: 72px;
+
+  img {
+    position: absolute;
+    right: 0;
+  }
+
+  span, ngx-button {
+    z-index: 1;
+  }
+}

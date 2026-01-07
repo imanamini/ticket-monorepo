@@ -1,0 +1,132 @@
+@import "globals";
+
+:host {
+  display: block;
+  padding: 80px 0 0;
+  background: #f2f4fb;
+}
+
+.job-post {
+  padding: 0 24px;
+  max-width: 1200px;
+  margin: 30px auto;
+}
+
+.body {
+  line-height: 180%;
+  margin-bottom: 40px;
+
+  ::ng-deep {
+    p {
+      margin-bottom: 0.3em;
+    }
+
+    ol,
+    ul {
+      list-style: unset;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+  }
+}
+
+.job-post-header {
+  background: #fff;
+  border-radius: 24px;
+  padding: 24px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  h1 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+  }
+
+  .job-meta {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 32px;
+  }
+}
+
+.job-post-body {
+  margin: 0;
+  padding: 0 !important;
+
+  h2 {
+    font-weight: 700;
+  }
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  margin: 24px 0 32px;
+  color: #061962;
+
+  .highlight {
+    color: $swatch_blue_500;
+  }
+
+  li a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  li:not(:first-child) {
+    &::before {
+      color: #061962;
+      content: '|';
+      margin: 0 12px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
+
+.content-box {
+  background: #fff;
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid $swatch_steel_200;
+}
+
+.apply-cta {
+  margin: 54px 0 30px;
+  text-align: center;
+
+  > app-ui-button {
+    margin: 0 10px;
+  }
+}
+
+.successful-application {
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  direction: rtl;
+
+  .title {
+    font-size: 24px;
+  }
+
+  .desc {
+    font-size: 14px;
+  }
+
+  .cta {
+    margin: 60px 0 0;
+  }
+}

@@ -1,0 +1,9 @@
+<ngx-icon
+  [ngClass]="{ tint: gradientMode() === 'tint' }"
+  [name]="icon()"
+  [type]="iconType()"
+  [secondaryColor]="secondaryColor() ? secondaryColor()! : ''"
+  [iconSize]="iconSize() + 'px'"
+  [classes]="classes()"
+  [style]="styles()"
+></ngx-icon>

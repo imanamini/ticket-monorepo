@@ -1,0 +1,135 @@
+@import "globals";
+
+
+
+.background {
+  background-color: $swatch_steel_100;
+}
+
+.container {
+  .seo-title {
+    display: flex;
+    justify-content: center;
+    padding-top: 144px;
+    font-size: 27px;
+    font-weight: 950;
+    line-height: 180%;
+  }
+
+  .breadcrumbs.desktop {
+    padding: 16px 40px 0;
+  }
+
+  .swiper-title {
+    color: $swatch_steel_900;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .h-divider {
+    border-top: 1px solid $swatch_steel_200;
+    margin: 0 40px;
+  }
+
+  .posts-ads {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 24px;
+
+    .advertisements {
+      padding: 64px 0;
+
+      .box {
+        cursor: pointer;
+        background-image: url('/assets/blog/side-banners/desktop.png');
+        width: 384px;
+        height: 224px;
+        position: sticky;
+        top: 124px;
+        margin-bottom: 64px;
+
+        .ad {
+          border: 1px solid #000;
+          height: 100px;
+          margin-bottom: 24px;
+          border-radius: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .container {
+    .seo-title {
+      padding-top: 112px;
+    }
+
+    .breadcrumbs.desktop {
+      padding: 16px 40px 0;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .posts-ads {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+
+      .advertisements {
+        padding: 32px 0 0 0;
+
+        .box {
+          background-image: url('/assets/blog/side-banners/tablet.png');
+          width: 650px;
+          height: 83px;
+          display: flex;
+          gap: 24px;
+          margin: 0;
+
+          .ad {
+            width: calc(50% - 12px);
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .container {
+    .seo-title {
+      padding-top: 64px;
+    }
+
+    .breadcrumbs.desktop {
+      padding: 8px 40px 16px;
+    }
+
+    .swiper-title {
+      font-size: 10px;
+    }
+
+    .posts-ads {
+      margin: 16px 0;
+
+      .advertisements {
+        padding: 16px 0 0 0;
+
+        .box {
+          background-image: url('/assets/blog/side-banners/mobile.png');
+          width: 328px;
+          height: 224px;
+          display: block;
+          margin: auto;
+
+          .ad {
+            width: 100%;
+            margin-bottom: 16px;
+          }
+        }
+      }
+    }
+  }
+}

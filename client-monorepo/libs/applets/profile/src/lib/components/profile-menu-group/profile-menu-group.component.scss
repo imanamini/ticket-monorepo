@@ -1,0 +1,49 @@
+.profile-menu-group {
+  &-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    &-item {
+      width: 100%;
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      cursor: pointer;
+      text-decoration: none !important;
+
+      &.disabled {
+        cursor: not-allowed;
+      }
+
+      &-iconbox {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        width: 40px;
+      }
+
+      &-body {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &-data {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+        }
+      }
+
+      &-action {
+        display: flex;
+        align-items: center;
+        justify-content: center
+      }
+    }
+  }
+}

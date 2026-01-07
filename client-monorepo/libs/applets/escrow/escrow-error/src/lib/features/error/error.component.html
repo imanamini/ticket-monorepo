@@ -1,0 +1,13 @@
+<ngx-status-result
+  [title]="'خطا در دسترسی'"
+  [description]="errorMessage()"
+  [buttons]="button()"
+  (clicked)="redirect()"
+>
+  <ng-container status-image>
+    <img
+      src="assets/images/error.svg"
+      alt="خطا"
+    />
+  </ng-container>
+</ngx-status-result>

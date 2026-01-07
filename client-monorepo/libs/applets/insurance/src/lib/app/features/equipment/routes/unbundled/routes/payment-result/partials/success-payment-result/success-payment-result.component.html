@@ -1,0 +1,72 @@
+<div class="payment-result-content">
+
+  <div class="describe">
+    <div class="icon"></div>
+    <div
+      class="title">بیمه تجهیزات الکترونیک شما با موفقیت فعال شد.
+    </div>
+    <div class="description-success"
+    >{{ result?.userName }} عزیز! دستگاه خریداری شده توسط شما با موفقیت بیمه شد، بیمه‌نامه خود را از طریق لینک موجود
+      دریافت کنید.
+    </div>
+  </div>
+
+  <div class="buttons">
+
+    <a
+      [href]="result.policyPdfUrl"
+      class="link"
+      target="_blank">
+      <ui-button [style]="{'width':'220px'}">دریافت سند بیمه نامه</ui-button>
+    </a>
+
+    <a
+      [href]="result.invoicePdfUrl"
+      class="link"
+      target="_blank">
+      <ui-button [style]="{'width':'220px','margin-right': '10px'}"
+                 appearance="BLUE-TEXT">
+        دریافت رسید وصول حق بیمه
+      </ui-button>
+    </a>
+
+  </div>
+
+  <div class="more-info">
+    <div class="top">
+      <div class="success-info">
+        <div class="digipay-icon"></div>
+        <div class="head">
+          <p class="head-title">مدل دستگاه</p>
+          <div class="head-value">{{ result?.productName }}</div>
+        </div>
+        <div class="list">
+          @for (result of resultList; track result.title) {
+            <div class="list-item">
+              <div class="title">{{ result?.title }}</div>
+              <div class="value">{{ result?.value }}</div>
+            </div>
+          }
+
+        </div>
+      </div>
+      <div class="remaining-days">
+        <div class="content">
+          <insurtech-collection-image-cdn
+            [category]="'category'"
+            [status]="'active'"
+            [subCategory]="'mobile'"
+          ></insurtech-collection-image-cdn>
+          <div class="remain">{{ result?.tillEnd }} روز</div>
+          <div class="description">باقی مانده تا پایان اعتبار</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tips-container">
+    <app-tips [result]="result"></app-tips>
+  </div>
+
+</div>
+

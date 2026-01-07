@@ -1,0 +1,21 @@
+<div class="w-100 d-flex flex-column p-plus flex-column align-items-center">
+  <div class="radius-rounded surface-glass-onelevated d-flex align-items-center justify-content-center icon-container">
+    <ngx-icon
+      [name]="'error-circle'"
+      [type]="'bold'"
+      [iconSize]="'48px'"
+      class="surfaces-status-warning"
+    />
+  </div>
+
+  <p class="st-3 text-onback-high mt-huge">شما طرح غیر فعال دارید</p>
+  <p class="b-2 text-onback-medium mt-low text-align-center">ابتدا نسبت به فعال‌سازی طرح‌های غیر فعال اقدام کنید.</p>
+
+  <ngx-button
+    class="mt-giant"
+    (clickHandler)="handleAction('continue')"
+    [fullWidth]="true"
+  >
+    متوجه شدم
+  </ngx-button>
+</div>

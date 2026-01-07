@@ -1,0 +1,24 @@
+<app-credit-app-bar
+  (onBackButtonClick)="exit()"
+  (onTextClick)="onActionClick()"
+  [actionImage]="actionImage()"
+  [actionText]="actionText()"
+  [backButton]="true"
+  title="نتیجه امکان‌سنجی"
+></app-credit-app-bar>
+@if (!gettingData()) {
+  <app-credit-scoring-smc-step-result-status
+    [loading]="loading()"
+    [status]="finalStatus()"
+    [trackingCode]="trackingCode()"
+    (report)="report.emit()"
+    (goToActivation)="goToSteps()"
+    (cancelActivation)="cancelActivation()"
+    (close)="exit()"
+  ></app-credit-scoring-smc-step-result-status>
+}
+@if (gettingData()) {
+  <div class="flex-full-height loading-wrapper">
+    <credit-page-loading [active]="true"></credit-page-loading>
+  </div>
+}

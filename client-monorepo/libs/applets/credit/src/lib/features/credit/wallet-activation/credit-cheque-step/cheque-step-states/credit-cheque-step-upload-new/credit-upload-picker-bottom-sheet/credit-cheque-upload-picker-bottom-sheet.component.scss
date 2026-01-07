@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.check {
+  width: 20px;
+  height: 20px;
+  background: url("../../../assets/credit-radio-disable.svg") center center no-repeat;
+  background-size: contain;
+
+  &.is-active {
+    background: url("../../../assets/credit-radio-enable.svg") center center no-repeat;
+  }
+}

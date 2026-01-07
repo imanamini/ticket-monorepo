@@ -1,0 +1,25 @@
+<div class="group-card-list">
+  <div
+    *ngFor="let item of groupCards"
+    class="group-card-item"
+  >
+    @if (item.fundProviderName) {
+      <app-credit-fund-provider-groups-card
+        (ctaClick)="
+          onSelectFundProvider({
+            fundProviderCode: item.fundProviderCode,
+            allocationPrepaymentAmount: item.allocationPrepaymentAmount,
+            collaterals: item.collaterals,
+          })
+        "
+        (selectCollateral)="passCollateral($event)"
+        [certainFundProviderCode]="certainFundProviderCode"
+        [certainPlan]="certainPlan"
+        [data]="item"
+        [isDetailPageCtaDisplayed]="isDetailPageCtaDisplayed"
+        [showFundProviderIcon]="showFundProviderIcon"
+        [showInterestPercentage]="showInterestPercentage"
+      ></app-credit-fund-provider-groups-card>
+    }
+  </div>
+</div>

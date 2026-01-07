@@ -1,0 +1,10 @@
+<section id="home-introduction">
+  <h1>
+    <div id="home-introduction-title">{{ title }}</div>
+    <div id="home-introduction-subtitle">{{ subtitle }}</div>
+  </h1>
+  <app-home-services
+    [loaded]="services.length > 0"
+    [services]="services"
+  ></app-home-services>
+</section>

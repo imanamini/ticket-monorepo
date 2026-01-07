@@ -1,0 +1,102 @@
+<div class="d-flex flex-column gap-medium">
+  <div class="pos-relative d-flex flex-column pt-plus px-medium pb-medium surface-back radius-minus gap-low">
+    @if (showBadge()) {
+      <div class="nearest-branch">
+        <ngx-badge
+          [status]="'warning'"
+          [style]="'bold'"
+          [size]="'tiny'"
+        >
+          نزدیک‌ترین شعبه
+        </ngx-badge>
+      </div>
+    }
+    <!--  Branch Name-->
+    <div
+      class="d-flex no-wrap"
+      [ngClass]="{ 'justify-content-space-between': mode() === 'COMPACT', 'justify-content-start': mode() === 'EXTENDED' }"
+    >
+      <div class="bt-2 text-onback-high">
+        {{ branch().title }}
+      </div>
+      @if (mode() === 'COMPACT') {
+        <ngx-button
+          [style]="'link'"
+          [size]="'tiny'"
+          [leftIcon]="leftIcon"
+          (clickHandler)="goToGoogleMap()"
+        >
+          مسیریابی
+        </ngx-button>
+      }
+    </div>
+    <!-- End Branch Name -->
+
+    <!-- Address -->
+    <div class="d-flex justify-content-start gap-tiny">
+      <ngx-icon
+        [name]="'location'"
+        [iconSize]="'16px'"
+      ></ngx-icon>
+      <div class="c-3 text-onback-medium">
+        {{ branch().address }}
+      </div>
+    </div>
+    <!-- End Address -->
+
+    <!-- Working Hours is Deleted Until Data Is Ready -->
+    <!--  <div class="d-flex justify-content-start gap-tiny">-->
+    <!--    <ngx-icon-->
+    <!--      [name]="'circle-clock'"-->
+    <!--      [iconSize]="'16px'"-->
+    <!--    ></ngx-icon>-->
+    <!--    <div class="c-3">-->
+    <!--    </div>-->
+    <!--  </div>-->
+
+    <!-- Phone Number -->
+    @if (branch().phoneNumber) {
+      <div class="d-flex justify-content-start gap-tiny">
+        <ngx-icon
+          [name]="'call'"
+          [iconSize]="'16px'"
+        ></ngx-icon>
+        <ngx-button
+          [style]="'link'"
+          [size]="'tiny'"
+          (clickHandler)="makeCall()"
+        >
+          {{ branch().phoneNumber }}
+        </ngx-button>
+      </div>
+    }
+    <!-- End Phone Number -->
+  </div>
+
+  <!-- Extended Action Buttons -->
+  @if (mode() === 'EXTENDED') {
+    <div class="w-100 d-flex gap-small justify-content-center align-items-center">
+      @if (showDetailsBtn()) {
+        <ngx-button
+          [style]="'tinted-on-elevated'"
+          [size]="'medium'"
+          [fullWidth]="true"
+          (clickHandler)="goToDetails()"
+        >
+          جزییات
+        </ngx-button>
+      }
+      @if (showNavBtn()) {
+        <ngx-button
+          [style]="'fill'"
+          [size]="'medium'"
+          [fullWidth]="true"
+          (clickHandler)="goToGoogleMap()"
+        >
+          مسیریابی
+        </ngx-button>
+      }
+    </div>
+  }
+  <!-- End Extended Action Buttons -->
+</div>

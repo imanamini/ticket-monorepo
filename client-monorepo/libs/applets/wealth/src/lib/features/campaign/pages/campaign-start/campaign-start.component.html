@@ -1,0 +1,35 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100dvh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'دریافت جایزه گنج'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="d-flex flex-column flex-1 align-items-center justify-content-start w-100">
+    <img src="wealth-assets/images/treasure-hunt-2.svg" />
+    <p class="st-7 text-onback-high">برای دریافت جایزه گنج حرکت کن!</p>
+    <p class="bt-2 text-onback-low mt-small">
+      {{
+        state().role === 'guest' ? 'در این فرایند شما ابتدا در کارگزاری ثبت‌نام می‌شوید.' : 'تنها یک مرحله برای دریافت جایزه پیش‌رو دارید.'
+      }}
+    </p>
+  </div>
+
+  <div class="w-100 surface-elevated px-plus py-medium sticky-action-group">
+    <ngx-button
+      buttonId="CAMPAIGN_START"
+      [style]="'fill'"
+      [fullWidth]="true"
+      [leftIcon]="{ name: 'arrow-left' }"
+      (clickHandler)="toNationalId()"
+    >
+      حرکت
+    </ngx-button>
+  </div>
+</div>

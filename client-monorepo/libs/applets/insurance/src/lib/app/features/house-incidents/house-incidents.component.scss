@@ -1,0 +1,16 @@
+.house-incidents-container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  max-width: var(--max-width-container);
+  border: {
+    left-width: 1px;
+    right-width: 1px;
+    style: solid;
+    color: var(--border-light);
+  }
+
+  & > :nth-child(2) {
+    flex: 1;
+  }
+}

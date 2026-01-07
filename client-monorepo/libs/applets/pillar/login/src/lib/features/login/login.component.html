@@ -1,0 +1,50 @@
+@if (hasPassword()) {
+  <pillar-error-state [errorType]="'HAS_PASSWORD'"></pillar-error-state>
+} @else if (slides().length > 0) {
+  <div class="login-onboarding-wrapper pt-massive h-100">
+    <ngx-dp-carousel
+      [mode]="'CARD'"
+      [visibleItemCount]="1.5"
+      [index]="index()"
+      [centerMode]="true"
+      [showNavigation]="true"
+      [showButtons]="false"
+      [mainContainerClasses]="'h-100 overflow-visible'"
+      [isFixedGap]="true"
+      [fixedGap]="10"
+      [isSlideOverflowVisible]="true"
+      [scalingTransformOrigin]="'center center'"
+    >
+      @for (slide of slides(); track slide.id) {
+        <ng-template ngxDpCarouselSlide>
+          <div class="onboarding-item radius-big d-flex flex-column justify-content-center align-items-center pt-atom p-small">
+            <div class="picture-bg d-flex radius-huge justify-content-center align-items-center">
+              <img
+                [src]="'assets/' + slide.image + '.webp'"
+                [alt]="slide.title"
+                class="overflow-image"
+                fetchpriority="high"
+              />
+            </div>
+            <div class="item-text-wrapper d-flex flex-column gap-tiny justify-content-center align-items-center">
+              <div class="text-align-center text-onback-high st-5 w-100">{{ slide.title }}</div>
+              <div class="text-align-center text-onback-medium b-2">{{ slide.text }}</div>
+            </div>
+          </div>
+        </ng-template>
+      }
+    </ngx-dp-carousel>
+
+    <div class="d-flex flex-column align-items-center px-mega mt-plus">
+      <p class="text-onback-medium c-2 mb-medium text-align-center">برای بهره‌مندی از خدمات اعتباری و فعالسازی کیف پول، لطفا وارد شوید</p>
+      <ngx-button
+        [mode]="'section'"
+        [size]="'medium'"
+        [fullWidth]="true"
+        (clickHandler)="login()"
+      >
+        ورود
+      </ngx-button>
+    </div>
+  </div>
+}

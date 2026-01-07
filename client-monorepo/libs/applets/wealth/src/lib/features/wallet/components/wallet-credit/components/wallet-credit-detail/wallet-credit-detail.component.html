@@ -1,0 +1,45 @@
+<div class="w-100 gap-small container">
+  <div class="d-flex align-items-center justify-content-center p-small onback-shade-95 radius-medium">
+    <img
+      [ngClass]="{ disabled: creditStatusEnum() === ECreditStatus.Closed }"
+      src="./wealth-assets/svg/bnpl-icon.svg"
+      alt="bnpl"
+    />
+  </div>
+
+  <div class="d-flex flex-wrap amount-container">
+    <div class="w-100 d-flex align-items-center justify-content-space-between">
+      <p
+        class="st-6 text-onback-high is-currency"
+        [ngClass]="{ disabled: creditStatusEnum() === ECreditStatus.Closed }"
+      >
+        {{ creditAmount() | thousands }} ریال
+      </p>
+      <ngx-badge
+        [status]="'neutral'"
+        [mode]="'fill'"
+        [size]="'sm'"
+      >
+        کارمزد 0٪
+      </ngx-badge>
+    </div>
+    <div class="w-100 mt-tiny d-flex align-items-center justify-content-space-between">
+      <p
+        class="c-2 text-onback-medium"
+        [ngClass]="{ disabled: creditStatusEnum() === ECreditStatus.Closed }"
+      >
+        اعتبار 4 قسطه
+      </p>
+
+      @if (badgeState()) {
+        <ngx-badge
+          [status]="waitingBadge() ? 'warning' : 'error'"
+          [mode]="'bold'"
+          [size]="'sm'"
+        >
+          {{ badgeTitle() }}
+        </ngx-badge>
+      }
+    </div>
+  </div>
+</div>

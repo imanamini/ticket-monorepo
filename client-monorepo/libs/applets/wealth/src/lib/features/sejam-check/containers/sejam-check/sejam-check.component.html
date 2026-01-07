@@ -1,0 +1,72 @@
+<div class="sejam-check-container">
+  @if (isLoading()) {
+    <app-spinner class="sejam-spinner"></app-spinner>
+  }
+  <ngx-app-bar
+    class="w-100"
+    [title]="'بررسی حساب سجام'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="sejam-check-content">
+    <div class="sejam-image">
+      <img
+        src="wealth-assets/svg/user-sejam.svg"
+        alt=""
+      />
+    </div>
+    <div class="sejam-title">حساب سجام چیست؟</div>
+    <div class="sejam-description">
+      <div class="description-bullets"></div>
+      <div class="description-items">
+        <div class="sejam-desc-item">
+          <div class="bullet"></div>
+          <span>
+            سامانه جامع اطلاعات مشتریان (سجام) یک سامانه زیر ساختی در بازار سرمایه است که تمام فعالین این بازار فقط یک بار برای همیشه
+            اطلاعات خود را در آن ثبت خواهند کرد.
+          </span>
+        </div>
+        <div class="sejam-desc-item">
+          <div class="bullet"></div>
+          <span>
+            شما با ثبت‌نام در این سامانه می‌توانید به تمامی سرویس های بازار سرمایه مانند کارگزاری‌ها، صندوق‌های سرمایه‌گذاری، شرکتهای تامین
+            سرمایه و ... دسترسی داشته باشید.
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="sejam-check-description">در فرایند پیش رو می‌توانید سجامی بودن خود را بررسی کنید.</div>
+    <!-- <div class="sejam-max-request">
+      <div class="sejam-max-icon">
+        <ngx-icon
+          class="investment-over--icon"
+          [name]="'error-circle'"
+          [type]="'linear'"
+        />
+      </div>
+      <div class="sejam-max-text">
+        <span class="sejam-max-title">
+        سقف درخواست شما برای امروز پر شده است
+        </span>
+        <span>لطفا فردا برای بررسی حساب سجامتان اقدام کنید</span>
+      </div>
+    </div> -->
+    <div class="sejam-buttton">
+      <ngx-button
+        [buttonId]="'SEJAM_CHECK'"
+        size="medium"
+        [fullWidth]="true"
+        (clickHandler)="gotIt()"
+        mode="form"
+      >
+        بررسی حساب سجام
+      </ngx-button>
+    </div>
+  </div>
+</div>

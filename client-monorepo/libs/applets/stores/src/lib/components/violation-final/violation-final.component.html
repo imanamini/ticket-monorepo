@@ -1,0 +1,48 @@
+<div class="h-100 d-flex flex-column justify-content-center gap-giant px-plus">
+  @if (showSuccess() || showError()) {
+    <div class="d-flex justify-content-center gap-big flex-column align-items-center">
+      @if (showSuccess()) {
+        <img
+          [src]="'assets/shared/stores/violation/submit-report.svg'"
+          [style.width]="'120px'"
+        />
+      }
+      <div class="d-flex flex-column">
+        <div class="st-3 text-onback-high text-align-center">
+          {{ showSuccess() ? 'با تشکر از ثبت گزارش شما' : errorText() }}
+        </div>
+        @if (showSuccess()) {
+          <div class="b-2 text-onback-medium text-align-center">کارشناسان ما در سریعترین زمان ممکن پیگیری‌های لازم را به عمل می‌آورند.</div>
+        }
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center flex-wrap gap-low">
+      <ngx-button
+        [size]="'large'"
+        [style]="'fill'"
+        [mode]="'section'"
+        (clickHandler)="goToShop()"
+        >بازگشت به فروشگاه
+      </ngx-button>
+
+      @if (showError()) {
+        <ngx-button
+          [size]="'large'"
+          [style]="'tinted-on-elevated'"
+          [mode]="'section'"
+          (clickHandler)="retry()"
+          >تلاش مجدد
+        </ngx-button>
+      }
+    </div>
+  } @else {
+    <div class="d-flex flex-column justify-content-center align-items-center h-100 w-100 gap-medium">
+      <ngx-spinner
+        size="md"
+        color="primary"
+      ></ngx-spinner>
+      <div class="st-8">در حال ثبت گزارش...</div>
+    </div>
+  }
+</div>

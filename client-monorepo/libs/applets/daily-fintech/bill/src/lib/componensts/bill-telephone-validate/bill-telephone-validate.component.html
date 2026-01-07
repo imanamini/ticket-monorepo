@@ -1,0 +1,46 @@
+<div class="page-content py-big px-medium">
+  <form [formGroup]="billInquiryForm">
+    <span class="header-text b-2">
+      تلفن ثابت خود را به همراه <span class="header-text-bold st-8">کد شهر</span> وارد کرده و بدهی قبض مخابرات خود را استعلام و پرداخت کنید.
+    </span>
+    <div class="form-group mt-minus">
+      <ui-form-field
+        [error]="billInquiryForm.controls['cellNumber'].errors"
+        [hasCleaner]="true"
+        [isNumericKeyboard]="true"
+        class="flex-grow"
+        formControlName="cellNumber"
+        inputType="tel"
+        placeholder="مثال: ۵۵۷۷ ۵۵۷۷ ۰۲۱"
+        label="شماره تلفن ثابت"
+        [maxSize]="15"
+        type="input"
+      >
+      </ui-form-field>
+
+      <div class="button-container mt-huge">
+        <ngx-button
+          [mode]="'form'"
+          (clickHandler)="confirmNavigation()"
+          [size]="'large'"
+          [disabled]="billInquiryForm.invalid || !this.billInquiryForm.controls['cellNumber'].value || isSubmitting()"
+          [isLoading]="isSubmitting()"
+          [style]="'fill'"
+          [fullWidth]="true"
+        >
+          ذخیره و استعلام
+        </ngx-button>
+      </div>
+    </div>
+  </form>
+  @if (billType()) {
+    <daily-fintech-recommendation-list
+      [hasSpinner]="[]"
+      (handleClick)="recommendationItemClicked($event)"
+      [billType]="billType()"
+      [itemType]="RECOMMENDATION_TYPES.BILL"
+      title="قبض‌های من"
+    >
+    </daily-fintech-recommendation-list>
+  }
+</div>

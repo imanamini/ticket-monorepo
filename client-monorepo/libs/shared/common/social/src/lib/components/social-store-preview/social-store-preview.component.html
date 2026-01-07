@@ -1,0 +1,38 @@
+<div class="merchant-preview d-flex flex-column gap-small p-pony radius-medium surface-elevated">
+  <!-- Posts Grid -->
+  <div class="radius-minus overflow-hidden">
+    <common-social-posts-grid
+      [disablePagination]="true"
+      [showNoItems]="false"
+      [columns]="2"
+      [disableInternalApiCall]="true"
+      [disableClickFunction]="true"
+      [storePost]="store()"
+      [pageSize]="4"
+      [gridMode]="'SQUARE'"
+    ></common-social-posts-grid>
+  </div>
+  <!-- End Posts Grid -->
+
+  <!-- Merchant Name -->
+  <div class="d-flex justify-content-start align-items-center gap-small">
+    <!-- Profile Pic -->
+    <div>
+      <ui-api-image
+        [classes]="'radius-rounded'"
+        [imageId]="store()!.storeLogoImageId"
+        [width]="'36px'"
+        [height]="'36px'"
+        [fallbackImage]="'assets/fallback/digipay-logo-24x24-fallback.svg'"
+      ></ui-api-image>
+    </div>
+    <!-- End Profile Pic -->
+
+    <!-- UserName -->
+    <div class="c-1">
+      {{ store()!.storeName }}
+    </div>
+    <!-- End UserName -->
+  </div>
+  <!-- End Merchant Name -->
+</div>

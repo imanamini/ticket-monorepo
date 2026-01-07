@@ -1,0 +1,18 @@
+<div [ngClass]="{
+     'hide-borders': hideBorders(),
+     'mobile': isMobile(),
+     'highlight-mode' : isHighlightMode()
+     }"
+     [ngStyle]="wrapperStyle()"
+     class="list">
+  @for (item of listItems(); let i = $index; let last = $last; track item.name) {
+    <div class="list-item" [class.discount-item]="last">
+      <div class="item-name">
+        {{ item.name }}
+      </div>
+      <div class="item-value">
+        {{ item.isPrice ? ( item.value | thousands ) : item.value }}
+      </div>
+    </div>
+  }
+</div>

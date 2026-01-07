@@ -1,0 +1,54 @@
+@if (pageType() !== 'NO_SERVICE') {
+  <app-credit-app-bar
+    (onBackButtonClick)="goBack()"
+    [backButton]="true"
+    [title]="title()"
+  ></app-credit-app-bar>
+}
+@switch (pageType()) {
+  @case ('LOADING') {
+    <credit-page-loading [active]="true"></credit-page-loading>
+  }
+  @case ('WAIT') {
+    <app-credit-profile-wait
+      (close)="goBack()"
+      (reloadStatus)="getData()"
+      [creditId]="creditId()!"
+      [fundProviderCode]="fundProviderCode()!"
+      [profileStatusData]="profileStatusData()!"
+      class="d-flex flex-column flex-grow"
+    ></app-credit-profile-wait>
+  }
+  @case ('REGISTER_FORM') {
+    <app-credit-profile-register-form
+      (close)="goBack()"
+      (reloadStatus)="getData()"
+      [creditId]="creditId()!"
+      [fundProviderCode]="fundProviderCode()!"
+      [profileStatusData]="profileStatusData()!"
+      class="d-flex flex-column flex-grow"
+    ></app-credit-profile-register-form>
+  }
+  @case ('MAIN_FORM') {
+    <app-credit-profile-main-form
+      (close)="goBack()"
+      (reloadStatus)="getData()"
+      [creditId]="creditId()!"
+      [fundProviderCode]="fundProviderCode()!"
+      [profileStatusData]="profileStatusData()!"
+      class="d-flex flex-column flex-grow"
+    ></app-credit-profile-main-form>
+  }
+  @default {
+    @if (this.showState()) {
+      <app-credit-profile-state
+        [creditId]="creditId()!"
+        [fundProviderCode]="fundProviderCode()!"
+        [state]="pageType()"
+        (reload)="getData()"
+        (back)="goBack()"
+        class="d-flex flex-column flex-grow"
+      ></app-credit-profile-state>
+    }
+  }
+}

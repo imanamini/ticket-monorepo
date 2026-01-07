@@ -1,0 +1,130 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.used-device-layout {
+  @include flex-column();
+  @include flex-center-start();
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #f2f5f8;
+
+  steps-header {
+    width: 100%;
+  }
+
+  journey-onboarding {
+    height: 100%;
+  }
+
+  .used-device-content {
+    margin: 20px 0 90px 0;
+    padding: 0 24px;
+    width: 100%;
+    height: 100%;
+
+    &.remove-margin {
+      margin: 0;
+    }
+
+    .result-info {
+      border-radius: 8px;
+      border: 1px solid #dee3e7;
+      padding: 8px 12px;
+      line-height: 20px;
+      width: 100%;
+    }
+  }
+}
+
+.health-check {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.use-mobile-notice {
+  @include flex-row;
+  @include flex-center;
+  height: 100% !important;
+}
+
+@include mediaDesktop() {
+  .header {
+    width: 60% !important;
+  }
+  .used-device-content {
+    width: 60% !important;
+    height: 100%;
+  }
+}
+
+@include mediaTablet() {
+  .header {
+    width: 80% !important;
+  }
+  .used-device-content {
+    width: 80% !important;
+  }
+}
+
+@include mediaMobile() {
+  .header {
+    width: 100% !important;
+  }
+  .used-device-content {
+    width: 100% !important;
+  }
+}
+
+.loading-container {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  @include flex-center();
+  z-index: 10;
+}
+.error-container {
+  @include column-center;
+  width: 100%;
+  height: 100%;
+
+  .error-content {
+    @include column-center;
+    width: 80%;
+    height: 80%;
+    max-width: 960px;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 0 1.2rem;
+    line-height: 24px;
+
+    .illustration {
+      width: 60%;
+      min-width: 260px;
+      margin: 0 auto 32px auto;
+    }
+
+    .error-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #2c3544;
+      margin-bottom: 0.9rem;
+      line-height: 32px;
+    }
+
+    .error-description {
+      text-align: center;
+    }
+
+    .call-center {
+      margin-bottom: 32px;
+      direction: ltr;
+    }
+
+    .button-wrapper {
+      width: 264px;
+    }
+  }
+
+}

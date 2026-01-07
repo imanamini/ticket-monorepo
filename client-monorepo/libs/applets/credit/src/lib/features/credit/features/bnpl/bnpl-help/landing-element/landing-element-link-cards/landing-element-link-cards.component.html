@@ -1,0 +1,17 @@
+<div class="cards-wrapper">
+  <a
+    *ngFor="let card of payload()?.cards"
+    class="wrapper-card"
+    [href]="card.link"
+    target="_blank"
+  >
+    <div class="card-image">
+      <img
+        [src]="card.image"
+        [alt]="card.title"
+      />
+    </div>
+
+    <div class="card-title">{{ card.title }}</div>
+  </a>
+</div>

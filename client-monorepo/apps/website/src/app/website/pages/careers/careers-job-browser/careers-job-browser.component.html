@@ -1,0 +1,74 @@
+<div class="content-box">
+  <div
+    *ngIf="categories.length > 1"
+    class="categories-section"
+  >
+    <h4 class="title">Categories:</h4>
+    <div class="categories">
+      <div class="categories-next"></div>
+      <swiper-container
+        appSwiper
+        #swiper="appSwiper"
+        [config]="configCategories"
+        class="categories-swiper swiper swiper-pointer-events"
+      >
+        <div class="swiper-wrapper">
+          <swiper-slide class="swiper-slide">
+            <div class="category-slide">
+              <label>
+                <input
+                  (change)="onCategorySelect(null)"
+                  [checked]="!selectedCategory"
+                  name="job-category"
+                  type="radio"
+                />
+                <span>All</span>
+              </label>
+            </div>
+          </swiper-slide>
+          <swiper-slide
+            *ngFor="let category of categories"
+            class="swiper-slide"
+          >
+            <div class="category-slide">
+              <label>
+                <input
+                  (change)="onCategorySelect(category)"
+                  [checked]="selectedCategory && category.id === selectedCategory.id"
+                  name="job-category"
+                  type="radio"
+                />
+                <span>{{ category.categoryName }}</span>
+              </label>
+            </div>
+          </swiper-slide>
+        </div>
+      </swiper-container>
+
+      <div class="categories-prev"></div>
+    </div>
+  </div>
+  <div
+    [ngClass]="{ 'loading-state': loadingJobs }"
+    class="jobs"
+  >
+    <app-ui-spinner
+      *ngIf="loadingJobs"
+      [size]="48"
+    ></app-ui-spinner>
+
+    <ng-container *ngIf="!loadingJobs">
+      <div class="jobs-grid">
+        <app-job-card
+          *ngFor="let post of jobPosts"
+          [jobPost]="post"
+        ></app-job-card>
+      </div>
+      <!--      <app-jobs-pagination-->
+      <!--        *ngIf="totalPages > 1"-->
+      <!--        [currentPage]="page"-->
+      <!--        [totalPages]="totalPages"-->
+      <!--      ></app-jobs-pagination>-->
+    </ng-container>
+  </div>
+</div>

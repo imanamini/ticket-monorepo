@@ -1,0 +1,25 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.payment-result {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.clicked {
+  animation: scaleUp 1s ease forwards;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

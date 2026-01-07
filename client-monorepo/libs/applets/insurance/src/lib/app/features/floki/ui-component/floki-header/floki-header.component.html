@@ -1,0 +1,20 @@
+<div class="header-component d-flex align-items-center justify-content-center">
+  <div (click)="handleClick()" class="icon-container py-minus px-medium d-flex gap-tiny align-items-center">
+    <ngx-icon
+      [class]="class()"
+      [name]="iconName()"
+      [secondaryColor]="iconColor()"
+      [type]="iconType()">
+    </ngx-icon>
+    @if (iconTitle()) {
+      <p [ngClass]="class()">
+        {{ iconTitle() }}
+      </p>
+    }
+  </div>
+  @if (title()) {
+    <p class="w-100 st-6" [style.text-align]="titleTextAlign()">
+      {{ title() }}
+    </p>
+  }
+</div>

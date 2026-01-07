@@ -1,0 +1,28 @@
+<ngx-app-bar
+  class="w-100"
+  [title]="'بررسی حساب سجام'"
+  [rightButton]="{
+    icon: 'arrow-right',
+    style: 'neutral-link',
+    mode: 'icon-only',
+    size: 'medium',
+  }"
+  (onRightButtonClick)="onBackHandler()"
+/>
+
+<div class="pcf-container">
+  <div class="pcf-content">
+    <img src="wealth-assets/svg/safe.svg" />
+    <p class="pcf-description">در حال حاضر امکان خرید واحد از این صندوق وجود ندارد. لطفا صندوق دیگری را انتخاب کنید.</p>
+  </div>
+  <div class="pcf-buttons">
+    <ngx-button
+      class="btn-retry"
+      [fullWidth]="true"
+      (clickHandler)="onBackHandler()"
+      [brandButton]="true"
+    >
+      انتخاب صندوق دیگر
+    </ngx-button>
+  </div>
+</div>

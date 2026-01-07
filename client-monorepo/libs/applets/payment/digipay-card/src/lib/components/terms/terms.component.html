@@ -1,0 +1,41 @@
+<div class="d-flex flex-column gap-medium align-items-center">
+  <div class="surface-back p-big radius-giant">
+    <common-icon-dp-icon
+      [icon]="'error-circle'"
+      [iconSize]="'32'"
+      [iconType]="'bold'"
+      [class]="'text-onback-brand'"
+    ></common-icon-dp-icon>
+  </div>
+  <div class="d-flex flex-column gap-large align-items-center">
+    <div class="st-6 text-onback-medium">قوانین و مقررات دیجی‌کارت</div>
+    <div class="terms my-medium">
+      <div class="c-3 text-high-emphasis">
+        باتوجه به حقوق و وظایف متقابل کاربر و شرکت نوآوران پرداخت مجازی ایرانیان (دیجی‌پی) به شناسه ملی ۱۴۰۰۷۶۷۸۵۲۴و شماره ثبت ۵۲۷۸۰۳ (که در
+        این سند دیجی‌پی نامیده می‌شود) در خصوص استفاده از خدمات دیجی‌پی کارت، به کاربران گرامی توصیه می‌شود پیش از ارائه درخواست دریافت
+        کارت، نسبت به مطالعه سند حاضر که به منزله قراردادی فی‌مابین طرفین است، اقدام نمایند.
+      </div>
+      @for (term of terms; track $index) {
+        <div class="term pt-big">
+          <span class="c-3 title">{{ term.title }}</span>
+          <ngx-callout
+            [backgroundMode]="'elevated'"
+            [mode]="'multiple'"
+            [showTitleBlink]="false"
+            [title]="''"
+            [messages]="term.tips"
+          ></ngx-callout>
+        </div>
+      }
+    </div>
+  </div>
+  <ngx-button
+    [mode]="'form'"
+    [size]="'medium'"
+    [style]="'fill'"
+    [fullWidth]="true"
+    (clickHandler)="approve()"
+  >
+    متوجه شدم
+  </ngx-button>
+</div>

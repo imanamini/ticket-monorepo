@@ -1,0 +1,37 @@
+<div class="w-100 d-flex flex-wrap">
+  <div class="w-100 d-flex align-items-center justify-content-space-between">
+    <p class="b-2 text-onback-medium">کد دعوت دارید؟</p>
+
+    <ngx-button
+      (clickHandler)="extend.set(!extend())"
+      [size]="'small'"
+      [mode]="'icon-only'"
+      [style]="'neutral-link'"
+      [leftIcon]="{
+        name: extend() ? 'arrow-2-up' : 'arrow-2-down',
+      }"
+    >
+    </ngx-button>
+  </div>
+
+  @if (extend()) {
+    <div class="w-100 d-flex items-center container mt-medium">
+      <ui-form-field
+        class="w-100"
+        [formControl]="affiliate"
+        placeholder="ورود کد معرف"
+        [showError]="'hidden'"
+      />
+
+      <ngx-button
+        [buttonId]="'BTN_REFERRAL_CODE'"
+        [size]="'small'"
+        class="confirm-btn"
+        [style]="'tinted-on-elevated'"
+        (clickHandler)="onSubmit()"
+      >
+        تایید
+      </ngx-button>
+    </div>
+  }
+</div>

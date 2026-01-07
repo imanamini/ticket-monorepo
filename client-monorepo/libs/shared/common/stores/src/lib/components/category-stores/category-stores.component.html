@@ -1,0 +1,26 @@
+@if (stores() && stores()!.length > 0) {
+  <div class="px-plus">
+    <common-ui-components-title-summary
+      [title]="sectionTitle()"
+      [buttonTrackerId]="'show-all'"
+      [showButton]="true"
+      [buttonTitle]="'همه'"
+      [buttonIcon]="'arrow-2-left'"
+      [buttonIconReversed]="true"
+      [mustReturnAction]="true"
+      (onButtonClicked)="gotoFiltersBasedOnCategory()"
+      [wrapperClasses]="'mb-small'"
+    ></common-ui-components-title-summary>
+  </div>
+  <div class="px-atom">
+    <common-ui-components-horizontal-scroll [classes]="'pr-plus'">
+      @for (store of stores(); track store.title) {
+        <common-stores-store-preview
+          [mode]="'vertical-large'"
+          routerLink="/stores/{{ store.trackingCode }}"
+          [store]="store"
+        ></common-stores-store-preview>
+      }
+    </common-ui-components-horizontal-scroll>
+  </div>
+}

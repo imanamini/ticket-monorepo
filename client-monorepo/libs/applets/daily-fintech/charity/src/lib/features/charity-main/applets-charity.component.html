@@ -1,0 +1,32 @@
+<common-ui-components-page-layout
+  [stickyHeader]="false"
+  [showBorder]="false"
+  title="نیکوکاری"
+>
+  <div class="page-content">
+    <div class="header-text">خیریه مورد نظرتان را جهت ارائه <span class="header-text-bold">کمک‌های نقدی</span> انتخاب کنید</div>
+    <div class="icon-container">
+      @for (item of charityOrganization(); track $index) {
+        <common-ui-components-framed-icon
+          (click)="charityItemClicked(item)"
+          [size]="'MEDIUM'"
+          class="framed-icon"
+          [showText]="true"
+          [enableMixedBlendMode]="true"
+          [type]="imageType"
+          [text]="item.name"
+          [showBadge]="false"
+          [icon]="item.imageId"
+          [trackerIdPrefix]="item.imageId"
+        />
+      }
+    </div>
+    <daily-fintech-recommendation-list
+      [hasSpinner]="[]"
+      (handleClick)="recommendationItemClicked($event)"
+      [itemType]="recommendationType"
+      title="کمک‌های من"
+    >
+    </daily-fintech-recommendation-list>
+  </div>
+</common-ui-components-page-layout>

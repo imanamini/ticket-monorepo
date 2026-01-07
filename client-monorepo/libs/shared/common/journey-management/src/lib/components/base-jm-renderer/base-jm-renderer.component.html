@@ -1,0 +1,22 @@
+@if (config()) {
+  <div class="base-jm">
+    @switch (config().mode) {
+      @case (JmMode.JOURNEY_MANAGEMENT) {
+        <common-journey-management-journey-manager
+          [config]="config()"
+          [isLoading]="isLoading()"
+          (primaryClicked)="handlePrimaryClick()"
+          (secondaryClicked)="handleSecondaryClick()"
+        ></common-journey-management-journey-manager>
+      }
+      @case (JmMode.NEXT_ACTION) {
+        <common-journey-management-next-action
+          [config]="config()"
+          [isLoading]="isLoading()"
+          (primaryClicked)="handlePrimaryClick()"
+          (secondaryClicked)="handleSecondaryClick()"
+        ></common-journey-management-next-action>
+      }
+    }
+  </div>
+}

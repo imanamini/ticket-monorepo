@@ -1,0 +1,39 @@
+<div class="filters-chips-box">
+  <div class="top">
+    <div class="filter-title">فیلترهای اعمال شده:</div>
+    <div
+      (click)="deleteAllFilters()"
+      class="delete-all"
+    >
+      <span
+        icon="icon-close-red"
+        size="18"
+        appUiIcon
+      ></span>
+      حذف فیلترها
+    </div>
+  </div>
+  <div class="chips">
+    <ng-container *ngFor="let filterName of Object.keys(selectedFilters)">
+      <div
+        *ngFor="let option of selectedFilters[filterName]"
+        class="chip"
+      >
+        <div class="chip-data"></div>
+        <div class="chip-name">
+          <ng-container *ngIf="filterName !== 'brand'; else brand">
+            {{ SELECT_FILTER_TRANSLATOR[filterName][option] }}
+          </ng-container>
+
+          <ng-template #brand>{{ brandTitleMap[option] }}</ng-template>
+        </div>
+        <span
+          (click)="deleteFilter(filterName, option)"
+          icon="icon-close-red"
+          size="16"
+          appUiIcon
+        ></span>
+      </div>
+    </ng-container>
+  </div>
+</div>

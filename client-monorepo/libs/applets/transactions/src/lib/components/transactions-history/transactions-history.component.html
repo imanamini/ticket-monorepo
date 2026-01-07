@@ -1,0 +1,96 @@
+<common-ui-components-filter
+  [isActive]="!!restrictions()?.values()?.length"
+  [size]="'LARGE'"
+  (toggleFilter)="handleFilterToggle()"
+>
+  @if (appName === APP_NAME_ENUM.PILLAR) {
+    <ngx-chip
+      [id]="'calendar-filter'"
+      [leadingIcon]="'Calendar'"
+      [disableAnimations]="true"
+      [size]="'LARGE'"
+      [label]="'بازه زمانی'"
+      (click)="handleFilterToggle()"
+      [pressed]="false"
+      [disableClick]="true"
+      [classes]="dateQuickFilterClasses()"
+    ></ngx-chip>
+    <ngx-chip
+      [id]="'wallet-filter'"
+      [disableAnimations]="true"
+      [size]="'LARGE'"
+      [disableClick]="true"
+      [label]="TransactionTypeGroupsNamesEnum.WALLET"
+      (click)="toggleQuickFilter(TransactionTypeGroupsNamesEnum.WALLET)"
+      [pressed]="false"
+      [classes]="walletQuickFilterClasses()"
+    ></ngx-chip>
+    <ngx-chip
+      [id]="'loan-filter'"
+      [disableAnimations]="true"
+      [size]="'LARGE'"
+      [disableClick]="true"
+      [label]="TransactionTypeGroupsNamesEnum.LOAN"
+      (click)="toggleQuickFilter(TransactionTypeGroupsNamesEnum.LOAN)"
+      [pressed]="false"
+      [classes]="loanQuickFilterClasses()"
+    ></ngx-chip>
+  } @else {
+    <ngx-chip
+      [id]="'calendar-filter'"
+      [leadingIcon]="'Calendar'"
+      [disableAnimations]="true"
+      [size]="'LARGE'"
+      [label]="'بازه زمانی'"
+      (click)="handleFilterToggle()"
+      [pressed]="false"
+      [disableClick]="true"
+      [classes]="dateQuickFilterClasses()"
+    ></ngx-chip>
+    <ngx-chip
+      [id]="'charge-filter'"
+      [disableAnimations]="true"
+      [size]="'LARGE'"
+      [disableClick]="true"
+      [label]="TransactionTypeGroupsNamesEnum.CHARGE"
+      (click)="toggleQuickFilter(TransactionTypeGroupsNamesEnum.CHARGE)"
+      [pressed]="false"
+      [classes]="chargeQuickFilterClasses()"
+    ></ngx-chip>
+    <ngx-chip
+      [id]="'c2c-filter'"
+      [disableAnimations]="true"
+      [size]="'LARGE'"
+      [disableClick]="true"
+      [label]="TransactionTypeGroupsNamesEnum.C2C"
+      (click)="toggleQuickFilter(TransactionTypeGroupsNamesEnum.C2C)"
+      [pressed]="false"
+      [classes]="c2cQuickFilterClasses()"
+    ></ngx-chip>
+    <ngx-chip
+      [id]="'wallet-filter'"
+      [disableAnimations]="true"
+      [size]="'LARGE'"
+      [disableClick]="true"
+      [label]="TransactionTypeGroupsNamesEnum.WALLET"
+      (click)="toggleQuickFilter(TransactionTypeGroupsNamesEnum.WALLET)"
+      [pressed]="false"
+      [classes]="walletQuickFilterClasses()"
+    ></ngx-chip>
+  }
+</common-ui-components-filter>
+
+<payment-transactions-grouped-transactions
+  (scrolledToEnd)="handleEnd()"
+  [isLoading]="isLoading()"
+  [pendingTransactions]="pendingTransactions()"
+  [transactions]="transactions()"
+></payment-transactions-grouped-transactions>
+@if (isLoading()) {
+  @for (item of rangeCreator(3); track $index) {
+    <lib-ngx-skeleton-loading
+      [height]="'74px'"
+      [classes]="'my-small px-medium radius-medium'"
+    ></lib-ngx-skeleton-loading>
+  }
+}

@@ -1,0 +1,34 @@
+<div class="national-id-error-container">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'بررسی حساب سجام'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="national-id-error-content">
+    <img src="wealth-assets/svg/national-id-error.svg" />
+    <p class="national-id-error-description">
+      @if (errorInfo?.title) {
+        {{ errorInfo?.title }}
+      } @else {
+        کد ملی موجود در حساب کاربری شما متعلق به مالک شماره + {{ state?.phoneNumber }} + نیست.
+      }
+    </p>
+  </div>
+  <div class="w-100 national-id-error-buttons">
+    <ngx-button
+      [buttonId]="'NATIONAL_ID_ERROR_CONFIRM'"
+      [style]="'fill'"
+      [fullWidth]="true"
+      (clickHandler)="onBackHandler()"
+    >
+      تغییر کد ملی
+    </ngx-button>
+  </div>
+</div>

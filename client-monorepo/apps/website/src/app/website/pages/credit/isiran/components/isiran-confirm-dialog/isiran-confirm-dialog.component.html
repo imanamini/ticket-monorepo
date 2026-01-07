@@ -1,0 +1,28 @@
+<app-ui-page-title-bar
+  (emitCloseButtonClick)="closeDialog()"
+  [closeButton]="true"
+  title="اطلاعات تکمیلی"
+>
+</app-ui-page-title-bar>
+<div class="isiran-dialog">
+  <div class="dialog-body">
+    <p class="body-title">اطلاعات زیر را با دقت مطالعه کنید:</p>
+    <div class="box">
+      <div class="row">
+        <p class="title">زمان تخصیص اعتبار</p>
+        <p class="subtitle">تخصیص اعتبار بلافاصله بعد از پرداخت هزینه خدمات و زیرساخت و تایید تامین کننده مالی.</p>
+      </div>
+      <div class="row">
+        <p class="title">کسر قسط اول</p>
+        <p class="subtitle">حقوق ماه بعد از تکمیل ثبت‌نام</p>
+      </div>
+    </div>
+  </div>
+  <div class="dialog-footer">
+    <app-ui-button
+      (click)="submit()"
+      size="BIG"
+      >تایید و ادامه</app-ui-button
+    >
+  </div>
+</div>

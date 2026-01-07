@@ -1,0 +1,110 @@
+<!-- Header -->
+<div class="explore-header d-flex flex-column gap-small surface-elevated">
+  <ngx-app-bar
+    [title]="appBarTitle()"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="goBack()"
+  ></ngx-app-bar>
+  <ngx-search-box
+    class="px-plus mb-minus"
+    [debounceTime]="300"
+    [mode]="'section'"
+    (searchTextChange)="doSearch($event)"
+    [placeHolder]="'جست‌وجو'"
+    (submitted)="handleEnterKey()"
+  ></ngx-search-box>
+</div>
+<!-- End Header -->
+<div class="surface-elevated w-100 h-100">
+  <!-- Posts Grid -->
+  @if (this.sectionToShow() === 'MAIN') {
+    <common-social-posts-grid
+      [searchText]="searchTextForOthers()"
+      [disablePagination]="false"
+      [showNoItems]="true"
+      [pageSize]="36"
+      [enableShuffleMode]="true"
+      [gridMode]="'RECTANGLE'"
+    ></common-social-posts-grid>
+  }
+  <!-- End Posts Grid -->
+
+  <!-- Suggestions -->
+  @if (this.sectionToShow() === 'SUGGESTIONS') {
+    <div class="px-plus pb-plus d-flex flex-column align-items-stretch pt-pony justify-content-start gap-minus flex-grow">
+      @if (searching()) {
+        @for (_ of rangeCreator(3); track $index) {
+          <common-stores-store-preview
+            [mode]="'horizontal'"
+            [isLoading]="true"
+          ></common-stores-store-preview>
+        }
+      } @else {
+        @if (suggestions().length) {
+          @for (suggestion of suggestions(); track $index) {
+            <div
+              class="d-flex align-items-center justify-content-start gap-minus cursor-pointer"
+              (click)="suggestionClick(suggestion)"
+            >
+              <div class="d-flex align-items-center justify-content-center surface-back radius-rounded p-small">
+                <common-icon-dp-icon
+                  [icon]="'search'"
+                  [iconType]="'linear'"
+                  [iconSize]="'20'"
+                ></common-icon-dp-icon>
+              </div>
+              <div class="c-2 text-onback-medium">{{ suggestion }}</div>
+            </div>
+          }
+        } @else {
+          <div
+            class="d-flex align-items-center justify-content-start gap-minus cursor-pointer"
+            (click)="suggestionClick(searchText())"
+          >
+            <div class="d-flex align-items-center justify-content-center surface-back radius-rounded p-small">
+              <common-icon-dp-icon
+                [icon]="'search'"
+                [iconType]="'linear'"
+                [iconSize]="'20'"
+              ></common-icon-dp-icon>
+            </div>
+            <div class="c-2 text-onback-medium">{{ ctaSearchText() }}</div>
+          </div>
+        }
+      }
+    </div>
+  }
+  <!-- End Suggestions -->
+
+  <!-- Search Result -->
+  @if (this.sectionToShow() === 'SEARCH_RESULT') {
+    <div class="d-flex flex-column gap-plus">
+      @if (showMerchantsResult()) {
+        <div class="px-plus">
+          <stores-applet-social-search-result-stores
+            [searchText]="searchTextForOthers()"
+            (onEmpty)="handleEmptyMerchants()"
+          ></stores-applet-social-search-result-stores>
+        </div>
+      }
+      @if (showPostsResult()) {
+        <stores-applet-social-search-result-posts
+          [searchText]="searchTextForOthers()"
+          (onEmpty)="handleEmptyPosts()"
+        ></stores-applet-social-search-result-posts>
+      }
+
+      @if (!showMerchantsResult() && !showPostsResult()) {
+        <div class="d-flex justify-content-center align-items-center py-medium">
+          <common-ui-components-no-item [description]="'جست‌و‌جوی شما نتیجه ای نداشت!'"></common-ui-components-no-item>
+        </div>
+      }
+    </div>
+  }
+  <!-- End Search Result -->
+</div>

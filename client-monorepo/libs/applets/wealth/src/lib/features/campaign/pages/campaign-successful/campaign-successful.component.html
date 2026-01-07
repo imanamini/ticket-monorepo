@@ -1,0 +1,48 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100dvh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'دریافت جایزه گنج'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="d-flex flex-column flex-1 align-items-center justify-content-start w-100 px-plus">
+    <img
+      src="wealth-assets/images/treasure-hunt-3.svg"
+      class="w-100"
+    />
+    <p class="st-7 text-onback-high">جایزه {{ state()?.instrumentName }} شما آماده‌است!</p>
+    <p class="bt-2 text-onback-low mt-small text-align-center">
+      شما {{ state()?.prizeAmount }} ریال جایزه صندوق {{ state()?.instrumentName }} را دریافت کرده‌اید. دارایی خود را می‌توانید در صفحه
+      جزییات صندوق مشاهده کنید.
+    </p>
+  </div>
+
+  <div class="w-100 d-flex align-items-center justify-content-center surface-elevated px-plus py-medium gap-minus sticky-action-group">
+    <ngx-button
+      [buttonId]="'CAMPAIGN_CONFIRM_TREASURY'"
+      [style]="'tinted-on-elevated'"
+      [fullWidth]="true"
+      [mode]="'form'"
+      size="medium"
+      (click)="onBackHandler()"
+    >
+      متوجه شدم
+    </ngx-button>
+    <ngx-button
+      [buttonId]="'CAMPAIGN_VIEW_ASSETS'"
+      [style]="'fill'"
+      [fullWidth]="true"
+      [mode]="'form'"
+      size="medium"
+      (click)="onViewAssets()"
+    >
+      مشاهده دارایی
+    </ngx-button>
+  </div>
+</div>

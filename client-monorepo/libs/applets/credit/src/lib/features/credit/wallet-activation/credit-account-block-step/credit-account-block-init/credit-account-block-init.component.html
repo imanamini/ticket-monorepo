@@ -1,0 +1,17 @@
+@if (!sendingData()) {
+  <app-credit-account-block-message
+    (close)="close.emit()"
+    (ctaClick)="submit()"
+    (secondaryCtaClick)="close.emit()"
+    ctaLabel="تایید و ادامه"
+    errorType="info"
+    pageTitle="بررسی حساب سازمانی"
+    secondaryCtaLabel="انصراف"
+    subtitle="در صورت تایید حساب سازمانی، مبلغی به اندازه یک قسط در حساب سازمانی ‌شما قفل می‌شود و تا زمان دریافت اعتبار امکان استفاده از آن مبلغ را ندارید."
+    title="ارسال اطلاعات برای بررسی حساب سازمانی"
+  >
+    در نظر داشته باشید در صورت لغو فرایند دریافت اعتبار این مبلغ دوباره آزاد می‌شود.
+  </app-credit-account-block-message>
+}
+
+<credit-page-loading [active]="sendingData()!"></credit-page-loading>

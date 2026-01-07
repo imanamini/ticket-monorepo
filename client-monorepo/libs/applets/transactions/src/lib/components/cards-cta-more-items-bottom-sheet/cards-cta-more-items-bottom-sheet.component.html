@@ -1,0 +1,22 @@
+<div class="d-flex flex-column gap-big">
+  @for (item of moreMenuItems(); track item.name + $index) {
+    <div
+      class="px-medium bt-3 d-flex justify-content-start cursor-pointer"
+      [ngClass]="$index !== moreMenuItems().length - 1 ? 'pt-minus' : 'pb-minus'"
+      (click)="handleItemClick(item)"
+    >
+      <div class="d-flex align-items-center gap-small">
+        <common-icon-dp-icon
+          [icon]="item.icon.name"
+          [iconType]="item.icon.type"
+          [secondaryColor]="item.icon.secondColor || ''"
+          [iconSize]="'24'"
+        ></common-icon-dp-icon>
+        <span class="text-onback-medium b-2"> {{ item.name }} </span>
+      </div>
+    </div>
+    @if ($index !== moreMenuItems().length - 1) {
+      <div class="w-100 border-b-100 border-color-tint"></div>
+    }
+  }
+</div>

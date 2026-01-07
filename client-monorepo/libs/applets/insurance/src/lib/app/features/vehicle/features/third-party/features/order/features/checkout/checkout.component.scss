@@ -1,0 +1,47 @@
+@import "@digipay/base-style/swatch";
+@import '@digipay/base-style/mixins/responsive';
+
+.checkout {
+  background-color: #f2f5f8;
+
+  .header {
+    color: #2c3544;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 28px;
+    margin-bottom: 24px;
+  }
+
+  .content-wrapper {
+    flex: 1;
+    overflow: auto;
+
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
+
+    @media (max-width: 360px) {
+      &,
+      .car-policy-detail {
+        padding: {
+          left: 12px !important;
+          right: 12px !important;
+        }
+      }
+    }
+  }
+
+  .loading {
+    flex: 1;
+  }
+}
+
+@include small_screen {
+  .total-price {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+  }
+}

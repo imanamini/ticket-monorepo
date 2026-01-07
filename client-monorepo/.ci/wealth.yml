@@ -1,0 +1,13 @@
+---
+.trigger-options:
+  changes:
+    - "apps/dpx/**/*"
+    - "apps/wealth/**/*"
+    - "libs/applets/wealth/**/*"
+  dependent-projects:
+    - PROJECT_NAME: "dpx"
+      DOCKERFILE_NAME: "Dockerfile"
+      FILE_PATH: "app/frontend/dpx-values.yml"
+    - PROJECT_NAME: "wealth-front"
+      DOCKERFILE_NAME: "Dockerfile-wealth-standalone"
+      FILE_PATH: "app/frontend/wealth-values.yml"

@@ -1,0 +1,48 @@
+<div class="payment-result h-100 surface-elevated p-plus">
+  @if (isLoading()) {
+    <div class="loading h-100">
+      <ui-loading-spinner
+        [size]="48"
+      ></ui-loading-spinner>
+    </div>
+  } @else {
+    <div class="result-wrapper d-flex flex-column align-items-center justify-content-center">
+      <div class="mb-big">
+        @if (isSuccessful()) {
+          <img src="assets/floki/icons/success-payment-icon.svg" alt="success-payment">
+        } @else {
+          <img src="assets/floki/icons/failed-payment-icon.svg" alt="failed-payment">
+        }
+      </div>
+      <div>
+        @if (isSuccessful()) {
+          <p class="st-3">پرداخت حق بیمه، با موفقیت انجام شد</p>
+          <p class="b-2">پرداخت حق بیمه به معنای صدور بیمه‌نامه نیست؛</p>
+          <p class="b-2">لطفاً مراحل بعدی را تکمیل کنید.</p>
+        } @else {
+          <p class="st-3">پرداخت حق بیمه انجام نشد!</p>
+          <p class="b-2">
+            مشکلی در فرآیند پرداخت حق بیمه رخ داده است.
+            لطفا مجددا تلاش فرمایید.
+          </p>
+        }
+      </div>
+    </div>
+    <div class="action-wrapper gap-medium">
+      @if (isSuccessful()) {
+        <ins-alert
+          [hasIcon]="true"
+          [color]="AlertColorEnum.Yellow"
+          text="در صورت عدم تکمیل اطلاعات و بارگذاری مدارک ظرف ۷۲ ساعت آینده، وجه پرداختی به کیف پول شما باز خواهد گشت.">
+        </ins-alert>
+      }
+      <ngx-button
+        (clickHandler)="onClick()"
+        [fullWidth]="true"
+        [size]="'large'"
+        [style]="'fill'">
+        <p class="bt-1">{{ isSuccessful() ? 'تکمیل اطلاعات' : 'تلاش مجدد' }}</p>
+      </ngx-button>
+    </div>
+  }
+</div>

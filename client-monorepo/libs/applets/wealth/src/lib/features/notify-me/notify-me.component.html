@@ -1,0 +1,21 @@
+<div class="d-grid surface-elevated py-medium px-plus radius-medium justify-content-end gap-minus align-items-center">
+  <img
+    width="100"
+    height="100"
+    src="/wealth-assets/svg/bg-notify-me.svg"
+    alt="خبرم کن!"
+  />
+  <span class="c-2 text-onback-high"> میخواهید از فرصت‌های سرمایه‌گذاری جدید با خبر شوید؟ </span>
+
+  <div class="d-flex justify-content-end">
+    <ngx-button
+      [style]="'fill'"
+      size="small"
+      [isLoading]="loading()"
+      (clickHandler)="notifyMe()"
+      [rightIcon]="{ name: 'notification', type: 'linear' }"
+    >
+      خبرم کن!
+    </ngx-button>
+  </div>
+</div>

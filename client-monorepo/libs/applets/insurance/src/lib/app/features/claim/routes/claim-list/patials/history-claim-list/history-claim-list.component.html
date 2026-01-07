@@ -1,0 +1,15 @@
+<div>
+  @if (modifiedClaims().length > 0) {
+    @for (claim of modifiedClaims(); track i; let i = $index) {
+      <ngx-list-item
+              [badge]="{value :claim.claimStatus.stepTitle , status : claimStatus(claim)}"
+              [rightIcon]="{name : 'digital-device', classes: 'text-onback-high'}"
+              [showToggle]="false"
+              title="تجهیزات دیجیتال"
+              [subtitle]="claim.subtitle">
+      </ngx-list-item>
+    }
+  }
+</div>
+
+

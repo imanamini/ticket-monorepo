@@ -1,0 +1,63 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  [title]="'ساخت لینک پرداخت'"
+  [hasBackAction]="false"
+  [showBorder]="true"
+  [showBackIcon]="false"
+>
+  @if (!loading()) {
+    <div class="d-flex flex-column justify-content-space-between h-100 py-tiny px-small">
+      <div class="d-flex flex-column p-minus gap-medium">
+        <escrow-payment-link-ad-summery-detail [data]="adData.saleAdInfo"></escrow-payment-link-ad-summery-detail>
+
+        <form [formGroup]="form" class="d-flex flex-column gap-medium" >
+          <ui-form-field
+            formControlName="amount"
+            label="مبلغ توافق شده"
+            [required]="true"
+            [hasHintStar]="true"
+            [isNumericKeyboard]="true"
+            [type]="'amount'"
+            [hasCleaner]="true"
+            [hasRialStickyText]="true"
+            [hint]="'حداقل مبلغ برای ایجاد لینک پرداخت ۱۰۰٬۰۰۰ ریال است.'"
+            [errorMessageMapper]="{
+              required: 'فیلد  کلید اجباری است',
+            }"
+            [error]="form.controls.amount.errors ?? {}"
+          ></ui-form-field>
+          <ui-form-field
+            formControlName="description"
+            label="توضیحات"
+            [hasHintStar]="true"
+            [hint]="'متن توضیحات برای خریدار هم نمایش داده خواهد شد.'"
+            [multiLine]="true"
+            [hasRialStickyText]="true"
+            [error]="form.controls.description.errors ?? {}"
+          ></ui-form-field>
+        </form>
+      </div>
+
+      <div class="footer">
+        <ngx-button
+          [mode]="'form'"
+          [size]="'large'"
+          [style]="'fill'"
+          [fullWidth]="true"
+          [disabled]="form.invalid"
+          [isLoading]="loading()"
+          (clickHandler)="onSubmit()"
+        >
+      ادامه
+        </ngx-button>
+      </div>
+    </div>
+  } @else {
+    <div class="d-flex h-100 w-100 justify-content-center align-items-center">
+      <ngx-spinner
+        size="lg"
+        color="primary"
+      ></ngx-spinner>
+    </div>
+  }
+</common-ui-components-page-layout>

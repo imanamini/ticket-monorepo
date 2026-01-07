@@ -1,0 +1,19 @@
+<div class="inquiry-policy-holder">
+  <div class="image-wrapper">
+    <img alt="" class="image" src="assets/icons/policy-holder.svg">
+  </div>
+  <div class="title">شما بیمه‌نامه فعال دارید.</div>
+  <div class="description">کاربر گرامی برای اطلاعات شما بیمه‌نامه فعال و حساب کاربری موجود است.</div>
+  <div class="buttons">
+    <ui-button
+            (click)="back()"
+            appearance="BLUE-TEXT">
+      بازگشت
+    </ui-button>
+    <ui-button
+            [routerLink]="['/']"
+            class="submit-button">
+      ورود به حساب کاربری
+    </ui-button>
+  </div>
+</div>

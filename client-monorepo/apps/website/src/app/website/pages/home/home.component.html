@@ -1,0 +1,35 @@
+<app-base-layout
+  [isHome]="true"
+  [loaded]="loaded"
+>
+  <!--  section 1-->
+  <app-home-introduction
+    [services]="homeData ? homeData.mainServices : []"
+    [subtitle]="homeData ? homeData.introSubtitle : ''"
+    [title]="homeData ? homeData.introTitle : ''"
+  ></app-home-introduction>
+
+  <!--  section 2-->
+  <app-home-business-services [businessServices]="homeData?.businessServices"></app-home-business-services>
+
+  <!--  section 3-->
+  <app-home-customers [customers]="homeData?.ourCustomers"></app-home-customers>
+
+  <!--  section 4-->
+  <!--  download-banner-->
+  <!--  section 5-->
+  <app-home-download
+    [downloadSectionData]="downloadApp"
+    class="home-download-section"
+  ></app-home-download>
+
+  <!--  section 6-->
+  <app-blog-cards
+    *ngIf="homeData && homeData.relatedPosts"
+    [blogPosts]="posts"
+    [categories]="categories"
+    [subtitle]="homeData?.relatedPosts?.subtitle"
+    [title]="homeData?.relatedPosts?.title"
+  >
+  </app-blog-cards>
+</app-base-layout>

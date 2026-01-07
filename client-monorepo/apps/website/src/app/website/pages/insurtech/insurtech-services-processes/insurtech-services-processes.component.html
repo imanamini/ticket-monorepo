@@ -1,0 +1,120 @@
+<section id="insurtech-services-processes">
+  <div class="container">
+    @if (insuranceServicesProcesses().title) {
+      <h2 class="text-align-center">{{ insuranceServicesProcesses().title }}</h2>
+    }
+    <div class="content">
+      @if (insuranceServicesProcesses().tabs) {
+        <div class="tabs">
+          <app-ui-tabs
+            (changeSwiperSlide)="changeTab($event)"
+            [items]="insuranceServicesProcesses().tabs"
+            [internalActiveIndex]="internalActiveIndex()"
+          >
+          </app-ui-tabs>
+        </div>
+      }
+      @if (insuranceServicesProcesses().tabs) {
+        <div class="panels">
+          @for (tab of insuranceServicesProcesses().tabs; track tab; let tabIndex = $index) {
+            <div
+              [ngClass]="internalActiveIndex() === tabIndex ? 'active' : ''"
+              class="panel"
+            >
+              @if (tab.tabPanel?.switchPages?.length > 1) {
+                <div class="animated-switch-container">
+                  @if (insuranceServicesProcesses().tabs[tabIndex]?.tabPanel?.switchPages) {
+                    <div class="animated-switch">
+                      <app-ui-swiper-tabs [items]="insuranceServicesProcesses().tabs[tabIndex].tabPanel.switchPages"
+                                          [activeSwitchPageIndex]="activeSwitchPageIndex()"
+                                          (slideSelected)="activeSwitchPageIndex.set($event)"
+                      >
+                      </app-ui-swiper-tabs>
+                    </div>
+                  }
+                </div>
+              }
+              <div class="switch-pages">
+                @for (switchPage of tab.tabPanel?.switchPages; track switchPage; let switchPageIndex = $index) {
+                  <div
+                    [ngClass]="activeSwitchPageIndex() === switchPageIndex && internalActiveIndex() === tabIndex ? 'active' : ''"
+                    class="switch-page"
+                  >
+                    <swiper-container
+                      appSwiper
+                      #swiper="appSwiper"
+                      [config]="config"
+                      [id]="'switch-swiper' + switchPageIndex"
+                      class="swiper d-flex swiper-wrapper"
+                    >
+                      @for (switchPageItem of switchPage.switchPageContent.items; track switchPageItem) {
+                        <swiper-slide class="swiper-slide">
+                          @if (switchPageItem?.icon?.url) {
+                            <div class="icon">
+                              <img
+                                [alt]="'icon'"
+                                [src]="switchPageItem.icon.url"
+                              />
+                            </div>
+                          }
+                          @if (switchPageItem?.title) {
+                            <div class="title">
+                              <span>{{ switchPageItem.title }}</span>
+                            </div>
+                          }
+                          @if (switchPageItem?.description) {
+                            <div class="description">
+                              <p>{{ switchPageItem.description }}</p>
+                            </div>
+                          }
+                        </swiper-slide>
+                      }
+                    </swiper-container>
+                    @if (switchPage.switchPageContent?.opinion) {
+                      <div class="opinion">
+                        <img
+                          [alt]="'icon'"
+                          [src]="switchPage.switchPageContent.opinionIcon.url"
+                        />
+                        <span>{{ switchPage.switchPageContent.opinion }}</span>
+                      </div>
+                    }
+                    @if (switchPage.switchPageContent?.opinionSolution?.title && switchPage.switchPageContent?.opinionSolution?.firstCta) {
+                      <div class="opinion-solution">
+                        @if (switchPage.switchPageContent.opinionSolution.title) {
+                          <div class="opinion-solution-title">
+                            <p>{{ switchPage.switchPageContent.opinionSolution.title }}</p>
+                          </div>
+                        }
+                        @if (
+                          switchPage.switchPageContent.opinionSolution.firstCta?.title &&
+                          switchPage.switchPageContent.opinionSolution.firstCta?.link
+                        ) {
+                          <div class="opinion-solution-cta">
+                            <app-ui-button
+                              [link]="switchPage.switchPageContent.opinionSolution.firstCta.link"
+                              appearance="BLUE-TEXT"
+                              linkTarget="_blank"
+                              size="MEDIUM"
+                            >
+                              {{ switchPage.switchPageContent.opinionSolution.firstCta.title }}
+                              <ngx-icon
+                                [iconSize]="'24'"
+                                [name]="'arrow-2-left'"
+                                class="text-onback-brand"
+                              ></ngx-icon>
+                            </app-ui-button>
+                          </div>
+                        }
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>

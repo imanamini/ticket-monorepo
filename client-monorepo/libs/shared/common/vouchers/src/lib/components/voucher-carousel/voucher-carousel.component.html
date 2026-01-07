@@ -1,0 +1,66 @@
+<div [class]="'d-flex flex-column gap-minus ' + processedWrapperClasses()">
+  <div class="d-flex justify-content-space-between align-items-center pr-plus">
+    <div class="st-8 pr-low">کد تخفیف</div>
+    @if (!inputVouchers() && computedVouchers().length > 3) {
+      <ngx-button
+        (clickHandler)="handleShowAll()"
+        [id]="0"
+        [style]="'link'"
+        [leftIcon]="{ name: 'arrow-2-left' }"
+        [size]="'small'"
+        >همه
+      </ngx-button>
+    }
+  </div>
+  @if (isLoading()) {
+    <common-ui-components-horizontal-scroll [classes]="'pr-plus gap-pony'">
+      @for (_ of rangeCreator(4); track $index) {
+        <lib-ngx-skeleton-loading
+          [height]="'154px'"
+          [width]="'142px'"
+          [loadingEffect]="loadingEffect()"
+        ></lib-ngx-skeleton-loading>
+      }
+    </common-ui-components-horizontal-scroll>
+  } @else {
+    @if (computedVouchers().length === 1) {
+      <div class="px-plus">
+        <common-vouchers-voucher-card
+          [merchantLogo]="computedVouchers()[0].store?.logoImageId"
+          [merchantName]="computedVouchers()[0].store?.title"
+          [title]="computedVouchers()[0].title"
+          [subtitle]="computedVouchers()[0].description"
+          [expirationDate]="computedVouchers()[0].expirationDate"
+          [codeText]="computedVouchers()[0].code"
+          (click)="openVoucherBottomSheet(computedVouchers()[0])"
+          [cardMode]="'single'"
+          [bgMode]="bgMode()"
+          [category]="computedVouchers()[0].store!.categories[0]"
+          [type]="computedVouchers()[0].type"
+          [value]="computedVouchers()[0].value"
+          [image]="computedVouchers()[0].image"
+        ></common-vouchers-voucher-card>
+      </div>
+    } @else {
+      <common-ui-components-horizontal-scroll [classes]="'pr-plus'">
+        @for (voucher of computedVouchers(); track voucher.voucherId) {
+          <common-vouchers-voucher-card
+            [merchantLogo]="voucher.store?.logoImageId"
+            [merchantName]="voucher.store?.title"
+            [title]="voucher.title"
+            [subtitle]="voucher.description"
+            [expirationDate]="voucher.expirationDate"
+            [codeText]="voucher.code"
+            (click)="openVoucherBottomSheet(voucher)"
+            [cardMode]="'in-carousel'"
+            [bgMode]="bgMode()"
+            [type]="voucher.type"
+            [value]="voucher.value"
+          ></common-vouchers-voucher-card>
+        } @empty {
+          <div class="py-big st-8 d-flex justify-content-center">تخفیفی برای نمایش وجود ندارد</div>
+        }
+      </common-ui-components-horizontal-scroll>
+    }
+  }
+</div>

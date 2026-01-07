@@ -1,0 +1,36 @@
+<div class="plan-conditions-bottom-sheet pt-plus px-plus pb-huge radius-tr-big radius-tl-big">
+  <ngx-bottom-sheet-header
+    [showResizable]="true"
+    [title]="data()!.title"
+  ></ngx-bottom-sheet-header>
+  <div class="pt-big pb-medium px-medium">
+    @for (condition of data()?.conditions; track condition) {
+      <div class="pb-small d-flex justify-content-flex-start">
+        <div class="condition-item pr-small c-2 d-inline-block">
+          {{ condition.title }}
+          @if (condition.description) {
+            <ngx-icon
+              [ngxTooltip]="condition.description"
+              tooltipType="hover"
+              class="text-onback-brand mr-tiny d-inline-block"
+              [name]="'info-circle'"
+              [iconSize]="'20px'"
+            ></ngx-icon>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="pt-plus px-plus">
+    <ngx-button
+      (clickHandler)="onConfirm()"
+      [fullWidth]="true"
+      [mode]="'form'"
+      [style]="'fill'"
+      ngxTrackableId
+      trackerId="conditionConfirmButtonClick"
+      >متوجه شدم
+    </ngx-button>
+  </div>
+</div>

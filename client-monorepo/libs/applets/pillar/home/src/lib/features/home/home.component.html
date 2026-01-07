@@ -1,0 +1,55 @@
+@if (!walletsError()) {
+  <div class="p-medium border-t-200 border-color-light pb-hulk">
+    <!-- Defer Installment widget until the browser is idle to reduce initial work -->
+    @defer (on idle) {
+      <common-installment-installment-widget
+        #installmentWidget
+        class="mb-medium d-block"
+        [bottomOffset]="100"
+      ></common-installment-installment-widget>
+    }
+    <!-- Prioritize wallet balance as primary content for faster LCP -->
+    @defer {
+      <pillar-applet-wallet-balance />
+    } @placeholder (minimum 0.5s) {
+      <lib-ngx-skeleton-loading
+        [classes]="'px-plus'"
+        [width]="'100%'"
+        [height]="'58px'"
+        [borderRadius]="'16px'"
+      ></lib-ngx-skeleton-loading>
+    }
+
+    <!-- Defer CardView; load when it scrolls into view or when idle -->
+    @defer (on viewport; on idle) {
+      <pillar-applet-card-view />
+    } @placeholder (minimum 0.5s) {
+      <lib-ngx-skeleton-loading
+        [classes]="'px-plus mt-small'"
+        [width]="'100%'"
+        [height]="'106px'"
+        [borderRadius]="'16px'"
+      ></lib-ngx-skeleton-loading>
+    }
+
+    <!-- Defer Credit Usage list; it already supports [loading] -->
+    @defer (on viewport; on idle) {
+      <pillar-applet-credit-usage-list
+        [isAnyActiveWallet]="isAnyActiveWallet()"
+        [loading]="loading()"
+      />
+    } @placeholder (minimum 0.5s) {
+      <lib-ngx-skeleton-loading
+        [classes]="'px-plus mt-medium'"
+        [width]="'100%'"
+        [height]="'106px'"
+        [borderRadius]="'16px'"
+      ></lib-ngx-skeleton-loading>
+    }
+  </div>
+} @else {
+  <pillar-error-state
+    (retry)="refreshData()"
+    [errorType]="'SERVICE_UNAVAILABLE'"
+  ></pillar-error-state>
+}

@@ -1,0 +1,25 @@
+<div class="d-flex flex-column w-100 h-100 surface-elevated">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'گزارش تخلف'"
+    [rightButton]="{
+      icon: 'close',
+      style: 'link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="goBack()"
+  ></ngx-app-bar>
+
+  @switch (sectionToShow()) {
+    @case ('START') {
+      <stores-applet-violation-purchase-status-selector></stores-applet-violation-purchase-status-selector>
+    }
+    @case ('STEPPER') {
+      <stores-applet-violation-stepper class="h-100"></stores-applet-violation-stepper>
+    }
+    @case ('END') {
+      <stores-applet-violation-final></stores-applet-violation-final>
+    }
+  }
+</div>

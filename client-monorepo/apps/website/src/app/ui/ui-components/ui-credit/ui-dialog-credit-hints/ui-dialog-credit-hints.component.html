@@ -1,0 +1,61 @@
+<div class="modal">
+  <div
+    (click)="closeDialog()"
+    class="close"
+  >
+    <ngx-icon
+      class="cursor-pointer"
+      [name]="'close'"
+      [iconSize]="'24px'"
+    ></ngx-icon>
+  </div>
+  <div class="title">
+    <span>
+      {{ templateData.title }}
+    </span>
+  </div>
+  <div class="description">
+    <div
+      *ngIf="templateData && templateData.stepsTitle"
+      class="hints-title"
+    >
+      <span
+        icon="icon-hints"
+        size="24"
+        appUiIcon
+      ></span>
+      {{ templateData.stepsTitle }}
+    </div>
+    <ul class="hints-items">
+      <div class="dotted-line"></div>
+      <ng-container *ngFor="let step of templateData.steps">
+        <li>
+          <div class="dot-wrapper">
+            <div class="dot"></div>
+          </div>
+          {{ step.text }}
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+  <div class="ctas">
+    <app-ui-button
+      *ngIf="templateData.secondCta && templateData.secondCta.link && templateData.secondCta.title"
+      [appearance]="'BLUE-TEXT'"
+      [linkTarget]="'_blank'"
+      [link]="templateData.secondCta.link"
+      >{{ templateData.secondCta.title }}
+    </app-ui-button>
+    <app-ui-button
+      *ngIf="templateData.firstCta && templateData.firstCta.link && templateData.firstCta.title"
+      [linkTarget]="'_blank'"
+      [link]="templateData.firstCta.link"
+      >{{ templateData.firstCta.title }}
+    </app-ui-button>
+    <app-ui-button
+      (click)="closeDialog()"
+      *ngIf="!templateData.firstCta && !templateData.secondCta"
+      >متوجه شدم</app-ui-button
+    >
+  </div>
+</div>

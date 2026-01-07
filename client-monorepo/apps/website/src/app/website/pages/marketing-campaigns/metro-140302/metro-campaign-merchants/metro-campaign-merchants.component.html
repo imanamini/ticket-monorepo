@@ -1,0 +1,19 @@
+<section>
+  <div class="title">با وام و اعتبار دیجی‌پی از این فروشگاه‌ها خرید کنید.</div>
+  <div class="merchants">
+    <div
+      class="merchant"
+      *ngFor="let merchant of merchants"
+    >
+      <div class="logo">
+        <img
+          [src]="merchant.logo"
+          width="64"
+          height="64"
+          alt=""
+        />
+      </div>
+      <div class="name">{{ merchant.name }}</div>
+    </div>
+  </div>
+</section>

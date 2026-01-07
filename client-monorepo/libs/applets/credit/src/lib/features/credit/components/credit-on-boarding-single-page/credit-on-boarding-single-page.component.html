@@ -1,0 +1,70 @@
+<app-credit-app-bar
+  (onCloseButtonClick)="back.emit()"
+  [closeButton]="true"
+  [title]="title()"
+></app-credit-app-bar>
+<div class="main-section d-flex flex-column flex-grow py-huge px-plus">
+  <div class="top-section d-flex flex-column flex-grow">
+    <app-credit-scrollable-view [fullHeightContent]="true">
+      <div class="rtl d-flex flex-column flex-grow align-items-center justify-content-start">
+        <div class="on-boarding-image d-flex justify-content-center">
+          @if (imageId()) {
+            <credit-digipay-image
+              [imageId]="imageId()"
+              [styles]="{ maxWidth: '100%' }"
+              height="161px"
+            ></credit-digipay-image>
+          }
+        </div>
+        <div class="w-100 mb-small">
+          @if (secondTitle()) {
+            <div
+              [innerText]="secondTitle()"
+              class="st-7 text-onback-high mb-pony"
+            ></div>
+          }
+          @if (description()) {
+            <div class="c-3 text-onback-medium">{{ description() }}</div>
+          }
+          @if (message() && !messages()?.length) {
+            <div
+              [innerText]="message()"
+              class="c-2 text-onback-medium"
+            ></div>
+          }
+        </div>
+        @if (guideVideoUrl()) {
+          <div class="mt-minus py-minus px-medium radius-minus d-flex align-items-center justify-content-space-between w-100 surface-glass">
+            <div class="b-2">هنوز سوالی دارید؟</div>
+            <div
+              (click)="openGuideVideo()"
+              class="guide-url st-8 text-onback-brand pl-large cursor-pointer"
+            >
+              مشاهده فیلم راهنما
+            </div>
+          </div>
+        }
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+  @if (buttonLabel()) {
+    <div class="bottom-section d-flex flex-column gap-big w-100">
+      @if (messages()?.length) {
+        <ngx-callout
+          [mode]="'multiple'"
+          [showTitleBlink]="false"
+          [title]="'مراحل:'"
+          [messages]="messages()"
+        ></ngx-callout>
+      }
+      <ngx-button
+        trackerId="OnboardingConfirmButtonClick"
+        ngxTrackableId
+        (clickHandler)="next.emit()"
+        [fullWidth]="true"
+      >
+        {{ buttonLabel() }}
+      </ngx-button>
+    </div>
+  }
+</div>

@@ -1,0 +1,75 @@
+@if (!isLoading()) {
+  <common-ui-components-page-layout
+    title="خرید اشتراک"
+    (onBackAction)="onBackAction()"
+    [hasBackAction]="false"
+    [stickyHeader]="true"
+  >
+    <ng-container content>
+      <div class="content-wrapper d-flex surface-back overflow-hidden">
+        <div class="plans-container">
+          <subscription-applet-plans-swiper
+            [plans]="plans()"
+            (selectPlan)="selectPlan($event)"
+          ></subscription-applet-plans-swiper>
+          <subscription-applet-plan-services [plan]="selectedPlan()"></subscription-applet-plan-services>
+          <div class="submit-button surface-back py-plus px-plus">
+            <ngx-checkbox
+              class="d-flex pr-tiny"
+              [size]="20"
+              [(checked)]="isRuleAccept"
+            >
+              <p
+                class="c-2"
+                (click)="onRulesTextClicked($event)"
+              >
+                <span
+                  class="text-onback-brand"
+                  (click)="onRulesClicked()"
+                >
+                  شرایط و قوانین
+                </span>
+                را مطالعه نمودم و موافقم.
+              </p>
+            </ngx-checkbox>
+            <ngx-button
+              [fullWidth]="true"
+              [isLoading]="isPayClicked()"
+              [classNames]="['mt-pony']"
+              [mode]="'form'"
+              [style]="'fill'"
+              [disabled]="!isRuleAccept() || isPayClicked()"
+              (clickHandler)="onPurchaseClicked()"
+            >
+              خرید اشتراک {{ selectedPlan()?.title }}
+            </ngx-button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </common-ui-components-page-layout>
+} @else {
+  <common-ui-components-page-layout
+    title=""
+    [showBackIcon]="false"
+    [hasBackAction]="false"
+    [stickyHeader]="true"
+  >
+    <subscription-applet-plans-list-skeleton></subscription-applet-plans-list-skeleton>
+  </common-ui-components-page-layout>
+}
+
+<ng-template #rulesContainer>
+  <ngx-callout
+    [mode]="'multiple'"
+    [title]="rules().title"
+    [messages]="rules().steps"
+  ></ngx-callout>
+  @if (showAlert()) {
+    <ngx-alert
+      [text]="alertText()"
+      color="yellow"
+      [hasCloseIcon]="false"
+    />
+  }
+</ng-template>

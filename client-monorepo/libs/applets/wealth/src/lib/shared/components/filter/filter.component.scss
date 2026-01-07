@@ -1,0 +1,16 @@
+.container{
+  gap: 4px;
+  display: flex;
+  align-items: center;
+  padding-right: 1rem;
+
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.container::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}

@@ -1,0 +1,17 @@
+.chips {
+    margin-top: -10px;
+    &-item {
+      font-size: clamp(12px, 2vw, 14px) !important;
+    }
+}
+
+
+.actions {
+  position: sticky;
+  bottom: 10px;
+}
+
+
+img {
+  object-fit: contain;
+}

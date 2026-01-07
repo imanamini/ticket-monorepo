@@ -1,0 +1,48 @@
+<common-ui-components-page-layout
+  [showBorder]="true"
+  (onBackAction)="handelHeaderAction()"
+  [hasBackAction]="true"
+  [stickyHeader]="true"
+  [showBackIcon]="true"
+  [title]="'جزئیات آگهی'"
+>
+  @if (orderDetail()) {
+    <div class="p-medium">
+      @if (orderDetail()?.imageUrl?.length) {
+        <div class="py-medium">
+          <div class="d-flex justify-content-space-between">
+            <p class="c-1">عکس آگهی</p>
+            <div class="d-flex justify-content-space-between align-items-center">
+              <p class="c-3">برگرفته از</p>
+              <img
+                src="assets/icons/divar.svg"
+                alt="divar"
+              />
+            </div>
+          </div>
+          <common-ui-components-horizontal-scroll [classes]="'mt-small'">
+            @for (image of orderDetail()?.imageUrl; track $index) {
+              <div class="d-flex gap-small overflow-x-auto radius-minus image-wrapper">
+                <img
+                  [ngSrc]="image"
+                  width="145"
+                  height="145"
+                  class="image"
+                />
+              </div>
+            }
+          </common-ui-components-horizontal-scroll>
+        </div>
+      }
+      <div class="py-small">
+        <p class="c-1 text-onback-medium my-low">{{ orderDetail()?.title }}</p>
+        @for (item of orderDetailEntries(); track $index) {
+          <div class="d-flex justify-content-space-between my-pony">
+            <p class="b-2 text-onback-low">{{ item.key }}</p>
+            <p class="b-2 text-onback-low">{{ item.value }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</common-ui-components-page-layout>

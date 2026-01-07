@@ -1,0 +1,11 @@
+<div
+  class="group"
+  *ngFor="let rows of [].constructor(count)"
+>
+  <div
+    class="skeleton-cell"
+    [ngStyle]="skeletonStyle"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>

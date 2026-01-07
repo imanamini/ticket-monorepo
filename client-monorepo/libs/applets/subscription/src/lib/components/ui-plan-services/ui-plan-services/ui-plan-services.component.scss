@@ -1,0 +1,74 @@
+ui-plan-services {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-self: stretch;
+}
+.management-space{
+  &:not(:first-child) {
+      padding-top: 16px !important;
+  }
+}
+.ui-plan-service {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+
+  &:not(:first-child) {
+    padding-top: 8px;
+  }
+
+  .image {
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  .management-icon{
+    width: 56px !important;
+    height: 56px !important;
+  }
+}
+
+.title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ui-plan-service-data {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.ui-plan-service-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  // TODO
+  //color: $swatch_steel_900;
+
+  .ui-plan-service-details {
+    &:after {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 16px;
+      background: url("apps/dpx/src/assets/subscription/icons/info-circle-gray.svg");
+    }
+  }
+}
+
+.ui-plan-service:last-child .ui-plan-service-data {
+  // TODO
+  //border-bottom: 1px solid $swatch_steel_100;
+  border-bottom: none;
+}

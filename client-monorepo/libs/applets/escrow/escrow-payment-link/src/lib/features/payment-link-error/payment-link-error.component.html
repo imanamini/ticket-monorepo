@@ -1,0 +1,32 @@
+<common-ui-components-page-layout
+  [hasBackAction]="false"
+  [showBorder]="true"
+  [showBackIcon]="false"
+>
+  <div class="d-flex flex-column justify-content-space-between h-100 p-medium">
+    <div class="d-flex m-auto">
+      <div class="d-flex flex-column gap-huge">
+        <escrow-payment-link-status-header
+          [status]="'error'"
+          [config]="errorCodeTranslate"
+          [cellNumber]="cellNumber"
+        ></escrow-payment-link-status-header>
+        <div class="d-flex justify-content-center">
+          <ngx-button
+            [mode]="'section'"
+            [size]="'medium'"
+            [style]="'fill'"
+            (clickHandler)="onNavigate()"
+          >
+            {{ PaymentLinkErrorTranslate[errorCode].buttonText }}
+          </ngx-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-box d-flex p-medium justify-content-space-between border-color-light radius-minus">
+      <span class="fs-14 text-onback-disabled">شماره پشتیبانی:</span>
+      <span class="fs-14">۰۲۱-۵۳۹۲۴۰۰۰ (داخلی۳)</span>
+    </div>
+  </div>
+</common-ui-components-page-layout>

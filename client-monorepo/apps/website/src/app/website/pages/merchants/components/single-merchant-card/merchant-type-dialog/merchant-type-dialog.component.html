@@ -1,0 +1,53 @@
+<div class="merchant-type-dialog">
+  <div class="top-part">
+    <div></div>
+  </div>
+  <div class="content">
+    <div class="title">نحوه خرید:</div>
+    <div class="description">
+      <span>{{ dialogData.title }}</span>
+      {{ dialogData.description }}
+    </div>
+    <swiper-container
+      appSwiper
+      #swiper
+      [config]="swiperConfig"
+      (slidechange)="slideChange($event)"
+    >
+      <swiper-slide *ngFor="let step of dialogData.steps; let idx = index">
+        <div class="swiper-slide">
+          <div class="step-number">{{ idx + 1 }}</div>
+          <div class="step-icon">
+            <img
+              [ngSrc]="step.imagePath"
+              width="56"
+              height="56"
+            />
+          </div>
+          <div class="step-name">{{ step.name }}</div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+
+    <!--    <swiper [config]="swiperConfig" class="swiper">-->
+    <!--      <ng-container *ngFor="let step of dialogData.steps; let idx = index">-->
+    <!--        <ng-template swiperSlide>-->
+    <!--          <div class="swiper-slide">-->
+    <!--            <div class="step-number">{{ idx + 1 }}</div>-->
+    <!--            <div class="step-icon">-->
+    <!--              <img [ngSrc]="step.imagePath" width="56" height="56" />-->
+    <!--            </div>-->
+    <!--            <div class="step-name">{{ step.name }}</div>-->
+    <!--          </div>-->
+    <!--        </ng-template>-->
+    <!--      </ng-container>-->
+    <!--    </swiper>-->
+  </div>
+  <app-ui-button
+    appearance="FLAT-BLUE"
+    size="BIG"
+    class="cta"
+    (clicked)="closeDialog()"
+    >بستن</app-ui-button
+  >
+</div>

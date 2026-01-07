@@ -1,0 +1,35 @@
+.item-container {
+  width: 154px;
+  height: 160px;
+
+  .top-section {
+    height: 70px;
+    border-radius: 24px 24px 6px 6px;
+  }
+
+  .bottom-section {
+    height: 90px;
+    border-radius: 6px 6px 24px 24px;
+    padding: 30px 12px 12px 12px;
+  }
+
+  .ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+    min-width: 0;
+  }
+
+  .mw-full {
+    max-width: 100%;
+  }
+}
+
+.h-129 {
+  height: 129px;
+  }
+
+.voucher-divider {
+  position: absolute;
+  top: 68px;
+}

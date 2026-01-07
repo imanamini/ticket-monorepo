@@ -1,0 +1,33 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.model-picker {
+  @include flex-column;
+  @include flex-center;
+  gap: 16px;
+  padding-bottom: 90px;
+
+  .divider {
+    width: 100%;
+    border-top: 1px solid #f2f5f8;
+  }
+
+  .hint {
+    @include flex-row;
+    @include flex-center-between;
+    width: 100%;
+    font-weight: 400;
+    font-size: 14px;
+    color: #2c3544;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .models-list {
+    @include flex-column;
+    max-width: 100%;
+    width: 100%;
+    gap: 16px;
+  }
+}

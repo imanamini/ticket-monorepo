@@ -1,0 +1,65 @@
+@if (services().length > 0) {
+  <ng-container>
+    @if (title()) {
+      <p class="st-8 text-onback-high pb-minus">{{ title() }}</p>
+    }
+    <div class="surface-elevated services-container">
+      @for (service of services(); track service) {
+        <div [class]="{ 'management-space': isManagementSection(), 'ui-plan-service': true }">
+          @if (service?.merchantCashbackList && service?.merchantCashbackList?.length === 1) {
+            <ui-api-image
+              [imageId]="service?.icon ?? ''"
+              [width]="isManagementSection() ? '56px' : '32px'"
+              [height]="isManagementSection() ? '56px' : '32px'"
+            ></ui-api-image>
+          } @else {
+            <span
+              [class]="{ 'management-icon': isManagementSection(), image: true }"
+              [style.background-image]="'url(' + service?.icon + ')'"
+            ></span>
+          }
+          <div class="ui-plan-service-data border-b-100 border-color-light pb-small">
+            <div class="ui-plan-service-title">
+              <p class="title-wrapper">
+                <span class="c-1 text-onback-high">{{ service?.title }}</span>
+              </p>
+            </div>
+            @if (isManagementSection() && service?.merchantCashbackList) {
+              @if (service?.managementDescription && service?.merchantCashbackList?.length === 1) {
+                <div
+                  highlightKeywords
+                  [baseText]="service?.managementDescription?.text"
+                  [keywords]="service?.managementDescription?.keywords"
+                  class="c-2 pt-tiny text-onback-low"
+                ></div>
+              }
+              @if (isManagementSection() && service?.merchantCashbackList.length > 1) {
+                <div
+                  highlightKeywords
+                  [baseText]="service?.managementDescription?.text"
+                  [keywords]="service?.managementDescription?.keywords"
+                  class="c-2 pt-tiny text-onback-low"
+                ></div>
+              }
+              @if (service?.managementDescriptionDetail) {
+                <div
+                  highlightKeywords
+                  [baseText]="service?.managementDescriptionDetail?.text"
+                  [keywords]="service?.managementDescriptionDetail?.keywords"
+                  class="c-2 pt-tiny text-onback-low"
+                ></div>
+              }
+            } @else {
+              <div
+                highlightKeywords
+                [baseText]="service?.description?.text"
+                [keywords]="service?.description?.keywords"
+                class="c-2 pt-tiny text-onback-low"
+              ></div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </ng-container>
+}

@@ -1,0 +1,27 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  [title]="'دستگاه‌های متصل'"
+>
+  <div class="session-container flex-grow surface-back px-plus py-huge">
+    <div class="current-session">
+      <profile-applet-session-card
+        [sessionTitle]="'دستگاه فعلی'"
+        [sessions]="[{ device: currentSession() }]"
+        [isCurrentSession]="true"
+        [hasOtherSessions]="otherSession()?.length > 0"
+        (removeSessionClicked)="handleConfirmRevoke($event, 'others')"
+      ></profile-applet-session-card>
+    </div>
+    <div
+      *ngIf="otherSession().length > 0"
+      class="mt-huge"
+    >
+      <profile-applet-session-card
+        [sessionTitle]="'سایر دستگاه‌ها'"
+        [sessions]="otherSession()"
+        [hasLastLoginInfo]="true"
+        (removeSessionClicked)="handleConfirmRevoke($event, 'single')"
+      ></profile-applet-session-card>
+    </div>
+  </div>
+</common-ui-components-page-layout>

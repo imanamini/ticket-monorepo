@@ -1,0 +1,24 @@
+<div id="layout">
+  <app-new-header
+    *ngIf="showHeader && !inAppPreviewHiddenFlag"
+    class="surface-back"
+  ></app-new-header>
+  <div #contentContainer>
+    <ng-content></ng-content>
+  </div>
+  <div #footer>
+    <app-new-footer *ngIf="showFooter && !inAppPreviewHiddenFlag"></app-new-footer>
+  </div>
+
+  <div
+    class="sticky-bottom-navigation"
+    #bottomNavigation
+    *ngIf="isMobileMode && !inAppPreviewHiddenFlag"
+  >
+
+    @if (showCtaBottomSheet()) {
+      <app-cta-bottom-sheet [cta]="cta()"></app-cta-bottom-sheet>
+    }
+    <app-bottom-navigation></app-bottom-navigation>
+  </div>
+</div>

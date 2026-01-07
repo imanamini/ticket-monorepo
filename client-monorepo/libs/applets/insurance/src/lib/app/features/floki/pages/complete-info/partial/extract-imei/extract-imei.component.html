@@ -1,0 +1,23 @@
+<div class="extract-imei-container">
+  <ngx-uploader
+    (onFileUpload)="onFileUpload($event)"
+    [description]="'فرمت JPEG ،PNG ،HEIF و GIF'"
+    [fileAcceptedFormats]="['png', 'gif', 'jpeg', 'heif']"
+    [hasHintStar]="true"
+    [hintStatus]="'info'"
+    [hint]="'فرمت JPEG ،PNG ،HEIF و GIF'"
+    [label]="'اسکرین‌شات صفحه IMEI'"
+    [multiple]="false"
+    [type]="'file'"
+  ></ngx-uploader>
+  @if (showImeiInput() || serialNumber()) {
+    <ui-form-field
+      [error]="imeiFormControl.errors"
+      [formControl]="imeiFormControl"
+      label="شناسه سریال دستگاه (IMEI)"
+      type="input"
+      [readonly]="imeiFormControl.disabled"
+    >
+    </ui-form-field>
+  }
+</div>

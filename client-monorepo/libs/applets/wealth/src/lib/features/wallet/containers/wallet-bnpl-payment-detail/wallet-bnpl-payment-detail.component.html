@@ -1,0 +1,85 @@
+<div class="w-100 d-flex flex-wrap surface-elevated content">
+  <ngx-app-bar
+    class="w-100"
+    [title]="''"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  @if (!isLoading()) {
+    <div class="w-100 d-flex flex-column px-plus detail">
+      <div class="w-100 d-flex gap-minus align-items-center mt-small">
+        <ngx-icon
+          [name]="'bag-of-wealth'"
+          [type]="'bold'"
+          [iconSize]="'28px'"
+        />
+
+        <p class="st-6 text-onback-high">بررسی مبلغ اعتبار و افزایش موجودی</p>
+      </div>
+
+      <div class="w-100 d-flex flex-column gap-pony mt-plus">
+        @for (detail of details(); track detail; let i = $index) {
+          <div class="w-100 d-flex align-items-center justify-content-space-between">
+            <p [class]="i === 0 ? 'text-onback-high st-8' : 'b-2 text-onback-disabled'">
+              {{ detail.title }}
+            </p>
+            <p [class]="i === 0 ? 'text-onback-high st-8' : 'b-2 text-onback-low'">{{ detail.value | thousands }} ریال</p>
+          </div>
+
+          <ngx-divider [color]="BorderColorsEnum.Air"></ngx-divider>
+        }
+      </div>
+
+      @if (state().minAmountInformationMessage) {
+        <div class="w-100 mt-plus">
+          <ngx-alert
+            [hasCloseIcon]="false"
+            [color]="'yellow'"
+            [text]="state().minAmountInformationMessage"
+          />
+        </div>
+      }
+
+      @if (state().maxAmountInformationMessage) {
+        <div class="w-100 mt-plus">
+          <ngx-alert
+            [hasCloseIcon]="false"
+            [color]="'yellow'"
+            [text]="state().maxAmountInformationMessage"
+          />
+        </div>
+      }
+
+      <div class="w-100 mt-plus">
+        <ngx-callout
+          [mode]="'multiple'"
+          [messages]="messages()"
+        />
+      </div>
+    </div>
+
+    <div class="w-100 d-flex flex-column surface-elevated footer">
+      <ngx-divider [color]="BorderColorsEnum.Air"></ngx-divider>
+
+      <div class="w-100 px-plus mt-plus mb-minus">
+        <p class="text-onback-high bt-2">مبلغ افزایش موجودی</p>
+        <p class="text-onback-medium t-7 mt-low mb-minus">{{ state().rechargeableAmount | thousands }} ریال</p>
+
+        <ngx-button
+          [brandButton]="needToPay()"
+          [fullWidth]="true"
+          (clickHandler)="continue()"
+          [isLoading]="loadingProcess()"
+        >
+          {{ needToPay() ? 'تایید و پرداخت' : 'تایید' }}
+        </ngx-button>
+      </div>
+    </div>
+  }
+</div>

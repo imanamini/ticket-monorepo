@@ -1,0 +1,64 @@
+<div class="w-100 d-flex flex-column">
+  <div class="w-100 d-flex gap-small align-items-center">
+    <img
+      [src]="walletLogo()"
+      [attr.alt]="walletTitle()"
+    />
+    <div
+      class="d-flex flex-column"
+      [ngClass]="{ 'gap-tiny': !!walletDescriptions() }"
+    >
+      <p class="st-8 text-onback-high">{{ walletTitle() }}</p>
+    </div>
+  </div>
+
+  <div class="w-100 d-flex flex-column mt-medium">
+    <div class="w-100 d-flex flex-column">
+      @for (data of metaData(); track $index; let last = $last) {
+        <div
+          class="w-100"
+          [ngClass]="{ 'mb-minus': !last }"
+        >
+          <div class="w-100 d-flex align-items-center justify-content-space-between">
+            <p class="c-3 text-onback-medium">{{ data.title }}</p>
+
+            <p class="st-8 text-onback-medium">
+              {{ data.value | thousands }}
+              <span class="is-currency"> ریال </span>
+            </p>
+          </div>
+          @if (data.subTitle) {
+            <p class="l-2 text-onback-low mt-tiny">{{ data.subTitle }}</p>
+          }
+        </div>
+      }
+    </div>
+
+    @if (this.walletName() === 'WALLET_MIX' && walletDescriptions()) {
+      <div class="w-100 d-flex flex-wrap">
+        <ngx-divider
+          class="w-100 my-minus"
+          [color]="BorderColorsEnum.Tint"
+        >
+        </ngx-divider>
+        <div class="w-100 d-flex gap-tiny">
+          <ngx-icon
+            class="text-oninvert-brand"
+            name="error-circle"
+            [type]="'bold'"
+          />
+          <p class="l-2 text-onback-low">{{ walletDescriptions() }}</p>
+        </div>
+      </div>
+    }
+  </div>
+  @if (walletName() === 'WALLET_GOLD' && goldPricePerGram() !== undefined) {
+    <div class="w-100 mt-minus d-flex align-items-center justify-content-space-between">
+      <p class="c-3 text-onback-medium">قیمت هر گرم طلا</p>
+      <p class="c-3 text-onback-medium">
+        {{ goldPricePerGram() | thousands }}
+        <span class="is-currency"> ریال </span>
+      </p>
+    </div>
+  }
+</div>

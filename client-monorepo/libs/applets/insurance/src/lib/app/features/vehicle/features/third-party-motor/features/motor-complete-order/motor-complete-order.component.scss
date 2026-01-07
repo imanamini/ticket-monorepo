@@ -1,0 +1,205 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+$background-gradiant: linear-gradient(to bottom, #14a654, #34bb6b, #4dcf82, #63e59a, #79fab2);
+$container-max-width: 360px;
+
+:host {
+  @include flex-center;
+  height: 100%;
+  background-color: #f2f5f8;
+  container-type: size;
+  container-name: container;
+}
+
+.container-complete {
+  @include column-center-between();
+  position: relative;
+  height: 100%;
+  width: 100%;
+  max-width: 552px;
+  overflow: auto;
+
+  .container {
+    flex: 1;
+    width: 100%;
+    overflow: auto;
+    @include flex-center-start;
+    padding: 0 12px 90px 12px;
+
+    &:first-child {
+      padding-top: 32px;
+    }
+  }
+
+  & > div {
+    @include flex-column;
+  }
+
+  .wrapper-message {
+    @include flex-column;
+    @include flex-center;
+    background-color: #ffffff;
+    border-radius: 24px;
+    max-width: $container-max-width;
+    width: 100%;
+    padding: 16px 24px;
+
+    .section-icon {
+      margin-bottom: 16px;
+    }
+
+    .section-message {
+      .notice {
+        margin-bottom: 16px;
+        color: #6e798d;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+      }
+
+      .title {
+        margin-bottom: 16px;
+
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 32px;
+
+        &.success {
+          color: #00cc6d;
+          background: linear-gradient(89deg, #91e8b6 -39.81%, #00cc6d 103.2%);
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        &.not-success {
+          // TODO: use variable this color after update packages to DLS v2.0
+          color: #DFAE00;
+        }
+      }
+
+      .description {
+        color: #6e798d;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+        margin-bottom: 16px;
+      }
+
+      #expire-time {
+        @include flex-center-between;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        margin-bottom: 16px;
+
+        & > div {
+          flex: 1;
+          @include flex-center-start;
+
+          span {
+            color: #1159FC;
+            margin-right: 8px;
+          }
+        }
+
+        p {
+          color: #6e798d;
+        }
+      }
+    }
+
+    .section-reference {
+      @include flex-center-between;
+      padding-top: 16px;
+      border-top: 1px solid #dee3e7;
+      width: 100%;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      color: #2c3544;
+    }
+  }
+
+  .wrapper-ticket {
+    @include flex-stretch-between;
+    margin-top: 16px;
+    max-width: $container-max-width;
+    width: 100%;
+
+    & > div:not(.container-border-dashed) {
+      padding: 4px 8px;
+      border-radius: 12px;
+      // TODO: use variable this color after update packages to DLS v2.0
+      background-image: $background-gradiant;
+
+
+      P {
+        color: #ffffff;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 24px;
+      }
+
+      & > span {
+        margin-top: 4px;
+        margin-bottom: 4px;
+        @include flex-center-start;
+        color: black;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 450;
+        line-height: 20px;
+        // TODO: use variable this color after update packages to DLS v2.0
+        background-color: #FEC003;
+        border-radius: 48px;
+        padding: 4px 8px;
+        white-space: nowrap;
+
+        & > span {
+          margin-right: 4px;
+        }
+      }
+
+      &:first-child {
+        @include flex-column;
+        @include flex-start-around;
+        flex: 2;
+        padding: 4px 16px;
+      }
+
+      &:last-child {
+        @include flex-center;
+        width: 126px;
+      }
+
+    }
+
+    .container-border-dashed {
+      position: relative;
+      height: 79%;
+      margin-top: 10px;
+      background-image: $background-gradiant;
+    }
+  }
+
+  #footer-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+.font-size-12px {
+  font-size: 12px;
+}
+
+@container container (height < 570px) {
+  .container-complete {
+    padding-bottom: 100px;
+  }
+}

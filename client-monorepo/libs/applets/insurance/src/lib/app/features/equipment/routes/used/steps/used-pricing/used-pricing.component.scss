@@ -1,0 +1,38 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+form {
+  width: 100%;
+}
+
+.pricing-wrapper {
+  width: 100%;
+}
+
+.pricing {
+  @include flex-column();
+  gap: 24px;
+
+  used-suggested-price-card {
+    max-width: 100%;
+  }
+
+  pricing-list {
+    width: 100%;
+  }
+
+  .buttons {
+    width: 100%;
+    margin-top: 24px;
+  }
+
+}
+
+.used-device-layout .used-device-content {
+  margin: 0 0 90px 0;
+  padding: 24px;
+  width: 100%;
+  overflow: scroll;
+  height: calc(100% - 130px);
+  background-color: #F2F3F6;
+}
+

@@ -1,0 +1,19 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.health-check-init {
+  @include flex-column();
+  @include flex-center();
+  gap: 16px;
+  padding: 16px;
+  color: #2c3544;
+
+  .init-title {
+    font-weight: bold;
+    line-height: 24px;
+  }
+
+  .init-text {
+    font-weight: normal;
+    line-height: 24px;
+  }
+}

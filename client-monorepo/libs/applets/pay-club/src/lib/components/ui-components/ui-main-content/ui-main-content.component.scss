@@ -1,0 +1,67 @@
+.middle-section {
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: unset;
+}
+
+.remaining-capacity {
+  color: #6d6d6d;
+  font-size: 12px;
+  margin: unset;
+
+  span {
+    color: #ff2638;
+  }
+}
+
+.points-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  margin: unset;
+
+  .text {
+    display: inline-block;
+    margin-left: 5px;
+    line-height: 1.5em;
+  }
+
+  .point {
+    text-align: center;
+    border-radius: 12px;
+    font-size: 12px;
+    padding: 5px 10px;
+    color: #2746c5;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+
+    .icon-coin {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      background: url('apps/dpx/src/assets/pay-club/coin.svg') no-repeat center;
+      background-size: contain, cover;
+      margin-left: 4px;
+    }
+  }
+}
+
+.description {
+  text-align: justify;
+  font-size: 12px;
+  line-height: 16px;
+  white-space: pre-line;
+  overflow-wrap: break-word;
+  -ms-word-break: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}

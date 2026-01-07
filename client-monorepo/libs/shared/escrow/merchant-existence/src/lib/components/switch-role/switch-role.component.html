@@ -1,0 +1,11 @@
+<div class="w-100 d-flex justify-content-center p-medium surface-high-contrast">
+  <ngx-button
+    [mode]="'section'"
+    [size]="'small'"
+    [style]="'tinted-on-elevated'"
+    [leftIcon]="{ name: 'change', type: 'linear' }"
+    (clickHandler)="switchPanel()"
+  >
+    {{ role() === 'seller' ? 'فروشنده' : 'خریدار' }}
+  </ngx-button>
+</div>

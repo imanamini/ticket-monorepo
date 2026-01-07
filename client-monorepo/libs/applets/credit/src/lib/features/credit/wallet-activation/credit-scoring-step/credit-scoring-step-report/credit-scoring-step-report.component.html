@@ -1,0 +1,175 @@
+@if (!reportError()) {
+  <app-credit-location-trap
+    (back)="back.emit()"
+    [canBack]="false"
+    [canExit]="true"
+  ></app-credit-location-trap>
+  <app-credit-app-bar
+    (onBackButtonClick)="back.emit()"
+    [backButton]="true"
+    title="گزارش اعتبارسنجی"
+  >
+  </app-credit-app-bar>
+  <div class="d-flex flex-column flex-grow">
+    <div
+      class="d-flex flex-column flex-grow"
+      #reportContent
+    >
+      <app-credit-scrollable-view
+        fadeColor="white"
+        [fullHeightContent]="true"
+      >
+        <div class="d-flex flex-column flex-grow rtl">
+          @if (!report()) {
+            <ui-cs-report-skeleton></ui-cs-report-skeleton>
+          }
+          @if (report()) {
+            <div class="d-flex flex-column flex-grow">
+              <div class="top-area pb-small surface-elevated">
+                @if (!isNoData() && Object.keys(report()?.summary!).length! > 0) {
+                  <ui-cs-score-box-new
+                    (clicked)="goToScoreDetails()"
+                    [summary]="report()?.summary"
+                  ></ui-cs-score-box-new>
+                }
+              </div>
+              <div class="bottom-area surface-back pt-plus px-plus d-flex flex-grow flex-column w-100 gap-medium">
+                @if (!isNoData()) {
+                  <div class="d-flex flex-column w-100 gap-pony">
+                    @if (report()?.personalDetail) {
+                      <h4 class="st-8 text-onback-high">مشخصات فردی</h4>
+                    }
+                    @if (report()?.personalDetail) {
+                      <div class="d-flex flex-column w-100 radius-big surface-elevated p-plus gap-minus">
+                        @if (report()?.personalDetail?.firstName) {
+                          <div class="d-flex flex-row w-100 justify-content-space-between align-items-center">
+                            <div class="c-3 text-onback-low w-50">نام</div>
+                            <div class="c-1 text-onback-high text-align-right w-50">
+                              {{ report()?.personalDetail?.firstName }}
+                            </div>
+                            <span></span>
+                          </div>
+                          <ngx-divider
+                            [color]="BorderColorsEnum.Air"
+                            orientation="horizontal"
+                          ></ngx-divider>
+                        }
+                        @if (report()?.personalDetail?.lastName) {
+                          <div class="d-flex flex-row w-100 justify-content-space-between align-items-center">
+                            <div class="c-3 text-onback-low w-50">نام خانوادگی</div>
+                            <div class="c-1 text-onback-high text-align-right w-50">
+                              {{ report()?.personalDetail?.lastName }}
+                            </div>
+                            <span></span>
+                          </div>
+                          <ngx-divider
+                            [color]="BorderColorsEnum.Air"
+                            orientation="horizontal"
+                          ></ngx-divider>
+                        }
+                        @if (report()?.personalDetail?.nationalCode) {
+                          <div class="d-flex flex-row w-100 justify-content-space-between align-items-center">
+                            <div class="c-3 text-onback-low w-50">کد ملی</div>
+                            <div class="c-1 text-onback-high text-align-right w-50">
+                              {{ report()?.personalDetail?.nationalCode }}
+                            </div>
+                            <span></span>
+                          </div>
+                        }
+                      </div>
+                    }
+                  </div>
+                  <div class="d-flex flex-column w-100 gap-pony">
+                    <h4 class="st-8 text-onback-high">وضعیت وام‌(ها)</h4>
+                    <div class="d-flex flex-column w-100 radius-big surface-elevated p-plus gap-minus">
+                      @for (contract of report()?.contracts; track contract; let last = $last) {
+                        <app-credit-score-step-loan-item [contract]="contract"></app-credit-score-step-loan-item>
+                        @if (!last) {
+                          <ngx-divider
+                            [color]="BorderColorsEnum.Air"
+                            orientation="horizontal"
+                          ></ngx-divider>
+                        }
+                      }
+                      @if (!report()?.contracts?.length) {
+                        <p class="bt-3 text-onback-medium">سابقه دریافت وام ندارد.</p>
+                      }
+                    </div>
+                  </div>
+                  <div class="d-flex flex-column w-100 gap-pony">
+                    <h4 class="st-8 text-onback-high">چک(های) برگشتی</h4>
+                    <div class="d-flex flex-column w-100 radius-big surface-elevated p-plus gap-minus">
+                      <div>
+                        <p class="bt-3 text-onback-medium">
+                          {{ report()?.chequeStatus?.status }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                }
+                @if (report()?.details?.length) {
+                  <div class="d-flex flex-column w-100 radius-big surface-elevated p-plus gap-minus">
+                    <ngx-callout
+                      [mode]="'multiple'"
+                      [showTitleBlink]="false"
+                      [title]="''"
+                      [messages]="report()!.details"
+                    ></ngx-callout>
+                  </div>
+                }
+                @if (report()?.notes) {
+                  <div class="d-flex flex-column w-100 radius-big surface-elevated py-plus pl-plus pr-huge gap-minus ng-star-inserted">
+                    <div
+                      [innerHTML]="report()?.notes"
+                      class="c-2 text-onback-medium"
+                    ></div>
+                  </div>
+                }
+                <ngx-callout
+                  [mode]="'single-with-title'"
+                  [backgroundMode]="'elevated'"
+                  [message]="
+                    'مشتریان حق دارند در صورت مشاهده هرگونه مغایرت در محتوای اطلاعاتی گزارش اعتباری خود، از طریق شعبه بانک نسبت به آن اعتراض نمایند و با پیگیری موضوع و صحت ادعا، زمینه اصلاح آن را فراهم نمایند.'
+                  "
+                />
+              </div>
+            </div>
+          }
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+    <div class="px-plus pb-plus pt-medium surface-back">
+      <ngx-button
+        ngxTrackableId
+        trackerId="scoreReportDownloadButtonClick"
+        (clickHandler)="DownloadReport()"
+        [isLoading]="downloading()"
+        [disabled]="downloading()"
+        [fullWidth]="true"
+        [mode]="'form'"
+        [style]="'fill'"
+        [rightIcon]="{ name: 'download' }"
+      >
+        دانلود گزارش
+      </ngx-button>
+    </div>
+  </div>
+} @else {
+  <div class="d-flex flex-column flex-grow w-100">
+    <div class="flex-grow justify-content-center rtl w-100">
+      <ngx-status-result
+        [type]="'Retry'"
+        [description]="'متاسفانه نتوانستیم گزارش امکان‌سنجی شما را دریافت کنیم لطفا دقایقی دیگر دوباره تلاش کنید.'"
+        [title]="'خطا در دریافت گزارش'"
+        [buttons]="reportErrorButtons"
+        (clicked)="getData()"
+        [hasCloseIcon]="true"
+        (closed)="back.emit()"
+      >
+        <ng-container status-image>
+          <div class="message-image"></div>
+        </ng-container>
+      </ngx-status-result>
+    </div>
+  </div>
+}

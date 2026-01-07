@@ -1,0 +1,103 @@
+@if (isLoading()) {
+  <div class="d-flex justify-content-center align-items-center w-100 mt-huge">
+    <ngx-spinner></ngx-spinner>
+  </div>
+} @else {
+  @if (pendingOrders().length === 0) {
+    <div class="d-flex flex-column justify-content-center h-50vh">
+      <img
+        src="assets/images/empty.png"
+        alt="empty"
+      />
+      <p class="st-8 text-onback-high text-align-center mt-medium">
+        {{ 'سفارش ' + ORDER_STATE_TRANSLATION[currentPendingOrderState()] + ' ای ندارید' || 'سفارشی ندارید' }}
+      </p>
+    </div>
+  } @else {
+    <div class="pb-hulk">
+      <div class="d-flex justify-content-space-between align-items-center mb-minus mt-plus">
+        <p class="st-8">لیست سفارش‌ها</p>
+      </div>
+      @for (order of pendingOrders(); track $index) {
+        <div class="p-big mb-medium radius-big surface-elevated">
+          <escrow-home-applet-order-summary
+            [image]="order.image"
+            [linkText]="'آگهی'"
+            [announcementTitle]="order.announcementTitle"
+            [price]="order.price"
+            [priceTitle]="'مبلغ آگهی'"
+            (linkAction)="openPendingOrderDetailBottomSheet(order)"
+          ></escrow-home-applet-order-summary>
+          <ngx-divider
+            [color]="BorderColorsEnum.Air"
+            orientation="horizontal"
+          ></ngx-divider>
+          <div class="my-plus">
+            <div class="d-flex justify-content-space-between align-items-center">
+              <p class="b-3">مبلغ پرداخت شده</p>
+              <p class="b-3 text-onback-success is-currency">{{ (order.paidAmount | thousands) + ' ریال' }}</p>
+            </div>
+            @if (order.confirmationDeadline) {
+              <div class="d-flex justify-content-space-between align-items-center mt-small">
+                <p class="b-3">فرصت تا تایید سفارش</p>
+                <p class="b-3">
+                  {{ order.confirmationDeadline | jalaliDate: 'jYYYY/jMM/jDD - HH:mm' }}
+                </p>
+              </div>
+            }
+            @if (order.deliveryDeadline) {
+              <div class="d-flex justify-content-space-between align-items-center mt-small">
+                <p class="b-3">فرصت تا ارسال سفارش</p>
+                <p class="b-3">
+                  {{ order.deliveryDeadline | jalaliDate: 'jYYYY/jMM/jDD - HH:mm' }}
+                </p>
+              </div>
+            }
+            <div class="d-flex justify-content-space-between align-items-center mt-small">
+              <p class="b-3">کد سفارش:</p>
+              <p class="b-3">{{ order.trackingCode }}</p>
+            </div>
+          </div>
+          <ngx-divider
+            [color]="BorderColorsEnum.Air"
+            orientation="horizontal"
+          ></ngx-divider>
+          <div class="d-flex justify-content-space-between mt-minus">
+            <ngx-button
+              [mode]="'form'"
+              [size]="'small'"
+              [style]="'link'"
+              [destructive]="true"
+              [fullWidth]="true"
+              (click)="openCancelOrderBottomSheet(order.trackingCode)"
+            >
+              لغو
+            </ngx-button>
+
+            @if (currentPendingOrderState() === ORDER_STATE.VERIFIED) {
+              <ngx-button
+                [mode]="'section'"
+                [size]="'small'"
+                [style]="'fill'"
+                [fullWidth]="true"
+                (clickHandler)="confirmOrder(order.trackingCode)"
+              >
+                تایید سفارش
+              </ngx-button>
+            } @else {
+              <ngx-button
+                [mode]="'section'"
+                [size]="'small'"
+                [style]="'fill'"
+                [fullWidth]="true"
+                (click)="navigateToDelivery(order.trackingCode)"
+              >
+                ارسال
+              </ngx-button>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+}

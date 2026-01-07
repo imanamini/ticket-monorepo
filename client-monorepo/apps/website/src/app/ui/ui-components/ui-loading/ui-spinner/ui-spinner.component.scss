@@ -1,0 +1,49 @@
+@import "globals";
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes uiPreparingRotate {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.ui-preparing {
+  text-align: center;
+  line-height: 0;
+
+  .loading {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    background: url('./ui-preparing-loading.svg') no-repeat 0 0/100%;
+    animation: uiPreparingRotate 0.7s linear infinite;
+  }
+
+  .title {
+    color: #4c4c4c;
+    margin-bottom: 12px;
+    font-size: rem(14, 16);
+  }
+
+  .subtitle {
+    color: #7f7f7f;
+    margin-bottom: 30px;
+    font-size: rem(12, 16);
+  }
+}

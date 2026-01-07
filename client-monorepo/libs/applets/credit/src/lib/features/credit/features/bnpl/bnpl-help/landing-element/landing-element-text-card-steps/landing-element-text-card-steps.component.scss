@@ -1,0 +1,34 @@
+.le-text-card-steps {
+
+  .le-text-card {
+    display: flex;
+    border-radius: 16px;
+    align-items: center;
+    border: 1px solid #dee3e7;
+    margin-bottom: 8px;
+    padding: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .le-index {
+      flex: 0 0 auto;
+      width: 24px;
+      height: 24px;
+      border: 1px solid #dee3e7;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      font-size: 12px;
+      line-height: 24px;
+      color: #6e798d;
+    }
+
+    .le-description {
+      font-size: 12px;
+      line-height: 20px;
+      padding-right: 16px;
+    }
+  }
+}

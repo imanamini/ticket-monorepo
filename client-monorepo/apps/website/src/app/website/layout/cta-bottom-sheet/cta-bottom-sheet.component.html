@@ -1,0 +1,26 @@
+@if (cta()) {
+  <div class="cta-bar mb-pony"   [ngStyle]="{ background: background() }">
+    <div class="d-flex align-items-center gap-minus">
+      <ngx-icon
+        [name]="cta()?.icon"
+        [iconSize]="cta().iconSize"
+        [type]="cta().iconType ?? 'due'"
+        class="text-oninvert-high"
+      ></ngx-icon>
+      <span class="{{cta()?.textStyles ? cta().textStyles : 'c-2 text-oninvert-high'}}">{{ cta()?.text }}</span>
+    </div>
+    <ngx-button
+      (clickHandler)="openCta(cta().link)"
+      [mode]="'section'"
+      [style]="style()"
+      [size]="'small'"
+      [brandButton]="brandButton()"
+      [leftIcon]="{ name: ctaIcon(), type: 'linear' }"
+    >
+      {{ cta().ctaTitle }}
+    </ngx-button>
+  </div>
+}
+
+
+

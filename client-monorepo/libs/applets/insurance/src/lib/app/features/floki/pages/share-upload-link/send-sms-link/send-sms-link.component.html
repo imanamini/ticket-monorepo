@@ -1,0 +1,63 @@
+<div class="text-align-center">
+  <svg width="40" height="4" viewBox="0 0 40 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M0 2C0 0.895431 0.895431 0 2 0H38C39.1046 0 40 0.895431 40 2C40 3.10457 39.1046 4 38 4H2C0.895431 4 0 3.10457 0 2Z"
+      fill="#F2F3F6"/>
+  </svg>
+</div>
+<div class="send-sms-upload-link p-plus">
+  <section>
+    <div class="d-flex flex-row gap-plus justify-content-space-between align-items-center">
+      <p class="st-3 text-onback-high">
+        امکان اسکن کردن ندارید؟
+      </p>
+      <p class="radius-rounded p-medium border-color-disabled camera-icon-wrapper">
+        <ngx-icon [iconSize]="'32px'"
+                  name="camera"
+                  classes="text-onback-medium"
+                  type="linear"></ngx-icon>
+      </p>
+    </div>
+    <p class="b-2 text-onback-medium mt-plus">
+      در صورتی که امکان اسکن را ندارید شماره خود را وارد کنید تا لینک فرآیند برای شما از طریق پیامک ارسال شود.
+    </p>
+    <div
+      class="d-flex flex-row p-pony radius-medium border-300 border-color-disabled align-items-center justify-content-space-between mt-minus"
+      [class.border-color-error]="phoneNumberFormControl().invalid && phoneNumberFormControl().touched"
+    >
+      <input placeholder="شماره موبایل"
+             maxlength="11"
+             minlength="11"
+             inputMode="numeric"
+             pattern="\d*"
+             [formControl]="phoneNumberFormControl()"
+             class="w-75" type="text">
+      <div style="width: 130px">
+        <ngx-button
+          (click)="onSendSMS()"
+          [brandButton]="false"
+          [fullWidth]="true"
+          [mode]="'form'"
+          [size]="'medium'"
+          [disabled]="phoneNumberFormControl().invalid || isSendingSms()"
+          [style]="'tinted-on-elevated'">
+          ارسال لینک
+        </ngx-button>
+      </div>
+    </div>
+    @if(hasError()){
+      <span class="text-onback-error b-3 mr-minus">در ارسال لینک مشکلی رخ داده است.</span>
+    }
+    <div class="radius-medium surface-glass-onelevated p-medium mt-big">
+      <div class="d-flex flex-row gap-tiny align-items-center mb-low">
+        <ngx-icon [iconSize]="'20px'"
+                  name="info-circle"
+                  classes="text-oninvert-brand radius-rounded"
+                  type="bold"></ngx-icon>
+        <p class="c-2 text-onback-medium">توجه داشته باشید</p>
+      </div>
+      <p class="c-2 text-onback-hight">پس از ارسال لینک امکان ارسال مجدد تا ده دقیقه آینده وجود نخواهد داشت</p>
+    </div>
+  </section>
+
+</div>

@@ -1,0 +1,24 @@
+.main-action {
+  position: relative;
+  min-height: 250px;
+
+  &-skeleton {
+    position: absolute;
+    top: 12%;
+    right: 0;
+    width: 100%;
+    height: 95%;
+  }
+}
+
+.other-actions {
+  position: relative;
+
+  &-skeleton {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 100%;
+    height: 90%;
+  }
+}

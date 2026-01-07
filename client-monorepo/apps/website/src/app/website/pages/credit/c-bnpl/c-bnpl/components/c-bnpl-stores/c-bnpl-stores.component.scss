@@ -1,0 +1,214 @@
+@import "globals";
+
+
+
+.c-bnpl-stores {
+  background: $swatch_blue_100;
+  overflow: hidden;
+
+  ::ng-deep {
+    swiper-slide {
+      width: auto !important;
+    }
+  }
+
+  .categories {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 32px;
+
+    .category {
+      cursor: pointer;
+      color: $swatch_steel_500;
+      font-size: 14px;
+      font-weight: 450;
+      line-height: 24px;
+      border-radius: 28px;
+      padding: 13px 24px;
+      border: 1px solid $swatch_steel_500;
+
+      &.selected {
+        color: $swatch_blue_500;
+        border-color: $swatch_blue_500;
+        border-width: 2px;
+      }
+    }
+
+    .navigation {
+      display: none;
+    }
+  }
+
+  .stores {
+    margin-top: 40px;
+    position: relative;
+
+    ::ng-deep {
+      .swiper-slide:not(.swiper-slide-visible) {
+        opacity: 0.5;
+      }
+    }
+
+    .store-logo {
+      width: 24px;
+      height: 24px;
+    }
+
+    .stores-swiper {
+      overflow: visible;
+    }
+
+    .navigation {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      top: 75px;
+
+      .store-prev,
+      .store-next {
+        cursor: pointer;
+        box-shadow: 0 4px 16px #0000001a;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: #fff;
+        z-index: 2;
+
+        &.swiper-button-disabled {
+          opacity: 0;
+          cursor: unset;
+        }
+      }
+    }
+
+    .store {
+      padding: 16px 16px 8px 16px;
+      border-radius: 16px;
+      border: 1px solid $swatch_steel_200;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      .title {
+        margin-top: 8px;
+        color: $swatch_steel_900;
+        font-size: 16px;
+        font-weight: 200;
+        line-height: 200%;
+        letter-spacing: -0.48px;
+      }
+
+      .delimiter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 16px;
+
+        .square {
+          width: 4px;
+          height: 4px;
+          transform: rotate(40deg);
+          background-color: $swatch_steel_200;
+        }
+
+        .line {
+          width: 100%;
+          border-top: 2px solid $swatch_steel_200;
+        }
+      }
+
+      .cta {
+        margin-top: 4px;
+      }
+    }
+  }
+
+  .all-categories-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 22px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .c-bnpl-stores {
+    padding: 48px 0;
+
+    .container {
+      position: relative;
+      height: 100%;
+    }
+
+    .categories {
+      position: relative;
+      margin-top: 24px;
+      justify-content: flex-start;
+
+      .cat-swiper {
+        margin: auto;
+        width: 80%;
+      }
+
+      .swiper {
+        overflow: visible;
+      }
+
+      ::ng-deep {
+        .swiper-slide:not(.swiper-slide-visible) {
+          opacity: 0.5;
+        }
+      }
+    }
+
+    .stores {
+      margin-top: 32px;
+
+      .navigation {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .c-bnpl-stores {
+    padding: 32px 0;
+    height: auto;
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stores-wrapper {
+      width: 100%;
+    }
+
+    .categories {
+      margin-top: 16px;
+
+      .category {
+        padding: 12px 20px;
+      }
+    }
+
+    .stores {
+      margin-top: 24px;
+    }
+
+    .all-categories-cta {
+      margin-top: 18px;
+    }
+  }
+}

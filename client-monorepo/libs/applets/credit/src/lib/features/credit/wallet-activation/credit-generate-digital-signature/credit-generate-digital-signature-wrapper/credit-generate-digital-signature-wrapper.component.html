@@ -1,0 +1,9 @@
+@if (!errorType()) {
+  <router-outlet></router-outlet>
+} @else {
+  <app-credit-generate-digital-signature-error
+    (close)="goToHome()"
+    (reloadStatus)="retryCurrentStep()"
+    [type]="errorType()!"
+  ></app-credit-generate-digital-signature-error>
+}

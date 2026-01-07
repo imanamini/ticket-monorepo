@@ -1,0 +1,43 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+
+
+
+
+.left-side {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .badge {
+    display: flex;
+    padding: 2px 8px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: 500;
+
+    &.uploaded {
+      background: #f2f5f8;
+      color: #2c3544;
+    }
+
+    &.rejected {
+      background: #ffeef3;
+      color: #ff2638;
+    }
+
+    &.accepted {
+      background: #eefff6;
+      color: #02b75d;
+    }
+  }
+}

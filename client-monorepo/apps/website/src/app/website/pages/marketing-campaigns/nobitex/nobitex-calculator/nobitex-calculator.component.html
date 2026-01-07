@@ -1,0 +1,138 @@
+<div class="container">
+  <div class="calculator">
+    <div class="calculator-container">
+      <div class="inputs">
+        <div class="recipe-amount">
+          <span class="label">{{ calculator.recipeTitle }}</span>
+        </div>
+        <div class="day-picker">
+          <div class="range">
+            <span class="amount">
+              <span class="early">از </span>
+              <span class="days-count">{{ calculator.startAmount | IRR }}</span>
+              <span class="irr">تومان</span>
+            </span>
+            <span> - </span>
+            <span class="amount">
+              <span class="early">تا </span>
+              <span class="days-count">{{ getMax() | IRR }}</span>
+              <span class="irr">تومان</span>
+            </span>
+          </div>
+
+          <div class="slider-section">
+            <!--            <mv-slider-->
+            <!--              (change)="changeCalculatorSlider($event)"-->
+            <!--              [enabled]="true"-->
+            <!--              [id]="'merchant_calculator__slider'"-->
+            <!--              [max]="getMax()"-->
+            <!--              [min]="10000000"-->
+            <!--              [rtl]="true"-->
+            <!--              [step]="1000000"-->
+            <!--              [ticks]="[getMax(), 10000000]"-->
+            <!--              [tooltip]="'hide'"-->
+            <!--              [value]="finalAmount"-->
+            <!--            >-->
+            <!--            </mv-slider>-->
+            <ngx-slider-selector
+              sliderType="Slider"
+              type="default"
+              [value]="finalAmount"
+              [minValue]="10000000"
+              [maxValue]="getMax()"
+              stepSize="1000000"
+              (selectValue)="changeCalculatorSlider($event)"
+            >
+            </ngx-slider-selector>
+          </div>
+        </div>
+        <div class="inputs-footer">
+          <div
+            *ngIf="calculator && calculator.installment.length > 0"
+            class="installments"
+          >
+            <div class="installmentLable">
+              <span>تعداد اقساط</span>
+            </div>
+            <div class="installmentCounts">
+              <div
+                (click)="onChangeProvider(providerIndex)"
+                *ngFor="let installment of installments; let providerIndex = index"
+                [ngClass]="providerIndex !== installmentActiveIndex ? 'deselect' : ''"
+                class="bank-icon"
+              >
+                {{ installment.installmentCount + ' ' + installment.subtitle }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div
+        *ngIf="calculator && calculator.installment.length > 0"
+        class="results"
+      >
+        <div class="finalAmount">
+          <span class="final"> {{ finalAmount | IRR }} </span>
+          <span class="irr">تومان</span>
+        </div>
+        <div
+          *ngIf="installments[installmentActiveIndex].installmentAmount"
+          class="installment-amount"
+        >
+          <div><span class="title">مبلغ وثیقه </span></div>
+          <div>
+            <span class="amount"> {{ finalAmount * 1.32 | IRR }}</span>
+            <span class="irr title">تومان</span>
+          </div>
+        </div>
+        <div
+          *ngIf="installments[installmentActiveIndex].installmentAmount"
+          class="installment-amount"
+        >
+          <div><span class="title">مبلغ هر قسط </span></div>
+          <div>
+            <span class="amount">
+              {{ intsllmentAmountCalc(finalAmount, installments[installmentActiveIndex].installmentCount) | IRR }}</span
+            >
+            <span class="irr title">تومان</span>
+          </div>
+        </div>
+        <div class="installment-detail">
+          <div
+            class="installment-detail-section"
+            *ngFor="let installmentDetail of installments[installmentActiveIndex].installmentDetail"
+          >
+            <span
+              class="installment-detail-icon"
+              [size]="24"
+              [icon]="installmentDetail.icon"
+              appUiIcon
+            ></span>
+            <span class="installment-detail-title">{{ installmentDetail.title }}</span>
+            <span class="installment-detail-subtitle">{{ installmentDetail.subtitle }}</span>
+          </div>
+        </div>
+        <div class="single-note">
+          <div>
+            <span
+              [size]="24"
+              icon="icon-square-info"
+              appUiIcon
+            ></span>
+            <span class="attention">توجه داشته باشید</span>
+          </div>
+          <div>
+            <span> اولین مرحله که شامل ۲۵٪ مبلغ خرید است را باید در زمان خرید پرداخت کنید. </span>
+          </div>
+        </div>
+        <app-ui-button
+          (click)="onChooseLoan()"
+          size="BIG"
+        >
+          انتخاب و دریافت
+        </app-ui-button>
+      </div>
+    </div>
+  </div>
+</div>

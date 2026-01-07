@@ -1,0 +1,99 @@
+<div class="h-100 p-plus d-flex flex-column pt-medium gap-big justify-content-space-between">
+  <div class="d-flex flex-column gap-minus">
+    <div class="st-8">اطلاعات کارت</div>
+    <form [formGroup]="form">
+      <ui-form-field
+        [label]="'CVV2'"
+        [inputType]="'text'"
+        [type]="'input'"
+        [inputType]="cvv2Masked() ? 'masked' : 'text'"
+        [isNumericKeyboard]="true"
+        [maxSize]="4"
+        [convertNonEnglishDigits]="true"
+        [showError]="'show'"
+        [error]="form.controls.cvv2.errors"
+        [trailingIcon]="cvvIcon"
+        [errorMessageMapper]="{
+          minlength: 'CVV2 حداقل 3  رقم باشد باید',
+          maxlength: 'CVV2 حداکثر باید ۴ رقم باشد.'
+        }"
+        formControlName="cvv2"
+        [required]="true"
+      ></ui-form-field>
+         <ng-template #cvvIcon>
+        <ngx-icon
+          [name]="cvv2Masked() ? 'eye' : 'hide'"
+          [iconSize]="'20px'"
+          (click)="toggleCvv2Visibility()"
+        ></ngx-icon>
+      </ng-template>
+    
+      <ui-form-field
+        formControlName="newPassword"
+        [isNumericKeyboard]="true"
+        [convertNonEnglishDigits]="true"
+        [error]="form.controls.newPassword.errors"
+        [inputType]="passwordMasked() ? 'masked' : 'text'"
+        [maxSize]="4"
+        [type]="'input'"
+        [label]="'رمز اول جدید'"
+        [required]="true"
+        [trailingIcon]="passwordIcon"
+        [errorMessageMapper]="{
+          minlength: 'رمز کارت باید 4  رقم باشد',
+          maxlength: 'رمز کارت باید 4  رقم باشد',
+          pattern: 'رمز کارت باید 4  رقم باشد'
+        }"
+      ></ui-form-field>
+      <ng-template #passwordIcon>
+        <ngx-icon
+          [name]="passwordMasked() ? 'eye' : 'hide'"
+          [iconSize]="'20px'"
+          (click)="togglePasswordVisibility()"
+        ></ngx-icon>
+      </ng-template>
+      <ui-form-field
+        formControlName="confirmedNewPassword"
+        [convertNonEnglishDigits]="true"
+        [error]="form.controls.confirmedNewPassword.errors"
+        [isNumericKeyboard]="true"
+        [maxSize]="4"
+        [type]="'input'"
+        [trailingIcon]="confirmPasswordIcon"
+        [inputType]="confirmPasswordMasked() ? 'masked' : 'text'"
+        [label]="'تکرار رمز اول جدید'"
+        [required]="true"
+      ></ui-form-field>
+
+      <ng-template #confirmPasswordIcon>
+        <ngx-icon
+          [name]="confirmPasswordMasked() ? 'eye' : 'hide'"
+          [iconSize]="'20px'"
+          (click)="toggleConfirmPasswordVisibility()"
+        ></ngx-icon>
+      </ng-template>
+    </form>
+  </div>
+  <div class="d-flex flex-column gap-big">
+    <ngx-callout
+      [backgroundMode]="'default'"
+      [mode]="'multiple'"
+      [showTitleBlink]="false"
+      [title]="''"
+      [messages]="['در صورتی که اطلاعات را ۳ بار اشتباه وارد کنید، برای تلاش مجدد، باید ۳۰ دقیقه منتظر بمانید.']"
+    ></ngx-callout>
+
+    <div class="footer">
+      <ngx-button
+        [mode]="'form'"
+        [size]="'large'"
+        [style]="'fill'"
+        [fullWidth]="true"
+        [disabled]="(form.invalid && !form.hasError('passwordMismatch')) || loading()"
+        (clickHandler)="submitForm()"
+      >
+        ادامه
+      </ngx-button>
+    </div>
+  </div>
+</div>

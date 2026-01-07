@@ -1,0 +1,30 @@
+.page-content {
+  padding: 24px 16px !important;
+}
+
+.header-text {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 370;
+  line-height: 24px;
+
+  .header-text-bold {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+  }
+}
+
+
+.icon-container {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+}
+
+.framed-icon {
+  margin-top: 20px;
+  width: 56px;
+}

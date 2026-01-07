@@ -1,0 +1,77 @@
+@import "../../../../../style/globals";
+
+section {
+  .container {
+    h2 {
+      margin-bottom: 32px;
+    }
+
+    .values {
+      ::ng-deep {
+        .feature-cards {
+          gap: 24px;
+
+          .feature-card {
+            border: 1px solid $swatch_steel_200;
+            padding: 32px;
+            width: 384px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  section {
+    .container {
+      h2 {
+        margin-bottom: 24px;
+      }
+
+      .values {
+        ::ng-deep {
+          .feature-cards {
+            gap: 16px;
+
+            .feature-card {
+              border: none;
+              padding: 0;
+              width: 206px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  section {
+    .container {
+      h2 {
+        margin-bottom: 16px;
+      }
+
+      .values {
+        ::ng-deep {
+          .feature-cards {
+            flex-direction: column;
+            gap: 24px;
+
+            .feature-card {
+              align-items: flex-start;
+              border: none;
+              padding: 0;
+              width: 100%;
+
+              .feature-card-content {
+                align-items: flex-start;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

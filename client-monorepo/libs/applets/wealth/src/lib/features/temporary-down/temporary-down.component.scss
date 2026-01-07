@@ -1,0 +1,41 @@
+@import '@digipay/base-style/swatch';
+
+:host{
+  background-color: $swatch_white_900;
+}
+
+.temporary-down-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $swatch_white_900;
+  height: calc(100dvh - 5.5rem);
+  flex-direction: column;
+  padding: 0 1rem;
+
+  .temporary-down-content {
+    display: flex;
+    width: 26rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.16667rem;
+    color: $swatch_steel_900;
+    flex: 1;
+
+    .temporary-down-title {
+      font-weight: 700;
+      margin-top: 2.67rem;
+      margin-bottom: 1rem;
+      font-size: 1.16667rem;
+      text-align: center;
+    }
+
+    .temporary-down-description {
+      text-align: center;
+      font-size: 1.16667rem;
+      font-weight: 400;
+      color: #74777c;
+    }
+  }
+}

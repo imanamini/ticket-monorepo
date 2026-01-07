@@ -1,0 +1,78 @@
+<div class="main-section d-flex flex-column">
+  <div class="top-section">
+    <app-credit-scrollable-view [fullHeightContent]="true">
+      <div class="rtl flex-grow p-plus d-flex flex-column">
+        @if (title()) {
+          <p class="notice mt-small mb-plus b-2">
+            {{ title() }}
+          </p>
+        } @else {
+          <div
+            class="pb-plus mb-big border-b-300 border-color-b-air d-flex flex-row justify-content-space-between gap-small align-items-center"
+          >
+            <div class="d-flex flex-column align-items-flex-start">
+              <span class="t-5 text-onback-high ltr">
+                {{ cellNumber() | formattedCellNumber }}
+              </span>
+              <span class="b-2 text-onback-high"> اطلاعات مالک این خط را وارد کنید. </span>
+            </div>
+            <div class="radius-rounded surface-back p-big">
+              <ngx-icon
+                [name]="'simcard'"
+                [iconSize]="'37px'"
+                [type]="'Bold'"
+              ></ngx-icon>
+            </div>
+          </div>
+        }
+        <div>
+          <form [formGroup]="form">
+            <ui-form-field
+              [errorMessageMapper]="{
+                required: 'کد ملی را وارد کنید.',
+                invalidNotionalCode: 'کد ملی وارد شده معتبر نیست.',
+                parentError: parentErrors()?.nationalCode!,
+              }"
+              [error]="form.controls['nationalCode'].errors"
+              [isNumericKeyboard]="true"
+              [maxSize]="10"
+              [readonly]="!editable()?.nationalCode"
+              formControlName="nationalCode"
+              [showError]="this.parentErrors()['nationalCode'] ? 'show' : 'auto'"
+              label="شماره ملی"
+            ></ui-form-field>
+
+            <ui-form-field
+              [customDateRange]="customDateRange()"
+              [errorMessageMapper]="{
+                required: 'تاریخ تولد را انتخاب کنید.',
+                invalidBirthDate: 'تاریخ تولد معتبر نیست.',
+                parentError: parentErrors().birthDate!,
+              }"
+              [error]="form.controls['birthDate'].errors"
+              [readonly]="!editable()?.birthDate"
+              [type]="'date'"
+              dateRange="past"
+              formControlName="birthDate"
+              [showError]="this.parentErrors()['birthDate'] ? 'show' : 'auto'"
+              label="تاریخ تولد"
+            ></ui-form-field>
+          </form>
+        </div>
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+  <div class="call-to-actions-section">
+    <ngx-button
+      (clickHandler)="submitForm()"
+      [disabled]="!form.valid || ctaLoading() || !!parentErrors().birthDate || !!parentErrors().nationalCode"
+      [fullWidth]="true"
+      [isLoading]="ctaLoading()!"
+      [style]="'fill'"
+      ngxTrackableId
+      trackerId="registerFormButtonClick"
+    >
+      {{ ctaText() }}
+    </ngx-button>
+  </div>
+</div>

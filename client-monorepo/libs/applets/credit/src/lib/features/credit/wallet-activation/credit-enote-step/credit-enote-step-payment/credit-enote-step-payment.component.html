@@ -1,0 +1,69 @@
+@if (!errorState()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="goBack()"
+    [backButton]="true"
+  >
+  </app-credit-app-bar>
+
+  @if (initialized()) {
+    <div class="main-section flex-full-height">
+      <div class="top-section">
+        <app-credit-scrollable-view>
+          <div class="page-content">
+            <div class="d-flex justify-content-center mb-pony">
+              <ngx-icon
+                [iconSize]="'64px'"
+                [name]="'docuemnt-file'"
+                [type]="'bold'"
+              ></ngx-icon>
+            </div>
+            <h1 class="t-6 text-onback-high mb-huge text-align-center">خرید سفته الکترونیک</h1>
+            <div>
+              <div class="d-flex justify-content-space-between">
+                <p class="b-3 text-onback-low">خرید سفته به مبلغ</p>
+                <p class="st-6 text-onback-medium mr-auto">
+                  {{ guaranteeAmount() | IRR }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </app-credit-scrollable-view>
+      </div>
+      <div class="call-to-actions-section surface-glass-high-contrast border-color-air border-100">
+        <div>
+          <div class="bt-2 text-onback-high mb-minus">مبلغ پرداختی</div>
+          <div class="d-flex t-7 text-onback-medium mb-minus">
+            {{ amount() | IRR: 'hideRial' }}
+            <div class="is-currency">ریال</div>
+          </div>
+        </div>
+        <ngx-button
+          (clickHandler)="initPayment()"
+          [fullWidth]="true"
+          [brandButton]="true"
+          [isLoading]="initializingPayment()"
+          [disabled]="initializingPayment()"
+        >
+          تایید و پرداخت
+        </ngx-button>
+      </div>
+      @if (hintMessage) {
+        <div class="bottom-section">
+          <div
+            class="warning-message"
+
+          >
+            {{ hintMessage }}
+          </div>
+        </div>
+      }
+    </div>
+  }
+  <credit-page-loading [active]="!initialized()"></credit-page-loading>
+} @else {
+  <app-credit-enote-step-error
+    [state]="errorState()"
+    (back)="goBack()"
+    (submitted)="initializingPayment.set(false)"
+  ></app-credit-enote-step-error>
+}

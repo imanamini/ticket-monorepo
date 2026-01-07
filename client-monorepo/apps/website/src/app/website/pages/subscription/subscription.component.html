@@ -1,0 +1,142 @@
+<app-base-layout [loaded]="loaded">
+  <ng-container *ngIf="subscriptionPage && subscriptionPage.templateData">
+    <!--  section 1-->
+    <app-ui-introduction-default
+      *ngIf="subscriptionPage && subscriptionPage.templateData"
+      [heroImage]="subscriptionPage.templateData.introArtwork"
+      [introductionType]="subscriptionPage.templateData.introType"
+      class="subscription-intro-section"
+    >
+      <div>
+        <h1>{{ subscriptionPage?.templateData?.introTitle }}</h1>
+        <h2>{{ subscriptionPage?.templateData?.introSubtitle }}</h2>
+        <h3 *ngIf="subscriptionPage?.templateData?.introSubtitle2">
+          {{ subscriptionPage?.templateData?.introSubtitle2 }}
+        </h3>
+        <app-ui-button
+          [linkTarget]="'_blank'"
+          [link]="subscriptionPage.templateData.introFirstCta.link"
+        >
+          <i> </i>
+          <span>
+            {{ subscriptionPage.templateData.introFirstCta.title }}
+          </span>
+        </app-ui-button>
+      </div>
+    </app-ui-introduction-default>
+
+    <!--  section 2-->
+    <app-ui-feature-cards
+      *ngIf="subscriptionPage && subscriptionPage.templateData && subscriptionPage.templateData.features"
+      [features]="subscriptionPage.templateData.features"
+    ></app-ui-feature-cards>
+
+    <!--  section 3-->
+    <app-ui-basic-segment
+      [content]="contentTemplateProductExplanation"
+      [figure]="figureTemplateProductExplanation"
+      [rtl]="false"
+      [title]="subscriptionPage?.templateData?.productExplanation?.title"
+    ></app-ui-basic-segment>
+    <ng-template #figureTemplateProductExplanation>
+      <img
+        [alt]="subscriptionPage?.templateData?.productExplanation?.title"
+        [src]="subscriptionPage?.templateData?.productExplanation?.icon?.url"
+      />
+    </ng-template>
+    <ng-template #contentTemplateProductExplanation>
+      {{ subscriptionPage?.templateData?.productExplanation?.text }}
+    </ng-template>
+
+    <!--  section 4-->
+    <app-ui-basic-segment
+      [content]="contentTemplateCustomerRetention"
+      [figure]="figureTemplateCustomerRetention"
+      [rtl]="true"
+      [title]="subscriptionPage?.templateData?.customerRetention?.title"
+    ></app-ui-basic-segment>
+    <ng-template #figureTemplateCustomerRetention>
+      <img
+        [alt]="subscriptionPage?.templateData?.customerRetention?.title"
+        [src]="subscriptionPage?.templateData?.customerRetention?.icon?.url"
+      />
+    </ng-template>
+    <ng-template #contentTemplateCustomerRetention>
+      {{ subscriptionPage?.templateData?.customerRetention?.text }}
+    </ng-template>
+
+    <!--  section 5-->
+    <app-ui-basic-segment
+      [content]="contentTemplateWhyTheBest"
+      [figure]="figureTemplateWhyTheBest"
+      [rtl]="false"
+      [title]="subscriptionPage?.templateData?.whyTheBest?.title"
+    ></app-ui-basic-segment>
+    <ng-template #figureTemplateWhyTheBest>
+      <img
+        [alt]="subscriptionPage?.templateData?.whyTheBest?.title"
+        [src]="subscriptionPage?.templateData?.whyTheBest?.icon?.url"
+      />
+    </ng-template>
+    <ng-template #contentTemplateWhyTheBest>
+      {{ subscriptionPage?.templateData?.whyTheBest?.text }}
+    </ng-template>
+
+    <!--  section 6-->
+    <app-ui-basic-segment
+      [content]="contentTemplateDirectWithdrawal"
+      [figure]="figureTemplateDirectWithdrawal"
+      [rtl]="true"
+      [title]="subscriptionPage?.templateData?.directWithdrawal?.title"
+    ></app-ui-basic-segment>
+    <ng-template #figureTemplateDirectWithdrawal>
+      <img
+        [alt]="subscriptionPage?.templateData?.directWithdrawal?.title"
+        [src]="subscriptionPage?.templateData?.directWithdrawal?.icon?.url"
+      />
+    </ng-template>
+    <ng-template #contentTemplateDirectWithdrawal>
+      {{ subscriptionPage?.templateData?.directWithdrawal?.text }}
+    </ng-template>
+
+    <!--  section 7-->
+    <app-subscription-supported-banks
+      [templateData]="subscriptionPage ? subscriptionPage.templateData : null"
+    ></app-subscription-supported-banks>
+
+    <!--  section 8-->
+    <app-ui-tariff
+      *ngIf="subscriptionPage && subscriptionPage.templateData && subscriptionPage.templateData.tariffs"
+      [description]="subscriptionPage.templateData.tariffs.description"
+      [input]="subscriptionPage.templateData.tariffs.keyValuePairs"
+      [notice]="subscriptionPage.templateData.tariffs.notice"
+      [subtitle]="subscriptionPage.templateData.tariffs.subtitle"
+      [title]="subscriptionPage.templateData.tariffs.title"
+    >
+    </app-ui-tariff>
+
+    <!--  section 9-->
+    <app-ui-seo
+      *ngIf="subscriptionPage.templateData.sectionSeoContent"
+      [seoContent]="subscriptionPage.templateData.sectionSeoContent"
+    ></app-ui-seo>
+
+    <!--  section 10-->
+    <app-ui-faq
+      *ngIf="subscriptionPage && subscriptionPage.templateData && subscriptionPage.templateData.faq"
+      [faqs]="subscriptionPage.templateData.faq.faqItems"
+      [subtitle]="subscriptionPage.templateData.faq.subtitle"
+      [title]="subscriptionPage.templateData.faq.title"
+    >
+    </app-ui-faq>
+
+    <!--  section 11-->
+    <app-blog-cards
+      *ngIf="subscriptionPage && subscriptionPage.templateData && subscriptionPage.templateData.relatedPosts && posts.length > 0"
+      [blogPosts]="posts"
+      [subtitle]="subscriptionPage.templateData.relatedPosts.subtitle"
+      [title]="subscriptionPage.templateData.relatedPosts.title"
+    >
+    </app-blog-cards>
+  </ng-container>
+</app-base-layout>

@@ -1,0 +1,184 @@
+<div class="credit-fp-groups-card pt-big pb-small surface-elevated radius-big">
+  <div class="group-data-row d-flex align-items-center justify-content-space-between px-big mb-medium">
+    <div class="d-flex align-items-center justify-content-flex-start gap-small">
+      <div
+        [style]="{ backgroundColor: data()?.fundProviderColor }"
+        class="radius-minus"
+      >
+        <credit-digipay-image
+          [imageId]="data()?.fundProviderIcon"
+          borderRadius="12px"
+          height="36px"
+          width="36px"
+        ></credit-digipay-image>
+      </div>
+      <div class="d-flex flex-column">
+        <div class="c-1">{{ data()?.fundProviderName }}</div>
+        @if (data()?.interestPercentage) {
+          <div class="b-3 text-onback-low">
+            سود سالانه
+            {{ data()?.interestPercentage ? data()?.interestPercentage : 'بدون سود' }}
+            %
+          </div>
+        }
+      </div>
+    </div>
+    <ngx-button
+      [mode]="'section'"
+      [size]="'small'"
+      >انتخاب
+    </ngx-button>
+  </div>
+  <ngx-divider
+    [color]="BorderColorsEnum.Air"
+    orientation="horizontal"
+  ></ngx-divider>
+  @if (data()?.planRuleType === PlanRuleEnum.STATIC) {
+    <div class="px-big my-medium d-flex flex-column gap-pony">
+      <div class="d-flex flex-row justify-content-space-between align-items-center">
+        <div class="b-3 text-onback-high">مبلغ هر قسط</div>
+        <div class="st-8 text-onback-high">
+          {{ data()?.installmentAmount | IRR: 'hideRial' }}
+          <span class="b-1 is-currency">ریال</span>
+        </div>
+      </div>
+      @if (
+        data()?.allocationPrepaymentPercentage &&
+        data()?.allocationPrepaymentPercentage! > 0 &&
+        data()?.allocationPrepaymentAmount &&
+        data()?.allocationPrepaymentAmount! > 0 &&
+        data()?.paymentMethod !== PAYMENT_METHOD.SUBSCRIPTION
+      ) {
+        <div class="d-flex flex-row justify-content-space-between align-items-center">
+          <div class="b-3 text-onback-high d-flex align-items-center">
+            هزینه خدمات و زیر‌ساخت
+            <ngx-icon
+              (click)="$event.stopPropagation()"
+              ngxTrackableId
+              trackerId="allocationPaymentClick"
+              tooltipType="hover"
+              [ngxTooltip]="prePaymentDescription()"
+              class="text-onback-brand mr-tiny d-inline-block"
+              [name]="'info-circle'"
+              [iconSize]="'20px'"
+            ></ngx-icon>
+          </div>
+          <div class="st-8 text-onback-medium">
+            @if (data()?.hasAllocationPrepayment) {
+              {{ data()?.allocationPrepaymentAmount | IRR: 'hideRial' }}<span class="b-1 is-currency"> ریال</span>
+            }
+            @if (!data()?.hasAllocationPrepayment) {
+              ٪{{ data()?.allocationPrepaymentPercentage }} مبلغ وام مصرفی
+            }
+          </div>
+        </div>
+      }
+      @if (data()?.paymentMethod !== PAYMENT_METHOD.SUBSCRIPTION) {
+        <div class="d-flex flex-row justify-content-space-between align-items-center">
+          <div class="b-3 text-onback-high">
+            {{ totalPayableDescription() }}
+          </div>
+          <div class="st-8 text-onback-medium flex-auto">
+            {{ data()?.payableAmount | IRR: 'hideRial' }}
+            <span class="b-1 is-currency"> ریال</span>
+          </div>
+        </div>
+      } @else {
+        <div class="d-flex flex-row justify-content-space-between align-items-center">
+          <div class="b-3 text-onback-high">مجموع اقساط</div>
+          <div class="st-8 text-onback-medium">
+            {{ data()?.sumInstallmentAmount | IRR: 'hideRial' }}
+            <span class="b-1 is-currency"> ریال</span>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <ng-container [ngTemplateOutlet]="bnplDynamic"></ng-container>
+  }
+  <div class="px-small">
+    <div
+      class="d-flex radius-big flex-column align-items-center justify-content-space-between py-minus px-medium w-100 small gap-small surface-back"
+    >
+      @if (data()?.subscriptionDetail && data()?.subscriptionDetail?.title) {
+        <div class="d-flex flex-row justify-content-space-between align-items-center w-100">
+          <p class="b-3">اشتراک مورد نیاز</p>
+          <div class="d-flex align-items-center radius-big gap-tiny py-micro px-tiny">
+            @defer (prefetch on immediate) {
+              <div [class]="'diamond d-inline-block diamond-' + data()?.subscriptionDetail?.type | lowercase"></div>
+            } @placeholder (minimum 500ms) {
+              <lib-ngx-skeleton-loading
+                height="20px"
+                width="20px"
+              ></lib-ngx-skeleton-loading>
+            }
+            <span class="c-1">{{ data()?.subscriptionDetail?.title }}</span>
+          </div>
+        </div>
+      }
+      <div class="d-flex flex-row justify-content-space-between align-items-center w-100">
+        <p class="b-3">ضمانت</p>
+        <div class="c-1">
+          {{ collateralTitle() }}
+        </div>
+      </div>
+    </div>
+  </div>
+  @if (data()?.serviceType === SERVICE_TYPE.BNPL && data()?.planRuleType === PlanRuleEnum.DYNAMIC) {
+    <ngx-callout
+      [mode]="'single-with-title'"
+      [message]="
+        'در این طرح بر اساس نتیجه اعتبارسنجی، مبلغی بین ' +
+        data()?.balance?.min! / 1000000 +
+        ' تا ' +
+        data()?.balance?.max! / 1000000 +
+        ' میلیون ریال به شما تعلق خواهد گرفت و با بهبود رفتار مالی در آینده میزان اعتبار شما افزایش خواهدیافت.'
+      "
+      [backgroundMode]="'elevated'"
+    />
+  }
+</div>
+
+<ng-template #sumInstallmentAmount>
+  <div class="d-flex flex-row justify-content-space-between align-items-center">
+    <div class="b-3 text-onback-high">مجموع اقساط</div>
+    <div class="st-8 text-onback-medium flex-auto">
+      {{ data()?.sumInstallmentAmount | IRR: 'hideRial' }}
+      <span class="b-1 is-currency"> ریال</span>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #bnplDynamic>
+  <div class="px-big my-medium d-flex flex-column gap-pony">
+    <div class="d-flex flex-row justify-content-space-between align-items-center">
+      <div class="b-3 text-onback-high">مبلغ اعتبار</div>
+      <div class="st-8 text-onback-medium">
+        @if (data()?.creditAmount) {
+          <span>{{ data()?.balance?.min! | creditNumberToString: true }}</span>
+          تا
+          <span>{{ data()?.balance?.max! | creditNumberToString }}</span>
+          <span class="b-1 is-currency"> ریال</span>
+        }
+      </div>
+    </div>
+    @if (data()?.allocationPrepaymentPercentage && data()?.allocationPrepaymentPercentage! > 0) {
+      <div class="d-flex flex-row justify-content-space-between align-items-center">
+        <div class="b-3 text-onback-high">کارمزد</div>
+        <div class="st-8 text-onback-medium flex-auto">
+          @if (data()?.hasAllocationPrepayment) {
+            {{ data()?.allocationPrepaymentAmount | IRR: 'hideRial' }}<span class="b-1 is-currency"> ریال</span>
+          }
+          @if (!data()?.hasAllocationPrepayment) {
+            {{ data()?.allocationPrepaymentPercentage }}
+            <span class="b-1"> درصد</span>
+          }
+        </div>
+      </div>
+    }
+    <div class="d-flex flex-row justify-content-space-between align-items-center">
+      <div class="b-3 text-onback-high">تعداد اقساط</div>
+      <div class="st-8 text-onback-medium">{{ data()?.installmentCount }}</div>
+    </div>
+  </div>
+</ng-template>

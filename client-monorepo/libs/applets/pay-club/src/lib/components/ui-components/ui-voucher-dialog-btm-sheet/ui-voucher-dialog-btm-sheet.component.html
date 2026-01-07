@@ -1,0 +1,50 @@
+<pay-club-applet-ui-dialog-btm-sheet
+  [image]="data.info.bannerImageId"
+  [closeable]="true"
+>
+  <ng-container body>
+    <div class="voucher-card">
+      <pay-club-applet-ui-main-content [data]="data"></pay-club-applet-ui-main-content>
+
+      <div class="voucher-time">
+        <h4 class="title">زمان خرید مجدد این کد:</h4>
+        <span> یک هفته پس از دریافت کد</span>
+      </div>
+
+      @if (data.acquisitionResult.code) {
+        <div class="reward pb-tiny">
+          <ngx-button
+            [style]="'tinted-on-elevated'"
+            (clickHandler)="copyCode()"
+            [size]="'medium'"
+            [disabled]="copied"
+            [fullWidth]="true"
+          >
+            <span class="icon">
+              <common-icon-dp-icon
+                [icon]="'document-copy'"
+                [iconType]="'linear'"
+                [iconSize]="'24'"
+                [classes]="'text-onback-brand'"
+              ></common-icon-dp-icon>
+            </span>
+            {{ copied ? 'کپی شد' : 'کپی کد' }}
+          </ngx-button>
+          <div class="voucher-code">
+            {{ data.acquisitionResult.code }}
+          </div>
+        </div>
+      }
+    </div>
+  </ng-container>
+
+  <ng-container footer>
+    <ngx-button
+      [disabled]="buttonConfig.disabled"
+      [fullWidth]="true"
+      (clickHandler)="clickRewardButton()"
+    >
+      {{ buttonConfig?.text }}
+    </ngx-button>
+  </ng-container>
+</pay-club-applet-ui-dialog-btm-sheet>

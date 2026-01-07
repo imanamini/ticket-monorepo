@@ -1,0 +1,147 @@
+@import "@digipay/base-style/swatch";
+
+$max-bottom-sheet-height: 90vh;
+$header-height: 70px;
+$tab-header: 40px;
+$footer-height: 100px;
+
+:host {
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  max-height: 90$max-bottom-sheet-height;
+}
+
+.tabs {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.header {
+  height: $header-height;
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: 1px solid $swatch_steel_200;
+  padding: 32px 32px 32px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.body {
+  $static-height: $header-height + $tab-header + $footer-height;
+  height: calc($max-bottom-sheet-height - $static-height);
+  overflow-y: auto;
+  background-color: $swatch_steel_100;
+  padding: 12px;
+  box-sizing: border-box;
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  color: $swatch_steel_500;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.hint {
+  background-color: #fff;
+  border: 1px solid $swatch_teal_700;
+  border-radius: 100px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: $swatch_teal_700;
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.hint-icon {
+  background-image: url("./discount.svg");
+  width: 24px;
+  height: 24px;
+}
+
+.box {
+  border: 1px solid $swatch_steel_200;
+  border-radius: 12px;
+  padding: 12px;
+  background-color: #fff;
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &.teal {
+      color: $swatch_teal_700;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  }
+
+  .number {
+    font-size: 16px;
+    margin-left: 4px;
+  }
+
+  .unit {
+    font-size: 12px;
+  }
+
+  .row-title {
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
+
+.footer {
+  padding: 24px;
+  border-top: 1px solid $swatch_steel_200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $footer-height;
+
+  .footer-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: $swatch_steel_500;
+    margin-bottom: 8px;
+  }
+
+  .number {
+    font-size: 18px;
+    margin-left: 4px;
+  }
+
+  .unit {
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+::ng-deep ngx-tabs .tabs {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+::ng-deep ngx-tab > div:not([hidden]) {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+@media (min-width: 614px) {
+  .body {
+    padding: 24px;
+  }
+}

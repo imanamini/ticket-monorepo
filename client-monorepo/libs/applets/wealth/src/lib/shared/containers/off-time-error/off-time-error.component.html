@@ -1,0 +1,33 @@
+<ngx-app-bar
+  class="w-100"
+  [title]="'سرمایه‌گذاری'"
+  [rightButton]="{
+    icon: 'arrow-right',
+    style: 'neutral-link',
+    mode: 'icon-only',
+    size: 'medium',
+  }"
+  (onRightButtonClick)="onBackHandler()"
+/>
+
+<div class="offtime-error-container">
+  <div class="offtime-error-content">
+    <img src="wealth-assets/svg/calendar.svg" />
+    <p class="offtime-error-title">
+      {{ error?.title ? error.title : 'ساعت کاری صندوق تمام شده است' }}
+    </p>
+
+    <p class="offtime-error-description">
+      {{ error?.description ? error?.description : ' در حال حاضر دسترسی به این صندوق وجود ندارد.' }}
+    </p>
+  </div>
+  <div class="offtime-error-buttons">
+    <ngx-button
+      [fullWidth]="true"
+      [brandButton]="true"
+      (clickHandler)="onBackHandler()"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

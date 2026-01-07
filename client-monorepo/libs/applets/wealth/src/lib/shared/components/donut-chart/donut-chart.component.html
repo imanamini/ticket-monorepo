@@ -1,0 +1,11 @@
+<canvas
+  [class]="fullWidth() ? 'w-100 h-100' : ''"
+  baseChart
+  [labels]="labels"
+  [datasets]="doughnutChartDatasets"
+  [options]="doughnutChartOptions"
+  [legend]="true"
+  [type]="'doughnut'"
+  [width]="chartWidth()"
+>
+</canvas>

@@ -1,0 +1,80 @@
+<div
+  #walkThroughStep
+  class="walk-through-step mx-plus"
+  [ngClass]="step().position === 'top' ? 'pb-small anchor-bottom' : 'pt-small anchor-top'"
+  [style.opacity]="initialized() ? '1' : 0"
+>
+  <div
+    #anchor
+    class="anchor"
+    [ngClass]="step().position === 'top' ? 'anchor-bottom' : 'anchor-top'"
+  >
+    <svg
+      width="36"
+      height="8"
+      viewBox="0 0 26 7"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        class="anchor-image"
+        d="M25.0416 0L0.958405 0C2.91772 0 4.80891 0.719028 6.27332 2.02073L10.3425 5.63782C11.8581 6.98497 14.1419 6.98497 15.6575 5.63782L19.7267 2.02073C21.1911 0.719028 23.0823 0 25.0416 0Z"
+      />
+    </svg>
+  </div>
+  <div class="d-flex flex-column p-medium radius-plus shade-background">
+    @if (step().title) {
+      <span class="st-6 text-oninvert-high mb-small">{{ step().title }}</span>
+    }
+    <span class="text-oninvert-high st-8 pb-pony mb-minus bt-shade-20">{{ step().description }}</span>
+    <div class="d-flex align-items-center">
+      @if (showDots()) {
+        <div class="dots p-low radius-big d-flex flex-row gap-tiny ml-auto inverted">
+          @for (dot of globalConfig().steps(); track $index) {
+            <div
+              [ngClass]="{ active: dot.id === step().id }"
+              class="dot radius-giant"
+            ></div>
+          }
+        </div>
+      }
+      <div class="d-flex gap-pony mr-auto">
+        @if (!step().isFirst) {
+          <ngx-button
+            class="walk-through-prev-btn"
+            [mode]="'icon-only'"
+            [size]="'small'"
+            [style]="'fill'"
+            [brandButton]="true"
+            (clickHandler)="goPrev()"
+            [leftIcon]="{
+              name: 'arrow-right',
+              type: 'linear',
+            }"
+          >
+          </ngx-button>
+        }
+        @if (!step().isLast) {
+          <ngx-button
+            class="walk-through-next-btn"
+            [mode]="'section'"
+            [size]="'small'"
+            [style]="'tinted-on-back'"
+            (clickHandler)="goNext()"
+          >
+            بعدی
+          </ngx-button>
+        } @else {
+          <ngx-button
+            [mode]="'section'"
+            [size]="'small'"
+            [style]="'tinted-on-back'"
+            (clickHandler)="doneWalkThrough()"
+          >
+            متوجه شدم
+          </ngx-button>
+        }
+      </div>
+    </div>
+  </div>
+</div>

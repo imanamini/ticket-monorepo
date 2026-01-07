@@ -1,0 +1,41 @@
+<div class="content-container">
+  <div class="header-title">ویرایش</div>
+  <daily-fintech-recommendation-item [item]="cellNumber"></daily-fintech-recommendation-item>
+  <div *ngIf="initialized">
+    <div
+      [formGroup]="form"
+      class="h-80 mt-large"
+    >
+      <ui-form-field
+        formControlName="name"
+        [label]="'عنوان'"
+        [inputType]="'text'"
+        [maxSize]="25"
+        [hasCleaner]="true"
+        [error]="form.controls['name'].errors ?? {}"
+        [errorMessageMapper]="{
+          required: 'یک عنوان برای قبض انتخاب کنید.',
+        }"
+      ></ui-form-field>
+    </div>
+    <div class="d-flex justify-content-space-between gap-medium mt-mega">
+      <ngx-button
+        [style]="'tinted-on-elevated'"
+        [size]="'medium'"
+        [fullWidth]="true"
+        (clickHandler)="closeDialog()"
+      >
+        انصراف
+      </ngx-button>
+      <ngx-button
+        [disabled]="form.invalid"
+        (clickHandler)="confirmDialog($event)"
+        [size]="'medium'"
+        [fullWidth]="true"
+        [mode]="'form'"
+      >
+        ذخيره تغييرات
+      </ngx-button>
+    </div>
+  </div>
+</div>

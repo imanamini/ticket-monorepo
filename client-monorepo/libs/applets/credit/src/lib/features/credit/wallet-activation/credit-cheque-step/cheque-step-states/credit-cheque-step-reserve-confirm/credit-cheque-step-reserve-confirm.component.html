@@ -1,0 +1,22 @@
+@if (!loading()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="close.emit()"
+    [backButton]="true"
+    title="ثبت چک اقساط"
+  ></app-credit-app-bar>
+  <div class="d-flex flex-column flex-grow">
+    <div class="flex-grow justify-content-center pb-plus">
+      <ngx-status-result
+        (clicked)="nextStep.emit()"
+        [buttons]="buttons"
+        [description]="description()"
+        [title]="title()"
+        [type]="'Status'"
+        [iconState]="'error'"
+      >
+      </ngx-status-result>
+    </div>
+  </div>
+} @else {
+  <credit-page-loading [active]="true"></credit-page-loading>
+}

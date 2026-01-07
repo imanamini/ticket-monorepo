@@ -1,0 +1,13 @@
+<div class="d-flex flex-column w-100 h-100 surface-elevated">
+  <div class="px-plus mt-pony mb-big">
+    <ngx-stepper
+      [steps]="stepperSteps()"
+      [fullSize]="true"
+      [currentStep]="currentStep() + 1"
+      type="steps-line"
+    ></ngx-stepper>
+  </div>
+  <div class="w-100 h-100">
+    <ng-container *ngComponentOutlet="currentConfig().component"></ng-container>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="ui-dialog-letter-select">
+  <div class="top">
+    <div class="title">حرف پلاک را انتخاب کنید</div>
+    <ngx-icon
+      [name]="'close'"
+      classes="text-onback-high cursor-pointer"
+    ></ngx-icon>
+  </div>
+  <app-ui-vehicle-plate-letters
+    (clicked)="close($event)"
+    class="plate-letters"
+  ></app-ui-vehicle-plate-letters>
+</div>

@@ -1,0 +1,24 @@
+<div class="black-friday-promotion d-flex align-items-center justify-content-center">
+  <div class="image">
+    <img src="{{promotion().image?.url}}" alt="">
+  </div>
+  <div class="content d-flex flex-column">
+    <div class="title">{{promotion()?.narrowTitle}}</div>
+    <div class="bold-text">{{promotion()?.boldTitle}}</div>
+    <div class="subtitle st-4">{{promotion()?.subtitle}}</div>
+    <div class="cta">
+      <ngx-button
+        id="btn-3"
+        [size]="!mobileMode() ? 'large' : 'medium'"
+        [style]="'tinted-on-back'"
+        [mode]="'section'"
+        [fullWidth]="true"
+        [class]="'custom-button-cta'"
+        [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+        (clickHandler)="openLink(promotion().cta?.link)"
+      >
+        دریافت اعتبار
+      </ngx-button>
+    </div>
+  </div>
+</div>

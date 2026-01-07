@@ -1,0 +1,6 @@
+<div
+  [ngxTooltip]="userCardHintText"
+  (mouseenter)="userCardHintTooltipService.stopPropagationInMobile($event)"
+  (mouseleave)="userCardHintTooltipService.stopPropagationInMobile($event)"
+  class="blue-info"
+></div>

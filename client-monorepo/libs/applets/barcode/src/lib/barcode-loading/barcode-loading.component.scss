@@ -1,0 +1,18 @@
+.barcode-loading {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1001;
+  width: 100vw;
+  height: 100dvh;
+  background: #ffffffb3;
+  backdrop-filter: blur(2px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &.show {
+    display: flex;
+  }
+}

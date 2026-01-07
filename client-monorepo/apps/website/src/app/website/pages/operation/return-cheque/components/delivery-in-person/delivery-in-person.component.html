@@ -1,0 +1,105 @@
+<form [formGroup]="deliveryInPersonForm">
+  @if (currentStep() === 1) {
+    <ui-form-field
+      formControlName="deliveryProvider"
+      type="select"
+      [overflowToContainer]="false"
+      [label]="'شعبه'"
+      [placeholder]="'شعبه را انتخاب نمایید'"
+      [multiSelect]="false"
+      [selectOpenType]="'dropDown'"
+      [isDividerOptions]="false"
+      [showRadioOptions]="false"
+      [dropdownPosition]="'bottom'"
+      [hasSelectAll]="false"
+      [selectBottomSheetCloseBtn]="false"
+      [required]="true"
+      [options]="branchesOption"
+      [selectBottomSheetMaxHeight]="0"
+      [showError]="deliveryInPersonForm.controls.deliveryProvider.touched ? 'show' : 'auto'"
+      [error]="(deliveryInPersonForm.controls.deliveryProvider && deliveryInPersonForm.controls.deliveryProvider.errors) || {}"
+    ></ui-form-field>
+
+    <div class="surface-back radius-small mb-big p-medium d-flex flex-column gap-medium">
+      <div>
+        <div class="text-onback-low fs-10 mb-medium">آدرس شعبه</div>
+        <div class="text-onback-high bt-2">
+          @if (selectedProviderAddress) {
+            {{ selectedProviderAddress?.cityName }} {{ selectedProviderAddress?.streetAddress }} پلاک {{ selectedProviderAddress?.no }} واحد
+            {{ selectedProviderAddress?.unit }}
+          }
+        </div>
+      </div>
+      <div class="text-onback-low fs-12">
+        کد پستی:
+        {{ selectedProviderAddress?.postalCode }}
+      </div>
+    </div>
+
+    <ngx-button
+      (clickHandler)="goToDeliveryDetailsStep()"
+      [disabled]="deliveryInPersonForm.controls.deliveryProvider.invalid"
+      [fullWidth]="true"
+      [mode]="'form'"
+      [style]="'fill'"
+      [brandButton]="true"
+      [size]="'large'"
+    >
+      تایید و ادامه
+    </ngx-button>
+  } @else if (currentStep() === 2) {
+    <div formGroupName="deliveryDetails">
+      <ui-form-field
+        formControlName="reserveDate"
+        type="select"
+        [overflowToContainer]="true"
+        [label]="'انتخاب تاریخ دریافت'"
+        [placeholder]="''"
+        [multiSelect]="false"
+        [selectOpenType]="'dropDown'"
+        [isDividerOptions]="false"
+        [showRadioOptions]="false"
+        [dropdownPosition]="'bottom'"
+        [hasSelectAll]="false"
+        [selectBottomSheetCloseBtn]="false"
+        [required]="true"
+        [options]="reserveDatesOption"
+        [selectBottomSheetMaxHeight]="0"
+        [showError]="deliveryDetailsSubmitted ? 'show' : 'auto'"
+        [error]="(deliveryDetails.controls.reserveDate && deliveryDetails.controls.reserveDate.errors) || {}"
+      ></ui-form-field>
+
+      <ui-form-field
+        formControlName="timeSlot"
+        type="select"
+        [overflowToContainer]="true"
+        [label]="'انتخاب بازه زمانی دریافت'"
+        [placeholder]="''"
+        [multiSelect]="false"
+        [selectOpenType]="'dropDown'"
+        [isDividerOptions]="false"
+        [showRadioOptions]="false"
+        [dropdownPosition]="'bottom'"
+        [hasSelectAll]="false"
+        [selectBottomSheetCloseBtn]="false"
+        [required]="true"
+        [options]="timeSlotsOption"
+        [selectBottomSheetMaxHeight]="0"
+        [showError]="deliveryDetailsSubmitted ? 'show' : 'auto'"
+        [error]="(deliveryDetails.controls.timeSlot && deliveryDetails.controls.timeSlot.errors) || {}"
+      ></ui-form-field>
+
+      <ngx-button
+        [disabled]="deliveryInPersonForm.invalid"
+        (clickHandler)="onSubmit()"
+        [fullWidth]="true"
+        [mode]="'form'"
+        [style]="'fill'"
+        [brandButton]="true"
+        [size]="'large'"
+      >
+        ثبت درخواست
+      </ngx-button>
+    </div>
+  }
+</form>

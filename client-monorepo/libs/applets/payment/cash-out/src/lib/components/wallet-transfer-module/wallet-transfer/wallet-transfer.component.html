@@ -1,0 +1,44 @@
+<div class="page-content">
+  <div class="form-section">
+    <div class="field">
+      <p
+        class="form-text"
+        dir="rtl"
+      >
+        شماره همراه مقصد انتقال را وارد کنید.
+      </p>
+
+      <div
+        [formGroup]="walletForm"
+      >
+        <ui-form-field
+          [maxSize]="11"
+          formControlName="cellNumber"
+          [label]="'شماره همراه مقصد'"
+          [isNumericKeyboard]="true"
+          inputType="tel"
+        >
+        </ui-form-field>
+      </div>
+    </div>
+
+    <div class="submit-btn">
+      <ngx-button
+        [brandButton]="true"
+        [size]="'medium'"
+        [isLoading]="isSubmitting"
+        (clickHandler)="onSubmit()"
+        [disabled]="!walletForm.valid || isSubmitting"
+      >
+        ادامه
+      </ngx-button>
+    </div>
+  </div>
+
+  <app-recommendation-list
+    (itemClick)="recommendationClick($event)"
+    *ngIf="!gettingRecommendations && recommendations().length > 0"
+    [items]="recommendations()"
+    title="دوستان من"
+  ></app-recommendation-list>
+</div>

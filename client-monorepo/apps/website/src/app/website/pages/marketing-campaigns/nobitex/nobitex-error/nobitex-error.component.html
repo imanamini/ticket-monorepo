@@ -1,0 +1,60 @@
+<div class="modal-full-page">
+  <div class="dialog-header">
+    <div
+      (click)="closeDialog()"
+      class="close"
+    >
+      <ngx-icon
+        [name]="'close'"
+        classes="text-onback-high cursor-pointer"
+      ></ngx-icon>
+    </div>
+  </div>
+  <section class="dialog-body">
+    <div class="right-side">
+      <div class="not-response">
+        <span
+          [size]="100"
+          icon="{{ iconName }}"
+          appUiIcon
+        ></span>
+        <span class="not-response-title">
+          {{ title }}
+        </span>
+        <span class="not-response-subtitle">
+          {{ subtitle }}
+        </span>
+        <span
+          class="not-response-link"
+          *ngIf="link && link.length"
+          (click)="openLink(link)"
+          >{{ link }}</span
+        >
+      </div>
+      <div>
+        <div class="ctas">
+          <app-ui-button
+            (click)="next()"
+            class="w-40"
+          >
+            {{ actionTitle }}
+            <span
+              icon="icon-charon-left-white"
+              size="24"
+              appUiIcon
+            ></span>
+          </app-ui-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="left-side">
+      <div class="image-container">
+        <img
+          [src]="image.url"
+          alt=""
+        />
+      </div>
+    </div>
+  </section>
+</div>

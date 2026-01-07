@@ -1,0 +1,151 @@
+@if (!errorType() && !showPassword()) {
+  <app-credit-app-bar
+    [backButton]="true"
+    (onBackButtonClick)="onBack()"
+    [title]="'امضای آنلاین اسناد'"
+  ></app-credit-app-bar>
+  <div class="main-section d-flex flex-column flex-grow rtl">
+    @if (this.document()?.status !== docStatusEnum.SIGNED && this.document()?.status !== docStatusEnum.SEALED) {
+      <div class="d-flex flex-column flex-grow">
+        <div class="px-plus py-medium mb-pony">
+          <div class="d-flex flex-row justify-content-space-between align-items-center">
+            <div class="mb-pony">
+              <span class="st-8 text-onback-high">
+                سند
+                {{ documentCount() }}
+                :
+              </span>
+              <span class="c-3 text-onback-high">{{ document()?.title }}</span>
+            </div>
+            <div class="c-3 text-onback-low">
+              {{ document()?.generationTime | jalaliDate: 'jD jMMMM - HH:mm' }}
+            </div>
+          </div>
+          <div class="doc-header-progress d-flex surface-dim-level-0">
+            <div
+              [style]="{ width: progressBarInProgressWidth() }"
+              class="doc-progress-bar-in-progress"
+            ></div>
+            <div
+              [style]="{ width: progressBarCompletedWidth() }"
+              class="doc-progress-bar-completed"
+            ></div>
+          </div>
+        </div>
+        <div class="d-flex flex-column flex-grow px-plus">
+          <div
+            #docPreview
+            (fullscreenchange)="onFullscreenChange()"
+            (mozfullscreenchange)="onFullscreenChange()"
+            (webkitfullscreenchange)="onFullscreenChange()"
+            [class]="fullscreen() ? ['fullscreen-mode', 'surface-elevated'] : []"
+            class="d-flex flex-column doc-preview justify-content-center align-items-center flex-grow w-100 border-300 border-color-light radius-minus"
+          >
+            <ngx-button
+              (clickHandler)="goToFullScreen()"
+              ngxTrackableId
+              trackerId="signingDocumenDocFullscreenButton"
+              class="full-screen-button"
+              [class.zoom-out]="fullscreen()"
+              [size]="'large'"
+              [mode]="'icon-only'"
+              [rightIcon]="{ name: fullscreen() ? 'screem-zoom-out' : 'screem-zoom-in' }"
+            ></ngx-button>
+            @if (loadedDoc()) {
+              <div class="d-flex w-100 flex-grow p-medium surface-back">
+                <pdf-viewer
+                  (pages-initialized)="onPage($event)"
+                  [(page)]="page"
+                  [original-size]="false"
+                  [render-text]="true"
+                  [src]="fileData()"
+                  [zoom-scale]="'page-width'"
+                  [zoom]="zoom() / 100"
+                  class="w-100 h-100 flex-grow"
+                >
+                </pdf-viewer>
+              </div>
+            }
+            @if (!loadedDoc()) {
+              <ngx-spinner
+                size="md"
+                color="primary"
+              ></ngx-spinner>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-column w-100 justify-content-center align-items-center px-plus pb-plus">
+        <div class="d-flex flex-row w-100 mt-medium justify-content-space-between align-items-center">
+          <div class="d-flex flex-column gap-micro">
+            <div class="b-2 text-onback-low">امضا کننده</div>
+            <div class="st-6 text-onback-high">{{ fullName() }}</div>
+          </div>
+          <div>
+            @if (signImageId()) {
+              <credit-digipay-image
+                [imageId]="signImageId()!"
+                height="45px"
+                width="auto"
+              ></credit-digipay-image>
+            }
+          </div>
+        </div>
+        <div class="pt-big w-100">
+          <ngx-button
+            ngxTrackableId
+            trackerId="signingDocumenConfirmDocButton"
+            (clickHandler)="checkPasswordBeforeSubmit()"
+            [disabled]="ctaLoading()"
+            [isLoading]="ctaLoading()"
+            [fullWidth]="true"
+          >
+            تایید و امضا
+          </ngx-button>
+        </div>
+      </div>
+    } @else {
+      <credit-page-loading [active]="loading()"></credit-page-loading>
+    }
+  </div>
+}
+@if (errorType() && !loading() && !showPassword()) {
+  @switch (errorType()) {
+    @case ('EXPIRED') {
+      <app-credit-enote-step-error
+        [state]="'EXPIRED'"
+        (submitted)="rollbackAndRedirect()"
+        (back)="onBack()"
+      >
+      </app-credit-enote-step-error>
+    }
+    @default {
+      <app-credit-signing-documents-error
+        (close)="onBack()"
+        [type]="errorType()"
+        class="d-flex flex-column flex-grow"
+      ></app-credit-signing-documents-error>
+    }
+  }
+}
+@if (showPassword()) {
+  <app-credit-app-bar
+    (onCloseButtonClick)="onBack()"
+    (onBackButtonClick)="onCancelPassword()"
+    [closeButton]="this.passwordExpired()"
+    [backButton]="!this.passwordExpired()"
+    title="امضای دیجیتال"
+  >
+  </app-credit-app-bar>
+  <app-credit-signing-document-password
+    (goBack)="onBack()"
+    (succeeded)="submit($event)"
+    [errorDescription]="errorDescription()"
+    [errorText]="errorText()"
+    [expired]="passwordExpired()"
+    [cancelActivation]="true"
+    [loading]="ctaLoading()"
+    class="full-height"
+  ></app-credit-signing-document-password>
+}
+<credit-page-loading [active]="loading()"></credit-page-loading>

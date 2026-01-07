@@ -1,0 +1,43 @@
+<section>
+  <div class="container">
+    <div
+      [style.backgroundImage]="banner()?.url ? 'url(' + banner().url + ')' : ''"
+      class="banner"
+    >
+      <div class="titles">
+        <div class="titles-container">
+          @if (data()?.title) {
+            <div class="title">
+              <h1>{{ data().title }}</h1>
+            </div>
+          }
+          @if (data()?.subtitle) {
+            <div class="subtitle">
+              <span [innerHTML]="data().subtitle"></span>
+            </div>
+          }
+        </div>
+        @if (data()?.firstCta?.title) {
+          <div class="desktop-ctas ml-auto">
+            <ngx-button
+              [size]="'medium'"
+              (clickHandler)="goToGetLoan()"
+            >
+              {{ data().firstCta.title }}
+            </ngx-button>
+          </div>
+        }
+      </div>
+      @if (data()?.firstCta?.title) {
+        <div class="mobile-ctas">
+          <ngx-button
+            size="medium"
+            (clickHandler)="goToGetLoan()"
+          >
+            {{ data().firstCta.title }}
+          </ngx-button>
+        </div>
+      }
+    </div>
+  </div>
+</section>

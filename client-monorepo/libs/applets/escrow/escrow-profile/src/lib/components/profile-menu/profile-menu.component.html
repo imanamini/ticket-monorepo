@@ -1,0 +1,44 @@
+<div class="py-pony">
+  <p class="st-8 mb-pony">دسترسی‌ها</p>
+  @for (item of items(); track $index) {
+    <div class="d-flex justify-content-space-between border-color-air border-b-100 py-plus">
+      <div
+        class="d-flex gap-small"
+        (click)="decideForClick(item)"
+      >
+        <common-icon-dp-icon
+          [iconSize]="'24'"
+          [classes]="item.disabled ? 'text-onback-disabled' : 'text-onback-high'"
+          [iconType]="'linear'"
+          [icon]="item.icon || ''"
+        ></common-icon-dp-icon>
+        <p
+          class="bt-2"
+          [ngClass]="item.disabled ? 'text-onback-disabled' : 'text-onback-high'"
+        >
+          {{ item.title }}
+        </p>
+      </div>
+      <div class="d-flex gap-tiny">
+        @if (item.comingSoon) {
+          <ngx-badge
+            [size]="'tiny'"
+            [status]="'info'"
+            [mode]="'fill'"
+            [type]="'text'"
+          >
+            به زودی
+          </ngx-badge>
+        }
+        @if (item.hasArrow) {
+          <common-icon-dp-icon
+            [iconSize]="'16'"
+            [classes]="item.disabled ? 'text-onback-disabled' : 'text-onback-high'"
+            [iconType]="'linear'"
+            [icon]="'Arrow-2-Left'"
+          ></common-icon-dp-icon>
+        }
+      </div>
+    </div>
+  }
+</div>

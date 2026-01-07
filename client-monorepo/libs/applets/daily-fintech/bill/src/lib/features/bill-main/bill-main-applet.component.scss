@@ -1,0 +1,14 @@
+.header-content {
+  display: block;
+}
+
+.icon-container {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+}
+
+.framed-icon {
+  width: 56px;
+}

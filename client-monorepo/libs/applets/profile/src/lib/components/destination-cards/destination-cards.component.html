@@ -1,0 +1,40 @@
+<div class="my-card-container d-flex flex-column">
+  @if (allDestinationCards().length > 4) {
+    <common-ui-components-search
+      [mode]="'section'"
+      [(searchText)]="searchText"
+      placeHolder="جست‌و‌جو در نام یا شماره کارت..."
+    >
+    </common-ui-components-search>
+  }
+  @if (initialized()) {
+    @for (card of filteredDestinationCards(); track card) {
+      <div class="mt-medium">
+        <daily-bank-card-preview
+          (click)="openCardSummary(card)"
+          [config]="card()"
+        ></daily-bank-card-preview>
+      </div>
+    } @empty {
+      <div class="h-100 d-flex flex-column justify-content-center">
+        <common-ui-components-no-item [description]="'در حال حاضر هیچ کارتی ثبت نشده است'"></common-ui-components-no-item>
+      </div>
+    }
+  } @else {
+    <div class="py-minus">
+      <daily-bank-card-preview [config]="{ isLoading: true, isMinimized: true }"></daily-bank-card-preview>
+    </div>
+  }
+</div>
+
+<div
+  class="button-box pt-plus pb-huge d-flex justify-content-end"
+  [ngStyle]="bottonStyle()"
+>
+  <ngx-fab
+    [icon]="{ name: 'plus' }"
+    [routerLink]="['/profile', 'saved-cards', 'add', 'destination']"
+  >
+    افزودن کارت
+  </ngx-fab>
+</div>

@@ -1,0 +1,54 @@
+<div class="sell-otp-container">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'تایید و فروش'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="sell-otp-content">
+    <div class="sell-otp-description">
+      <span>کد ارسال شده به شماره موبایل حساب سجام را وارد کنید.</span>
+    </div>
+    <app-pin-input
+      [type]="'OTP'"
+      (pinChange)="onChanged($event)"
+      [hasError]="hasError"
+      (onRemove)="onChanged($event)"
+    ></app-pin-input>
+    @if (hasError) {
+      <div class="sell-otp-error">
+        <span>{{ errorInfo?.title }}</span>
+      </div>
+    }
+    <div class="sell-otp-buttons">
+      <ngx-button
+        (clickHandler)="resend()"
+        [disabled]="inProgress"
+      >
+        @if (inProgress) {
+          <ngx-count-down
+            [timeInSeconds]="otpSeconds"
+            [type]="'mm:ss'"
+            (finished)="onTimerStopped()"
+          ></ngx-count-down>
+        } @else {
+          <span>ارسال دوباره کد</span>
+        }
+      </ngx-button>
+
+      <ngx-button
+        (clickHandler)="createSellOrder()"
+        [disabled]="otp.length < 5 || !inProgress || hasError"
+        [isLoading]="isLoading"
+      >
+        ادامه
+      </ngx-button>
+    </div>
+  </div>
+</div>

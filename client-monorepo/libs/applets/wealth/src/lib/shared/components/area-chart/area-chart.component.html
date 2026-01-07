@@ -1,0 +1,33 @@
+<div class="area-chart-container">
+  <canvas
+    baseChart
+    [labels]="chartLabels"
+    [datasets]="doughnutChartDatasets"
+    [options]="doughnutChartOptions"
+    [legend]="true"
+    [type]="'line'"
+    [height]="250"
+    class="w-100"
+  >
+  </canvas>
+  <div class="time-buttons">
+    <div
+      class="period {{ selectedPeriod === 'month' ? 'selected' : '' }}"
+      (click)="paintChart('month')"
+    >
+      ۱ ماه گذشته
+    </div>
+    <div
+      class="period {{ selectedPeriod === 'sixMonth' ? 'selected' : '' }}"
+      (click)="paintChart('sixMonth')"
+    >
+      ۶ ماه گذشته
+    </div>
+    <div
+      class="period {{ selectedPeriod === 'year' ? 'selected' : '' }}"
+      (click)="paintChart('year')"
+    >
+      ۱ سال گذشته
+    </div>
+  </div>
+</div>

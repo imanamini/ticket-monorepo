@@ -1,0 +1,157 @@
+@import "./variables";
+
+@mixin mediaMobile {
+  @media (max-width: $DESKTOP_MIN_WIDTH - 1px) {
+    @content;
+  }
+}
+
+@mixin mediaDesktop {
+  @media (min-width: $DESKTOP_MIN_WIDTH) {
+    @content;
+  }
+}
+
+@mixin mediaDesktopFromXs {
+  @media (min-width: $DESKTOP_XS_MIN) {
+    @content;
+  }
+}
+
+@mixin mediaDesktopXs {
+  @media (min-width: $DESKTOP_XS_MIN) and (max-width: $DESKTOP_XS_MAX) {
+    @content;
+  }
+}
+
+@mixin mediaDesktopFromSm {
+  @media (min-width: $DESKTOP_SM_MIN) {
+    @content;
+  }
+}
+
+@mixin mediaDesktopSm {
+  @media (min-width: $DESKTOP_SM_MIN) and (max-width: $DESKTOP_SM_MAX) {
+    @content;
+  }
+}
+
+@mixin mediaDesktopFromMd {
+  @media (min-width: $DESKTOP_MD_MIN) {
+    @content;
+  }
+}
+
+@mixin mediaDesktopMd {
+  @media (min-width: $DESKTOP_MD_MIN) and (max-width: $DESKTOP_MD_MAX) {
+    @content;
+  }
+}
+
+@mixin mediaDesktopFromLg {
+  @media (min-width: $DESKTOP_LG_MIN) {
+    @content;
+  }
+}
+
+@mixin mediaDesktopLg {
+  @media (min-width: $DESKTOP_LG_MIN) and (max-width: $DESKTOP_LG_MAX) {
+    @content;
+  }
+}
+
+@mixin mediaDesktopFromXl {
+  @media (min-width: $DESKTOP_XL_MIN) {
+    @content;
+  }
+}
+
+@mixin mediaDesktopXl {
+  @media (min-width: $DESKTOP_XL_MIN) and (max-width: $DESKTOP_XL_MAX) {
+    @content;
+  }
+}
+
+@mixin mediaDesktopFromXXl {
+  @media (min-width: $DESKTOP_XXL_MIN) {
+    @content;
+  }
+}
+
+@mixin mediaNarrowNavDevices {
+  @media (min-width: 614px) and (max-width: 726px),
+    (min-width: 787px) and (max-width: 919px) {
+    @content;
+  }
+}
+
+@mixin mediaNarrowNavDeviceS {
+  @media (min-width: 614px) and (max-width: 726px) {
+    @content;
+  }
+}
+
+@mixin mediaNarrowNavDeviceL {
+  @media (min-width: 787px) and (max-width: 919px) {
+    @content;
+  }
+}
+
+@mixin mediaWideNavDevices {
+  @media (min-width: 727px) and (max-width: 786px), (min-width: 920px) {
+    @content;
+  }
+}
+
+@mixin mediaHoverSupportDevice {
+  @media screen and (min-width: $DESKTOP_XS_MIN) {
+    @content;
+  }
+}
+
+@mixin mediaIphone5Min {
+  @media (min-width: $MOBILE_IPHONE5_MIN) {
+    @content;
+  }
+}
+
+@mixin mediaIphone5Max {
+  @media (max-width: $MOBILE_IPHONE5_MAX) {
+    @content;
+  }
+}
+
+@mixin mediaMaxWidth($maxWidth) {
+  @media (max-width: $maxWidth) {
+    @content;
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| iPhone X and later media queries
+|--------------------------------------------------------------------------
+| Generates media queries with the given content for iPhone X and later
+| devices in Portrait and display-mode: standalone (only home shortcuts)
+|
+*/
+@mixin portraitIphoneXAndLater() {
+  @media only screen and (display-mode: standalone) and (orientation: portrait) {
+    // iPhone 11
+    @media (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+      @content;
+    }
+    // iPhone X
+    @media (device-width: 375px) and (device-width: 812px) and (-webkit-device-pixel-ratio: 3) {
+      @content;
+    }
+    // iPhone 11 Pro
+    @media (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+      @content;
+    }
+    // iPhone 11 Pro Max
+    @media (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
+      @content;
+    }
+  }
+}

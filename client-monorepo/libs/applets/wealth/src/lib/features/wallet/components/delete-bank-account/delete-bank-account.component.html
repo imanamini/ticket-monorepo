@@ -1,0 +1,27 @@
+<div class="w-100 d-flex flex-column">
+  <ngx-card
+    class="w-100 my-big"
+    [testMode]="true"
+    [cardMode]="'bank'"
+    [cardSize]="'small'"
+    [cardType]="'iban'"
+    [iban]="data().value"
+    [ownerName]="data().ownerName"
+    [width]="'320px'"
+    [height]="'68px'"
+    [logoHeight]="32"
+    [logoWidth]="32"
+    [showActionButton]="false"
+  ></ngx-card>
+
+  <ngx-button
+    class="my-micro"
+    [style]="'link'"
+    [size]="'large'"
+    [destructive]="true"
+    [rightIcon]="{ name: 'delete' }"
+    (clickHandler)="deleteBankAccount()"
+  >
+    حذف شبا
+  </ngx-button>
+</div>

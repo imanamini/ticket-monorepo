@@ -1,0 +1,33 @@
+@use "insurance/src/lib/app/style/mixins/ios" as ios;
+@import "insurance/src/lib/app/style/once/global";;
+
+:host {
+  .car-info-box .box-center{
+    @include ios.over-scroll-behavior-none-ios();
+  }
+}
+
+.car-info-box {
+  .box-center {
+    max-width: 360px;
+    flex: 1;
+    overflow: auto;
+
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
+
+    .center-text {
+      font-size: 16px;
+      line-height: 28px;
+      color: #2c3544;
+    }
+
+    .center-content {
+      flex: 1 1 auto;
+    }
+  }
+}

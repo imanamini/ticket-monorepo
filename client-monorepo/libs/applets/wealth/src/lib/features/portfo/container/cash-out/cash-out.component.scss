@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+}
+
+.cashout-container {
+  height: 100dvh;
+}
+
+
+.buttons-container {
+  position: absolute;
+  bottom: 2rem;
+
+  .d-grid {
+    grid-template-columns: 1.3fr 1fr;
+  }
+}

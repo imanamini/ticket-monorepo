@@ -1,0 +1,41 @@
+<div class="date-picker">
+  <div class="actions">
+    <a
+      (click)="confirmClick()"
+      class="resolve"
+      >تایید</a
+    >
+    <a
+      (click)="clearButtonClick()"
+      class="reject"
+      >حذف</a
+    >
+  </div>
+  <div class="body">
+    <app-date-picker-number-picker
+      (valueChange)="valueChangedCallback()"
+      *ngIf="pickers.year"
+      [(value)]="value.year"
+      [list]="lists.year"
+      class="number-picker"
+    >
+    </app-date-picker-number-picker>
+
+    <app-date-picker-number-picker
+      (valueChange)="valueChangedCallback()"
+      *ngIf="pickers.month"
+      [(value)]="value.month"
+      [list]="lists.month"
+      class="number-picker"
+    ></app-date-picker-number-picker>
+
+    <app-date-picker-number-picker
+      (valueChange)="valueChangedCallback()"
+      *ngIf="pickers.day"
+      [(value)]="value.day"
+      [list]="lists.day"
+      class="number-picker"
+    >
+    </app-date-picker-number-picker>
+  </div>
+</div>

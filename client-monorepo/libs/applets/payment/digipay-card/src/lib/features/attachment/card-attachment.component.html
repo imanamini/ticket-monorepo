@@ -1,0 +1,64 @@
+<common-ui-components-page-layout
+  [showBorder]="true"
+  bodyClasses="surface-elevated"
+  headerClasses="surface-elevated"
+  [title]="'اتصال به کارت'"
+>
+  <div class="h-100 pt-medium d-flex flex-column p-plus pb-big justify-content-space-between">
+    <div>
+      <div class="d-flex">
+        <common-icon-dp-icon
+          [icon]="'card-to-card'"
+          [iconSize]="'30'"
+          [iconType]="'bold'"
+          [class]="'text-onback-high'"
+        ></common-icon-dp-icon>
+        <span class="st-6 mr-tiny">دیجی‌کارت فعال</span>
+      </div>
+      <div class="d-flex mt-small p-minus surface-brand-tint cursor-pointer radius-medium">
+        <common-icon-dp-icon
+          [icon]="'info-circle'"
+          [iconSize]="'20'"
+          [iconType]="'linear'"
+          [class]="'text-onback-brand'"
+        ></common-icon-dp-icon>
+
+        <div class="st-8 text-onback-high">
+          کاربرگرامی؛
+          <div class="b-3 mt-tiny">با کدملی ۰۳۱***۰۳۲ یک دیجی‌کارت متصل به پروفایل با شماره ۰۹۱۲****۷۸۹ وجود دارد.</div>
+        </div>
+      </div>
+    </div>
+
+    <div >
+      <ngx-callout
+        [backgroundMode]="'default'"
+        [mode]="'multiple'"
+        [showTitleBlink]="false"
+        [title]="''"
+        [messages]="[
+          'برای استفاده از مزایای دیجی‌کارت در پروفایل فعلی، از دکمه اتصال استفاده کنید.',
+          'در صورت اتصال، دسترسی به وام و اعتبارهای پروفایل قبلی امکان پذیر نیست.'
+        ]"
+      ></ngx-callout>
+
+      <div class="d-flex gap-small actions mt-big">
+        <ngx-button
+          class="edit-button"
+          [style]="'tinted-on-elevated'"
+          [fullWidth]="true"
+          (clickHandler)="cancel()"
+        >
+          انصراف
+        </ngx-button>
+        <ngx-button
+          class="edit-button"
+          [fullWidth]="true"
+          (clickHandler)="approve()"
+        >
+          اتصال
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+</common-ui-components-page-layout>

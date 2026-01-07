@@ -1,0 +1,283 @@
+<app-base-layout [loaded]="loaded">
+  <section class="blog">
+    <div class="container">
+      <div
+        *ngIf="post && displayBreadCrumbs"
+        class="breadcrumbs desktop"
+      >
+        <a href="/mag/"><span>مجله اینترنتی دیجی‌پی</span></a>
+        <span *ngFor="let postCategory of postCategories">
+          <span class="separator">/</span>
+          <a [href]="'/mag/' + postCategory.slug + '/'">
+            {{ postCategory.title }}
+          </a>
+        </span>
+        <span>
+          <span class="separator">/</span>
+          <span class="title">{{ post.title }}</span>
+        </span>
+      </div>
+      <div class="content">
+        <div class="right-bar">
+          <div
+            *ngIf="tableOfContentItems.length > 0"
+            class="table-of-contents-desktop"
+          >
+            <div class="title">در این مقاله میخوانید:</div>
+            <div
+              (click)="scrollToItem(i)"
+              *ngFor="let tableOfContentItem of tableOfContentItems; let i = index"
+              [ngClass]="{
+                'selected-heading': i === selectedHeading,
+              }"
+              class="items"
+            >
+              <span>●</span>
+              {{ tableOfContentItem }}
+            </div>
+          </div>
+          <div
+            class="advertisement"
+            appDownloadAppLink
+          ></div>
+        </div>
+        @if (!post) {
+          <ngx-spinner></ngx-spinner>
+        }
+        <div
+          *ngIf="post"
+          class="blog-contents"
+        >
+          <div class="desktop">
+            <div class="blog-title">
+              <h1>{{ post.title }}</h1>
+            </div>
+            <div class="blog-description">
+              {{ post.description }}
+            </div>
+            <div class="blog-stats">
+              <div
+                *ngIf="post.viewCount"
+                [ngClass]="post.updatedAt ? 'margin-left' : ''"
+                class="view"
+              >
+                تعداد بازدید:
+                {{ post.viewCount }}
+                <img
+                  alt=""
+                  class="icon"
+                  height="24"
+                  ngSrc="/assets/blog/eye.svg"
+                  width="24"
+                />
+              </div>
+              <div
+                [ngClass]="post.readTime ? 'margin-left' : ''"
+                class="date"
+              >
+                به‌روز رسانی:
+                {{ post.updatedAt.formatted }}
+                <img
+                  alt=""
+                  class="icon"
+                  height="24"
+                  ngSrc="/assets/blog/clock.svg"
+                  width="24"
+                />
+              </div>
+              <div
+                *ngIf="post.readTime"
+                class="timer"
+              >
+                زمان مطالعه:
+                {{ post.readTime }}
+                دقیقه
+                <img
+                  alt=""
+                  class="icon"
+                  height="24"
+                  ngSrc="/assets/blog/timer.svg"
+                  width="24"
+                />
+              </div>
+            </div>
+            <div class="blog-content-image">
+              <video
+                *ngIf="post.image && post.image.url && isFileVideo(post.image.url); else image"
+                controls
+                preload="metadata"
+                width="100%"
+              >
+                <source
+                  [src]="post.image.url + '#t=0.5'"
+                  type="video/mp4"
+                />
+              </video>
+              <ng-template #image>
+                <figure>
+                  <img
+                    *ngIf="post.image"
+                    [alt]="post.image.altText"
+                    [src]="post.image.url"
+                  />
+                </figure>
+              </ng-template>
+            </div>
+          </div>
+
+          <div class="mobile">
+            <div
+              *ngIf="post && displayBreadCrumbs"
+              class="breadcrumbs mobile"
+            >
+              <a href="/mag"><span>مجله اینترنتی دیجی‌پی</span></a>
+              <span *ngFor="let postCategory of postCategories">
+                <span class="separator">/</span>
+                <a [href]="'/mag/' + postCategory.slug">
+                  {{ postCategory.title }}
+                </a>
+              </span>
+              <span>
+                <span class="separator">/</span>
+                <span class="title">{{ post.title }}</span>
+              </span>
+            </div>
+            <div class="blog-stats">
+              <div
+                *ngIf="post.viewCount"
+                [ngClass]="post.updatedAt ? 'margin-left' : ''"
+                class="view"
+              >
+                <img
+                  alt=""
+                  class="icon"
+                  height="24"
+                  ngSrc="/assets/blog/eye.svg"
+                  width="24"
+                />
+                {{ post.viewCount }}
+              </div>
+              <div
+                [ngClass]="post.readTime ? 'margin-left' : ''"
+                class="date"
+              >
+                <img
+                  alt=""
+                  class="icon"
+                  height="24"
+                  ngSrc="/assets/blog/clock.svg"
+                  width="24"
+                />
+                {{ post.updatedAt.formatted }}
+              </div>
+              <div
+                *ngIf="post.readTime"
+                class="timer"
+              >
+                <img
+                  alt=""
+                  class="icon"
+                  height="24"
+                  ngSrc="/assets/blog/timer.svg"
+                  width="24"
+                />
+                {{ post.readTime }}
+                دقیقه
+              </div>
+            </div>
+            <div class="blog-content-image">
+              <div
+                *ngIf="post.image && post.image.url && isFileVideo(post.image.url); else mobileImage"
+                class="video-background"
+              >
+                <div class="video-container">
+                  <video
+                    controls
+                    preload="metadata"
+                    width="100%"
+                  >
+                    <source
+                      [src]="post.image.url + '#t=0.5'"
+                      type="video/mp4"
+                    />
+                  </video>
+                </div>
+              </div>
+              <ng-template #mobileImage>
+                <figure>
+                  <img
+                    *ngIf="post.image"
+                    [alt]="post.image.altText"
+                    [src]="post.image.url"
+                  />
+                </figure>
+              </ng-template>
+            </div>
+            <div class="blog-title">
+              {{ post.title }}
+            </div>
+            <div class="blog-description">
+              {{ post.description }}
+            </div>
+          </div>
+
+          <div class="bar">
+            <div
+              *ngIf="tableOfContentItems.length > 0"
+              class="table-of-contents-non-desktop"
+            >
+              <div class="title">در این مقاله میخوانید:</div>
+              <hr />
+              <div
+                (click)="scrollToItem(i)"
+                *ngFor="let tableOfContentItem of tableOfContentItems; let i = index"
+                class="items"
+              >
+                {{ tableOfContentItem }}
+              </div>
+              <hr />
+            </div>
+            <div
+              class="advertisement"
+              appDownloadAppLink
+            ></div>
+          </div>
+          <div
+            [innerHTML]="post.content | safeHtml"
+            class="blog-content rich-text"
+          ></div>
+          <div class="blog-tags">
+            <ng-container *ngFor="let tag of post.tags">
+              <app-ui-button
+                [appearance]="'OUTLINE-BLUE'"
+                [linkTarget]="'_blank'"
+                [link]="'daily/tag/' + tag.slug"
+              >
+                <span>{{ tag.name }}</span>
+              </app-ui-button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-comments-list
+      (replyClick)="onCommentReplyClick($event)"
+      [comments]="comments"
+    ></app-comments-list>
+
+    <div
+      #commentForm
+      *ngIf="post"
+    >
+      <app-ui-comment-form
+        (cancelReply)="onCancelReply()"
+        (formSubmission)="onCommentFormSubmit($event)"
+        [clearSignal]="commentFormClearSignal"
+        [errorMessages]="commentFormErrors"
+        [inReplyToAuthor]="replyingTo"
+        [successMessage]="commentFormSuccessMessage"
+      ></app-ui-comment-form>
+    </div>
+  </section>
+</app-base-layout>

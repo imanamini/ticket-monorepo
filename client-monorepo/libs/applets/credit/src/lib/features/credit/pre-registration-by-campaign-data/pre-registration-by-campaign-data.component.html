@@ -1,0 +1,19 @@
+<app-credit-app-bar
+  [backButton]="false"
+  [closeButton]="false"
+  title="ثبت‌نام دریافت اعتبار"
+></app-credit-app-bar>
+@if (!showLoading()) {
+  <div class="d-flex flex-full-height full-height">
+    @if (this.errorType === 'INCORRECT_CELL_NUMBER') {
+      <app-credit-switch-cell-number
+        class="full-height flex-full-height"
+        [fromCellNumber]="this.userData()?.cellNumber"
+        [toCellNumber]="cellNumberOnCampaign()!"
+        (switchCellNumber)="loginAgain()"
+        (cancelSwitch)="cancel()"
+      ></app-credit-switch-cell-number>
+    }
+  </div>
+}
+<credit-page-loading [active]="showLoading()"></credit-page-loading>

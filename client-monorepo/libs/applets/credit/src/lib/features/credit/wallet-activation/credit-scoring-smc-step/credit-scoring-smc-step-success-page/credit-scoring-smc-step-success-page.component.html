@@ -1,0 +1,117 @@
+<app-credit-app-bar
+  [title]="'نتیجه امکان‌سنجی'"
+></app-credit-app-bar>
+@if (!showLoading()) {
+  <div class="main-section flex-full-height">
+    <div class="top-section">
+      <app-credit-scrollable-view
+        [fullHeightContent]="true"
+        [hasFade]="true"
+        fadeColor="white"
+      >
+        <div class="page-content">
+          @if (card()) {
+            <div class="card">
+              <ngx-card
+                [amount]="card()?.creditAmount"
+                [amountAlign]="'right'"
+                [cardBackground]="card()!.fundProvider.color"
+                [cardMode]="'bnpl'"
+                [rightDetail]="customBottomRightDetail"
+                [cardLogo]="card()?.fundProvider?.icon"
+                [height]="'126px'"
+                [width]="'100%'"
+                [cardLabel]="title()"
+                [cardSize]="'default'"
+              >
+              </ngx-card>
+
+              <ng-template #customTopRightDetail>
+                <div class="d-flex flex-row align-items-center gap-tiny">
+                  <ui-api-image
+                    [height]="'24px'"
+                    [imageId]="fundProviderIconId()"
+                    [width]="'24px'"
+                  ></ui-api-image>
+                  <span class="st-8 text-oninvert-high">{{ title() }}</span>
+                </div>
+              </ng-template>
+              <ng-template #customTopLeftDetail>
+                <span class="st-3 text-oninvert-high"
+                  >{{ card()?.creditAmount! | number }}
+                  <span class="is-currency">ریال</span>
+                </span>
+              </ng-template>
+              <ng-template #customBottomRightDetail>
+                <ngx-badge
+                  [size]="'tiny'"
+                  [status]="'neutral'"
+                  [mode]="'fill'"
+                >
+                  {{ card()?.allocationPrepaymentPercentage === 0 ? 'بدون کارمزد' : card()?.allocationPrepaymentPercentage + '٪ سود' }}
+                </ngx-badge>
+              </ng-template>
+              <ng-template #customBottomLeftDetail>
+                <span class="st-8 py-small text-oninvert-high">{{
+                  card()?.installmentCount ? card()?.installmentCount + ' قسط' : ''
+                }}</span>
+              </ng-template>
+            </div>
+          }
+          <div class="purchase-section">
+            <p class="purchase-title">مراحل بازپرداخت</p>
+            <div class="purchase-items">
+              @for (item of purchaseContent(); track $index) {
+                <div class="item">
+                  @if (item.icon) {
+                    <div [class]="'item-icon ' + item.icon"></div>
+                  }
+                  <p class="item-title">{{ item.title }}</p>
+                  <p class="item-subtitle">{{ item.subtitle }}</p>
+                </div>
+              }
+            </div>
+          </div>
+
+          @if (storesList() && storesList().length > 0) {
+            <div class="stores-section">
+              <p class="stores-title">فروشگاه‌ها</p>
+              <div class="stores w-100">
+                @defer (when storesList().length > 0) {
+                  <app-credit-store-list
+                    [columnCount]="4"
+                    [itemsPerSlide]="12"
+                    [storesList]="storesList()"
+                    [showNavigation]="false"
+                    [showMoreButton]="true"
+                    (moreClicked)="openStores()"
+                  ></app-credit-store-list>
+                }
+              </div>
+            </div>
+          }
+
+          <div class="recharge-section">
+            <div class="icon"></div>
+            <div class="content">
+              <p class="title">شارژ دوباره بعد از آخرین قسط</p>
+              <p class="subtitle">به محض تسویه آخرین قسط، اعتبار دوباره شارژ می شود.</p>
+            </div>
+          </div>
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+    <div class="call-to-actions-section">
+      <ngx-button
+        (clickHandler)="finish.emit()"
+        [fullWidth]="true"
+        [style]="'fill'"
+        [timer]="timer()"
+        (finished)="finish.emit()"
+      >
+        مشاهده اعتبار در&nbsp;
+      </ngx-button>
+    </div>
+  </div>
+}
+<credit-page-loading [active]="showLoading()"></credit-page-loading>

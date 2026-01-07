@@ -1,0 +1,25 @@
+<div
+  class="parts"
+  [ngClass]="'theme-' + theme.toLowerCase()"
+  [ngStyle]="{ fontSize: size + 'px' }"
+>
+  <div class="part">
+    <span class="value">{{ timeParts.days }}</span>
+    <span class="label">روز</span>
+  </div>
+  <span class="colon">:</span>
+  <div class="part">
+    <span class="value">{{ timeParts.hour }}</span>
+    <span class="label">ساعت</span>
+  </div>
+  <span class="colon">:</span>
+  <div class="part">
+    <span class="value">{{ timeParts.minutes }}</span>
+    <span class="label">دقیقه</span>
+  </div>
+  <span class="colon">:</span>
+  <div class="part">
+    <span class="value">{{ timeParts.seconds }}</span>
+    <span class="label">ثانیه</span>
+  </div>
+</div>

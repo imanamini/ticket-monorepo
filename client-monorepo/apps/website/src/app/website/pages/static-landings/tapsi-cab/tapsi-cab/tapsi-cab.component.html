@@ -1,0 +1,50 @@
+<app-base-layout [loaded]="loaded()">
+
+  <ng-container *ngIf="tapsiCabTemplateData()?.introSection">
+    <div class="mb-massive intro" [ngClass]="{'container' : !isMobile()}">
+      <app-tapsi-intro [templateData]="tapsiCabTemplateData()"></app-tapsi-intro>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="tapsiCabTemplateData()?.propositionSection">
+    <div class="container mb-massive proposition">
+      <app-tapsi-proposition [templateData]="tapsiCabTemplateData()"></app-tapsi-proposition>
+    </div>
+  </ng-container>
+
+
+  <ng-container *ngIf="tapsiCabTemplateData()?.paySteps">
+    <div class="mb-massive steps" [ngClass]="{'container' : !isMobile()}">
+      <app-tapsi-steps [templateData]="tapsiCabTemplateData()"></app-tapsi-steps>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="tapsiCabTemplateData()?.noteSection">
+    <div class="noteSection py-massive d-flex flex-column gap-big align-items-center">
+      <div class="text st-4 text-oninvert-high text-align-center">
+        {{ tapsiCabTemplateData().noteSection?.text }}
+      </div>
+      <div class="cta d-flex">
+        <ngx-button
+          class="d-flex flex-row-reverse"
+          [mode]="'section'"
+          [brandButton]="true"
+          [leftIcon]="{ name: 'arrow-2-left', type: 'linear' }"
+          (clickHandler)="openLink(tapsiCabTemplateData().noteSection?.cta ?.link)"
+          [size]="!isMobile() ? 'large' : 'medium'"
+          [fullWidth]="isMobile()"
+        >
+          {{ tapsiCabTemplateData().noteSection?.cta?.text  }}
+        </ngx-button>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="tapsiCabTemplateData()?.faq && tapsiCabTemplateData()?.faq?.faqItems.length">
+    <app-ui-faq
+      [faqs]="tapsiCabTemplateData().faq.faqItems"
+      [subtitle]="tapsiCabTemplateData().faq.subtitle"
+      [title]="tapsiCabTemplateData().faq.title"
+    ></app-ui-faq>
+  </ng-container>
+</app-base-layout>

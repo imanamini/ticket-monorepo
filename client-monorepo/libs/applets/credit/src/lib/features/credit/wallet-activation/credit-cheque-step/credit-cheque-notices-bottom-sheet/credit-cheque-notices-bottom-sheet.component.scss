@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.notices-bottom-sheet {
+  direction: rtl;
+}
+
+::ng-deep b {
+  font-weight: 600;
+}

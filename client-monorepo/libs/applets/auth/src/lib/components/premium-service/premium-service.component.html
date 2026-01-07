@@ -1,0 +1,20 @@
+<div
+  class="p-medium pt-minus d-flex align-items-center gap-medium box"
+  (click)="this.checked = !this.checked"
+  [ngClass]="checked ? 'box-selected' : 'box-unselected'"
+>
+  <img [src]="image()" />
+  <div class="d-flex flex-column justify-content-center gap-low flex-grow">
+    <div class="d-flex justify-content-space-between align-items-center">
+      <div class="st-8 text-onback-medium ml-auto">{{ title() }}</div>
+      <ngx-checkbox
+        [(checked)]="checked"
+        (click)="this.checked = !this.checked"
+        (checkedChange)="selectedChange.emit({ title: title(), isChecked: checked, id: id() })"
+      >
+        ></ngx-checkbox
+      >
+    </div>
+    <span class="c-3 text-onback-low">{{ description() }}</span>
+  </div>
+</div>

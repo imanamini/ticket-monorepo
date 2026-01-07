@@ -1,0 +1,12 @@
+<div class="stepper-container px-plus py-medium my-pony">
+  <div class="d-flex flex-row justify-content-space-between align-items-center rtl mb-pony">
+    <span class="st-8 text-onback-high">{{ title() }}</span>
+    <span class="step c-3 text-onback-low">{{ currentStep() }} از {{ steps() }}</span>
+  </div>
+  <div class="step-progress-background w-100 radius-giant rtl">
+    <div
+      [style.width.%]="(currentStep() * 100) / steps()"
+      class="step-progress-bar radius-giant surface-brand"
+    ></div>
+  </div>
+</div>

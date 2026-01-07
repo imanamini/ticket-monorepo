@@ -1,0 +1,22 @@
+<section class="form-section">
+  <div class="container">
+    <h2 class="text-align-center">{{ title() }}</h2>
+    <div class="segment-content">
+      <div
+        class="form"
+        role="form"
+      >
+        <div class="description">{{ description() }}</div>
+        @if (contactForm()) {
+          <app-contact-form [contactFormDefinition]="contactForm()"></app-contact-form>
+        }
+      </div>
+      <div class="image">
+        <img
+          [attr.alt]="title()"
+          [src]="image()?.url"
+        />
+      </div>
+    </div>
+  </div>
+</section>

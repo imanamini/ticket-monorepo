@@ -1,0 +1,74 @@
+<section class="section-credit-other-services">
+  <div class="container">
+    <div class="titles">
+      <h2
+        *ngIf="creditOtherServicesData.title"
+        class="text-align-center"
+      >
+        {{ creditOtherServicesData.title }}
+      </h2>
+      <span
+        *ngIf="creditOtherServicesData.subtitle"
+        class="text-align-center"
+        >{{ creditOtherServicesData.subtitle }}</span
+      >
+    </div>
+    <div class="services">
+      <swiper-container
+        appSwiper
+        #swiper
+        [config]="config"
+        (slidechange)="slideChange($event)"
+      >
+        <swiper-slide *ngFor="let service of creditOtherServicesData.services">
+          <a
+            [href]="service?.serviceLink"
+            class="service"
+          >
+            <div
+              *ngIf="service.icon && service.icon.url"
+              class="icon"
+            >
+              <img [src]="service.icon.url" />
+            </div>
+            <div
+              *ngIf="service.title"
+              [ngStyle]="service.titleColor && { color: service.titleColor }"
+              class="title"
+            >
+              {{ service.title }}
+            </div>
+            <div
+              *ngIf="service.subtitle"
+              class="subtitle"
+            >
+              {{ service.subtitle }}
+            </div>
+          </a>
+        </swiper-slide>
+      </swiper-container>
+
+      <!--      <swiper [config]="config">-->
+      <!--        <ng-container *ngFor="let service of creditOtherServicesData.services">-->
+      <!--          <ng-template swiperSlide>-->
+      <!--            <a [href]="service?.serviceLink" class="service">-->
+      <!--              <div *ngIf="service.icon && service.icon.url" class="icon">-->
+      <!--                <img [src]="service.icon.url" />-->
+      <!--              </div>-->
+      <!--              <div-->
+      <!--                *ngIf="service.title"-->
+      <!--                [ngStyle]="service.titleColor && { color: service.titleColor }"-->
+      <!--                class="title"-->
+      <!--              >-->
+      <!--                {{ service.title }}-->
+      <!--              </div>-->
+      <!--              <div *ngIf="service.subtitle" class="subtitle">-->
+      <!--                {{ service.subtitle }}-->
+      <!--              </div>-->
+      <!--            </a>-->
+      <!--          </ng-template>-->
+      <!--        </ng-container>-->
+      <!--      </swiper>-->
+    </div>
+  </div>
+</section>

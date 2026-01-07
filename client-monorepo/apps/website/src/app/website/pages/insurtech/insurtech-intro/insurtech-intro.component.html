@@ -1,0 +1,23 @@
+<section>
+  <div class="container">
+    <div class="wrapper">
+      <div class="wrapper-1">
+        <div class="titles">
+          @if (templateData()?.sectionIntro?.titles) {
+            <h1>{{ templateData().sectionIntro.titles.firstTitle }}</h1>
+            <h3>{{ templateData().sectionIntro.titles.secondTitle }}</h3>
+          }
+        </div>
+        <div class="image">
+          @if (templateData()?.sectionIntro?.image?.url) {
+            <img
+              [src]="templateData().sectionIntro.image.url"
+              alt="بیمه و تجهیزات"
+              class="image-source"
+            />
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

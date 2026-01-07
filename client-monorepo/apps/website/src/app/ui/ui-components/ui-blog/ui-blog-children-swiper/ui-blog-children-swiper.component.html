@@ -1,0 +1,27 @@
+<div
+  *ngIf="categories && categories.length"
+  class="category-children"
+>
+  <div class="swiper-wrap">
+    <swiper-container
+      appSwiper
+      #swiper
+      [config]="config"
+    >
+      <swiper-slide *ngFor="let category of categories">
+        <div
+          *ngIf="category.icon && category.title"
+          class="item"
+        >
+          <a [href]="'/mag/' + category.slug + '/'">
+            <img
+              [alt]="category.icon.altText"
+              [src]="category.icon.url"
+            />
+            <span>{{ category.title }}</span>
+          </a>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+</div>

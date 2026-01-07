@@ -1,0 +1,135 @@
+<div class="blog-archive-pagination">
+  <ng-container *ngIf="baseUrl.length > 0; else CSR">
+    <a
+      [href]="
+        currentIndex > 1 ? baseUrl + '/mag/archive/' + (currentIndex > 2 ? 'page/' + (currentIndex - 1) + '/' : '') + queryParams : ''
+      "
+      [ngClass]="{ 'not-active': currentIndex === 1 }"
+      class="previous-btn square-wrap"
+    >
+      <span
+        icon="icon-charon-right"
+        size="24"
+        appUiIcon
+      ></span>
+    </a>
+    <div class="indices">
+      <a
+        [href]="baseUrl + '/mag/archive/' + queryParams"
+        [ngClass]="{ selected: currentIndex === 1 }"
+        class="index square-wrap"
+        >1</a
+      >
+      <div
+        [ngClass]="{
+          show: indexState !== 'START' && totalPages > maxAccessiblePageIndex && currentIndex > 3,
+        }"
+        class="before-dots"
+      >
+        <span>...</span>
+      </div>
+      <a
+        *ngFor="let index of indicesRange"
+        [href]="baseUrl + '/mag/archive/page/' + index + '/' + queryParams"
+        [ngClass]="{ selected: index === currentIndex }"
+        class="index square-wrap"
+      >
+        {{ index }}
+      </a>
+      <div
+        [ngClass]="{
+          show: indexState !== 'END' && totalPages > maxAccessiblePageIndex,
+        }"
+        class="after-dots"
+      >
+        <span>...</span>
+      </div>
+      <a
+        *ngIf="totalPages > 1"
+        [href]="baseUrl + '/mag/archive/page/' + totalPages + '/' + queryParams"
+        [ngClass]="{ selected: currentIndex === totalPages }"
+        class="index square-wrap"
+        >{{ totalPages }}</a
+      >
+    </div>
+    <a
+      [href]="currentIndex < totalPages ? baseUrl + '/mag/archive/page/' + (currentIndex + 1) + '/' + queryParams : ''"
+      [ngClass]="{ 'not-active': currentIndex === totalPages }"
+      class="next-btn square-wrap"
+    >
+      <ngx-icon
+        [iconSize]="'24'"
+        [name]="'arrow-2-left'"
+        class="text-onback-brand"
+      ></ngx-icon>
+    </a>
+  </ng-container>
+  <ng-template #CSR>
+    <a
+      [ngClass]="{ 'not-active': currentIndex === 1 }"
+      [queryParams]="queryParams && { categoryId: queryParams }"
+      [routerLink]="currentIndex > 1 ? '/mag/archive/' + (currentIndex > 2 ? 'page/' + (currentIndex - 1) : '') + '/.' : ''"
+      class="previous-btn square-wrap"
+    >
+      <span
+        icon="icon-charon-right"
+        size="24"
+        appUiIcon
+      ></span>
+    </a>
+    <div class="indices">
+      <a
+        [ngClass]="{ selected: currentIndex === 1 }"
+        [queryParams]="queryParams && { categoryId: queryParams }"
+        [routerLink]="'/mag/archive/.'"
+        class="index square-wrap"
+        >1</a
+      >
+      <div
+        [ngClass]="{
+          show: indexState !== 'START' && totalPages > maxAccessiblePageIndex && currentIndex > 3,
+        }"
+        class="before-dots"
+      >
+        <span>...</span>
+      </div>
+      <a
+        *ngFor="let index of indicesRange"
+        [ngClass]="{ selected: index === currentIndex }"
+        [queryParams]="queryParams && { categoryId: queryParams }"
+        [routerLink]="'/mag/archive/page/' + index + '/.'"
+        class="index square-wrap"
+      >
+        {{ index }}
+      </a>
+      <div
+        [ngClass]="{
+          show: indexState !== 'END' && totalPages > maxAccessiblePageIndex,
+        }"
+        class="after-dots"
+      >
+        <span>...</span>
+      </div>
+      <a
+        *ngIf="totalPages > 1"
+        [ngClass]="{ selected: currentIndex === totalPages }"
+        [queryParams]="queryParams && { categoryId: queryParams }"
+        [routerLink]="'/mag/archive/page/' + totalPages + '/.'"
+        class="index square-wrap"
+        >{{ totalPages }}</a
+      >
+    </div>
+    <a
+      [ngClass]="{ 'not-active': currentIndex === totalPages }"
+      [queryParams]="queryParams && { categoryId: queryParams }"
+      [routerLink]="currentIndex < totalPages ? '/mag/archive/page/' + (currentIndex + 1) + '/.' : ''"
+      class="next-btn square-wrap"
+    >
+      <ngx-icon
+        [iconSize]="'24'"
+        [name]="'arrow-2-left'"
+        class="text-onback-brand"
+      ></ngx-icon>
+    </a>
+  </ng-template>
+</div>

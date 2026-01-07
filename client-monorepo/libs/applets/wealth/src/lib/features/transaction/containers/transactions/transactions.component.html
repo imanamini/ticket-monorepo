@@ -1,0 +1,23 @@
+<wealth-applet-app-bar-wrapper
+  class="w-100"
+  [title]="'تراکنش‌ها'"
+  (onBack)="onBackHandler()"
+/>
+
+@if (isLoading()) {
+  <app-spinner></app-spinner>
+} @else {
+  <div class="d-flex flex-wrap">
+    @if (onlineTRXLoading()) {
+      <app-loading-trx class="w-100 d-flex justify-content-center" />
+    }
+    <app-transaction-list
+      class="w-100"
+      [transactions]="transactions()"
+      [lastPage]="lastPage()"
+      [isLoadingMore]="isLoadingMore()"
+      (getNextPage)="getNextPage($event)"
+      [containerStyle]="onlineTRXLoading() ? { height: 'calc(100dvh - 14rem)' } : { height: 'calc(100dvh - 7rem)' }"
+    ></app-transaction-list>
+  </div>
+}

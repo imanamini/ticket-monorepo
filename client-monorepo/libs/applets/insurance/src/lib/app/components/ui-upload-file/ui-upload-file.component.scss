@@ -1,0 +1,109 @@
+@import "../../../../../../../../node_modules/@digipay/base-style/tokens/border-radius";
+@import "../../../../../../../../node_modules/@digipay/base-style/tokens/border";
+@import "../../../../../../../../node_modules/@digipay/base-style/base/colors";
+@import "insurance/src/lib/app/style/once/global";;
+
+.main-container {
+  @include flex-column ;
+  gap: 8px;
+
+  .upload-file-container {
+    @include flex-column;
+    border: dashed map-get($border-widths, '900') #dee3e7;
+    border-radius: map-get($border-radius-sizes, 'medium');
+    padding: 16px;
+    gap: 8px;
+
+    .upload-file-card {
+      border-radius: map-get($border-radius-sizes, 'minus');
+      background-color: #F0F5FF;
+      height: 84px;
+      @include flex-center;
+      gap: 4px;
+
+      img {
+        height: 24px;
+        width: 24px;
+      }
+
+      p {
+        font-weight: 700;
+        color: #0040ff;
+      }
+    }
+
+    &.has-error {
+      background-color: #ffeef3;
+      border: dashed map-get($border-widths, '900') #ff2638;
+    }
+  }
+
+  .info {
+    height: 20px;
+    @include flex-center-start;
+    gap: 8px;
+
+    img {
+      height: 16px;
+      width: 16px;
+    }
+
+    p {
+      color: #8d99a8;
+      font-weight: 500;
+      font-size: 10px;
+
+      &.has-error {
+        color: #ff2638;
+      }
+    }
+  }
+
+  .preview-container {
+    @include flex-center;
+    height: 48px;
+    border-radius: 12px;
+    gap: 8px;
+
+    img {
+      height: 24px;
+      width: 24px;
+    }
+
+    p {
+      font-weight: 700;
+      color: #ffffff;
+    }
+  }
+
+  .detail-container {
+    @include flex-center-between;
+    gap: 16px;
+
+    .progress-bar {
+      width: 80%;
+    }
+
+    .detail {
+      @include flex-center-end;
+      gap: 4px;
+      flex: 1;
+
+      p {
+        color: #2c3544;
+        font-weight: 500;
+        text-align: left;
+        @extend %ellipsis;
+        width: 95px;
+      }
+    }
+
+    .upload-again {
+      @include flex-center;
+      gap: 4px;
+      color: #0040ff;
+      font-weight: 700;
+      width: 124px;
+    }
+  }
+}

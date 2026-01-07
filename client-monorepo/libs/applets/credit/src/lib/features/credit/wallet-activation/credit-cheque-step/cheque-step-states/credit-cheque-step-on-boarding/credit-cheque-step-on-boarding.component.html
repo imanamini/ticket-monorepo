@@ -1,0 +1,36 @@
+<app-credit-app-bar
+  (onBackButtonClick)="prevStep.emit()"
+  [backButton]="true"
+  title="ثبت چک ضمانت"
+></app-credit-app-bar>
+<div class="d-flex flex-column w-100 flex-grow rtl">
+  <div class="flex-grow justify-content-center rtl">
+    <ngx-status-result
+      [title]="'ثبت تصویر چک ضمانت'"
+      [buttons]="buttons"
+      (clicked)="openChequeConditionBottomSheet()"
+      [description]="'در این مرحله بعد از مراحل ثبت چک، باید منتظر نتیجه بررسی باشید.'"
+      [type]="'Status'"
+    >
+      <div
+        status-image
+        class="pb-medium"
+        [style]="{ height: '216px' }"
+      >
+        <ng-lottie [options]="{ animationData: onboardingAnimation, loop: false }"></ng-lottie>
+      </div>
+      <div
+        html-content
+        class="d-flex flex-column flex-grow justify-content-flex-end gap-medium"
+      >
+        <ngx-callout
+          [mode]="'multiple'"
+          [showTitleBlink]="false"
+          [messagesDashed]="true"
+          [title]="'مراحل:'"
+          [messages]="['انتخاب نوع چک', 'واردکردن اطلاعات چک برای بررسی و تایید', 'نوشتن چک براساس راهنما', 'بارگذاری تصویر چک ضمانت']"
+        />
+      </div>
+    </ngx-status-result>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+.credit-prepayment-no-fund-bottom-sheet {
+  .calendar-image {
+    height: 92px;
+    width: 100%;
+    margin-bottom: 12px;
+    background-size: auto 100%;
+    background: url("./assets/calendar.svg") no-repeat center;
+  }
+
+  .title {
+    font-size: 16px;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    text-align: right;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+}

@@ -1,0 +1,161 @@
+@import "globals";
+
+.car-info-entering {
+  .top-bar {
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $swatch_steel_200;
+    padding: 14px 48px;
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $swatch_steel_700;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .new-plate-cta {
+      display: none;
+    }
+  }
+
+  .plate-input-errors {
+    margin-top: 3px;
+    color: $swatch_red_500;
+    font-size: 11px;
+    font-weight: 300;
+  }
+
+  .vehicle-info-entering-body {
+    padding: 24px 48px;
+  }
+
+  .vehicle-type-select {
+    margin: 24px 0;
+
+    ::ng-deep {
+      .switch {
+        padding: 0 4px;
+        background-color: #fff;
+        border: 1px solid $swatch_steel_100;
+        border-radius: 12px;
+      }
+
+      .switch-options {
+        padding: 4px;
+      }
+
+      .option {
+        font-size: 13px;
+        font-weight: 400;
+      }
+
+      .selected-option-highlight {
+        border-radius: 8px;
+        border: 2px solid rgb(0, 64, 255);
+      }
+    }
+  }
+
+  .title {
+    color: $swatch_blue_900;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .car-info {
+    margin-top: 20px;
+    padding: 24px 48px 0 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 12px;
+    background: $swatch_steel_100;
+
+    .title {
+      color: $swatch_blue_900;
+      font-size: 16px;
+      font-weight: 250;
+      text-align: right;
+    }
+
+    .plate-input {
+      background-color: #fff;
+    }
+
+    .forms {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .plate-title-input {
+      background-color: #fff;
+    }
+  }
+
+  .ctas {
+    margin-top: 16px;
+
+    .submit-btn {
+      display: block;
+    }
+  }
+
+  marquee {
+    margin-top: 24px;
+    text-align: center;
+
+    .promotion {
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .car-info-entering {
+    .vehicle-info-entering-body,
+    .top-bar {
+      padding: 16px;
+    }
+
+    .top-bar {
+      .new-plate-cta {
+        display: unset;
+      }
+    }
+
+    .title {
+      font-size: 16px;
+    }
+
+    .vehicle-type-select {
+      margin: 16px 0;
+    }
+
+    .car-info {
+      background-color: #fff;
+      padding: 0;
+
+      .title {
+        font-size: 14px;
+      }
+
+      .plate-input {
+        height: 63px;
+      }
+    }
+
+    marquee {
+      margin-top: 16px;
+    }
+  }
+}

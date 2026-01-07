@@ -1,0 +1,18 @@
+<app-base-layout
+  *ngIf="creditCampaignPage && creditCampaignPage.templateData"
+  [loaded]="loaded"
+>
+  <ng-container>
+    <div class="nobitex-container">
+      <app-credit-campaign-timer
+        class="campaign-timer"
+        [block]="'start'"
+        [scrollAnchor]="'custom-form'"
+        [scrollToElementId]="'register-benefits'"
+        [templateData]="creditCampaignPage.templateData"
+        [showDent]="false"
+        [digijet]="true"
+      ></app-credit-campaign-timer>
+    </div>
+  </ng-container>
+</app-base-layout>

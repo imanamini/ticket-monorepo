@@ -1,0 +1,95 @@
+<div class="d-flex flex-column h-100svh surface-high-contrast">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'فروش'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+  <div class="flex-1 d-flex flex-column align-items-center py-big surface-elevated p-plus">
+    <wealth-applet-detail-withdrow
+      class="w-100 surface-glass-onelevated radius-minus px-plus py-medium"
+      [walletTitle]="state()?.walletTitle ?? ''"
+      [walletBalance]="state()?.walletWithdrawableBalance ?? 0"
+      [walletName]="'WALLET_FX'"
+    />
+    <div class="w-100 d-flex flex-column mt-big">
+      <span class="b-2 mb-medium">مبلغ مورد نظر برای فروش را وارد کنید.</span>
+      <ui-form-field
+        [label]="'مبلغ مورد نظر'"
+        class="w-100"
+        [stepValue]="5000000"
+        [type]="'amount-chip'"
+        [maxSize]="16"
+        [formControl]="amountController"
+        [isNumericKeyboard]="true"
+        [convertNonEnglishDigits]="true"
+        [required]="true"
+        [hasCleaner]="true"
+        [error]="amountController.errors ?? {}"
+        [errorMessageMapper]="{
+          min: minAmountError(),
+          max: maxAmountError(),
+        }"
+      ></ui-form-field>
+    </div>
+  </div>
+
+  <div class="w-100 d-flex flex-column gap-small">
+    <div class="w-100 d-flex px-plus">
+      <ngx-callout
+        class="w-100"
+        [title]="'نکات مهم'"
+        [mode]="'single-with-title'"
+        [message]="'نهایی شدن فروش، حداکثر ۱ روز کاری زمان می‌برد.'"
+      />
+    </div>
+
+    <div class="w-100 d-flex flex-column surface-elevated gap-small px-plus py-medium sticky-action-group">
+      @if (state().requireAgreement) {
+        <ngx-checkbox
+          class="d-flex align-items-center"
+          (checkedChange)="onToggleAgreement($event)"
+          [checked]="agreementChecked()"
+        >
+          <div class="d-flex gap-tiny check-box-text">
+            <span>شرایط</span>
+            <span
+              (click)="agreementView(pdfType.REGULATIONS)"
+              class="text-onback-brand"
+            >
+              قوانین و مقررات
+            </span>
+            <span>را می‌پذیرم.</span>
+          </div>
+        </ngx-checkbox>
+      }
+      <div class="w-100 d-grid gap-small">
+        <ngx-button
+          [style]="'tinted-on-elevated'"
+          [fullWidth]="true"
+          [mode]="'form'"
+          size="medium"
+          (clickHandler)="setMaximumAmount()"
+        >
+          فروش تمام موجودی
+        </ngx-button>
+        <ngx-button
+          [style]="'fill'"
+          [fullWidth]="true"
+          [mode]="'form'"
+          size="medium"
+          (clickHandler)="withdraw()"
+          [disabled]="(state().requireAgreement && !agreementChecked()) || amountController.invalid || btnLoading()"
+          [isLoading]="btnLoading()"
+        >
+          تایید و ادامه
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+</div>

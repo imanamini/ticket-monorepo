@@ -1,0 +1,24 @@
+@import "@digipay/base-style/swatch";
+
+:host {
+  direction: rtl;
+}
+
+.header {
+  border-bottom: 1px solid $swatch_steel_300;
+  padding: 0 8px 12px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+
+  .item {
+    width: 100px;
+  }
+}
+
+.action {
+  padding-bottom: 16px;
+}

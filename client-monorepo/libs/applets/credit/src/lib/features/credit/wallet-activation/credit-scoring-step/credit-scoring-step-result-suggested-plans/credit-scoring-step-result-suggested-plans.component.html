@@ -1,0 +1,62 @@
+<div class="main-section flex-full-height">
+  <div class="top-section">
+    <app-credit-scrollable-view
+      [fullHeightContent]="true"
+      [hasFade]="true"
+    >
+      <div class="plans-container">
+        <p class="main-title">یکی از طرح‌های زیر را انتخاب کنید:</p>
+        @for (plan of plans(); track plan.planId) {
+          <div
+            class="plan {{ plan.isSelected && 'active' }}"
+            (click)="selectPlan(plan.planId)"
+          >
+            <div class="plan-header">
+              <div
+                [ngStyle]="{ backgroundColor: plan.fundProvider.color }"
+                class="icon-wrapper"
+              >
+                <credit-digipay-image
+                  [imageId]="plan.fundProvider.icon"
+                  borderRadius="12px"
+                  height="36px"
+                  width="36px"
+                ></credit-digipay-image>
+              </div>
+              <span class="plan-title">{{ plan.fundProvider.name }}</span>
+              <span class="check {{ plan.isSelected && 'is-active' }}"></span>
+            </div>
+            <div class="plan-items">
+              <div class="item">
+                <span>مبلغ وام</span>
+                <span>
+                  {{ plan.creditAmount | IRR: 'hideRial' }}
+                  <span class="is-currency">ریال</span>
+                </span>
+              </div>
+              <div class="item">
+                <span>اقساط</span>
+                <span>{{ plan.installmentCount }} ماهه</span>
+              </div>
+              <div class="item">
+                <span>ضمانت مورد نیاز</span>
+                <span>{{ plan.collateralDto.name }}</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+  <div class="call-to-actions-section">
+    <ngx-button
+      (clickHandler)="confirmPlan.emit(selectedPlan()!)"
+      [disabled]="!selectedPlan() || loading()"
+      [fullWidth]="true"
+      [isLoading]="loading()"
+      [style]="'fill'"
+    >
+      انتخاب طرح
+    </ngx-button>
+  </div>
+</div>

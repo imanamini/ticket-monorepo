@@ -1,0 +1,33 @@
+:host {
+  height: 100%;
+
+  ::ng-deep {
+    ngx-uploader {
+      .dg-file-desc {
+        overflow: unset !important;
+        text-wrap: wrap;
+        max-width: 200px !important;
+        white-space: wrap !important;
+      }
+    }
+  }
+
+  .uploader-wrapper {
+    border: 1px dashed #C9CBCF;
+  }
+
+  .uploaders {
+    flex-grow: 1;
+  }
+
+  .documents-wrapper {
+    position: relative;
+  }
+
+  .submit-button {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}

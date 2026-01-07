@@ -1,0 +1,32 @@
+.saved-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  background-color: #fff;
+
+  &-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-bank {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      &-logobox {
+        &-logo {
+          height: 32px;
+          width: 32px;
+        }
+      }
+    }
+  }
+
+  &-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

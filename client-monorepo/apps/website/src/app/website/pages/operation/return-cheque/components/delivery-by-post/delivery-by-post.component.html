@@ -1,0 +1,78 @@
+<form [formGroup]="deliveryByPostForm">
+  @if (currentStep() === 1) {
+    <ui-form-field
+      formControlName="postalCode"
+      type="input"
+      [label]="'کد پستی'"
+      [required]="true"
+      [maxSize]="10"
+      [minlength]="10"
+      [isNumericKeyboard]="true"
+      [showError]="formSubmitted ? 'show' : 'auto'"
+      [error]="deliveryByPostForm.controls.postalCode.errors || {}"
+    ></ui-form-field>
+    <div class="d-l-flex gap-big">
+      <div class="w-l-50 w-100">
+        <ui-form-field
+          formControlName="no"
+          type="input"
+          [label]="'پلاک'"
+          [required]="true"
+          [isNumericKeyboard]="true"
+          [showError]="formSubmitted ? 'show' : 'auto'"
+          [error]="deliveryByPostForm.controls.no.errors || {}"
+        ></ui-form-field>
+      </div>
+      <div class="w-l-50 w-100">
+        <ui-form-field
+          formControlName="unit"
+          type="input"
+          [label]="'واحد'"
+          [required]="true"
+          [isNumericKeyboard]="true"
+          [showError]="formSubmitted ? 'show' : 'auto'"
+          [error]="deliveryByPostForm.controls.unit.errors || {}"
+        ></ui-form-field>
+      </div>
+    </div>
+    <ui-form-field
+      formControlName="address"
+      type="input"
+      [multiLine]="true"
+      [label]="'آدرس'"
+      [required]="true"
+      [hasCleaner]="true"
+      [showError]="formSubmitted ? 'show' : 'auto'"
+      [error]="deliveryByPostForm.controls.address.errors || {}"
+    ></ui-form-field>
+
+    <div class="d-l-flex gap-l-low flex-row-reverse align-items-center">
+
+      <div class="w-100 mb-low mb-l-atom">
+        <ngx-button
+          [disabled]="deliveryByPostForm.invalid"
+          (clickHandler)="onSubmit()"
+          [fullWidth]="true"
+          [mode]="'form'"
+          [style]="'fill'"
+          [brandButton]="true"
+          [size]="'large'"
+        >
+          تایید و ادامه
+        </ngx-button>
+      </div>
+
+      <div class="">
+        <ngx-button
+          (clickHandler)="clearForm()"
+          [mode]="'form'"
+          [style]="'link'"
+          [fullWidth]="true"
+          [size]="'larg'"
+        >
+          پاک کردن
+        </ngx-button>
+      </div>
+    </div>
+  }
+</form>

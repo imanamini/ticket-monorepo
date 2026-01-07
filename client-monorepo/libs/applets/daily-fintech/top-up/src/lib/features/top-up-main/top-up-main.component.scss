@@ -1,0 +1,53 @@
+.switch-control {
+  margin-top: 12px;
+  display: block;
+}
+
+.button-container {
+  margin-top: 32px;
+  text-align: left;
+}
+
+.top-page-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+app-cell-numbers-list {
+  flex-grow: 1;
+  display: flex;
+}
+
+.tarabord-notice {
+  display: flex;
+  align-items: center;
+  color: #000000;
+
+  img {
+    margin-left: 4px;
+  }
+}
+
+.daily-fintech-recommendation-list{
+  display: flex;
+  margin-top: 18px;
+}
+
+.cell-number-field {
+  display: flex;
+  gap: 12px;
+}
+
+.cell-number-option {
+  height: 56px;
+  width: 56px;
+  cursor: pointer;
+}
+
+.cashback-banner {
+  background-image: url("./df-cashback-bnr.webp");
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-top: 30%;
+}

@@ -1,0 +1,54 @@
+<digipay-card-applet-page-loading></digipay-card-applet-page-loading>
+<div class="h-100 pb-plus d-flex flex-column gap-medium surface-elevated">
+  <ngx-app-bar
+    [title]="'درخواست دیجی‌کارت'"
+      (onRightIconClick)="goBack()"
+      [rightIcon]="'arrow-right' "
+  />
+  <div class="h-100 p-plus d-flex flex-column pt-medium gap-big justify-content-space-between">
+    <div class="d-flex flex-column gap-minus">
+      <div class="st-8">اطلاعات هویتی</div>
+
+      <form [formGroup]="form">
+        <ui-form-field
+          [formControlName]="'nationalCode'"
+          label="کد ملی"
+          [maxSize]="10"
+          [required]="true"
+          [hasHintStar]="false"
+     
+          [showError]="'auto'"
+          [isNumericKeyboard]="true"
+          [readonly]="false"
+          [errorMessageMapper]="{
+            required: 'کد ملی را وارد کنید.',
+            invalidNationalCode: 'کد ملی وارد شده معتبر نیست.',
+            minlength: 'کدملی وارد شده باید ۱۰ رقم باشد.'
+          }"
+          [error]="form.controls.nationalCode.errors"
+        ></ui-form-field>
+      </form>
+    </div>
+    <div class="d-flex flex-column gap-big">
+      <ngx-callout
+        [backgroundMode]="'default'"
+        [mode]="'multiple'"
+        [showTitleBlink]="false"
+        [title]="''"
+        [messages]="['جهت صدور دیجی‌کارت، لازم است کدملی وارد شده و شماره همراه مطابقت داشته باشد.']"
+      ></ngx-callout>
+      <div class="footer">
+        <ngx-button
+          [mode]="'form'"
+          [size]="'large'"
+          [style]="'fill'"
+          [fullWidth]="true"
+          [disabled]="loadingService.loading() || form.invalid"
+          (clickHandler)="onSubmitForm()"
+        >
+          ادامه
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+</div>

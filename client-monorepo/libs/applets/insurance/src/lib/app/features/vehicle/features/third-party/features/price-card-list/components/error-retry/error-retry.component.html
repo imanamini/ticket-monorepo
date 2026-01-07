@@ -1,0 +1,23 @@
+<div class="error-wrapper">
+  <ins-icon
+    [height]="122"
+    [name]="IconEnum.Error"
+    [width]="160"
+  ></ins-icon>
+  <p class="message">
+    مشکلی در دریافت اطلاعات پیش‌آمده است!
+    <br>
+    لطفاً مجدد تلاش کنید.
+  </p>
+  @if (showRetryButton()) {
+    <div (click)="retry.emit()">
+      <ins-icon
+        [name]="IconEnum.RetryBlue"
+        [width]="24"
+        [height]="24"
+      ></ins-icon>
+      <span>تلاش مجدد</span>
+    </div>
+  }
+  <ng-content></ng-content>
+</div>

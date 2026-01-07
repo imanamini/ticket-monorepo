@@ -1,0 +1,117 @@
+@import "globals";
+
+.credit-stores {
+  background-color: #fff;
+  overflow: hidden;
+
+  .title {
+    text-align: center;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  ::ng-deep {
+    .swiper {
+      padding: 6px;
+      overflow: visible;
+
+      .swiper-slide {
+        width: auto;
+        transition: opacity 1s;
+
+        &:not(.swiper-slide-visible) {
+          opacity: 0.4;
+        }
+      }
+    }
+  }
+
+  .stores {
+    margin-top: 32px;
+    position: relative;
+
+    .credit-stores-next,
+    .credit-stores-prev {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: #fff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      position: absolute;
+      z-index: 2;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 40%;
+
+      &::after {
+        display: none;
+      }
+
+      &.swiper-button-disabled {
+        display: none;
+      }
+    }
+
+    .credit-stores-next {
+      left: 0;
+    }
+
+    .credit-stores-prev {
+      right: 0;
+    }
+  }
+
+  .bottom-btn {
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .credit-stores {
+    .stores {
+      flex-direction: column;
+
+      .credit-stores-next,
+      .credit-stores-prev {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .credit-stores {
+    .stores {
+      .merchant-card-wrapper {
+        min-width: 286px;
+      }
+    }
+  }
+}
+
+* {
+  font-family: 'yekan-bakh';
+}
+
+h2 {
+  font-size: 25px;
+  font-weight: 750;
+}
+
+@media (max-width: 1280px) {
+  h2 {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 1280px) {
+  h2 {
+    font-size: 17px;
+  }
+}

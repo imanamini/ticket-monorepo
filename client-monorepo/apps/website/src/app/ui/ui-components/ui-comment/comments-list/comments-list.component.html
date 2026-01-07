@@ -1,0 +1,6 @@
+<app-ui-comment
+  (replyClick)="onReply(comment)"
+  *ngFor="let comment of comments"
+  [comment]="comment"
+  class="ui-comment"
+></app-ui-comment>

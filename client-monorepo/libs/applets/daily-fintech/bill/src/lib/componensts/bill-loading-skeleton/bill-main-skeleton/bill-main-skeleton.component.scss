@@ -1,0 +1,16 @@
+.main-skeleton {
+  padding: 24px 16px !important;
+}
+
+.bill-items-skeleton {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+}
+
+.other-item-skeleton {
+  display: flex;
+  justify-content: left;
+  margin-top: 20px;
+}

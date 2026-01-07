@@ -1,0 +1,34 @@
+:host {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+
+
+
+.main-section {
+  .page-content {
+    direction: rtl;
+  }
+
+  .bottom-section {
+    flex-grow: 0;
+  }
+}
+
+.on-boarding-image {
+  max-width: 90%;
+  width: 161px;
+}
+
+.video-guide-box {
+  line-height: 1.5;
+
+  .guide-url {
+    background: url("guide-video-play-icon.svg") left center no-repeat;
+    background-size: 24px 24px;
+  }
+}

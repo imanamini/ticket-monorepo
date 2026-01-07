@@ -1,0 +1,13 @@
+<div class="h-100 surface-elevated container">
+  @if (isReady()) {
+    <ui-ngx-payment-result
+      [trackingCode]="trackingCode()!"
+      [paymentResult]="result()!"
+      [showBackIcon]="true"
+      (onBackIconClick)="onBackButton()"
+      (bannerClicked)="onBannerClicked()"
+    ></ui-ngx-payment-result>
+  } @else {
+    <lib-ngx-skeleton-loading [height]="'575px'"></lib-ngx-skeleton-loading>
+  }
+</div>

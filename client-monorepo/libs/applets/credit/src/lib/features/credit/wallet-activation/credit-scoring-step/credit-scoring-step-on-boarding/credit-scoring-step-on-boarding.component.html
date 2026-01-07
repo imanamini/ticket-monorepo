@@ -1,0 +1,40 @@
+<app-credit-app-bar
+  (onBackButtonClick)="onPrev.emit()"
+  [backButton]="true"
+  [title]="'امکان‌سنجی دریافت وام'"
+>
+</app-credit-app-bar>
+@if (!loading()) {
+  <div class="d-flex flex-column w-100 flex-grow rtl">
+    <div class="flex-grow justify-content-center rtl">
+      <ngx-status-result
+        [title]="'اعتبار‌سنجی'"
+        [buttons]="buttons"
+        (clicked)="submit()"
+        [description]="'در این مرحله، سوابق بانکی شما به‌صورت کلی بررسی می‌شود تا تصمیم‌گیری در مسیر تخصیص اعتبار دقیق‌تر انجام شود.'"
+        [type]="'Status'"
+      >
+        <div
+          status-image
+          class="pb-medium"
+          [style]="{ height: '216px' }"
+        >
+          <ng-lottie [options]="{ animationData: onboardingAnimation, loop: false }"></ng-lottie>
+        </div>
+        <div
+          html-content
+          class="d-flex flex-column flex-grow justify-content-flex-end gap-medium"
+        >
+          <ngx-callout
+            [mode]="'multiple'"
+            [showTitleBlink]="false"
+            [messagesDashed]="true"
+            [title]="'مواردی که در این بررسی در نظر گرفته می‌شود'"
+            [messages]="['سابقه بازپرداخت اقساط', 'وضعیت چک برگشتی در سوابق', 'برایند تراکنش‌های بانکی']"
+          />
+        </div>
+      </ngx-status-result>
+    </div>
+  </div>
+}
+<credit-page-loading [active]="loading()"></credit-page-loading>

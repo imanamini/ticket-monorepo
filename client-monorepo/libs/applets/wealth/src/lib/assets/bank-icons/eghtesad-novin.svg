@@ -1,0 +1,36 @@
+<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Bank - Eghtesad Novin - Color 2" clip-path="url(#clip0_5811_7004)">
+<g id="Bank / Eghtesad Novin / Color">
+<path id="Vector" d="M15.8876 0.358887L12.0805 20.0095L21.5927 0.358887H15.8876Z" fill="url(#paint0_linear_5811_7004)"/>
+<path id="Vector_2" d="M0.260986 21.6472H6.03381L9.77324 1.99585L0.260986 21.6472Z" fill="url(#paint1_linear_5811_7004)"/>
+<path id="Vector_3" d="M15.8877 0.358887H12.3304C11.2482 0.358887 10.2586 0.992535 9.77323 1.99644L6.0338 21.6478H9.52338C10.6056 21.6478 11.5952 21.0142 12.0806 20.0103L15.8877 0.358887Z" fill="url(#paint2_linear_5811_7004)"/>
+<path id="Vector_4" d="M18.3958 21.6666C20.1481 21.6666 21.5686 20.1915 21.5686 18.3719C21.5686 16.5523 20.1481 15.0773 18.3958 15.0773C16.6436 15.0773 15.2231 16.5523 15.2231 18.3719C15.2231 20.1915 16.6436 21.6666 18.3958 21.6666Z" fill="url(#paint3_linear_5811_7004)"/>
+<path id="Vector_5" d="M3.50064 6.92272C5.2529 6.92272 6.6734 5.44764 6.6734 3.62804C6.6734 1.80845 5.2529 0.333374 3.50064 0.333374C1.74837 0.333374 0.327881 1.80845 0.327881 3.62804C0.327881 5.44764 1.74837 6.92272 3.50064 6.92272Z" fill="url(#paint4_linear_5811_7004)"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_5811_7004" x1="13.7728" y1="10.1841" x2="20.3674" y2="10.1841" gradientUnits="userSpaceOnUse">
+<stop stop-color="#9F9CCD"/>
+<stop offset="1" stop-color="#675DA9"/>
+</linearGradient>
+<linearGradient id="paint1_linear_5811_7004" x1="0.260813" y1="11.8216" x2="9.77301" y2="11.8216" gradientUnits="userSpaceOnUse">
+<stop offset="0.225" stop-color="#9F9CCD"/>
+<stop offset="0.8842" stop-color="#675DA9"/>
+</linearGradient>
+<linearGradient id="paint2_linear_5811_7004" x1="6.03393" y1="11.0028" x2="15.8881" y2="11.0028" gradientUnits="userSpaceOnUse">
+<stop offset="0.2222" stop-color="#9F9CCD"/>
+<stop offset="0.798" stop-color="#675DA9"/>
+</linearGradient>
+<linearGradient id="paint3_linear_5811_7004" x1="15.8202" y1="18.3717" x2="21.0893" y2="18.3717" gradientUnits="userSpaceOnUse">
+<stop stop-color="#9F9CCD"/>
+<stop offset="1" stop-color="#675DA9"/>
+</linearGradient>
+<linearGradient id="paint4_linear_5811_7004" x1="0.924767" y1="3.62829" x2="6.159" y2="3.62829" gradientUnits="userSpaceOnUse">
+<stop stop-color="#9F9CCD"/>
+<stop offset="0.9926" stop-color="#675DA9"/>
+</linearGradient>
+<clipPath id="clip0_5811_7004">
+<rect width="21.3333" height="21.3333" fill="white" transform="translate(0.260986 0.333374)"/>
+</clipPath>
+</defs>
+</svg>

@@ -1,0 +1,38 @@
+<div
+  class="payment-card d-flex align-items-center surface-elevated radius-medium py-medium px-minus gap-small"
+  (click)="paymentClick.emit()"
+>
+  <div class="surface-warning p-small radius-circle">
+    <ngx-icon
+      class="text-onback-high"
+      [name]="'info-circle'"
+      [type]="'linear'"
+      [iconSize]="'20px'"
+    ></ngx-icon>
+  </div>
+
+  <div class="payment-info d-flex flex-column flex-grow gap-tiny">
+    <!-- Default content - controlled by showDefault input -->
+    @if (showDefault()) {
+      <div class="amount l-1 text-onback-medium">
+        {{ title() }}:
+        <span class="c-1 text-onback-high">{{ amount() | thousands }}</span>
+        <span class="c-1 text-onback-high currency is-currency"> ریال </span>
+      </div>
+      @if (subtitle()) {
+        <div class="date l-2 text-onback-warning">{{ subtitle() }}</div>
+      }
+    }
+
+    <!-- Custom projected content -->
+    <ng-content></ng-content>
+  </div>
+
+  <ngx-button
+    [mode]="'form'"
+    [style]="'fill'"
+    [size]="'small'"
+  >
+    {{ ctaText() }}
+  </ngx-button>
+</div>

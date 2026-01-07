@@ -1,0 +1,11 @@
+export enum PLANS_TYPE {
+  PLATINUM,
+  GOLD,
+  SILVER,
+  BRONZE,
+  BRILLIANCE,
+  DIAMOND,
+  TITANIUM,
+  PAY_PLUS,
+  PAY_PRO,
+}

@@ -1,0 +1,36 @@
+@import "@digipay/base-style/styleguide";
+
+.credit-steps-preview-container {
+  flex-grow: 1;
+  direction: rtl;
+
+  .top-section {
+    flex-grow: 1;
+  }
+
+  .call-to-action-section {
+    flex-grow: 0;
+  }
+}
+
+.credit-steps-preview {
+  direction: rtl;
+
+  .number {
+    width: 30px;
+    height: 30px;
+    border: 1px dashed #{map-get($titanium, "shade-65")};
+    color: #{map-get($titanium, "shade-65")};
+  }
+}
+
+.close-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  background-image: url("images/close.svg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-bottom: 16px;
+  cursor: pointer;
+}

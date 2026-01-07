@@ -1,0 +1,296 @@
+<section class="section-credit-plans-types">
+  <div class="container">
+    <h2 class="text-align-center">{{ creditInsurancePlansTypesData.title }}</h2>
+    <app-ui-animated-switch
+      (changed)="changeTab($event)"
+      [height]="animatedHeight"
+      [options]="animatedOptions"
+      [selectedOption]="selectedOption"
+      class="animated-switch"
+    ></app-ui-animated-switch>
+    <div class="content-container">
+      <ng-container *ngFor="let tabContent of creditInsurancePlansTypesData.insurancePlans; let tabIndex = index">
+        <div
+          [ngClass]="tabIndex === selectedOption.value ? 'active' : ''"
+          class="tab-content"
+        >
+          <div class="description">{{ tabContent.content.description }}</div>
+          <ul class="tab-hints">
+            <li
+              *ngIf="tabContent.content.hints.title"
+              class="hint-title"
+            >
+              <div class="dot-wrapper">
+                <div class="dot"></div>
+              </div>
+              <span>
+                {{ tabContent.content.hints.title }}
+              </span>
+            </li>
+            <ng-container *ngFor="let hint of tabContent.content.hints.items">
+              <li class="hint">
+                <div class="dot-wrapper">
+                  <div class="dot"></div>
+                </div>
+                <div
+                  [innerHTML]="hint.text"
+                  class="hintText"
+                  id="hint-text"
+                ></div>
+              </li>
+            </ng-container>
+          </ul>
+          <p
+            *ngIf="tabContent.content && tabContent.content.hints && tabContent.content.hints.hintsText"
+            [innerHTML]="tabContent.content.hints.hintsText"
+          ></p>
+          <div [class]="'cards ' + tabContent.type">
+            <ng-container *ngFor="let card of tabContent.content.cards">
+              <div
+                [ngClass]="card.isActive === '0' ? 'inactive' : ''"
+                class="card"
+              >
+                <div class="card-container">
+                  <div class="cover"></div>
+                  <div
+                    *ngIf="card.artwork.url"
+                    class="artwork"
+                  >
+                    <img
+                      [alt]="card.artwork.altText"
+                      [src]="card.artwork.url"
+                    />
+                  </div>
+                  <div
+                    *ngIf="card.title"
+                    class="content"
+                  >
+                    <div class="card-titles">
+                      <div class="card-title">
+                        <span>{{ card.title }}</span>
+                      </div>
+                      <div
+                        *ngIf="card.subtitle"
+                        class="card-subtitle"
+                      >
+                        <span>{{ card.subtitle }}</span>
+                      </div>
+                    </div>
+                    <div class="card-description">
+                      <p>{{ card.description.text }}</p>
+                      <ul
+                        *ngIf="card.description.hints.length > 0"
+                        class="hints"
+                      >
+                        <ng-container *ngFor="let hint of card.description.hints">
+                          <li>{{ hint.text }}</li>
+                        </ng-container>
+                      </ul>
+                    </div>
+                    <div class="facilities-amount">
+                      <div class="facilities-title">
+                        {{ card.facilitiesAmount.title }}
+                      </div>
+                      <div class="facilities-wrapper">
+                        <ng-container *ngFor="let facility of card.facilitiesAmount.facilities">
+                          <ul class="facility">
+                            <li class="facility-title">
+                              {{ facility.dataTitle }}
+                            </li>
+                            <div class="facility-data">
+                              {{ facility.dataText }}
+                            </div>
+                          </ul>
+                        </ng-container>
+                      </div>
+                    </div>
+                    <div class="approved-guarantees">
+                      <div class="approved-guarantees-title">
+                        {{ card.approvedGuarantees.title }}
+                      </div>
+                      <div class="guarantees-wrapper">
+                        <ng-container *ngFor="let guarantee of card.approvedGuarantees.guarantees">
+                          <div
+                            *ngIf="guarantee.text"
+                            class="guarantee"
+                          >
+                            <img
+                              [src]="guarantee.icon.url"
+                              alt=""
+                            />
+                            <span>{{ guarantee.text }}</span>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <app-ui-button
+                  *ngIf="card.secondCta.title || card.firstCta.title"
+                  [appearance]="card.firstCta.title ? 'DEFAULT' : 'SECONDARY'"
+                  [link]="card.firstCta.link"
+                  class="cta"
+                >
+                  <ng-container *ngIf="card.firstCta.title">
+                    {{ card.firstCta.title }}
+                    <img
+                      *ngIf="card.firstCta.icon && card.firstCta.icon.url"
+                      [src]="card.firstCta.icon.url"
+                      alt=""
+                    />
+                  </ng-container>
+                  <ng-container *ngIf="card.secondCta.title">
+                    {{ card.secondCta.title }}
+                    <img
+                      *ngIf="card.secondCta && card.secondCta.icon && card.secondCta.icon.url"
+                      [src]="card.secondCta.icon.url"
+                      alt=""
+                    />
+                  </ng-container>
+                </app-ui-button>
+              </div>
+            </ng-container>
+          </div>
+          <div
+            *ngIf="tabContent.content.features && tabContent.content.features.length > 0"
+            class="features d-flex flex-column"
+          >
+            <ng-container *ngFor="let feature of tabContent.content.features; let featureIndex = index">
+              <div
+                [ngClass]="featureIndex % 2 === 1 && 'ltr'"
+                class="feature"
+              >
+                <div
+                  *ngIf="feature.artwork.url"
+                  class="artwork"
+                >
+                  <img
+                    [alt]="feature.artwork.altText"
+                    [src]="feature.artwork.url"
+                  />
+                </div>
+                <div class="content">
+                  <div
+                    *ngIf="feature.title"
+                    class="content-title"
+                  >
+                    {{ feature.title }}
+                  </div>
+                  <div class="content-description">
+                    <p>{{ feature.description }}</p>
+                  </div>
+                  <div class="features-types">
+                    <div
+                      *ngIf="feature.featuresTypes.title"
+                      class="feature-types-title"
+                    >
+                      <p>{{ feature.featuresTypes.title }}</p>
+                    </div>
+                    <ng-container *ngIf="feature.contentType === '1'">
+                      <ng-container *ngFor="let featureType of feature.featuresTypes.items">
+                        <div class="feature-type">
+                          <div
+                            *ngIf="featureType.icon && featureType.icon.url"
+                            class="icon"
+                          >
+                            <img
+                              [src]="featureType.icon.url"
+                              alt=""
+                            />
+                          </div>
+                          <div class="feature-type-content">
+                            <div
+                              *ngIf="featureType.title"
+                              class="feature-type-title"
+                            >
+                              {{ featureType.title }}
+                            </div>
+                            <div
+                              *ngIf="featureType.description"
+                              class="feature-type-description"
+                            >
+                              {{ featureType.description }}
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="feature.contentType === '0'">
+                      <ng-container
+                        *ngFor="let featureType of readMore ? feature.featuresTypes.items : feature.featuresTypes.items.slice(0, 2)"
+                      >
+                        <div class="feature-type">
+                          <div
+                            *ngIf="featureType.icon && featureType.icon.url"
+                            class="icon"
+                          >
+                            <img [src]="featureType.icon.url" />
+                          </div>
+                          <div class="feature-type-content">
+                            <div
+                              *ngIf="featureType.title"
+                              class="feature-type-title"
+                            >
+                              {{ featureType.title }}
+                            </div>
+                            <div
+                              *ngIf="featureType.description"
+                              class="feature-type-description"
+                            >
+                              {{ featureType.description }}
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                  <ng-container *ngIf="feature.contentType === '0'">
+                    <app-ui-button
+                      (click)="changeReadMoreState()"
+                      *ngIf="feature.firstCta && feature.firstCta.title && feature.secondCta.title"
+                      [appearance]="'BLUE-TEXT'"
+                      class="cta"
+                      size="SMALL"
+                    >
+                      <ng-container *ngIf="!readMore">
+                        {{ feature.firstCta.title }}
+                        <img
+                          *ngIf="feature.firstCta.icon && feature.firstCta.icon.url"
+                          [src]="feature.firstCta.icon.url"
+                        />
+                      </ng-container>
+                      <ng-container *ngIf="readMore">
+                        {{ feature.secondCta.title }}
+                        <img
+                          *ngIf="feature.secondCta.icon && feature.secondCta.icon.url"
+                          [src]="feature.secondCta.icon.url"
+                        />
+                      </ng-container>
+                    </app-ui-button>
+                  </ng-container>
+                  <ng-container *ngIf="feature.contentType === '1'">
+                    <app-ui-button
+                      *ngIf="feature.firstCta && feature.firstCta.title"
+                      [appearance]="'BLUE-TEXT'"
+                      [link]="feature.firstCta.link ? feature.firstCta.link : ''"
+                      class="cta"
+                      size="SMALL"
+                    >
+                      {{ feature.firstCta.title }}
+                      <div
+                        *ngIf="feature.firstCta.icon && feature.firstCta.icon.url"
+                        class="icon"
+                      >
+                        <img [src]="feature.firstCta.icon.url" />
+                      </div>
+                    </app-ui-button>
+                  </ng-container>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>

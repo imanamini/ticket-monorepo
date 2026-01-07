@@ -1,0 +1,7 @@
+{
+  "$schema": "../../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../../dist/libs/applets/payment/digipay-card",
+  "lib": {
+    "entryFile": "src/index.ts"
+  }
+}

@@ -1,0 +1,35 @@
+<div class="main-section d-flex flex-column flex-grow">
+  <div class="d-flex flex-column flex-grow">
+    <app-credit-scrollable-view [fullHeightContent]="true">
+      <div class="page-content d-flex flex-column p-plus">
+        <ngx-callout
+          class="mb-plus"
+          [mode]="'single-with-title'"
+          [title]="alertTitle"
+          [message]="alertDescription"
+        />
+        <credit-common-ui-components-tab-group [tabs]="tabs()"></credit-common-ui-components-tab-group>
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+  @if (hasDocuments()) {
+    <div class="w-100 d-flex flex-column align-content-center justify-content-center p-plus">
+      <div class="d-flex mb-big text-onback-high b-2">
+        <ngx-checkbox
+          [size]="24"
+          [disabled]="false"
+          [(checked)]="accepted"
+        >
+          موارد فوق را با بانک‌(های) مربوطه تسویه کردم.
+        </ngx-checkbox>
+      </div>
+      <ngx-button
+        (clickHandler)="reloadStatus.emit()"
+        [disabled]="!accepted()"
+        [fullWidth]="true"
+      >
+        بررسی دوباره پرونده اعتباری
+      </ngx-button>
+    </div>
+  }
+</div>

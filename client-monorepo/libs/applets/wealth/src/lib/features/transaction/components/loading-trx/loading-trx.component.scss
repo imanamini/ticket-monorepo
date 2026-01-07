@@ -1,0 +1,34 @@
+:host {
+    direction: ltr;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem 0;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+span{
+    direction: rtl;
+    color: #74777C;
+    font-weight: 524;
+    font-size: 1rem;
+}
+
+.loader {
+    width: 2rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+        radial-gradient(farthest-side, #8d99a8 94%, #0000) top/0.25rem 0.25rem no-repeat,
+        conic-gradient(#0000 30%, #8d99a8);
+    -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 0.25rem), #8d99a8 0);
+    animation: l13 1s infinite linear;
+}
+
+@keyframes l13 {
+    100% {
+        transform: rotate(1turn)
+    }
+}

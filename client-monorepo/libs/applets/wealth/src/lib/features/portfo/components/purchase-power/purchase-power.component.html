@@ -1,0 +1,24 @@
+<div class="d-flex flex-column align-items-center gap-big">
+  <div class="purchase-power-image">
+    @if (data()?.image) {
+      <img
+        width="100%"
+        height="100%"
+        [src]="data()?.image"
+        alt="purchase power"
+      />
+    }
+  </div>
+  <span class="text-align-center b-2">{{ data()?.title }}</span>
+
+  <div class="w-100 d-flex mt-big">
+    <ngx-button
+      [fullWidth]="true"
+      [mode]="'form'"
+      [size]="'medium'"
+      (clickHandler)="close()"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

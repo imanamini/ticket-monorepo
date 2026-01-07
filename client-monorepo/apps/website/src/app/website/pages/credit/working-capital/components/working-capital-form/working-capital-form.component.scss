@@ -1,0 +1,24 @@
+//::ng-deep {
+//  #layout {
+//    background: #F6F8FF;
+//  }
+//
+//  .full-height {
+//    .mat-bottom-sheet-container {
+//      max-height: unset;
+//      border-radius: unset !important;
+//      padding: 0 !important;
+//    }
+//  }
+//}
+
+app-ui-button {
+  width: 100%;
+}
+
+@media (max-width: 744px) {
+  .form {
+    margin: unset;
+    max-width: unset;
+  }
+}

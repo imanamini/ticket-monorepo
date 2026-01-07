@@ -1,0 +1,40 @@
+<div class="delete-dialog-wrapper">
+  <!-- Content -->
+  <div class="dialog-content">
+    <div class="title-row" [ngClass]="{'has_info': (noticeData.type && noticeData.type == 'info') }">
+      <ins-icon
+        [height]="24"
+        [name]="  (!noticeData.type || noticeData?.type === 'warn' ? IconEnum.Warn :  IconEnum.ErrorCircle)"
+        [width]="24">
+      </ins-icon>
+      <span [ngClass]="{'has_info': (noticeData.type && noticeData.type == 'info')}">{{ noticeData.title }}</span>
+    </div>
+    <div class="text">
+      {{ noticeData.text }}
+    </div>
+  </div>
+  <!-- End Content -->
+
+  <!-- Buttons -->
+  <div class="buttons">
+    @if (noticeData?.dismissBtnText) {
+      <ins-button
+        (click)="handleReturnClick($event)"
+        [style]="InsButtonStyleEnum.TintedOnElevated"
+        [fullWidth]="true"
+        [mode]="InsButtonModeEnum.Form"
+        [text]="noticeData.dismissBtnText"
+        [size]="InsButtonSizeEnum.Large">
+      </ins-button>
+    }
+    <ins-button
+      (click)="handleActonClick($event)"
+      [brandButton]="true"
+      [fullWidth]="true"
+      [mode]="InsButtonModeEnum.Form"
+      [text]="noticeData.actionBtnText"
+      [size]="InsButtonSizeEnum.Large">
+    </ins-button>
+  </div>
+  <!-- End Buttons -->
+</div>

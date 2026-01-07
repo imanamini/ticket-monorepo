@@ -1,0 +1,50 @@
+<div class="page-content pt-large">
+  <form [formGroup]="billInquiryForm()">
+    <span class="header-text b-2">
+      تنها با وارد کردن <span class="header-text-bold st-8">{{ description() }}</span> می‌توانید بدهی قبض {{ billTypeModel()?.title }} خود
+      را استعلام و پرداخت کنید.
+    </span>
+    <div class="form-group mt-minus">
+      <ui-form-field
+        [error]="billInquiryForm().controls['inquiryId'].errors"
+        [hasCleaner]="true"
+        [isNumericKeyboard]="true"
+        [errorMessageMapper]="errorMessageMapper()"
+        class="flex-grow"
+        formControlName="inquiryId"
+        [convertNonEnglishDigits]="true"
+        placeholder="مثال: ۱۲۳۴۵۶۷۸"
+        inputType="tel"
+        hint="{{ description() + ' باید بین ۶ تا ۱۳ رقم باشد.' }}"
+        label="{{ description() }}"
+        [maxSize]="13"
+        type="input"
+      >
+      </ui-form-field>
+
+      <div class="button-container mt-huge">
+        <ngx-button
+          [mode]="'form'"
+          (clickHandler)="confirmNavigation()"
+          [size]="'large'"
+          [disabled]="billInquiryForm().invalid || !this.billInquiryForm().controls['inquiryId'].value || isSubmitting()"
+          [isLoading]="isSubmitting()"
+          [style]="'fill'"
+          [fullWidth]="true"
+        >
+          ذخیره و استعلام
+        </ngx-button>
+      </div>
+    </div>
+  </form>
+  @if (billType()) {
+    <daily-fintech-recommendation-list
+      (handleClick)="recommendationItemClicked($event)"
+      [hasSpinner]="[]"
+      [billType]="billType()"
+      [itemType]="recommendationType()"
+      title="قبض‌های من"
+    >
+    </daily-fintech-recommendation-list>
+  }
+</div>

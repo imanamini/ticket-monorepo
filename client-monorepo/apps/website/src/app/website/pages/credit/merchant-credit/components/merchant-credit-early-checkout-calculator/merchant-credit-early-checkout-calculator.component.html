@@ -1,0 +1,162 @@
+<section class="merchant-credit-early-checkout-calculator">
+  <div class="container">
+    <div class="content">
+      @if (calculator()?.title) {
+        <div class="title">
+          {{ calculator().title }}
+        </div>
+      }
+      @if (calculator()?.subtitle) {
+        <div class="subtitle">
+          {{ calculator().subtitle }}
+        </div>
+      }
+      <div class="cta first">
+        @if (calculator()?.firstCta) {
+          <app-ui-button
+            [id]="calculator().firstCta.id"
+            [link]="calculator().firstCta.link"
+            appearance="DEFAULT"
+            class="first-cta-button"
+            linkTarget="_blank"
+          >
+            {{ calculator().firstCta.title }}
+          </app-ui-button>
+        }
+      </div>
+    </div>
+    <div class="calculator">
+      <div class="calculator-container">
+        <div class="inputs">
+          <div class="recipe-amount">
+            <span class="label">{{ calculator()?.recipeTitle }}</span>
+            <div class="insert">
+              <input
+                (input)="onChangeAmount($event.target.value)"
+                [(ngModel)]="recipeAmount"
+                numpad="price"
+                placeholder="1٫000٫000٫000"
+                type="text"
+                [value]="recipeAmount()"
+              />
+              <span class="irr">تومان</span>
+            </div>
+          </div>
+          <div class="h-divider"></div>
+          <div class="day-picker">
+            <div class="time">
+              <span class="title">{{ calculator()?.checkoutTimeTitle }}</span>
+              <span class="amount">
+                <span class="days-count">{{ earlyDaysCount() }}</span>
+                <span class="early">{{ calculator()?.earlyTimeTitle }}</span>
+              </span>
+            </div>
+            <div class="slider-section">
+              <ngx-slider-selector
+                sliderType="Slider"
+                type="default"
+                [id]="'merchant_calculator__slider'"
+                [value]="sliderValue()"
+                [minValue]="5"
+                [maxValue]="25"
+                unitName=""
+                [showTopLabel]="false"
+                (selectValue)="changeCalculatorSlider($event)"
+              ></ngx-slider-selector>
+            </div>
+          </div>
+          <div class="inputs-footer">
+            @if (calculator()?.providersTitle) {
+              <span class="providers-label">
+                {{ calculator().providersTitle }}
+              </span>
+            }
+            @if (calculator()?.providers?.length > 0) {
+              <div class="providers">
+                @for (provider of fundProviders(); track provider; let providerIndex = $index) {
+                  <div
+                    (click)="onChangeProvider(providerIndex)"
+                    [ngClass]="providerIndex !== providerActiveIndex() ? 'deselect' : ''"
+                    class="bank-icon"
+                  >
+                    @if (provider.activeIcon?.url) {
+                      <img
+                        [src]="providerIndex === providerActiveIndex() ? provider.activeIcon?.url : provider.inactiveIcon?.url"
+                        height="30"
+                        width="30"
+                      />
+                    }
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+        <div class="divider"></div>
+        @if (calculator()?.providers?.length > 0) {
+          <div class="results">
+            <div class="provider">
+              @if (fundProviders()[providerActiveIndex()]?.activeIcon?.url) {
+                <div class="icon">
+                  <img
+                    [src]="fundProviders()[providerActiveIndex()].activeIcon?.url"
+                    height="45"
+                    width="45"
+                  />
+                </div>
+              }
+              <div class="name">
+                {{ fundProviders()[providerActiveIndex()]?.name }}
+              </div>
+              <div class="description">
+                {{ fundProviders()[providerActiveIndex()]?.subtitle }}
+              </div>
+            </div>
+            <div class="final-amounts">
+              <div class="payable">
+                <span class="title">{{ calculator()?.payableTitle }}</span>
+                <span class="amount">
+                  {{ totalPayable() | IRR }}
+                  <span class="irr">تومان</span>
+                </span>
+              </div>
+              <div class="decrease">
+                <span class="title">{{ calculator()?.decreaseTitle }}</span>
+                <span class="amount">{{ totalDecrease() | IRR }}</span>
+              </div>
+            </div>
+            <div class="total-wage-and-profit">
+              <div class="wage">
+                <span class="title">{{ calculator()?.totalWageTitle }}</span>
+                <span class="amount">
+                  {{ totalWage() | IRR }}
+                  <span class="irr">تومان</span>
+                </span>
+              </div>
+              <div class="profit">
+                <span class="title">{{ calculator()?.totalProfitTitle }}</span>
+                <span class="amount">
+                  {{ totalProfit() | IRR }}
+                  <span class="irr">تومان</span>
+                </span>
+              </div>
+            </div>
+            <div class="mobile-ctas">
+              @if (calculator()?.firstCta) {
+                <app-ui-button
+                  [id]="calculator().firstCta.id"
+                  [link]="calculator().firstCta.link"
+                  appearance="DEFAULT"
+                  class="second-cta-button"
+                  linkTarget="_blank"
+                >
+                  {{ calculator().firstCta.title }}
+                </app-ui-button>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

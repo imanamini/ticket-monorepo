@@ -1,0 +1,128 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@include mediaMobile {
+  ::ng-deep {
+    app-login {
+      justify-content: flex-start !important;
+    }
+  }
+}
+
+.container {
+  direction: rtl;
+  max-width: 100%;
+  width: auto;
+  margin: 0 auto;
+
+  img {
+    margin-bottom: 24px;
+  }
+}
+
+.detail {
+  .detail-title {
+    font-size: 14px;
+  }
+
+  .detail-number {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 25px;
+
+    p {
+      font-size: 24px;
+    }
+
+    a {
+      font-size: 14px;
+      color: $primary-blue;
+      cursor: pointer;
+    }
+  }
+
+  .detail-submit {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin: 18px 0 30px 0;
+    justify-content: space-evenly;
+  }
+}
+
+.timer-btn {
+  line-height: unset;
+  width: 108px;
+  height: 48px;
+  border-radius: 8px;
+  border: 2px solid $primary-blue;
+  background: rgba(#0040ff, 0.1);
+}
+
+.disable-timer {
+  border-color: rgba(0, 0, 0, 0.3);
+  text-align: left;
+  background: url('/insurance-assets/icons/timer-icon.svg') no-repeat right 10% bottom 55%;
+}
+
+.send-again {
+  color: $primary-blue;
+}
+
+
+.submit-btn {
+  width: 200px !important;
+  height: 50px;
+  border-radius: 12px !important;
+}
+
+.error {
+  height: 24px;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 12px;
+  color: #ff2638;
+}
+
+.otp-container {
+  ::ng-deep {
+    .input {
+      margin: 0 !important;
+      justify-content: space-between !important;
+    }
+
+    .inputs {
+      justify-content: space-between !important;
+    }
+
+    input {
+      padding: 5px;
+      font-size: 22px !important;
+      color: #6e798d;
+      width: 45px !important;
+      height: 45px !important;
+    }
+  }
+}
+
+@include mediaMaxWidth(350px) {
+  .send-again {
+    font-size: 12px !important;
+  }
+
+  .disable-timer {
+    background-size: 16px !important;
+  }
+
+  .change-cell-number {
+    font-size: 10px !important;
+  }
+}
+

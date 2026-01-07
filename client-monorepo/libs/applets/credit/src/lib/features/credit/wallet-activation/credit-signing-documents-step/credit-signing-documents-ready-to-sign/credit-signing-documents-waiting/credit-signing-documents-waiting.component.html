@@ -1,0 +1,20 @@
+<div class="d-flex flex-column flex-grow rtl">
+  <span class="d-block mt-minus mb-medium b-2 text-onback-high w-100 text-align-center">
+    اسناد مورد نیاز برای دریافت اعتبار را بررسی و امضا کنید.
+  </span>
+  <div [class]="'documents-container d-flex flex-row flex-grow gap-medium ' + containerClass()">
+    @for (doc of documents(); track doc.docId) {
+      <app-credit-signing-documents-list-item [document]="doc"></app-credit-signing-documents-list-item>
+    }
+    @if (!documents().length) {
+      <ngx-status-result
+        [type]="'Status'"
+        [description]="'هنوز سندی را امضا نکرده‌اید.'"
+      >
+        <ng-container status-image>
+          <div class="message-static-image"></div>
+        </ng-container>
+      </ngx-status-result>
+    }
+  </div>
+</div>

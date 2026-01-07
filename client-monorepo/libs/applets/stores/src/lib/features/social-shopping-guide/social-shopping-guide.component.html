@@ -1,0 +1,45 @@
+<div class="d-flex flex-column surface-elevated h-100">
+  <ngx-app-bar
+    [title]="'راهنمای پرداخت'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="goBack()"
+  ></ngx-app-bar>
+  <div class="d-flex flex-column gap-big px-plus">
+    <div class="video-bg w-100">
+      <ng-lottie
+        [options]="animationOptions"
+        [width]="'100%'"
+        [height]="'auto'"
+      ></ng-lottie>
+    </div>
+    <div class="d-flex flex-column gap-low">
+      <!-- Title -->
+      <div class="d-flex justify-content-start align-items-center gap-micro">
+        <ngx-icon
+          [iconSize]="'24px'"
+          [type]="'linear'"
+          [name]="'shopping-bag'"
+        ></ngx-icon>
+        <div class="st-6 text-onback-high">خرید از اینستاگرام</div>
+      </div>
+      <!-- End Title -->
+
+      <!-- Callout -->
+      <ngx-callout
+        class="shopping-guide-callout"
+        [mode]="'multiple'"
+        [messages]="calloutMessages"
+        [showTitleBlink]="false"
+        [showTitleIcon]="false"
+        [title]="''"
+        [backgroundMode]="'elevated'"
+      ></ngx-callout>
+      <!-- End Callout -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<app-credit-app-bar
+  (onBackButtonClick)="backButtonClick()"
+  [backButton]="true"
+  title="برداشت از اعتبار"
+>
+</app-credit-app-bar>
+<div class="full-height text-oninvert-medium">
+  <app-credit-scrollable-view>
+    <div class="contract-details">
+      @for (contractDetail of contractDetails(); track contractDetail; let i = $index) {
+        <div class="detail-section">
+          <div class="detail-section-title">{{ contractDetail.title }}</div>
+          <div class="detail-section-content">
+            @for (item of contractDetail.contractDetailItems; let j = $index; track item) {
+              <div class="contract-detail-item">
+                <div
+                  (click)="updateExtendedSection(i, j)"
+                  class="cursor-pointer contract-detail-item-header"
+                >
+                  <div class="contract-detail-item-content-col">
+                    <div
+                      [style]="{ backgroundColor: item.indicatorColor }"
+                      class="indicator"
+                    ></div>
+                    <div class="contract-detail-item-title">
+                      {{ item.title }}
+                    </div>
+                    <div class="contract-detail-item-value">
+                      {{ item.value }}
+                    </div>
+                  </div>
+                  <div class="contract-detail-item-action-col">
+                    <div
+                      [class]="{
+                        'rotate-icon': extendedSection()[i + '_' + j],
+                      }"
+                      class="sub-item-drop-down-icon"
+                    ></div>
+                  </div>
+                </div>
+                @if (extendedSection()[i + '_' + j]) {
+                  <div
+                    [@subItems]="'in'"
+                    class="contract-detail-item-body"
+                  >
+                    @for (subItem of item.contractDetailSubitems; track subItem) {
+                      <div class="contract-sub-item">
+                        <div>{{ subItem.text }}</div>
+                        <div>{{ subItem.value }}</div>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </app-credit-scrollable-view>
+</div>

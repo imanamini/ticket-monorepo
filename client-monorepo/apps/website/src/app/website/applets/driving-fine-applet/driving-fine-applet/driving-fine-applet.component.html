@@ -1,0 +1,13 @@
+<div>
+  <div class="wrapper">
+    <app-car-info-entering *ngIf="selectedState === NewPlateFineStates.CAR_INFO_ENTERING"></app-car-info-entering>
+
+    <app-inquiry-method-select *ngIf="selectedState === NewPlateFineStates.INQUIRY_METHOD_SELECT"></app-inquiry-method-select>
+
+    <app-inquiry-cost-payment *ngIf="selectedState === NewPlateFineStates.INQUIRY_COST_PAYMENT"></app-inquiry-cost-payment>
+
+    <app-fine-payment *ngIf="selectedState === NewPlateFineStates.FINE_PAYMENT"></app-fine-payment>
+
+    <app-fine-payment-result *ngIf="selectedState === NewPlateFineStates.FINE_PAYMENT_RESULT"></app-fine-payment-result>
+  </div>
+</div>

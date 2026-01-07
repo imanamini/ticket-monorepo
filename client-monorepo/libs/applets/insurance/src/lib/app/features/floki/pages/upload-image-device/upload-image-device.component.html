@@ -1,0 +1,94 @@
+<div class="d-flex flex-column w-100 health-check-wrapper">
+  <div class="d-flex align-items-center header">
+    <floki-header
+      (iconClickHandler)="goToCompleteInfo()"
+      [hasIcon]="true"
+      [iconName]="'arrow-right'"
+      [iconTitle]="'قبلی'"
+      [title]="'بارگذاری مدارک'"
+      class="icon-color"
+      titleTextAlign="center"
+    >
+    </floki-header>
+  </div>
+  <div class="d-flex flex-column gap-minus pb-plus px-plus info-container">
+    <ngx-alert
+      (clickAction)="clickAction()"
+      [actionButton]="{link: 'نمونه تصاویر قابل پذیرش'}"
+      [color]="'blue'"
+      [hasCloseIcon]="false"
+      text="با شماره‌گیری #06#* کد IMEI دستگاه شما نمایان می‌شود. لطفا از صفحه گوشی عکس گرفته و آن‌ را بارگذاری کنید."
+      title=""
+    ></ngx-alert>
+    <div class="st-8 text-onback-high py-tiny">
+      مشخصات گوشی
+    </div>
+    <ngx-uploader
+      (onDeletedFile)="deleteApplicationDocument(imagePreviewUrls().get(DeviceTypeEnum.CellPhoneFrontImage).name)"
+      (onFileUpload)="fileUploaded($event , DeviceTypeEnum.CellPhoneFrontImage , false)"
+      [description]="'فرمت JPEG ،PNG ،HEIF و GIF'"
+      [fileAcceptedFormats]="['png']"
+      [hasHintStar]="true"
+      [hintStatus]="'info'"
+      [hint]="'تصویر روی دستگاه'"
+      [label]="'تصویر روی دستگاه'"
+      [multiple]="false"
+      [title]="'تصویر روی دستگاه با IMEI'"
+      [type]="'file'"
+    ></ngx-uploader>
+    <ngx-uploader
+      (onDeletedFile)="deleteApplicationDocument(imagePreviewUrls().get(DeviceTypeEnum.CellPhoneBackImage).name)"
+      (onFileUpload)="fileUploaded($event , DeviceTypeEnum.CellPhoneBackImage  , false)"
+      [description]="'فرمت JPEG ،PNG ،HEIF و GIF'"
+      [fileAcceptedFormats]="['png']"
+      [hasHintStar]="true"
+      [hintStatus]="'info'"
+      [hint]="'تصویر پشت دستگاه'"
+      [label]="'تصویر پشت دستگاه'"
+      [multiple]="false"
+      [title]="'تصویر پشت دستگاه'"
+      [type]="'file'"
+    ></ngx-uploader>
+    <div class="d-flex align-items-center	justify-content-center justify-content-space-between">
+      <div class="d-flex flex-column gap-atom">
+        <div class="st-8 text-onback-high">
+          صفحه نمایش دوم
+        </div>
+        <span class="c-2">
+      گلکسی Z Fold ،Z Flip و...
+       </span>
+      </div>
+      <mat-slide-toggle #toggle (change)="toggleChange($event)"
+                        [checked]=""></mat-slide-toggle>
+    </div>
+    @if (showSecondFrontFile()) {
+<!--      <ngx-uploader-->
+<!--        (onFileUpload)="fileUploaded($event , DeviceTypeEnum.SecondCellPhoneFrontImage , true)"-->
+<!--        [description]="'فرمت JPEG ،PNG ،HEIF و GIFPNG'"-->
+<!--        [disabled]="!toggle.checked"-->
+<!--        [fileUploaded]="imagePreviewUrls().get(DeviceTypeEnum.CellPhoneBackImage).name"-->
+<!--        [fileAcceptedFormats]="['png']"-->
+<!--        [hasHintStar]="true"-->
+<!--        [hasPreview]="true"-->
+<!--        [hintStatus]="'info'"-->
+<!--        [hint]="'تصویر صفحه نمایش دوم'"-->
+<!--        [label]="'تصویر صفحه نمایش دوم'"-->
+<!--        [multiple]="false"-->
+<!--        [previewUrl]="imagePreviewUrls().get(DeviceTypeEnum.CellPhoneBackImage).previewUrl"-->
+<!--        [title]="'تصویر صفحه نمایش دوم'"-->
+<!--        [type]="'file'"-->
+<!--        (onDeletedFile)="deleteApplicationDocument(imagePreviewUrls().get(DeviceTypeEnum.CellPhoneBackImage).name)"-->
+<!--      ></ngx-uploader>-->
+    }
+  </div>
+  <div class="p-plus">
+    <ngx-button
+      (clickHandler)="getPolicy()"
+      [fullWidth]="true"
+      [size]="'large'"
+      [style]="'fill'">
+      صدور بیمه‌نامه
+    </ngx-button>
+  </div>
+</div>
+

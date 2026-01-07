@@ -1,0 +1,119 @@
+<div class="d-flex flex-column justify-content-start gap-plus scroll-container">
+  @if (activeCampaign()) {
+    <shared-common-campaign-banner></shared-common-campaign-banner>
+  } @else if (isAuctionMode) {
+    <stores-applet-auction-banner></stores-applet-auction-banner>
+  }
+  <stores-applet-categories-mini-view
+    [mode]="'new'"
+    [backgroundClass]="'surface-glass-onback'"
+  ></stores-applet-categories-mini-view>
+  @if (newBannersMode) {
+    <common-app-banners-shared-common-banners
+      (removeBannersCountOutput)="renderNewBannersConditionally($event)"
+      [deferredBanners]="orderedOnlineBanners()"
+      [bannerRoute]="'stores'"
+    >
+    </common-app-banners-shared-common-banners>
+    @if (loadingNewBanner()) {
+      <common-ui-components-defer-place-holder
+        [mode]="'loading'"
+        [height]="'300px'"
+      ></common-ui-components-defer-place-holder>
+    }
+  } @else {
+    <common-app-banners-shared-common-banners
+      [bannersData]="bannersData()"
+      [categoryToShow]="BannerCategory.STORE_1"
+    >
+    </common-app-banners-shared-common-banners>
+
+    @defer (on viewport) {
+      <common-app-banners-shared-common-banners
+        [bannersData]="bannersData()"
+        [categoryToShow]="BannerCategory.STORE_2"
+      >
+      </common-app-banners-shared-common-banners>
+      <common-app-banners-shared-common-banners
+        [bannersData]="bannersData()"
+        [categoryToShow]="BannerCategory.STORE_3"
+      >
+      </common-app-banners-shared-common-banners>
+    } @placeholder (minimum 1000ms) {
+      <div class="px-plus">
+        <lib-ngx-skeleton-loading
+          [height]="'300px'"
+          [classes]="'radius-medium'"
+          [width]="'100%'"
+        ></lib-ngx-skeleton-loading>
+      </div>
+    }
+
+    @defer (on viewport) {
+      <common-app-banners-shared-common-banners
+        [bannersData]="bannersData()"
+        [categoryToShow]="BannerCategory.STORE_4"
+      >
+      </common-app-banners-shared-common-banners>
+      <common-app-banners-shared-common-banners
+        [bannersData]="bannersData()"
+        [categoryToShow]="BannerCategory.STORE_5"
+      >
+      </common-app-banners-shared-common-banners>
+    } @placeholder (minimum 3000ms) {
+      <div class="px-plus">
+        <lib-ngx-skeleton-loading
+          [height]="'300px'"
+          [classes]="'radius-medium'"
+          [width]="'100%'"
+        ></lib-ngx-skeleton-loading>
+      </div>
+    }
+
+    @defer (on viewport) {
+      <common-app-banners-shared-common-banners
+        [bannersData]="bannersData()"
+        [categoryToShow]="BannerCategory.STORE_6"
+      >
+      </common-app-banners-shared-common-banners>
+      <common-app-banners-shared-common-banners
+        [bannersData]="bannersData()"
+        [categoryToShow]="BannerCategory.STORE_7"
+      >
+      </common-app-banners-shared-common-banners>
+    } @placeholder (minimum 4000ms) {
+      <div class="px-plus">
+        <lib-ngx-skeleton-loading
+          [height]="'300px'"
+          [classes]="'radius-medium'"
+          [width]="'100%'"
+        ></lib-ngx-skeleton-loading>
+      </div>
+    }
+    @defer (on viewport) {
+      <common-app-banners-shared-common-banners
+        [bannersData]="bannersData()"
+        [categoryToShow]="BannerCategory.STORE_8"
+      >
+      </common-app-banners-shared-common-banners>
+      <common-app-banners-shared-common-banners
+        [bannersData]="bannersData()"
+        [categoryToShow]="BannerCategory.STORE_9"
+      >
+      </common-app-banners-shared-common-banners>
+      <common-app-banners-shared-common-banners
+        [bannersData]="bannersData()"
+        [categoryToShow]="BannerCategory.STORE_10"
+      >
+      </common-app-banners-shared-common-banners>
+    } @placeholder (minimum 5000ms) {
+      <div class="px-plus">
+        <lib-ngx-skeleton-loading
+          [height]="'300px'"
+          [classes]="'radius-medium'"
+          [width]="'100%'"
+        ></lib-ngx-skeleton-loading>
+      </div>
+    }
+  }
+</div>

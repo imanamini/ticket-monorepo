@@ -1,0 +1,16 @@
+<div
+  [ngStyle]="{
+    width: size + 'px',
+    height: size + 'px',
+    borderRadius: round ? '50%' : null,
+  }"
+  class="icon"
+>
+  <span
+    [ngClass]="{
+      'is-mci': operatorIds.MCI === carrier,
+      'is-mtn': operatorIds.MTN === carrier,
+      'is-rightel': operatorIds.RIGHTEL === carrier,
+    }"
+  ></span>
+</div>

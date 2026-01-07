@@ -1,0 +1,12 @@
+export enum CreditScoringStepType {
+  BLACKLIST_CHECK,
+  INIT,
+  ON_BOARDING,
+  PAYMENT,
+  AFTER_PAYMENT,
+  OTP,
+  RESULT,
+  NO_SERVICE_MESSAGE,
+  WHITE_LIST,
+  DP_FAILED,
+}

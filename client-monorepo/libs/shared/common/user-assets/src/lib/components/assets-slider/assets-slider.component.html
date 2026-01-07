@@ -1,0 +1,31 @@
+@if (!isLoading() && assetsToShow().length > 0) {
+  <common-ui-components-horizontal-scroll [classes]="'gap-small pr-plus'">
+    @for (asset of assetsToShow(); track $index) {
+      <common-user-assets-asset-preview
+        [title]="asset.title"
+        [icon]="asset.icon"
+        [subTitle]="asset.detail"
+        [subTitleType]="asset.detailsType"
+        [primaryColor]="asset.primaryColor"
+        [secondaryColor]="asset.secondaryColor"
+        [patternColor]="asset.patternColor"
+        [unit]="asset.unit"
+        [isDisabled]="asset?.isDisabled || false"
+        [action]="asset.action"
+      ></common-user-assets-asset-preview>
+    }
+  </common-ui-components-horizontal-scroll>
+} @else {
+  <common-ui-components-horizontal-scroll [classes]="'gap-small pr-plus'">
+    @for (item of rangeCreator(4); track $index) {
+      <common-user-assets-asset-preview
+        [title]="''"
+        [icon]="''"
+        [subTitle]="''"
+        [primaryColor]="''"
+        [secondaryColor]="''"
+        [isLoading]="true"
+      ></common-user-assets-asset-preview>
+    }
+  </common-ui-components-horizontal-scroll>
+}

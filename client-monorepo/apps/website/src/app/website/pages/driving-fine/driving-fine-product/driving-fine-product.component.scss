@@ -1,0 +1,92 @@
+::ng-deep {
+  #layout {
+    background: #f6f8ff;
+  }
+}
+
+.driving-fine-product {
+  background-image: linear-gradient(
+    to bottom,
+    #0040ff 376px,
+    rgba(0, 0, 0, 0) 120px
+  );
+
+  .content {
+    text-align: center;
+    padding-top: 48px;
+    padding-bottom: 128px;
+
+    h1 {
+      display: inline-block;
+      position: relative;
+
+      &:before {
+        display: block;
+        content: '';
+        position: absolute;
+        background-image: url('/assets/images/marked-arrow.svg');
+        background-position: center center;
+        margin: 0;
+        height: 121px;
+        width: 100px;
+        right: -116px;
+      }
+    }
+
+    h1,
+    .subtitle {
+      color: #ffffff;
+    }
+  }
+
+  .product-box {
+    .driving-fine {
+      max-width: 526px;
+      margin: -120px auto 0;
+      box-shadow: 0 0 80px rgba(159, 176, 253, 0.24);
+      border-radius: 24px;
+      background-color: #fff;
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .driving-fine-product {
+    background-image: linear-gradient(
+      to bottom,
+      #0040ff 328px,
+      rgba(0, 0, 0, 0) 120px
+    );
+
+    .content {
+      padding-top: unset;
+      padding-bottom: 128px;
+    }
+
+    .product-box {
+      .driving-fine {
+        margin-top: -90px;
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .driving-fine-product {
+    .content {
+      padding-bottom: unset;
+
+      h1:before {
+        content: unset;
+      }
+    }
+
+    .product-box {
+      .driving-fine {
+        max-width: unset;
+        border-radius: 0;
+        margin-top: 0;
+      }
+    }
+  }
+}

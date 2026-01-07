@@ -1,0 +1,15 @@
+.bottom-sheet-loading-wrapper {
+  display: flex;
+  width: 100%;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+}
+
+.cancel-bottom-sheet {
+  direction: rtl;
+}
+
+ngx-button {
+  white-space: nowrap;
+}

@@ -1,0 +1,29 @@
+<div class="asset-content d-flex align-items-center text-oninvert-high">
+  <div class="d-flex gap-tiny pl-small align-items-center">
+    <div class="asset-content-title bt-2">{{ userAsset()?.title }}</div>
+    <div class="asset-content-amount">
+      <ngx-icon
+        [name]="assetHideState() && userAsset()?.type && assetHideState() ? 'hide' : 'eye'"
+        [type]="'linear'"
+        [iconSize]="'16px'"
+        [classes]="'text-oninvert-high'"
+        (click)="toggleHideAsset($event, userAsset())"
+      />
+    </div>
+  </div>
+  @if (gettingData()) {
+    <common-ui-loading-dots
+      [size]="8"
+      class="amount d-flex align-items-center"
+    ></common-ui-loading-dots>
+  } @else {
+    <div class="asset-content-amount amount d-flex align-items-center gap-tiny">
+      @if (assetHideState()) {
+        <span class="st-3">*****</span>
+      } @else {
+        <span class="st-3">{{ userAsset()?.totalBalance | thousands }}</span>
+        <span class="st-8 is-currency">ریال</span>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,82 @@
+<div class="d-flex flex-wrap align-content-flex-start surface-high-contrast cashin-container">
+  <wealth-applet-app-bar-wrapper
+    class="w-100"
+    [title]="'ورود اطلاعات'"
+    (onBack)="onBackHandler()"
+  />
+
+  <div class="w-100 mt-big content-container px-plus">
+    <p class="b-2 text-onback-high">
+      <span>
+        اطلاعات مالک شماره
+        <span class="st-8">
+          {{ state().phoneNumber }}
+        </span>
+        را وارد کنید.
+      </span>
+    </p>
+
+    <div
+      class="w-100 mt-big"
+      [formGroup]="form"
+    >
+      @if (!retrying()) {
+        <ui-form-field
+          [errorMessageMapper]="{
+            required: 'کد ملی را وارد کنید.',
+            invalidNationalId: serverErrorMessage(),
+          }"
+          [error]="form.controls['nationalId'].errors ?? {}"
+          formControlName="nationalId"
+          [label]="'کد ملی'"
+          [maxSize]="10"
+          [readonly]="state()?.nationalId?.length > 0"
+          [isNumericKeyboard]="true"
+        ></ui-form-field>
+
+        <ui-form-field
+          [errorMessageMapper]="{
+            required: 'تاریخ تولد را انتخاب کنید.',
+            invalidBirthDay: serverErrorMessage(),
+          }"
+          [error]="form.controls['birthDay'].errors ?? {}"
+          [type]="'date'"
+          [showError]="'show'"
+          formControlName="birthDay"
+          [label]="'تاریخ تولد'"
+          [datePickerMode]="'bottomSheet'"
+          [readonly]="state()?.birthDate?.length > 0"
+        ></ui-form-field>
+      }
+
+      <ui-form-field
+        [errorMessageMapper]="{
+          required: 'کد پستی را وارد کنید.',
+          minlength: 'کد پستی باید 10 رقم باشد.',
+          invalidPostalcode: 'کد پستی وارد شده معتبر نمی‌باشد',
+        }"
+        [error]="form.controls['postalCode'].errors ?? {}"
+        formControlName="postalCode"
+        [label]="'کد پستی'"
+        [maxSize]="10"
+        [minlength]="10"
+        [isNumericKeyboard]="true"
+      ></ui-form-field>
+    </div>
+  </div>
+
+  <div class="w-100 surface-elevated px-plus pt-small">
+    <ngx-button
+      [buttonId]="'WALLET_CONFIRM_BIRTHDAY'"
+      [style]="'fill'"
+      [fullWidth]="true"
+      [mode]="'form'"
+      size="medium"
+      [disabled]="isLoading() || (retrying() ? form.controls['postalCode'].invalid : form.invalid)"
+      [isLoading]="isLoading()"
+      (clickHandler)="onContinue()"
+    >
+      تایید و ادامه
+    </ngx-button>
+  </div>
+</div>

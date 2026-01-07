@@ -1,0 +1,76 @@
+<div
+  class="single-merchant-card"
+  [class.inActive]="!merchant.isActive"
+>
+  <div class="store-info">
+    <div class="store-content">
+      <img
+        class="store-logo"
+        [src]="environment.appUrl + '/mini-app/stores/' + merchant.imageId"
+      />
+      <div class="store-detail">
+        <div class="store-title">
+          <span class="store-title-text">{{ merchant.title }}</span>
+        </div>
+        <p class="store-subtitle">{{ merchant.subtitle }}</p>
+      </div>
+    </div>
+    <div
+      class="cta"
+      *ngIf="merchant.type.includes(STORE_TYPES.ONSITE); else onlyOnline"
+      (click)="handleClickPurchaseInfo()"
+    >
+      <span
+        appUiIcon
+        icon="icon-location-blue"
+        size="20"
+        class="cta-icon"
+      ></span>
+      <span class="text">آدرس شعب</span>
+    </div>
+    <ng-template #onlyOnline>
+      <div
+        class="cta"
+        (click)="handleClickPurchaseInfo()"
+      >
+        <span class="text">خرید اینترنتی</span>
+        <span
+          appUiIcon
+          icon="icon-arrow-left"
+          size="20"
+          class="cta-icon"
+        ></span>
+      </div>
+    </ng-template>
+  </div>
+  <div class="store-info">
+    <div
+      class="store-type"
+      (click)="openMerchantTypeDialog(merchant.type)"
+    >
+      <div
+        class="icon"
+        [ngClass]="{
+          onsite: merchant.type.includes(STORE_TYPES.ONSITE),
+          online: merchant.type.includes(STORE_TYPES.ONLINE),
+        }"
+      ></div>
+      <span>{{ STORE_TYPES_SHORT_TRANSLATION[merchant.type[0]] }}</span>
+    </div>
+    <div class="store-providers">
+      <div
+        class="provider"
+        *ngFor="let provider of merchant.providers"
+      >
+        <div
+          class="provider-icon"
+          [ngClass]="{
+            bnpl: provider === STORE_PROVIDERS.BNPL,
+            cCredit: provider === STORE_PROVIDERS.C_CREDIT,
+          }"
+        ></div>
+        <div class="name">{{ STORE_PROVIDERS_TRANSLATION[provider] }}</div>
+      </div>
+    </div>
+  </div>
+</div>

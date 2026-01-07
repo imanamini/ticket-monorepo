@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  width: 100%;
+}
+.journey-top {
+  &-placeholder {
+    height: 24px;
+    width: 100%;
+    background-image: url('libs/shared/common/assets/src/lib/images/journey-top.svg');
+    background-position: right;
+    background-repeat: no-repeat;
+  }
+}

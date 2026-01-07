@@ -1,0 +1,23 @@
+<div class="w-100 d-flex align-items-center gap-small">
+  <ngx-radio-button
+    [checked]="bankAccount().shebaNumberId === selectedAccountId()"
+    [size]="20"
+    [disabled]="false"
+    (checkedChange)="onSelectAccount($event)"
+  >
+  </ngx-radio-button>
+
+  <ngx-card
+    class="w-100"
+    [cardMode]="'bank'"
+    [cardSize]="'small'"
+    [cardType]="'iban'"
+    [iban]="bankAccount().value"
+    [ownerName]="bankAccount().ownerName"
+    [height]="'68px'"
+    [logoHeight]="32"
+    [logoWidth]="32"
+    [showActionButton]="true"
+    (onActionButtonClick)="openDeleteBottomSheet()"
+  ></ngx-card>
+</div>

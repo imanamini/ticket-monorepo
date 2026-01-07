@@ -1,0 +1,34 @@
+<div class="toggle">
+  <div
+    (click)="toggle()"
+    class="toggle-header"
+  >
+    <div class="title">
+      <span>{{ title }}</span>
+    </div>
+    <span class="value">{{ value }}</span>
+    <div
+      *ngIf="!openMode"
+      [ngClass]="{ rotated: toggled }"
+      class="arrow"
+    ></div>
+  </div>
+  <div
+    *ngIf="!openMode && toggled"
+    [@description]="'in'"
+    class="toggle-content"
+  >
+    <hr class="content-separator" />
+    <p class="content-text">{{ description }}</p>
+  </div>
+  <div
+    *ngIf="openMode"
+    class="toggle-content"
+  >
+    <hr class="content-separator" />
+    <div
+      [innerHTML]="description | safeHtml"
+      class="content-text"
+    ></div>
+  </div>
+</div>

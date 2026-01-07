@@ -1,0 +1,95 @@
+<common-ui-components-page-layout title="به‌روزرسانی">
+  <div class="d-flex update-container flex-column px-plus pt-huge">
+    @if (!isLoading()) {
+      <div>
+        <div
+          [class]="'w-100 d-flex justify-content-center' + (developerModeLoading() ? ' ngx-router-loading' : '')"
+          (click)="onClickImage()"
+        >
+          @if (versionState() === 'CHECKING' || versionState() === 'ERROR') {
+            <ng-lottie
+              class="update-animation"
+              [options]="{ path: checkingUpdateAnimation() }"
+            ></ng-lottie>
+          } @else {
+            <img
+              [ngSrc]="imagePath()"
+              alt="update-version"
+              width="242"
+              height="222"
+            />
+          }
+        </div>
+
+        <div class="st-6 mt-medium text-align-center">
+          {{ content().title }}
+        </div>
+
+        <p class="text-onback-low b-2 text-align-center">
+          {{ content().description }}
+        </p>
+        @if (versionState() !== 'ERROR') {
+          <div class="pt-big">
+            <div class="d-flex flex-column surface-back section-padding px-medium radius-medium">
+              <div
+                class="d-flex align-items-center version-desc"
+                [ngClass]="{
+                  'border-b-100 border-color-tint pb-minus': newVersionMode(),
+                }"
+              >
+                <p class="text-onback-low c-3">نسخه فعلی</p>
+                <p class="text-onback-high c-3">{{ webVersion().currentVersion }}</p>
+              </div>
+              @if (newVersionMode()) {
+                <div class="d-flex align-items-center version-desc pt-minus">
+                  <p class="text-onback-low c-3">نسخه جدید</p>
+                  <p class="text-onback-high c-3">{{ webVersion().newVersion }}</p>
+                </div>
+              }
+            </div>
+          </div>
+        }
+        <div class="mt-huge mb-medium">
+          @if (content().cta) {
+            <ngx-button
+              [size]="'medium'"
+              [style]="versionState() === 'HAS_NEW_VERSION' ? 'fill' : 'tinted-on-elevated'"
+              [brandButton]="versionState() === 'HAS_NEW_VERSION'"
+              [fullWidth]="true"
+              [isLoading]="reloading()"
+              (clickHandler)="updateVersion()"
+            >
+              {{ content().cta }}
+            </ngx-button>
+          }
+        </div>
+      </div>
+      <div>
+        @if (hasHybridVersion()) {
+          <div class="pb-mega">
+            <lib-native-version-toast (onCtaClicked)="onUpdateNativeClicked()"></lib-native-version-toast>
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="w-100 d-flex flex-column justify-content-center align-items-center">
+        <lib-ngx-skeleton-loading
+          [width]="'242px'"
+          [height]="'222px'"
+        ></lib-ngx-skeleton-loading>
+        <div class="pt-big">
+          <lib-ngx-skeleton-loading
+            [width]="'320px'"
+            [height]="'40px'"
+          ></lib-ngx-skeleton-loading>
+        </div>
+        <div class="pt-big">
+          <lib-ngx-skeleton-loading
+            [width]="'350px'"
+            [height]="'56px'"
+          ></lib-ngx-skeleton-loading>
+        </div>
+      </div>
+    }
+  </div>
+</common-ui-components-page-layout>

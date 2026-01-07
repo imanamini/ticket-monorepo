@@ -1,0 +1,48 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100svh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'فعال‌سازی طرح'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+  <div class="w-100 mt-massive d-flex flex-column px-plus justify-content-center align-items-center">
+    <div class="radius-rounded surface-glass-onelevated d-flex align-items-center justify-content-center icon-container position-relative">
+      <ngx-icon
+        [name]="activationState() === EWalletActivation.Active ? 'check-circle' : 'circle-clock'"
+        [type]="'bold'"
+        [iconSize]="'48px'"
+        [class]="activationState() === EWalletActivation.Active ? 'text-onback-success' : 'text-onback-high'"
+      />
+    </div>
+
+    <p class="st-3 text-onback-high mt-huge">{{ activationTitle() }}</p>
+    <p class="b-2 text-onback-medium mt-low text-align-center">{{ activationDescription() }}</p>
+  </div>
+
+  <div class="mt-massive w-100 px-plus d-flex flex-column gap-small justify-content-center">
+    @if (activationState() === EWalletActivation.Active) {
+      <ngx-button
+        [style]="'tinted-on-elevated'"
+        [fullWidth]="true"
+        size="medium"
+        (clickHandler)="onBackHandler()"
+      >
+        بستن
+      </ngx-button>
+    }
+    <ngx-button
+      [fullWidth]="activationState() === EWalletActivation.Active"
+      size="medium"
+      class="d-flex justify-content-center"
+      [mode]="activationState() === EWalletActivation.Active ? 'form' : 'section'"
+      (clickHandler)="onBackHandler()"
+    >
+      {{ activationState() === EWalletActivation.Active ? 'تبدیل دارایی' : 'مشاهده وضعیت' }}
+    </ngx-button>
+  </div>
+</div>

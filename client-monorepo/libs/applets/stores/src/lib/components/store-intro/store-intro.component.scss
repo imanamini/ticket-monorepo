@@ -1,0 +1,13 @@
+.ty-75 {
+  transform: translateY(-75px);
+}
+
+.chips {
+  border: 1px solid var(--border-light);
+}
+
+.store-description ::ng-deep {
+  ul, ol {
+    list-style-position: inside;
+  }
+}

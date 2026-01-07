@@ -1,0 +1,77 @@
+<p class="description">اقساط مورد نظر را برای پرداخت انتخاب کنید.</p>
+
+<div class="full-height">
+  <app-credit-scrollable-view [fullHeightContent]="true">
+    <div class="body">
+      @if (installments()?.dueInstallments?.length! > 0) {
+        <div class="d-flex align-items-center mb-pony">
+          <div class="icon due"></div>
+          <div class="category-title">اقساط سررسید شده</div>
+        </div>
+
+        @for (
+          installment of installments()?.dueInstallments;
+          track installment.contract.contractTrackingCode + installment?.order;
+          let i = $index
+        ) {
+          <app-total-installment-card
+            class="mb-minus"
+            [contractTrackingCode]="installment.contract.contractTrackingCode"
+            [selected]="installmentStates()[i]"
+            [isLocked]="!!installment.penalty || (!installmentStates()[i - 1] && i > 0)"
+            (onShowDetail)="openDetail('DUE', i)"
+            (onCheckedChange)="handleCheckedChange($event, i)"
+            [installmentsCount]="installment.contract.count"
+            [installmentOrder]="installment.order"
+            [totalAmount]="installment.amount"
+            [penaltyAmount]="installment.penalty"
+            [penaltyWaiverAmount]="installment.penaltyWaiverAmount"
+            [billingCycleDate]="installment?.contract?.billingCycleDate!"
+            [dueDate]="installment.dueDate"
+            (onLockedClick)="onLockedClickHandler(!!installment.penalty)"
+          />
+        }
+      }
+
+      @if (installments()?.currentInstallments?.length! > 0) {
+        <div class="d-flex align-items-center mt-minus mb-pony">
+          <div class="icon current"></div>
+          <div class="category-title">اقساط پیش‌رو</div>
+        </div>
+
+        @for (
+          installment of installments()?.currentInstallments;
+          track installment.contract.contractTrackingCode + installment?.order;
+          let i = $index
+        ) {
+          <app-total-installment-card
+            class="mb-minus"
+            [contractTrackingCode]="installment.contract.contractTrackingCode"
+            [selected]="installmentStates()[i + installments()?.dueInstallments?.length!]"
+            [isLocked]="
+              i - 1 + installments()?.dueInstallments?.length! > -1 &&
+              !installmentStates()[i - 1 + installments()?.dueInstallments?.length!]
+            "
+            (onShowDetail)="openDetail('CURRENT', i)"
+            (onCheckedChange)="handleCheckedChange($event, i + installments()?.dueInstallments?.length!)"
+            [installmentsCount]="installment.contract.count"
+            [installmentOrder]="installment.order"
+            [totalAmount]="installment.amount"
+            [penaltyAmount]="installment.penalty"
+            [penaltyWaiverAmount]="installment.penaltyWaiverAmount"
+            [billingCycleDate]="installment?.contract?.billingCycleDate!"
+            [dueDate]="installment.dueDate"
+            (onLockedClick)="onLockedClickHandler(false)"
+          />
+        }
+      }
+    </div>
+  </app-credit-scrollable-view>
+</div>
+
+<app-credit-aggregation-bottom
+  (actionClicked)="pay()"
+  [actionTitle]="'تأیید و پرداخت'"
+  [aggregationTotalAmount]="totalPayableAmount()"
+  [amountTitle]="'قابل پرداخت'"
+/>

@@ -1,0 +1,7 @@
+<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <g id="Checkbox">
+    <rect height="24" rx="4" stroke="#F2F5F8" width="24"/>
+    <path d="M18 8.25L10.5 15.75L6 11.25" id="Path" stroke="#0040FF" stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="3"/>
+  </g>
+</svg>

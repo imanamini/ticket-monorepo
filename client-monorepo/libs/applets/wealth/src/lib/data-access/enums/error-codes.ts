@@ -1,0 +1,63 @@
+export enum ErrorCodes {
+  serverError = 500,
+
+  failure = 1000,
+  customerNotExist = 1001,
+  OrderNotFound = 1002,
+  paymentAmountMissMatchWithOrder = 1003,
+  paymentNotFound = 1004,
+  orderStatusIsNotDraft = 1005,
+  fundNotExist = 1006,
+  orderStatusIsNotPending = 1007,
+  paymentStatusIsNotPending = 1008,
+  validateNationalIdFailed = 1009,
+  invalidRefreshToken = 1508,
+
+  KYCShahkarFailed = 2001,
+  kYCShahkarCellNumberMissmatchNationalId = 2002,
+
+  rayanAuthenticateFailed = 3000,
+  rayanIsCustomerSejamiFailed = 3001,
+  rayanSendSejamOtpFailed = 3002,
+  rayanRegisterCustomerFailed = 3003,
+  rayanGetCustomerFailed = 3004,
+  rayanGetNavInfoFailed = 3005,
+  rayanGetFundInfoFailed = 3006,
+  rayanCalculateFundEfficiencyFailed = 3007,
+  rayanGetCustomerRemainsFailed = 3008,
+  rayanGetCustomerOrdersFailed = 3009,
+  rayanSaveIpoFailed = 3010,
+  rayanCancelOrderOtpFailed = 3011,
+  rayanCancelOrderFailed = 3012,
+  rayanActiveLicenseNumberNotFound = 3013,
+
+  rayanTooManyRequest = 3015,
+  rayanInvalidOtp = 3016,
+  rayanCustomerNotFound = 3018,
+  timeout = 3020,
+
+  passwordExpired = 1506,
+  IncorrectPassword = 1513,
+  AuthenticationChallenged = 1515,
+  SessionIsExpired = 1510,
+  UnchangedPassword = 1512,
+  UserIsLockedOut = 1015,
+  UserIsExisted = 1014,
+  NationalIdAlreadyExistWithDiffPhoneNumber = 1030,
+
+  InvalidOtp = 1013,
+  RateLimited = 1019,
+  ExpiredOtp = 1020,
+  UserNotFound = 1022,
+  InvalidUsernameOrPassword = 1018,
+
+  CustomerNotRegisteredInFund = 1031,
+
+  CustomerIsNotSejami = 1032,
+
+  RayanTooManyRequest = 3030,
+  BitpendarRequestTimeout = 3046,
+  RayanInvalidOTP = 3034,
+  InvalidSellUnits = 1516,
+  InvalidInstrumentSymbol = 1528,
+}

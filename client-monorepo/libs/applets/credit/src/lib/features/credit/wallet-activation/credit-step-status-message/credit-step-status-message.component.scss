@@ -1,0 +1,53 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  justify-content: center;
+}
+
+.credit-message-wrapper {
+  .message-image {
+    &.static-image-no-service {
+      background-image: url("../../assets/icons/public-icons/credit-warning.svg");
+    }
+
+    &.static-image-error {
+      background-image: url("../../assets/icons/public-icons/credit-error-image.svg");
+    }
+
+    &.static-image-expired {
+      background-image: url("../../assets/icons/public-icons/credit-expired.svg");
+    }
+
+    &.static-image-mi-browser {
+      background-image: url("../../assets/icons/public-icons/mi-browser.svg");
+    }
+
+    &.static-image-huawei-browser {
+      background-image: url("../../assets/icons/public-icons/huawei-browser.svg");
+    }
+  }
+}
+
+.message-image {
+  &.static-image-no-service {
+    background-image: url("../../assets/icons/public-icons/credit-warning.svg");
+  }
+
+  &.static-image-error {
+    background-image: url("../../assets/icons/public-icons/credit-error-image.svg");
+  }
+
+  &.static-image-expired {
+    background-image: url("../../assets/icons/public-icons/credit-expired.svg");
+  }
+
+  &.static-image-mi-browser {
+    background-image: url("../../assets/icons/public-icons/mi-browser.svg");
+  }
+
+  &.static-image-huawei-browser {
+    background-image: url("../../assets/icons/public-icons/huawei-browser.svg");
+  }
+}

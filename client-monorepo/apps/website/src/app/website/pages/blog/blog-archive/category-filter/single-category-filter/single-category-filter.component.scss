@@ -1,0 +1,87 @@
+@import "globals";
+
+
+
+.single-category-filter {
+  .header {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .category {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      &.isOpen {
+        .title {
+          font-weight: 700;
+        }
+      }
+
+      &.selected {
+        .title {
+          font-weight: 700;
+          color: $swatch_blue_700;
+        }
+      }
+
+      .title {
+        color: $swatch_steel_700;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  .children {
+    padding-right: 16px;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-right: 1px dashed $swatch_steel_300;
+    position: relative;
+
+    .dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      border: 3px solid $swatch_steel_300;
+      position: absolute;
+      right: -4px;
+    }
+
+    .end {
+      bottom: 0;
+    }
+
+    .child {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      align-items: center;
+      cursor: pointer;
+
+      .name {
+        color: $swatch_steel_700;
+        font-size: 13px;
+        font-weight: 300;
+      }
+
+      &.selected {
+        .name {
+          color: $swatch_blue_700;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<div class="one-paper-bottom-sheet">
+  <div class="image"></div>
+  <p class="description">
+    ارزش سفته خریداری شده باید بیشتر یا برابر با مبلغ ضمانت، معادل
+    <b>
+      {{ amount() | IRR }}
+    </b>
+    باشد. زیرا شما
+    <b> تنها یک برگ سفته </b>
+    به عنوان ضمانت می‌توانید ارائه دهید.
+  </p>
+  <div class="call-to-action-wrapper">
+    <ngx-button
+      [fullWidth]="true"
+      (clickHandler)="onSubmit()"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

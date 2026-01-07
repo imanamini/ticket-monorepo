@@ -1,0 +1,17 @@
+@if (activeCampaign) {
+  <div class="px-plus d-flex gap-small">
+    <img [src]="activeCampaign.banner.image" />
+    <div class="d-flex flex-column">
+      <span
+        [style.background]="activeCampaign.banner.textBackground"
+        class="{{ activeCampaign.banner.title.class }} banner-text"
+        >{{ activeCampaign.banner.title.text }}</span
+      >
+      <span
+        [style.background]="activeCampaign.banner.textBackground"
+        class="{{ activeCampaign.banner.subtitle.class }} banner-text"
+        >{{ activeCampaign.banner.subtitle.text }}</span
+      >
+    </div>
+  </div>
+}

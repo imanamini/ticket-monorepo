@@ -1,0 +1,35 @@
+<div class="w-100 d-flex flex-wrap">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'جزییات فروش'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="w-100 d-flex justify-content-space-between align-items-center flex-column px-plus">
+    <div class="w-100 d-flex flex-column gap-big mt-big align-items-end">
+      <app-payment-card
+        class="w-100"
+        [data]="state()"
+      ></app-payment-card>
+
+      <div class="d-flex">
+        <ngx-button
+          [size]="'medium'"
+          [brandButton]="true"
+          (clickHandler)="onSell()"
+          [isLoading]="isLoading()"
+          [disabled]="isLoading()"
+          [fullWidth]="true"
+        >
+          تایید و فروش
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,99 @@
+<div class="d-flex flex-column gap-big surface-elevated">
+  <daily-bank-card-preview [config]="cardSummary"></daily-bank-card-preview>
+  @if (!gettingConfirmation()) {
+    @if (hasAvailableServicePaymentPos) {
+      <div
+        class="d-flex gap-minus cursor-pointer"
+        (click)="toggleBnplConfirmation()"
+      >
+        <common-icon-dp-icon
+          [classes]="'text-onback-low'"
+          [iconSize]="'24'"
+          [icon]="'bnpl'"
+          [iconType]="'linear'"
+        ></common-icon-dp-icon>
+        @if (hasAttachServicePaymentPos) {
+          <span class="text-onback-low b-2">جداسازی کارت بانکی از اعتبار</span>
+        } @else {
+          <span class="text-onback-low b-2">اتصال به اعتبار دیجی‌پی</span>
+        }
+      </div>
+    }
+
+    @if (cardSummary.isPinned) {
+      <div
+        class="d-flex gap-minus cursor-pointer"
+        (click)="togglePin()"
+      >
+        <common-icon-dp-icon
+          [classes]="'text-onback-low'"
+          [iconSize]="'24'"
+          [icon]="'unPin'"
+        ></common-icon-dp-icon>
+        <span class="text-onback-low fs-14 fw-normal">برداشتن کارت از پیش فرض</span>
+      </div>
+    } @else {
+      <div
+        class="d-flex gap-minus cursor-pointer"
+        (click)="togglePin()"
+      >
+        <common-icon-dp-icon
+          [classes]="'text-onback-low'"
+          [iconSize]="'24'"
+          [icon]="'unPin'"
+          [iconType]="'linear'"
+        ></common-icon-dp-icon>
+        <span class="text-onback-low b-2">پین کردن به عنوان کارت پیش‌فرض</span>
+      </div>
+    }
+
+    <div
+      class="d-flex gap-minus cursor-pointer"
+      (click)="deleteCard()"
+    >
+      <common-icon-dp-icon
+        [classes]="'text-onback-error'"
+        [iconSize]="'24'"
+        [icon]="'delete'"
+        [iconType]="'linear'"
+      ></common-icon-dp-icon>
+      <span class="text-onback-error b-2">حذف کارت</span>
+    </div>
+
+    <div
+      class="d-flex gap-minus cursor-pointer"
+      (click)="gotoEdit()"
+    >
+      <common-icon-dp-icon
+        [classes]="'text-onback-low'"
+        [iconSize]="'24'"
+        [icon]="'Edit-square'"
+        [iconType]="'linear'"
+      ></common-icon-dp-icon>
+      <span class="text-onback-low b-2">ویرایش اطلاعات کارت</span>
+    </div>
+  } @else {
+    <div class="st-4 text-align-center">
+      @if (hasAttachServicePaymentPos) {
+        جدا سازی کارت بانکی از اعتبار
+      } @else {
+        اتصال کارت بانکی به اعتبار
+      }
+    </div>
+    <div class="d-flex gap-medium">
+      <ngx-button
+        [style]="'tinted-on-back'"
+        [fullWidth]="true"
+        (clickHandler)="gettingConfirmation.set(false)"
+        >انصراف</ngx-button
+      >
+      <ngx-button
+        [style]="'fill'"
+        [fullWidth]="true"
+        (clickHandler)="toggleBnpl()"
+      >
+        تایید
+      </ngx-button>
+    </div>
+  }
+</div>

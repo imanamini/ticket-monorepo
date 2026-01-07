@@ -1,0 +1,80 @@
+<app-credit-app-bar
+  (onCloseButtonClick)="closeStep()"
+  [closeButton]="true"
+  title="فعال‌سازی اشتراک"
+>
+</app-credit-app-bar>
+<div class="top-section">
+  <div class="page-content">
+    @if (!status()) {
+      <app-credit-scrollable-view [fullHeightContent]="true">
+        <div class="form-section">
+          <p class="title text-onback-high">اطلاعات مالک شماره همراه زیر را وارد کنید:</p>
+          <h3 class="cell-number text-onback-high">
+            {{ cellNumber() | formattedCellNumber }}
+          </h3>
+          <form [formGroup]="form">
+            <ui-form-field
+              [errorMessageMapper]="{
+                required: 'کد ملی را وارد کنید.',
+                invalidNotionalCode: 'کد ملی اشتباه وارد شده است.',
+              }"
+              [error]="form.controls['nationalCode'].errors"
+              [isNumericKeyboard]="true"
+              [maxSize]="10"
+              formControlName="nationalCode"
+              label="کد ملی مالک شماره همراه"
+              [showError]="showError()"
+            ></ui-form-field>
+
+            <ui-form-field
+              [errorMessageMapper]="{
+                required: 'تاریخ تولد را انتخاب کنید.',
+                invalidBirthDate: 'تاریخ تولد معتبر نیست.',
+              }"
+              [error]="form.controls['birthDate'].errors"
+              [type]="'date'"
+              formControlName="birthDate"
+              label="تاریخ تولد"
+              [showError]="showError()"
+            ></ui-form-field>
+          </form>
+        </div>
+      </app-credit-scrollable-view>
+    } @else {
+      <ngx-status-result
+        [description]="statusResult()?.description!"
+        [loading]="statusResult()?.loading!"
+        [buttons]="statusResult()?.buttons!"
+        [title]="statusTitle()"
+        (clicked)="statusResultClicked($event)"
+      >
+        <ng-container status-image>
+          <div [class]="'message-image ' + statusResult().image"></div>
+        </ng-container>
+      </ngx-status-result>
+    }
+  </div>
+</div>
+@if (!status()) {
+  <div class="bottom-section">
+    <span class="confirm-checkbox text-onback-medium">
+      <ngx-checkbox [(ngModel)]="acceptedCondition">
+        با
+        <span
+          (click)="openContract($event)"
+          class="text-onback-brand cursor-pointer"
+          >قوانین و مقررات</span
+        >
+        استفاده موافقم.
+      </ngx-checkbox>
+    </span>
+    <ngx-button
+      (clickHandler)="submitForm()"
+      [disabled]="!acceptedCondition()"
+      [fullWidth]="true"
+    >
+      ادامه
+    </ngx-button>
+  </div>
+}

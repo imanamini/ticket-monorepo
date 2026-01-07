@@ -1,0 +1,42 @@
+<div class="title">اطلاعات مالک خودرو</div>
+<form [formGroup]="identityForm">
+  <ui-form-field
+    class="pt-huge d-flex flex-column flex-grow"
+    [error]="identityForm.controls['phoneNumber'].errors"
+    [hasCleaner]="true"
+    [isNumericKeyboard]="true"
+    formControlName="phoneNumber"
+    inputType="tel"
+    label="شماره همراه"
+    [maxSize]="11"
+    placeholder="مثال: ۰۹۰۰۰۰۰۰۰۰۰"
+    type="input"
+  >
+  </ui-form-field>
+
+  <ui-form-field
+    [error]="identityForm.controls['nationalCode'].errors"
+    [hasCleaner]="true"
+    [isNumericKeyboard]="true"
+    class="pt-medium d-flex flex-column flex-grow"
+    formControlName="nationalCode"
+    inputType="tel"
+    label="کد ملی"
+    placeholder="مثال: ۰۰۱۲۳۴۵۶۷۸"
+    [maxSize]="10"
+    type="input"
+  >
+  </ui-form-field>
+
+  <ngx-button
+    class="pt-huge d-flex flex-column flex-grow pb-huge"
+    [mode]="'form'"
+    [size]="'large'"
+    [style]="'fill'"
+    [fullWidth]="true"
+    [disabled]="identityForm.invalid"
+    (clickHandler)="onSubmitClicked()"
+  >
+    ثبت و ادامه
+  </ngx-button>
+</form>

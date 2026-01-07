@@ -1,0 +1,41 @@
+@if (!loading()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="onBack()"
+    [backButton]="true"
+    title="تعیین سقف اعتبار"
+  >
+  </app-credit-app-bar>
+  <div class="d-flex flex-column flex-grow rtl">
+    <div class="d-flex flex-column w-100 flex-grow justify-content-center pb-plus">
+      @if (dataMap()) {
+        <div class="flex-grow">
+          <ngx-status-result
+            (clicked)="onClose()"
+            [buttons]="dataMap()!.buttons!"
+            [description]="dataMap()!.description"
+            [title]="dataMap()!.title"
+            [type]="dataMap()!.type"
+            [iconState]="dataMap()!.iconState"
+          >
+            <div
+              html-content
+              class="d-flex flex-column flex-grow justify-content-flex-end gap-medium"
+            >
+              @if (dataMap()!.calloutMessages?.length) {
+                <ngx-callout
+                  [mode]="'multiple'"
+                  [showTitleBlink]="true"
+                  [messagesDashed]="false"
+                  [title]="dataMap()!.calloutTitle!"
+                  [messages]="dataMap()!.calloutMessages!"
+                />
+              }
+            </div>
+          </ngx-status-result>
+        </div>
+      }
+    </div>
+  </div>
+} @else {
+  <credit-page-loading [active]="true"></credit-page-loading>
+}

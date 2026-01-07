@@ -1,0 +1,27 @@
+<div
+  class="w-100 assets-container"
+  [ngClass]="portfolio()?.quantity > 0 ? 'text-align-start' : 'text-align-center'"
+>
+  @if (isLoading()) {
+    <div class="w-100 assets-container d-flex align-items-center justify-content-center">
+      <ngx-spinner [color]="'primary'" />
+    </div>
+  } @else {
+    @if (portfolio()?.quantity > 0) {
+      <p class="bt-3 text-onback-medium">
+        <span class="t-5">
+          {{ portfolio()?.price | thousands }}
+        </span>
+        ریال
+      </p>
+      <p class="c-1 text-onback-medium">{{ portfolio()?.quantity | number: '1.0-0' }} واحد</p>
+    } @else {
+      <p class="bt-3 text-onback-medium">
+        دارایی فعلی شما
+        <span class="t-5 text-onback-high is-currency"> {{ 0 }} ریال</span>
+        است.
+      </p>
+      <p class="bt-3 mt-micro text-onback-medium">برای افزایش دارایی سرمایه‌گذاری کنید.</p>
+    }
+  }
+</div>

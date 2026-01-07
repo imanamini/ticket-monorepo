@@ -1,0 +1,11 @@
+<ngx-alert [color]="color()"
+           [title]="title()"
+           [text]="text()"
+           [size]="size()"
+           [hasIcon]="hasIcon()"
+           [icon]="icon()"
+           [actionButton]="alertActionButton"
+           [actionButtonAlign]="actionButton()?.align"
+           [hasCloseIcon]="hasCloseIcon()"
+           (clickAction)="handleActionButtonClicked($event)">
+</ngx-alert>

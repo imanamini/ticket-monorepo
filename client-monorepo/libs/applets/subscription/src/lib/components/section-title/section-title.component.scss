@@ -1,0 +1,57 @@
+.title-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .title {
+    // TODO
+    //color: $swatch_steel_900;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+}
+
+.action-section {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  &.is-progress {
+    // TODO
+    background-image: url("apps/dpx/src/assets/subscription/icons/services/in-progress.svg") !important;
+  }
+
+  &.is-rejected {
+    // TODO
+    background-image: url("apps/dpx/src/assets/subscription/icons/services/rejected.svg") !important;
+  }
+}
+
+.description-section {
+  display: flex;
+  padding-top: 6px;
+  padding-right: 40px;
+
+  .description-text {
+    color: #6E798D;
+    text-align: right;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+  }
+}
+

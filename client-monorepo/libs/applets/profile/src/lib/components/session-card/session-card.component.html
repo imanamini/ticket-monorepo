@@ -1,0 +1,76 @@
+<ng-container>
+  <p class="c-1 mb-small mr-medium text-onback-medium">{{ sessionTitle() }}</p>
+  <div class="d-flex flex-column gap-small">
+    @for (session of modifiedSessions(); track session.device.deviceId) {
+      <div>
+        <div class="session-card border-100 border-color-air surface-high-contrast p-medium mb-tiny other-session">
+          <div class="session d-flex justify-content-space-between align-items-center">
+            <div class="session-info d-flex align-items-center gap-small flex-1">
+              <div class="session-icon surface-brand-tint p-small">
+                <common-icon-dp-icon
+                  [classes]="'text-onback-brand'"
+                  [iconSize]="'24'"
+                  [icon]="session?.device?.osName === SessionOsName.WEB ? 'tv' : 'mobile'"
+                  [iconType]="'linear'"
+                ></common-icon-dp-icon>
+              </div>
+              <div class="session-detail flex-1">
+                <div class="d-flex">
+                  <div class="d-flex flex-column flex-1">
+                    <div class="detail-title d-flex align-items-center flex-wrap c-1 mb-tiny text-onback-high gap-tiny">
+                      <p>{{ session?.device?.deviceMappedName }}</p>
+                      @if (session?.loginIp) {
+                        <p class="text-onback-low l-3">({{ session?.loginIp }})</p>
+                      }
+                    </div>
+                    <p class="detail-version bt-3 text-onback-low pb-small">
+                      {{ session?.device?.deviceMappedVersion }}
+                    </p>
+                  </div>
+                  @if (!isCurrentSession()) {
+                    <div
+                      class="remove-session-icon"
+                      (click)="deleteSessionClicked(session?.device?.deviceId || '')"
+                    >
+                      <common-icon-dp-icon
+                        [classes]="'text-onback-error'"
+                        [iconSize]="'24'"
+                        [icon]="'minus-circle'"
+                        [iconType]="'linear'"
+                      ></common-icon-dp-icon>
+                    </div>
+                  }
+                </div>
+                @if (hasLastLoginInfo()) {
+                  <p class="detail-last-login b-3 text-onback-low pt-small border-t-100 border-color-air">
+                    آخرین ورود: {{ session?.loginTime }}
+                  </p>
+                }
+                @if (isCurrentSession() && hasOtherSessions()) {
+                  <div class="pt-small border-t-100 border-color-air">
+                    <ngx-button
+                      [classNames]="['px-atom']"
+                      [rightIcon]="{
+                        name: 'minus-circle',
+                        type: 'linear',
+                      }"
+                      [style]="'link'"
+                      [size]="'small'"
+                      [destructive]="true"
+                      (click)="deleteSessionClicked(session?.device?.deviceId || '')"
+                    >
+                      غیرفعال کردن باقی دستگاه‌ها
+                    </ngx-button>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        @if (hasOtherSessionsRevoking()) {
+          <p class="text-onback-low l-2 px-minus">از همه‌ی دستگاه‌ها غیر دستگاه فعلی، خارج شوید.</p>
+        }
+      </div>
+    }
+  </div>
+</ng-container>

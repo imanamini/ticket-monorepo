@@ -1,0 +1,50 @@
+<div [id]="idValue"
+     [ngClass]="{
+       'mobile': isMobile,
+       'no-background': !showExtra,
+       'reversed': isReversed,
+       'has-border': hasBorder
+      }"
+     class="journey-buttons"
+>
+  <ng-content select="[terms-condition]"></ng-content>
+  <div class="wrapper-button" [class.extra-mobile]=" (showExtra && isMobile)">
+    <ng-container *ngIf="!hideBackBtn">
+      <div [ngClass]="{'btn-previous-mobile' : isMobile}" class="btn-previous">
+        <ui-button
+                (clicked)="handleClick($event,'PREVIOUS')"
+                [disabled]="disableBack"
+                appearance="GRAY-STYLE">
+          <div class="previous-content">
+            <img *ngIf="!hideBackBtnIcon && !isMobile"
+                 alt="back icon"
+                 src="insurance-assets/icons/icon-general-back-blue.svg"/>
+            <span>{{ backText }}</span>
+          </div>
+        </ui-button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isMobile && showExtra">
+      <div class="extra">
+        <div class="extra-label">
+          {{ extraLabel }}
+        </div>
+        <div class="extra-content">
+          {{ extraContent }}
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!hideNextBtn">
+      <div class="btn-next">
+        <ui-button
+                (clicked)="handleClick($event,'NEXT')"
+                [disabled]="disableNext"
+                appearance="DEFAULT">
+      <span class="next-content">
+        {{ nextText }}
+      </span>
+        </ui-button>
+      </div>
+    </ng-container>
+  </div>
+</div>

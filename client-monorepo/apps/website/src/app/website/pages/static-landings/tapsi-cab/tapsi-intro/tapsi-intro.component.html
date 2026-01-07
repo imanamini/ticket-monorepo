@@ -1,0 +1,29 @@
+<div class="intro-section d-flex align-items-center justify-content-center gap-medium">
+  <div class="content d-flex flex-column">
+    <div class="title mb-minus" [innerHTML]="transform(templateData().introSection?.mainTitle)"></div>
+    <div class="subtitle st-4 mb-big" [innerHTML]="templateData().introSection?.subtitle"></div>
+    @if (templateData().introSection?.cta?.text) {
+      <div class="cta d-flex">
+        <ngx-button
+          class="d-flex flex-row-reverse"
+          [mode]="'section'"
+          [brandButton]="true"
+          [leftIcon]="{ name: 'arrow-2-left', type: 'linear' }"
+          (clickHandler)="openLink(templateData().introSection?.cta?.link)"
+          [size]="!isMobile() ? 'large' : 'medium'"
+          [fullWidth]="isMobile()"
+        >
+          {{ templateData().introSection?.cta?.text }}
+        </ngx-button>
+      </div>
+    }
+  </div>
+  <div class="animation">
+    <div class="scene" [class.loaded]="isLoaded()">
+      <div class="trees"></div>
+      <div class="car" [class.loaded]="loadedCar()">
+        <ng-lottie [options]="options"></ng-lottie>
+      </div>
+    </div>
+  </div>
+</div>

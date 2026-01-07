@@ -1,0 +1,14 @@
+<div class="installment-rules py-massive d-flex gap-massive container align-items-center">
+  <div class="rules-content d-flex flex-column gap-plus">
+    @for (item of installmentRules()?.hints; track $index) {
+      <div class="rule-item d-flex align-items-center gap-medium">
+        <div class="icon"><img [src]="item?.icon?.url" alt=""></div>
+        <div class="text b-1" [innerHTML]="item?.description"></div>
+      </div>
+    }
+   </div>
+
+  <div class="image">
+    <img [src]="installmentRules()?.image?.url" alt="">
+  </div>
+</div>

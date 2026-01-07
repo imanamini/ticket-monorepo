@@ -1,0 +1,73 @@
+<div class="ui-complex-accordion-modals">
+  <div
+    (click)="closeDialog()"
+    class="close desktop"
+  >
+    <ngx-icon
+      class="cursor-pointer"
+      [name]="'close'"
+      [iconSize]="'24px'"
+    ></ngx-icon>
+  </div>
+  <div class="close mobile">
+    <img
+      alt=""
+      src="assets/images/icons/icon-line.svg"
+    />
+  </div>
+  <div
+    *ngIf="data && data.title"
+    class="title"
+  >
+    {{ data.title }}
+  </div>
+
+  <div
+    [ngClass]="isVideo ? 'is-video' : ''"
+    class="notices"
+  >
+    <div
+      *ngIf="data && data.content"
+      [innerHTML]="data.content"
+    ></div>
+
+    <ng-container *ngIf="data && data.notices && data.notices.length > 0">
+      <div
+        *ngIf="data.noticeTitle"
+        class="hints-title"
+      >
+        <span
+          icon="icon-hints"
+          size="24"
+          appUiIcon
+        ></span>
+        {{ data.noticeTitle }}
+      </div>
+      <ul class="hints-items">
+        <div class="dotted-line"></div>
+        <ng-container *ngFor="let step of data.notices">
+          <li>
+            <div class="dot-wrapper">
+              <div class="dot"></div>
+            </div>
+            <span>
+              {{ step.text }}
+            </span>
+          </li>
+        </ng-container>
+      </ul>
+    </ng-container>
+  </div>
+
+  <div
+    *ngIf="data && data.firstCta && data.firstCta.title"
+    class="cta text-align-left"
+  >
+    <app-ui-button
+      (click)="buttonClick(data.firstCta.link)"
+      appearance="BLUE-TEXT"
+    >
+      {{ data.firstCta.title }}
+    </app-ui-button>
+  </div>
+</div>

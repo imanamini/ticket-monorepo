@@ -1,0 +1,72 @@
+.size-40 {
+  width: 40px;
+  height: 40px;
+}
+
+.size-48 {
+  width: 48px;
+
+  &-iconbox {
+    &-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.gradient-text {
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent;
+      }
+
+      &.big {
+        height: 40px;
+        width: 40px;
+      }
+    }
+  }
+
+  height: 48px;
+}
+
+.size-52 {
+  width: 52px;
+  height: 52px;
+}
+
+.size-56 {
+  width: 56px;
+  height: 56px;
+}
+
+.size-64 {
+  width: 64px;
+  height: 64px;
+}
+
+.size-72 {
+  width: 72px;
+  height: 72px;
+}
+
+.mixed-blend-mode-multiply {
+  mix-blend-mode: multiply;
+}
+
+.icon-box-inner {
+  &.gradient-text {
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.framed-icon-wrapper {
+  position: relative;
+  width: fit-content;
+  overflow: visible;
+}
+
+.badge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-15%, -25%);
+}

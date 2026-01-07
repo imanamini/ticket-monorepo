@@ -1,0 +1,24 @@
+@if (title()) {
+  <span class="b-2">{{ title() }}</span>
+}
+<div
+  [formGroup]="form"
+  class="w-100 d-flex flex-wrap flex-column justify-content-flex-start mt-medium align-items-center"
+>
+  <div class="w-100 d-flex">
+    <ui-form-field
+      [label]="placeholder()"
+      class="w-100"
+      [autoFocus]="true"
+      [maxAmount]="maxAmount()"
+      [minAmount]="minAmount()"
+      [type]="'amount-chip'"
+      [maxSize]="16"
+      formControlName="amount"
+      [isNumericKeyboard]="true"
+      [convertNonEnglishDigits]="true"
+      [required]="true"
+      [hasCleaner]="true"
+    ></ui-form-field>
+  </div>
+</div>

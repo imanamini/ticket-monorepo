@@ -1,0 +1,22 @@
+<div class="benefits">
+  <h2 class="title">{{ registerBenefitsData?.title }}</h2>
+  <div class="benefits-list">
+    <ng-container *ngFor="let benefit of registerBenefitsData?.benefits">
+      <div class="benefit-item">
+        <div
+          *ngIf="benefit.icon?.url"
+          class="icon"
+        >
+          <img
+            [ngSrc]="benefit.icon?.url"
+            height="24"
+            width="24"
+          />
+        </div>
+        <div class="benefit-title">
+          {{ benefit.text }}
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

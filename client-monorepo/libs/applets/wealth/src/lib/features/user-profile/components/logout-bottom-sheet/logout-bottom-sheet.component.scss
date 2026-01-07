@@ -1,0 +1,27 @@
+@import "@digipay/base-style/swatch";
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    .title {
+        margin-top: 2rem;
+        color: rgba(44, 53, 68, 1);
+        font-size: 1.333rem;
+        font-weight: 524;
+        font-family: "yekan-bakh", "Courier New", Courier, monospace !important;
+    }
+
+    .buttons-container {
+        display: flex;
+        margin-top: 3.5rem;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+}
+

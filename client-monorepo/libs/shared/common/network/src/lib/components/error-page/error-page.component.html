@@ -1,0 +1,86 @@
+@if (config()) {
+  <div
+    class="blocker-error-page d-flex flex-column w-100 justify-content-center align-items-center h-100"
+    [id]="error()"
+    [ngClass]="backgroundClasses()"
+  >
+    @if (isAccessError() && generalErrorService.closeAction() !== 'none') {
+      <div class="dark cursor-pointer back-icon">
+        <ngx-button
+          [mode]="'icon-only'"
+          [size]="'small'"
+          [style]="'tinted-on-back'"
+          [leftIcon]="{ name: generalErrorService.closeAction() === 'back' ? 'arrow-right' : 'close' }"
+          (clickHandler)="goBack()"
+        />
+      </div>
+    }
+    <div [ngClass]="isAccessError() ? 'pb-huge' : 'p-minus'">
+      <common-network-error-image [type]="config()?.image"></common-network-error-image>
+    </div>
+    <div
+      class="d-flex flex-column align-items-center"
+      [ngClass]="isAccessError() ? 'gap-micro' : 'gap-small'"
+    >
+      <div [ngClass]="titleTextClasses()">
+        {{ config()?.title }}
+      </div>
+      <div
+        [ngClass]="messageTextClasses()"
+        class="b-2 px-big d-flex justify-center text-align-center"
+        [innerText]="config()?.message"
+      ></div>
+      @if (showErrorDetails()) {
+        <div
+          class="b-2 px-big d-flex justify-center text-align-center text-onback-medium px-medium"
+          (click)="handleDetailClick()"
+          [innerText]="errorDetails()"
+        ></div>
+      }
+    </div>
+
+    @if (!isAccessError() && config()?.cta === 'RETRY') {
+      <ngx-button
+        [mode]="'section'"
+        [style]="isUnavailableSystemError() ? 'tinted-on-back' : 'fill'"
+        [size]="'medium'"
+        [disabled]="disableButton()"
+        [rightIcon]="{
+          name: 'refresh',
+          type: 'linear',
+        }"
+        class="mt-mega"
+        (click)="handleRetry()"
+      >
+        تلاش دوباره
+      </ngx-button>
+    } @else if (isAccessError()) {
+      <ngx-button
+        [mode]="'section'"
+        [style]="'tinted-on-back'"
+        [size]="'large'"
+        [classNames]="['button-bg-onelevated-job-secondry']"
+        [disabled]="disableButton()"
+        class="mt-massive"
+        (click)="handleRetry()"
+      >
+        <span class="dark-color">تلاش مجدد</span>
+      </ngx-button>
+    }
+    @if (config()?.cta === 'RETURN_TO_HOME') {
+      <ngx-button
+        [mode]="'section'"
+        [size]="'medium'"
+        [disabled]="disableButton()"
+        [leftIcon]="{
+          name: 'arrow-left',
+          type: 'linear',
+        }"
+        class="mt-mega"
+        (click)="returnToHome()"
+      >
+        صفحه اصلی
+      </ngx-button>
+    }
+  </div>
+}

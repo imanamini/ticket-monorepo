@@ -1,0 +1,38 @@
+<app-credit-location-trap
+  (back)="goBack()"
+  [canBack]="false"
+  [canExit]="false"
+></app-credit-location-trap>
+<app-credit-app-bar
+  (onBackButtonClick)="goBack()"
+  [backButton]="true"
+  title="امکان‌سنجی دریافت وام"
+></app-credit-app-bar>
+@if (!loading()) {
+  @if (timeLimited()) {
+    <app-credit-scoring-time-limitation
+      (clicked)="goBack()"
+      [timeLimitedData]="timeLimitedData()"
+    ></app-credit-scoring-time-limitation>
+  } @else if (!gettingApiCount()) {
+    <div class="flex-full-height page-content">
+      <app-credit-in-page-otp
+        (entered)="verifyOtp($event)"
+        (requestNewCode)="sendNewCode()"
+        [cellNumber]="cellNumber()!"
+        [clearSignal]="otpClearSignal()"
+        [countDown]="otpCountDown() / 1000"
+        [hideBottomDescription]="true"
+        [isSubmitting]="verifyingCode()"
+        [length]="otpCodeLength()"
+        [otpError]="otpError()"
+        [newCodeBtnText]="resendAvailable() ? 'دریافت کد جدید' : 'راهنما'"
+        [showResend]="showResend()"
+        [topDescription]="otpDescription"
+        [warningText]="warningText"
+      ></app-credit-in-page-otp>
+    </div>
+  }
+}
+
+<credit-page-loading [active]="!!gettingApiCount() || loading()"></credit-page-loading>

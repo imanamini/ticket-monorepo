@@ -1,0 +1,54 @@
+<common-ui-components-page-layout
+  [showBorder]="true"
+  [title]="'لیست شعبه ها'"
+  [closeButton]="true"
+>
+  <div class="d-flex flex-column gap-huge px-plus">
+    <!--  Search  -->
+    <div>
+      <common-ui-components-search
+        [placeHolder]="'جست‌و‌جو در شعبه ها'"
+        (searchTextChange)="doSearch($event)"
+        [mode]="'section'"
+        #searchComponent
+      >
+      </common-ui-components-search>
+    </div>
+    <!--  End Search  -->
+
+    <!-- List -->
+    <div
+      class="d-flex flex-column gap-low"
+      commonUtilitiesScrolledToEnd
+      (scrolledToEnd)="listEnded()"
+    >
+      @for (branch of branches(); track branch.branchId) {
+        <stores-applet-branch-overview
+          [branch]="branch"
+          [showBadge]="$first"
+        ></stores-applet-branch-overview>
+      } @empty {
+        @if (!branchesLoading()) {
+          <common-ui-components-no-item
+            class="mt-large"
+            [description]="'شعبه ای پیدا نشد!'"
+            [buttonTitle]="'بازگشت به صفحه فروشگاه'"
+            (buttonClicked)="closePage()"
+          >
+          </common-ui-components-no-item>
+        }
+      }
+
+      @if (branchesLoading()) {
+        @for (_ of rangeCreator(4); track $index) {
+          <lib-ngx-skeleton-loading
+            [height]="'111.92px'"
+            [width]="'100%'"
+            [classes]="'radius-minus'"
+          ></lib-ngx-skeleton-loading>
+        }
+      }
+    </div>
+    <!--  End List  -->
+  </div>
+</common-ui-components-page-layout>

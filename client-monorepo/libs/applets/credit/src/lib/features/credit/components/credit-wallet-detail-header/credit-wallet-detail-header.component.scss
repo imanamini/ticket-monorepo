@@ -1,0 +1,155 @@
+$bar-padding: 18px;
+
+.wallet-detail-header-wrapper {
+  background-size: cover;
+
+  &.light {
+    background-image: url("./assets/credit_card_pattern_light.svg");
+  }
+
+  &.dark {
+    background-image: url("./assets/credit_card_pattern_dark.svg");
+  }
+}
+
+.page-title-bar {
+  text-align: right;
+  padding: $bar-padding;
+  display: flex;
+  align-items: center;
+
+  .title {
+    flex-grow: 1;
+    color: #fff;
+    padding: 0 16px;
+
+    span {
+      display: block;
+    }
+  }
+
+  .right-action {
+    flex-grow: 0;
+    cursor: pointer;
+  }
+
+  .left-action {
+    flex-grow: 0;
+    cursor: pointer;
+  }
+
+  .icon-white {
+    color: #ffffff;
+  }
+}
+
+.wallet-detail-header {
+  width: 100%;
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0 40px 0;
+
+  &-price--label {
+    font-size: 12px;
+    color: #ffffff;
+    font-weight: 200;
+    line-height: 12px;
+    height: 26px;
+    opacity: 1;
+    transition:
+      height 0.3s,
+      opacity 0.15s 0.15s;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &-price--value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    line-height: 56px;
+    height: 56px;
+    opacity: 1;
+    transition:
+      height 0.3s,
+      opacity 0.15s 0.15s;
+    overflow: hidden;
+  }
+
+  &-state_time {
+    margin-top: 15px;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &--state {
+      margin-right: 18px;
+
+      &-top {
+        font-size: 12px;
+        font-weight: 200;
+      }
+
+      &-bottom {
+        margin-top: 7px;
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+
+    &--time {
+      margin-left: 18px;
+
+      &-top {
+        font-size: 12px;
+        font-weight: 200;
+      }
+
+      &-bottom {
+        margin-top: 7px;
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .wallet-detail-header-left-label {
+    text-align: left;
+  }
+
+  &.collapse-mode {
+    .wallet-detail-header-price--label {
+      height: 0;
+      opacity: 0;
+      transition:
+        height 0.3s,
+        opacity 0.15s;
+    }
+
+    .wallet-detail-header-price--value {
+      height: 0;
+      opacity: 0;
+      transition:
+        height 0.3s,
+        opacity 0.15s;
+    }
+  }
+}
+
+.price {
+  font-size: 32px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.currency {
+  font-weight: 200;
+  font-size: 18px;
+}

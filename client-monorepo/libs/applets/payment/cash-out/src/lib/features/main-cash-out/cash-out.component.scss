@@ -1,0 +1,25 @@
+:host ::ng-deep {
+
+  app-cash-out-national-code {
+    app-page-title-bar {
+      display: none;
+    }
+  }
+
+  .dot {
+    height: 8px;
+    width: 8px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    top: 17px;
+    left: 30px;
+    border: 2px solid white;
+    box-sizing: content-box;
+  }
+}
+
+:host ::ng-deep .content-wrapper {
+  height: 100% !important;
+}

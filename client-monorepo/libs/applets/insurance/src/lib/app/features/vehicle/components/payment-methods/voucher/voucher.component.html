@@ -1,0 +1,11 @@
+<div #vc
+     data-tracking-id="btn-voucher"
+     class="add-voucher d-flex flex-row justify-content-flex-end align-items-center gap-tiny py-low cursor-pointer"
+     (click)="handleClicked()">
+    <span [textContent]="voucher()?.code?'حذف کد تخفیف':'کد تخفیف دارم'"
+          class="bt-2 text-onback-medium"
+          [ngClass]="{'text-onback-medium':voucher()?.code,'text-onback-brand': !voucher()?.code}"></span>
+  <ngx-icon [name]="voucher()?.code ? 'delete':'discount'"
+            [classes]="voucher()?.code ? 'text-onback-error' : 'text-onback-brand'"></ngx-icon>
+</div>
+

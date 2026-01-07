@@ -1,0 +1,16 @@
+<div class="py-pony px-medium d-flex align-items-center justify-content-center relative">
+  @if (backUrl()) {
+    <ngx-button
+      class="ml-small cta"
+      [mode]="'icon-only'"
+      [style]="'link'"
+      (clickHandler)="backHandler()"
+      [size]="'small'"
+      [leftIcon]="{
+        name: 'arrow-right',
+      }"
+    >
+    </ngx-button>
+  }
+  <span class="b-1 text-onback-medium">پرداخت سریع بدهی</span>
+</div>

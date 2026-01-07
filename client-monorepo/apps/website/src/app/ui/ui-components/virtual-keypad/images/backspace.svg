@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg height="24px" version="1.1" viewBox="0 0 24 24" width="24px" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+  <title>Asset/Backspace</title>
+  <desc>Created with Sketch.</desc>
+  <defs>
+    <path
+      d="M22,3 L7,3 C6.31,3 5.77,3.35 5.41,3.88 L0,12 L5.41,20.11 C5.77,20.64 6.31,21 7,21 L22,21 C23.1,21 24,20.1 24,19 L24,5 C24,3.9 23.1,3 22,3 Z M22,19 L7.07,19 L2.4,12 L7.06,5 L22,5 L22,19 Z M10.41,17 L14,13.41 L17.59,17 L19,15.59 L15.41,12 L19,8.41 L17.59,7 L14,10.59 L10.41,7 L9,8.41 L12.59,12 L9,15.59 L10.41,17 Z"
+      id="path-1"></path>
+  </defs>
+  <g fill="none" fill-rule="evenodd" id="Asset/Backspace" stroke="none" stroke-width="1">
+    <rect height="24" id="Rectangle" width="24" x="0" y="0"></rect>
+    <mask fill="white" id="mask-2">
+      <use xlink:href="#path-1"></use>
+    </mask>
+    <g fill-rule="nonzero" id="Mask"></g>
+    <g fill="#4D4D4D" id="Fill/Solid/Brand-Colors/Black-70" mask="url(#mask-2)">
+      <rect height="24" id="Colors/Black-70" width="24" x="0" y="0"></rect>
+    </g>
+  </g>
+</svg>

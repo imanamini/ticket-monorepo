@@ -1,0 +1,50 @@
+<div class="d-flex flex-column gap-minus w-100">
+  <section class="d-flex align-items-center surface-back p-medium gap-small radius-medium">
+    <div class="img-background surface-elevated radius-rounded d-flex justify-content-center align-items-center p-low">
+      <ui-api-image
+        [styles]="{ borderRadius: '50%' }"
+        [imageId]="destBankLogo()"
+        [width]="'24px'"
+        [height]="'24px'"
+      ></ui-api-image>
+    </div>
+    <div class="d-flex flex-column align-items-flex-start gap-tiny flex-basis-1">
+      <p class="d-flex align-items-center gap-tiny">
+        <span class="l-3 text-onback-medium">انتقال به</span>
+        <span class="bt-2 text-onback-high">{{ destCardOwner() }}</span>
+      </p>
+      <p class="c-3 text-onback-low ltr">{{ destCardPan() | maskCardNumber: true }}</p>
+    </div>
+  </section>
+  <section class="d-flex flex-column surface-back radius-medium px-medium">
+    @for (row of rows(); track row.value; let last = $last) {
+      <div
+        class="row d-flex align-items-center justify-content-space-between py-small gap-small"
+        [ngClass]="!last ? 'border-b-100 border-color-tint' : ''"
+      >
+        <div class="b-3 text-onback-low">{{ row.label }}</div>
+        <div class="d-flex align-items-center">
+          <div>
+            @if (row.type === 'amount') {
+              <div class="st-8 text-onback-high">{{ row.value | thousands }} <span class="unit is-currency">ریال</span></div>
+            }
+
+            @if (row.type === 'card') {
+              <div class="b-2 text-onback-high ltr">{{ String(row.value) | maskCardNumber: true : '-' }}</div>
+            }
+          </div>
+          @if (row.logo) {
+            <div class="logo surface-elevated radius-rounded d-flex justify-content-center align-items-center mr-tiny">
+              <ui-api-image
+                [styles]="{ borderRadius: '50%' }"
+                [imageId]="row.logo"
+                [width]="'24px'"
+                [height]="'24px'"
+              ></ui-api-image>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </section>
+</div>

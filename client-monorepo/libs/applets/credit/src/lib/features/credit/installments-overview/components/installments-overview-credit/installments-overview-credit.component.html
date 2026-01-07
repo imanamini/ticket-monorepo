@@ -1,0 +1,127 @@
+<div class="d-flex flex-column h-100">
+  @if (notHaveActiveCredit()) {
+    <div class="h-100 p-plus not-found">
+      <app-installments-overview-not-found
+        [title]="'وام فعال ندارید'"
+        [description]="'تنها با یک برگ چک صیادی تا ۱۰۰ میلیون تومان وام فوری دریافت کنید.'"
+        [ctaTitle]="isPillar ? null : 'درخواست وام'"
+        (ctaClicked)="creditNotFoundActionHandler()"
+      />
+    </div>
+  } @else {
+    @if (emptyInstallments()) {
+      <div class="h-100 p-plus not-found">
+        <app-installments-overview-not-found
+          [title]="'قسطی برای پرداخت ندارید'"
+          [description]="'بعد از خرید اعتباری بدهی شما به صورت اقساط ماهانه در این بخش قابل پرداخت خواهد بود.'"
+          [ctaTitle]="isPillar ? null : 'مشاهده فروشگاه‌ها'"
+          (ctaClicked)="emptyInstallmentsActionHandler()"
+        />
+      </div>
+    } @else {
+      @if (contractInstallments().length > 1) {
+        <ngx-segmented-control
+          class="mt-medium px-plus"
+          [mode]="'SECTION_SEGMENT'"
+          [options]="tabOptions()"
+          [selectedOption]="tabOptions()[selectedContractIndex()]"
+          (selectedOptionChange)="onSelectedOptionChange($event)"
+        />
+      }
+      <div class="flex-grow px-plus pb-medium overflow-required">
+        @if (canCheckAll()) {
+          <div
+            class="px-medium py-small border-300 border-color-light mt-medium cursor-pointer"
+            [class]="isPillar ? 'radius-small' : 'radius-medium'"
+            (click)="checkAllClickHandler()"
+          >
+            <div class="d-flex justify-content-space-between align-items-center">
+              <span class="st-8">انتخاب همه و تسویه کامل</span>
+              <ngx-checkbox
+                class="pointer-events-none"
+                [(checked)]="checkAll"
+                [isIndeterminate]="true"
+                [size]="20"
+              />
+            </div>
+            @if (selectedContractInstallment().discountAmount) {
+              <ngx-divider
+                class="my-small d-block"
+                [color]="BorderColorsEnum.Air"
+              />
+              <div class="d-flex align-items-center gap-tiny">
+                <ngx-icon
+                  name="discount"
+                  [iconSize]="'24px'"
+                  [classes]="'text-onback-success'"
+                />
+                <div class="text-onback-medium l-3 flex-grow">تخفیف تسویه کامل</div>
+                <div class="text-onback-success">
+                  <span class="st-8">{{ selectedContractInstallment().discountAmount | thousands }}</span>
+                  <span class="is-currency st-8 mr-micro">ریال</span>
+                </div>
+              </div>
+            }
+          </div>
+        }
+
+        @for (installment of selectedContractInstallment().installments; track installment.order) {
+          <div class="mt-medium">
+            <app-installment-overview-card
+              [(checked)]="installment.checked"
+              (checkedChange)="onCheckChange($event, $index)"
+              [type]="'Credit'"
+              [deActive]="!!installment.deActive"
+              (deActiveClicked)="deActiveClickHandler()"
+              [installmentsCount]="selectedContractInstallment().contractTotalInstallmentsCount"
+              [order]="installment.order"
+              [title]="installment.title"
+              [subtitle]="installment.subtitle"
+              [amount]="installment.amount - installment.penalty + installment.penaltyWaiverAmount"
+              [penaltyAmount]="installment.penalty"
+              [penaltyWaiverAmount]="installment.penaltyWaiverAmount"
+              [fundProviderBusinessId]="selectedContractInstallment().fundProvider.businessId"
+            />
+          </div>
+        }
+      </div>
+
+      <app-credit-installment-payment-footer
+        [finalAmount]="selectedAmounts().payable"
+        [rows]="paymentFooterRows()"
+        [detailIsOpen]="!isPillar"
+        [ctaLabel]="'تایید و ادامه'"
+        [ctaIsBrand]="false"
+        (cta)="onFooterPaymentClick()"
+        [ctaLoading]="creditInstallmentPaymentService.gettingTicket()"
+      />
+    }
+  }
+</div>
+
+<ng-template #clearConfirmImg>
+  <div class="d-flex align-items-center justify-content-center p-big radius-rounded surface-back">
+    <ngx-icon
+      name="info-circle"
+      type="bold"
+      [iconSize]="'48px'"
+      [classes]="'text-onback-success'"
+    />
+  </div>
+</ng-template>
+
+<ng-template #clearConfirmBody>
+  <div class="b-2">
+    با پرداخت
+    <span class="text-onback-medium">
+      <span class="st-7">{{ selectedAmounts().payable }}</span>
+      <span class="is-currency st-8 mr-micro">ریال</span>
+    </span>
+    بدهی شما بطور کامل تسویه شده و از
+    <span class="text-onback-success">
+      <span class="st-7">{{ selectedAmounts().clearDiscountAmount }}</span>
+      <span class="is-currency mr-micro">ریال</span>
+    </span>
+    تخفیف بهره‌مند خواهید شد.
+  </div>
+</ng-template>

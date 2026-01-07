@@ -1,0 +1,53 @@
+<ngx-app-bar
+  class="w-100"
+  [title]="'توثیق دارایی'"
+  [rightButton]="{
+    icon: 'arrow-right',
+    style: 'neutral-link',
+    mode: 'icon-only',
+    size: 'medium',
+  }"
+  (onRightButtonClick)="onBackHandler()"
+/>
+
+<div class="d-flex flex-wrap w-100 container">
+  @if (isLoading) {
+    <div class="loading-container">
+      <app-spinner></app-spinner>
+    </div>
+  }
+
+  <div class="detail px-big">
+    <img
+      src="./wealth-assets/svg/collateral-rejected.svg"
+      alt=""
+    />
+
+    <div class="w-100 mt-big">
+      <p class="title">درخواست شما برای وثیقه واحد‌های صندوق {{ state?.instrumentTitle }} به یکی از دلایل زیر رد شد:</p>
+    </div>
+
+    <div class="w-100 mt-big reject-reason-container">
+      @for (reason of rejectedReasons; track $index) {
+        <p class="description">
+          {{ reason }}
+        </p>
+      }
+    </div>
+  </div>
+
+  <div class="button-container mt-medium">
+    <div class="w-100 px-medium">
+      <ngx-button
+        [style]="'fill'"
+        [fullWidth]="true"
+        (clickHandler)="continue()"
+        [size]="'medium'"
+        [buttonId]="'COLLATERAL_REJECTED_VIEW_BNPL'"
+        [disabled]="isLoading"
+      >
+        مشاهده اعتبار
+      </ngx-button>
+    </div>
+  </div>
+</div>

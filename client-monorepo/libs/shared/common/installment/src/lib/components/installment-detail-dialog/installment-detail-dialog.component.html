@@ -1,0 +1,53 @@
+<div class="p-big pt-huge">
+  <div class="d-flex justify-content-space-between align-items-center surface-back radius-minus p-medium">
+    <span class="bt-3 text-onback-low">مجموع بدهی:</span>
+    <div class="st-8">
+      <span class="number">{{ data()?.totalAmount | thousands }}</span>
+      <span class="unit is-currency"> ریال </span>
+    </div>
+  </div>
+  <main class="pt-medium">
+    @for (item of modifiedItems(); track item?.payload?.creditId) {
+      <div
+        class="d-flex justify-content-space-between align-items-center pb-tiny"
+        [ngClass]="!$last ? 'border-b-100 border-color-air mb-minus' : ''"
+        (click)="paymentClick(item)"
+      >
+        <div class="d-flex flex-column text-onback-medium">
+          <div class="d-flex align-items-center gap-tiny">
+            <span class="c-2">{{ item.title }}</span>
+            @if (item.badge) {
+              <ngx-badge
+                [status]="item.badge.status"
+                [mode]="'fill'"
+                [size]="'tiny'"
+              >
+                {{ item.badge.text }}
+              </ngx-badge>
+            }
+          </div>
+          <div class="d-flex align-items-center gap-low">
+            <div>
+              <span class="st-5 number text-onback-high">{{ item.payload.contractDebts.totalAmount | thousands }}</span>
+              <span class="l-2 unit is-currency"> ریال </span>
+            </div>
+            @if (data().bnplCount > 1 && item.payload.serviceType === SERVICE_TYPE.BNPL) {
+              <div class="dot radius-rounded"></div>
+              <span class="c-3 text-onback-low">شامل {{ data().bnplCount }} قسط</span>
+            }
+            @if (data().creditCount > 1 && item.payload.serviceType === SERVICE_TYPE.CREDIT) {
+              <div class="dot radius-rounded"></div>
+              <span class="c-3 text-onback-low">شامل {{ data().creditCount }} قسط</span>
+            }
+          </div>
+        </div>
+        <ngx-button
+          [mode]="'section'"
+          [size]="'small'"
+          [style]="'fill'"
+          >پرداخت</ngx-button
+        >
+      </div>
+    }
+  </main>
+</div>

@@ -1,0 +1,63 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100dvh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'قوانین و مقررات'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  @if (loading()) {
+    <app-spinner />
+  } @else {
+    <div class="d-flex flex-column flex-1 w-100 px-plus">
+      <p class="st-8 text-onback-medium">قبل از سرمایه‌گذاری این مطالب را مطالعه کنید:</p>
+
+      <div class="stepper">
+        @for (item of agreements(); track $index) {
+          <div class="step">
+            <div class="circle"></div>
+            <span class="c-2 text-onback-medium">
+              {{ item }}
+            </span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="w-100 d-flex flex-column gap-medium surface-elevated sticky-action-group px-plus py-medium">
+      <ngx-checkbox
+        class="d-flex align-items-center"
+        (checkedChange)="onToggleAgreement($event)"
+        [checked]="agreementChecked()"
+      >
+        <div class="d-flex gap-tiny check-box-text c-3">
+          <span>موارد فوق و شرایط </span>
+          <span
+            (click)="termsAndConditions()"
+            class="text-onback-brand"
+          >
+            قوانین و مقررات ETF
+          </span>
+          <span>را می‌پذیرم.</span>
+        </div>
+      </ngx-checkbox>
+
+      <ngx-button
+        [style]="'fill'"
+        [fullWidth]="true"
+        [size]="'medium'"
+        [disabled]="!agreementChecked() || btnLoading()"
+        [isLoading]="btnLoading()"
+        (clickHandler)="continue()"
+        [buttonId]="'IPO_CONFIRM_CONDITIONS'"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  }
+</div>

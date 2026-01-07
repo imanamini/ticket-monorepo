@@ -1,0 +1,5 @@
+export enum REFUND_CAP_STATUS {
+  DAILY = 18614,
+  WEEKLY = 18615,
+  MONTHLY = 18616,
+}

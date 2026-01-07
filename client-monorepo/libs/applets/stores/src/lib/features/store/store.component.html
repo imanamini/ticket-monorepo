@@ -1,0 +1,100 @@
+<common-ui-components-page-layout [showBackIcon]="false">
+  <div
+    id="cover-image-container"
+    class="position-relative"
+  >
+    <div id="cover-image">
+      @if (store()) {
+        <ui-api-image
+          [imageId]="store()!.coverImageId"
+          [width]="'100%'"
+          [height]="'100%'"
+          class="w-100 h-100 api-image"
+          [styles]="{ objectFit: 'cover', filter: isDisabled() ? 'grayscale(1)' : 'unset' }"
+          [fallbackImage]="'assets/fallback/store-info-fallback.png'"
+        ></ui-api-image>
+      }
+    </div>
+    <div class="position-absolute d-flex cursor-pointer justify-content-space-between align-items-center">
+      <ngx-button
+        [style]="'tinted-on-back'"
+        [mode]="'icon-only'"
+        [size]="'small'"
+        [leftIcon]="{
+          name: 'arrow-right',
+          type: 'linear',
+        }"
+        (click)="goBack()"
+      >
+      </ngx-button>
+      @if (store()?.score) {
+        <common-rate-count
+          [rateAmount]="store()?.score?.score!"
+          [rateCount]="store()?.score?.count!"
+        ></common-rate-count>
+      }
+    </div>
+  </div>
+  <stores-applet-store-overview
+    [store]="store()"
+    [isBlurred]="true"
+    [showBranchesButton]="!isSingleBranch()"
+  ></stores-applet-store-overview>
+  @if (branches()?.length) {
+    <div class="ty-75 px-plus mb-big">
+      <stores-applet-branch-overview
+        [branch]="branches()![0]"
+        [showBadge]="!isSingleBranch()"
+      ></stores-applet-branch-overview>
+    </div>
+  }
+
+  @if (store()?.title === 'اسنوا') {
+    <div class="px-plus ty-75 mb-medium">
+      <img
+        src="assets/stores/snowa.webp"
+        class="w-100"
+        (click)="goToWebsiteLanding()"
+      />
+    </div>
+  }
+
+  <div class="d-flex ty-75 flex-column gap-medium">
+    <ngx-accordion
+      class="p-minus border-100 radius-minus border-color-light mx-plus"
+      [configs]="storeIntroAccordionConfig()"
+    ></ngx-accordion>
+    @if (vouchers() && vouchers()?.length) {
+      <common-vouchers-voucher-carousel
+        [inputVouchers]="vouchers()"
+        [bgMode]="'surface-back'"
+      ></common-vouchers-voucher-carousel>
+      <ngx-accordion
+        class="p-minus border-100 radius-minus border-color-light mx-plus"
+        [configs]="storeVoucherAccordionConfig()"
+      ></ngx-accordion>
+    }
+    @if (showStoreDetailsAccordion() && storeDetailsAccordionConfig().length) {
+      <div class="d-flex flex-column gap-small p-minus border-100 radius-minus border-color-light mx-plus">
+        <div class="d-flex st-8 justify-content-start">پرداخت حضوری از طریق:</div>
+        <ngx-accordion
+          class="py-tiny"
+          [configs]="storeDetailsAccordionConfig()"
+        ></ngx-accordion>
+      </div>
+    }
+  </div>
+
+
+  @if (store() && crawled()) {
+    <stores-applet-store-discounted-products [store]="store()!"></stores-applet-store-discounted-products>
+    <stores-applet-store-most-visited-products [store]="store()!"></stores-applet-store-most-visited-products>
+  }
+
+  @if (storeBanner().length > 0) {
+    <common-app-banners-shared-common-banners [bannersData]="storeBanner()"
+                                              [categoryToShow]="BannerCategory.STORE_DETAIL_1"
+                                              class="mt-medium"></common-app-banners-shared-common-banners>
+  }
+  <div class="pt-big"></div>
+</common-ui-components-page-layout>

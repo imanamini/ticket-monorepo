@@ -1,0 +1,4 @@
+export enum CUSTOMER_TYPE {
+  INDIVIDUAL = 0,
+  ORGANIZATIONAL = 1,
+}

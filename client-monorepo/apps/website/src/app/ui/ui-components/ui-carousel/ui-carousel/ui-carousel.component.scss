@@ -1,0 +1,26 @@
+::ng-deep {
+  .owl-carousel-wrapper {
+    direction: ltr;
+  }
+
+  .owl-stage-outer {
+    overflow: visible !important;
+  }
+
+  .owl-stage {
+    display: flex;
+    align-items: center;
+  }
+
+  .owl-nav {
+    display: none;
+  }
+}
+
+.placeholder-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}

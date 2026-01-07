@@ -1,0 +1,27 @@
+<div class="search-result d-flex align-items-center justify-content-start gap-small cursor-pointer w-100">
+  @if (isLoading()) {
+    <lib-ngx-skeleton-loading
+      [height]="'20px'"
+      [width]="'50px'"
+      [classes]="'radius-medium'"
+    ></lib-ngx-skeleton-loading>
+  } @else {
+    <div
+      class="d-flex align-items-center gap-small cursor-pointer pb-small"
+      (click)="handleClick()"
+    >
+      <common-ui-components-framed-icon
+        ngxRouterLoading
+        class="cursor-pointer"
+        [size]="40"
+        [iconColor]="'#4657C3'"
+        [showBadge]="true"
+        [type]="service().imageType"
+        [icon]="service().imageType === ServiceImagesType.SRC ? '/assets/services/' + service().icon : service().icon || ''"
+        [trackerIdPrefix]="service().icon || ''"
+        [iconType]="'due'"
+      ></common-ui-components-framed-icon>
+      <span class="c-2 text-onback-medium">{{ service().title }}</span>
+    </div>
+  }
+</div>

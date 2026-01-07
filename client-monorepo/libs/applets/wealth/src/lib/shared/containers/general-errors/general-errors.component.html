@@ -1,0 +1,58 @@
+<div class="w-100 d-flex flex-wrap">
+  <ngx-app-bar
+    class="w-100"
+    [title]="error().pageTitle || 'خطا'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+  <div class="w-100 px-plus surface-elevated container">
+    <div class="w-100 d-flex flex-wrap align-items-center justify-content-center content">
+      <div class="icon-container">
+        @if (error()?.code === errorCodes.rayanGetCustomerOrdersFailed || error()?.code === errorCodes.rayanCancelOrderOtpFailed) {
+          <img
+            src="./wealth-assets/svg/empty-transactions.svg"
+            [alt]="error()?.title"
+          />
+        } @else {
+          @if (error()?.icon) {
+            <img
+              [src]="'./wealth-assets/svg/' + error()?.icon"
+              [alt]="error()?.title"
+            />
+          } @else {
+            <img
+              [src]="'./wealth-assets/svg/disconnected.svg'"
+              [alt]="error()?.title"
+            />
+          }
+        }
+      </div>
+
+      <div class="d-flex flex-wrap w-100 mt-plus align-items-center justify-content-center">
+        <!-- ? Title -->
+        <p class="w-100 text-align-center st-8">{{ error()?.title ?? 'خطا' }}</p>
+        <p class="w-100 text-align-center bt-2">{{ error()?.description ?? 'لطفا دقایقی دیگر دوباره تلاش کنید.' }}</p>
+      </div>
+    </div>
+
+    <div
+      class="w-100 d-flex actions-container gap-small"
+      [ngClass]="{ 'two-columns': error()?.actions?.length === 2 }"
+    >
+      @for (button of error()?.actions; track button) {
+        <ngx-button
+          [style.width]]="button.width"
+          [fullWidth]="true"
+          (clickHandler)="onBackHandler()"
+        >
+          {{ button.title }}
+        </ngx-button>
+      }
+    </div>
+  </div>
+</div>

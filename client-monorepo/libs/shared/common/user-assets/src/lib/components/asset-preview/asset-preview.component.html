@@ -1,0 +1,74 @@
+@if (!isLoading()) {
+  <div
+    ngxTrackableId
+    class="asset surface-elevated radius-giant px-minus py-pony d-flex flex-column justify-content-space-between cursor-pointer no-select {{
+      classes()
+    }}"
+    [trackerId]="AssetTypes[reverseUserAssetTypesMapper[title()]]"
+    (click)="onClick()"
+  >
+    <div class="asset-bg pattern-{{ patternColor() }}"></div>
+    <div class="w-100 d-flex align-items-center justify-content-space-between">
+      <div class="l-3 text-onback-low">{{ title() }}</div>
+
+      @if (isDisabled()) {
+        <ngx-badge
+          [hasIcon]="true"
+          [status]="'neutral'"
+          [mode]="'bold'"
+          [size]="'tiny'"
+        >
+          <ngx-icon
+            badge-icon
+            [name]="'info-circle'"
+            [type]="'linear'"
+            [iconSize]="'16px'"
+          />
+          غیرفعال
+        </ngx-badge>
+      } @else {
+        <div
+          class="asset-iconbox"
+          [ngStyle]="iconBoxStyle()"
+        >
+          <common-icon-dp-icon
+            [iconSize]="'20'"
+            [icon]="icon()"
+          ></common-icon-dp-icon>
+        </div>
+      }
+    </div>
+    <div class="w-100">
+      @switch (subTitleType()) {
+        @case ('text') {
+          <div class="text-onback-high st-8">{{ subTitle() }}</div>
+        }
+        @case ('price') {
+          <div
+            class="d-flex align-items-center justify-content-start gap-micro text-onback-high"
+            [ngClass]="{ 'text-onback-disabled': isDisabled() }"
+          >
+            <div class="st-6">{{ subTitle() | thousands }}</div>
+            <div class="c-3 is-currency">{{ unit() }}</div>
+          </div>
+        }
+        @case ('cta') {
+          <div class="st-8 text-onback-brand d-flex align-items-center justify-content-start gap-micro">
+            {{ subTitle() }}
+            <common-icon-dp-icon
+              [iconSize]="'16'"
+              [icon]="'Arrow-2-Left'"
+              [iconType]="'linear'"
+            ></common-icon-dp-icon>
+          </div>
+        }
+      }
+    </div>
+  </div>
+} @else {
+  <lib-ngx-skeleton-loading
+    [height]="'64px'"
+    [width]="'120px'"
+    [classes]="'radius-medium'"
+  ></lib-ngx-skeleton-loading>
+}

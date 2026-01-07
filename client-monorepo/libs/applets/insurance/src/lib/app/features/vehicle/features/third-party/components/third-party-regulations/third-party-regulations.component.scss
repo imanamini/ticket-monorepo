@@ -1,0 +1,33 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+:host {
+  height: 100%;
+}
+
+.third-party-regulations {
+  @include flex-column();
+  height: 100%;
+  gap: 24px;
+
+  .regulations-content {
+    padding: 8px 24px 0;
+    overflow: auto;
+
+    .content-text {
+      height: 100%;
+      overflow: auto;
+      padding: 24px;
+      background-color: #f2f5f8;
+      font-size: 12px;
+      line-height: 20px;
+      border-radius: 16px;
+
+      -ms-overflow-style: none !important;
+      scrollbar-width: none !important;
+
+      &::-webkit-scrollbar {
+        display: none !important;
+      }
+    }
+  }
+}

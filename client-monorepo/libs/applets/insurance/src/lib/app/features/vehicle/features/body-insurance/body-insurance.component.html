@@ -1,0 +1,39 @@
+<div class="body d-flex flex-column align-items-center justify-content-center w-100 h-100">
+  <insurance-header
+          [faqCategory]="FaqCategoryTypeEnum.THIRD_PARTY_BODY"
+          title="بیمه بدنه"
+          (closeIconClicked)="handleCloseClicked()"
+
+  ></insurance-header>
+  @if (isLoading()) {
+    <div class="w-100 h-100 d-flex align-items-center justify-content-center">
+      <ngx-spinner size="xl"></ngx-spinner>
+    </div>
+  } @else {
+    @if (isLoggedIn()) {
+      @if (bodyUrl() && !serviceIsUnavailable()) {
+        <iframe allow="camera; microphone" id="frm-body" style="height:100%;width:100%;"
+                title="بیمه بدنه دیجی‌پی"
+                [src]="bodyUrl()"></iframe>
+      } @else {
+        <div class="d-flex flex-column align-items-center justify-content-center h-100 w-100">
+          <ngx-icon [name]="'error-triangle'"
+                    [iconSize]="'124px'"
+                    type="linear">
+          </ngx-icon>
+          <p class="st-3 text-align-center ">در حال حاضر این سرویس در دسترس نیست.</p>
+        </div>
+      }
+    } @else {
+      <div style="flex:1" class="d-flex flex-column align-items-center justify-content-center w-100 h-100">
+        <empty-result [actionButton]="true"
+                      (actionButtonClicked)="handleLoginClicked()"
+                      icon="not-login"
+                      title="ورود به حساب کاربری"
+                      description="برای ادامه مراحل خرید خود، وارد حساب کاربری شوید."
+                      actionButtonText="ورود / ثبت‌نام"
+                      actionButtonIcon="login"></empty-result>
+      </div>
+    }
+  }
+</div>

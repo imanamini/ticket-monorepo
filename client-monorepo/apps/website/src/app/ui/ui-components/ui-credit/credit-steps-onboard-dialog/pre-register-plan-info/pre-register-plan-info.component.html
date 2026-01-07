@@ -1,0 +1,77 @@
+<div class="right-side">
+  <div>
+    <div class="header-title">{{ step.title }}</div>
+    <div class="credit-info">
+      <ng-container *ngFor="let item of info; let itemIndex = index">
+        <div
+          *ngIf="item.amount > 0"
+          [ngClass]="{ bolder: itemIndex === 0 }"
+          class="info"
+        >
+          <div class="title">
+            {{ item.title }}
+          </div>
+          <div class="amount">{{ item.amount | iranianRials: 'hideRial' }}<small> ریال</small></div>
+        </div>
+      </ng-container>
+      <div
+        class="info"
+        *ngIf="paymentMethod !== PAYMENT_METHOD.SUBSCRIPTION"
+      >
+        این هزینه در مرحله آخر ثبت‌نام به صورت نقدی دریافت می‌شود.
+      </div>
+    </div>
+    <div class="condition-list">
+      <div class="condition-list-title">شرایط و مدارک مورد نیاز</div>
+      <ul
+        *ngFor="let condition of step.info.conditions"
+        class="condition-item"
+      >
+        <li class="condition-title">
+          {{ condition.title }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div>
+    <div class="ctas">
+      <app-ui-button
+        (click)="back()"
+        appearance="FLAT-BLUE"
+      >
+        <ngx-icon
+          [iconSize]="'24'"
+          [name]="'arrow-2-right'"
+          class="text-onback-brand"
+        ></ngx-icon>
+        قبلی
+      </app-ui-button>
+      <app-ui-button
+        (click)="next()"
+        class="w-40"
+      >
+        تایید و ادامه
+        <span
+          icon="icon-charon-left-white"
+          size="24"
+          appUiIcon
+        ></span>
+      </app-ui-button>
+    </div>
+  </div>
+</div>
+<div class="left-side">
+  <div class="image-container">
+    <div
+      [ngClass]="!step.info.selectedPlanGroup.subscriptionDetail?.type ? 'plan-info' : ''"
+      class="image d-flex align-items-center justify-content-center"
+    >
+      <div
+        [icon]="'icon-diamond-' + step.info.selectedPlanGroup.subscriptionDetail?.type?.toLowerCase()"
+        [size]="subscriptionIconSize"
+        appUiIcon
+        class="icon"
+      ></div>
+    </div>
+  </div>
+</div>

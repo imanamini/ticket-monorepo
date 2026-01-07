@@ -1,0 +1,110 @@
+@import "../../../../../../style/globals";
+
+.isiran-dialog {
+  position: relative;
+  direction: rtl;
+
+  .close {
+    cursor: pointer;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    background: #f2f5f8;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-right: auto;
+  }
+
+  .dialog-header {
+    border-bottom: 1px solid $swatch_steel_200;
+    @include flex-center-start;
+    gap: 16px;
+    padding: 0 16px 16px;
+  }
+
+  .dialog-title {
+    color: $swatch_steel_500;
+    font-size: 18px;
+  }
+
+  .dialog-body {
+    .titles {
+      color: #2c3544;
+    }
+
+    .body-title {
+      color: #2c3544;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+  }
+
+  .dialog-footer {
+    padding: 8px 24px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    app-ui-button {
+      width: 100%;
+    }
+  }
+}
+
+::ng-deep {
+  .mat-mdc-dialog-container {
+    padding: 0 0 24px;
+    border-radius: 24px;
+  }
+}
+
+:host ::ng-deep {
+  ui-value-simple {
+    padding: 32px 24px;
+
+    .feature-card {
+      width: 100% !important;
+    }
+
+    .feature-card-icon {
+      margin-bottom: 12px !important;
+    }
+
+    .feature-card-content > .card-title {
+      font-size: 16px !important;
+    }
+
+    .feature-cards {
+      gap: 32px !important;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  :host,
+  .isiran-dialog {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .dialog-body {
+      flex-grow: 1;
+    }
+
+    .dialog-footer {
+      padding: 8px 24px 24px;
+    }
+  }
+
+  :host ::ng-deep {
+    @media (max-width: 744px) {
+      .feature-card-content {
+        align-items: self-start !important;
+      }
+      .feature-cards > li {
+        align-items: self-start !important;
+      }
+    }
+  }
+}

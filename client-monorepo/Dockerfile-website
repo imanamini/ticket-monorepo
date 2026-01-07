@@ -1,0 +1,27 @@
+#stage 1
+FROM registry.mydigipay.info/cicd/generic/node-20.12.2:latest as build-step
+# argument
+ARG configuration=production
+
+WORKDIR workspace
+
+# Copy the files
+COPY package.json ./
+COPY pnpm-lock.yaml ./
+COPY .npmrc ./
+
+# Install pnpm globally first
+RUN npm install -g pnpm --registry=https://npm.mydigipay.info/repository/npm-group/
+
+#install package
+RUN npm install -g @angular/cli@17.3.6 --registry=https://npm.mydigipay.info/repository/npm-group/
+RUN npm install -g pm2 --registry=https://npm.mydigipay.info/repository/npm-group/
+RUN npx pnpm install --frozen-lockfile
+COPY . .
+RUN npx nx reset
+RUN npx nx build website --configuration=${configuration} --outputPath=dist/apps/website
+RUN configuration=${configuration} ./docker/sentry-sourcemap.sh website
+
+#run nginx
+CMD ["pm2", "start", "ecosystem.config.js", "--no-daemon"]
+#CMD ["node", "dist/apps/website/server/server.mjs"]

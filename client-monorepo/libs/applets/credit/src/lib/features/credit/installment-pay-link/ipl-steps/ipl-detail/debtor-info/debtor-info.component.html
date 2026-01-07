@@ -1,0 +1,9 @@
+<div class="bg-light radius-minus d-flex align-items-center justify-content-center fund-provider-container mt-big">
+  <app-ipl-fund-provider [businessId]="fundProviderBusinessId()" />
+</div>
+
+<div class="mt-plus text-on-action-invert text-align-center st-8">{{ title() }}</div>
+
+@if (personInfo()) {
+  <div class="text-onback-low mt-pony b-2 text-align-center ltr">{{ personInfo() }}</div>
+}

@@ -1,0 +1,49 @@
+<div class="store-bottom-sheet p-plus d-flex flex-column">
+  <div class="d-flex flex-row align-items-center gap-small m-atom">
+    @if (!hideButtons()) {
+      <ngx-icon
+        (click)="close()"
+        [class]="'icon'"
+        [name]="'close'"
+        classes="text-onback-high cursor-pointer"
+      ></ngx-icon>
+    }
+    <span class="st-7 text-onback-high m-atom">از چه فروشگاه‌هایی خرید ‌کنم؟</span>
+  </div>
+
+  <div class="c-3 mb-minus mt-tiny">
+    {{ data()?.serviceType === ServiceType().BNPL || serviceType() === ServiceType().BNPL ? 'اعتبار' : 'وام' }} شما در فروشگاه‌های
+    <b>حضوری و آنلاینِ</b> طرف قرارداد، با <b>تنوع بالای کالا</b> قابل استفاده است.
+  </div>
+  <div class="top-section radius-medium d-flex flex-column">
+    @defer (when !showLoading()) {
+      <app-credit-store-list
+        [storesList]="storesList()"
+        [slides]="slides()"
+        [itemsPerSlide]="itemsPerSlide()"
+        [columnCount]="columnCount()"
+        [showMoreButton]="showMoreButton()"
+        [showDots]="showDots()"
+        (moreClicked)="showAllStoresBottomSheet()"
+      ></app-credit-store-list>
+    } @placeholder (minimum 1s) {
+      <lib-ngx-skeleton-loading
+        [height]="'240px'"
+        [width]="'100%'"
+      ></lib-ngx-skeleton-loading>
+    }
+  </div>
+  @if (!hideButtons()) {
+    <div class="call-to-actions">
+      <ngx-button
+        ngxTrackableId
+        trackerId="storeListConfirmButtonClick"
+        (clickHandler)="onConfirm()"
+        [fullWidth]="true"
+        [mode]="'form'"
+        [style]="'fill'"
+        >تایید و ادامه
+      </ngx-button>
+    </div>
+  }
+</div>

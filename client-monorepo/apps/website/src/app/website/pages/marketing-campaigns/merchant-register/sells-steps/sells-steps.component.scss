@@ -1,0 +1,45 @@
+.sells-steps {
+  max-width: 1200px;
+  margin: 0 auto auto;
+
+
+  .title {
+    font-weight: 950;
+  }
+
+  img {
+    width: 941px;
+    height: auto;
+  }
+
+  .sm {
+    display: none
+  }
+}
+
+
+@media screen and (max-width: 1280px) {
+  .sells-steps {
+
+    img {
+      width: 676px;
+    }
+  }
+}
+
+@media screen and (max-width: 744px) {
+  .sm {
+    display: block !important;
+  }
+  .md {
+    display: none;
+  }
+
+  .sells-steps {
+
+    img {
+      width: 100%;
+    }
+  }
+
+}

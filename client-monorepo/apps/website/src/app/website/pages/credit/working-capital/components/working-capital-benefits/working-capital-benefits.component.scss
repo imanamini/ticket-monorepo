@@ -1,0 +1,56 @@
+@import "../../../../../../style/globals";
+
+::ng-deep {
+  .section-benefits {
+    h2 {
+      margin-bottom: 32px;
+    }
+
+    .feature-cards {
+      .feature-card {
+        padding: 24px;
+        border-radius: 24px;
+        border: 1px solid $swatch_steel_200;
+        width: 31%;
+        background-color: #fff;
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .section-benefits {
+    ::ng-deep {
+      .feature-cards {
+        justify-content: flex-start;
+        gap: 16px;
+
+        .feature-card {
+          padding: 24px;
+          border-radius: 24px;
+          border: 1px solid $swatch_steel_200;
+          width: 47%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .section-benefits {
+    h2 {
+      margin-bottom: 16px;
+    }
+
+    ::ng-deep {
+      .feature-cards {
+        .feature-card {
+          padding: 24px;
+          border-radius: 24px;
+          border: 1px solid $swatch_steel_200;
+          width: 31%;
+        }
+      }
+    }
+  }
+}

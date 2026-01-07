@@ -1,0 +1,31 @@
+<div class="digipay-dialog">
+  @if (title()) {
+    <p class="st-3 text-align-right">{{ title() }}</p>
+  }
+  <div>
+    <ng-content></ng-content>
+  </div>
+  @if (confirmText() || rejectText()) {
+    <div class="d-flex justify-content-flex-end">
+      @if (confirmText()) {
+        <ngx-button
+          (clickHandler)="confirmButtonClick()"
+          [isLoading]="confirmSpinner()"
+          [disabled]="confirmSpinner() || disableConfirm()"
+          [size]="'small'"
+          [style]="'link'"
+        >
+          {{ confirmText() }}
+        </ngx-button>
+      }
+      @if (rejectText()) {
+        <ngx-button
+          (clickHandler)="rejectClick()"
+          [size]="'small'"
+        >
+          {{ rejectText() }}
+        </ngx-button>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,19 @@
+:host {
+  background: white;
+  height: 100%;
+  display: flex;
+}
+
+.cover {
+  position: absolute;
+}
+
+.content{
+  position: absolute;
+  top: 24rem;
+
+  
+  @media screen and (max-width: 470px) {
+    top: 19rem;
+  }
+}

@@ -1,0 +1,107 @@
+<!-- BNPL Section -->
+@if (groupedBNPLWithPlans().length > 0) {
+  <div class="mt-small cards-section">
+    <div class="cards-container gap-small">
+      @defer (when planApiCallCompleted()) {
+        @for (item of groupedBNPLWithPlans(); track $index) {
+          @if (item.type === 'plan') {
+            <!-- Plan Card -->
+            <div
+              class="card-wrapper"
+              [class.full-width]="item.layout === 'full'"
+              [class.half-width]="item.layout === 'half'"
+            >
+              <ngx-card
+                [cardMode]="'bnpl'"
+                [amountAlign]="'right'"
+                [cardLabel]="item.isFourPay ? 'اعتبار چهار قسطه' : 'اعتبار ماهانه'"
+                [width]="'100%'"
+                [height]="'104px'"
+                [amountPrefix]="'تا'"
+                [amount]="item.data?.creditAmount"
+                [cardBackground]="item.data?.fundProvider?.color"
+                [leftDetail]="activationPreRegisterTemplate"
+                [rightDetail]="rightDetailBnplTemplate"
+                (click)="goToSelectPlan(item.data?.installmentCount)"
+                [cardSize]="item.layout === 'full' ? 'large' : 'medium'"
+              ></ngx-card>
+            </div>
+          } @else {
+            <!-- Wallet Card -->
+            <pillar-credit-wallet-card
+              class="card-wrapper cursor-pointer"
+              [class.full-width]="item.layout === 'full'"
+              [class.half-width]="item.layout === 'half'"
+              [cardSize]="item.layout"
+              (cardClick)="cardClicked($event)"
+              [wallet]="item"
+            ></pillar-credit-wallet-card>
+          }
+        }
+      }
+    </div>
+  </div>
+}
+<!-- Credit Section -->
+@if (groupedCreditWithPlans().length > 0) {
+  <div class="mt-small cards-section">
+    <div class="cards-container gap-small">
+      @defer (when planApiCallCompleted()) {
+        @for (item of groupedCreditWithPlans(); track $index) {
+          @if (item.type === 'plan') {
+            <!-- Plan Card -->
+            <div
+              class="card-wrapper"
+              [class.full-width]="item.layout === 'full'"
+              [class.half-width]="item.layout === 'half'"
+            >
+              <ngx-card
+                [cardMode]="'credit'"
+                [amountAlign]="'right'"
+                [cardLabel]="'وام بانکی'"
+                [width]="'100%'"
+                [height]="'104px'"
+                [amountPrefix]="'تا'"
+                [amount]="item.data?.creditAmount"
+                [cardBackground]="item.data?.fundProvider?.color"
+                [leftDetail]="activationPreRegisterTemplate"
+                [rightDetail]="rightDetailCreditTemplate"
+                (click)="goToPreRegister()"
+                [cardSize]="item.layout === 'full' ? 'large' : 'medium'"
+              ></ngx-card>
+            </div>
+          } @else {
+            <!-- Wallet Card -->
+            @if (item.status === CREDIT_WALLET_STATUS.COMPLETED || showCreditPreRegister) {
+              <pillar-credit-wallet-card
+                class="card-wrapper cursor-pointer"
+                [class.full-width]="item.layout === 'full'"
+                [class.half-width]="item.layout === 'half'"
+                [cardSize]="item.layout"
+                (cardClick)="cardClicked($event)"
+                [wallet]="item"
+              ></pillar-credit-wallet-card>
+            }
+          }
+        }
+      }
+    </div>
+  </div>
+}
+<ng-template #rightDetailBnplTemplate>
+  <div></div>
+</ng-template>
+
+<ng-template #rightDetailCreditTemplate>
+  <div></div>
+</ng-template>
+
+<ng-template #activationPreRegisterTemplate>
+  <ngx-badge
+    [size]="'tiny'"
+    [mode]="'fill'"
+    [status]="'info'"
+  >
+    دریافت سریع
+  </ngx-badge>
+</ng-template>

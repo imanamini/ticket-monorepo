@@ -1,0 +1,45 @@
+<!--  prizes list-->
+@if (!selectedPrize) {
+  <pay-club-applet-ui-dialog-btm-sheet
+    [title]="'هدایا و قرعه‌کشی‌های من'"
+    [closeable]="true"
+    [titleRight]="true"
+  >
+    <div
+      body
+      class="prizes"
+      [class.empty]="prizes.length === 0"
+    >
+      @if (!isLoading) {
+        @if (prizes.length > 0) {
+          @for (prize of prizes; track prize) {
+            <pay-club-applet-ui-prize-card
+              [prize]="prize"
+              (selectCard)="onSelect(prize)"
+            >
+            </pay-club-applet-ui-prize-card>
+          }
+        } @else {
+          <div class="empty-image"></div>
+          <div class="empty">هنوز هدیه و قرعه‌کشی ندارید</div>
+        }
+      }
+      @if (isLoading) {
+        <lib-ngx-skeleton-loading
+          [height]="'440px'"
+          [classes]="'w-100'"
+        ></lib-ngx-skeleton-loading>
+      }
+    </div>
+  </pay-club-applet-ui-dialog-btm-sheet>
+}
+
+<!--prize detail-->
+@switch (selectedPrize?.info?.type) {
+  @case (rewardType.LOTTERY_TICKET) {
+    <pay-club-applet-ui-draw-dialog-btm-sheet [data]="selectedPrize"> </pay-club-applet-ui-draw-dialog-btm-sheet>
+  }
+  @case (rewardType.VOUCHER) {
+    <pay-club-applet-ui-voucher-dialog-btm-sheet [data]="selectedPrize"> </pay-club-applet-ui-voucher-dialog-btm-sheet>
+  }
+}

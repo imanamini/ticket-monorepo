@@ -1,0 +1,28 @@
+@if (widgetInfo().show) {
+  <app-credit-installment-widget
+    class="d-block mb-medium"
+    [state]="widgetInfo().state"
+    [amount]="widgetInfo().amount"
+    [count]="widgetInfo().count"
+    [singleInstallmentDueDate]="widgetInfo().singleInstallmentDueDate"
+    (ctaClicked)="goToInstallmentsOverview()"
+  />
+}
+@for (contractGroup of categorizedData(); track contractGroup) {
+  <div class="contract-group">
+    <div class="contract-group-title">{{ contractGroup.title }}</div>
+    @for (contract of contractGroup.contracts; track contract) {
+      <div class="contract-card-wrapper">
+        <app-credit-wallet-contract-card
+          [creditId]="creditId()"
+          [contract]="contract"
+          [fundProviderCode]="fundProviderCode()"
+          [totalInstallmentCount]="totalInstallmentCount()"
+          [aggregationEnabled]="aggregationEnabled()"
+          (click)="goToContractDetail(contract)"
+          [maxPaymentAmount]="maxPaymentAmount()"
+        ></app-credit-wallet-contract-card>
+      </div>
+    }
+  </div>
+}

@@ -1,0 +1,109 @@
+@import "@digipay/base-style/swatch";
+
+.cards {
+  column-count: 2;
+  padding: 20px 16px;
+  column-width: auto;
+  column-gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.card {
+  width: 100%;
+  box-sizing: border-box;
+  display: inline-block;
+  margin-bottom: 16px;
+  break-inside: avoid-column;
+  cursor: pointer;
+
+  &.is-mtn {
+    .card-title {
+      border: 1px solid $swatch_yellow_300;
+    }
+
+    .card-amount {
+      border-top: 1px solid $swatch_yellow_300;
+      background: $swatch_yellow_300;
+    }
+  }
+
+  &.is-mci {
+    .card-title {
+      border: 1px solid $swatch_teal_300;
+    }
+
+    .card-amount {
+      border-top: 1px solid $swatch_teal_300;
+      background: $swatch_teal_300;
+    }
+  }
+
+  &.is-rightel {
+    .card-title {
+      border: 1px solid $swatch_purple_100;
+    }
+
+    .card-amount {
+      border-top: 1px solid $swatch_purple_100;
+      background: $swatch_purple_100;
+    }
+  }
+
+  &.is-shatel {
+    .card-title {
+      border: 1px solid $swatch_purple_100;
+    }
+
+    .card-amount {
+      border-top: 1px solid var(--surface-brand-tint);
+      background: var(--surface-brand-tint);
+    }
+  }
+
+
+  .card-title {
+    padding: 12px 16px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .card-desc {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 16px;
+    color: $swatch_steel_500;
+    padding-top: 12px;
+  }
+
+  .card-amount {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 16px 6px 12px;
+    border-radius: 0 0 12px 12px;
+
+    .amount-value, .rial {
+      color: $swatch_steel_900;
+    }
+
+    .amount-value {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 24px;
+      margin-left: 5px;
+    }
+  }
+}
+
+.back-icon {
+  width: 24px;
+  height: 24px;
+  background: url("images/back-card.svg") no-repeat center;
+}
+
+.rial {
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 16px;
+}

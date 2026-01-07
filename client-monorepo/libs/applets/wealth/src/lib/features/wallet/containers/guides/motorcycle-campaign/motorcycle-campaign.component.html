@@ -1,0 +1,92 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100">
+  <div class="w-100 d-flex flex-wrap cover">
+    <img
+      class="w-100"
+      src="./wealth-assets/images/motorcycle-campaign/motorcycle-campaign.png"
+      alt=""
+    />
+  </div>
+
+  <wealth-applet-app-bar-wrapper
+    class="w-100"
+    [title]="''"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'tinted-on-back',
+      mode: 'icon-only',
+      size: 'small',
+    }"
+    (onBack)="onBackHandler()"
+  />
+
+  <div class="w-100 d-flex flex-1 flex-column relative content p-plus">
+    <p class="st-5 text-onback-high text-align-center px-huge">سرمایه‌گذاری کن، جایزه ببر!</p>
+
+    <p class="c-3 text-onback-high pt-medium">
+      از 25 ام آذر ماه تا پایان دی ماه می‌توانید برای شرکت در قرعه‌کشی دو دستگاه موتورسیکلت اقدام کنید.
+    </p>
+
+    <p class="st-8 text-onback-high pt-medium">قرعه‌کشی ویژه سرمایه‌گذاران کیف ثروت</p>
+    <div class="w-100 d-flex flex-wrap">
+      <div class="stepper mt-medium">
+        @for (item of wealthWalletNotes(); track item; let i = $index) {
+          <div class="step">
+            <div class="circle"></div>
+            <div class="c-2 text-onback-medium text-align-justify">
+              @for (part of item.parts; track part) {
+                @if (part.type === 'link') {
+                  <span
+                    class="text-onback-brand cursor-pointer"
+                    (click)="handleClick(part.link)"
+                    >{{ part.value }}</span
+                  >
+                } @else if (part.type === 'boldText') {
+                  <span class="c-1 text-onback-high">{{ part.value }}</span>
+                } @else {
+                  {{ part.value }}
+                }
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <p class="st-8 text-onback-high pt-small">قرعه‌کشی ویژه سرمایه‌گذاران فعال در خرید اعتباری</p>
+    <div class="w-100 d-flex flex-wrap">
+      <div class="stepper mt-medium">
+        @for (item of bnplNotes(); track item; let i = $index) {
+          <div class="step">
+            <div class="circle"></div>
+            <div class="c-2 text-onback-medium text-align-justify">
+              @for (part of item.parts; track part) {
+                @if (part.type === 'link') {
+                  <span
+                    class="text-onback-brand cursor-pointer"
+                    (click)="handleClick(part.link)"
+                    >{{ part.value }}</span
+                  >
+                } @else if (part.type === 'boldText') {
+                  <span class="c-1 text-onback-high">{{ part.value }}</span>
+                } @else {
+                  {{ part.value }}
+                }
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <ngx-button
+      class="mt-huge"
+      [style]="'fill'"
+      [fullWidth]="true"
+      [mode]="'form'"
+      (clickHandler)="onStartInvesting()"
+      size="medium"
+    >
+      شروع کنید
+    </ngx-button>
+  </div>
+</div>

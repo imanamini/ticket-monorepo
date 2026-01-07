@@ -1,0 +1,119 @@
+
+.container {
+  margin: 0 16px 12px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 16px 24px;
+  gap: 16px;
+  // TODO
+  //color: $swatch_steel_900;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: url("apps/dpx/src/assets/subscription/icons/services/bnpl-fill.svg") no-repeat center center;
+  }
+}
+
+.arrow-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  padding: 10px;
+  background: url("apps/dpx/src/assets/subscription/icons/arrow-left-gray.svg") no-repeat center;
+  cursor: pointer;
+}
+
+.content {
+  padding: 4px 16px;
+  border-radius: 12px;
+  align-self: stretch;
+
+  :last-child {
+    border: none;
+  }
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+  align-items: center;
+  padding: 12px 0 8px;
+  // TODO
+  //border-bottom: 1px solid $swatch_steel_100;
+}
+
+.row-title {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  // TODO
+  //color: $swatch_steel_500;
+}
+
+.amount-value {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.installment-count {
+  font-size: 12px;
+  font-weight: 450;
+  line-height: normal;
+  // TODO
+  //color: $swatch_steel_900;
+}
+
+.error-message {
+  display: flex;
+  width: 100%;
+}
+
+.error-text {
+  // TODO
+  //font-family: $primary-font;
+  font-size: 10px;
+  margin-right: 4px;
+  // TODO
+  //color: $swatch_steel_500;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.icon-error {
+  width: 16px;
+  height: 16px;
+  background: url("apps/dpx/src/assets/subscription/icons/icon-star-highlight.svg") no-repeat center;
+}
+
+.error-content-container {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  gap: 16px;
+}
+
+.section-title-container {
+  width: 100%;
+}

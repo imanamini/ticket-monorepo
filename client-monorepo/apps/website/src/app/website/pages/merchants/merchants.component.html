@@ -1,0 +1,37 @@
+<app-base-layout [loaded]="loaded">
+  <ng-container *ngIf="merchantsPage && merchantsPage.templateData">
+    <!--    section 1-->
+    <app-credit-intro
+      *ngIf="merchantsPage.templateData.sectionIntro"
+      [data]="merchantsPage.templateData.sectionIntro"
+      [firstCta]="creditIntroCta.firstCta"
+      [secondCta]="creditIntroCta.secondCta"
+    ></app-credit-intro>
+
+    <!--    section 2-->
+    <app-credit-merchants
+      *ngIf="merchantsPage.templateData.sectionMerchants && merchantsList.length > 0"
+      [creditMerchants]="merchantsList"
+    ></app-credit-merchants>
+
+    <!--    section 3-->
+    <app-ui-section-download-banner backgroundColor="#f2f5f8"></app-ui-section-download-banner>
+
+    <!--    section 4-->
+    <app-ui-seo
+      *ngIf="merchantsPage.templateData.sectionSeoContent && merchantsPage.templateData.sectionSeoContent.content"
+      [seoContent]="merchantsPage.templateData.sectionSeoContent"
+      backgroundColor="#f2f5f8"
+    ></app-ui-seo>
+
+    <!--    section 5-->
+    <app-ui-faq
+      *ngIf="
+        merchantsPage.templateData.faq && merchantsPage.templateData.faq.faqItems && merchantsPage.templateData.faq.faqItems.length > 0
+      "
+      [faqs]="merchantsPage.templateData.faq.faqItems"
+      [subtitle]="merchantsPage.templateData.faq.subtitle"
+      [title]="merchantsPage.templateData.faq.title"
+    ></app-ui-faq>
+  </ng-container>
+</app-base-layout>

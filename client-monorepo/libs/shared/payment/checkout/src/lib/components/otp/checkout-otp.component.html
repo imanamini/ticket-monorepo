@@ -1,0 +1,39 @@
+<payment-checkout-app-card
+  [submitText]="cardConfig.submitText"
+  [submitLoading]="loadingSubmit()"
+  [disableSubmitButton]="true"
+  [headerTitle]="cardConfig.headerTitle"
+  [headerCloseButtonType]="'BACK'"
+  [isBottomSheet]="true"
+  [hasFooter]="false"
+>
+  <div
+    body
+    class="protection-container"
+  >
+    <div class="code-protection">
+      <div
+        *ngIf="creditBalance()"
+        class="amount-wrapper"
+      >
+        <payment-checkout-amount-label-bar
+          [title]="'اعتبار باقی‌مانده'"
+          [value]="creditBalance()"
+          [userFullName]="(user()?.name || '') + ' ' + (user()?.surname || '')"
+        ></payment-checkout-amount-label-bar>
+      </div>
+
+      <common-otp-fill-otp
+        [otpLength]="6"
+        [mode]="'fine'"
+        [autoVerify]="true"
+        [featureForVerification]="[selectedFeatureName()]"
+        [phoneNumber]="user()?.cellNumber || ''"
+        [editButton]="false"
+        (retryOutput)="sendSms($event)"
+        (okReturned)="otpFilled()"
+      >
+      </common-otp-fill-otp>
+    </div>
+  </div>
+</payment-checkout-app-card>

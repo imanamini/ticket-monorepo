@@ -1,0 +1,29 @@
+@if (products() && products()!.length) {
+  <div class="mt-big">
+    <div class="px-plus">
+      <common-ui-components-title-summary
+        [title]="'محصولات فروشگاه‌'"
+        [buttonIconReversed]="true"
+        [buttonTitle]="'همه'"
+        [buttonTrackerId]="'show-all'"
+        [buttonIcon]="'Arrow-2-Left'"
+        [mustReturnAction]="true"
+        (onButtonClicked)="goToProductList()"
+        [wrapperClasses]="'mb-small'"
+      ></common-ui-components-title-summary>
+    </div>
+
+    <common-ui-components-horizontal-scroll>
+      <div class="d-flex pr-plus gap-small">
+        @for (product of products(); track product.documentId) {
+          <common-stores-product-preview
+            [product]="product"
+            [backgroundMode]="'back'"
+            [position]="$index + 1"
+            (clicked)="goToProductPage($event)"
+          ></common-stores-product-preview>
+        }
+      </div>
+    </common-ui-components-horizontal-scroll>
+  </div>
+}

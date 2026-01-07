@@ -1,0 +1,54 @@
+@import "globals";
+
+.recommendation-list-box {
+  border-top: 1px solid #e6e6e6;
+
+  .title {
+    font-size: rem(18, 16);
+    font-weight: 500;
+    padding: 16px 0 24px 0;
+  }
+}
+
+.item {
+  display: block;
+  //margin-bottom: 12px;
+}
+
+::ng-deep .swiper {
+  margin-left: unset;
+  margin-right: unset;
+}
+
+.button-group ::ng-deep .swiper-slide {
+  width: auto;
+}
+
+.recommendation-list-box.row {
+  border-top: none;
+
+  .items {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 12px;
+
+    .item {
+      ::ng-deep {
+        .recommendation-item {
+          font-size: rem(13, 16);
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+@include mediaMobile() {
+  .recommendation-list-box.column {
+    ::ng-deep {
+      .recommendation-item {
+        background-color: #f5f8fa;
+      }
+    }
+  }
+}

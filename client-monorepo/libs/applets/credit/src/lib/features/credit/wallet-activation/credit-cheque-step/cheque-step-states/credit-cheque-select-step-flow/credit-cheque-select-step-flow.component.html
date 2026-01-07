@@ -1,0 +1,42 @@
+<app-credit-app-bar
+  (onBackButtonClick)="goBack()"
+  (onTextClick)="openGuideVideoDialog()"
+  [actionImage]="'play'"
+  [actionText]="'فیلم راهنما'"
+  [backButton]="true"
+  title="ارسال تصویر چک"
+></app-credit-app-bar>
+
+@if (!gettingData()) {
+  <div class="main-section d-flex flex-column flex-grow">
+    <div class="d-flex flex-column flex-grow">
+      <app-credit-scrollable-view>
+        <div class="d-flex flex-column flex-grow px-plus pt-plus">
+          <p
+            class="help-text mb-plus text-align-right b-3 text-onback-high"
+            dir="rtl"
+          >
+            {{ headerDescription() }}
+          </p>
+          @if (alertMessage()) {
+            <ngx-alert
+              class="mb-plus"
+              [color]="'blue'"
+              [text]="alertMessage()!"
+            ></ngx-alert>
+          }
+          @for (stepFlow of stepFlows(); track stepFlow) {
+            <div class="step-flow-item border-b-300 border-color-air">
+              <app-credit-navigation-card-v2
+                (click)="selectStepFlow(stepFlow)"
+                [imageId]="stepFlow.imageId"
+                [text]="stepFlow.title"
+              ></app-credit-navigation-card-v2>
+            </div>
+          }
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+  </div>
+}
+<credit-page-loading [active]="gettingData()!"></credit-page-loading>

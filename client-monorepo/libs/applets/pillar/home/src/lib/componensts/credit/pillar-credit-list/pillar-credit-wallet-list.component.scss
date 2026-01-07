@@ -1,0 +1,47 @@
+.credit-list {
+  box-sizing: border-box;
+
+  > .wrapper {
+    width: 280px;
+    max-width: 100%;
+  }
+}
+/* Add this CSS to your component styles */
+
+/* Wrapper for all BNPL cards */
+.bnpl-cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px; /* Adjust spacing as needed */
+  width: 100%;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px; /* Adjust spacing as needed */
+  width: 100%;
+}
+
+/* All cards take full width by default */
+pillar-credit-wallet-card,
+.bnpl-standalone-card-wrapper,
+pillar-credit-wallet-list {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* BNPL cards get 50% width when there are exactly 2 BNPL cards */
+.bnpl-card-half-width {
+  width: calc(50% - 6px) !important; /* 50% minus half the gap */
+  flex: 0 0 calc(50% - 6px);
+  max-width: calc(50% - 6px);
+}
+
+/* Ensure the inner ngx-card respects the parent width */
+.bnpl-card-half-width ngx-card,
+pillar-credit-wallet-card.bnpl-card-half-width ngx-card,
+.bnpl-standalone-card-wrapper.bnpl-card-half-width ngx-card {
+  width: 100% !important;
+}

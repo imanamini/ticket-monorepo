@@ -1,0 +1,44 @@
+.wrapper {
+  position: relative;
+
+  .spinner,
+  .logo,
+  .general-logo {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    transform: translate(0, -50%);
+  }
+
+  .spinner {
+    left: 8px;
+    background: #ffffff;
+  }
+
+  .logo,
+  .general-logo {
+    width: 24px;
+    height: 24px;
+    right: 8px;
+  }
+
+  .general-logo {
+    background: url('img/general-bank.svg') no-repeat center right;
+  }
+}
+
+:host ::ng-deep {
+  .text-field {
+    label {
+      right: 2.6em !important;
+    }
+
+    input {
+      padding-right: 24px;
+    }
+
+    input:focus + label {
+      right: 1em !important;
+    }
+  }
+}

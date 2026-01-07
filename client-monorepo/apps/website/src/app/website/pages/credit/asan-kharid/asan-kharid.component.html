@@ -1,0 +1,165 @@
+<app-base-layout
+  *ngIf="asanKharidPage && asanKharidPage.templateData"
+  [darkMode]="true"
+  [loaded]="loaded"
+>
+  <!--  section 1-->
+  <app-ui-introduction-default
+    *ngIf="asanKharidPage && asanKharidPage.templateData"
+    [heroImage]="asanKharidPage.templateData.introArtwork"
+    [introductionType]="asanKharidPage.templateData.introType"
+  >
+    <div>
+      <h1>{{ asanKharidPage?.templateData?.introTitle }}</h1>
+      <h2>{{ asanKharidPage?.templateData?.introSubtitle }}</h2>
+      <h3>{{ asanKharidPage?.templateData?.introSubtitle2 }}</h3>
+      <div class="d-flex justify-content-center flex-wrap">
+        <app-ui-button
+          [appearance]="'OUTLINE-GREEN'"
+          [classes]="' rounded '"
+          class="icon-green-down"
+          appScrollToAnchor="asanKharidTimeline"
+        >
+          <i>
+            <svg
+              height="12.589"
+              viewBox="0 0 11.469 12.589"
+              width="11.469"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g
+                data-name="Group 155"
+                id="Group_155"
+                transform="translate(-1376.458 -661.492)"
+              >
+                <path
+                  d="M3064.244,1024.112l4.32,4.32,4.321-4.32"
+                  data-name="Path 91"
+                  fill="none"
+                  id="Path_91"
+                  stroke="#00cc65"
+                  stroke-linecap="round"
+                  stroke-width="2"
+                  transform="translate(-1686.371 -355.765)"
+                ></path>
+                <path
+                  d="M3080,1029.957v-9.891"
+                  data-name="Path 92"
+                  fill="none"
+                  id="Path_92"
+                  stroke="#00cc65"
+                  stroke-linecap="round"
+                  stroke-width="2"
+                  transform="translate(-1697.871 -357.574)"
+                ></path>
+              </g>
+            </svg>
+          </i>
+          <span> اطلاعات بیشتر </span>
+        </app-ui-button>
+        <app-ui-button
+          *ngIf="asanKharidPage.templateData.introFirstCta && asanKharidPage.templateData.introFirstCta.title"
+          [appearance]="'GREEN'"
+          [classes]="' rounded '"
+          [linkTarget]="'_blank'"
+          [link]="asanKharidPage.templateData.introFirstCta.link ? asanKharidPage.templateData.introFirstCta.link : ''"
+          [appScrollToAnchor]="!asanKharidPage.templateData.introFirstCta.link ? 'digikalaProducts' : ''"
+        >
+          <img
+            *ngIf="
+              asanKharidPage.templateData.introFirstCta &&
+              asanKharidPage.templateData.introFirstCta.icon &&
+              asanKharidPage.templateData.introFirstCta.icon.url
+            "
+            [ngSrc]="asanKharidPage.templateData.introFirstCta.icon.url"
+            class="second-cta-icon"
+            height="30"
+            width="30"
+          />
+          <span>
+            {{ asanKharidPage.templateData.introFirstCta.title }}
+          </span>
+        </app-ui-button>
+      </div>
+    </div>
+  </app-ui-introduction-default>
+
+  <!--  section 2-->
+  <app-ui-timeline
+    *ngIf="asanKharidPage.templateData.registrationSteps && asanKharidPage.templateData.registrationSteps.steps.length > 0"
+    [steps]="asanKharidPage.templateData.registrationSteps.steps"
+    [title]="asanKharidPage.templateData.registrationSteps.title"
+    id="asanKharidTimeline"
+  ></app-ui-timeline>
+
+  <!--  section 3-->
+  <app-ui-flow
+    *ngIf="asanKharidPage.templateData.flow && asanKharidPage.templateData.flow.steps.length > 0"
+    [flow]="asanKharidPage.templateData.flow"
+  ></app-ui-flow>
+
+  <!--  section 4-->
+  <app-ui-basic-segment
+    *ngIf="asanKharidPage.templateData.renewCard && asanKharidPage.templateData.renewCard.title"
+    [content]="contentTemplateRenew"
+    [figure]="figureTemplateRenew"
+    [rtl]="false"
+    [title]="asanKharidPage?.templateData?.renewCard?.title"
+  ></app-ui-basic-segment>
+  <ng-template #figureTemplateRenew>
+    <img
+      [alt]="asanKharidPage?.templateData?.renewCard?.title"
+      [src]="asanKharidPage?.templateData?.renewCard?.artwork?.url"
+    />
+  </ng-template>
+  <ng-template #contentTemplateRenew>
+    <div>
+      {{ asanKharidPage?.templateData?.renewCard?.text }}
+    </div>
+  </ng-template>
+
+  <!--  section 5-->
+  <app-credit-digikala-products
+    [creditConfig]="creditConfig"
+    [digikalaProducts]="digikalaProducts"
+    [productSingle]="productSingle"
+    [templateData]="asanKharidPage.templateData.sectionDigikalaProducts"
+    id="digikalaProducts"
+  ></app-credit-digikala-products>
+
+  <!--  section 6-->
+  <app-asan-kharid-product-list
+    *ngIf="asanKharidPage.templateData.products && asanKharidPage.templateData.products.productLists.length > 0"
+    [templateData]="asanKharidPage ? asanKharidPage.templateData : null"
+  ></app-asan-kharid-product-list>
+
+  <!--  section 7-->
+  <app-ui-faq
+    *ngIf="
+      asanKharidPage.templateData.faq && asanKharidPage.templateData.faq.faqItems && asanKharidPage.templateData.faq.faqItems.length > 0
+    "
+    [faqs]="asanKharidPage.templateData.faq.faqItems"
+    [subtitle]="asanKharidPage.templateData.faq.subtitle"
+    [title]="asanKharidPage.templateData.faq.title"
+  ></app-ui-faq>
+
+  <!--  section 8-->
+  <app-ui-similar-services
+    *ngIf="
+      asanKharidPage.templateData.similar &&
+      asanKharidPage.templateData.similar.items &&
+      asanKharidPage.templateData.similar.items.length > 0
+    "
+    [data]="asanKharidPage.templateData.similar"
+    class="section-similar-services"
+  ></app-ui-similar-services>
+
+  <!--  section 9-->
+  <app-blog-cards
+    *ngIf="asanKharidPage.templateData.relatedPosts && posts.length > 0"
+    [blogPosts]="posts"
+    [subtitle]="asanKharidPage.templateData.relatedPosts.subtitle"
+    [title]="asanKharidPage.templateData.relatedPosts.title"
+  >
+  </app-blog-cards>
+</app-base-layout>

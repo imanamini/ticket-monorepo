@@ -1,0 +1,7 @@
+@import "base-style/styleguide";
+
+:host {
+  @include flex-full-vh-center;
+  height: var(--full-height) !important;
+}
+

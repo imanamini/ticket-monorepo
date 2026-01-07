@@ -1,0 +1,23 @@
+<div
+  class="animated-list-container"
+  [class]="classes()"
+  [ngStyle]="containerStyle()"
+>
+  @if (items()?.length) {
+    <!-- Current icon (will hide to top) -->
+    <div
+      class="animated-item"
+      [@slideAnimation]="{ value: currentIconState(), params: { duration: animationDuration() } }"
+    >
+      <ng-container [ngTemplateOutlet]="items()[this.currentIndex()].templateRef"></ng-container>
+    </div>
+
+    <!-- Next icon (will show from bottom) -->
+    <div
+      class="animated-item"
+      [@slideAnimation]="{ value: nextIconState(), params: { duration: animationDuration() } }"
+    >
+      <ng-container [ngTemplateOutlet]="items()[this.nextIndex()].templateRef"></ng-container>
+    </div>
+  }
+</div>

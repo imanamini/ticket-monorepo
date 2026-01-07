@@ -1,0 +1,23 @@
+<location-trap [canBack]="false" [canExit]="false"></location-trap>
+@if (!showTestFailed()) {
+  <div (touchend)="onTouchEnd($event)"
+       (touchmove)="onTouchMove($event)"
+       (touchstart)="onTouchStart($event)"
+       class="health-check">
+    @if (showTimer()) {
+      <health-check-timer
+              [timeMinute]="testTimeMinute">
+      </health-check-timer>
+    }
+    <div id="container" #container></div>
+  </div>
+}
+
+@if (showTestFailed()) {
+  @defer {
+    <health-check-result
+            [uniqueCode]="uniqueCode"
+    ></health-check-result>
+  }
+}
+

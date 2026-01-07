@@ -1,0 +1,67 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.insurance-info {
+  @include flex-column();
+  height: 62%;
+  overflow-y: auto;
+  padding-left: 4px;
+  gap: 24px;
+
+  .head-hint {
+    @include flex-row();
+    @include flex-center();
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    color: #6e798d;
+  }
+
+  .info-content {
+    @include flex-column();
+    border-radius: 16px;
+    border: 1px solid #dee3e7;
+    padding: 24px 32px;
+    width: 100%;
+    gap: 16px;
+
+    .content-device {
+      @include flex-column();
+      gap: 4px;
+
+      .device-model {
+        @include flex-row();
+        @include flex-center-start;
+        color: #6e798d;
+        font-size: 14px;
+      }
+
+      .device-detail {
+        @include flex-row();
+
+        .detail-name {
+          flex: 4;
+          font-size: 16px;
+          line-height: 28px;
+          font-weight: 700;
+          color: #2c3544;
+        }
+
+        .detail-image {
+          flex: 1;
+          @include flex-row();
+          @include flex-center-end()
+        }
+      }
+    }
+  }
+
+  .buttons {
+    width: 100%;
+  }
+}
+

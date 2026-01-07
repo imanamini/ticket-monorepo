@@ -1,0 +1,127 @@
+@import "globals";
+
+
+
+.mobile-post-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $swatch_steel_200;
+  border-radius: 16px;
+  position: relative;
+  padding: 16px;
+  background-color: $swatch_white_900;
+
+  .details {
+    display: flex;
+    align-items: center;
+
+    .stats {
+      display: flex;
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 200%;
+      color: $swatch_steel_400;
+
+      .date {
+        display: flex;
+
+        .icon {
+          margin-right: 4px;
+        }
+      }
+    }
+
+    .category {
+      margin-right: auto;
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 200%;
+      color: $swatch_red_400;
+      border-radius: 18px;
+      border: 1px solid $swatch_red_400;
+      background: $swatch_red_100;
+      padding: 0 12px;
+      height: fit-content;
+      cursor: pointer;
+    }
+  }
+
+  .h-divider {
+    border-top: 1px solid $swatch_steel_200;
+    margin: 16px 0;
+  }
+
+  .content {
+    display: flex;
+
+    .image {
+      margin-left: 16px;
+      flex-grow: 0;
+      position: relative;
+
+      .play-layer {
+        background-color: $swatch_steel_500;
+        mix-blend-mode: multiply;
+        position: absolute;
+        width: 100%;
+        height: 56px;
+        top: 0;
+        border-radius: 6px;
+      }
+
+      .play-icon {
+        position: absolute;
+        width: 100%;
+        height: 56px;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          width: 32px;
+          height: 32px;
+        }
+      }
+
+      img {
+        border-radius: 6px;
+        width: 56px;
+        height: 56px;
+        object-fit: cover;
+      }
+    }
+
+    .info {
+      flex-grow: 1;
+
+      .title {
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 200%;
+        height: fit-content;
+      }
+
+      .description {
+        font-size: 11px;
+        font-weight: 300;
+        line-height: 200%;
+        margin-top: 4px;
+      }
+
+      .read-more {
+        display: flex;
+        justify-content: flex-end;
+        align-content: center;
+        align-items: center;
+        color: #0040ff;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 24px;
+        padding: 16px 0 0;
+        width: auto;
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<div class="d-flex flex-column px-plus">
+  <!-- Early settlement header -->
+  <div class="d-flex gap-small mb-plus">
+    <ngx-icon
+      name="wallet"
+      iconSize="32px"
+      type="bold"
+    />
+    <span class="st-6">{{ earlySettlementLabel }}</span>
+  </div>
+  <!-- End Early settlement header -->
+
+  @if (showUsedAmount()) {
+    <!-- Amount payable -->
+    <div class="d-flex justify-content-space-between align-items-center text-onback-low b-2 w-100 mb-pony">
+      <span>{{ usedCreditLabel }}</span>
+      <span>
+        {{ usedAmount() | thousands }}
+        <span class="is-currency">ریال</span>
+      </span>
+    </div>
+    <!-- End Amount payable -->
+  }
+</div>

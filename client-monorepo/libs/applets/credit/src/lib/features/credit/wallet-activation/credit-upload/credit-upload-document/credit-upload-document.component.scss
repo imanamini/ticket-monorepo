@@ -1,0 +1,52 @@
+.help-text {
+  margin-bottom: 24px;
+  text-align: right;
+  font-size: 12px;
+
+  .cell-number {
+    direction: ltr;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 500;
+    margin: 0 6px 0 3px;
+  }
+}
+
+.main-section {
+  box-sizing: border-box;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .top-section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    .form-section {
+      padding: 16px;
+    }
+  }
+
+  .call-to-actions-section {
+    flex-grow: 0;
+    padding: 8px 16px 16px;
+  }
+}
+
+.choose-section {
+  width: 100%;
+  height: 100vh;
+  padding: 24px;
+  box-sizing: border-box;
+  direction: rtl;
+  text-align: right;
+  margin: 0 auto;
+
+  &__title {
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+}

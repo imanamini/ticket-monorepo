@@ -1,0 +1,53 @@
+<div class="subscription-modal">
+  <div
+    (click)="closeDialog()"
+    class="close"
+  >
+    <ngx-icon
+      class="cursor-pointer"
+      [name]="'close'"
+      [iconSize]="'24px'"
+    ></ngx-icon>
+  </div>
+  <div class="dialog-body">
+    <div class="image">
+      <span
+        style="background-repeat: no-repeat"
+        [size]="72"
+        [icon]="'icon-diamond-' + templateData?.subscriptionType.toLowerCase() + '-shadowed'"
+        appUiIcon
+      ></span>
+    </div>
+    <div class="title">
+      <span>
+        {{ templateData.title }}
+      </span>
+    </div>
+    <div class="description">
+      <ul>
+        <li>
+          برای دریافت این وام باید در
+          <strong>مرحله پایانی</strong>
+          درخواست وام،
+          <strong>اشتراک {{ templateData.subscriptionTitle }}</strong>
+          را تهیه کنید.
+        </li>
+        <li>
+          <strong>اشتراک {{ templateData.subscriptionTitle }}</strong>
+          یکی از سطح‌های اشتراک در دیجی‌پی است که علاوه ‌بر
+          <strong>دریافت وام خرید‌ کالا</strong>
+          ، خدمات بیمه، شرکت در قرعه‌کشی و هدایای نقدی را شامل می‌شود.
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="ctas">
+    <app-ui-button
+      appearance="FLAT-BLUE"
+      (click)="closeDialog()"
+      *ngIf="!templateData.firstCta && !templateData.secondCta"
+    >
+      متوجه شدم
+    </app-ui-button>
+  </div>
+</div>

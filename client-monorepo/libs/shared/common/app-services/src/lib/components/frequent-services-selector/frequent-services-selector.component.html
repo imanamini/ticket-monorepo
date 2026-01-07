@@ -1,0 +1,58 @@
+<div class="fss mt-medium px-plus">
+  <div class="b-2 text-onback-medium">۴ مورد از خدمات پرکاربرد خود را انتخاب کنید تا دسترسی سریع‌تری برای شما فراهم شود.</div>
+  @if (!isLoading()) {
+    <div class="fss-items mt-plus">
+      @for (service of frequentServices(); track $index) {
+        <common-app-services-frequent-services-preview
+          [doDefaultAction]="false"
+          [isClickableFromManagementOrder]="true"
+          (clicked)="handleClick($event)"
+          [frequentService]="service"
+        ></common-app-services-frequent-services-preview>
+      }
+    </div>
+    <div
+      class="fss-box px-plus w-100 mb-big"
+      [ngStyle]="boxStyle()"
+    >
+      <div
+        class="fss-dock py-big px-plus radius-big surface-glass-invert d-flex align-items-start justify-content-center gap-medium mb-minus"
+      >
+        @for (service of selectedServicesOrder(); track $index) {
+          @if (service) {
+            <ng-container>
+              <common-app-services-frequent-services-preview
+                [doDefaultAction]="false"
+                [isClickableFromManagementOrder]="true"
+                (clicked)="removeItem(service)"
+                [frequentService]="service"
+              ></common-app-services-frequent-services-preview>
+            </ng-container>
+          } @else {
+            <ng-container>
+              <common-app-services-frequent-services-preview [isEmpty]="true"></common-app-services-frequent-services-preview>
+            </ng-container>
+          }
+        }
+      </div>
+      <div class="fss-action">
+        <ngx-button
+          (clickHandler)="submitForm()"
+          [fullWidth]="true"
+          [mode]="'section'"
+          [style]="'fill'"
+          [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+          [isLoading]="isSubmitting()"
+        >
+          {{ btnText() }}
+        </ngx-button>
+      </div>
+    </div>
+  } @else {
+    <div class="fss-items mt-plus">
+      @for (item of rangeCreator(8); track $index) {
+        <common-app-services-frequent-services-preview [isLoading]="true"></common-app-services-frequent-services-preview>
+      }
+    </div>
+  }
+</div>

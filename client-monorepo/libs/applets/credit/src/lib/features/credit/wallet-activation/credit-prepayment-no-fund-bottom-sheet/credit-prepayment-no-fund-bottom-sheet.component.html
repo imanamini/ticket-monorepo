@@ -1,0 +1,20 @@
+<div class="credit-prepayment-no-fund-bottom-sheet">
+  <div class="body">
+    <div class="calendar-image"></div>
+    <div class="title text-onback-high">
+      {{ title() }}
+    </div>
+    <div class="subtitle text-onback-low">
+      {{ description() }}
+    </div>
+  </div>
+  <div class="footer">
+    <ngx-button (clickHandler)="close(true)"> مطمئن هستم </ngx-button>
+    <ngx-button
+      (clickHandler)="close(false)"
+      [style]="'tinted-on-elevated'"
+    >
+      بستن
+    </ngx-button>
+  </div>
+</div>

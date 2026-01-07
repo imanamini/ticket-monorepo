@@ -1,0 +1,53 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.complete-information {
+  @include flex-column();
+  @include flex-center-start();
+  gap: 16px;
+  height: 100%;
+  position: relative;
+
+  .content {
+    @include flex-column();
+    @include flex-center-start();
+    gap: 16px;
+    width: 100%;
+
+    .hint {
+      width: 100%;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 2rem;
+      color: #2c3544;
+    }
+
+    .two-column {
+      width: 100%;
+      @include flex-row;
+      @include flex-center;
+      gap: 16px;
+
+      ui-form-field {
+        flex: 1;
+      }
+    }
+
+    .single-column {
+      width: 100%;
+    }
+  }
+
+  .buttons {
+    width: 100%;
+  }
+
+  .text-link {
+    color: #0040ff;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: right;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+}

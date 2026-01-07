@@ -1,0 +1,71 @@
+<div class="d-flex flex-column surface-elevated h-100">
+  <ngx-app-bar
+    [title]="instagramUserName()!"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="goBack()"
+  ></ngx-app-bar>
+
+  <!-- Merchant Info -->
+  <div class="d-flex flex-column gap-minus px-plus mt-small">
+    <!-- Profile Photo Row -->
+    <div class="d-flex gap-minus align-items-center justify-content-start">
+      <div class="profile-photo d-flex align-items-center radius-rounded border-color-light">
+        <ui-api-image
+          class="border-100 border-color-light radius-rounded"
+          [imageId]="store()?.logoImageId"
+          height="48px"
+          width="48px"
+        ></ui-api-image>
+      </div>
+      <div class="d-flex flex-column flex-column gap-micro flex-grow">
+        <div class="d-flex align-items-center justify-content-space-between gap-small flex-grow">
+          <span class="st-8">{{ store()?.title }}</span>
+          <ngx-button
+            [mode]="'form'"
+            [size]="'tiny'"
+            [style]="'link'"
+            [rightIcon]="{ name: 'info-circle' }"
+            (clickHandler)="goToViolationReport()"
+          >گزارش تخلف
+          </ngx-button
+          >
+        </div>
+        <div class="d-flex gap-tiny justify-content-start">
+          <div class="c-2 text-onback-high">{{ store()?.instagram?.followersCount ?? 0 | summarizeThousands }}</div>
+          <div class="c-3 text-onback-medium">نفر دنبال کننده</div>
+        </div>
+      </div>
+    </div>
+    <!-- End Profile Photo Row -->
+
+    <!-- More Info -->
+    <!--    @if (!description()) {-->
+    <!--      <div-->
+    <!--        class="c-3 d-flex justify-content-start align-items-start"-->
+    <!--        [innerHtml]="description()"-->
+    <!--      ></div>-->
+    <!--    }-->
+    <!-- End More Info -->
+
+    <stores-applet-social-cta [config]="ctaConfig()"></stores-applet-social-cta>
+  </div>
+  <!-- END Merchant Info -->
+
+  <!-- Posts Grid -->
+  @if (instagramUserName()) {
+    <div class="mt-medium">
+      <common-social-posts-grid
+        [gridMode]="'RECTANGLE'"
+        [userName]="instagramUserName()!"
+        [disablePagination]="false"
+        [showNoItems]="true"
+      ></common-social-posts-grid>
+    </div>
+  }
+  <!-- END Posts Grid -->
+</div>

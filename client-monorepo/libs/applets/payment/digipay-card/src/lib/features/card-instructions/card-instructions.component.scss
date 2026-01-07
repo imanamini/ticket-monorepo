@@ -1,0 +1,26 @@
+:host {
+  .step-description {
+    position: relative;
+    overflow: visible;
+    padding-right: 28px;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 100%;
+      background-color: var(--surface-brand);
+      top: 6px;
+      right: 0;
+      z-index: 1;
+    }
+    .line {
+      position: absolute;
+      width: 0px;
+      border-right: 0.5px dashed var(--border-tint);
+      height: calc(100% + 10px);
+      right: 4px;
+      top: 6px;
+    }
+  }
+}

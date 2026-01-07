@@ -1,0 +1,25 @@
+<div class="comment">
+  <h5 class="comment-author">
+    {{ comment.authorName }}
+    گفت:
+  </h5>
+  <p class="comment-time">{{ comment.time }}</p>
+  <p class="comment-body">
+    {{ comment.text }}
+  </p>
+  <ng-container *ngIf="comment.replies && comment.replies.length > 0">
+    <app-ui-comment
+      (replyClick)="onReply(comment)"
+      *ngFor="let reply of comment.replies"
+      [comment]="reply"
+      [isChild]="true"
+    ></app-ui-comment>
+  </ng-container>
+
+  <span
+    (click)="onReply(comment)"
+    *ngIf="!isChild"
+    class="reply-button"
+    >پاسخ</span
+  >
+</div>

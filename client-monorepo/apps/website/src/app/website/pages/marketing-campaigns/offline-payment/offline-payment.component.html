@@ -1,0 +1,34 @@
+<app-base-layout [loaded]="loaded">
+  <app-offline-payment-hero-section
+    *ngIf="CampaignPageData?.templateData?.heroSection"
+    [heroSection]="CampaignPageData?.templateData?.heroSection"
+  >
+  </app-offline-payment-hero-section>
+  <app-offline-payment-media
+    *ngIf="CampaignPageData?.templateData?.media"
+    [media]="CampaignPageData?.templateData?.media"
+  >
+  </app-offline-payment-media>
+  <app-offline-payment-steps
+    *ngIf="CampaignPageData?.templateData?.stepsSection?.title"
+    [stepsSection]="CampaignPageData?.templateData?.stepsSection"
+  >
+  </app-offline-payment-steps>
+  <app-offline-payment-value-propositions
+    *ngIf="CampaignPageData?.templateData?.valuePropositionSection"
+    [valuePropositionSection]="CampaignPageData.templateData.valuePropositionSection"
+  >
+  </app-offline-payment-value-propositions>
+
+  <app-ui-faq
+    *ngIf="
+      CampaignPageData?.templateData?.faq &&
+      CampaignPageData.templateData.faq?.faqItems &&
+      CampaignPageData.templateData.faq.faqItems.length > 0
+    "
+    [faqs]="CampaignPageData.templateData.faq.faqItems"
+    [subtitle]="CampaignPageData.templateData.faq.subtitle"
+    [title]="CampaignPageData.templateData.faq.title"
+  >
+  </app-ui-faq>
+</app-base-layout>

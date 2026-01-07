@@ -1,0 +1,28 @@
+<form [formGroup]="exInsurerDateForm()"
+      class="ex-insurer-date-form">
+
+  <ngx-date-picker
+          [errorMessageMapper]="errorMapper"
+          [error]="exInsurerDateForm()?.controls.start?.errors"
+          [showError]="showError()?'show':'hidden'"
+          [pickType]="CalendarPickTypeEnum.SWIPEABLE_COMPLETE_DATE"
+          [customDateRange]="startDateRange"
+          label="تاریخ شروع بیمه‌نامه قبلی"
+          placeHolder="00/00/00"
+          controlName="start"
+          [form]="exInsurerDateForm()"
+  ></ngx-date-picker>
+
+  <ngx-date-picker
+          [errorMessageMapper]="errorMapper"
+          [error]="exInsurerDateForm()?.controls.end?.errors"
+          [showError]="showError()?'show':'hidden'"
+          [pickType]="CalendarPickTypeEnum.SWIPEABLE_COMPLETE_DATE"
+          [customDateRange]="endDateRange"
+          label="تاریخ پایان بیمه‌نامه قبلی"
+          placeHolder="00/00/00"
+          controlName="end"
+          [readonly]="!endDateRange"
+          [form]="exInsurerDateForm()"
+  ></ngx-date-picker>
+</form>

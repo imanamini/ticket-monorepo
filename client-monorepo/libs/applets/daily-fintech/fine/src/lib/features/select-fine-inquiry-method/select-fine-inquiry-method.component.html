@@ -1,0 +1,66 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  [title]="'استعلام'"
+  [hasBackAction]="true"
+  [showBorder]="true"
+  [bodyClasses]="'surface-back'"
+  [headerClasses]="'surface-back'"
+  (onBackAction)="goToPrevPage()"
+>
+  <div class="d-flex flex-grow flex-column">
+    <div class="flex-grow d-flex flex-column pt-huge px-medium gap-medium">
+      @for (item of config()?.landingConfig?.inquiryMethods; track $index) {
+        <div
+          (click)="selectedType.set(item.type)"
+          class="d-flex flex-row flex-nowrap surface-elevated justify-content-space-between py-minus px-medium radius-medium gap-small align-items-center"
+        >
+          <div class="d-flex gap-minus align-items-center">
+            <div class="icon-wrapper surface-back p-low radius-rounded text-onback-brand">
+              <common-icon-dp-icon
+                [icon]="inquiryTypeToIconMap[item.type]"
+                [iconSize]="'24'"
+                [iconType]="'bold'"
+              ></common-icon-dp-icon>
+            </div>
+            <div class="d-flex flex-column gap-micro">
+              <div class="c-2 text-onback-high">{{ item.title }}</div>
+              <div class="l-3 text-onback-low">{{ item.description }}</div>
+            </div>
+          </div>
+          <div>
+            <ngx-radio-button
+              [size]="20"
+              [checked]="selectedType() === item.type"
+            ></ngx-radio-button>
+          </div>
+        </div>
+      }
+    </div>
+    <div>
+      <div class="p-medium">
+        <ngx-callout
+          [showTitleIcon]="true"
+          [message]="config()?.landingConfig?.inquiryPayDescription?.note || ''"
+        ></ngx-callout>
+      </div>
+      <div class="border-t-300 border-color-air surface-elevated px-medium py-plus">
+        <div class="bt-2 text-onback-high">هزینه استعلام</div>
+        <div class="t-7 text-onback-high">
+          {{ config()?.landingConfig?.inquiryAmount | thousands }}
+          <span class="is-currency">ریال</span>
+        </div>
+        <div class="pt-minus">
+          <ngx-button
+            [mode]="'form'"
+            [brandButton]="true"
+            [fullWidth]="true"
+            [size]="'large'"
+            (clickHandler)="onSubmit()"
+          >
+            تایید و پرداخت
+          </ngx-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</common-ui-components-page-layout>

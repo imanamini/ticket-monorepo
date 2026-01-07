@@ -1,0 +1,69 @@
+{
+  "name": "Digipay",
+  "short_name": "Digipay",
+  "theme_color": "#1f3799",
+  "background_color": "#f2f3f6",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "url_handlers": [
+    {
+      "origin": "https://app.mydigipay.com"
+    }
+  ],
+  "intent_filters": {
+    "scope_url_scheme": "https",
+    "scope_url_host": "app.mydigipay.com",
+    "scope_url_path": "/"
+  },
+  "icons": [
+    {
+      "src": "assets/logos/digipay-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/logos/digipay-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/logos/digipay-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/logos/digipay-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/logos/digipay-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/logos/digipay-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/logos/digipay-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/logos/digipay-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}

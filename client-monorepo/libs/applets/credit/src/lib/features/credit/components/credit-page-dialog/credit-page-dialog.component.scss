@@ -1,0 +1,38 @@
+::ng-deep app-page-dialog {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+iframe {
+  width: 100%;
+  flex-grow: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.iframe-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  position: relative;
+}
+
+.iframe-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.call-to-action-section {
+  flex-grow: 0;
+  padding: 24px;
+
+  button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,23 @@
+<div
+  class="simtype-title"
+  dir="rtl"
+>
+  انتخاب نوع سیم‌کارت
+</div>
+<div class="sim-types-container">
+  @for (operatorType of sheetData.currentOperatorTypes; track $index) {
+    <common-ui-components-framed-icon
+      (click)="continuePurchase(operatorType.key)"
+      [size]="'MEDIUM'"
+      [iconType]="'bold'"
+      [showText]="true"
+      iconStyle="color: {{ operatorType.iconColor }}"
+      [text]="operatorType.value"
+      [type]="imageType"
+      [showBadge]="false"
+      [trackerIdPrefix]="operatorType.key"
+      [icon]="operatorType.icon ?? ''"
+    >
+    </common-ui-components-framed-icon>
+  }
+</div>

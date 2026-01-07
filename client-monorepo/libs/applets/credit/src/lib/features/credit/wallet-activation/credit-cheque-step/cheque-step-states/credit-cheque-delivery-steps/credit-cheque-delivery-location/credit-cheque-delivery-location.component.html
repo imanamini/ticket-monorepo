@@ -1,0 +1,128 @@
+@if (!showLoading()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="onBack()"
+    [backButton]="true"
+    title="چک ضمانت"
+  ></app-credit-app-bar>
+  <app-credit-stepper
+    [currentStep]="5"
+    [steps]="5"
+    [title]="'تحویل اصل چک'"
+  ></app-credit-stepper>
+  <div class="d-flex flex-column flex-grow gap-plus rtl">
+    <app-credit-scrollable-view [fullHeightContent]="true">
+      <div class="d-flex flex-column w-100 flex-grow p-plus">
+        <span class="st-2 text-onback-high mb-minus"> تحویل اصل چک به دیجی‌پی </span>
+        <span class="b-2 text-onback-high mb-big">{{ subtitle() }}</span>
+        <form
+          [formGroup]="form"
+          class="w-100 d-flex flex-column flex-grow gap-minus"
+        >
+          <ui-form-field
+            [required]="true"
+            [readonly]="editMode()"
+            [errorMessageMapper]="{
+              required: 'استان را انتخاب کنید.',
+            }"
+            [error]="form.controls['provinceId'].errors"
+            [options]="provinceOptions()"
+            formControlName="provinceId"
+            [label]="'استان'"
+            type="select"
+            [showError]="'auto'"
+            [selectOpenType]="'auto'"
+          ></ui-form-field>
+
+          <ui-form-field
+            [required]="true"
+            [readonly]="editMode()"
+            [errorMessageMapper]="{
+              required: 'شهر را انتخاب کنید.',
+            }"
+            [error]="form.controls['cityId'].errors"
+            [options]="cityOptions()"
+            formControlName="cityId"
+            [label]="'شهر'"
+            type="select"
+            [showError]="'auto'"
+            [selectOpenType]="'auto'"
+          ></ui-form-field>
+
+          @if (showAddressDetails()) {
+            <ui-form-field
+              [required]="showAddressDetails()"
+              [allowedKeyDown]="stopEnterKeyboard"
+              [errorMessageMapper]="{
+                required: 'آدرس محل سکونت',
+                minlength: 'آدرس وارد شده کوتاه است',
+              }"
+              [error]="form.controls['address'].errors"
+              [maxSize]="200"
+              [multiLine]="true"
+              formControlName="address"
+              [label]="'آدرس محل سکونت'"
+              [showError]="'auto'"
+            ></ui-form-field>
+
+            <div class="d-flex flex-row justify-content-space-between gap-minus">
+              <ui-form-field
+                class="w-100"
+                [required]="showAddressDetails()"
+                [errorMessageMapper]="{
+                  required: 'پلاک را وارد کنید.',
+                }"
+                [error]="form.controls['addressNo'].errors"
+                [hasCleaner]="true"
+                [maxSize]="8"
+                formControlName="addressNo"
+                [label]="'پلاک'"
+                [isNumericKeyboard]="true"
+                [showError]="'auto'"
+              ></ui-form-field>
+              <ui-form-field
+                class="w-100"
+                [required]="showAddressDetails()"
+                [errorMessageMapper]="{
+                  required: 'واحد را وارد کنید.',
+                }"
+                [error]="form.controls['addressUnit'].errors"
+                [hasCleaner]="true"
+                [maxSize]="8"
+                formControlName="addressUnit"
+                [label]="'واحد'"
+                [showError]="'auto'"
+                [isNumericKeyboard]="true"
+              ></ui-form-field>
+            </div>
+            <ui-form-field
+              [required]="showAddressDetails()"
+              [errorMessageMapper]="{
+                required: 'کدپستی را وارد کنید.',
+                pattern: 'کدپستی وارد شده معتبر نیست.',
+              }"
+              [error]="form.controls['postalCode'].errors"
+              [hasCleaner]="true"
+              [isNumericKeyboard]="true"
+              [label]="'کدپستی'"
+              [maxSize]="10"
+              formControlName="postalCode"
+              [showError]="'auto'"
+            ></ui-form-field>
+          }
+        </form>
+      </div>
+    </app-credit-scrollable-view>
+    <div class="p-plus">
+      <ngx-button
+        (clickHandler)="onSubmit()"
+        [disabled]="form.invalid"
+        [fullWidth]="true"
+        [style]="'fill'"
+        ngxTrackableId
+        trackerId="chequeLocationDeliveryMethodsButton"
+        >تایید و ادامه
+      </ngx-button>
+    </div>
+  </div>
+}
+<credit-page-loading [active]="showLoading()!"></credit-page-loading>

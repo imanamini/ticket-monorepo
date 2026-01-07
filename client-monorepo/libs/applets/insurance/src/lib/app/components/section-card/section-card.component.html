@@ -1,0 +1,7 @@
+<div class="d-flex flex-column gap-minus">
+  @if (data().title) {
+    <span [textContent]="data().title"
+          class="st-8 text-onback-high"></span>
+  }
+  <section-detail-card [data]="data().card"></section-detail-card>
+</div>

@@ -1,0 +1,33 @@
+<div class="barcode-scanner surface-elevated">
+  <app-credit-app-bar
+    (onCloseButtonClick)="closeScanner()"
+    [internalTitle]="true"
+    [invertColor]="true"
+    [title]="data()?.title"
+    [closeButton]="true"
+  ></app-credit-app-bar>
+  <div
+    #wrapper
+    class="wrapper"
+  >
+    <ngx-scanner-qrcode
+      #action="scanner"
+      [config]="config"
+      (event)="onEvent($event)"
+    ></ngx-scanner-qrcode>
+    <canvas
+      #canvasElement
+      class="canvas-overlay"
+    ></canvas>
+    <div class="overlay-text">
+      <p>
+        {{ message() }}
+      </p>
+    </div>
+  </div>
+  @if (!visible()) {
+    <div class="w-100 h-100 d-flex surface-back loading">
+      <credit-page-loading [active]="!visible()"></credit-page-loading>
+    </div>
+  }
+</div>

@@ -1,0 +1,157 @@
+<section class="section-calculator">
+  <div class="">
+    <div class="top-section">
+      <h2 class="calculator-title">
+        {{ calculator()?.title }}
+      </h2>
+      @if (calculator()?.subtitle) {
+        <div class="calculator-subTitle">
+          {{ calculator().subtitle }}
+        </div>
+      }
+    </div>
+
+    <div class="bottom-section">
+      <div class="action-area">
+        <div class="recipe">
+          <div class="recipe-wrapper">
+            <span class="recipe-title">{{ calculator()?.recipeTitle }}</span>
+            <span class="recipe-default-amount">{{ calculator()?.defaultAmount }}</span>
+          </div>
+          <div class="amount-wrapper">
+            <span class="title">انتخاب شده:</span>
+            <span class="amount is-currency"> {{ amounts()[finalAmount()]?.amount | numberToString }} ریال </span>
+            <div class="progress">
+              <ngx-slider-selector
+                sliderType="Slider"
+                [type]="'Default'"
+                [id]="'merchant_calculator__slider'"
+                [value]="finalAmount()"
+                [minValue]="0"
+                [maxValue]="2"
+                [unitName]=""
+                [showLabel]="false"
+                [showTopLabel]="false"
+                (selectValue)="changeCalculatorSlider($event)"
+              ></ngx-slider-selector>
+            </div>
+          </div>
+        </div>
+        <div class="installment-count-wrapper">
+          <span class="installment-count-title">{{ calculator()?.installmentCountTitle }}</span>
+          <div class="installment-count-month">
+            @for (installment of amounts()[finalAmount()]?.installments ?? []; track installment; let index = $index) {
+              <span
+                [ngClass]="index === installmentActiveIndex() ? 'installment-selected' : ''"
+                (click)="onChangeInstallment(index)"
+              >
+                {{ installment.installmentCount }} ماه
+              </span>
+            }
+          </div>
+        </div>
+        <div class="action-provider-wrapper">
+          <span class="provider-title">{{ calculator()?.providerTitle }}</span>
+          <div class="provider-icon">
+            @for (provider of calculator()?.providers ?? []; track provider; let index = $index) {
+              <div
+                [ngClass]="index === providerActiveIndex() ? 'provider-selected' : ''"
+                (click)="onChangeProvider(index, provider)"
+              >
+                <img
+                  [src]="provider.icon.url"
+                  [alt]="provider.name"
+                />
+              </div>
+            }
+          </div>
+        </div>
+        <div class="action-hint-wrapper">
+          <div class="hint-icon"></div>
+          <span> شرایط ارائه مدارک و نحوه دریافت وام، براساس حقیقی/حقوقی بودن فروشگاه شما، در مراحل بعدی ذکر خواهد شد. </span>
+        </div>
+      </div>
+      <div class="calculate-area">
+        <div class="calculate-provider-wrapper-desktop">
+          <div class="provider">
+            <div class="provider-icon">
+              <img
+                [src]="provider()?.icon.url"
+                [alt]="provider()?.name"
+              />
+            </div>
+            <span> طرح بانک {{ provider()?.name }} </span>
+          </div>
+          <span>{{ amounts()[finalAmount()]?.amount | iranianRials }}</span>
+        </div>
+        <div class="calculate-provider-wrapper-mobile">
+          <div class="provider-icon">
+            @if (provider()) {
+              <img
+                [src]="provider().icon.url"
+                [alt]="provider().name"
+              />
+            }
+          </div>
+          <div class="provider">
+            <span> طرح بانک {{ provider()?.name }} </span>
+            <span>{{ amounts()[finalAmount()]?.amount | iranianRials }}</span>
+          </div>
+        </div>
+        <ul>
+          <li>
+            <span class="title">ضمانت</span>
+            <span class="description">{{ provider()?.collateral }}</span>
+          </li>
+          <li>
+            <span class="title">بازپرداخت وام</span>
+            <span class="description"> {{ amounts()[finalAmount()]?.installments[installmentActiveIndex()]?.installmentCount }} ماه </span>
+          </li>
+          <li>
+            <span class="title">سود سالانه</span>
+            <span class="description">{{ provider()?.profit }} %</span>
+          </li>
+          <li>
+            <span class="title">مبلغ قسط ماهیانه</span>
+            <span class="description">
+              {{ amounts()[finalAmount()]?.installments[installmentActiveIndex()]?.installmentAmount | iranianRials }}
+            </span>
+          </li>
+          <li>
+            <span class="title">مجموع اقساط</span>
+            <span class="description">
+              {{
+                amounts()[finalAmount()]?.installments[installmentActiveIndex()]?.installmentAmount *
+                  amounts()[finalAmount()]?.installments[installmentActiveIndex()]?.installmentCount | iranianRials
+              }}
+            </span>
+          </li>
+          <li>
+            <div class="tooltip">
+              <span class="title">انتقال حق امتیاز وام</span>
+              <i
+                class="tool-tips icon-info"
+                ngxTooltip="این مبلغ شامل هزینه‌های تسهیل‌گری خدمات دریافت وام (ایجاد و توسعه زیرساخت‌ها، انجام فرآیندها، عملیات پشتیانی، توسعه و نگه‌داری محصول و ...) است."
+                [tooltipPosition]="'bottom'"
+              ></i>
+            </div>
+            <span class="description">
+              {{ amounts()[finalAmount()]?.installments[installmentActiveIndex()]?.serviceFee | iranianRials }}
+            </span>
+          </li>
+        </ul>
+        <ngx-button
+          (clickHandler)="requestLoan()"
+          [fullWidth]="true"
+          class="mt-plus"
+        >
+          درخواست وام
+        </ngx-button>
+      </div>
+      <div class="calculate-hint-wrapper">
+        <div class="hint-icon"></div>
+        <span> شرایط ارائه مدارک و نحوه دریافت وام، براساس حقیقی/حقوقی بودن فروشگاه شما، در مراحل بعدی ذکر خواهد شد. </span>
+      </div>
+    </div>
+  </div>
+</section>

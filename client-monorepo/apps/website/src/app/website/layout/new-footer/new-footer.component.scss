@@ -1,0 +1,201 @@
+@import "../../node_modules/@digipay/base-style/styleguide";
+
+.footer-box {
+  border-top: 1px solid #F2F3F6;
+}
+.top-footer-section {
+  .right-section {
+    .logo {
+      width: 82px;
+      height: auto;
+    }
+
+    .info {
+      color: map-get($shade-colors, onback-shade-30);
+
+      .tel {
+        a {
+          text-decoration: none;
+          color: map-get($shade-colors, onback-shade-30);
+        }
+      }
+
+      .tel-prefix, .address-prefix {
+        color: map-get($shade-colors, onback-shade-5);
+      }
+    }
+
+    .socials {
+      .media-icon {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .left-section {
+    .all-links {
+      .links {
+        .link {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .collapsible-items {
+    display: none;
+  }
+
+}
+
+.mid-footer-section {
+  gap: 136px;
+
+  #expandable-text {
+    margin: 10px;
+
+    p {
+      display: inline;
+    }
+  }
+
+  .toggle-text {
+    display: inline;
+  }
+
+  #toggle-text {
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+  }
+
+  ::ng-deep .toggle-text {
+    p {
+      display: inline;
+    }
+  }
+}
+
+.footer-download-section {
+
+  .stores {
+    .store {
+      width: 97px;
+      height: 30px;
+      border: 0.5px solid black;
+      border-radius: 74px;
+    }
+  }
+
+  .qr {
+    .qr-code {
+      img {
+        width: 92px;
+        height: 92px;
+      }
+    }
+  }
+}
+
+.bot-footer-section {
+  .copy-right {
+    color: map-get($shade-colors, onback-shade-30);
+  }
+
+  .logos {
+    .logo {
+      border: 1px solid gray;
+      width: 48px;
+      height: 48px;
+      border-radius: map-get($border-radius-sizes, 'minus');
+
+      a {
+        width: 40px;
+        height: 40px;
+
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+  }
+}
+
+
+@media(max-width: 1280px) {
+
+  .top-footer-section {
+    flex-direction: column;
+    gap: 28px !important;
+
+    .right-section {
+      align-items: center;
+      text-align: center;
+
+      .info {
+        .address {
+          margin-left: 0 !important;
+        }
+
+        .tel {
+          margin-bottom: 28px !important;
+        }
+      }
+    }
+
+    .left-section {
+      display: none !important;
+    }
+
+    .collapsible-items {
+      display: block;
+
+      .collapsible {
+        cursor: pointer;
+        width: 100%;
+        border: none;
+        text-align: right;
+        outline: none;
+      }
+
+
+      .active:after {
+        content: "\2304";
+        float: left;
+      }
+
+      .content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+      }
+    }
+  }
+  .mid-footer-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+
+    .footer-download-section {
+      .stores {
+        gap: 10px !important;
+        flex-direction: row !important;
+      }
+
+      .qr {
+        display: none !important;
+      }
+    }
+  }
+
+  .bot-footer-section {
+    flex-direction: column;
+    align-items: center !important;
+
+    .copy-right {
+      text-align: center;
+    }
+  }
+}

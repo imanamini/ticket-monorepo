@@ -1,0 +1,37 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.rtl {
+  direction: rtl;
+
+  * {
+    direction: rtl;
+  }
+}
+
+
+
+.image {
+  width: 320px;
+  height: 165px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+
+  .error-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 1;
+  }
+
+  .image-container {
+    height: 100%;
+    aspect-ratio: 2 / 1;
+    width: auto;
+  }
+}

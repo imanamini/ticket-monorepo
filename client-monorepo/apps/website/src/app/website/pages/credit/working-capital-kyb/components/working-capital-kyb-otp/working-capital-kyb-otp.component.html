@@ -1,0 +1,48 @@
+<div class="login-applet otp">
+  <div
+    (click)="closeDialog()"
+    class="close desktop"
+  >
+    <ngx-icon
+      [name]="'close'"
+      classes="text-onback-high cursor-pointer"
+    ></ngx-icon>
+  </div>
+  <div class="text-align-center">
+    <img
+      [src]="'assets/login/otp.svg'"
+      alt=""
+    />
+  </div>
+  <div class="subtitle">کد ارسال شده به شماره {{ cellNumber }} را وارد کنید</div>
+  <form
+    [formGroup]="otpForm"
+    autocomplete="off"
+  >
+    <div class="relative-position otp-inputs-wrapper">
+      <ngx-otp
+        [(otp)]="otpCode"
+        [otpLength]="length()"
+        [supportText]="OtpErrorText()"
+        [status]="otpStatus()"
+      />
+    </div>
+    <div
+      *ngIf="invalidOtpErrorMessage"
+      class="text-error"
+    >
+      {{ invalidOtpErrorMessage }}
+    </div>
+  </form>
+  <div class="ctas otp">
+    <ngx-button
+      (click)="receiveNewCode()"
+      [class.disable-timer]="!timeIsOver"
+      [disabled]="!timeIsOver"
+    >
+      <span *ngIf="!timeIsOver">{{ minute }}:{{ second }}</span>
+      <span *ngIf="timeIsOver">ارسال مجدد</span>
+    </ngx-button>
+    <ngx-button [disabled]="!otpForm.valid || isSubmitting"> تایید کد یکبار مصرف </ngx-button>
+  </div>
+</div>

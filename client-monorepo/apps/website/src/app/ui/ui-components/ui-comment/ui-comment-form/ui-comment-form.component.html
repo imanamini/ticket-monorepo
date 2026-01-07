@@ -1,0 +1,72 @@
+<div
+  [formGroup]="form"
+  class="comment-form"
+>
+  <h3 class="form-title">دیدگاهتان را بنویسید</h3>
+
+  <p
+    *ngIf="inReplyToAuthor"
+    class="reply-text"
+  >
+    در حال پاسخ به نظر «{{ inReplyToAuthor }}»
+    <span
+      (click)="onCancelReply()"
+      class="cancel-reply"
+      >(لغو)</span
+    >
+  </p>
+
+  <p class="confidentiality-note">نشانی ایمیل شما منتشر نخواهد شد. بخش‌های موردنیاز علامت‌گذاری شده‌اند*</p>
+
+  <div class="form-row">
+    <label>نام*</label>
+    <input
+      class="field"
+      formControlName="author"
+      type="text"
+    />
+  </div>
+  <div class="form-row">
+    <label>ایمیل*</label>
+    <input
+      class="field"
+      formControlName="email"
+      type="text"
+    />
+  </div>
+
+  <div class="form-row">
+    <label>دیدگاه</label>
+    <textarea
+      [rows]="3"
+      class="field"
+      formControlName="commentText"
+    ></textarea>
+  </div>
+
+  <label class="remember-me-checkbox">
+    <input
+      formControlName="rememberMe"
+      type="checkbox"
+    />
+    ذخیره نام، ایمیل و وبسایت من در مرورگر برای زمانی که دوباره دیدگاهی می‌نویسم
+  </label>
+
+  <p
+    *ngFor="let message of errorMessages"
+    class="error-message"
+  >
+    {{ message }}
+  </p>
+
+  <p
+    *ngIf="successMessage"
+    class="success-message"
+  >
+    {{ successMessage }}
+  </p>
+
+  <div class="button-wrapper">
+    <app-ui-button (click)="sendComment()">فرستادن دیدگاه</app-ui-button>
+  </div>
+</div>

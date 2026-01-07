@@ -1,0 +1,9 @@
+<div class="d-flex flex-column justify-content-center align-items-center h-100 gap-plus p-plus">
+  <ngx-spinner color="primary"
+               size="md"></ngx-spinner>
+  @if (text()) {
+    <div [textContent]="text()"
+         class="bt-2 text-onback-medium text-align-center">
+    </div>
+  }
+</div>

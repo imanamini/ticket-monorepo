@@ -1,0 +1,25 @@
+<section>
+  <div class="container">
+    <ul
+      *ngIf="features && features.length > 0"
+      class="feature-cards"
+    >
+      <li
+        *ngFor="let item of features"
+        class="feature-card"
+      >
+        <div class="feature-card-icon">
+          <img
+            *ngIf="item.featureIcon"
+            [src]="item.featureIcon.url"
+            alt="{{ item.featureTitle }}>"
+          />
+        </div>
+        <div class="feature-card-content">
+          <strong>{{ item.featureTitle }}</strong>
+          <span>{{ item.featureText }}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

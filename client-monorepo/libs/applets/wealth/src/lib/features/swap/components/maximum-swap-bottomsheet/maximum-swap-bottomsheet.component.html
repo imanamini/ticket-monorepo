@@ -1,0 +1,24 @@
+<div class="w-100 d-flex flex-column p-plus flex-column align-items-center">
+  <div class="radius-rounded surface-glass-onelevated d-flex align-items-center justify-content-center icon-container">
+    <ngx-icon
+      [name]="'error-circle'"
+      [type]="'bold'"
+      [iconSize]="'48px'"
+      class="text-onback-brand"
+    />
+  </div>
+
+  <p class="st-3 text-onback-high mt-huge">سقف قابل تبدیل چیست؟</p>
+  <p class="b-2 text-onback-medium mt-low text-align-center">
+    اگر بخشی از دارایی شما وثیقه شده باشد، سقف قابل تبدیل طوری تعیین شده که نسبت وثیقه و اعتبار شما حفظ شود. به همین دلیل ممکن است این عدد
+    کمتر از کل موجودیتان باشد.
+  </p>
+
+  <ngx-button
+    class="mt-giant"
+    (clickHandler)="handleAction()"
+    [fullWidth]="true"
+  >
+    متوجه شدم
+  </ngx-button>
+</div>

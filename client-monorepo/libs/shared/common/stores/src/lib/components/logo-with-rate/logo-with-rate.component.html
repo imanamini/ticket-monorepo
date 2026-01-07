@@ -1,0 +1,27 @@
+<div
+  [class]="'store-logo gap-micro ' + bgClass()"
+  [style.borderRadius]="borderRadius()"
+>
+  <ui-api-image
+    [width]="'100%'"
+    [height]="'24px'"
+    [classes]="invertBgClass()"
+    [borderRadius]="'24px'"
+    [imageId]="logoImageId()"
+    [fallbackImage]="'assets/fallback/digipay-logo-32x32-fallback.svg'"
+    [showLoading]="false"
+    [lazy]="true"
+    [lazyConfig]="{ root: '.dpx-main-layout-body' }"
+  ></ui-api-image>
+  @if (score()) {
+    <ngx-badge
+      [status]="'neutral'"
+      [type]="'count'"
+      [mode]="'fill'"
+      [size]="'tiny'"
+      [classList]="invertBgClass()"
+    >
+      {{ score() }}
+    </ngx-badge>
+  }
+</div>

@@ -1,0 +1,38 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.main-section {
+  direction: rtl;
+  box-sizing: border-box;
+  flex-grow: 1;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .top-section {
+    flex-grow: 1;
+
+    .page-content {
+      flex-grow: 1;
+      direction: rtl;
+
+      .plan-info {
+        overflow: hidden;
+        height: 40px;
+
+        &.open {
+          height: unset;
+        }
+      }
+    }
+  }
+
+  .call-to-actions-section {
+    flex-grow: 0;
+  }
+}

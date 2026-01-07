@@ -1,0 +1,30 @@
+<div class="surface-elevated policy-issue-container d-flex flex-column p-plus">
+  <div class="d-flex flex-column issue-container align-items-center	justify-content-center">
+    <img alt="alert" height="96" src="assets/floki/icons/success-payment-icon.svg" width="96">
+    <div class="st-3 text-onback-high">
+      بیمهٔ شما، با موفقیت صادر شد!
+    </div>
+    <div class="b-2 text-onback-medium">
+      می‌توانید بیمه‌نامه جدید خود را دریافت کنید.
+    </div>
+  </div>
+  <div class="d-flex flex-column gap-small">
+    <ngx-button
+      [brandButton]="false"
+      [fullWidth]="true"
+      [mode]="'section'"
+      [rightIcon]="{name: 'download'}"
+      [size]="'large'"
+      (click)="onShowPolicy()"
+      [style]="'fill'">دانلود و مشاهده سند
+    </ngx-button>
+    <ngx-button
+      [brandButton]="false"
+      [fullWidth]="true"
+      [mode]="'section'"
+      [size]="'large'"
+      (click)="onGoToMyPolicies()"
+      [style]="'tinted-on-elevated'">بیمه نامه های من
+    </ngx-button>
+  </div>
+</div>

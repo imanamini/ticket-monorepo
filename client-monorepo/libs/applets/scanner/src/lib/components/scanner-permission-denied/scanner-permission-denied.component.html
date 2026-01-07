@@ -1,0 +1,29 @@
+<div class="container">
+  <span class="permission-denied-icon"></span>
+  <p class="title">اجازه دسترسی به دوربین وجود ندارد!</p>
+  <p class="description">
+    لطفا برای استفاده از بارکدخوان، به
+    <strong class="description-strong">
+      {{ isHybrid ? 'تنظیمات' : 'تنظیمات مرورگر' }}
+    </strong>
+    دستگاهتان رفته و دسترسی به دوربین را فعال کنید.
+  </p>
+  @if (isHybrid) {
+    <ngx-button
+      (clickHandler)="goToSettingForGetPermission()"
+      class="permission-button"
+      [style]="'tinted-on-elevated'"
+    >
+      <span>به تنظیمات برو</span>
+    </ngx-button>
+  }
+  <ngx-button
+    class="pt-medium"
+    [size]="'medium'"
+    [style]="'fill'"
+    [mode]="'section'"
+    (clickHandler)="goBack()"
+  >
+    بازگشت
+  </ngx-button>
+</div>

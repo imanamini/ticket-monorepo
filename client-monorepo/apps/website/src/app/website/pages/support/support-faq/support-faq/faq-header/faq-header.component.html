@@ -1,0 +1,21 @@
+<div class="faq-header">
+  <div class="wrapper">
+    <h1 class="main-title">چطوری می تونیم بهت کمک کنیم؟</h1>
+    <p class="desc">اینجا می تونی سوالی که در مورد هر کدوم از محصولات ما داری و پیدا کنی</p>
+    <app-faq-search></app-faq-search>
+    <div
+      *ngIf="mostViewedCategories.length > 0"
+      class="most-viewed-categories"
+    >
+      <span>دسته بندی‌های پربازدید:</span>
+      <ul>
+        <li
+          (click)="onCategoryClick(cat)"
+          *ngFor="let cat of mostViewedCategories"
+        >
+          {{ cat.name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

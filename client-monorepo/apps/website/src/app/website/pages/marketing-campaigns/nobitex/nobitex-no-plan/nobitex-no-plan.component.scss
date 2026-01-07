@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  justify-content: center;
+
+
+  .calculator {
+    width: 100%;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 0 80px 0 rgba(159, 176, 253, 0.25);
+    margin-top: 40px;
+
+    .calculator-container {
+      padding: 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+
+      .title {
+        color: #061962;
+        text-align: center;
+        font-feature-settings: 'liga' off, 'clig' off;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 28px; /* 175% */
+      }
+
+      .subtitle {
+        color: #6e798d;
+        text-align: center;
+        font-feature-settings: 'liga' off, 'clig' off;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px; /* 171.429% */
+      }
+    }
+  }
+}

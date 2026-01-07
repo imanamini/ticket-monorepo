@@ -1,0 +1,135 @@
+@if (loaded) {
+  <div class="black-friday" id="black-friday-container">
+    <div class="absolute-pics">
+      <span class=" discount wrap" data-speed-y="0.15">
+          <span class="inner">
+           <img src="/assets/images/black-friday/off-1.svg" alt="">
+          </span>
+      </span>
+
+      <span class="discount-reverse wrap" data-speed-y="0.15">
+       <span class="inner">
+        <img src="/assets/images/black-friday/off-4.svg" alt="">
+       </span>
+      </span>
+
+      <span class="washing-machine wrap" data-speed-y="0.15">
+        <span class="inner">
+         <img src="/assets/images/black-friday/washing-machine.svg" alt="">
+        </span>
+      </span>
+
+      <span class=" gooshi wrap" data-speed-y="0.2">
+    <span class="inner">
+        <img src="/assets/images/black-friday/iphone-promax.webp" alt="">
+    </span>
+  </span>
+
+
+      <span class="discount2 wrap" #spanEl data-speed-y="0.2">
+            <span class="inner"> <img src="/assets/images/black-friday/off-1.svg" alt=""></span>
+
+      </span>
+
+      <span class="discount3 wrap" data-speed-y="0.2">
+         <span class="inner">  <img src="/assets/images/black-friday/off-1.svg" alt=""></span>
+
+      </span>
+
+      <span class="discount-reverse2 wrap" data-speed-y="0.2">
+         <span class="inner"> <img src="/assets/images/black-friday/off-4.svg" alt=""></span>
+
+      </span>
+
+      <span class="laptop wrap" data-speed-y="0.2">
+         <span class="inner">  <img src="/assets/images/black-friday/laptop.svg" alt=""></span>
+
+      </span>
+
+      <span class="overcoat wrap" data-speed-y="0.2">
+         <span class="inner"><img src="/assets/images/black-friday/overcoat.svg" alt=""></span>
+
+      </span>
+
+      <span class="jewelry wrap" data-speed-y="0.2">
+         <span class="inner">        <img src="/assets/images/black-friday/jewelry.svg" alt="">
+</span>
+      </span>
+
+      <span class="discount4 wrap" data-speed-y="0.2">
+         <span class="inner">     <img src="/assets/images/black-friday/off-1.svg" alt=""></span>
+
+      </span>
+
+      <span class="discount-reverse3 wrap" data-speed-y="0.2">
+         <span class="inner">  <img src="/assets/images/black-friday/off-4.svg" alt=""></span>
+
+      </span>
+    </div>
+    <div class="section-intro">
+      <div class="container">
+        <div class="logo-container p-big">
+          <img src="assets/images/black-friday/digipay-logo.svg" alt="">
+        </div>
+      </div>
+      @if (blackFridayTemplate().introSection) {
+        <div class="mt-massive">
+          <app-black-friday-intro [introSection]="blackFridayTemplate().introSection"></app-black-friday-intro>
+        </div>
+      }
+    </div>
+    @if (blackFridayTemplate().hotDeals) {
+      <app-black-friday-hot-deals id="hot-deals"
+                                  [link]="blackFridayTemplate()?.introSection?.primaryCta?.link"
+                                  [hotDeals]="blackFridayTemplate().hotDeals"
+      ></app-black-friday-hot-deals>
+    }
+
+    <div id="black-friday-steps" class="container">
+      <app-bnpl-steps [purchaseStep]="purchaseSteps()" [blackFridayMode]="true"></app-bnpl-steps>
+    </div>
+    @if (blackFridayTemplate().merchants) {
+      <app-black-friday-merchants [merchants]="blackFridayTemplate().merchants"></app-black-friday-merchants>
+    }
+    @if (blackFridayTemplate().promotion) {
+      <app-black-friday-promotion [promotion]="blackFridayTemplate().promotion"></app-black-friday-promotion>
+    }
+    @if (blackFridayTemplate().categorizedProducts) {
+      <app-black-friday-categories-product
+        [categoriesProducts]="blackFridayTemplate().categorizedProducts"></app-black-friday-categories-product>
+    }
+    @if (blackFridayTemplate().prize) {
+      <app-black-friday-prize [prize]="blackFridayTemplate().prize" id="black-friday-prize"></app-black-friday-prize>
+    }
+    @if (blackFridayTemplate().faq) {
+      <app-ui-faq
+        [faqs]="blackFridayTemplate().faq.faqItems"
+        [title]="blackFridayTemplate().faq?.title"
+        [subtitle]="blackFridayTemplate().faq?.subtitle"
+        [blackFridayMode]="true"
+      ></app-ui-faq>
+    }
+    @if (blackFridayTemplate().promotion && isMobileMode) {
+      <app-black-friday-promotion
+        id="final-cta"
+        [promotion]="blackFridayTemplate().promotion"></app-black-friday-promotion>
+    }
+  </div>
+
+  <div
+    class="sticky-bottom-navigation"
+    *ngIf="isMobileMode && isStickyVisible"
+  >
+    <app-cta-bottom-sheet
+      [cta]="cta()"
+      [brandButton]="false" [style]="'tinted-on-back'"
+      [ctaIcon]="'arrow-left'"
+      [background]="'linear-gradient(92deg, rgba(30, 108, 255, 0.30) 9.23%, rgba(30, 108, 255, 0.05) 68.24%, rgba(30, 108, 255, 0.10) 100%)'"
+    ></app-cta-bottom-sheet>
+
+  </div>
+}
+
+
+
+

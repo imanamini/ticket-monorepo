@@ -1,0 +1,37 @@
+.onboarding-wrapper {
+  display: block;
+  height: 100%;
+
+  ngx-carousel {
+    height: 100%;
+  }
+}
+
+.onboarding-item {
+  .picture-bg {
+    width: 280px;
+    height: 275px;
+    background-position: center center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .item-text-wrapper {
+    margin-top: 70px;
+    margin-bottom: auto;
+
+    .title-wrapper {
+      font-weight: 800;
+      line-height: 32px;
+    }
+
+    .text {
+      font-weight: 370;
+      line-height: 24px
+    }
+  }
+}

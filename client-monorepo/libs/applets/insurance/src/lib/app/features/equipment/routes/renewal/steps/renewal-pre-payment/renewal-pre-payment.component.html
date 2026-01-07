@@ -1,0 +1,118 @@
+<div class="pre-payment">
+  <div class="payment-description">
+    اطلاعات زیر را مشاهده و در صورت تایید پرداخت کنید.
+    <div
+            (click)="showCoverages()"
+            *ngIf="!isMobile"
+            class="description-more-details"
+    >
+      <img
+              alt=""
+              src="insurance-assets/icons/info-border-circle-blue.svg"
+      />
+      جزییات بیشتر
+    </div>
+  </div>
+
+  <div
+          [ngClass]="{ mobile: isMobile }"
+          class="payment-details"
+  >
+    <div>
+      <!-- first column -->
+      <div class="details-first details-item">
+        <!-- device name -->
+        <div class="first-device first-item">
+          <div class="device-image">
+            <img
+                    alt=""
+                    src="insurance-assets/images/pre-payment-mobile.svg"
+            />
+          </div>
+          <div class="device-name">
+            <span class="title"> مدل دستگاه </span>
+            <span class="name">
+              {{ prePaymentData?.productName }}
+            </span>
+          </div>
+        </div>
+        <!-- end device name -->
+
+        <!-- details list -->
+        <renewal-steps-list
+                [hideBorders]="true"
+                [listItems]="firstColumnData"
+        >
+        </renewal-steps-list>
+        <!-- end details list -->
+      </div>
+      <!-- end first column -->
+
+      <!-- second column -->
+      <div class="details-second details-item">
+        <!-- list -->
+        <renewal-steps-list [listItems]="secondColumnData"></renewal-steps-list>
+        <!-- end list -->
+
+        <!-- discount code -->
+        <div class="discount-code">
+          <ng-container *ngIf="!isVoucherSubmitted">
+            <div class="field">
+              <ui-form-field
+                      [(ngModel)]="voucherCode"
+                      label="کد تخفیف"
+              >
+              </ui-form-field>
+            </div>
+            <div
+                    (click)="reserveDiscount()"
+                    class="button"
+            >
+              اعمال کد
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="isVoucherSubmitted">
+            <div class="announcement">
+              <div class="text">کد تخفیف اعمال شد</div>
+              <div
+                      (click)="reverseDiscount()"
+                      class="button"
+              >
+                حذف
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <!-- end discount code -->
+      </div>
+      <!-- end second column -->
+    </div>
+  </div>
+
+  <!-- payable price -->
+  <div
+          *ngIf="!isMobile"
+          class="payment-payable-price"
+  >
+    <div class="price-title">مبلغ قابل پرداخت:</div>
+    <div class="price-amount">{{ prePaymentData?.payableAmount | thousands }} تومان</div>
+  </div>
+  <!-- end payable price -->
+  <!-- buttons -->
+  <journey-buttons
+          (backClicked)="goToPreviousStep()"
+          (nextClicked)="handleGoToNextStep()"
+          [disableNext]="loading$ | async"
+          [extraContent]="(prePaymentData?.payableAmount | thousands) + ' تومان'"
+          [extraLabel]="'مبلغ قابل پرداخت'"
+          [hideBackBtn]="isMobile"
+          [idValue]="'renewal-pre-payment-12'"
+          [isReversed]="false"
+          [showExtra]="isMobile"
+          backText="بازگشت"
+          nextText="تایید و پرداخت"
+  >
+  </journey-buttons>
+  <!-- end buttons -->
+</div>

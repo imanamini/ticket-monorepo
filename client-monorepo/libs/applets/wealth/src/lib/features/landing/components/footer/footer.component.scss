@@ -1,0 +1,417 @@
+@import "@digipay/base-style/swatch";
+
+.landing-footer-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10.67rem;
+    padding: 2rem 3.33rem;
+    box-sizing: border-box;
+
+    .landing-footer-desktop {
+        display: flex;
+        width: 100rem;
+        border-top: 2px solid;
+        padding-top: 2rem;
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 35rem;
+
+            .dp-img {
+                margin-bottom: 0.42rem;
+            }
+
+            .address {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 1.16667rem;
+                font-weight: 400;
+            }
+
+            .phone {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 1.16667rem;
+                font-weight: 400;
+            }
+
+            .social {
+                margin-top: 1rem;
+                display: flex;
+                gap: 2rem;
+                flex-direction: column;
+
+                .social-text {
+                    font-size: 1.16667rem;
+                    font-weight: 400;
+                }
+
+                .social-list {
+                    display: flex;
+                    gap: 1rem;
+                }
+
+                .social-copyright {
+                    color: $swatch_steel_500;
+                    font-weight: 500;
+                    font-size: 0.8rem;
+                }
+            }
+
+
+        }
+
+        .about {
+            width: 15rem;
+
+            .list-header {
+                margin-bottom: 1.92rem;
+
+                span {
+                    font-size: 1.16667rem;
+                    font-weight: 500;
+                }
+            }
+
+            .list {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                .list-item {
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        .services {
+            width: 15rem;
+
+            .list-header {
+                margin-bottom: 1.92rem;
+
+                span {
+                    font-size: 1.16667rem;
+                    font-weight: 500;
+                }
+            }
+
+            .list {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                .list-item {
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+
+        .quick-download-section {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            .quick-download {
+                font-size: 1.16667rem;
+                font-weight: 500;
+                margin-bottom: 1rem;
+            }
+
+            .downloaders {
+                display: flex;
+                gap: 1rem;
+
+                .separator {
+                    border-left: 2px solid #DEE3E7;
+                }
+
+
+                .downloader {
+                    display: flex;
+                    gap: 0.5rem;
+                    cursor: pointer;
+
+                    .downloader-info {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.2rem;
+
+                        .downloader-title {
+                            font-size: 1rem;
+                            font-weight: 700;
+                        }
+
+                        .downloader-device {
+                            color: $swatch_steel_700;
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+        .licenses-wrapper {
+
+            .licenses {
+                display: flex;
+                justify-content: flex-end;
+                gap: 1rem;
+                margin-top: 11rem;
+
+            }
+        }
+    }
+
+    .landing-footer-mobile {
+        display: flex;
+        width: 54rem;
+        border-top: 2px solid;
+        padding: 2rem;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        .services {
+            width: 100%;
+
+            .list-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1.92rem;
+
+                span {
+                    font-size: 1.16667rem;
+                    font-weight: 500;
+                }
+
+                img {
+                    width: 1.3rem;
+                    height: 1.3rem;
+                    cursor: pointer;
+                }
+            }
+
+            .list {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+
+                .list-item {
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .separator {
+                border-bottom: 1px solid $swatch_blue_100;
+                margin-top: 1rem;
+            }
+        }
+
+        .about {
+            width: 100%;
+
+            .list-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1.92rem;
+
+                span {
+                    font-size: 1.16667rem;
+                    font-weight: 500;
+                }
+
+                img {
+                    width: 1.3rem;
+                    height: 1.3rem;
+                    cursor: pointer;
+                }
+            }
+
+            .list {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+
+                .list-item {
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .separator {
+                border-bottom: 1px solid $swatch_blue_100;
+                margin-top: 1rem;
+            }
+        }
+
+        .quick-download {
+            font-size: 1.16667rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .downloaders {
+            display: flex;
+            gap: 1rem;
+
+            .separator {
+                border-left: 2px solid #DEE3E7;
+            }
+
+
+            .downloader {
+                display: flex;
+                gap: 0.5rem;
+                cursor: pointer;
+
+                .downloader-info {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.2rem;
+
+                    .downloader-title {
+                        font-size: 1rem;
+                        font-weight: 700;
+                    }
+
+                    .downloader-device {
+                        color: $swatch_steel_700;
+                    }
+                }
+            }
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 35rem;
+
+            .dp-img {
+                margin-bottom: 0.42rem;
+            }
+
+            .address {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 1.16667rem;
+                font-weight: 400;
+            }
+
+            .phone {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 1.16667rem;
+                font-weight: 400;
+            }
+
+            .social {
+                margin-top: 1rem;
+                display: flex;
+                gap: 2rem;
+                flex-direction: column;
+
+                .social-text {
+                    font-size: 1.16667rem;
+                    font-weight: 400;
+                }
+
+                .social-list {
+                    display: flex;
+                    gap: 1rem;
+                }
+
+                .social-copyright {
+                    color: $swatch_steel_500;
+                    font-weight: 500;
+                    font-size: 0.8rem;
+                }
+            }
+
+
+        }
+
+        .licenses-wrapper {
+
+            .licenses {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                margin-top: 3rem;
+                z-index: 1;
+                position: relative;
+
+                &::before {
+                    content: "";
+                    width: 100%;
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    border: 1px solid rgba(6, 25, 98, 0.06);
+                }
+            }
+
+
+
+
+        }
+
+    }
+}
+
+@media (max-width: 680px) {
+    .landing-footer-container {
+
+
+        .landing-footer-mobile {
+            width: 100%;
+            padding: 2rem 0;
+
+            .downloader {
+                .downloader-info {
+                    .downloader-title {
+                        font-size: 0.8rem !important;
+                    }
+
+                    .downloader-device {
+                        font-size: 0.7rem;
+                    }
+                }
+            }
+
+            .info {
+                width: 100%;
+            }
+        }
+    }
+}

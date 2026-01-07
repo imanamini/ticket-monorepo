@@ -1,0 +1,34 @@
+@if (!gettingConfig()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="goBack()"
+    [backButton]="true"
+    title="جزییات پرداخت"
+  ></app-credit-app-bar>
+  <div class="main-section flex-full-height">
+    <div class="top-section">
+      <app-credit-scrollable-view>
+        <div class="page-content">
+          <app-credit-payment-card
+            [amount]="+amount()!"
+            [detailsTitle]="payConfig()?.subTitle!"
+            [details]="[payConfig()?.description!]"
+            [imageId]="payConfig()?.icon"
+            [title]="payConfig()?.title!"
+          ></app-credit-payment-card>
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+    <div class="call-to-action-section">
+      <ngx-button
+        (click)="goForward()"
+        [disabled]="paying()"
+        [isLoading]="paying()"
+        [fullWidth]="true"
+        [brandButton]="true"
+      >
+        تایید و پرداخت
+      </ngx-button>
+    </div>
+  </div>
+}
+<credit-page-loading [active]="gettingConfig()!"></credit-page-loading>

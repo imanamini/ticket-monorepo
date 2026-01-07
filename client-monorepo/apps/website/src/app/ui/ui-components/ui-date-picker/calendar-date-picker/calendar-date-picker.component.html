@@ -1,0 +1,179 @@
+<div
+  (click)="backdropClick($event)"
+  [hidden]="!visible"
+  class="digipay-date-picker-backdrop"
+>
+  <div
+    #datePickerUi
+    [ngClass]="{
+      'is-default': pickType === 'default',
+      'is-month-picker': pickType === 'month-picker',
+    }"
+    [ngStyle]="position"
+    class="digipay-date-picker-ui"
+  >
+    <div
+      *ngIf="pickType === 'default'"
+      class="date-picker-body"
+    >
+      <div *ngIf="view === 'days'">
+        <div class="date-picker-header">
+          <span
+            (click)="nextMonth()"
+            class="arrow-right"
+          ></span>
+          <span *ngIf="currentDate">
+            <span
+              (click)="monthView()"
+              class="go-to-month-view"
+              >{{ currentDate.locale('fa').format('MMMM') }}</span
+            >
+            <span
+              (click)="yearView()"
+              class="go-to-year-view"
+              >{{ currentDate.locale('fa').format('YYYY') }}</span
+            >
+          </span>
+          <span
+            (click)="prevMonth()"
+            class="arrow-left"
+          ></span>
+        </div>
+        <div class="week-days">
+          <span>شنبه</span>
+          <span class="is-short">ش</span>
+          <span>یکشنبه</span>
+          <span class="is-short">ی</span>
+          <span>دوشنبه</span>
+          <span class="is-short">د</span>
+          <span>سه‌شنبه</span>
+          <span class="is-short">س</span>
+          <span>چهارشنبه</span>
+          <span class="is-short">ج</span>
+          <span>پنجشنبه</span>
+          <span class="is-short">پ</span>
+          <span>جمعه</span>
+          <span class="is-short">ج</span>
+        </div>
+
+        <div class="month-days">
+          <div
+            *ngFor="let week of weeks"
+            class="week"
+          >
+            <span
+              (click)="dayClick(day)"
+              *ngFor="let day of week"
+              [ngClass]="{
+                'is-today': today && day && today.locale('fa').format('YYYY/MM/DD') === day.format('YYYY/MM/DD'),
+                'is-selected': isSelectedDay(day),
+                'is-selectable': !!day,
+                'is-future': this.today && day && day.isAfter(this.today),
+                'is-disabled': isDisabledDay(day),
+              }"
+              class="day"
+              >{{ day ? day.locale('fa').format('D') : '' }}</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div
+        *ngIf="view === 'months'"
+        class="month-view"
+      >
+        <div
+          (click)="monthClick(month)"
+          *ngFor="let month of monthList"
+          [ngClass]="{
+            'is-disabled': isDisabledMonth(month),
+          }"
+          class="month"
+        >
+          <span>{{ month.locale('fa').format('MMMM') }}</span>
+        </div>
+      </div>
+
+      <div
+        *ngIf="view === 'years'"
+        class="year-view"
+      >
+        <div class="date-picker-header">
+          <span
+            (click)="prevYears()"
+            class="arrow-right"
+          ></span>
+          <span> {{ years[years.length - 1] }} - {{ years[0] }} </span>
+          <span
+            (click)="nextYears()"
+            class="arrow-left"
+          ></span>
+        </div>
+        <div class="years">
+          <div
+            (click)="yearClick(year)"
+            *ngFor="let year of years"
+            [ngClass]="{
+              'is-disabled': isDisabledYear(year),
+            }"
+            class="year"
+          >
+            <span>{{ year }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  body  -->
+
+    <div
+      *ngIf="pickType === 'month-picker'"
+      class="date-picker-body month-picker"
+    >
+      <app-date-picker
+        (close)="monthPickerClose($event)"
+        [allowFuture]="true"
+        [pickers]="{ year: true, month: true, day: false }"
+        [value]="
+          selectedDate
+            ? {
+                year: selectedDate.locale('fa').format('YYYY'),
+                month: selectedDate.locale('fa').format('MM'),
+                day: '01',
+              }
+            : { month: '', year: '', day: '' }
+        "
+      ></app-date-picker>
+    </div>
+    <div
+      *ngIf="showTime"
+      class="time-picker-body"
+    >
+      <input
+        (blur)="this.setTime($event)"
+        [(ngModel)]="timeHour"
+        data-max-number="23"
+        maxlength="2"
+        placeholder="HH"
+        type="text"
+      />
+      <span>:</span>
+      <input
+        (blur)="this.setTime($event)"
+        [(ngModel)]="timeMinute"
+        data-max-number="59"
+        maxlength="2"
+        placeholder="MM"
+        type="text"
+      />
+      <span>:</span>
+      <input
+        (blur)="this.setTime($event)"
+        [(ngModel)]="timeSecond"
+        data-max-number="59"
+        maxlength="2"
+        placeholder="SS"
+        type="text"
+      />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<section>
+  <div class="container">
+    <div
+      class="title"
+      *ngIf="valuePropositionSection?.title"
+    >
+      {{ valuePropositionSection.title }}
+    </div>
+    <div
+      class="values"
+      *ngIf="valuePropositionSection?.items.length > 0"
+    >
+      <div
+        class="value"
+        *ngFor="let value of valuePropositionSection.items"
+      >
+        <div class="image">
+          <img
+            [src]="value.icon.url"
+            width="154"
+            height="154"
+          />
+        </div>
+        <div class="description">
+          {{ value.description }}
+        </div>
+        <div class="sub-description">
+          {{ value.subDesc }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

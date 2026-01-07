@@ -1,0 +1,49 @@
+:host {
+  font-family: iranyekan, sans-serif !important;
+}
+
+:host ::ng-deep * {
+  font-family: iranyekan, sans-serif !important;
+}
+
+::ng-deep .overflow-visible {
+  overflow: visible !important;
+}
+
+.login-onboarding-wrapper {
+  padding: 20px;
+  background: #FAFAFA;
+  overflow: hidden;
+}
+.onboarding-item {
+  width: 280px;
+  height: 280px;
+  background-image: url('./assets/card-background.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  overflow: visible;
+}
+
+.picture-bg {
+  width: 200px;
+  height: 120px;
+  border-radius: 24px;
+  overflow: visible; // Allow image to overflow
+  background: transparent;
+  position: relative;
+}
+
+.overflow-image {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+  position: relative;
+  top: -30px;
+}
+
+@media (max-width: 420px) {
+  .onboarding-item {
+    width: 240px;
+  }
+}

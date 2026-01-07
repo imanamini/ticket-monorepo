@@ -1,0 +1,46 @@
+<section>
+  <div class="container">
+    <h2 class="text-align-center">{{ data.title }}</h2>
+
+    <swiper-container
+      appSwiper
+      #swiper
+      [config]="config"
+      (slidechange)="slideChange($event)"
+    >
+      <swiper-slide *ngFor="let item of data.categories">
+        <div
+          [ngStyle]="{ backgroundColor: item.backgroundColor }"
+          class="item-category"
+        >
+          <div
+            [ngStyle]="{ backgroundImage: 'url(' + item.image.url + ')' }"
+            class="image"
+          ></div>
+        </div>
+        <p class="title">
+          {{ item.name }}
+        </p>
+      </swiper-slide>
+    </swiper-container>
+
+    <!--    <swiper [config]="config">-->
+    <!--      <ng-container *ngFor="let item of data.categories">-->
+    <!--        <ng-template swiperSlide>-->
+    <!--          <div-->
+    <!--            [ngStyle]="{ backgroundColor: item.backgroundColor }"-->
+    <!--            class="item-category"-->
+    <!--          >-->
+    <!--            <div-->
+    <!--              [ngStyle]="{ backgroundImage: 'url(' + item.image.url + ')' }"-->
+    <!--              class="image"-->
+    <!--            ></div>-->
+    <!--          </div>-->
+    <!--          <p class="title">-->
+    <!--            {{ item.name }}-->
+    <!--          </p>-->
+    <!--        </ng-template>-->
+    <!--      </ng-container>-->
+    <!--    </swiper>-->
+  </div>
+</section>

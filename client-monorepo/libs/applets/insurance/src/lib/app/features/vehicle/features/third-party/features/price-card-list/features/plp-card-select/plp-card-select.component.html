@@ -1,0 +1,13 @@
+@if (isLoggedIn() || isLoading()) {
+  <full-screen-loading></full-screen-loading>
+} @else {
+  <div style="flex:1" class="d-flex flex-column align-items-center justify-content-center w-100 h-100">
+    <empty-result [actionButton]="true"
+                  (actionButtonClicked)="handleLoginClicked()"
+                  icon="not-login"
+                  title="ورود به حساب کاربری"
+                  description="برای ادامه مراحل خرید خود، وارد حساب کاربری شوید."
+                  actionButtonText="ورود / ثبت‌نام"
+                  actionButtonIcon="login"></empty-result>
+  </div>
+}

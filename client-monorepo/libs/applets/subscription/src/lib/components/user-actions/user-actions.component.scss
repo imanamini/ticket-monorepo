@@ -1,0 +1,70 @@
+.action-container {
+  padding: 24px 16px;
+}
+
+.action-title {
+  // TODO
+  //color: $swatch_steel_900;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.action-section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+
+  &-item {
+    border-bottom: 1px solid #F2F5F8;
+
+    &:first-child {
+      padding-bottom: 16px;
+    }
+
+    &:not(:first-child) {
+      padding: 16px 0 16px 0;
+    }
+
+    &:last-of-type {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+  }
+
+  .section-title {
+    // TODO
+    //color: $swatch_steel_900;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+    background-position: center;
+  }
+}
+
+.next-section {
+  display: flex;
+  align-content: center;
+  gap: 4px;
+  cursor: pointer;
+
+  .next-description {
+    // TODO
+    //color: $primary-blue;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  .next-icon {
+    width: 20px;
+    height: 20px;
+    background: url("icon/next.svg") center;
+  }
+}

@@ -1,0 +1,22 @@
+<div class="expansion">
+  <div
+          *ngFor="let expansionItem of expansionData"
+          class="expansion-item">
+    <div
+            (click)="expansionClick(expansionItem.id)"
+            class="title">
+      {{ expansionItem.title }}
+    </div>
+    <div
+            [attr.style]="'--description-height: ' + expansionItem.descriptionHeight + 'px'"
+            [class.visible-description]="selectedId === expansionItem.id"
+            class="description">
+      <div
+              *ngFor="let description of expansionItem.description"
+              [class.signed]="description.hasBullet"
+              class="inner-description">
+        {{ description.text }}
+      </div>
+    </div>
+  </div>
+</div>

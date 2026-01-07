@@ -1,0 +1,25 @@
+<div class="d-flex flex-column surface-elevated h-100dvh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'فروش'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="flex-1 d-flex align-items-center justify-content-center">
+    <ngx-status-result
+      class="w-100"
+      [type]="'Waiting'"
+      [buttons]="buttons()"
+      [iconState]="'waiting'"
+      [title]="'درخواست فروش شما در حال بررسی است'"
+      [description]="'لطفا تا پایان بررسی منتظر بمانید. در صورت انجام نشدن فرایند، درخواست خود را دوباره ثبت کنید.'"
+      (clicked)="onBackHandler()"
+    />
+  </div>
+</div>

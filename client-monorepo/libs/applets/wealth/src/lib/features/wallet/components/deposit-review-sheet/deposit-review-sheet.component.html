@@ -1,0 +1,67 @@
+<div class="w-100 d-flex flex-wrap">
+  <div class="w-100 d-flex flex-column align-items-center gap-small px-plus py-medium surface-glass-onelevated radius-medium">
+    <div class="w-100 d-flex gap-small mb-plus">
+      <ngx-icon
+        [name]="'bag-of-wealth'"
+        [type]="'bold'"
+      />
+      <p class="st-8 text-onback-high">بررسی اطلاعات خرید</p>
+    </div>
+
+    @for (item of metadata(); track $index; let last = $last) {
+      <div class="w-100 d-flex flex-wrap align-items-center justify-content-space-between">
+        <span class="c-3 text-onback-low"> {{ item.title }} </span>
+        <span
+          class="c-1 text-onback-medium"
+          [ngClass]="{ strike: item.isCommerssion && !data().hasCommission }"
+        >
+          {{ item.type === 'amount' ? (item?.value | thousands) : item.value }}
+          @if (item.type === 'amount') {
+            <span class="is-currency">ریال</span>
+          }
+        </span>
+      </div>
+
+      @if (!last) {
+        <ngx-divider
+          class="my-pony"
+          [color]="BorderColorsEnum.Air"
+          orientation="horizontal"
+        />
+      }
+    }
+  </div>
+
+  @if (notes()?.length > 0) {
+    <div class="w-100 d-flex mt-medium">
+      <ngx-callout
+        class="w-100"
+        [title]="'نکات مهم'"
+        [mode]="'multiple'"
+        [messages]="notes()"
+      />
+    </div>
+  }
+
+  <div class="w-100 d-flex flex-wrap mt-big border-t-100 border-color-air pt-plus">
+    <div class="w-100 d-flex align-items-center justify-content-space-between">
+      <span class="bt-2 text-onback-high"> مبلغ پرداختی </span>
+      <span class="t-7 text-onback-medium is-currency"> {{ data()?.payableAmount | thousands }} ریال </span>
+    </div>
+
+    <div class="w-100 gap-small mt-minus">
+      <ngx-button
+        [fullWidth]="true"
+        [buttonId]="'WALLET_' + data().walletName + '_CONFIRM_AND_PAY'"
+        [style]="'fill'"
+        size="large"
+        [brandButton]="true"
+        [isLoading]="btnLoading()"
+        [disabled]="btnLoading()"
+        (clickHandler)="continue()"
+      >
+        تایید و پرداخت
+      </ngx-button>
+    </div>
+  </div>
+</div>

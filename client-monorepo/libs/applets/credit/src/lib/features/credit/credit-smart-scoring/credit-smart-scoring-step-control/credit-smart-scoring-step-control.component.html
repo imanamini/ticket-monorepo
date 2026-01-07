@@ -1,0 +1,104 @@
+@if (!showLoading()) {
+  @switch (activeStep()) {
+    @case (stepTypeEnum.NO_SERVICE_MESSAGE) {
+      @defer (when activeStep() === stepTypeEnum.NO_SERVICE_MESSAGE) {
+        <app-cs-step-no-service-message
+          (close)="closeService()"
+          (onNext)="getStatus()"
+          class="d-flex flex-column flex-grow"
+        ></app-cs-step-no-service-message>
+      }
+    }
+    @case (stepTypeEnum.INITIATED) {
+      @defer (when activeStep() === stepTypeEnum.INITIATED) {
+        <app-credit-smart-score-onboarding
+          [showOnboardingBottomSheet]="showOnboardingBottomSheet()"
+          (next)="activeStep.set(stepTypeEnum.ON_BOARDED)"
+          (close)="closeService()"
+          (noAvailablePlan)="activeStep.set(stepTypeEnum.NO_AVAILABLE_PLAN)"
+        />
+      }
+    }
+    @case (stepTypeEnum.ON_BOARDED) {
+      @defer (when activeStep() === stepTypeEnum.ON_BOARDED) {
+        <app-credit-smart-scoring-pre-signup-form
+          (reload)="getStatus(false, false)"
+          (close)="closeService()"
+          (goToError)="activeStep.set(stepTypeEnum.FAILED)"
+        />
+      }
+    }
+    @case (stepTypeEnum.IN_PROGRESS) {
+      @defer (when activeStep() === stepTypeEnum.IN_PROGRESS) {
+        <app-credit-smart-scoring-step-init
+          (next)="activeStep.set(stepTypeEnum.OTP)"
+          (reloadStatus)="getStatus()"
+          (close)="closeService()"
+          class="d-flex flex-column flex-grow"
+        />
+      }
+    }
+    @case (stepTypeEnum.OTP) {
+      @defer (when activeStep() === stepTypeEnum.OTP) {
+        <app-credit-smart-scoring-step-otp
+          (next)="getStatus()"
+          (goToStep)="setActiveStep($event)"
+          (close)="closeService()"
+          [creditScoringConfig]="creditScoringConfig()"
+          class="d-flex flex-column flex-grow"
+        />
+      }
+    }
+    @case (stepTypeEnum.GENERATE_REPORT_STARTED) {
+      @defer (when activeStep() === stepTypeEnum.GENERATE_REPORT_STARTED) {
+        <app-credit-smart-scoring-step-result-in-progress
+          (close)="closeService()"
+          (reload)="getStatus()"
+          [creditScoringConfig]="creditScoringConfig()"
+          class="d-flex flex-column flex-grow"
+        />
+      }
+    }
+    @case (stepTypeEnum.RESULT) {
+      @defer (when activeStep() === stepTypeEnum.RESULT) {
+        <app-credit-smart-scoring-result
+          (close)="closeService()"
+          (report)="activeStep.set(stepTypeEnum.REPORT)"
+          (showPlans)="showPlans()"
+          [status]="status()"
+          [maxCreditAmount]="maxCreditAmount()"
+          [expirationDate]="expirationDate()"
+          class="d-flex flex-column flex-grow"
+        />
+      }
+    }
+    @case (stepTypeEnum.REPORT) {
+      @defer (when activeStep() === stepTypeEnum.REPORT) {
+        <app-credit-scoring-step-report-wrapper
+          class="d-flex flex-column flex-grow"
+          [trackingCode]="trackingCode()!"
+          [type]="'without-pay'"
+          (back)="activeStep.set(stepTypeEnum.RESULT)"
+        />
+      }
+    }
+    @case (stepTypeEnum.FAILED) {
+      @defer (when activeStep() === stepTypeEnum.FAILED) {
+        <app-credit-smart-scoring-error
+          [ongoingPlanDetails]="ongoingPlanDetails()"
+          (close)="closeService()"
+          (reload)="getStatus()"
+          (goToOverview)="goToOverview()"
+          (goToPreSignup)="this.activeStep.set(stepTypeEnum.ON_BOARDED)"
+        />
+      }
+    }
+    @case (stepTypeEnum.NO_AVAILABLE_PLAN) {
+      @defer (when activeStep() === stepTypeEnum.NO_AVAILABLE_PLAN) {
+        <app-credit-smart-scoring-no-available-plan (close)="closeService()" />
+      }
+    }
+  }
+} @else {
+  <credit-page-loading [active]="true"></credit-page-loading>
+}

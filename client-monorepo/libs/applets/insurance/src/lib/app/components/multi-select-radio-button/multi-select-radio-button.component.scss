@@ -1,0 +1,7 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.radio-group-container {
+  position: relative;
+  border-radius: .3em;
+  @include column;
+}

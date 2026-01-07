@@ -1,0 +1,16 @@
+<div class="select-registration-flow-bottom-sheet">
+  <app-credit-select-registration-flow
+    (select)="selectedFlowType.set($event)"
+    [journeyTypes]="journeyTypes()"
+    [selectedFlowType]="selectedFlowType()!"
+  ></app-credit-select-registration-flow>
+  <div class="call-to-actions">
+    <ngx-button
+      (clickHandler)="onSubmit()"
+      [fullWidth]="true"
+      [disabled]="!selectedFlowType()"
+    >
+      ادامه
+    </ngx-button>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+
+.branches-header {
+  background-image: url("./credit-map.webp");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #20212D;
+  background-size: cover;
+  height: 456px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+
+  .credit-onsite-registration-row {
+
+    .onsite-col {
+      width: 33.333%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 20px;
+      text-align: center;
+
+      img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .branches-header{
+    border-radius: 0 !important;
+
+    .credit-onsite-registration-row {
+      gap: 0;
+
+      .onsite-col {
+        padding: 12px 10px;
+
+        .onsite-col-title {
+          font-size: 12px !important;
+          font-weight: 600 !important;
+        }
+
+        img {
+          width: 32px;
+          height: 32px;
+        }
+      }
+    }
+  }
+
+}

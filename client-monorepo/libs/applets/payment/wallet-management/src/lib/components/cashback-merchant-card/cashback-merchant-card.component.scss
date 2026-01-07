@@ -1,0 +1,12 @@
+.card {
+    padding: 16px 12px 24px 12px;
+    min-height: 110px;
+    &-action {
+        font-size: 24px;
+        cursor: pointer;
+    }
+}
+
+ngx-icon {
+    font-size: 12px;
+}

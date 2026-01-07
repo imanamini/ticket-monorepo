@@ -1,0 +1,54 @@
+<div class="d-flex flex-column gap-tiny pr-pony">
+  <common-ui-components-title-summary
+    [isLoading]="isLoading()"
+    [showButton]="false"
+    [title]="banner().title"
+    [wrapperClasses]="'pr-pony'"
+  ></common-ui-components-title-summary>
+  @if (itemGroups().length > 0) {
+    <ngx-dp-carousel
+      [mode]="'CARD'"
+      [visibleItemCount]="1.1"
+      [index]="0"
+      [centerMode]="false"
+      [showNavigation]="false"
+      [showButtons]="false"
+      [isFixedGap]="true"
+      [fixedGap]="10"
+      [isFixedWidth]="true"
+      [fixedWidth]="304"
+      [changeStepThresholdPercentage]="10"
+      [swipeThreshold]="60"
+      [disableNavigationDots]="true"
+      [disableScaling]="true"
+      [enableAutoPlay]="false"
+      (isSwiping)="handleSwiping($event)"
+      (isAnimationRunning)="handleAnimating($event)"
+    >
+      @for (group of itemGroups(); track $index) {
+        <ng-template ngxDpCarouselSlide>
+          <div class="d-flex flex-wrap gap-micro radius-medium overflow-hidden surface-elevated">
+            @for (item of group; track item.uuid) {
+              <img [ngSrc]="item.instagramPost?.downloadableThumbnailUrl ?? ''"
+                   [width]="100"
+                   [height]="121"
+                   [draggable]="false"
+                   [alt]="item.instagramPost?.storeName"
+                   (click)="handlePostClicked(item)"
+                   class="cursor-pointer">
+            }
+          </div>
+        </ng-template>
+      }
+    </ngx-dp-carousel>
+  } @else {
+    <div class="d-flex gap-medium px-plus">
+      <lib-ngx-skeleton-loading
+        [height]="'247px'"
+        [width]="'304px'"
+        [loadingEffect]="loadingEffect()"
+        [classes]="'surface-glass-onback'"
+      ></lib-ngx-skeleton-loading>
+    </div>
+  }
+</div>

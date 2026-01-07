@@ -1,0 +1,52 @@
+@if (!showLoading()) {
+  @switch (activeStep()) {
+    @case (stepTypeEnum.NO_SERVICE_MESSAGE) {
+      <app-cs-step-no-service-message
+        (onNext)="setActiveStep(stepTypeEnum.BLACKLIST_CHECK)"
+        class="d-flex flex-column flex-grow"
+      ></app-cs-step-no-service-message>
+    }
+    @case (stepTypeEnum.BLACKLIST_CHECK) {
+      <app-credit-scoring-blacklist
+        (close)="backToStepper()"
+        class="d-flex flex-column flex-grow"
+      ></app-credit-scoring-blacklist>
+    }
+    @case (stepTypeEnum.ON_BOARDING) {
+      @defer {
+        <app-credit-scoring-step-on-boarding
+          (onPrev)="backToStepper()"
+          (onNext)="checkNeedOTP()"
+          (goToStep)="setActiveStep($event)"
+          [creditScoringConfig]="creditScoringConfig()"
+          class="d-flex flex-column flex-grow"
+        ></app-credit-scoring-step-on-boarding>
+      }
+    }
+    @case (stepTypeEnum.WHITE_LIST) {
+      <app-credit-scoring-white-list-status
+        [creditId]="creditId()!"
+        [fundProviderCode]="fundProviderCode()!"
+        class="d-flex flex-column flex-grow"
+        (close)="backToStepper()"
+        (next)="goToNextCreditStep()"
+      ></app-credit-scoring-white-list-status>
+    }
+    @case (stepTypeEnum.DP_FAILED) {
+      <app-credit-scoring-dp-failed (close)="backToStepper()"></app-credit-scoring-dp-failed>
+    }
+    @case (stepTypeEnum.OTP) {
+      <app-credit-scoring-step-otp
+        (onNext)="setActiveStep(stepTypeEnum.RESULT)"
+        (goToStep)="setActiveStep($event)"
+        [creditScoringConfig]="creditScoringConfig()"
+        class="d-flex flex-column flex-grow"
+      ></app-credit-scoring-step-otp>
+    }
+    @case (stepTypeEnum.RESULT) {
+      <app-credit-scoring-step-result-wrapper class="d-flex flex-column flex-grow"></app-credit-scoring-step-result-wrapper>
+    }
+  }
+} @else {
+  <credit-page-loading [active]="true"></credit-page-loading>
+}

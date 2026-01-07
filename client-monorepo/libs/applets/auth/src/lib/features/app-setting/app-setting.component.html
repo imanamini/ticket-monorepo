@@ -1,0 +1,16 @@
+<common-ui-components-page-layout
+  [showBorder]="false"
+  [title]="'خدمات پرکاربرد'"
+  [showBackIcon]="true"
+  [actionText]="'رد کردن'"
+  (onTextClick)="handleSkip()"
+>
+  <div class="onboarding-app-setting">
+    <common-app-services-frequent-services-selector
+      (submitted)="onSubmit()"
+      (frequentServicesChange)="frequentServicesChange($event)"
+      [isLoading]="isLoading()"
+      [frequentServices]="frequentServices()"
+    ></common-app-services-frequent-services-selector>
+  </div>
+</common-ui-components-page-layout>

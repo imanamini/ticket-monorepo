@@ -1,0 +1,207 @@
+.product-preview {
+  height: 100%;
+  width: 100%;
+  padding: 4px 4px 6px;
+
+  &.large-product {
+    width: 155px;
+    height: 286px;
+
+    .product-preview-imagebox {
+      height: 147px;
+      width: 147px;
+    }
+  }
+
+  &.small-product {
+    width: 130px;
+    height: 234px;
+
+    .product-preview-imagebox {
+      height: 122px;
+      min-height: 122px;
+      width: 122px;
+    }
+  }
+
+  &.compact-product {
+    min-width: 155px;
+    height: auto;
+    min-height: 220px;
+
+    .product-preview-imagebox {
+      height: auto;
+      min-width: 155px;
+      aspect-ratio: 1;
+      overflow: hidden;
+    }
+  }
+
+  &-imagebox {
+    position: relative;
+
+    &-img {
+      width: 100%;
+      height: 100%;
+      mix-blend-mode: multiply;
+      border-radius: 20px;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    .store-logo {
+      position: absolute;
+      padding: 2px;
+      width: 28px;
+      height: 28px;
+      border-radius: 24px;
+      top: 6px;
+      left: 6px;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .installment-wrapper {
+      backdrop-filter: blur(9px);
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      right: 4px;
+
+      .four-pay-circle {
+        background: linear-gradient(238deg, var(--Alias-Line-Credit, #925DFD) 0.54%, var(--text-icon-on-back-brand-link, #1159FC) 89.58%);
+        width: 28px;
+        min-width: 28px;
+        height: 28px;
+        min-height: 28px;
+
+        &-title {
+          font-style: normal;
+          font-weight: 800
+        }
+
+        &-sub-title {
+          font-style: normal;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+
+  &-title {
+    text-align: right;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+ .compact-product{
+    -webkit-line-clamp: 1 !important; /* Limit to 2 lines */
+  }
+
+  .empty-16-height {
+    height: 16px;
+  }
+
+  &-store {
+    &-imgbox {
+      width: 24px;
+      height: 24px;
+      overflow: hidden;
+      position: absolute;
+      right: 4px;
+      bottom: 4px;
+
+      &-img {
+        height: 18px;
+        width: 18px;
+        max-width: 18px;
+        max-height: 18px;
+      }
+    }
+  }
+
+  &-pricebox {
+    &-previous {
+      text-decoration-line: line-through;
+      text-decoration-color: var(--text-onback-low);
+    }
+  }
+}
+
+::ng-deep .product-preview-pricebox .ngx-badge {
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.store-name {
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.img-desc-container {
+  display: flex;
+  height: 61px;
+
+  .image-container {
+    width: 64px;
+    min-width: 64px;
+    height: 100%;
+    padding: 6px;
+
+    .image {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+    }
+  }
+
+  .desc-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    position: relative;
+  }
+
+  .img-desc-divider {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    width: 100%;
+  }
+}
+
+.text-ellipsis {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.desc {
+  margin-right: 10px;
+  display: flex;
+
+  span {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+  }
+}
+
+.relative-store {
+  position: absolute;
+  bottom: 8px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

@@ -1,0 +1,72 @@
+<div
+  class="collateral-container"
+  [ngClass]="{
+    'cursor-pointer': state() === resutlState.Pending || state() === resutlState.Init,
+    'pb-small': state() !== resutlState.Approved && state() !== resutlState.Rejected,
+  }"
+  (click)="state() === resutlState.Pending || state() === resutlState.Init ? navigateToCollateral() : null"
+>
+  <div
+    class="content-container"
+    [ngClass]="{ 'two-columns': state() !== resutlState.Init }"
+  >
+    @if (state() === resutlState.Pending) {
+      <img
+        class="icon"
+        src="./wealth-assets/svg/collateral-pending.svg"
+        alt="pending"
+      />
+    } @else if (state() === resutlState.Approved) {
+      <img
+        class="icon"
+        src="./wealth-assets/svg/collateral-approved.svg"
+        alt="approved"
+      />
+    } @else if (state() === resutlState.Rejected) {
+      <img
+        class="icon"
+        src="./wealth-assets/svg/collateral-rejected.svg"
+        alt="rejected"
+      />
+    } @else {
+      <img
+        class="icon"
+        src="./wealth-assets/svg/collateral.svg"
+        alt="collatral"
+      />
+    }
+    <div class="d-flex flex-wrap">
+      <p class="w-100 title">{{ title() }}</p>
+      @if (description()) {
+        <p class="w-100 description">
+          {{ description() }}
+        </p>
+      }
+    </div>
+
+    @if (state() === resutlState.Init) {
+      <ngx-button
+        class="starter-button"
+        [mode]="'icon-only'"
+        [style]="'neutral-link'"
+        [size]="'medium'"
+        [rightIcon]="{ name: 'arrow-left' }"
+      ></ngx-button>
+    }
+  </div>
+
+  @if (state() === resutlState.Approved || state() === resutlState.Rejected) {
+    <div class="w-100 d-flex justify-content-end mb-small">
+      <ngx-button
+        [buttonId]="'COLLATERAL_VIEW_DETAIL'"
+        [mode]="'form'"
+        [style]="'link'"
+        [size]="'small'"
+        [leftIcon]="{ name: 'arrow-2-left' }"
+        (clickHandler)="navigateToCollateral()"
+      >
+        مشاهده جزییات
+      </ngx-button>
+    </div>
+  }
+</div>

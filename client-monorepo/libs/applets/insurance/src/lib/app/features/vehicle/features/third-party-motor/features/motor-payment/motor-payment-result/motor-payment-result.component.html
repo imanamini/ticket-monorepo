@@ -1,0 +1,70 @@
+<div class="payment-result surface-elevated">
+  @if (isLoading()) {
+    <div class="loading">
+      <ui-loading-spinner
+              [size]="48"
+      ></ui-loading-spinner>
+    </div>
+  } @else {
+    <div class="result-wrapper">
+      <div class="result-error">
+        <ins-icon
+                [width]="180"
+                [height]="138"
+                [name]="isSuccessful() ? IconEnum.Success : IconEnum.Error"
+        ></ins-icon>
+        <div class="result-message">
+          @if (isSuccessful()) {
+            پرداخت با موفقیت انجام شد.
+          } @else {
+            پرداخت انجام نشد!
+          }
+        </div>
+        @if (!isSuccessful()) {
+          <div class="description">
+            مشکلی در فرآیند پرداخت مبلغ بیمه شخص ثالث شما رخ داده است. لطفاً مجدد تلاش کنید.
+          </div>
+        }
+      </div>
+
+      @if (isSuccessful()) {
+        <div class="follow-up-number">
+          <div class="data-row">
+            <div class="data-title">شماره پیگیری فاکتور:</div>
+            <div class="data-value">{{ orderTrackingCode() }}</div>
+          </div>
+          <div class="data-row">
+            <div class="data-title">شماره پیگیری بانک:</div>
+            <div class="data-value"
+                 [ngxTooltip]="paymentTrackingCode()"
+                 tooltipType="hover">
+              {{ paymentTrackingCode() }}
+            </div>
+          </div>
+        </div>
+      }
+
+      @if (!hasComeFromPriceConflict()) {
+        @if (isSuccessful()) {
+          <ins-alert [hasIcon]="true"
+                     [color]="AlertColorEnum.Blue"
+                     title="تکمیل اطلاعات بیمه‌نامه"
+                     text="کاربر گرامی، برای صدور نهایی بیمه نامه خود، لازم است جزئیات بیمه نامه را حداکثر تا ۲۴ ساعت آینده تکمیل کنید. در غیر این صورت، بیمه نامه شخص ثالث شما از سوی شرکت بیمه گر ثبت نهایی و صادر نخواهد شد.">
+          </ins-alert>
+        } @else {
+          <ins-alert [hasIcon]="true"
+                     [color]="AlertColorEnum.Red"
+                     title="بازگشت وجه پرداختی"
+                     text="در صورت کسر مبلغ بیمه شخص ثالث از حساب بانکی و یا اعتبار دیجی‌پی شما، وجه پرداختی حداکثر تا  ۷۲ ساعت آینده به حساب کیف پول دیجی‌پی شما واریز خواهد شد."
+          ></ins-alert>
+        }
+      }
+    </div>
+    <action-buttons
+            [activeButtonText]="isSuccessful() ? (hasComeFromPriceConflict()? 'پیگری سفارش' : 'الان تکمیل میکنم'): 'تلاش مجدد'"
+            [showDeActiveButton]="isSuccessful()"
+            (activeButtonClicked)="isSuccessful() || hasComeFromPriceConflict() ? handleActiveButtonClicked() : retryPayment()"
+            (deActiveButtonClicked)="handleDeActiveButtonClicked()"
+            [deActiveButtonText]="!hasComeFromPriceConflict() ? 'بعداً' : 'خانه'"></action-buttons>
+  }
+</div>

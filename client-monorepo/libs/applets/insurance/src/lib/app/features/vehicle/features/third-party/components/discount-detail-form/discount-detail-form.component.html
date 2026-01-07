@@ -1,0 +1,32 @@
+<form [formGroup]="discountForm()"
+      class="discount-detail-form">
+  <ui-form-field [errorMessageMapper]="errorMapper"
+                 [error]="discountForm()?.controls?.thirdPartyDiscount?.errors"
+                 [options]="thirdPartyDiscounts"
+                 [searchable]="false"
+                 [showError]="showError()?'show':'hidden'"
+                 [overflowToContainer]="true"
+                 [showRadioOptions]="showRadioButton"
+                 selectOpenType="auto"
+                 formControlName="thirdPartyDiscount"
+                 label="تخفیف ثالث روی بیمه‌نامه"
+                 placeholder="مثال: 5 درصد"
+                 type="select"
+                 data-tracking-id="input-discount-car"
+  ></ui-form-field>
+
+  <ui-form-field [errorMessageMapper]="errorMapper"
+                 [error]="discountForm()?.controls?.driverDiscount?.errors"
+                 [options]="driverDiscounts"
+                 [searchable]="false"
+                 [showError]="showError()?'show':'hidden'"
+                 [overflowToContainer]="true"
+                 [showRadioOptions]="showRadioButton"
+                 selectOpenType="auto"
+                 formControlName="driverDiscount"
+                 label="تخفیف حوادث راننده روی بیمه‌نامه"
+                 placeholder="مثال: 5 درصد"
+                 type="select"
+                 data-tracking-id="input-discount-driver"
+  ></ui-form-field>
+</form>

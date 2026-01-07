@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.main-section {
+  box-sizing: border-box;
+  direction: rtl;
+
+  * {
+    box-sizing: border-box;
+    direction: rtl;
+  }
+}

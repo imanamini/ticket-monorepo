@@ -1,0 +1,147 @@
+<div class="d-flex body flex-column h-100 justify-content-space-between w-100 pt-plus">
+  <div class="content d-flex flex-column">
+    <div class="w-100 pb-pony px-plus">
+      <c2c-applet-c2c-card-title
+        [titleText]="'انتقال از کارت'"
+        [buttonText]="'افزودن کارت جدید'"
+        (actionClicked)="addNewCard()"
+        [buttonIconName]="'plus'"
+      ></c2c-applet-c2c-card-title>
+    </div>
+
+    @if (hasCard()) {
+      <ngx-dp-carousel
+        mode="CARD"
+        [visibleItemCount]="visibleCards()"
+        [index]="carouselIndex()"
+        [centerMode]="true"
+        [showNavigation]="false"
+        [showButtons]="false"
+        [isFixedGap]="true"
+        [fixedGap]="16"
+        [changeStepThresholdPercentage]="10"
+        [isFixedWidth]="false"
+        [swipeThreshold]="30"
+        [disableScaling]="true"
+        (indexChange)="swiped($event)"
+      >
+        @for (card of cards(); track $index) {
+          <ng-template ngxDpCarouselSlide>
+            @if (C2cCardHelper.shouldBeRegistered(card, 'source')) {
+              <div class="pr-low pt-low">
+                <ngx-card
+                  class="{{ cardClasses() }} bank-card"
+                  cardMode="bank"
+                  cardSize="default"
+                  [cardNumber]="card.pan"
+                  [ownerName]="card.cardOwner || ''"
+                  [disabled]="!card.activeBank"
+                  [expireDate]="card.expireDate"
+                  (click)="onMoreClick(card)"
+                  [alias]="card.alias"
+                  [pinned]="card.pinned"
+                  [maskCardNumber]="true"
+                  [leftDetail]="shaparakBadge"
+                  [aspectRatio]="cardRatio()"
+                  [width]="cardWidth()"
+                  [height]="cardHeight()"
+                  [overRideRatio]="cardRatioOverride()"
+                ></ngx-card>
+              </div>
+            } @else {
+              <div class="pr-low pt-low">
+                <ngx-card
+                  class="{{ cardClasses() }} bank-card"
+                  cardMode="bank"
+                  cardSize="default"
+                  [cardNumber]="card.pan"
+                  [ownerName]="card.cardOwner || ''"
+                  [disabled]="!card.activeBank"
+                  [expireDate]="card.expireDate"
+                  (click)="onMoreClick(card)"
+                  [alias]="card.alias"
+                  [pinned]="card.pinned"
+                  [maskCardNumber]="true"
+                  [aspectRatio]="cardRatio()"
+                  [width]="cardWidth()"
+                  [height]="cardHeight()"
+                  [overRideRatio]="cardRatioOverride()"
+                ></ngx-card>
+              </div>
+            }
+          </ng-template>
+        }
+        <ng-template ngxDpCarouselSlide>
+          <div class="pr-low pt-low">
+            <ngx-card
+              class="{{ cardClasses() }} bank-card"
+              cardMode="bank"
+              cardSize="default"
+              (click)="addNewCard()"
+              [aspectRatio]="cardRatio()"
+              [width]="cardWidth()"
+              [height]="cardHeight()"
+              [overRideRatio]="cardRatioOverride()"
+            ></ngx-card>
+          </div>
+        </ng-template>
+      </ngx-dp-carousel>
+      <ng-template #shaparakBadge>
+        <ngx-badge
+          [status]="'warning'"
+          [mode]="'bold'"
+          [size]="'sm'"
+          [type]="'text'"
+        >
+          نیاز به ثبت در شاپرک
+        </ngx-badge>
+      </ng-template>
+    } @else {
+      <div
+        class="w-100 add-bank-card pt-low"
+        style="max-width: 300px"
+      >
+        <daily-bank-card-preview
+          class="c2c-new-card-empty"
+          [config]="{ classes: 'w-100 bank-card' }"
+          (click)="addNewCard()"
+        ></daily-bank-card-preview>
+      </div>
+    }
+
+    <div class="d-flex flex-column pt-plus w-100 px-plus">
+      <div class="pb-minus">
+        <c2c-applet-c2c-card-title
+          titleText="مبلغ انتقال"
+          subTitleText="لطفا مبلغ انتقال را وارد کنید و یا از پرتکرار‌ها انتخاب کنید."
+          [mode]="isInactive() || shouldShaparak() ? 'inactive' : 'active'"
+        ></c2c-applet-c2c-card-title>
+      </div>
+      <div [formGroup]="form()">
+        <ui-form-field
+          [formControlName]="'amount'"
+          [maxAmount]="currentCard()?.transferAmountMax ?? 0"
+          [minAmount]="currentCard()?.transferAmountMin ?? 0"
+          [readonly]="isInactive() || shouldShaparak()"
+          [maxSize]="+(currentCard()?.transferAmountMax ?? 0)"
+          [hint]="'مبلغ موردنظر خود را وارد کنید.'"
+          type="large-amount"
+        ></ui-form-field>
+      </div>
+    </div>
+
+    <div class="pt-medium pb-huge px-plus">
+      <c2c-applet-c2c-frequent-transaction-section></c2c-applet-c2c-frequent-transaction-section>
+    </div>
+  </div>
+  <div class="action pt-medium pb-huge px-plus">
+    <ngx-button
+      [classNames]="['cursor-pointer']"
+      (clickHandler)="continueBasedOnStoredCard()"
+      [disabled]="!this.currentCard()?.active || (!shouldShaparak() && !form().valid)"
+      [fullWidth]="true"
+    >
+      {{ buttonText() }}
+    </ngx-button>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="pb-minus px-medium">
+  <div class="surface-elevated p-medium radius-minus">
+    <subscription-applet-section-title
+      (nextActionClicked)="onNextActionClicked()"
+      [nextActionUrl]="service.nextAction?.nextUrl"
+      [hasDescription]="true"
+      [hasAction]="true"
+      [description]="'service.nextAction?.description'"
+      [status]="service.status"
+      [type]="service.type"
+    >
+      <ngx-button
+        [mode]="'form'"
+        [size]="'tiny'"
+        [style]="'link'"
+        [leftIcon]="{ name: 'arrow-2-left', type: 'linear' }"
+        >مدیریت کارت</ngx-button
+      >
+    </subscription-applet-section-title>
+  </div>
+</div>

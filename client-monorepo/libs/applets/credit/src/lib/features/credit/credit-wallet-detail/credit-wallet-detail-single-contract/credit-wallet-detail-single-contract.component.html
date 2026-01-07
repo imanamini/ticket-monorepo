@@ -1,0 +1,62 @@
+<div class="top-section">
+  @if (serviceType() === ServiceType.CREDIT) {
+    <div class="pre-settle">
+      <div class="content">
+        <div class="title">تسویه بدهی</div>
+        <div class="description">پرداخت یک یا همه اقساط</div>
+      </div>
+      <ngx-button (clickHandler)="goToInstallmentOverview()">مشاهده</ngx-button>
+    </div>
+  }
+
+  @for (group of installmentGroups(); track group) {
+    <div class="installment-group">
+      @if (!group.emptyInstallmentsMessage) {
+        <div class="installment-group-title">{{ group.title }}</div>
+      }
+      @if (group.emptyInstallmentsMessage && !contract()?.clearAmount && futureUnpaidInstallmentsCount()) {
+        <div class="installment-item">
+          <div class="empty-installment-message-card">
+            <div
+              class="empty-installment-message"
+              [innerText]="group.emptyInstallmentsMessage"
+            ></div>
+            @if (group.payable) {
+              <div class="empty-installment-message-cta">
+                <ngx-button
+                  [size]="'small'"
+                  (clickHandler)="onPreSettle()"
+                >
+                  تسویه زودتر از موعد
+                </ngx-button>
+              </div>
+            }
+          </div>
+        </div>
+      }
+      @if (group.installments) {
+        @for (installment of group.installments; track installment) {
+          <div class="installment-item">
+            <app-credit-installment-item
+              [installment]="installment"
+              [payableGroup]="group.payable"
+              [isSingleInstallment]="isSingleInstallment()"
+              [fundProviderCode]="fundProviderCode()"
+              [totalInstallmentCount]="totalInstallmentCount()!"
+              [hidePayCta]="serviceType() === ServiceType.CREDIT"
+              (pay)="onPay()"
+            ></app-credit-installment-item>
+          </div>
+        }
+      }
+    </div>
+  }
+</div>
+@if (contract()?.hintMessage) {
+  <div class="bottom-section">
+    <ngx-callout
+      [mode]="'single-without-title'"
+      [message]="contract()?.hintMessage"
+    />
+  </div>
+}

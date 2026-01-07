@@ -1,0 +1,50 @@
+@if (initialized()) {
+  <common-ui-components-page-layout
+    [showBorder]="false"
+    [showBackIcon]="true"
+    [title]="'خدمات ویژه'"
+    [actionText]="'رد کردن'"
+    (onTextClick)="handleSkip()"
+  >
+    <div class="d-flex flex-column h-100">
+      <div class="px-plus mt-medium">
+        <p class="b-2 text-onback-medium mb-plus">قبل از اینکه شروع کنیم، به ما بگید که برای دریافت چه خدماتی دیجی‌پی رو انتخاب کردید:</p>
+        <div class="d-flex flex-column gap-pony">
+          <auth-applet-premium-service
+            [title]="'خرید اقساطی'"
+            [id]="0"
+            [description]="'وام و اعتبار تا سقف ۵۰ میلیون'"
+            [image]="'assets/onboarding/aghsat.svg'"
+            (selectedChange)="checksChanged($event)"
+          ></auth-applet-premium-service>
+          <auth-applet-premium-service
+            [title]="'خدمات بیمه'"
+            [id]="1"
+            [description]="'شخص ثالث و بدنه، تجهیزات الکترونیک'"
+            [image]="'assets/onboarding/bime.svg'"
+            (selectedChange)="checksChanged($event)"
+          ></auth-applet-premium-service>
+          <auth-applet-premium-service
+            [id]="2"
+            [title]="'سرمایه‌گذاری'"
+            [description]="'صندوق‌های سرمایه گذاری درآمد ثابت'"
+            [image]="'assets/onboarding/sarmaye.svg'"
+            (selectedChange)="checksChanged($event)"
+          ></auth-applet-premium-service>
+        </div>
+      </div>
+      <div class="mt-auto mb-mega mx-plus">
+        <ngx-button
+          [size]="'large'"
+          [fullWidth]="true"
+          [style]="'fill'"
+          [mode]="'section'"
+          [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+          (click)="submit()"
+        >
+          تایید و ادامه
+        </ngx-button>
+      </div>
+    </div>
+  </common-ui-components-page-layout>
+}

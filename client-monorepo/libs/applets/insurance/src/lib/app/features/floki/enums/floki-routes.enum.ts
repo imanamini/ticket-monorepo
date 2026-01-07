@@ -1,0 +1,15 @@
+export enum FlokiRoutesEnum {
+  PLP = 'plp',
+  Floki = 'application-form',
+  Payment = 'payment',
+  CheckHybrid = 'check-hybrid',
+  GoToPayment = 'go-to-IPG',
+  PaymentResult = 'result',
+  CompleteInfo = 'complete-info',
+  UploadImageDevice = 'upload-image-device',
+  ScreenGuide = 'screen-guide',
+  ExitFloki = 'exit',
+  IssuedPolicy = 'issued-policy',
+  ShareUploadLink = 'share-upload-link',
+  get_upload_media = 'get-upload-media',
+}

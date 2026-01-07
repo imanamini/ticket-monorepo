@@ -1,0 +1,77 @@
+::ng-deep app-recommendation-list-item {
+  display: block;
+}
+
+.recommendation-list-item {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  background: #fff;
+  color: #4c4c4c;
+  border-right-width: 7px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  text-align: right;
+  &.is-clickable {
+    cursor: pointer;
+    user-select: none;
+  }
+  .item-icon {
+    width: 40px;
+    height: 40px;
+    margin-left: 8px;
+  }
+  .image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: #f3f3f3 url('apps/dpx/src/assets/cash-out/wallet-transfer/recommendation-placeholder.svg') no-repeat center center/16px;
+    border-radius: 50%;
+    border: 1px solid #e5e5e5;
+  }
+  .item-text {
+    flex-grow: 1;
+  }
+  .item-title {
+    font-size: 14px;
+  }
+  .item-info {
+    font-size: 10px;
+    color: #7f7f7f;
+    font-weight: 200;
+    margin-top: 8px;
+    strong {
+      font-weight: 500;
+      margin-right: 4px;
+    }
+  }
+  .item-action {
+    .more {
+      display: inline-block;
+      vertical-align: middle;
+      width: 24px;
+      height: 24px;
+      background: url('../../../../../../../../../apps/dpx/src/assets/cash-out/wallet-transfer/recommendation-item-more.svg') no-repeat 0 0/cover;
+      opacity: 0.3;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  &.is-pinned {
+    .item-icon {
+      position: relative;
+      &::after {
+        content: ' ';
+        display: block;
+        width: 16px;
+        height: 16px;
+        background: url('../../../../../../../../../apps/dpx/src/assets/cash-out/wallet-transfer/recommendation-item-pinned.svg') no-repeat 0 0/16px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+    }
+  }
+}

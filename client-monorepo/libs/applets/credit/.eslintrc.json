@@ -1,0 +1,21 @@
+{
+  "ignorePatterns": ["!**/*"],
+  "extends": ["../../../.eslintrc.json"],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "project": ["./tsconfig.*?.json"]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "extends": ["plugin:@nx/angular", "plugin:@angular-eslint/template/process-inline-templates"],
+      "rules": {}
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@nx/angular-template"],
+      "rules": {}
+    }
+  ]
+}

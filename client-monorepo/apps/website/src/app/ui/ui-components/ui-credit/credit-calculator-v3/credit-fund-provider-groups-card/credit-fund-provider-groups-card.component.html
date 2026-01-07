@@ -1,0 +1,188 @@
+<div
+  [ngClass]="{
+    'working-capital': !showFundProviderIcon && !showInterestPercentage,
+  }"
+  class="credit-fp-groups-card"
+>
+  <div
+    *ngIf="showFundProviderIcon && showInterestPercentage"
+    class="group-data-row has-border"
+  >
+    <div
+      class="fp-title"
+    >
+      <div
+        [ngStyle]="{ backgroundColor: data.fundProviderColor }"
+        class="icon-wrapper"
+      >
+        @if (isPlatformBrowser(platformId)) {
+          <ui-api-image
+            [imageId]="data.fundProviderIcon"
+            height="24px"
+            width="24px"
+          ></ui-api-image>
+        }
+      </div>
+      <div class="fund-provider-name">{{ data.fundProviderName }}</div>
+    </div>
+    <div
+      class="interest-badge"
+      *ngIf="data.paymentMethod !== PAYMENT_METHOD.SUBSCRIPTION && data.interestPercentage > 0; else needsSubscription"
+    >
+      <div>سود سالانه {{ data.interestPercentage }}%</div>
+    </div>
+
+    <ng-template #needsSubscription>
+      @if (data.subscriptionDetail.title) {
+        <div
+          class="subscription-badge"
+          (click)="showSubscriptionInfo(data.subscriptionDetail.title, data.subscriptionDetail.type)"
+        >
+          <span
+            [size]="24"
+            class="icon"
+            [icon]="'icon-diamond-' + data?.subscriptionDetail?.type?.toLowerCase()"
+            appUiIcon
+          ></span>
+          <span>{{ data.subscriptionDetail.title }}</span>
+        </div>
+      }
+    </ng-template>
+  </div>
+
+  <div
+    *ngIf="certainPlan"
+    class="credit-amount"
+  >
+    <div class="title">میزان تسهیلات</div>
+    <div class="value">
+      {{ data.creditAmount | IRR: 'hideRial' }}
+      ریال
+    </div>
+  </div>
+
+  <ng-container *ngIf="animatedOptions && animatedOptions.length > 1 && certainFundProviderCode">
+    <div style="margin-bottom: 16px">
+      <app-ui-animated-switch
+        (changed)="changeTab($event)"
+        [height]="animatedHeight"
+        [options]="animatedOptions"
+        [selectedOption]="selectedCollateral"
+        class="animated-switch"
+      ></app-ui-animated-switch>
+    </div>
+  </ng-container>
+
+  <div class="credit-amounts">
+
+
+    <ng-container *ngIf="data.planRuleType === PlanRuleEnum.STATIC; else bnplDynamic">
+      <div class="group-more-details">
+        <div
+          class="small-details-row"
+          *ngIf="data.paymentMethod !== PAYMENT_METHOD.SUBSCRIPTION; else withSubscription"
+        >
+          @if (data.payableAmount) {
+            <div class="small-detail-title">مجموع اقساط + هزینه خدمات و زیرساخت</div>
+            <div class="small-detail-value">{{ data.payableAmount | IRR: 'hideRial' }}<small> ریال</small></div>
+          }
+        </div>
+        <ng-template #withSubscription>
+          @if (data.interestPercentage) {
+            <div class="small-details-row">
+              <div class="small-detail-title">سود سالانه</div>
+              <div class="small-detail-value">{{ data.interestPercentage }} <small> درصد</small></div>
+            </div>
+          }
+        </ng-template>
+        @if (data.installmentAmount) {
+          <div class="small-details-row">
+            <div class="small-detail-title">مبلغ هر قسط</div>
+            <div class="small-detail-value">{{ data.installmentAmount | IRR: 'hideRial' }}<small> ریال</small></div>
+          </div>
+        }
+
+        <div
+          *ngIf="data.sumInstallmentAmount > 0"
+          class="small-details-row"
+        >
+          <div class="small-detail-title">مجموع اقساط</div>
+          <div class="small-detail-value">{{ data.sumInstallmentAmount | IRR: 'hideRial' }}<small> ریال</small></div>
+        </div>
+      </div>
+
+      @if (isDetailPageCtaDisplayed) {
+        <div
+          class="footer-row"
+        >
+          @if (collateralTitle) {
+            <span class="groups-collateral">
+            ضمانت:
+              {{ collateralTitle }}
+          </span>
+          }
+
+          <app-ui-button
+            (click)="onCtaClick()"
+            class="cta"
+          >انتخاب و دریافت
+          </app-ui-button>
+        </div>
+      }
+
+
+    </ng-container>
+  </div>
+</div>
+
+
+<ng-template #bnplDynamic>
+
+  <div class="group-more-details">
+    <div class="small-details-row">
+      <div class="small-detail-title">مبلغ اعتبار</div>
+      <div class="small-detail-value bolder">
+        <ng-container *ngIf="data.creditAmount">
+          <span>{{ data.balance?.min | numberToString: true }}</span>
+          تا
+          <span>{{ data.balance?.max! | numberToString }}</span>
+          <small> ریال</small>
+        </ng-container>
+      </div>
+    </div>
+    <ng-container *ngIf="data.allocationPrepaymentPercentage && data.allocationPrepaymentPercentage! > 0">
+      <div class="small-details-row">
+        <div class="small-detail-title">کارمزد</div>
+        <div class="small-detail-value">
+          <ng-container *ngIf="data.hasAllocationPrepayment">
+            {{ data.allocationPrepaymentAmount | iranianRials: 'hideRial' }}<small> ریال</small>
+          </ng-container>
+          <ng-container *ngIf="!data.hasAllocationPrepayment"> {{ data.allocationPrepaymentPercentage }} درصد </ng-container>
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="small-details-row">
+      <div class="small-detail-title">تعداد اقساط</div>
+      <div class="small-detail-value">{{ data.installmentCount }}</div>
+    </div>
+  </div>
+  @if (isDetailPageCtaDisplayed) {
+    <div
+      class="footer-row"
+    >
+      @if (collateralTitle) {
+        <span class="groups-collateral">
+            ضمانت:
+          {{ collateralTitle }}
+          </span>
+      }
+
+      <app-ui-button
+        (click)="onCtaClick()"
+        class="cta"
+      >انتخاب و دریافت
+      </app-ui-button>
+    </div>
+  }
+</ng-template>

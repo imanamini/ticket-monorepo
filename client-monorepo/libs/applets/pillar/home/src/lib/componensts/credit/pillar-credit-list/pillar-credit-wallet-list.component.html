@@ -1,0 +1,25 @@
+<!-- pillar-credit-wallet-list template -->
+<div class="credit-list w-100 onelevated-shade-100 align-items-center d-flex flex-column justify-content-flex-start text-align-center">
+  <div class="wrapper w-100">
+    @defer {
+      <div class="cards-container">
+        @for (wallet of wallets(); track wallet) {
+          <pillar-credit-wallet-card
+            class="cursor-pointer"
+            [class.bnpl-card-half-width]="wallet.serviceType === SERVICES_TYPE.BNPL && show2ColumnLayout()"
+            (cardClick)="clicked($event)"
+            [wallet]="wallet"
+          ></pillar-credit-wallet-card>
+        }
+      </div>
+    }
+    <!--    } @placeholder (minimum 2s) {-->
+    <!--      <lib-ngx-skeleton-loading-->
+    <!--        [height]="'104px'"-->
+    <!--        [width]="'100%'"-->
+    <!--        class="pt-huge"-->
+    <!--        classes="mx-auto mb-pony"-->
+    <!--      ></lib-ngx-skeleton-loading>-->
+    <!--    }-->
+  </div>
+</div>

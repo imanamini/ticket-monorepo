@@ -1,0 +1,22 @@
+.actions {
+  z-index: 10;
+}
+
+.circle {
+  width: 5.566rem;
+  height: 5.566rem;
+  object-fit: cover;
+
+  app-image {
+    width: 80%;
+    height: 80%;
+  }
+}
+
+.title {
+  width: fit-content;
+}
+
+.three-columns {
+  grid-template-columns: 1fr 1.3fr 1fr !important;
+}

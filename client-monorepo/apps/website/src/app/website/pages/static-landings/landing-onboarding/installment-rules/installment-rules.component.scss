@@ -1,0 +1,54 @@
+@import "@digipay/base-style/styleguide";
+
+.installment-rules {
+  .image {
+    width: 548px;
+
+    img {
+      width: 548px;
+    }
+  }
+
+  .rules-content {
+    .rule-item {
+      img {
+        width: 35px;
+        height: 41px;
+        flex-shrink: 0;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 1280px) {
+  .installment-rules {
+    flex-direction: column-reverse;
+    padding: 40px 0 !important;
+    gap: 16px !important;
+
+    .image {
+      width: 320px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .rules-content {
+      .rule-item {
+        flex-direction: column;
+        gap: 2px !important;
+        text-align: center;
+        margin: 0 20px;
+
+        img{
+          width: 50px;
+          height: 50px;
+        }
+      }
+
+    }
+  }
+
+}

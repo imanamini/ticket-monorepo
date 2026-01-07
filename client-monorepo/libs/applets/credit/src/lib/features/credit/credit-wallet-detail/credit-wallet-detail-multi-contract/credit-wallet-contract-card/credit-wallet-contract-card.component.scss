@@ -1,0 +1,86 @@
+@import "@digipay/base-style/swatch";
+
+.credit-contract-card {
+  border: 1px solid $swatch_blue_100;
+  border-radius: 12px;
+  color: $swatch_steel_900;
+  overflow: hidden;
+  line-height: 1.7;
+
+  .main-row {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $swatch_blue_100;
+
+    .contract-main-info {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .contract-icon {
+      width: 32px;
+      height: 32px;
+      background: url("./credit-contract-card-icon.svg") no-repeat center center
+        white;
+      background-size: 24px 24px;
+      border-radius: 8px;
+    }
+
+    .contract-title-box {
+      margin-right: 16px;
+
+      .contract-title-text {
+        font-size: 12px;
+        color: $swatch_steel_900;
+        font-weight: 500;
+      }
+
+      .contract-title-value {
+        font-size: 14px;
+        font-weight: 500;
+
+        .currency {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+
+  .detail-row {
+    padding: 16px;
+    border-top: 1px solid $swatch_steel_100;
+
+    .divider {
+      height: 1px;
+      background-color: $swatch_steel_100;
+      margin: 16px 0;
+
+      &:last-child {
+        display: none;
+      }
+    }
+  }
+
+  &.info {
+    border: 1px solid $swatch_blue_100;
+  }
+
+  &.active {
+    border: 1px solid $swatch_blue_200;
+  }
+
+  &.disabled {
+    border: 1px solid $swatch_steel_100;
+
+    .main-row {
+      background-color: $swatch_steel_100;
+
+      .contract-icon {
+        background-image: url("./credit-contract-card-icon-gray.svg");
+      }
+    }
+  }
+}

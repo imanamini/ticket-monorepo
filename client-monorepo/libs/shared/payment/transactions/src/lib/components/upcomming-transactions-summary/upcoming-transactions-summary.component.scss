@@ -1,0 +1,15 @@
+.upcoming-transaction {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 16px;
+  width: 129px;
+  min-width: 129px;
+  padding: 12px;
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background: #f2f5f8;
+}

@@ -1,0 +1,15 @@
+<div class="info">
+  <div class="model-detail">
+    <span>ارزش تقریبی دستگاه</span>
+    <span>
+        {{ price() ? ( price() | thousands ) + ' تومان' : 'پیدا نشد' }}
+    </span>
+  </div>
+
+  <used-steps-list
+          class="mt-medium"
+          [hasDivider]="false"
+          [hideBorders]="true"
+          [listItems]="listItems()">
+  </used-steps-list>
+</div>

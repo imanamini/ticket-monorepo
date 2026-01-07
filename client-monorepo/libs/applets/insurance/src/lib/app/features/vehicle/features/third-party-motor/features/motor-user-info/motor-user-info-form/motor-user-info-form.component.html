@@ -1,0 +1,83 @@
+<div [formGroup]="userInfoForm()"
+     class="user-info-form">
+  <div class="mb-medium">
+    <ngx-plate
+            class="plate"
+            (completePlate)="handleIsPlateComplete($event)"
+            (plateChange)="handlePlateChange($event)"
+            [textState]="'error'"
+            [showText]="showPlateError()"
+            [type]="'motorcycle'"
+            [text]="plateError()"
+            [plate]="plate()"
+    ></ngx-plate>
+  </div>
+
+  <ui-form-field
+          class="firstName"
+          [errorMessageMapper]="errorMapper()"
+          [error]="userInfoForm()?.controls?.firstName?.errors"
+          [required]="true"
+          [showError]="showError() || showErrors().firstName?'show':'hidden'"
+          formControlName="firstName"
+          inputType="text"
+          label="نام مالک موتور سیکلت"
+          placeholder="مثال: علی"
+          type="input"></ui-form-field>
+
+  <ui-form-field
+          class="lastName"
+          [errorMessageMapper]="errorMapper()"
+          [error]="userInfoForm()?.controls?.lastName?.errors"
+          [required]="true"
+          [showError]="showError() || showErrors().lastName?'show':'hidden'"
+          formControlName="lastName"
+          inputType="text"
+          label="نام‌خانوادگی مالک موتور سیکلت"
+          placeholder="مثال: امیدی"
+          type="input"></ui-form-field>
+
+  <ui-form-field
+          class="nationalCode"
+          [convertNonEnglishDigits]="true"
+          [errorMessageMapper]="errorMapper()"
+          [error]="userInfoForm()?.controls?.nationalCode?.errors"
+          [isNumericKeyboard]="true"
+          [maxSize]="10"
+          [required]="true"
+          [showError]="showError() || showErrors().nationalCode?'show':'hidden'"
+          formControlName="nationalCode"
+          inputType="text"
+          label="کد‌ملی مالک موتور سیکلت"
+          placeholder="مثال: 1234567890"
+          type="input"></ui-form-field>
+
+  <ui-form-field
+          class="birthDate"
+          [errorMessageMapper]="errorMapper()"
+          [error]="userInfoForm()?.controls?.birthDate?.errors"
+          [required]="true"
+          [showError]="showError() || showErrors().birthDate ?'show':'hidden'"
+          [datePickerMode]="'auto'"
+          [customDateRange]="[-1539506197000, currentDate() + 24*60*60*1000]"
+          dateRange="past"
+          formControlName="birthDate"
+          label="تاریخ تولد مالک موتور سیکلت"
+          placeholder="مثال: 00/00/00"
+          type="date"></ui-form-field>
+
+  <ui-form-field
+          class="mobile"
+          [convertNonEnglishDigits]="true"
+          [errorMessageMapper]="errorMapper()"
+          [error]="userInfoForm()?.controls?.mobile?.errors"
+          [isNumericKeyboard]="true"
+          [maxSize]="11"
+          [required]="true"
+          [showError]="showError() || showErrors().mobile?'show':'hidden'"
+          formControlName="mobile"
+          inputType="text"
+          label="شماره تلفن همراه مالک موتور سیکلت"
+          placeholder="مثال:۰۹۱۲۳۴۵۶۷۸۹"
+          type="input"></ui-form-field>
+</div>

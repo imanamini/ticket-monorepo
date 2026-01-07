@@ -1,0 +1,19 @@
+.session-card {
+  border-radius: 16px;
+  direction: rtl;
+}
+
+.remove-session-icon {
+  cursor: pointer;
+  align-self: center;
+  padding: 8px 8px 8px 0;
+}
+
+.session-icon {
+  border-radius: 12px;
+  align-self: flex-start;
+}
+
+.flex-1 {
+  flex: 1;
+}

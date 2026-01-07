@@ -1,0 +1,50 @@
+<ngx-bottom-sheet-header [title]="'کد تخفیف'"></ngx-bottom-sheet-header>
+<div class="d-flex flex-column gap-medium p-plus">
+  <div class="d-flex gap-small">
+    @if (voucher()?.store?.logoImageId) {
+      <ui-api-image
+        [imageId]="voucher().store!.logoImageId"
+        width="40px"
+        height="40px"
+      ></ui-api-image>
+    }
+    <span class="st-3">{{ voucher()?.title }}</span>
+  </div>
+  <ul class="d-flex flex-column gap-medium px-plus mx-minus text-onback-high bt-2 mb-plus">
+    <li>
+      <span class="d-flex"> قابل استفاده تا {{ expirationDate() | persianDate }} </span>
+    </li>
+    <li>
+      <span class="d-flex">{{ voucher().description }} </span>
+    </li>
+    <li>
+      <div class="d-flex gap-micro">
+        <span>کد تخفیف:</span>
+        <span>{{ voucher().code }}</span>
+      </div>
+    </li>
+  </ul>
+  <div class="d-flex gap-minus w-100">
+    <div
+      class="w-100"
+      [ngxTooltip]="'کپی شد'"
+      [tooltipPosition]="'top'"
+      [tooltipType]="'click'"
+      [closeTimeout]="3000"
+    >
+      <ngx-button
+        [fullWidth]="true"
+        [rightIcon]="{ name: 'document-copy' }"
+        [style]="'tinted-on-elevated'"
+        (click)="copyVoucherCode()"
+        >کپی کد
+      </ngx-button>
+    </div>
+
+    <ngx-button
+      [fullWidth]="true"
+      (clickHandler)="goToExternalWebsite()"
+      >ورود به سایت</ngx-button
+    >
+  </div>
+</div>

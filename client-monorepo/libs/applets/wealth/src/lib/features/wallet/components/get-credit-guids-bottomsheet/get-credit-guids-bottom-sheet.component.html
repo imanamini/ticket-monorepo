@@ -1,0 +1,47 @@
+<div class="w-100 d-flex flex-wrap">
+  <p class="w-100 mt-huge st-7 text-onback-high text-align-center">مراحل دریافت سود و اعتبار در کیف ثروت</p>
+
+  <div class="w-100 mt-big d-flex flex-wrap">
+    @for (step of steps(); track step.number; let i = $index) {
+      <div
+        class="w-100 d-flex align-items-center gap-small"
+        [ngClass]="{ 'mt-medium': i !== 0 }"
+      >
+        <div class="d-flex align-items-center gap-minus py-small px-medium border-100 border-color-tint radius-large">
+          <span class="text-onback-brand st-8"> {{ step.number }} </span>
+          <img
+            class="step-icon"
+            [src]="'./wealth-assets/images/guids/credit-guid-' + step.number + '.svg'"
+          />
+        </div>
+
+        <p class="b-3 text-onback-medium">
+          {{ step.text }}
+        </p>
+      </div>
+    }
+  </div>
+
+  <div class="w-100 mt-big">
+    <ngx-callout
+      [title]="'نکات مهم'"
+      [mode]="'multiple'"
+      [messages]="[
+        'سود شما دو روز بعد از هر واریز قابل مشاهده است.',
+        'حداقل موجودی مورد نیاز برای درخواست اعتبار 1 میلیون تومان است.',
+        'به موجودی مسدود شده شما نیز سود تعلق می‌گیرد.',
+        'اعتبار کیف ثروت بدون کارمزد است.',
+      ]"
+    />
+  </div>
+
+  <div class="w-100 mt-big">
+    <ngx-button
+      [fullWidth]="true"
+      (clickHandler)="gotIt()"
+      [size]="'medium'"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="modal-simple">
+  <div
+    (click)="closeDialog(false)"
+    class="close"
+  >
+    <ngx-icon
+      class="cursor-pointer"
+      [name]="'close'"
+      [iconSize]="'24px'"
+    ></ngx-icon>
+  </div>
+  <div class="dialog-body">
+    <div class="image">
+      <img
+        height="122"
+        ngSrc="/assets/images/success-modal.svg"
+        width="160"
+      />
+    </div>
+    <div class="title">
+      <span>
+        {{ templateData.title }}
+      </span>
+    </div>
+    <div
+      [innerHTML]="templateData.description"
+      class="description"
+    ></div>
+  </div>
+  <div class="ctas">
+    <app-ui-button
+      (click)="closeDialog(true)"
+      [appearance]="'BLUE-TEXT'"
+      >مشاهده مدارک</app-ui-button
+    >
+  </div>
+</div>

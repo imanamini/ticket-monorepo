@@ -1,0 +1,60 @@
+<div class="dialog-container">
+  <div class="header">
+    <span
+      class="close-icon"
+      (click)="cancel()"
+    ></span>
+  </div>
+
+  <div class="body content-scrollbar">
+    <div class="logo-wrapper">
+      <img
+        src="{{ state?.logoPath }}"
+        [ngStyle]="state?.customLogoStyle"
+        alt="تصویر لوگو"
+      />
+    </div>
+    <div
+      *ngIf="state?.title"
+      class="title"
+    >
+      {{ state?.title }}
+    </div>
+    <div
+      class="description"
+      [ngStyle]="state?.customDescriptionStyle"
+    >
+      {{ state?.description }}
+    </div>
+  </div>
+
+  <div
+    class="footer"
+    [ngClass]="{ 'flex-between-footer': state?.cancellationButtonText }"
+    [style.gap]="'16px'"
+  >
+    <div class="w-100 text-align-right">
+      <ngx-button
+        [mode]="'form'"
+        [size]="'medium'"
+        [style]="'tinted-on-elevated'"
+        (clickHandler)="confirm()"
+      >
+        {{ state?.submitButtonText }}</ngx-button
+      >
+    </div>
+    <div
+      *ngIf="state?.cancellationButtonText"
+      class="w-100"
+    >
+      <ngx-button
+        [mode]="'form'"
+        [size]="'medium'"
+        [fullWidth]="!state?.cancellationButtonText"
+        (clickHandler)="cancel()"
+      >
+        {{ state?.cancellationButtonText }}</ngx-button
+      >
+    </div>
+  </div>
+</div>

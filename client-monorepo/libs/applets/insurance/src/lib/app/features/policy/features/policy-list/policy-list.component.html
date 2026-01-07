@@ -1,0 +1,94 @@
+<div class="policy-list d-flex flex-column align-items-center h-100 pt-pony">
+  @if (headerService.isShowHeader()) {
+    <main-header (rightIconClicked)="backButtonClicked()"
+                 leftIconName="headphone"
+                 leftIconType="linear"
+                 [hide-icon-right]="hideIconRight()"
+                 class="w-100" title="بیمه"></main-header>
+  }
+
+  <div class="px-medium w-100">
+    <ngx-segmented-control
+            [selectedOption]="selectedOption()"
+            [countStatus]="'bold'"
+            [options]="listOptions()"
+            (selectedOptionChange)="changeListOption($any($event))"
+            mode="PAGE_SEGMENT"
+    ></ngx-segmented-control>
+  </div>
+
+  <div class="sort-and-filter w-100 d-flex align-items-center justify-content-start mt-minus px-plus gap-small">
+    <ngx-chip
+            class="cursor-pointer"
+            id="1"
+            label="مرتب سازی"
+            leadingIcon="sorts"
+            classes="text-onback-high"
+            [disableClick]="true"
+            [pressed]="true"
+            (click)="sortButtonClicked()"
+    ></ngx-chip>
+    <ngx-chip
+            class="cursor-pointer"
+            id="2"
+            label="فیلترها"
+            classes="text-onback-high"
+            [disableClick]="true"
+            [pressed]="isFilterChipActive()"
+            (click)="filterButtonClicked()"
+    ></ngx-chip>
+  </div>
+
+  <div class="content px-plus w-100 mb-medium mt-big">
+    <div class="card-list d-flex flex-column gap-medium align-items-center h-100"
+         [isDigikalaMode]="true"
+         scrollDirection
+         [throttleMs]="1"
+         [ngClass]="{'justify-content-center': !isLoggedIn() || !cards().length || loading()}">
+      @if (loading()) {
+        <full-screen-loading></full-screen-loading>
+      } @else if (isLoggedIn() && cards().length) {
+        @for (card of cards(); track $index) {
+          @if (isPolicyListProductInfo(card)) {
+            <div class="d-flex gap-micro align-items-center justify-content-start w-100">
+              <div>
+                <ngx-icon
+                        [name]="asPolicyListProductInfo(card).icon"
+                        type="bold"
+                        iconSize="20px"
+                ></ngx-icon>
+              </div>
+              <div class="st-8">{{ asPolicyListProductInfo(card).name }}</div>
+            </div>
+          } @else {
+            <policy-card
+                    class="w-100"
+                    [title-card]="titleCard()"
+                    [data]="asPolicyProductCard(card)"></policy-card>
+          }
+        }
+      } @else if (!isLoggedIn()) {
+        <empty-result [actionButton]="true"
+                      (actionButtonClicked)="handleLoginClicked()"
+                      icon="not-login"
+                      title="ورود به حساب کاربری"
+                      description="برای مشاهده و مدیریت بیمه‌نامه‌های خود، وارد حساب کاربری شوید."
+                      actionButtonText="ورود / ثبت‌نام"
+                      actionButtonIcon="login"></empty-result>
+      } @else {
+        <empty-result
+                icon="empty-result"
+                [actionButton]="true"
+                (actionButtonClicked)="hasAnyFilterSelected() ? deleteFilters() : routeToHome()"
+                title="بیمه‌نامه‌ای وجود ندارد"
+                [actionButtonText]="hasAnyFilterSelected() ?  'حذف فیلترها': 'خرید بیمه'"
+                [actionButtonStyle]="InsButtonStyleEnum.TintedOnElevated"
+                [actionButtonIcon]="!hasAnyFilterSelected() ? 'plus' : null"
+                [description]="hasAnyFilterSelected() ?
+                'در حال حاضر بیمه‌نامه‌ای با فیلترهای انتخابی شما یافت نشد.':
+                'بیمه‌های فعال و در حال خریداری شما در این بخش نمایش داده خواهند شد.'">
+        </empty-result>
+      }
+    </div>
+  </div>
+</div>

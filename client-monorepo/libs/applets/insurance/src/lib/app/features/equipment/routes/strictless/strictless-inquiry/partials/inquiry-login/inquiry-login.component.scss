@@ -1,0 +1,21 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.otp-wrapper {
+  border-radius: 12px;
+  background: #ffffff;
+  display: flex;
+  padding: 40px;
+  color: #424c5c;
+
+}
+
+@include mediaTablet {
+  .otp-wrapper {
+    width: 100%;
+    height: 100%;
+
+    ui-otp-section {
+      width: 100%;
+    }
+  }
+}

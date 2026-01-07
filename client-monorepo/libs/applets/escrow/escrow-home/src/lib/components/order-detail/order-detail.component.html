@@ -1,0 +1,133 @@
+<div>
+  <p class="st-8 mb-medium">جزئیات سفارش</p>
+  <ngx-divider
+    [color]="BorderColorsEnum.Air"
+    orientation="horizontal"
+  ></ngx-divider>
+  <div class="mt-medium">
+    <escrow-home-applet-order-summary
+      [image]="orderDetail().image"
+      [announcementTitle]="orderDetail().announcementTitle"
+      [price]="orderDetail().price"
+    ></escrow-home-applet-order-summary>
+  </div>
+  <div class="d-flex justify-content-space-between my-minus">
+    <p class="b-3 text-onback-medium">وضعیت سفارش</p>
+    <ngx-badge
+      size="sm"
+      mode="fill"
+      [status]="status()"
+    >
+      {{ ORDER_STATE_TRANSLATION[orderDetail().state] }}
+    </ngx-badge>
+  </div>
+  <div class="d-flex justify-content-space-between mb-minus">
+    <p class="b-3 text-onback-medium">کد رهگیری سفارش</p>
+    <p class="l-2 text-onback-medium">{{ '#' + orderDetail().trackingCode }}</p>
+  </div>
+  @if (orderDetail()?.creationDate) {
+    <div class="d-flex justify-content-space-between my-minus">
+      <p class="b-3 text-onback-medium">زمان سفارش</p>
+      <p class="l-2 text-onback-medium">
+        {{ orderDetail().creationDate | jalaliDate: 'jYYYY/jMM/jDD - HH:mm' }}
+      </p>
+    </div>
+  }
+  @if (orderDetail()?.confirmationDeadline) {
+    <div class="d-flex justify-content-space-between my-minus">
+      <p class="b-3 text-onback-medium">زمان تا تایید سفارش</p>
+      <p class="l-2 text-onback-medium">
+        {{ orderDetail().confirmationDeadline | jalaliDate: 'jYYYY/jMM/jDD - HH:mm' }}
+      </p>
+    </div>
+  }
+  @if (orderDetail()?.type) {
+    <div class="d-flex justify-content-space-between my-minus">
+      <p class="b-3 text-onback-medium">ارسال توسط</p>
+      <p class="l-2 text-onback-medium">{{ orderDetail().type === DeliverTypeEnum.POST ? 'پست' : 'پیک' }}</p>
+    </div>
+  }
+  @if (orderDetail()?.type) {
+    @if (orderDetail()?.type === DeliverTypeEnum.POST) {
+      <div class="d-flex justify-content-space-between my-minus">
+        <p class="b-3 text-onback-medium">کد رهگیری پست</p>
+        <div class="d-flex gap-tiny">
+          <p class="l-2 text-onback-medium">{{ orderDetail().postTrackingCode }}</p>
+          <ngx-icon
+            name="document-copy"
+            type="linear"
+            [iconSize]="'sm'"
+            (click)="copyText(orderDetail().postTrackingCode)"
+          ></ngx-icon>
+        </div>
+      </div>
+    } @else if (orderDetail()?.type === DeliverTypeEnum.COURIER) {
+      <div class="d-flex justify-content-space-between my-minus">
+        <p class="b-3 text-onback-medium">نام و نام خانوادگی پیک</p>
+        <p class="l-2 text-onback-medium">{{ orderDetail().courierFullName }}</p>
+      </div>
+
+      <div class="d-flex justify-content-space-between my-minus">
+        <p class="b-3 text-onback-medium">شماره همراه پیک</p>
+        <div class="d-flex gap-tiny">
+          <a
+            [href]="'tel:' + orderDetail().courierCellNumber"
+            class="l-2 text-onback-brand underlined-text"
+          >
+            {{ orderDetail().courierCellNumber | formattedCellNumber }}</a
+          >
+          <ngx-icon
+            name="call"
+            type="linear"
+            [iconSize]="'sm'"
+          ></ngx-icon>
+        </div>
+      </div>
+    }
+  }
+  @if (orderDetail().buyerCellNumber) {
+    <div class="d-flex justify-content-space-between my-minus">
+      <p class="b-3 text-onback-medium">شماره خریدار</p>
+      <div class="d-flex gap-tiny">
+        <a
+          [href]="'tel:' + orderDetail().buyerCellNumber"
+          class="l-2 text-onback-brand underlined-text"
+          >{{ orderDetail().buyerCellNumber | formattedCellNumber }}</a
+        >
+        <ngx-icon
+          name="call"
+          type="linear"
+          [iconSize]="'sm'"
+        ></ngx-icon>
+      </div>
+    </div>
+  }
+  @if (orderDetail().description) {
+    <div class="d-flex align-items-center my-low">
+      <p class="c-1 w-200px">توضیحات سفارش</p>
+      <ngx-divider
+        [color]="BorderColorsEnum.Air"
+        orientation="horizontal"
+      ></ngx-divider>
+    </div>
+    <p class="b-3 text-onback-medium mt-small">{{ orderDetail().description }}</p>
+  }
+  <div class="d-flex justify-content-space-between gap-small mt-plus">
+    <a
+      [href]="'tel:02153924000'"
+      class="text-onback-high w-100"
+    >
+      <p>پشتیبانی</p>
+      021-53924000
+    </a>
+    <ngx-button
+      [mode]="'section'"
+      [size]="'large'"
+      [style]="'tinted-on-elevated'"
+      [fullWidth]="true"
+      (clickHandler)="closeBottomSheet()"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

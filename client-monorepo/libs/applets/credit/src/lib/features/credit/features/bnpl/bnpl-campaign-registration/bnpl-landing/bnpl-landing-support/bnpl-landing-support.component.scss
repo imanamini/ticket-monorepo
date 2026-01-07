@@ -1,0 +1,58 @@
+section {
+  direction: rtl;
+}
+
+.artwork {
+  left: 36px;
+  position: absolute;
+  top: -50px;
+}
+
+.support-image {
+  height: 210px;
+  width: 210px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url("../assets/phone-texting.svg");
+}
+
+.box {
+  margin-top: 48px;
+  background: #f0f5ff;
+  border-radius: 24px;
+  width: 100%;
+  padding: 50px;
+  position: relative;
+}
+
+.title {
+  font-size: 17px;
+  color: #2c3544;
+  margin-bottom: 16px;
+}
+
+.tel {
+  font-size: 24px;
+  font-weight: 900;
+
+  a {
+    color: #2c3544;
+    text-decoration: auto;
+  }
+}
+
+.subtitle {
+  color: #6e798d;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .box {
+    padding: 32px;
+  }
+
+  .artwork {
+    left: 16px;
+  }
+}

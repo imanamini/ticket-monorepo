@@ -1,0 +1,106 @@
+<app-credit-app-bar
+  (onBackButtonClick)="onBack()"
+  [backButton]="true"
+  [title]="pageTitle()"
+></app-credit-app-bar>
+@if (planId() && !showLoading()) {
+  <div class="main-section d-flex flex-column">
+    <div class="top-section d-flex flex-column">
+      <app-credit-scrollable-view [fullHeightContent]="true">
+        <div class="page-content px-medium py-plus surface-back d-flex flex-column gap-plus justify-content-start">
+          <div class="surface-elevated gap-pony pt-plus px-plus pb-small radius-medium d-flex flex-column">
+            @for (item of planDetail()?.receiptItems; track item.title; let last = $last) {
+              <div
+                [class]="{ open: item.isOpen }"
+                class="plan-info"
+              >
+                <div
+                  ngxTrackableId
+                  trackerId="changeAccordionStateButtonClick"
+                  (click)="changeAccordionState(item.title)"
+                  [class]="!item.isOpen && (!last || planDetail()?.descriptionItems.length) ? ['border-b-100', 'border-color-air'] : []"
+                  class="d-flex flex-row justify-content-space-between cursor-pointer pb-small"
+                >
+                  <h3 class="b-2 text-onback-high">{{ item.title }}</h3>
+                  @if (item.value) {
+                    <span class="mr-auto ml-small">
+                      <ngx-badge
+                        size="md"
+                        status="info"
+                        mode="fill"
+                        type="text"
+                      >
+                        {{ item.value }}
+                      </ngx-badge>
+                    </span>
+                  }
+                  <div class="chevron">
+                    <ngx-icon [name]="item.isOpen ? 'arrow-2-up' : 'arrow-2-down'"></ngx-icon>
+                  </div>
+                </div>
+                <div class="c-3 text-onback-high py-pony">
+                  {{ item.description }}
+                </div>
+              </div>
+            }
+            @for (item of planDetail()?.descriptionItems; track item.title; let last = $last) {
+              <div
+                [class]="{ open: item.isOpen }"
+                class="plan-info"
+              >
+                <div
+                  ngxTrackableId
+                  trackerId="changeAccordionStateButtonClick"
+                  (click)="changeAccordionState(item.title)"
+                  [class]="!item.isOpen && !last ? ['border-b-100', 'border-color-air'] : []"
+                  class="d-flex flex-row justify-content-space-between cursor-pointer pb-small"
+                >
+                  <h3 class="b-2 text-onback-high">{{ item.title }}</h3>
+                  @if (item.value) {
+                    <span class="mr-auto ml-small">
+                      <ngx-badge
+                        size="md"
+                        status="info"
+                        mode="fill"
+                        type="text"
+                      >
+                        {{ item.value }}
+                      </ngx-badge>
+                    </span>
+                  }
+                  <div class="chevron">
+                    <ngx-icon [name]="item.isOpen ? 'arrow-2-up' : 'arrow-2-down'"></ngx-icon>
+                  </div>
+                </div>
+                <div
+                  class="c-3 text-onback-high py-pony"
+                  [innerHTML]="item.description | safeHtml"
+                ></div>
+              </div>
+            }
+          </div>
+          <div class="surface-elevated gap-pony radius-medium d-flex flex-column">
+            <app-credit-store-bottom-sheet
+              [serviceType]="planDetail()?.serviceType!"
+              [hideButtons]="true"
+              [pageSize]="8"
+              [itemsPerSlide]="8"
+              [slides]="1"
+              [showDots]="false"
+              [showMoreButton]="true"
+            ></app-credit-store-bottom-sheet>
+          </div>
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+    <div class="call-to-actions-section surface-back px-plus pb-plus">
+      <ngx-button
+        (clickHandler)="submitForm()"
+        [fullWidth]="true"
+      >
+        تایید و ثبت‌نام
+      </ngx-button>
+    </div>
+  </div>
+}
+<credit-page-loading [active]="showLoading()"></credit-page-loading>

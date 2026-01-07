@@ -1,0 +1,28 @@
+<div class="d-flex flex-row align-items-center gap-tiny">
+  <credit-digipay-image
+    [imageId]="contract()?.creditorImage"
+    width="24px"
+    height="24px"
+  ></credit-digipay-image>
+  <span class="st-8 text-onback-high">{{ contract()?.creditorName }}</span>
+  @if (contract()?.outstandingDebt === 0) {
+    <ngx-badge
+      size="sm"
+      mode="bold"
+      status="inactive"
+      class="mr-auto"
+    >
+      پرداخت شده
+    </ngx-badge>
+  }
+  @if (contract()?.outstandingDebt! > 0) {
+    <ngx-badge
+      size="sm"
+      mode="fill"
+      status="success"
+      class="mr-auto"
+    >
+      درحال پرداخت
+    </ngx-badge>
+  }
+</div>

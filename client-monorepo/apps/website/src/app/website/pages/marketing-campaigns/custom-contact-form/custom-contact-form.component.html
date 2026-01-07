@@ -1,0 +1,124 @@
+<div class="nobitex-form">
+  <div>
+    <div class="component-contact-form form">
+      <h2>فرم درخواست اعتبار</h2>
+      <p class="subtitle">برای دریافت اعتبار اطلاعات مالک خط را وارد کنید.</p>
+      <div
+        *ngFor="let row of contactFormDefinition.rows"
+        [formGroup]="form"
+        class="contact-form-row"
+      >
+        <ng-container *ngFor="let field of row">
+          <ng-container [ngSwitch]="field.type">
+            <ng-container *ngSwitchCase="'CELL_NUMBER'">
+              <label
+                [ngClass]="{
+                  focus: focusState[field.id] || (form.value[field.id] !== '' && form.value[field.id] !== null),
+                  disabled: disableCellPhone,
+                }"
+                class="segment-half"
+              >
+                <ui-form-field
+                  [errorMessageMapper]="{
+                    required: 'شماره همراه را وارد کنید.',
+                    invalidCellNumber: 'شماره همراه وارد شده معتبر نیست.',
+                  }"
+                  [error]="form.controls[field.id]?.errors"
+                  [formControlName]="field.id"
+                  [hint]="field.hint"
+                  [isNumericKeyboard]="true"
+                  [label]="'شماره همراه'"
+                  [readonly]="disableCellPhone"
+                  [required]="field.mandatory"
+                ></ui-form-field>
+              </label>
+            </ng-container>
+            <ng-container *ngSwitchCase="'NATIONAL_ID'">
+              <label
+                [ngClass]="{
+                  focus: focusState[field.id] || (form.value[field.id] !== '' && form.value[field.id] !== null),
+                  disabled: disableNationalId,
+                }"
+                class="segment-half"
+              >
+                <ui-form-field
+                  [errorMessageMapper]="{
+                    required: 'کدملی اجباری است.',
+                    invalidNotionalCode: 'فرمت کدملی اشتباه است.',
+                    identityErrorMessage: identityError,
+                  }"
+                  [error]="form.controls[field.id].errors"
+                  [formControlName]="field.id"
+                  [hint]="field.hint"
+                  [isNumericKeyboard]="true"
+                  [maxSize]="10"
+                  [label]="field.label"
+                  [readonly]="disableNationalId"
+                  [required]="field.mandatory"
+                ></ui-form-field>
+              </label>
+            </ng-container>
+            <ng-container *ngSwitchCase="'DATE'">
+              <ng-container>
+                <label
+                  [ngClass]="{
+                    focus: focusState[field.id] || (form.value[field.id] !== '' && form.value[field.id] !== null),
+                    disabled: disableBirthdate,
+                  }"
+                  class="segment-half"
+                >
+                  <ui-form-field
+                    *ngIf="showDatePicker"
+                    [customDateRange]="[minBirthDate, maxBirthDate]"
+                    [error]="form.controls[field.id].errors"
+                    [formControlName]="field.id"
+                    [ngClass]="{ disabled: disableBirthdate }"
+                    [readonly]="disableBirthdate"
+                    [errorMessage]="identityErrorBD$ | async"
+                    [showError]="showError"
+                    class="date-picker"
+                    label="تاریخ تولد"
+                    type="date"
+                  >
+                  </ui-form-field>
+                </label>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="single-note">
+      <div>
+        <span
+          [size]="24"
+          icon="icon-square-info"
+          appUiIcon
+        ></span>
+        <span class="attention">توجه داشته باشید</span>
+      </div>
+      <div>
+        <span> بعد از بررسی اطلاعات شما اعتبار مناسب را به شما نمایش خواهیم داد. </span>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="ctas">
+      <app-ui-button
+        (click)="next()"
+        class="w-40"
+        [showSpinner]="nobitexCreditService.isLoading$ | async"
+        [disabled]="nobitexCreditService.isLoading$ | async"
+      >
+        تایید و ادامه
+        <span
+          icon="icon-charon-left-white"
+          size="24"
+          appUiIcon
+        ></span>
+      </app-ui-button>
+    </div>
+  </div>
+</div>

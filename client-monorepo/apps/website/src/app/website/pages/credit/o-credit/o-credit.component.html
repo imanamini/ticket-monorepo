@@ -1,0 +1,45 @@
+<app-base-layout [loaded]="loaded">
+  <!--  section 1-->
+  <app-ui-introduction-default
+    *ngIf="creditPage && creditPage.templateData"
+    [heroImage]="creditPage.templateData.introArtwork"
+    [introductionType]="creditPage.templateData.introType"
+  >
+    <div>
+      <h1>
+        {{ creditPage?.templateData?.introTitle }}
+      </h1>
+      <div class="subtitle">
+        {{ creditPage?.templateData?.introSubtitle }}
+      </div>
+      <app-ui-button appScrollToAnchor="bnplForm">
+        <i> </i>
+        <span>
+          {{ creditPage.templateData.introFirstCta.title }}
+        </span>
+      </app-ui-button>
+    </div>
+  </app-ui-introduction-default>
+
+  <!--  section 2-->
+  <app-ui-content-nav
+    *ngIf="creditPage && creditPage.templateData && creditPage.templateData.sectionQualified"
+    [data]="creditPage.templateData.sectionQualified"
+  ></app-ui-content-nav>
+
+  <!--  section 3-->
+  <app-o-credit-tabs
+    *ngIf="creditPage && creditPage.templateData && creditPage.templateData.sectionSteps"
+    [data]="creditPage.templateData.sectionSteps"
+  ></app-o-credit-tabs>
+
+  <!--  section 4-->
+  <app-o-credit-form
+    *ngIf="creditPage && creditPage.templateData && creditPage.templateData.sectionRequest"
+    [contactForm]="contactForm"
+    [description]="creditPage.templateData.sectionRequest.description"
+    [image]="creditPage.templateData.sectionRequest.image"
+    [subtitle]="creditPage.templateData.sectionRequest.subtitle"
+    [title]="creditPage.templateData.sectionRequest.title"
+  ></app-o-credit-form>
+</app-base-layout>

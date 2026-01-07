@@ -1,0 +1,109 @@
+<div class="container merchant-register mt-hulk mb-hulk">
+  @if (!submited){
+    <ng-container>
+      <div>
+        @if (form.value){
+          <div class="component-contact-form form" [formGroup]="form">
+
+            <div class="d-flex align-items-center gap-medium">
+              <ng-container>
+                <label
+                  class="segment-half w-50">
+                  <ui-form-field
+                    [errorMessageMapper]="{
+                          required: 'نام و نام خانوادگی را وارد کنید.'
+                         }"
+                    [error]="form.controls['fullName']?.errors"
+                    [formControlName]="'fullName'"
+                    [isNumericKeyboard]="false"
+                    [label]="'نام و نام خانوادگی'"
+                    [required]="hasRequiredValidator(form.controls['fullName'])"
+                  ></ui-form-field>
+                </label>
+              </ng-container>
+
+              <ng-container>
+                <label
+                  class="segment-half w-50">
+                  <ui-form-field
+                    [errorMessageMapper]="{
+              required: 'شماره همراه را وارد کنید.',
+              invalidCellNumber: 'شماره همراه وارد شده معتبر نیست.'
+            }"
+                    [error]="form.controls['cellNumber']?.errors"
+                    [formControlName]="'cellNumber'"
+                    [isNumericKeyboard]="true"
+                    [label]="'شماره همراه'"
+                    [required]="hasRequiredValidator(form.controls['cellNumber'])"
+                  ></ui-form-field>
+                </label>
+              </ng-container>
+            </div>
+            <div class="d-flex align-items-center gap-medium">
+            <ng-container>
+              <label
+                class="segment-half w-50">
+                <ui-form-field
+                  [errorMessageMapper]="{
+              required: 'نام شرکت را وارد کنید.'
+            }"
+                  [error]="form.controls['companyName']?.errors"
+                  [formControlName]="'companyName'"
+                  [label]="'نام شرکت'"
+                  [required]="hasRequiredValidator(form.controls['companyName'])"
+                ></ui-form-field>
+              </label>
+            </ng-container>
+            <ng-container>
+              <label
+                class="segment-half w-50">
+                <ui-form-field
+                  [errorMessageMapper]="{
+              required: 'سمت خود را انتخاب کنید.'
+            }"
+                  [error]="form.controls['position']?.errors"
+                  [formControlName]="'position'"
+                  [label]="'سمت'"
+                  [options]="contactFormDefinition.rows[1][1].options"
+                  [required]="hasRequiredValidator(form.controls['position'])"
+                  type="select"
+                ></ui-form-field>
+              </label>
+            </ng-container>
+            </div>
+          </div>
+
+        }
+
+        <div class="mb-huge">
+          <app-ui-button (clicked)="onSubmit()" appearance="CUSTOM" [disabled]="form.invalid" [size]="'BIG'"
+                         class="submit-button mt-mega">
+            {{ 'ثبت درخواست' }}
+          </app-ui-button>
+        </div>
+
+        <div class="custom-divider"></div>
+
+      </div>
+    </ng-container>
+  } @else {
+    <ng-container >
+      <div class="success-content d-flex flex-column justify-content-center align-items-center p-plus gap-medium">
+        <span><img src="/assets/images/Waiting-Stepp.svg" alt=""></span>
+        <span class="title text-onback-success fs-18">{{data?.title}}</span>
+        <span class="subtitle fs-12 text-oninvert-high">{{data?.description}}</span>
+      </div>
+    </ng-container>
+  }
+
+  @if (errors.length > 0){
+    <ul  class="form-errors">
+      @for (error of errors ; track $index){
+        <li >{{ error }}</li>
+      }
+    </ul>
+  }
+
+</div>
+
+

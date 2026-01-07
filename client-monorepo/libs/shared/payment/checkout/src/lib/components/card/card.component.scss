@@ -1,0 +1,36 @@
+.upg-title {
+  color: #6e798d;
+  padding-right: 16px;
+}
+
+.card-container {
+  border-radius: 16px;
+  position: relative;
+  width: 100%;
+  border: none;
+  display: flex;
+  flex-direction: column;
+
+  app-card-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+
+  app-card-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .body {
+    overflow-y: auto;
+    height: 100%;
+
+    .content {
+      height: 100%;
+    }
+  }
+}

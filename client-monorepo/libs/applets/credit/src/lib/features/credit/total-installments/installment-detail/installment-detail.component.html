@@ -1,0 +1,127 @@
+<div class="header">جزئیات قسط</div>
+
+<div class="d-flex flex-column">
+  <div class="body-header">
+    @if (billingCycleDateTitle()) {
+      <div class="main">
+        {{ billingCycleDateTitle() }}
+      </div>
+    }
+
+    <div class="minor">
+      {{ installmentShortInfo() }}
+
+      @if (data()?.installment?.gracePeriodRemain && data()?.installment?.isDue) {
+        <ngx-badge
+          class="mr-tiny"
+          size="sm"
+          mode="fill"
+          status="warning"
+        >
+          {{ data()?.installment?.gracePeriodRemain + ' روز تا جریمه' }}
+        </ngx-badge>
+      }
+    </div>
+  </div>
+
+  <div
+    [style.height]="scrollableHeight()"
+    class="body-content"
+  >
+    <app-credit-scrollable-view [fullHeightContent]="true">
+      <div class="wrapper">
+        <div class="row">
+          <div class="d-flex align-items-center">
+            <span>مبلغ قسط</span>
+            <span
+              class="mr-low info primary"
+              ngxTooltip="بخشی از مبلغ خریدها که باید در این قسط پرداخت شود."
+            ></span>
+          </div>
+          <div>
+            {{
+              data()?.installment?.amount! -
+                data()?.installment?.penalty! +
+                data()?.installment?.penaltyWaiverAmount -
+                data()?.installment?.fee! | thousands
+            }}
+            <span class="is-currency">ریال</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="d-flex align-items-center">
+            <span>کارمزد</span>
+            <span
+              [ngxTooltip]="feeHint()"
+              class="mr-low info primary"
+            ></span>
+          </div>
+          <div>
+            {{ data()?.installment.fee ?? 0 | thousands }}
+            <span class="is-currency">ریال</span>
+          </div>
+        </div>
+
+        @if (data()?.installment.penalty) {
+          <div [class]="['row penalty', data()?.installment.penaltyWaiverAmount ? 'with-penalty-waiver' : '']">
+            <div class="d-flex align-items-center">
+              <span>جریمه</span>
+              <span
+                class="mr-low info accent"
+                [ngxTooltip]="penaltyHint()"
+              ></span>
+
+              @if (data()?.installment.penaltyWaiverAmount) {
+                <ngx-badge
+                  class="mr-tiny"
+                  [hasIcon]="true"
+                  [mode]="'fill'"
+                  [size]="'sm'"
+                  [status]="'success'"
+                >
+                  <ngx-icon
+                    badge-icon
+                    [name]="'check-circle'"
+                    [type]="'linear'"
+                    [iconSize]="'16px'"
+                  />
+                  بخشیده شد
+                </ngx-badge>
+              }
+            </div>
+            <div>
+              {{ data()?.installment?.penalty | thousands }}
+              <span class="is-currency">ریال</span>
+            </div>
+          </div>
+        }
+
+        <div class="row total mb-plus">
+          <div class="d-flex align-items-center">
+            <span>کل مبلغ قابل پرداخت</span>
+          </div>
+          <div>
+            {{ data()?.installment.amount | thousands }}
+            <span class="is-currency">ریال</span>
+          </div>
+        </div>
+
+        <app-contract-purchases-detail
+          (detailsOpened)="onDetailsOpened($event)"
+          [contractTrackingCode]="data()?.installment?.contract?.contractTrackingCode!"
+        />
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+
+  <div class="body-footer">
+    <ngx-button
+      (clickHandler)="close()"
+      [fullWidth]="true"
+      [style]="'tinted-on-elevated'"
+    >
+      بستن
+    </ngx-button>
+  </div>
+</div>

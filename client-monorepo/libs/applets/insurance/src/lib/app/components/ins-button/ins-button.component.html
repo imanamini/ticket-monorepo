@@ -1,0 +1,16 @@
+<ngx-button
+  [buttonId]="id()"
+  [mode]="mode()"
+  [style]="style()|buttonStylePipe"
+  [size]="size()"
+  [destructive]="destructive()"
+  [disabled]="disabled()"
+  [isLoading]="isLoading()"
+  [fullWidth]="fullWidth()"
+  [classNames]="classNames()"
+  [brandButton]="brandButton()"
+  [leftIcon]="leftIcon()"
+  [rightIcon]="rightIcon()"
+  (clickHandler)="handleClicked($event)">
+  {{ text() }}
+</ngx-button>

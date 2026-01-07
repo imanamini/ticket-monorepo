@@ -1,0 +1,13 @@
+<div
+  class="d-flex flex-row character-container justify-content-center align-items-center flex-wrap gap-medium surface-dim-glass py-huge px-medium"
+>
+  @for (item of characters; track item) {
+    <button
+      (click)="onSelectChar(item)"
+      [class.selected]="item === selectedItem()"
+      class="character fw-extra-bold text-align-center border-none cursor-pointer d-flex flex-column align-items-center justify-content-center p-small radius-small surface-dim-glass text-oninvert-high"
+    >
+      {{ item }}
+    </button>
+  }
+</div>

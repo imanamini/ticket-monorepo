@@ -1,0 +1,149 @@
+<div class="house-incidents-checkout d-flex flex-column h-100">
+  <main-header
+          class="px-plus"
+          title="تایید و پرداخت"
+          leftIconType="linear"
+          (rightIconClicked)="backClick()"
+          [faqCategory]="FaqCategoryTypeEnum.HOUSE_INCIDENTS"
+          leftIconName="headphone"
+  ></main-header>
+  <div class="pt-small px-plus">
+    <house-incidents-stepper
+            [selectedStep]="HouseIncidentsStepsEnum.CONFIRM_AND_PAY"
+    ></house-incidents-stepper>
+  </div>
+  <div class="content-container flex px-plus">
+    <div class="mt-medium">
+      <ins-alert
+              title="هشدار!"
+              text="توجه داشته باشید که مسئولیت صحت آدرس و کدپستی وارد شده برعهده شما خواهد بود."
+              [color]="AlertColorEnum.Yellow"
+              [icon]="'error-circle'"
+              [hasIcon]="true"
+      ></ins-alert>
+    </div>
+    @if (orderDetail()) {
+      <div class="pt-plus" [ngClass]="{'mb-hulk': orderDetail()?.price?.totalDiscountAmount > 0}">
+        <div class="st-8 text-onback-high">مشخصات بیمه‌نامه</div>
+        <div class="d-flex flex-column mt-medium">
+          <div class="surface-elevated radius-medium">
+            <div class="d-flex flex-row gap-low align-items-center justify-content-start pb-minus p-medium border-b-300 border-color-air">
+              <div class="d-flex align-items-center justify-content-center radius-medium surface-back p-small">
+                <ins-icon [name]="orderDetail()?.data?.insurerParty?.logo"
+                          [height]="24"
+                          [width]="24"></ins-icon>
+              </div>
+              <div class="d-flex flex-column gap-tiny">
+                <div class="st-8 text-onback-high">{{ orderDetail().data?.title }}</div>
+                <div class="c-3">{{ 'بیمه ' + orderDetail().data?.insurerParty?.name }}</div>
+              </div>
+            </div>
+            <div class="pr-minus pl-minus pb-minus d-flex flex-column">
+              <div class="d-flex align-items-center justify-content-space-between pt-minus pb-minus">
+                <div class="b-2 text-onback-disabled">مدت اعتبار</div>
+                <div>{{ orderDetail().data?.duration }}</div>
+              </div>
+              <div class="d-flex align-items-center justify-content-space-between pt-minus pb-minus">
+                <div class="b-2 text-onback-disabled">کد پستی</div>
+                <div>{{ orderDetail()?.insuredParty?.postalCode }}</div>
+              </div>
+              <div class="d-flex align-items-center justify-content-space-between pt-minus pb-minus">
+                <div class="b-2 text-onback-disabled">آدرس</div>
+                <div class="detail-value">{{ orderDetail().insuredParty?.address }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="st-8 text-onback-high pt-plus">مشخصات بیمه‌گزار</div>
+        <div class="d-flex flex-column mt-medium">
+          <div class="surface-elevated radius-medium">
+            <div class="pr-minus pl-minus pb-minus d-flex flex-column">
+              <div class="d-flex align-items-center justify-content-space-between pt-minus pb-minus">
+                <div class="b-2 text-onback-disabled">نام و نام‌خانوادگی</div>
+                <div>{{ orderDetail()?.insuredParty?.fullName }}</div>
+              </div>
+              <div class="d-flex align-items-center justify-content-space-between pt-minus pb-minus">
+                <div class="b-2 text-onback-disabled">کد ملی</div>
+                <div>{{ orderDetail()?.insuredParty?.nationalCode }}</div>
+              </div>
+              <div class="d-flex align-items-center justify-content-space-between pt-minus pb-minus">
+                <div class="b-2 text-onback-disabled">شماره موبایل</div>
+                <div class="detail-value">{{ orderDetail()?.insuredParty?.mobile }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <lib-ngx-skeleton-loading
+              class="mt-medium"
+              width="100%"
+              height="285px"
+      ></lib-ngx-skeleton-loading>
+      <lib-ngx-skeleton-loading
+              class="mt-medium"
+              width="100%"
+              height="150px"
+      ></lib-ngx-skeleton-loading>
+    }
+  </div>
+  <div class="payment-info p-plus surface-elevated w-100">
+    @if (orderDetail()?.price?.totalDiscountAmount > 0) {
+      <ngx-alert
+              [color]="'green'"
+              [hasCloseIcon]="false"
+              [text]="(orderDetail()?.price?.totalDiscountAmount > 0 | thousands) + ' ریال از مبلغ پرداخی شما کسر شد.'"
+              title=""
+      ></ngx-alert>
+    }
+    <div class="d-flex align-items-center justify-content-space-between mt-small">
+      <div class="mt-small bt-2 text-onback-high">مبلغ پرداختی</div>
+      <div>
+        @if (orderDetail()?.price?.totalDiscountAmount > 0) {
+          <ngx-button
+                  [destructive]="true"
+                  [mode]="InsButtonModeEnum.Form"
+                  [size]="InsButtonSizeEnum.Small"
+                  (clickHandler)="deleteVoucher()"
+          >
+            <div class="d-flex gap-tiny text-onback-error">
+              {{ orderDetail()?.price?.discountCode }}
+              <ngx-icon name="delete" classes="text-onback-error" iconSize="20px"></ngx-icon>
+            </div>
+          </ngx-button>
+        } @else {
+          <ins-button
+                  [rightIcon]="{name: 'plus',type: 'linear'}"
+                  text="کد تخفیف"
+                  [style]="InsButtonStyleEnum.TintedOnBack"
+                  [size]="InsButtonSizeEnum.Small"
+                  (clickHandler)="openVoucherBottomSheet()"
+          ></ins-button>
+        }
+      </div>
+    </div>
+    <div class="text-onback-medium pt-small">
+      @if (orderDetail()?.price?.totalDiscountAmount > 0) {
+        <div class="discounted-amount text-onback-low b-1">
+          {{ ( orderDetail()?.price.providerPrice  | thousands ) + ' ریال' }}
+        </div>
+      }
+      <div class="t-7">
+        {{ ( orderDetail()?.price?.payableAmount | thousands ) + ' ریال' }}
+      </div>
+    </div>
+    <div class="mt-minus">
+      <p class="b-3 pt-minus pb-low mb-minus text-onback-high">تایید و پرداخت به معنای موافقت با <span
+              (click)="openConditionTerms()" class="text-onback-brand">شرایط و مقررات بیمه دیجی‌پی</span> است.</p>
+      <ins-button
+              text="تایید و پرداخت"
+              (clickHandler)="confirmAndPay()"
+              [size]="InsButtonSizeEnum.Large"
+              [fullWidth]="true"
+              [brandButton]="true"
+              [isLoading]="isSendingToPayment()"
+              type="submit"
+      ></ins-button>
+    </div>
+  </div>
+</div>

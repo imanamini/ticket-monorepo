@@ -1,0 +1,37 @@
+<div
+  (click)="selectionBoxSelected()"
+  class="d-flex flex-column gap-small border-300 radius-plus cursor-pointer py-medium px-plus direction-rtl {{
+    config().selected ? 'border-color-brand' : 'border-color-light'
+  }}"
+  ngxTrackableId
+  trackerId="selectionBoxSelected'"
+>
+  <div class="gap-tiny d-flex align-items-start justify-content-space-between">
+    @if (config()?.iconLabel) {
+      <ngx-icon
+        classes="{{ config().selected ? 'text-onback-brand' : 'text-onback-medium' }}"
+        [name]="config().iconLabel!"
+        type="due"
+        iconSize="24px"
+      ></ngx-icon>
+    }
+    @if (config().label) {
+      <div class="st-8 text-onback-medium">{{ config().label }}</div>
+    }
+    <div class="checkbox mt-low">
+      @if (checkboxType()) {
+        @if (config().selected) {
+          <div class="active-checkbox radius-rounded">
+            <div class="white-small-circle radius-rounded"></div>
+          </div>
+        } @else {
+          <div class="radius-rounded border-color-tint border-100"></div>
+        }
+      } @else {
+        <ng-container [ngTemplateOutlet]="config().template"></ng-container>
+      }
+    </div>
+  </div>
+
+  <ng-content></ng-content>
+</div>

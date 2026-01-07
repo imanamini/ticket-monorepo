@@ -1,0 +1,45 @@
+{
+  "/digipay/api": {
+    "target": "https://uat.mydigipay.info",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "info"
+  }
+}
+
+{
+  "/digipay/api": {
+    "target": "http://172.22.10.43:8118",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "info"
+  }
+}
+# When you want serve Wealth App use this:
+{
+  "/api": {
+    "target": "https://uatwealth.mydigipay.info",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "info"
+  }
+}
+// only use in pillar
+[
+  {
+    "context": [
+      "/digipay/api/auth/idp"
+    ],
+    "target": "https://api.mydigipay.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  {
+    "context": ["/digipay/api"],
+    "target": "https://uatapp.mydigipay.info",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+]

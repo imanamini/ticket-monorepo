@@ -1,0 +1,52 @@
+<div class="sejam-successful-container">
+  @if (isLoading()) {
+    <app-spinner class="sejam-spinner"></app-spinner>
+  }
+  <ngx-app-bar
+    class="w-100"
+    [title]="'بررسی حساب سجام'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="sejam-successful-content">
+    <div class="sejam-image">
+      <img
+        src="wealth-assets/svg/sejam-successful.svg"
+        alt=""
+      />
+    </div>
+    <div class="sejam-title">شما دارای حساب سجام هستید</div>
+    <div class="sejam-description">اکنون می‌توانید در دارایی‌های زیر سرمایه‌گذاری کنید:</div>
+    <div
+      class="sejam-investment"
+      (click)="onCardClick()"
+    >
+      <div class="sejam-investment-icon">
+        <img
+          src="wealth-assets/svg/icon-gold.svg"
+          alt=""
+        />
+      </div>
+      <div class="sejam-investment-text">
+        <span class="sejam-investment-title"> سرمایه‌گذاری مبتنی بر طلا </span>
+      </div>
+    </div>
+    <div class="sejam-buttton">
+      <ngx-button
+        [buttonId]="'SEJAM_SUCCESS'"
+        size="medium"
+        [fullWidth]="true"
+        (clickHandler)="gotIt()"
+        mode="form"
+      >
+        متوجه شدم
+      </ngx-button>
+    </div>
+  </div>
+</div>

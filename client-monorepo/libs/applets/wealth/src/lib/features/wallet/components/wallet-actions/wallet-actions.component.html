@@ -1,0 +1,28 @@
+<div class="w-100 d-flex flex-wrap gap-large align-items-start justify-content-center">
+  @for (btn of buttons(); track $index) {
+    <div class="d-flex flex-wrap btn-container">
+      <ngx-button
+        [buttonId]="'WALLET_' + btn.id"
+        [style]="btn.style === 'fill' ? 'fill' : 'tinted-on-back'"
+        [disabled]="btn.disable"
+        (clickHandler)="actionClick(btn.id)"
+        [fullWidth]="false"
+        [size]="'large'"
+        [classNames]="btn.style !== 'fill' ? ['text-onback-high', 'wallet-action-button'] : ['wallet-action-button']"
+      >
+        <ngx-icon
+          class="icon"
+          type="{{ btn.icon.type }}"
+          name="{{ btn.icon.name }}"
+        >
+        </ngx-icon>
+      </ngx-button>
+      <span
+        class="c-2 text-onback-high w-100 text-align-center mt-small"
+        [ngClass]="{ 'text-onback-disable': btn.disable }"
+      >
+        {{ btn.label }}
+      </span>
+    </div>
+  }
+</div>

@@ -1,0 +1,90 @@
+@import "globals";
+
+::ng-deep {
+  .ui-payment-dialog-container {
+    .mat-mdc-dialog-container {
+      padding: 0;
+    }
+  }
+}
+
+.payment-result-dialog {
+  ::ng-deep {
+    .ui-dialog {
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+
+      .dialog-title-bar {
+        position: absolute !important;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        right: 0;
+        border-bottom: 1px solid rgba(#fff, 0.3);
+      }
+
+      .close-icon {
+        /*right: 32px !important;
+        top: 5px !important;*/
+      }
+
+      .body {
+        padding: 0 !important;
+      }
+    }
+  }
+}
+
+.close-button,
+.redirect-button {
+  width: 100%;
+  display: block;
+  margin: 12px 0 0;
+
+  .icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+}
+
+.redirect-button .icon {
+  background: url('/src/app/ui/ui-components/ui-dialogs/ui-dialog-payment-result/images/arrow-right-w.svg') no-repeat 0 0/100%;
+}
+
+.close-button {
+  .icon {
+    background: url('/src/app/ui/ui-components/ui-dialogs/ui-dialog-payment-result/images/arrow-right.svg') no-repeat 0 0/100%;
+  }
+
+  ::ng-deep button {
+    color: $swatch_steel_500 !important;
+  }
+}
+
+@include mediaMobile() {
+  .payment-result-dialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+
+    ::ng-deep .ui-dialog {
+      border-radius: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+
+      .body {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}

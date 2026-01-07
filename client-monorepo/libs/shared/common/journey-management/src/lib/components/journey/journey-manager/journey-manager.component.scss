@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  height: 230px;
+  min-height: 230px;
+  width: 100%;
+}
+.journey-manager {
+  position: relative;
+  overflow: hidden;
+  &-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  &-content {
+    z-index: 1;
+    background: transparent;
+    height: 100%;
+  }
+  &-fg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+}

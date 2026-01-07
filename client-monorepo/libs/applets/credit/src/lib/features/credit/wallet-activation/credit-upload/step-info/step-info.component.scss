@@ -1,0 +1,31 @@
+@import "../../../credit-styles/device-mixins";
+
+.page-section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-section {
+  flex-grow: 0;
+  padding: 16px;
+  text-align: center;
+
+  button {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+iframe {
+  width: 100%;
+  flex-grow: 1;
+  height: 100%;
+}
+
+@include mediaMobile() {
+  .page-section {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+  }
+}

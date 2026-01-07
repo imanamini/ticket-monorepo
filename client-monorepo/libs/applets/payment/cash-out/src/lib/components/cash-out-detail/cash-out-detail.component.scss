@@ -1,0 +1,12 @@
+@import "@digipay/base-style/styleguide";
+
+.detail {
+  background-color: #{map-get($steel, "shade-99")};
+  background-image: url("../../images/card-detail.svg");
+  background-repeat: no-repeat;
+  background-position: right;
+
+  &-text {
+    color: #{map-get($steel, "shade-20")};
+  }
+}

@@ -1,0 +1,40 @@
+<common-ui-components-page-layout
+  title="خرید اشتراک"
+  [stickyHeader]="true"
+  [showBackIcon]="showBackIcon()"
+>
+  <ng-container content>
+    @if (isLoading()) {
+      <ngx-status-result
+        title="لطفا منتظر بمانید"
+        [description]="'درحال بررسی برای خرید اشتراک هستیم'"
+        class="waiting-state"
+      >
+        <ng-container status-image>
+          @if (loadingEffect()) {
+            <div class="waiting-state-image">
+              <ng-lottie
+                class="waiting-animation"
+                [options]="{ path: waitingAnimation() }"
+              ></ng-lottie>
+            </div>
+          } @else {
+            <div class="state-spinner">
+              <ngx-spinner size="lg"></ngx-spinner>
+            </div>
+          }
+        </ng-container>
+      </ngx-status-result>
+    } @else if (hasError()) {
+      <ngx-status-result
+        (clicked)="onClickStatueResult($event)"
+        [buttons]="errorStateButtons"
+        title="خطا در عملیات"
+        [description]="'متاسفانه درخواست خرید اشتراک برای شما با خطا مواجه شد'"
+        [iconState]="'error'"
+        class="mt-hulk"
+      >
+      </ngx-status-result>
+    }
+  </ng-container>
+</common-ui-components-page-layout>

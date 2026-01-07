@@ -1,0 +1,12 @@
+<ngx-pin
+  [showBiometric]="hasBiometric()"
+  [hasAnimation]="hasBackground()"
+  [pinState]="state()"
+  [disableActions]="submitting()"
+  (onPinCompleted)="pinComplete($event)"
+  [hint]="hint()"
+  [title]="title()"
+  [enterPasswordState]="enterPasswordState()"
+  [isLoading]="submitting()"
+  #pinComponent
+></ngx-pin>

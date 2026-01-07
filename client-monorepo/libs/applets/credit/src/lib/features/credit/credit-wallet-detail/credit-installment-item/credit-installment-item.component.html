@@ -1,0 +1,104 @@
+<div
+  [class]="{
+    'without-card': withoutCard(),
+    'with-penalty': installment()?.penaltyAmount,
+    'with-penalty-waiver': installment()?.penaltyWaiverAmount,
+    'white-background': whiteBackground(),
+    payable: installment().payable && payableGroup(),
+  }"
+  class="credit-installment-item"
+>
+  <div class="installment-row instalment-info-title">
+    <div>
+      {{ title }}
+    </div>
+    <div>تاریخ سررسید</div>
+  </div>
+  <div class="installment-row">
+    <div class="installment-big-amount installment-amount">
+      {{ installment().amount | IRR: 'hideRial' }}
+      <span class="currency is-currency">ریال</span>
+    </div>
+    <div class="installment-date">
+      {{ installment().date | jalaliDate: 'jYY/jM/jD' }}
+    </div>
+  </div>
+
+  @if (installment().penaltyAmount) {
+    <div class="installment-row">
+      <div class="installment-big-amount installment-amount-with-penalty">
+        @if (installment().penaltyWaiverAmount) {
+          <ngx-badge
+            [hasIcon]="true"
+            [mode]="'fill'"
+            [size]="'sm'"
+            [status]="'success'"
+          >
+            <ngx-icon
+              badge-icon
+              [name]="'check-circle'"
+              [type]="'linear'"
+              [iconSize]="'16px'"
+            />
+            بخشش جریمه
+          </ngx-badge>
+        } @else {
+          {{ installment().totalAmount | IRR: 'hideRial' }}
+          <span class="currency is-currency">ریال</span>
+        }
+      </div>
+      <div class="installment-penalty-message">
+        {{ installment().penaltyAmount | IRR: 'hideRial' }}
+        ریال جریمه دیرکرد
+      </div>
+    </div>
+  }
+
+  @if (payableGroup() && !hidePayCta()) {
+    <div class="installment-row cta-row">
+      <div></div>
+      <div class="installment-cta">
+        <div
+          (click)="onPay()"
+          click-stop-propagation
+        >
+          <ngx-button
+            [size]="'small'"
+            [disabled]="!installment().payable"
+            [leftIcon]="{ name: 'arrow-2-left' }"
+          >
+            پرداخت
+          </ngx-button>
+        </div>
+      </div>
+    </div>
+  }
+  @if (installment().showReceipt && installment().trackingCode) {
+    <div class="installment-row cta-row">
+      <div>
+        @if (installment()?.badge?.text) {
+          <div
+            class="py-tiny px-small c-2 radius-giant"
+            [style.background-color]="installment().badge?.backgroundColor"
+            [style.color]="installment().badge?.textColor"
+          >
+            {{ installment().badge.text }}
+          </div>
+        }
+      </div>
+
+      <div class="installment-cta">
+        <ngx-button
+          (clickHandler)="showTransactionDetail()"
+          [size]="'small'"
+          [style]="'tinted-on-elevated'"
+          [leftIcon]="{
+            name: 'arrow-2-left',
+          }"
+        >
+          مشاهده رسید
+        </ngx-button>
+      </div>
+    </div>
+  }
+</div>

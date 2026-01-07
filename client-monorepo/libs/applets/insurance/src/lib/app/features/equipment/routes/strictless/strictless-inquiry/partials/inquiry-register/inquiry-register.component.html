@@ -1,0 +1,52 @@
+<div class="register">
+  <div class="content">
+    <div class="header">استعلام وضعیت</div>
+    <div class="body">
+      <div class="note">اگر طی چند هفته گذشته از دیجی‌کالا گوشی خریدی می‌تونی با وارد کردن اطلاعات زیر استعلام بگیری و
+        بیمه گوشیت رو فعال کنی.
+      </div>
+      <form [formGroup]="form" class="inputs">
+
+        <ui-form-field
+                [error]="form.controls.mobileNo.errors"
+                class="input"
+                formControlName="mobileNo"
+                label="شماره همراه"
+        ></ui-form-field>
+
+        <ui-form-field
+                [error]="form.controls.serialNo.errors"
+                class="input"
+                formControlName="serialNo"
+                label="سریال دستگاه / IMEI"
+        ></ui-form-field>
+      </form>
+      <div class="hint">
+        <img
+                alt=""
+                class="img"
+                src="assets/icons/icon-callout-info.svg">
+        <div class="hint-message">
+          برای پیدا کردن شماره سریال (IMEI) دستگاه، از کد دستوری
+          <span class="ltr"
+                dir="ltr">*#06#</span>
+          استفاده نمایید.
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <ui-button
+              (click)="inquiry()"
+              [disabled]="form.invalid"
+              class="submit-button">
+        تایید و ادامه
+      </ui-button>
+    </div>
+  </div>
+  <div class="pic">
+    <img
+            alt=""
+            class="image"
+            src="assets/icons/register-inquiry.svg">
+  </div>
+</div>

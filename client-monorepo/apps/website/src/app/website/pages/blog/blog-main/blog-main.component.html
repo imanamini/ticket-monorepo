@@ -1,0 +1,118 @@
+<app-base-layout [loaded]="loaded">
+  <section>
+    <div class="container top-navigation">
+      <div class="breadcrumbs">مجله اینترنتی دیجی‌پی</div>
+      <div class="total-posts-link">
+        <app-ui-button
+          appearance="BLUE-TEXT"
+          link="/mag/archive/"
+          linkTarget="_blank"
+          size="BIG"
+        >
+          همه مقالات دیجی‌پی
+          <img
+            alt=""
+            height="19"
+            ngSrc="assets/blog/blue-arrow.svg"
+            width="19"
+          />
+        </app-ui-button>
+      </div>
+    </div>
+    <app-ui-blog-top-posts [posts]="recentPosts"></app-ui-blog-top-posts>
+    <div class="container">
+      <div class="swiper-title">تکنولوژی و راهنمای خرید:</div>
+    </div>
+    <app-ui-blog-children-swiper [categories]="swiperOptions"></app-ui-blog-children-swiper>
+    <div *ngFor="let priority of priorities; let index = index">
+      <app-ui-blog-posts-preview
+        *ngIf="categories[index] && sections[priority] && sections[priority].categoryPosts && sections[priority].categoryPosts.length"
+        [category]="categories[index]"
+        [containerBackGround]="sections[priority].config.preview.backgroundColor"
+        [posts]="preparePostsForPreview(sections[priority].categoryPosts, sections[priority]?.config.preview.type)"
+        [type]="sections[priority]?.config.preview.type"
+      >
+      </app-ui-blog-posts-preview>
+    </div>
+    <div
+      class="box"
+      appDownloadAppLink
+    ></div>
+    <div class="recommendations">
+      <div class="container recommendation-title">
+        <img
+          alt=""
+          height="40"
+          ngSrc="assets/blog/mainpage-icons/recommendations.svg"
+          width="40"
+        />
+        انتخاب سردبیر
+      </div>
+      <div class="borders">
+        <div class="container">
+          <div
+            *ngIf="isBrowser"
+            class="categories"
+          >
+            <swiper-container
+              appSwiper
+              #swiper
+              [config]="config"
+              class="button-group"
+              (slidechange)="slideChange($event)"
+            >
+              <swiper-slide *ngFor="let category of categories; let index = index">
+                <div
+                  *ngIf="hasRecommendationPost(category)"
+                  (click)="onSelectRecommendationCategory(category)"
+                  [ngClass]="index === selectedTab ? 'selected' : ''"
+                  class="category-title"
+                >
+                  {{ category.title }}
+                </div>
+              </swiper-slide>
+            </swiper-container>
+
+            <!--            <swiper [config]="config" class="button-group">-->
+            <!--              <ng-container-->
+            <!--                *ngFor="let category of categories; let index = index"-->
+            <!--              >-->
+            <!--                <ng-template-->
+            <!--                  *ngIf="hasRecommendationPost(category)"-->
+            <!--                  swiperSlide-->
+            <!--                >-->
+            <!--                  <div-->
+            <!--                    (click)="onSelectRecommendationCategory(category)"-->
+            <!--                    [ngClass]="index === selectedTab ? 'selected' : ''"-->
+            <!--                    class="category-title"-->
+            <!--                  >-->
+            <!--                    {{ category.title }}-->
+            <!--                  </div>-->
+            <!--                </ng-template>-->
+            <!--              </ng-container>-->
+            <!--            </swiper>-->
+          </div>
+        </div>
+      </div>
+      <div class="recommendation-posts">
+        <div
+          *ngFor="let recommendedPost of recommendedPosts"
+          class="item"
+        >
+          <div *ngIf="recommendedPost.category && recommendedPost.image?.url">
+            <app-ui-blog-horizontal-post-card
+              [post]="recommendedPost"
+              class="non-mobile"
+            >
+            </app-ui-blog-horizontal-post-card>
+            <app-ui-blog-mobile-post-card
+              [post]="recommendedPost"
+              class="mobile"
+            >
+            </app-ui-blog-mobile-post-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</app-base-layout>

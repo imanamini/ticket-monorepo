@@ -1,0 +1,13 @@
+.container {
+  height: calc(100vh - 56px); 
+  height: calc(100dvh - 56px); 
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.icon-container {
+  width: 96px;
+  height: 96px;
+}
+.warning-icon {
+  color: #fec003;
+}

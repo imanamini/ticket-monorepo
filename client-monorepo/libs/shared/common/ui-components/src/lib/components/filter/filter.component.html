@@ -1,0 +1,34 @@
+<div
+  class="filter surface-elevated w-100  {{ classes() }}"
+  [ngClass]="{ 'pb-plus': !noPadding() }"
+  [ngStyle]="componentStyle()"
+>
+  <div
+    (click)="toggleFilter.emit()"
+    class="filter-item py-tiny c-2 cursor-pointer d-flex gap-tiny align-items-center justify-content-start {{
+      isActive() ? classesForActiveItem : classesForDeActiveItem
+    }}"
+    [ngClass]="isActiveDefault() ? 'pl-small' : 'px-low'"
+  >
+    <ngx-chip
+      [id]="'allFilters'"
+      [leadingIcon]="hasIcon() ? buttonIcon() : ''"
+      [disableAnimations]="true"
+      [size]="size()"
+      [disableClick]="true"
+      [label]="buttonLabel()"
+      [pressed]="isActiveDefault() && isActive()"
+    ></ngx-chip>
+  </div>
+  <div
+    class="filter-box"
+    [ngClass]="{ 'border-r-100 border-color-air pr-small': isActiveDefault() }"
+  >
+    <common-ui-components-horizontal-scroll
+      [classes]="'pl-atom gap-tiny'"
+      #scrollComponent
+    >
+      <ng-content></ng-content>
+    </common-ui-components-horizontal-scroll>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+@import "@digipay/base-style/styleguide";
+
+.black-friday-counter {
+  .timer-item {
+    display: flex;
+    width: 67px;
+    height: 84px;
+    padding-top: 6px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: map-get($border-radius-sizes, 'medium');
+    background: linear-gradient(
+        225deg,
+        rgba(255, 255, 255, 0.10) -8.76%,
+        rgba(254, 254, 254, 0.10) 18.5%,
+        rgba(253, 253, 253, 0.10) 43.85%,
+        rgba(102, 102, 102, 0.10) 96.45%
+    );
+    backdrop-filter: blur(2px);
+    z-index: 0;
+    overflow: hidden; // important so gradient border respects radius
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 2px; // border thickness
+      background: linear-gradient(
+          223.86deg,
+          rgba(255, 255, 255, 0.5) -7.28%,
+          rgba(49, 26, 21, 0.5) 55.04%,
+          rgba(224, 224, 224, 0.5) 105.44%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      z-index: -1;
+    }
+  }
+}
+
+
+@media (max-width: 1280px) {
+
+  .black-friday-counter {
+
+    .timer-wrapper {
+      gap: 12px !important;
+    }
+
+    .timer-item {
+      width: 48px;
+      height: 52px;
+      font-size: 20px !important;
+      border-radius: 12px;
+    }
+  }
+
+}

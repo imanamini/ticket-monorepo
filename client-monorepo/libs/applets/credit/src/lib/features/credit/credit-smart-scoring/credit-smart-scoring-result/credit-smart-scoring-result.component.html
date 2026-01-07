@@ -1,0 +1,28 @@
+<app-credit-app-bar
+  (onBackButtonClick)="close.emit()"
+  [backButton]="true"
+  [title]="'نتیجه اعتبارسنجی'"
+></app-credit-app-bar>
+
+<div class="d-flex flex-column flex-grow w-100">
+  <div class="d-flex flex-column flex-grow justify-content-center rtl w-100 p-plus">
+    <div class="d-flex flex-column flex-grow w-100 gap-medium">
+      <span class="b-2 text-onback-high"> حداکثر مبلغ اعتبار‌بانکی بر اساس رتبه اعتباری به شما اختصاص داده شده است. </span>
+      <app-credit-smart-scoring-step-result-chart
+        (report)="report.emit()"
+        [expirationDate]="expirationDate()"
+        [value]="calculatedCreditAmount()"
+      >
+      </app-credit-smart-scoring-step-result-chart>
+    </div>
+    <ngx-button
+      (clickHandler)="showPlans.emit()"
+      [fullWidth]="true"
+      [style]="'fill'"
+      ngxTrackableId
+      trackerId="smartScoringShowPlansButtonClick"
+    >
+      مشاهده طرح‌های اعتباری
+    </ngx-button>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<app-ui-dialog-base
+  (rejected)="onClose()"
+  [alignCenterTitle]="!isMobile"
+  [dialogTitle]="data.paymentResult.status"
+  [invertColors]="true"
+  class="payment-result-dialog"
+>
+  <app-ui-payment-result
+    *ngIf="data.paymentResult"
+    [result]="data.paymentResult"
+  >
+  </app-ui-payment-result>
+</app-ui-dialog-base>

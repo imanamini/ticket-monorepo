@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML5 Video Recorder – Permissions + Photo + Phone Frame + Sobel Detect</title>
+  <style>
+    :root{--pad:1rem}
+    body{font-family:system-ui,Segoe UI,Roboto,Apple Color Emoji,Noto Color Emoji,Arial;margin:2rem;display:grid;gap:1rem}
+    header{display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+    .row{display:flex;gap:.5rem;flex-wrap:wrap}
+    video{width:640px;max-width:100%;border-radius:12px;background:#000}
+    button{padding:.6rem 1rem;border-radius:.6rem;border:1px solid #ccc;cursor:pointer;background:#fff}
+    button.primary{border-color:#2563eb}
+    button:disabled{opacity:.5;cursor:not-allowed}
+    select,label{font-size:.95rem}
+    .hint{font-size:.95rem;color:#555}
+    .ok{color:#15803d}
+    .bad{color:#b91c1c}
+    .warn{color:#a16207}
+    .panel{border:1px solid #e5e7eb;border-radius:12px;padding:var(--pad)}
+    .tests{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92rem;white-space:pre-wrap;line-height:1.35}
+    .downloads a{display:inline-block;margin:.25rem 0}
+    .thumb{display:inline-block;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;width:120px;height:68px;object-fit:cover;margin-left:.5rem;vertical-align:middle}
+    .spacer{flex:1}
+    .phone-controls{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+    .preview-wrap{position:relative;display:inline-block}
+    .overlay{position:absolute;inset:0;pointer-events:none}
+    .overlay svg{width:100%;height:100%;display:block}
+    .mask-note{position:absolute;bottom:.5rem;left:.5rem;background:rgba(0,0,0,.55);color:#fff;padding:.25rem .5rem;border-radius:.5rem;font-size:.8rem}
+    .detect-note{font-size:.85rem;color:#444}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Record Video (HTML5)</h1>
+    <div class="row">
+      <button id="diagnosticsBtn" title="Run environment checks">Run diagnostics</button>
+    </div>
+  </header>
+
+  <div class="panel">
+    <div class="row" style="margin-bottom:.5rem">
+      <label>
+        Camera:
+        <select id="cameraSelect" disabled></select>
+      </label>
+      <label>
+        Mic:
+        <select id="micSelect" disabled></select>
+      </label>
+      <label>
+        Resolution:
+        <select id="resSelect">
+          <option value="1280x720">1280×720</option>
+          <option value="1920x1080">1920×1080</option>
+          <option value="640x480">640×480</option>
+        </select>
+      </label>
+      <span class="spacer"></span>
+      <label>
+        Photo format:
+        <select id="photoFormat">
+          <option value="image/png">PNG (lossless)</option>
+          <option value="image/jpeg">JPEG</option>
+        </select>
+      </label>
+      <label id="jpegQl" style="display:none">
+        JPEG quality:
+        <input id="jpegQuality" type="range" min="0.5" max="0.95" step="0.05" value="0.9" />
+      </label>
+    </div>
+
+    <div class="preview-wrap">
+      <video id="preview" playsinline autoplay muted></video>
+      <div class="overlay" id="phoneOverlay" hidden>
+        <svg id="overlaySvg" preserveAspectRatio="none"></svg>
+        <div class="mask-note" id="overlayNote">Phone frame guide</div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:.5rem">
+      <button id="enableBtn" class="primary">Enable Camera & Mic</button>
+      <button id="startBtn" disabled>Start Recording</button>
+      <button id="pauseBtn" disabled>Pause</button>
+      <button id="resumeBtn" disabled>Resume</button>
+      <button id="stopBtn" disabled>Stop & Save</button>
+      <button id="captureBtn" disabled title="Capture photo while previewing or recording">📸 Capture Photo</button>
+    </div>
+
+    <div class="phone-controls">
+      <label><input type="checkbox" id="showFrame"> Show phone frame</label>
+      <label>Model ratio:
+        <select id="frameAspect">
+          <option value="19.5:9">19.5:9 (modern iPhone/Android)</option>
+          <option value="20:9">20:9 (many Android)</option>
+          <option value="16:9">16:9 (classic)</option>
+          <option value="3:2">3:2</option>
+          <option value="4:3">4:3</option>
+        </select>
+      </label>
+      <label>Orientation:
+        <select id="frameOrientation">
+          <option value="portrait">Portrait</option>
+          <option value="landscape">Landscape</option>
+        </select>
+      </label>
+      <label>Corner radius:
+        <input id="frameRadius" type="range" min="8" max="64" step="2" value="28">
+      </label>
+      <label>Outside dim:
+        <input id="frameOpacity" type="range" min="0" max="0.85" step="0.05" value="0.55">
+      </label>
+      <label title="Top-center notch cutout"><input type="checkbox" id="frameNotch"> Notch</label>
+      <span class="spacer"></span>
+      <label title="Use Sobel edges to detect a phone aligned in the guide"><input type="checkbox" id="enableDetect"> Detect phone (Sobel)</label>
+      <label>Edge threshold:
+        <input id="sobelThreshold" type="range" min="20" max="180" step="5" value="60">
+      </label>
+      <label>Match ratio:
+        <input id="matchRatio" type="range" min="40" max="90" step="1" value="60">
+      </label>
+    </div>
+    <div class="detect-note" id="detectStatus" hidden>Detection idle.</div>
+
+    <div class="hint" id="status">Idle. Click <b>Enable Camera & Mic</b> to grant permission. (Required on Safari/iOS)</div>
+    <div class="downloads row" id="downloads"></div>
+  </div>
+
+  <div class="panel">
+    <strong>Diagnostics</strong>
+    <div id="tests" class="tests">(not run)</div>
+  </div>
+
+  <!-- offscreen canvas used for photo capture & detection buffer -->
+  <canvas id="captureCanvas" style="display:none"></canvas>
+
+  <script>
+    // --- Element refs
+    const preview = document.getElementById('preview');
+    const enableBtn = document.getElementById('enableBtn');
+    const startBtn = document.getElementById('startBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const resumeBtn = document.getElementById('resumeBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const captureBtn = document.getElementById('captureBtn');
+    const statusEl = document.getElementById('status');
+    const downloads = document.getElementById('downloads');
+    const diagnosticsBtn = document.getElementById('diagnosticsBtn');
+    const testsEl = document.getElementById('tests');
+    const resSelect = document.getElementById('resSelect');
+    const cameraSelect = document.getElementById('cameraSelect');
+    const micSelect = document.getElementById('micSelect');
+    const captureCanvas = document.getElementById('captureCanvas');
+    const photoFormat = document.getElementById('photoFormat');
+    const jpegQuality = document.getElementById('jpegQuality');
+    const jpegQl = document.getElementById('jpegQl');
+
+    const overlay = document.getElementById('phoneOverlay');
+    const overlaySvg = document.getElementById('overlaySvg');
+    const overlayNote = document.getElementById('overlayNote');
+
+    const showFrame = document.getElementById('showFrame');
+    const frameAspect = document.getElementById('frameAspect');
+    const frameOrientation = document.getElementById('frameOrientation');
+    const frameRadius = document.getElementById('frameRadius');
+    const frameOpacity = document.getElementById('frameOpacity');
+    const frameNotch = document.getElementById('frameNotch');
+
+    // Detection controls
+    const enableDetect = document.getElementById('enableDetect');
+    const sobelThresholdEl = document.getElementById('sobelThreshold');
+    const matchRatioEl = document.getElementById('matchRatio');
+    const detectStatus = document.getElementById('detectStatus');
+
+    // --- State
+    let mediaStream;
+    let mediaRecorder;
+    let chunks = [];
+    let mimeType;
+
+    // Detection state
+    let detectionRAF = null;
+    let lastOverlay = null; // {x,y,fw,fh} in CSS pixels
+    let frameOutlineEl = null; // path element reference
+
+    // --- Helpers
+    function parseAspect(v){
+      const [a,b] = v.split(':').map(Number);
+      return a/b; // width / height
+    }
+    function isSecure () {
+      const isLocalhost = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+      return window.isSecureContext || location.protocol === 'https:' || isLocalhost;
+    }
+
+    function setStatus(html, cls) {
+      statusEl.classList.remove('ok','bad','warn');
+      if (cls) statusEl.classList.add(cls);
+      statusEl.innerHTML = html;
+    }
+
+    function pickMimeType() {
+      const candidates = [
+        'video/webm;codecs=vp9,opus',
+        'video/webm;codecs=vp8,opus',
+        'video/mp4;codecs=h264,aac', // Safari and some Chromium builds
+        'video/webm'
+      ];
+      return candidates.find(type => window.MediaRecorder && MediaRecorder.isTypeSupported(type)) || '';
+    }
+
+    async function listDevices() {
+      try {
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const cams = devices.filter(d => d.kind === 'videoinput');
+        const mics = devices.filter(d => d.kind === 'audioinput');
+        cameraSelect.innerHTML = cams.map(d => `<option value="${d.deviceId}">${d.label || 'Camera'}</option>`).join('');
+        micSelect.innerHTML = mics.map(d => `<option value="${d.deviceId}">${d.label || 'Mic'}</option>`).join('');
+        cameraSelect.disabled = cams.length === 0;
+        micSelect.disabled = mics.length === 0;
+      } catch (e) {
+        console.error('enumerateDevices failed', e);
+      }
+    }
+
+    async function startPreviewFromUI() {
+      // Must be called from a user gesture to avoid NotAllowedError on Safari/iOS.
+      const [w, h] = resSelect.value.split('x').map(Number);
+      const constraints = {
+        audio: micSelect.value ? { deviceId: { exact: micSelect.value } } : true,
+        video: {
+          deviceId: cameraSelect.value ? { exact: cameraSelect.value } : undefined,
+          width: { ideal: w },
+          height: { ideal: h },
+          facingMode: 'user'
+        }
+      };
+      if (!isSecure()) {
+        setStatus('❗ This page must be served over <b>HTTPS</b> (or <code>localhost</code>) to access camera/microphone.', 'bad');
+        return;
+      }
+      try {
+        if (mediaStream) mediaStream.getTracks().forEach(t => t.stop());
+        mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
+        preview.srcObject = mediaStream;
+        await preview.play();
+        await listDevices(); // after permission so labels populate
+        setStatus('✅ Preview active. You can start recording or capture a photo.', 'ok');
+        startBtn.disabled = false;
+        captureBtn.disabled = false; // enable photo capture during preview or recording
+        updatePhoneFrame();
+      } catch (err) {
+        handleGetUserMediaError(err);
+      }
+    }
+
+    function handleGetUserMediaError(err){
+      console.error(err);
+      if (err && (err.name === 'NotAllowedError' || err.name === 'SecurityError')) {
+        setStatus(
+          `🚫 Permission denied.\n`+
+          `Please allow camera/microphone access in your browser.\n`+
+          `Tips: On Safari (iOS & macOS), go to Settings → Safari → Camera/Microphone and set to “Allow”.\n`+
+          `On Chrome/Edge/Firefox, click the lock icon next to the address bar and enable permissions.`,
+          'bad'
+        );
+      } else if (err && err.name === 'NotFoundError') {
+        setStatus('🛑 No camera or microphone found. Plug one in and try again.', 'bad');
+      } else if (err && err.name === 'NotReadableError') {
+        setStatus('🔒 Device busy or in use by another app. Close other apps (Zoom/Teams/Meet) and retry.', 'warn');
+      } else {
+        setStatus('Error: ' + (err.message || String(err)), 'bad');
+      }
+      startBtn.disabled = true;
+      captureBtn.disabled = true;
+    }
+
+    // --- Recording controls
+    function startRecording(){
+      if (!mediaStream) {
+        setStatus('Enable the camera first.', 'warn');
+        return;
+      }
+      mimeType = pickMimeType();
+      try {
+        mediaRecorder = new MediaRecorder(mediaStream, mimeType ? { mimeType } : undefined);
+      } catch (e) {
+        setStatus('MediaRecorder not supported for this codec in your browser.', 'bad');
+        return;
+      }
+      chunks = [];
+      mediaRecorder.ondataavailable = (e) => { if (e.data && e.data.size > 0) chunks.push(e.data); };
+      mediaRecorder.onstart = () => {
+        setStatus(`● Recording… <small>${mimeType || '(default MIME)'}</small>`, 'ok');
+        enableBtn.disabled = true;
+        startBtn.disabled = true;
+        pauseBtn.disabled = false;
+        stopBtn.disabled = false;
+        resumeBtn.disabled = true;
+        captureBtn.disabled = false; // allow capturing while recording
+      };
+      mediaRecorder.onpause = () => setStatus('Paused', 'warn');
+      mediaRecorder.onresume = () => setStatus('● Recording…', 'ok');
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(chunks, { type: mimeType || 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const ext = (mimeType && mimeType.includes('mp4')) ? 'mp4' : 'webm';
+        a.href = url; a.download = `recording-${Date.now()}.${ext}`; a.textContent = `Download recording (${(blob.size/1024/1024).toFixed(2)} MB)`;
+        downloads.appendChild(a); downloads.appendChild(document.createElement('br'));
+        enableBtn.disabled = false;
+        startBtn.disabled = false;
+        pauseBtn.disabled = true; resumeBtn.disabled = true; stopBtn.disabled = true;
+        captureBtn.disabled = false; // keep capture available while previewing
+        setStatus('Saved.', 'ok');
+      };
+      // Use small time slices for stability (esp. Safari)
+      mediaRecorder.start(1000);
+    }
+
+    function pauseRecording(){ if (mediaRecorder && mediaRecorder.state === 'recording'){ mediaRecorder.pause(); pauseBtn.disabled = true; resumeBtn.disabled = false; } }
+    function resumeRecording(){ if (mediaRecorder && mediaRecorder.state === 'paused'){ mediaRecorder.resume(); pauseBtn.disabled = false; resumeBtn.disabled = true; } }
+    function stopRecording(){ if (mediaRecorder && mediaRecorder.state !== 'inactive'){ mediaRecorder.stop(); } }
+
+    // --- Photo capture (works during preview or recording)
+    async function capturePhoto(){
+      if (!preview || (!preview.videoWidth && !preview.videoHeight)) {
+        setStatus('Preview not ready yet. Try again.', 'warn');
+        return;
+      }
+      const w = preview.videoWidth || 1280;
+      const h = preview.videoHeight || 720;
+      captureCanvas.width = w; captureCanvas.height = h;
+      const ctx = captureCanvas.getContext('2d');
+      ctx.drawImage(preview, 0, 0, w, h);
+
+      // Optional draw the same phone frame onto the saved photo for QA (toggleable in code)
+      if (showFrame.checked) {
+        drawPhoneFrameOnContext(ctx, w, h);
+      }
+
+      // Optional timestamp watermark (comment out if not wanted)
+      ctx.fillStyle = 'rgba(0,0,0,0.45)';
+      ctx.fillRect(12, h-44, 280, 32);
+      ctx.fillStyle = 'white';
+      ctx.font = '20px system-ui,Segoe UI,Roboto,Arial';
+      ctx.fillText(new Date().toLocaleString(), 20, h-22);
+
+      const type = photoFormat.value;
+      const quality = type === 'image/jpeg' ? parseFloat(jpegQuality.value) : undefined;
+
+      const blob = await new Promise(resolve => captureCanvas.toBlob(resolve, type, quality));
+      if (!blob) { setStatus('Failed to create image blob.', 'bad'); return; }
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      const ext = type === 'image/jpeg' ? 'jpg' : 'png';
+      a.href = url; a.download = `photo-${Date.now()}.${ext}`; a.textContent = `Download photo (${(blob.size/1024).toFixed(0)} KB)`;
+
+      const img = document.createElement('img');
+      img.className = 'thumb'; img.src = url; img.alt = 'snapshot';
+
+      const wrap = document.createElement('div');
+      wrap.appendChild(a); wrap.appendChild(img);
+      downloads.appendChild(wrap);
+
+      setStatus('📸 Photo captured.', 'ok');
+    }
+
+    // --- Phone frame overlay
+    function updatePhoneFrame(){
+      overlay.hidden = !showFrame.checked;
+      if (overlay.hidden) return;
+
+      // sync overlay size to video client box
+      const vb = preview.getBoundingClientRect();
+      const width = vb.width, height = vb.height;
+      const svg = overlaySvg;
+      svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+      const targetAR = parseAspect(frameAspect.value);
+      const portrait = frameOrientation.value === 'portrait';
+      const ar = portrait ? (1/targetAR) : targetAR; // width/height
+
+      // fit rect
+      let fw = width, fh = fw / ar;
+      if (fh > height){ fh = height; fw = fh * ar; }
+      const x = (width - fw)/2, y = (height - fh)/2;
+      const r = Number(frameRadius.value);
+
+      const outsideOpacity = Number(frameOpacity.value);
+
+      // mask path
+      const maskPath = document.createElementNS('http://www.w3.org/2000/svg','path');
+      function rr(x,y,w,h,r){
+        return `M ${x+r},${y} H ${x+w-r} A ${r},${r} 0 0 1 ${x+w},${y+r} V ${y+h-r} A ${r},${r} 0 0 1 ${x+w-r},${y+h} H ${x+r} A ${r},${r} 0 0 1 ${x},${y+h-r} V ${y+r} A ${r},${r} 0 0 1 ${x+r},${y} Z`;
+      }
+      const innerPath = rr(x,y,fw,fh,r);
+      maskPath.setAttribute('d', `M 0 0 H ${width} V ${height} H 0 Z ${innerPath}`);
+      maskPath.setAttribute('fill-rule','evenodd');
+      maskPath.setAttribute('fill', `rgba(0,0,0,${outsideOpacity})`);
+
+      // outline
+      const outline = document.createElementNS('http://www.w3.org/2000/svg','path');
+      outline.setAttribute('d', innerPath);
+      outline.setAttribute('fill','none');
+      outline.setAttribute('stroke','white');
+      outline.setAttribute('stroke-width','2');
+      outline.setAttribute('opacity','0.9');
+
+      // optional notch (visual)
+      const notch = frameNotch.checked;
+      if (notch && portrait){
+        const notchPath = document.createElementNS('http://www.w3.org/2000/svg','path');
+        const notchW = Math.min(fw * 0.35, 220);
+        const notchH = Math.min(fh * 0.05, 34);
+        const notchR = Math.min(r, 12);
+        const nx = x + fw/2 - notchW/2; const ny = y;
+        const nr = notchR; const nx2 = nx + notchW, ny2 = ny + notchH;
+        const d = [
+          `M ${nx+nr},${ny}`,
+          `H ${nx2-nr}`,
+          `A ${nr},${nr} 0 0 1 ${nx2},${ny+nr}`,
+          `V ${ny2-nr}`,
+          `A ${nr},${nr} 0 0 1 ${nx2-nr},${ny2}`,
+          `H ${nx+nr}`,
+          `A ${nr},${nr} 0 0 1 ${nx},${ny2-nr}`,
+          `V ${ny+nr}`,
+          `A ${nr},${nr} 0 0 1 ${nx+nr},${ny}`
+        ].join(' ');
+        notchPath.setAttribute('d', d);
+        notchPath.setAttribute('fill','none');
+        notchPath.setAttribute('stroke','white');
+        notchPath.setAttribute('stroke-width','2');
+        notchPath.setAttribute('opacity','0.9');
+        overlaySvg.appendChild(notchPath);
+      }
+
+      overlaySvg.appendChild(maskPath);
+      overlaySvg.appendChild(outline);
+      frameOutlineEl = outline;
+      lastOverlay = { x, y, fw, fh };
+
+      overlayNote.textContent = `Frame ${portrait ? 'portrait' : 'landscape'} ${frameAspect.value}`;
+    }
+
+    function drawPhoneFrameOnContext(ctx, w, h){
+      const portrait = frameOrientation.value === 'portrait';
+      const targetAR = parseAspect(frameAspect.value);
+      const ar = portrait ? (1/targetAR) : targetAR; // width/height
+
+      // inner rect
+      let fw = w, fh = fw / ar; if (fh > h){ fh = h; fw = fh * ar; }
+      const x = (w - fw)/2, y = (h - fh)/2; const r = Number(frameRadius.value);
+
+      ctx.save();
+      ctx.strokeStyle = 'white'; ctx.lineWidth = 3; ctx.globalAlpha = 0.9;
+      roundRect(ctx, x, y, fw, fh, r);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function roundRect(ctx, x, y, w, h, r){
+      const rr = Math.max(0, Math.min(r, Math.min(w,h)/2));
+      ctx.beginPath();
+      ctx.moveTo(x+rr,y);
+      ctx.lineTo(x+w-rr,y);
+      ctx.quadraticCurveTo(x+w,y,x+w,y+rr);
+      ctx.lineTo(x+w,y+h-rr);
+      ctx.quadraticCurveTo(x+w,y+h,x+w-rr,y+h);
+      ctx.lineTo(x+rr,y+h);
+      ctx.quadraticCurveTo(x,y+h,x,y+h-rr);
+      ctx.lineTo(x,y+rr);
+      ctx.quadraticCurveTo(x,y,x+rr,y);
+      ctx.closePath();
+    }
+
+    // Update overlay on control changes and resizes
+    showFrame.addEventListener('change', updatePhoneFrame);
+    frameAspect.addEventListener('change', updatePhoneFrame);
+    frameOrientation.addEventListener('change', updatePhoneFrame);
+    frameRadius.addEventListener('input', updatePhoneFrame);
+    frameOpacity.addEventListener('input', updatePhoneFrame);
+    frameNotch.addEventListener('change', updatePhoneFrame);
+    enableDetect.addEventListener('change', toggleDetection);
+    sobelThresholdEl.addEventListener('input', () => detectStatus.innerText = 'Adjusting edge threshold…');
+    matchRatioEl.addEventListener('input', () => detectStatus.innerText = 'Adjusting match ratio…');
+
+    // Keep overlay aligned to video size changes
+    const ro = new ResizeObserver(() => updatePhoneFrame());
+    ro.observe(document.documentElement);
+    ro.observe(document.body);
+    ro.observe(preview);
+
+    // --- Diagnostics ("test cases")
+    async function runDiagnostics(){
+      const out = [];
+      const push = (label, pass, extra='') => out.push(`${pass ? '✅' : '❌'} ${label}${extra ? ' — ' + extra : ''}`);
+      push('Secure context (HTTPS/localhost)', isSecure());
+      push('navigator.mediaDevices', !!navigator.mediaDevices);
+      push('getUserMedia available', !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia));
+      push('MediaRecorder available', !!window.MediaRecorder);
+      const m1 = 'video/webm;codecs=vp8,opus';
+      const m2 = 'video/mp4;codecs=h264,aac';
+      push('MIME vp8/opus support', window.MediaRecorder ? MediaRecorder.isTypeSupported(m1) : false, m1);
+      push('MIME h264/aac support', window.MediaRecorder ? MediaRecorder.isTypeSupported(m2) : false, m2);
+      push('Canvas available', !!window.HTMLCanvasElement);
+      push('toBlob available', !!HTMLCanvasElement.prototype.toBlob);
+      // After permission, these will become true once preview is active
+      push('Preview dimensions > 0', !!(preview.videoWidth && preview.videoHeight), `${preview.videoWidth}×${preview.videoHeight}`);
+      // Permissions API (best-effort; not supported everywhere)
+      try {
+        if (navigator.permissions) {
+          const cam = await navigator.permissions.query({ name: 'camera' });
+          const mic = await navigator.permissions.query({ name: 'microphone' });
+          push('Permission (camera)', cam.state !== 'denied', cam.state);
+          push('Permission (microphone)', mic.state !== 'denied', mic.state);
+        } else {
+          push('Permissions API', false, 'not supported');
+        }
+      } catch {
+        push('Permissions API', false, 'query failed');
+      }
+      // simple aspect-fit check (tolerance 1%)
+      const portrait = frameOrientation.value === 'portrait';
+      const targetAR = parseAspect(frameAspect.value);
+      const ar = portrait ? (1/targetAR) : targetAR;
+      const vb = preview.getBoundingClientRect();
+      const fw = vb.width; const fh = fw / ar; const fits = fh <= vb.height * 1.01;
+      push('Overlay aspect fits into preview', fits, `target AR=${ar.toFixed(4)}`);
+      // Additional test cases
+      push('Recording state inactive', !mediaRecorder || mediaRecorder.state === 'inactive');
+      push('Capture button enabled when preview', !captureBtn.disabled);
+      // Detection tests
+      push('Detection enabled', !!enableDetect.checked);
+      push('Detection loop active', !!detectionRAF);
+      push('Overlay rect cached', !!lastOverlay, lastOverlay ? `${Math.round(lastOverlay.fw)}×${Math.round(lastOverlay.fh)}` : '');
+
+      testsEl.textContent = out.join('\n');
+    }
+
+    // --- Wire up UI
+    enableBtn.addEventListener('click', startPreviewFromUI);
+    startBtn.addEventListener('click', startRecording);
+    pauseBtn.addEventListener('click', pauseRecording);
+    resumeBtn.addEventListener('click', resumeRecording);
+    stopBtn.addEventListener('click', stopRecording);
+    captureBtn.addEventListener('click', capturePhoto);
+    diagnosticsBtn.addEventListener('click', runDiagnostics);
+
+    photoFormat.addEventListener('change', () => {
+      jpegQl.style.display = photoFormat.value === 'image/jpeg' ? '' : 'none';
+    });
+
+    // Device selection after permission
+    resSelect.addEventListener('change', () => mediaStream && startPreviewFromUI());
+    cameraSelect.addEventListener('change', () => mediaStream && startPreviewFromUI());
+    micSelect.addEventListener('change', () => mediaStream && startPreviewFromUI());
+
+    // Initial hints / preflight
+    (function init(){
+      if (!isSecure()) {
+        setStatus('This page is not secure. Use <b>https://</b> or <code>localhost</code> to access camera/mic.', 'warn');
+      }
+      // We purposely DO NOT call getUserMedia here to avoid NotAllowedError without a user gesture.
+      listDevices(); // may return unlabeled devices until permission is granted
+    })();
+
+    // ---- SOBEL-BASED DETECTION ----
+    function toggleDetection(){
+      detectStatus.hidden = !enableDetect.checked;
+      if (enableDetect.checked){ startDetectionLoop(); } else { stopDetectionLoop(); resetFrameColor(); }
+    }
+    function resetFrameColor(){ if (frameOutlineEl) frameOutlineEl.setAttribute('stroke','white'); }
+
+    function startDetectionLoop(){
+      if (detectionRAF) cancelAnimationFrame(detectionRAF);
+      const tick = () => { try { analyzeSobelFrame(); } catch(e) {} detectionRAF = requestAnimationFrame(tick); };
+      detectionRAF = requestAnimationFrame(tick);
+    }
+    function stopDetectionLoop(){ if (detectionRAF){ cancelAnimationFrame(detectionRAF); detectionRAF = null; } }
+
+    function analyzeSobelFrame(){
+      if (!preview || preview.readyState < 2 || !lastOverlay) return;
+      const vb = preview.getBoundingClientRect();
+      const vw = Math.max(1, Math.floor(vb.width));
+      const vh = Math.max(1, Math.floor(vb.height));
+
+      // Downscale for performance
+      const bufW = 320; const scale = bufW / vw; const bufH = Math.max(1, Math.floor(vh * scale));
+      const ctx = captureCanvas.getContext('2d', { willReadFrequently: true });
+      captureCanvas.width = bufW; captureCanvas.height = bufH;
+      ctx.drawImage(preview, 0, 0, bufW, bufH);
+
+      // Grayscale
+      const imgData = ctx.getImageData(0, 0, bufW, bufH);
+      const d = imgData.data; const gray = new Uint8ClampedArray(bufW*bufH);
+      for (let i=0, j=0; i<d.length; i+=4, j++) gray[j] = (0.2126*d[i] + 0.7152*d[i+1] + 0.0722*d[i+2])|0;
+
+      // Sobel kernels
+      const sobelX = [-1,0,1,-2,0,2,-1,0,1];
+      const sobelY = [-1,-2,-1,0,0,0,1,2,1];
+      const mag = new Uint16Array(bufW*bufH);
+      for (let y=1; y<bufH-1; y++){
+        for (let x=1; x<bufW-1; x++){
+          let gx=0, gy=0, p=0;
+          p = (y-1)*bufW + (x-1); gx += gray[p]*sobelX[0]; gy += gray[p]*sobelY[0];
+          p = (y-1)*bufW + x;     gx += gray[p]*sobelX[1]; gy += gray[p]*sobelY[1];
+          p = (y-1)*bufW + (x+1); gx += gray[p]*sobelX[2]; gy += gray[p]*sobelY[2];
+          p = y*bufW + (x-1);     gx += gray[p]*sobelX[3]; gy += gray[p]*sobelY[3];
+          p = y*bufW + x;         gx += gray[p]*sobelX[4]; gy += gray[p]*sobelY[4];
+          p = y*bufW + (x+1);     gx += gray[p]*sobelX[5]; gy += gray[p]*sobelY[5];
+          p = (y+1)*bufW + (x-1); gx += gray[p]*sobelX[6]; gy += gray[p]*sobelY[6];
+          p = (y+1)*bufW + x;     gx += gray[p]*sobelX[7]; gy += gray[p]*sobelY[7];
+          p = (y+1)*bufW + (x+1); gx += gray[p]*sobelX[8]; gy += gray[p]*sobelY[8];
+          const m = Math.min(255, Math.hypot(gx, gy)|0);
+          mag[y*bufW + x] = m;
+        }
+      }
+
+      // Map overlay into buffer coordinates
+      const fx = Math.max(0, Math.floor(lastOverlay.x * scale));
+      const fy = Math.max(0, Math.floor(lastOverlay.y * scale));
+      const fw = Math.max(1, Math.floor(lastOverlay.fw * scale));
+      const fh = Math.max(1, Math.floor(lastOverlay.fh * scale));
+
+      // Sample edge responses along the rectangle
+      const threshold = Number(sobelThresholdEl.value); // 0..255
+      const wantRatio = Number(matchRatioEl.value)/100; // 0..1
+      const step = Math.max(1, Math.floor(Math.min(fw, fh) / 60));
+      const idx = (x,y) => y*bufW + x;
+
+      let hits = 0, total = 0;
+      for (let x = fx; x < fx+fw; x += step){
+        const yT = fy, yB = fy+fh-1;
+        const mT = mag[idx(x, yT)] || 0; const mB = mag[idx(x, yB)] || 0;
+        hits += (mT >= threshold) + (mB >= threshold); total += 2;
+      }
+      for (let y = fy; y < fy+fh; y += step){
+        const xL = fx, xR = fx+fw-1;
+        const mL = mag[idx(xL, y)] || 0; const mR = mag[idx(xR, y)] || 0;
+        hits += (mL >= threshold) + (mR >= threshold); total += 2;
+      }
+
+      const ratio = total ? hits/total : 0;
+      const good = ratio >= wantRatio;
+      if (frameOutlineEl){ frameOutlineEl.setAttribute('stroke', good ? '#16a34a' : '#dc2626'); }
+      detectStatus.innerText = `Sobel detection: ${good ? 'IN frame ✅' : 'OUT of frame ❌'} — edge ${(ratio*100).toFixed(0)}% ≥ ${(wantRatio*100)|0}% @ thr ${threshold}`;
+    }
+
+    // Before unload, stop tracks
+    window.addEventListener('beforeunload', () => {
+      if (mediaStream) mediaStream.getTracks().forEach(t => t.stop());
+    });
+  </script>
+</body>
+</html>

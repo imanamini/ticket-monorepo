@@ -1,0 +1,24 @@
+<common-ui-components-page-layout
+  [title]="'دسته‌بندی‌ها'"
+  [showBorder]="false"
+  [showBackIcon]="true"
+  actionText="{{ categories()?.length }} دسته‌بندی"
+>
+  <div class="px-plus mb-big mt-minus">
+    @if (categories()) {
+      @for (category of categories(); track $index) {
+        <div>
+          <common-ui-components-item-overview
+            [item]="category"
+            [imageMode]="'category-image'"
+            (click)="gotoFiltersBasedOnCategory(category.title)"
+          ></common-ui-components-item-overview>
+        </div>
+      }
+    } @else {
+      @for (skeleton of rangeCreator(3); track $index) {
+        <common-ui-components-item-overview></common-ui-components-item-overview>
+      }
+    }
+  </div>
+</common-ui-components-page-layout>

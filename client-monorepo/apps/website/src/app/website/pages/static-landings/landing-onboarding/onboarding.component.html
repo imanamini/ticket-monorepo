@@ -1,0 +1,46 @@
+<app-base-layout [loaded]="loaded()">
+
+  @if (onboardingTemplateData()?.heroSection) {
+    <div class="container">
+      <app-onboarding-header [heroSection]="onboardingTemplateData().heroSection"></app-onboarding-header>
+    </div>
+  }
+
+  @if (onboardingTemplateData()?.visualIntro) {
+    <div class="surface-elevated">
+      <app-onboarding-video [visualIntro]="onboardingTemplateData().visualIntro"></app-onboarding-video>
+    </div>
+  }
+
+  @if (onboardingTemplateData()?.textIntro) {
+    <div class="container">
+      <app-bnpl-info [textIntro]="onboardingTemplateData().textIntro"></app-bnpl-info>
+    </div>
+  }
+
+  @if (onboardingTemplateData()?.bnplUsage) {
+    <div class="surface-elevated">
+      <app-bnpl-usage [bnplUsage]="onboardingTemplateData().bnplUsage"></app-bnpl-usage>
+    </div>
+  }
+
+  @if (onboardingTemplateData()?.purchaseSteps) {
+    <div class="container">
+      <app-bnpl-steps [purchaseStep]="onboardingTemplateData().purchaseSteps"></app-bnpl-steps>
+    </div>
+  }
+
+  @if (onboardingTemplateData()?.finalSection) {
+    <div class="surface-elevated">
+      <app-installment-rules [installmentRules]="onboardingTemplateData().finalSection"></app-installment-rules>
+    </div>
+  }
+
+  @if (onboardingTemplateData()?.faq) {
+    <app-ui-faq
+      [faqs]="onboardingTemplateData().faq.faqItems"
+      [subtitle]="onboardingTemplateData().faq.subtitle"
+      [title]="onboardingTemplateData().faq.title"
+    ></app-ui-faq>
+  }
+</app-base-layout>

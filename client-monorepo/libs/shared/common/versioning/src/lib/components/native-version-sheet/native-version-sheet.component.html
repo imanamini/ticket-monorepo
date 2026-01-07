@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-center align-items-center flex-column">
+  <div class="update-image"></div>
+  <p class="st-6 text-onback-high">به‌روزرسانی جدید موجود است!</p>
+  <p class="b-2 text-align-center text-onback-low">برای بهره‌مندی از ویژگی‌های جدید، اپلیکیشن را به آخرین نسخه ارتقا دهید!</p>
+  <div class="pt-medium pb-big w-100">
+    <div class="d-flex flex-column surface-back py-minus px-medium radius-medium">
+      <div class="d-flex align-items-center version-desc border-b-100 border-color-tint pb-minus">
+        <p class="text-onback-low c-3">نسخه فعلی</p>
+        <p class="text-onback-high c-3">{{ currentVersion() }}</p>
+      </div>
+      <div class="d-flex align-items-center version-desc pt-minus">
+        <p class="text-onback-low c-3">نسخه جدید</p>
+        <p class="text-onback-high c-3">{{ newVersion() }}</p>
+      </div>
+    </div>
+  </div>
+  <ngx-button
+    class="pb-tiny"
+    [fullWidth]="true"
+    [brandButton]="true"
+    [size]="'medium'"
+    [mode]="'form'"
+    (clickHandler)="onUpdateClicked()"
+  >
+    به‌روزرسانی
+  </ngx-button>
+  <ngx-button
+    [size]="'medium'"
+    [style]="'link'"
+    [fullWidth]="true"
+    (clickHandler)="onRemindLaterClicked()"
+  >
+    بعدا یادآوری کن
+  </ngx-button>
+</div>

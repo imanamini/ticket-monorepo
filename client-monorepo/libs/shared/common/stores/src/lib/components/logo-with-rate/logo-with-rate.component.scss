@@ -1,0 +1,14 @@
+.store-logo {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  width: 28px;
+  border-radius: 100px 100px 45px 45px;
+  top: 6px;
+  left: 6px;
+  z-index: 1;
+  overflow: hidden;
+}

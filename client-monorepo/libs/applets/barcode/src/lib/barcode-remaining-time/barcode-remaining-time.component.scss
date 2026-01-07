@@ -1,0 +1,15 @@
+
+.header-remaining {
+  font-size: 12px;
+  margin-top: -8px;
+
+  .icon-clock {
+    width: 16px;
+    height: 16px;
+    margin-left: 2px;
+  }
+
+  ui-count-down-text {
+    min-width: 30px !important;
+  }
+}

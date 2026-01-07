@@ -1,0 +1,9 @@
+node_modules/
+src/main/docker/
+jest.conf.js
+webpack/
+build/
+node/
+coverage/
+apps/dpx/src/environments/
+*.md

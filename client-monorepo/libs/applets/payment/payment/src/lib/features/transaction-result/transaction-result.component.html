@@ -1,0 +1,11 @@
+@if (!isLoading()) {
+  <ui-ngx-payment-result
+    [trackingCode]="activityId()!"
+    [paymentResult]="result()!"
+    [showBackIcon]="true"
+    (onBackIconClick)="handleBack()"
+    (bannerClicked)="onBannerClicked()"
+  ></ui-ngx-payment-result>
+} @else {
+  <lib-ngx-skeleton-loading [height]="'575px'"></lib-ngx-skeleton-loading>
+}

@@ -1,0 +1,39 @@
+<div class="available-bnpl">
+  <div class="artwork"></div>
+  <div class="content">
+    <h1 class="header">شما اعتبار فعال دارید!</h1>
+    <div class="subtitle">
+      تا
+      <span class="counter">
+        <span class="counter-number">
+          {{ counter }}
+        </span>
+        ثانیه
+      </span>
+      دیگر برای مشاهده اعتبار و استفاده از آن به اپلیکیشن هدایت می شوید.
+    </div>
+    <div class="ctas">
+      <app-ui-button
+        size="BIG"
+        class="cta"
+        (clicked)="checkoutBnpl()"
+      >
+        <ng-container *ngIf="isWebView">بازگشت به اپلیکیشن</ng-container>
+        <ng-container *ngIf="!isWebView">مشاهده ی اعتبار</ng-container>
+      </app-ui-button>
+      <app-ui-button
+        appearance="FLAT-BLUE"
+        size="BIG"
+        class="cta"
+        (clicked)="goToCBnpl()"
+      >
+        <span
+          appUiIcon
+          icon="icon-arrow-right-blue"
+          size="24"
+        ></span>
+        بازگشت به خرید اعتباری
+      </app-ui-button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+@use "insurance/src/lib/app/style/mixins/ios" as ios;
+
+.cdk-global-overlay-wrapper {
+  z-index: 1001;
+}
+
+.notice-container {
+  max-width: 552px !important;
+  width: 100%;
+
+  .mat-mdc-dialog-container {
+    .mdc-dialog__container {
+      .mat-mdc-dialog-surface {
+        border-radius: 20px !important;
+      }
+    }
+  }
+}
+
+.insurance-notice {
+  --margin-bottom: initial;
+  @supports (margin-bottom: constant(safe-area-inset-bottom)) {
+    --margin-bottom: var(--offset-bottom-safari) !important;
+  }
+
+  @supports (margin-bottom: env(safe-area-inset-top)) {
+    --margin-bottom: var(--offset-bottom-safari) !important;
+  }
+  max-width: 552px !important;
+  width: 100%;
+
+  .mat-mdc-dialog-container {
+    .mdc-dialog__container {
+      margin-bottom: var(--margin-bottom);
+
+      .mat-mdc-dialog-surface {
+        border-radius: 20px !important;
+      }
+    }
+  }
+}
+
+.full-page-modal {
+  height: 100%;
+  min-width: 100% !important;
+}
+
+.cdk-overlay-container:has(.full-page-modal) {
+  .cdk-overlay-backdrop {
+    background: unset !important;
+    backdrop-filter: unset !important;
+  }
+}
+
+@media screen and (min-width: 552px) {
+  .full-page-modal {
+    min-width: 552px !important;
+  }
+}
+
+.mat-mdc-dialog-surface {
+  @include ios.over-scroll-behavior-none-ios();
+}

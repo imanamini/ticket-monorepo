@@ -1,0 +1,44 @@
+<div class="ub-navigation-bar">
+  <div class="inner-nav">
+    <a class="company-logo" href="https://www.mydigipay.com"></a>
+    <div class="items">
+      <div
+              (click)="navigate(item.navigateTo)"
+              *ngFor="let item of navItems" class="nav-item">
+        {{ item.title }}
+      </div>
+    </div>
+    <div (click)="handleProfileClick()"
+         class="button">
+      پروفایل
+    </div>
+  </div>
+
+  <div class="mobile-nav">
+    <div (click)="toggleMobileSlideBar()" class="bars"></div>
+    <a class="company-logo" href="https://www.mydigipay.com"></a>
+    <div (click)="handleProfileClick()"
+         class="profile-wrapper">
+      <img alt="profile" src="../../../../../../../../assets/icons/avatar-placeholder-light-blue.svg"/>
+    </div>
+  </div>
+  <div [class.mobile-slide-bar-closed]="!mobileSlideBar" class="mobile-slide-bar">
+    <div (click)="mobileSlideBar = false" class="back-drop"></div>
+    <div class="inner-mobile-nav">
+      <div class="header">
+        <a href="https://www.mydigipay.com">
+          <div class="company-logo"></div>
+        </a>
+      </div>
+      <div class="content">
+        <div
+                (click)="navigate(item.navigateTo)"
+                *ngFor="let item of navItems" class="nav-item">
+          {{ item.title }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

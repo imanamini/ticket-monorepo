@@ -1,0 +1,81 @@
+<app-base-layout [loaded]="loaded">
+  <!--  section 1-->
+  <app-ui-introduction-default
+    *ngIf="bnplPage && bnplPage.templateData"
+    [heroImage]="bnplPage.templateData.introArtwork"
+    [introductionType]="bnplPage.templateData.introType"
+    [isVideo]="true"
+  >
+    <div>
+      <h1>
+        {{ bnplPage?.templateData?.introTitle }} <br />
+        {{ bnplPage?.templateData?.introSubtitle }}
+      </h1>
+      <div class="subtitle">{{ bnplPage?.templateData?.introSubtitle2 }}</div>
+      <app-ui-button appScrollToAnchor="bnplForm">
+        <i> </i>
+        <span>
+          {{ bnplPage.templateData.introFirstCta.title }}
+        </span>
+      </app-ui-button>
+    </div>
+  </app-ui-introduction-default>
+
+  <!--  section 2-->
+  <app-ui-value-section
+    *ngIf="bnplPage && bnplPage.templateData && bnplPage.templateData.sectionValue && bnplPage.templateData.sectionValue.services"
+    [data]="bnplPage.templateData.sectionValue.services ? bnplPage.templateData.sectionValue.services : []"
+    [subtitle]="bnplPage.templateData.sectionValue.subtitle"
+    [title]="bnplPage.templateData.sectionValue.title"
+    class="bnpl-value-section"
+  ></app-ui-value-section>
+
+
+  <!--  section 3-->
+  <app-o-bnpl-customers
+    *ngIf="
+      bnplPage &&
+      bnplPage.templateData &&
+      bnplPage.templateData.sectionCustomers &&
+      bnplPage.templateData.sectionCustomers.customers &&
+      bnplPage.templateData.sectionCustomers.customers.length > 0
+    "
+    [customers]="bnplPage.templateData.sectionCustomers.customers"
+    [invite]="bnplPage.templateData.sectionCustomers.invite"
+    [title]="bnplPage.templateData.sectionCustomers.title"
+  ></app-o-bnpl-customers>
+
+  <!--  section 4-->
+  <app-o-bnpl-form
+    *ngIf="bnplPage && bnplPage.templateData && bnplPage.templateData.sectionRequest"
+    [contactForm]="contactForm"
+    [description]="bnplPage.templateData.sectionRequest.description"
+    [id]="'bnplForm'"
+    [image]="bnplPage.templateData.sectionRequest.image"
+    [title]="bnplPage.templateData.sectionRequest.title"
+  ></app-o-bnpl-form>
+
+  <!--  section 5-->
+  <app-ui-faq
+    *ngIf="
+      bnplPage &&
+      bnplPage.templateData &&
+      bnplPage.templateData.faq &&
+      bnplPage.templateData.faq.faqItems &&
+      bnplPage.templateData.faq.faqItems.length > 0
+    "
+    [faqs]="bnplPage.templateData.faq.faqItems"
+    [subtitle]="bnplPage.templateData.faq.subtitle"
+    [title]="bnplPage.templateData.faq.title"
+  >
+  </app-ui-faq>
+
+  <!--  section 6-->
+  <app-blog-cards
+    *ngIf="bnplPage && bnplPage.templateData && bnplPage.templateData.relatedPosts && posts.length > 0"
+    [blogPosts]="posts"
+    [subtitle]="bnplPage.templateData.relatedPosts.subtitle"
+    [title]="bnplPage.templateData.relatedPosts.title"
+  >
+  </app-blog-cards>
+</app-base-layout>

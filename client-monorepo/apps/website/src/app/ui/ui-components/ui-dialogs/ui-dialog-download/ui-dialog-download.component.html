@@ -1,0 +1,19 @@
+<div class="modal-download">
+  <div
+    (click)="closeDialog()"
+    class="close desktop"
+  >
+    <ngx-icon
+      class="cursor-pointer"
+      [name]="'close'"
+      [iconSize]="'24px'"
+    ></ngx-icon>
+  </div>
+  <div class="close mobile">
+    <img
+      alt=""
+      src="assets/images/icons/icon-line.svg"
+    />
+  </div>
+  <app-ui-download-links [downloadSectionData]="downloadSectionData"></app-ui-download-links>
+</div>

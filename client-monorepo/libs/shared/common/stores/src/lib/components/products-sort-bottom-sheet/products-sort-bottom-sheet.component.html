@@ -1,0 +1,33 @@
+<div class="surface-elevated d-flex flex-column align-items-stretch justify-content-start">
+  <div class="pb-minus st-6 text-onback-high mb-medium">مرتب سازی</div>
+  <div class="d-flex flex-column align-items-stretch justify-content-start gap-minus mb-hulk">
+    @for (item of sortItems(); track $index) {
+      <div
+        class="d-flex align-items-center justify-content-start gap-small py-tiny cursor-pointer"
+        (click)="handleItemSelect(item)"
+      >
+        <ngx-radio-button
+          [(checked)]="itemsMap()[$index]"
+          [size]="20"
+        ></ngx-radio-button>
+        <div class="b-2 text-onback-medium">{{ item.title }}</div>
+      </div>
+    }
+  </div>
+  <div class="d-flex align-items-center justify-content-space-between">
+    <ngx-button
+      (clickHandler)="cancel()"
+      [fullWidth]="true"
+      [mode]="'form'"
+      [style]="'tinted-on-back'"
+      >انصراف
+    </ngx-button>
+    <ngx-button
+      (clickHandler)="submit()"
+      [fullWidth]="true"
+      [mode]="'form'"
+      [style]="'fill'"
+      >تایید
+    </ngx-button>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+
+
+.documents-container {
+  flex-wrap: wrap;
+}
+
+
+
+
+
+.message-static-image {
+  width: 168px;
+  height: 168px;
+  background: url("./not-signed.svg") no-repeat center center;
+}

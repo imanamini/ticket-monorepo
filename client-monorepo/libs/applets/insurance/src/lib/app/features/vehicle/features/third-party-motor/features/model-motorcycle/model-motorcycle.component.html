@@ -1,0 +1,14 @@
+<section class="container d-flex px-medium flex-column p-medium gap-big">
+  <p class="title-style bt-1 py-small">مشخصات موتور سیکلت خود را وارد کنید:</p>
+  <motor-info-form
+          class="flex-grow"
+          [showError]="showError()"
+          [form]="modelMotorCycleForm()"
+          [yearList]="yearList()"
+          [modelMotorcycleTypes]="modelMotorcycleTypes()"
+  ></motor-info-form>
+  <action-buttons (activeButtonClicked)="onNext( THIRD_PARTY_MOTOR_ROUTE.ExInsurerMotor)"
+                  (deActiveButtonClicked)="onPrevious()"
+                  backgroundMode="gray"
+                  deActiveButtonText="بازگشت"></action-buttons>
+</section>

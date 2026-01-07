@@ -1,0 +1,10 @@
+@if (showStatusLight()) {
+  <div
+    class="status-light {{ isAbsolute() ? 'absolute' : '' }}"
+    [ngStyle]="{
+      width: statusSize() + 'px',
+      height: statusSize() + 'px',
+    }"
+    [ngClass]="statusColor() + ' ' + statusBorderColor()"
+  ></div>
+}

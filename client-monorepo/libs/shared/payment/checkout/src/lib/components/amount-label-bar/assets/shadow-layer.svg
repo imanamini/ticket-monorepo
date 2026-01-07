@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="358px" height="165px" viewBox="0 0 358 165" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 4</title>
+    <g id="Finalization" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Pay-by-Wallet---Enter-OTP-and-Pay-01" transform="translate(-502.000000, -257.000000)">
+            <g id="Wallet" transform="translate(556.000000, 297.000000)">
+                <g id="Group-4" transform="translate(-53.696970, -40.000000)">
+                    <path d="M0,0 L328,0 L328,23.5582161 C328,63.2014688 323.544371,79.2441493 315.17763,94.8885938 C306.81089,110.533038 294.533038,122.81089 278.888594,131.17763 C263.244149,139.544371 247.201469,144 207.558216,144 L0,144 L0,144 L0,0 Z" id="Shade3" fill-opacity="0.64" fill="#FFFFFF"></path>
+                    <path d="M13.9393939,8 L341.939394,8 L341.939394,26.1594583 C341.939394,63.5406463 337.112462,81.8478284 328.048493,98.7959766 C318.984525,115.744125 305.683519,129.045131 288.735371,138.109099 C271.787222,147.173068 253.48004,152 216.098852,152 L13.9393939,152 L13.9393939,152 L13.9393939,8 Z" id="Shade2" stroke-opacity="0.5" stroke="#B4C7FF" stroke-linecap="round" stroke-dasharray="4"></path>
+                    <path d="M28.8484848,20 L356.848485,20 L356.848485,30.0613215 C356.848485,64.0494127 351.464599,85.7533471 341.354788,104.657051 C331.244977,123.560755 316.409239,138.396492 297.505536,148.506303 C278.601832,158.616115 256.897898,164 222.909806,164 L28.8484848,164 L28.8484848,164 L28.8484848,20 Z" id="Shade1" stroke-opacity="0.5" stroke="#B4C7FF" stroke-linecap="round" stroke-dasharray="4"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

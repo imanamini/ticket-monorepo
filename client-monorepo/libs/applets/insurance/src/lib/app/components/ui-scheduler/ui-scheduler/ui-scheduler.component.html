@@ -1,0 +1,33 @@
+<div class="wrapper">
+
+  <div *ngIf="fullTime.seconds.length" class="slot">
+    <div *ngFor="let item of fullTime.seconds" class="index">
+      {{ item }}
+    </div>
+    <div class="unit">ثانیه</div>
+  </div>
+
+  <div *ngIf="fullTime.minutes.length" class="slot">
+    <div *ngFor="let item of fullTime.minutes" class="index">
+      {{ item }}
+    </div>
+    <div class="divider">:</div>
+    <div class="unit">دقیقه</div>
+  </div>
+
+  <div *ngIf="fullTime.hours.length" class="slot">
+    <div *ngFor="let item of fullTime.hours" class="index">
+      {{ item }}
+    </div>
+    <div class="divider">:</div>
+    <div class="unit">ساعت</div>
+  </div>
+
+  <div *ngIf="fullTime.days.length" class="slot">
+    <div *ngFor="let item of fullTime.days" class="index">
+      {{ item }}
+    </div>
+    <div class="divider">:</div>
+    <div class="unit">روز</div>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+<div
+  dir="rtl"
+  class="surface-elevated p-medium border-300 overflow-hidden"
+  [class]="isPillar ? 'radius-small' : 'radius-plus'"
+  [class.surface-glass-onelevated]="checked()"
+  [class.border-color-light]="!checked() && type() === 'Credit'"
+  [class.border-color-brand]="checked() && type() === 'Credit'"
+  [class.border-color-bnpl]="!checked() && type() === 'Bnpl'"
+  [class.border-color-bnpl-selected]="checked() && type() === 'Bnpl'"
+  [class.opacity4]="deActive()"
+  (click)="onCardClick()"
+>
+  <div class="d-flex align-items-center justify-content-space-between">
+    <div class="d-flex align-items-center justify-content-flex-start gap-tiny">
+      @if (type() === 'Bnpl') {
+        @if (installmentsCount() === 1) {
+          <ngx-icon
+            name="refresh"
+            [type]="'due'"
+            class="text-bnpl-color"
+          />
+        } @else {
+          <div class="size-24 d-flex align-items-center justify-content-center">
+            <app-circle-indicator
+              [allSectorsCount]="installmentsCount()"
+              [primarySectorsCount]="order()"
+            />
+          </div>
+        }
+      }
+      @if (type() === 'Credit') {
+        <credit-digipay-image
+          [imageId]="fundProviderBusinessId()"
+          width="24px"
+        />
+      }
+      <div class="st-8">{{ title() }}</div>
+    </div>
+    <div class="d-flex align-items-center justify-content-flex-end gap-tiny">
+      @switch (badge()) {
+        @case ('penalty') {
+          <ngx-badge
+            [status]="'error'"
+            [mode]="'fill'"
+            [size]="'sm'"
+          >
+            در حال جریمه
+          </ngx-badge>
+        }
+        @case ('penaltyWaiver') {
+          <ngx-badge
+            [status]="'success'"
+            [mode]="'fill'"
+            [size]="'sm'"
+          >
+            بخشودگی جریمه
+          </ngx-badge>
+        }
+      }
+      <ngx-checkbox
+        click-stop-propagation
+        [disabled]="deActive()"
+        [(checked)]="checked"
+        [size]="20"
+      />
+    </div>
+  </div>
+  @if (subtitle()) {
+    <div class="mt-small text-onback-medium l-3">
+      {{ subtitle() }}
+    </div>
+  }
+  <ngx-divider
+    class="my-small d-block"
+    [color]="BorderColorsEnum.Air"
+  />
+  <div class="d-flex align-items-center justify-content-space-between flex-row-reverse flex-wrap">
+    <div class="d-flex align-items-center flex-row-reverse">
+      <div>
+        <span class="st-7">{{ amount() | thousands }}</span>
+        <span class="is-currency st-8 mr-micro">ریال</span>
+      </div>
+      @if (penaltyAmount()) {
+        <div class="mx-micro text-onback-error">+</div>
+        <div [class.line-through]="waiverRemovesPenalty()">
+          <span class="c-2 text-onback-error">{{ penaltyAmount() | thousands }}</span>
+        </div>
+      }
+    </div>
+    @if (merchantBusinessIds()) {
+      <div
+        (click)="merchantsClickedHandler($event)"
+        class="pt-small px-medium pb-medium mt-small-minus mr-medium-minus mb-medium-minus"
+      >
+        <div class="d-flex gap-small surface-elevated border-300 radius-minus border-color-air p-tiny">
+          @for (merchantId of merchantBusinessIds(); track $index; let last = $last) {
+            <credit-digipay-image
+              class="p-tiny"
+              [imageId]="merchantId"
+              width="18px"
+            />
+            @if (!last) {
+              <ngx-divider
+                class="d-flex my-low"
+                [orientation]="'vertical'"
+                [color]="BorderColorsEnum.Light"
+              />
+            }
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>

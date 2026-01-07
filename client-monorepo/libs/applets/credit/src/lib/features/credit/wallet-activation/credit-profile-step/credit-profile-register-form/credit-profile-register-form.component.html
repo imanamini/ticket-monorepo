@@ -1,0 +1,12 @@
+<app-credit-register-form
+  (submit)="submitForm($event)"
+  [cellNumber]="cellNumber()"
+  [ctaLoading]="ctaLoading()!"
+  [editable]="{
+    birthDate: true,
+    nationalCode: false,
+  }"
+  [errors]="serverValidationError()"
+  [values]="profileStatusData()?.preRegisterInfo"
+  class="flex-full-height"
+></app-credit-register-form>

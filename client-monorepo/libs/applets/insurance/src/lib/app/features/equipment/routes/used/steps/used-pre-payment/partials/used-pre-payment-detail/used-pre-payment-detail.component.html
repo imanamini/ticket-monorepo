@@ -1,0 +1,32 @@
+<div class="detail-container">
+  <div class="title w-100 border-b-300 border-color-light">
+    <p class="text-center">متداول‌ترین حوادث تحت پوشش دیجی‌پی</p>
+  </div>
+  <div class="container-coverage-text">
+    <div>
+      <div class="coverage-text bt-1">
+        همیشه وقتی فکرش رو نمیکنی اتفاق میوفته!
+        <br/>
+        حوادث، بخش غیر قابل پیش‌بینی و انکار ناپذیر زندگی همه ما هستند که کم و بیش زندگی روزمره ما را تحت تاثیر قرار
+        می‌دهند و در بسیاری از موارد هزینه‌های مالی هنگفتی را به ما تحمیل می‌کنند.
+        <br/>
+        به همین جهت بیمه تجهیزات الکترونیک دیجی‌پی ، راهکاری ارائه کرده است تا با بروز حوادث ضرر مالی متوجه شما نشود و
+        زندگی فردی‌تان کمتر تحت تاثیر حادثه قرار بگیرد.
+        <br/>
+        متداول‌ترین حوادث تحت پوشش بیمه دیجی‌پی:
+      </div>
+      <card-notice [hasDots]="true" [notices]="dynamicCoverages"></card-notice>
+      <div class="title">
+        <p>مزایای بیمه دیجی‌پی</p>
+      </div>
+      <card-notice [hasDots]="true" [notices]="staticCoverages" [textKey]="'text'"></card-notice>
+    </div>
+  </div>
+  <div class="bottom-container">
+    <ui-button
+            (click)="goToMoreInfo()"
+            appearance="DEFAULT">
+      {{ btnTitle() }}
+    </ui-button>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="onboarding-header d-flex align-items-center justify-content-center">
+  <div class="content d-flex flex-column">
+    <span class="title">{{ heroSection()?.blueTitle }}</span>
+    <span class="subtitle mb-low">{{ heroSection()?.blackTitle }}</span>
+    <span class="description st-4 text-onback-medium mb-big">{{ heroSection()?.subtitle }}</span>
+    <div class="actions d-flex gap-small align-items-center">
+      @if (heroSection().secondaryCta.title) {
+        <ngx-button
+          [mode]="'section'"
+          [size]="'medium'"
+          [style]="'tinted-on-back'"
+          [fullWidth]="!heroSection().primaryCta?.title && isMobileMode"
+          (clickHandler)="openLink(heroSection().secondaryCta?.link)"
+        >
+          {{ heroSection().secondaryCta.title }}
+        </ngx-button>
+      }
+
+      @if (heroSection().primaryCta.title) {
+        <ngx-button
+          [mode]="'section'"
+          [size]="'medium'"
+          [style]="'fill'"
+          [leftIcon]="{ name: 'arrow-2-left', type: 'linear' }"
+          [fullWidth]="!heroSection().secondaryCta?.title && isMobileMode"
+          (clickHandler)="openLink(heroSection().primaryCta?.link)"
+        >
+          {{ heroSection().primaryCta.title }}
+        </ngx-button>
+      }
+    </div>
+  </div>
+  <div class="slider">
+    <app-landing-onboarding-slider [images]="heroSection()?.images"></app-landing-onboarding-slider>
+  </div>
+</div>

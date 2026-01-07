@@ -1,0 +1,22 @@
+.blocker-error-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999999;
+  background: center center no-repeat;
+}
+.dark-color{
+  color: #000060;
+}
+.access-error-button-bg{
+  background: #353B47 !important;
+}
+.back-icon{
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: 24px;
+  padding-right: 20px;
+}

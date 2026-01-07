@@ -1,0 +1,41 @@
+<div class="d-flex flex-column align-items-center p-plus mt-hulk">
+  <div class="t-5 mb-tiny">بازیابی رمز عبور</div>
+  <div class="b-1">شماره موبایل خود را برای بازیابی رمز عبور وارد کنید.</div>
+  <form
+    [formGroup]="phoneNumberForm"
+    class="w-100 d-flex flex-column mt-big"
+  >
+    <ui-form-field
+      [errorMessageMapper]="errorMessageMapper"
+      [error]="phoneNumberForm.controls['cellNumber'].errors"
+      [hasCleaner]="true"
+      [autoFocus]="autoFocus()"
+      [lock]="!!defaultPhoneNumber()"
+      [readonly]="!!defaultPhoneNumber()"
+      [isNumericKeyboard]="true"
+      [showError]="errorStatus"
+      class="flex-grow w-100"
+      formControlName="cellNumber"
+      [convertNonEnglishDigits]="true"
+      inputType="tel"
+      label="شماره موبایل"
+      placeholder="مثال: ۰۹۰۰۰۰۰۰۰۰۰"
+      [maxSize]="11"
+      type="input"
+    >
+    </ui-form-field>
+    <ngx-button
+      class="mt-hulk w-100"
+      [mode]="'form'"
+      [fullWidth]="true"
+      [size]="'large'"
+      [isLoading]="isSubmitting()"
+      [disabled]="phoneNumberForm.invalid || !this.phoneNumberForm.controls['cellNumber'].value || isSubmitting()"
+      [style]="'fill'"
+      [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+      (clickHandler)="onSubmitClick()"
+    >
+      تایید و ادامه
+    </ngx-button>
+  </form>
+</div>

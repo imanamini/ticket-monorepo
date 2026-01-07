@@ -1,0 +1,20 @@
+<section class="benefit-service">
+  <div class="container">
+    <h2
+      *ngIf="title"
+      class="text-align-center heading-w900"
+    >
+      {{ title }}
+    </h2>
+    <h3
+      *ngIf="subtitle"
+      class="text-align-center"
+    >
+      {{ subtitle }}
+    </h3>
+    <app-ui-value-swiper
+      [config]="config"
+      [data]="data"
+    ></app-ui-value-swiper>
+  </div>
+</section>

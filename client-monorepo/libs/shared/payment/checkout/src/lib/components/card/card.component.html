@@ -1,0 +1,35 @@
+<div
+  class="card-container"
+  [ngStyle]="containerStyle()"
+>
+  <payment-checkout-card-header
+    [title]="headerTitle()"
+    [closeButton]="headerCloseButtonType()"
+    [customizeBackAction]="customizeBackAction"
+    (clickedBack)="clickedOnBack.emit()"
+    [isBottomSheet]="isBottomSheet()"
+  >
+  </payment-checkout-card-header>
+
+  <div
+    class="body"
+    [ngStyle]="bodyStyle()"
+    [style.margin-bottom]="!hasFooter() && '0'"
+  >
+    <div class="content">
+      <ng-content select="[body]"></ng-content>
+    </div>
+  </div>
+
+  <payment-checkout-card-footer
+    *ngIf="hasFooter()"
+    [footerLoading]="footerLoading()"
+    [currencyText]="currencyText"
+    [submitText]="submitText()"
+    [submitLoading]="submitLoading()"
+    [disableButton]="disableSubmitButton()"
+    [amount]="amount()"
+    [iconPath]="footerIconPath()"
+    (submittedButton)="clickedButton.emit()"
+  ></payment-checkout-card-footer>
+</div>

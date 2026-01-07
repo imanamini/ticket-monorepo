@@ -1,0 +1,16 @@
+<div class="d-flex flex-column align-items-center h-100 justify-content-center gap-medium bg-white p-medium">
+  <img width="96" height="96" src="assets/icons/info-icon-circle.svg" alt="">
+  <p class="st-3 mt-huge">برای اعلام خسارت، با پشتیبانی تماس بگیرید</p>
+  <p class="b-2">در حال حاضر امکان اعلام خسارت آنلاین برای محصولات دسته لوازم خانگی وجود ندارد. لطفا برای ثبت یا پیگیری
+    پرونده خسارت، با پشتیبانی تماس بگیرید.</p>
+  <div class="w-100 mt-giant">
+    <ins-button
+      [fullWidth]="true"
+      [style]="InsButtonStyleEnum.Fill"
+      [mode]="InsButtonModeEnum.Form"
+      [size]="InsButtonSizeEnum.Large"
+      (clickHandler)="callToSupport()"
+      text="تماس با پشتیبانی">
+    </ins-button>
+  </div>
+</div>

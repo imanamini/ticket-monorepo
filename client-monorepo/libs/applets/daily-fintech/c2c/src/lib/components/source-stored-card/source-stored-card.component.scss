@@ -1,0 +1,18 @@
+.bank-card {
+  min-width: -webkit-fill-available;;
+}
+
+.add-bank-card {
+  align-self: center;
+}
+
+.body {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.content {
+  flex-grow: 1;
+  overflow: auto;
+}
+

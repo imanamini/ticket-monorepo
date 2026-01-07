@@ -1,0 +1,46 @@
+<div class="w-100 d-flex flex-column surface-elevated cashin-container">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'افزایش موجودی کیف پول ETF'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+  @if (isLoading()) {
+    <app-spinner />
+  } @else {
+    <div class="d-flex surface-elevated flex-wrap align-items-start justify-content-center pt-big pb-huge px-plus">
+      <div class="w-100 surface-back radius-plus py-plus px-medium">
+        <wealth-applet-wallet-balance-info [walletInfo]="walletInfo()" />
+      </div>
+
+      <wealth-applet-wallet-amount-form
+        class="w-100 mt-medium"
+        [minAmount]="minAmount()"
+        [maxAmount]="maxAmount()"
+        [type]="'cashIn'"
+        [title]="'مبلغ افزایش موجودی را وارد کنید.'"
+        (amountChange)="amountChanged($event)"
+      />
+    </div>
+    <div class="w-100 buttons-container">
+      <div class="d-flex px-plus">
+        <ngx-button
+          [style]="'fill'"
+          [fullWidth]="true"
+          [mode]="'form'"
+          [size]="'medium'"
+          [disabled]="!isValid()"
+          (clickHandler)="cashin()"
+          [buttonId]="'CASH_IN_CONFIRM'"
+        >
+          تایید و ادامه
+        </ngx-button>
+      </div>
+    </div>
+  }
+</div>

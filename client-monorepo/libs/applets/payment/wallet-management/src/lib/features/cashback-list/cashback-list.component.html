@@ -1,0 +1,34 @@
+<common-ui-components-page-layout
+  [showBorder]="true"
+  [title]="'مدیریت جایزه‌ها'"
+>
+  <div class="title-wrapper">
+    <div class="title">جایزه‌ها</div>
+  </div>
+  @if (!loading()) {
+    @if (cashbackList().length > 0) {
+      <div class="d-flex flex-column gap-medium">
+        @for (item of cashbackList(); track $index) {
+          <div class="mx-medium">
+            <wallet-mng-applet-cashback-merchant-card [data]="item"></wallet-mng-applet-cashback-merchant-card>
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="d-flex flex-column w-100 h-100 justify-content-center align-items-center gap-medium">
+        <img
+          height="150px"
+          src="assets/no-transaction.png"
+          alt="no-transaction"
+        />
+        <span class="fs-16 text-onback-medium"> هنوز جایزه‌ای ثبت نشده است </span>
+      </div>
+    }
+  } @else {
+    <lib-ngx-skeleton-loading
+      [height]="'120px'"
+      [width]="'100%'"
+      [classes]="'radius-tiny mb-large'"
+    ></lib-ngx-skeleton-loading>
+  }
+</common-ui-components-page-layout>

@@ -1,0 +1,45 @@
+@import "../../../../../../../../node_modules/@digipay/base-style/styleguide";
+@import "insurance/src/lib/app/style/once/global";;
+
+.accordion {
+  .item {
+    box-shadow: map-get($shade-colors, onelevated-shade-10);
+
+    .content {
+      overflow: hidden;
+
+      .description {
+        white-space: pre-line;
+      }
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      position: relative;
+
+      .line {
+        width: 12px;
+        height: 2px;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+    }
+
+    &.active {
+      &.item {
+        box-shadow: map-get($shade-colors, onelevated-shade-20);
+      }
+
+      .header.icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+

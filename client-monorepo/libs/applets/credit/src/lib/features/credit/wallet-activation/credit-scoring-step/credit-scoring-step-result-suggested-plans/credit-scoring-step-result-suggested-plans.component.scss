@@ -1,0 +1,128 @@
+@import "@digipay/base-style/swatch";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.main-section {
+  box-sizing: border-box;
+  direction: rtl;
+  width: 100%;
+
+  * {
+    box-sizing: border-box;
+    direction: rtl;
+  }
+
+  .top-section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .plans-container {
+    padding: 16px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .main-title {
+      width: 100%;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: right;
+      color: $swatch_steel_900;
+    }
+
+    .plan {
+      padding: 24px 30px;
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid $swatch_steel_200;
+      cursor: pointer;
+
+      &.active {
+        border-color: $swatch_blue_500;
+      }
+
+      .plan-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 8px;
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+        border-bottom: 1px solid $swatch_steel_100;
+
+        .icon-wrapper {
+          width: 36px;
+          height: 36px;
+          border-radius: 12px;
+        }
+
+        .plan-title {
+          color: #000;
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 24px;
+        }
+
+        .check {
+          margin-right: auto;
+          width: 24px;
+          height: 24px;
+          background: url("../../credit-scoring-shared/assets/radio-disable.svg")
+            center center no-repeat;
+
+          &.is-active {
+            background: url("../../credit-scoring-shared/assets/radio-enable.svg")
+              center center no-repeat;
+          }
+        }
+      }
+
+      .plan-items {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .item {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          line-height: 24px;
+
+          span {
+            font-size: 12px;
+            color: $swatch_steel_900;
+            font-weight: 400;
+
+            &:last-child {
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .call-to-actions-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-grow: 0;
+    padding: 24px;
+    text-align: center;
+  }
+}

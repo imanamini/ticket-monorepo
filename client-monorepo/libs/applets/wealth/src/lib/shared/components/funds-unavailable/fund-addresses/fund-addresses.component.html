@@ -1,0 +1,48 @@
+<div class="funds-addresses-container">
+  <div class="block-items">
+    <div class="block-item">
+      <span class="title">ارزش آفرین گلبرگ</span>
+      <span
+        class="link-item"
+        (click)="gotoPage('golrangfund.ir')"
+        >golrangfund.ir</span
+      >
+    </div>
+    <div class="block-item">
+      <span class="title">بانک گردشگری</span>
+      <span
+        class="link-item"
+        (click)="gotoPage('gbfund.ir')"
+        >gbfund.ir</span
+      >
+    </div>
+    <div class="block-item">
+      <span class="title">پاداش سرمایه بهگزین</span>
+      <span
+        class="link-item"
+        (click)="gotoPage('padashfixedincome.com')"
+        >padashfixedincome.com</span
+      >
+    </div>
+    <div class="block-item">
+      <span class="title">شکوه اوج دماوند</span>
+      <span
+        class="link-item"
+        (click)="gotoPage('shokouhdamavandfund.ir')"
+        >shokouhdamavandfund.ir</span
+      >
+    </div>
+  </div>
+  <div class="block-footer">
+    <ngx-button
+      [style]="'fill'"
+      (clickHandler)="onClose()"
+      [className]="'detail-button'"
+      [fullWidth]="true"
+      [destructive]="false"
+      size="medium"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

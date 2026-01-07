@@ -1,0 +1,29 @@
+::ng-deep .home-download-section section {
+  background: #e7ecfd;
+}
+
+.box {
+  background-image: url('/assets/images/download-banners/desktop.svg');
+  width: 1200px;
+  height: 393px;
+  margin: 64px auto;
+  cursor: pointer;
+}
+
+@media (max-width: 1280px) {
+  .box {
+    background-image: url('/assets/images/download-banners/tablet.svg');
+    width: 744px;
+    height: 392px;
+    margin: 32px auto;
+  }
+}
+
+@media (max-width: 744px) {
+  .box {
+    background-image: url('/assets/images/download-banners/mobile.svg');
+    width: 328px;
+    height: 266px;
+    margin: 24px auto;
+  }
+}

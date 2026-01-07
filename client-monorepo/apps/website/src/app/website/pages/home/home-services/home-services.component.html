@@ -1,0 +1,87 @@
+<div class="services-swiper">
+  <div class="container">
+    <app-ui-carousel
+      *ngIf="services.length > 0"
+      [slidesData]="services"
+      [carouselConfig]="config"
+    >
+      <ng-template
+        let-item="slide"
+        let-isActive="isActive"
+        let-isCenter="isCenter"
+      >
+        <div
+          class="services-swiper__item"
+          [ngClass]="{ active: isActive, center: isCenter }"
+        >
+          <a
+            *ngIf="item.url"
+            [attr.href]="item.url"
+          ></a>
+          <div class="services-swiper__item-contain">
+            <div class="services-swiper__icon">
+              <div>
+                <div class="services-swiper__icon-2d">
+                  <div *ngIf="item.title && item.icon2dim && item.icon2dim.url">
+                    <img
+                      [alt]="item.title"
+                      [src]="item.icon2dim.url"
+                    />
+                  </div>
+                </div>
+                <div class="services-swiper__icon-3d">
+                  <div *ngIf="item.title && item.icon3dim && item.icon3dim.url">
+                    <img
+                      [alt]="item.title"
+                      [src]="item.icon3dim.url"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="services-swiper__titles">
+              <div>
+                <div class="services-swiper__title">
+                  <span>{{ item?.title }}</span>
+                </div>
+                <div class="services-swiper__subtitle">
+                  <span>{{ item?.description }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </app-ui-carousel>
+
+    <!--    <div *ngIf="!loaded">-->
+    <!--      <owl-carousel-o (changed)="carouselChanged($event)" [options]="customOptions">-->
+    <!--        <ng-template carouselSlide>-->
+    <!--          <div class="service-item skeleton">-->
+    <!--            <div class="item-content"></div>-->
+    <!--          </div>-->
+    <!--        </ng-template>-->
+    <!--        <ng-template carouselSlide>-->
+    <!--          <div class="service-item skeleton">-->
+    <!--            <div class="item-content"></div>-->
+    <!--          </div>-->
+    <!--        </ng-template>-->
+    <!--        <ng-template carouselSlide>-->
+    <!--          <div class="service-item skeleton">-->
+    <!--            <div class="item-content"></div>-->
+    <!--          </div>-->
+    <!--        </ng-template>-->
+    <!--        <ng-template carouselSlide>-->
+    <!--          <div class="service-item skeleton">-->
+    <!--            <div class="item-content"></div>-->
+    <!--          </div>-->
+    <!--        </ng-template>-->
+    <!--        <ng-template carouselSlide>-->
+    <!--          <div class="service-item skeleton">-->
+    <!--            <div class="item-content"></div>-->
+    <!--          </div>-->
+    <!--        </ng-template>-->
+    <!--      </owl-carousel-o>-->
+    <!--    </div>-->
+  </div>
+</div>

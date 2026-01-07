@@ -1,0 +1,65 @@
+<div class="modal-full-page">
+  <div class="dialog-header">
+    <div
+      (click)="closeDialog()"
+      class="close"
+    >
+      <ngx-icon
+        [name]="'close'"
+        classes="text-onback-high cursor-pointer"
+      ></ngx-icon>
+    </div>
+    <div class="navbar">
+      <ng-container *ngFor="let step of steps">
+        <div
+          [ngClass]="{ active: step.active }"
+          class="step"
+        >
+          <div class="title">
+            {{ step.navTitle }}
+          </div>
+          <div class="line"></div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <section class="dialog-body">
+    <ng-container [ngSwitch]="activeStepType">
+      <app-pre-register-cheque-confirm
+        (onBack)="onBack()"
+        (onNext)="onNext()"
+        *ngSwitchCase="findStepIndexByType(PRE_REGISTRATION_STEP_TYPE.CONDITIONS)"
+        [collateral]="selectedPlanGroup?.collateralDto"
+        [selectedPlanGroup]="selectedPlanGroup"
+        [step]="steps[findStepIndexByType(PRE_REGISTRATION_STEP_TYPE.CONDITIONS)]"
+      ></app-pre-register-cheque-confirm>
+
+      <app-pre-register-cheque-confirm
+        (onBack)="onBack()"
+        (onNext)="onNext()"
+        *ngSwitchCase="findStepIndexByType(PRE_REGISTRATION_STEP_TYPE.CHEQUE)"
+        [collateral]="selectedPlanGroup?.collateralDto"
+        [selectedPlanGroup]="selectedPlanGroup"
+        [step]="steps[findStepIndexByType(PRE_REGISTRATION_STEP_TYPE.CHEQUE)]"
+      ></app-pre-register-cheque-confirm>
+
+      <app-pre-registration-group-detail
+        (onBack)="onBack()"
+        (onNext)="onNext()"
+        *ngSwitchCase="findStepIndexByType(PRE_REGISTRATION_STEP_TYPE.ADDITIONAL_INFO)"
+        [groupId]="selectedPlanGroup.groupId"
+        [planId]="selectedPlanGroup.planId"
+        [selectedPlanGroup]="selectedPlanGroup"
+        [step]="steps[findStepIndexByType(PRE_REGISTRATION_STEP_TYPE.ADDITIONAL_INFO)]"
+      ></app-pre-registration-group-detail>
+
+      <app-pre-register-plan-info
+        (onBack)="onBack()"
+        (onNext)="onNext()"
+        *ngSwitchCase="findStepIndexByType(PRE_REGISTRATION_STEP_TYPE.PLAN_INFO)"
+        [step]="steps[findStepIndexByType(PRE_REGISTRATION_STEP_TYPE.PLAN_INFO)]"
+      ></app-pre-register-plan-info>
+    </ng-container>
+  </section>
+</div>

@@ -1,0 +1,21 @@
+<div class="navigation">
+  <swiper-container
+    class="swiper-wrapper"
+    appSwiper
+    #swiper
+    [config]="configNav"
+  >
+    @for (item of items ; track $index){
+      <swiper-slide
+        class="swiper-slide"
+        (click)="selectSlide($index)"
+        [ngClass]="{ active: activeSwitchPageIndex() === $index }"
+      >
+        <div class="item" [ngClass]="activeSwitchPageIndex() === $index ? 'active' : ''">
+          <span>{{ item.switchPageTitle }}</span>
+        </div>
+      </swiper-slide>
+    }
+
+  </swiper-container>
+</div>

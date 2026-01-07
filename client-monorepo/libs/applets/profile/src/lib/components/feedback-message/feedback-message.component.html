@@ -1,0 +1,33 @@
+<div class="text-align-center">
+  @if (mode() === 'success') {
+    <img
+      ngSrc="assets/success.png"
+      width="160"
+      height="122"
+      alt="success"
+    />
+    <p class="fs-14 fw-normal text-onback-low text-align-right">
+      همکاران من طی روزهای آتی درصورت نیاز با شما تماس خواهند گرفت. باتشکر از حسن توجه شما
+    </p>
+  } @else {
+    <img
+      ngSrc="assets/error.png"
+      width="160"
+      height="122"
+      alt="success"
+    />
+    <p class="fs-14 fw-bold">مشکلی در ثبت تیکت شما رخ داده‌است!</p>
+    <p class="fs-14 fw-normal text-onback-low text-align-right">
+      متاسفانه قادر به ثبت تیکت شما نشدیم، لطفا پس از چند لحظه مجددا تلاش کنید!
+    </p>
+  }
+
+  <ngx-button
+    [style]="'tinted-on-elevated'"
+    [size]="'medium'"
+    [fullWidth]="true"
+    (clickHandler)="closeBottomSheet()"
+  >
+    بستن
+  </ngx-button>
+</div>

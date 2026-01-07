@@ -1,0 +1,30 @@
+<div class="list-container">
+  <div class="gift-info">
+    <div class="gift-credit">
+      <span>اعتبار هدیه</span>
+      <span>{{ state().amount | thousands }}</span>
+      <span>ریال</span>
+      <div
+        [ngxTooltip]="'کد هدیه شماره سریال ' + state().serial"
+        tooltipPosition="top" tooltipType="click"
+        class="icon info gift-tooltip"
+      ></div>
+    </div>
+    <span>انقضا:&nbsp;{{ state().expirationDate | jalaliDate }}</span>
+  </div>
+
+    <mat-progress-bar
+      class="gift-info-progress-bar"
+      [mode]="mode"
+      [value]="remainingAmountPercentage()"
+      [color]="'primary'"
+    >
+    </mat-progress-bar>
+
+  <div class="expiration-date">
+    <div class="point green"></div>
+    باقی مانده &nbsp;
+    {{ state().balance | thousands }}
+    ریال
+  </div>
+</div>

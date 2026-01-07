@@ -1,0 +1,99 @@
+<div
+  class="d-flex credit-header-section mt-massive justify-content-space-between gap-hulk"
+  [ngClass]="{ container: !deviceDetectorService.isMobileDevice() }"
+>
+  <div class="credit-header-content-col mt-plus text-onback-medium">
+    <div class="st-4 header-small-title">{{ data().sectionTextual.smallTitle }}</div>
+    <div class="header-big-title">{{ data().sectionTextual.boldTitle }}</div>
+    <div class="bt-2 header-subtitle">
+      {{ data().sectionTextual.subtitle }}
+    </div>
+    <div class="merchant-logos-wrapper">
+      <div
+        class="merchant-logos mt-big gap-big d-flex"
+        [style]="{ width: data().sectionTextual.sectionMerchants.logos.length * 46 + 'px' }"
+      >
+        @for (logo of data().sectionTextual.sectionMerchants.logos; track $index) {
+          <img
+            [src]="logo.logo.url"
+            [alt]="logo.logo.altText"
+          />
+        }
+        @for (logo of data().sectionTextual.sectionMerchants.logos; track $index) {
+          <img
+            [src]="logo.logo.url"
+            [alt]="logo.logo.altText"
+          />
+        }
+        @for (logo of data().sectionTextual.sectionMerchants.logos; track $index) {
+          <img
+            [src]="logo.logo.url"
+            [alt]="logo.logo.altText"
+          />
+        }
+      </div>
+    </div>
+    <div
+      class="d-flex gap-small mt-big actions"
+      [ngClass]="{ container: deviceDetectorService.isMobileDevice() }"
+    >
+      <ngx-button
+        (clickHandler)="onButtonClick(data().sectionTextual?.firstCta?.link)"
+        [mode]="'section'"
+        [size]="'medium'"
+        [style]="'fill'"
+        [fullWidth]="deviceDetectorService.isMobileDevice()"
+        [leftIcon]="{
+          name: 'arrow-2-left',
+        }"
+      >
+        {{ data().sectionTextual?.firstCta?.title }}
+      </ngx-button>
+      <ngx-button
+        (clickHandler)="onButtonClick(data().sectionTextual?.secondCta?.link)"
+        [mode]="'section'"
+        [size]="'medium'"
+        [style]="'tinted-on-back'"
+        [fullWidth]="deviceDetectorService.isMobileDevice()"
+        >
+        {{ data().sectionTextual?.secondCta?.title }}
+      </ngx-button>
+    </div>
+  </div>
+  <div class="credit-header-card-col">
+    <div class="card">
+      <img
+        [src]="data().cardSection.cardImage.url"
+        width="100%"
+        [alt]="data().cardSection.cardImage.altText"
+      />
+      <div class="card-info d-flex flex-column">
+        <div class="d-flex align-items-center justify-content-space-between title-container mb-plus">
+          <span class="t-5 text-oninvert-medium title">{{ data()?.cardSection?.cardTitle }}</span>
+          <span class="text-oninvert-medium logo"
+            ><img
+              src="assets/images/logos/dp-logo-white.svg"
+              alt=""
+          /></span>
+        </div>
+        <div class="st-6 text-oninvert-medium limition-title">تا سقف</div>
+        <div class="amount mb-large">
+          {{ bestPlan()?.amount ?? data().cardSection.maxCredit | thousands }}
+          <span
+            ><ngx-icon
+              [name]="'rial'"
+              [type]="'linear'"
+              [iconSize]="!deviceDetectorService.isMobileDevice() ? '64px' : '42px'"
+            ></ngx-icon
+          ></span>
+        </div>
+        <div class="d-flex align-content-center justify-content-space-between">
+          <span class="st-6 text-oninvert-medium subtitle">وام خرید</span>
+          <span class="st-6 text-oninvert-medium subtitle"
+            >بازپرداخت تا {{ bestPlan()?.installmentCount ?? data().cardSection.installmentPeriod }} ماه</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

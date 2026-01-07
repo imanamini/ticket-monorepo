@@ -1,0 +1,11 @@
+<common-ui-components-page-layout
+  [showBackIcon]="true"
+  (onBackAction)="onBackActionClicked()"
+  [hasBackAction]="true"
+  [stickyHeader]="false"
+>
+  <div
+    class="fs-14 h-100"
+    [innerHTML]="content()"
+  ></div>
+</common-ui-components-page-layout>

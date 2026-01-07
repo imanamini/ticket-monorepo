@@ -1,0 +1,7 @@
+@import "globals";
+
+.message-warning {
+  background: $swatch_orange_100 url(message-warning.svg) no-repeat center right 8px/24px;
+  border-color: $swatch_orange_500;
+  padding-right: 40px;
+}

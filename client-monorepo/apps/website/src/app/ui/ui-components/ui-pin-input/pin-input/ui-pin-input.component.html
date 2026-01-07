@@ -1,0 +1,41 @@
+<div class="pin-input">
+  <p class="desc">{{ description }}</p>
+  <div
+    #inputs
+    [ngClass]="{ 'has-error': hasError }"
+    class="inputs"
+  >
+    <ng-container *ngIf="type === 'PIN'">
+      <div
+        *ngFor="let input of pinInputs; let i = index"
+        class="input"
+      >
+        <input
+          (focusin)="inputFocusIn(i)"
+          (keyup)="inputKeyUp($event)"
+          maxlength="1"
+          numpad
+          realMaxLength="1"
+          secretInput
+          type="text"
+        />
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="type === 'OTP'">
+      <div
+        *ngFor="let input of otpInputs; let i = index"
+        class="input"
+      >
+        <input
+          (focusin)="inputFocusIn(i)"
+          (keyup)="inputKeyUp($event)"
+          maxlength="1"
+          numpad
+          realMaxLength="1"
+          type="text"
+        />
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+@import "@digipay/base-style/swatch";
+
+:host {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: $swatch_white_900;
+}
+
+app-header{
+    width: 100%;
+}
+
+app-user-login-activity{
+    width: 100%;
+}

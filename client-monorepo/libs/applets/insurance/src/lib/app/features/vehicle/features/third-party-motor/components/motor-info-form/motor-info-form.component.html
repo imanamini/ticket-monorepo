@@ -1,0 +1,35 @@
+<form [formGroup]="form()" class="model-motorcycle-form">
+  <ui-form-field
+          data-tracking-id="input-model-motor-cycle"
+          [error]="form()?.controls?.model?.errors"
+          [errorMessageMapper]="{ required: '' }"
+          [required]="true"
+          [options]="modelMotorcycleTypes()"
+          [showRadioOptions]="true"
+          [searchable]="false"
+          [showError]="showError() ? 'show':'auto'"
+          class="w-100"
+          type="select"
+          label="مدل موتور سیکلت"
+          selectOpenType="auto"
+          formControlName="model"
+          inputType="text"
+          selectBottomSheetMaxHeight="90vh">
+  </ui-form-field>
+  <ui-form-field
+          data-tracking-id="input-year-motor-cycle"
+          [error]="form().controls.buildYear.errors"
+          [errorMessageMapper]="{ required: '' }"
+          [options]="yearList()"
+          [showRadioOptions]="true"
+          [searchable]="false"
+          [showError]="showError()?'show':'auto'"
+          [required]="true"
+          class="w-100"
+          type="select"
+          label="سال ساخت موتور سیکلت"
+          selectOpenType="auto"
+          formControlName="buildYear"
+          selectBottomSheetMaxHeight="90vh">
+  </ui-form-field>
+</form>

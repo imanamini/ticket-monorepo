@@ -1,0 +1,6 @@
+form {
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

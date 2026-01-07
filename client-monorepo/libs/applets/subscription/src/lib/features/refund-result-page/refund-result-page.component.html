@@ -1,0 +1,34 @@
+<div
+  class="container"
+  [ngClass]="refundResult?.image"
+>
+  <div class="content">
+    <div
+      class="close-icon"
+      (click)="handleClickButton()"
+    ></div>
+    <div
+      class="image"
+      [ngClass]="refundResult?.image"
+    ></div>
+    @if (refundResult?.title) {
+      <span class="title">{{ refundResult?.title }}</span>
+    }
+    @if (refundResult?.description) {
+      <p class="description">
+        {{ refundResult?.description }}
+      </p>
+    }
+    @if (refundResult?.isCap) {
+      <subscription-applet-refund-cap-table></subscription-applet-refund-cap-table>
+    }
+    <ngx-button
+      [style]="'tinted-on-back'"
+      class="confirm-button"
+      [fullWidth]="true"
+      (clickHandler)="handleClickButton()"
+    >
+      {{ refundResult?.buttonText }}
+    </ngx-button>
+  </div>
+</div>

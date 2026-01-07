@@ -1,0 +1,46 @@
+<section class="digipay__map">
+  <div class="digipay__map-contain">
+    <div class="container">
+      <div class="section-title text-align-center">
+        <div
+          *ngIf="templateData && templateData.mainContact"
+          class="title"
+        >
+          <div
+            *ngIf="templateData.mainContact.internal"
+            class="badge"
+          >
+            <span>داخلی {{ templateData.mainContact.internal }} </span>
+          </div>
+          <a [href]="'tel:' + templateData.mainContact.phone">
+            <span>{{ templateData.mainContact.phone }}</span>
+          </a>
+        </div>
+        <div class="subtitle">
+          <span *ngIf="templateData && templateData.mainContact">
+            {{ templateData.mainContact.title }}
+          </span>
+        </div>
+      </div>
+      <div class="section-title__desc">
+        <span *ngIf="templateData && templateData.mainContact">{{ templateData.mainContact.address }}</span>
+      </div>
+      <div class="as-digipay__email">
+        <a
+          *ngIf="templateData && templateData.mainContact"
+          [href]="'mailto:' + templateData.mainContact.email"
+        >
+          <span>{{ templateData.mainContact.email }}</span>
+        </a>
+      </div>
+    </div>
+    <div class="digipay__map__img">
+      <div *ngIf="templateData && templateData.mainContact && templateData.mainContact.map">
+        <img
+          [src]="templateData.mainContact.map.url"
+          alt="Digipay's location"
+        />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,94 @@
+<div
+  [class]="{
+    card: true,
+    selected: selected(),
+    'with-penalty-waiver': penaltyWaiverAmount(),
+  }"
+  (click)="cardClickHandler()"
+>
+  @if (billingCycleDate()) {
+    <div class="card-title d-flex align-items-center">
+      <app-credit-checkbox
+        class="icon"
+        [id]="id()"
+        [checked]="selected()"
+        [isLocked]="isLocked()"
+        (checkedChange)="checkHandler($event)"
+        (lockedClick)="onLockedClick.emit()"
+        click-stop-propagation
+      />
+
+      <div class="text">
+        {{ title() }}
+      </div>
+    </div>
+  }
+
+  <div class="d-flex align-items-center justify-content-space-between">
+    <div class="count-tick">
+      @if (!billingCycleDate()) {
+        <app-credit-checkbox
+          class="icon"
+          [id]="id()"
+          [checked]="selected()"
+          [isLocked]="isLocked()"
+          (checkedChange)="checkHandler($event)"
+          (lockedClick)="onLockedClick.emit()"
+        />
+      }
+
+      {{ installmentOrderTitle() }}
+    </div>
+
+    <div class="due-date">
+      {{ 'سررسید: ' + (dueDate() | jalaliDate: 'jYYYY/jMM/jDD') }}
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="d-flex align-items-center justify-content-space-between">
+    <div>
+      <div class="d-flex align-items-center">
+        <div class="amount">
+          {{ totalAmount()! - (penaltyAmount()! - penaltyWaiverAmount()) | IRR: 'hideRial' }}
+        </div>
+        <div class="unit is-currency">ریال</div>
+      </div>
+
+      @if (penaltyAmount()) {
+        <div class="d-flex align-items-center gap-tiny">
+          <div class="penalty is-currency">
+            {{ '+ ' + (penaltyAmount() | IRR: 'hideRial') + ' ریال جریمه دیرکرد' }}
+          </div>
+
+          @if (penaltyWaiverAmount()) {
+            <ngx-badge
+              [hasIcon]="true"
+              [mode]="'fill'"
+              [size]="'sm'"
+              [status]="'success'"
+            >
+              <ngx-icon
+                badge-icon
+                [name]="'check-circle'"
+                [type]="'linear'"
+                [iconSize]="'16px'"
+              />
+              بخشش جریمه
+            </ngx-badge>
+          }
+        </div>
+      }
+    </div>
+
+    <ngx-button
+      click-stop-propagation
+      (clickHandler)="onShowDetail.emit()"
+      [size]="'tiny'"
+      [style]="'link'"
+    >
+      جزئیات
+    </ngx-button>
+  </div>
+</div>

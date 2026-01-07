@@ -1,0 +1,35 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.login-index {
+  position: relative;
+
+  &.desktop {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 12px;
+    width: 520px;
+    border: 1px solid #dee3e7;
+    height: 524px;
+    animation: fadein .4s forwards ease-out;
+  }
+
+  .OTP-wrapper {
+    padding: 25px;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+    top: 45%;
+  }
+  70% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 1;
+    top: 50%;
+  }
+}

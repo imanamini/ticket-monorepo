@@ -1,0 +1,303 @@
+<common-ui-components-page-layout [title]="'اطلاعات کاربری'">
+  <div class="user-info px-plus">
+    <div class="user-info-top w-100 d-flex flex-column align-items-center justify-content-center gap-small py-big">
+      <div
+        class="user-info-top-avatarbox radius-rounded"
+        [ngClass]="{ bg: !isLoading() }"
+      >
+        @if (!isLoading() && !fileUploading()) {
+          @if (user()?.imageId) {
+            <ui-api-image
+              #profileImage
+              [styles]="{ height: '100%', width: '100%', borderRadius: '50%' }"
+              [imageId]="user()?.imageId ?? ''"
+            ></ui-api-image>
+          }
+          <div
+            class="user-info-top-avatarbox-upload radius-rounded surface-brand d-flex align-items-center justify-content-center cursor-pointer border-color-air border-700"
+            (click)="handleUploadClick()"
+          >
+            <common-icon-dp-icon
+              [classes]="'text-oninvert-high'"
+              [icon]="'Camera'"
+              [iconType]="'linear'"
+              [iconSize]="'22'"
+            ></common-icon-dp-icon>
+          </div>
+        } @else {
+          <lib-ngx-skeleton-loading
+            [height]="'80px'"
+            [width]="'80px'"
+            [classes]="'radius-rounded'"
+          ></lib-ngx-skeleton-loading>
+        }
+        <input
+          #uploader
+          hidden
+          type="file"
+          accept="image/png, image/jpeg"
+          (change)="onImageSelect($event)"
+        />
+      </div>
+      <div class="user-info-top-cellnumber ltr st-4">
+        @if (!isLoading()) {
+          {{ user()?.cellNumber | formattedCellNumber }}
+        } @else {
+          <lib-ngx-skeleton-loading
+            [height]="'32px'"
+            [width]="'120px'"
+            [classes]="'radius-medium'"
+          ></lib-ngx-skeleton-loading>
+        }
+      </div>
+    </div>
+    <form
+      class="user-info-detail w-100"
+      [formGroup]="getForm('primary')"
+    >
+      <div class="user-info-detail-titlebox d-flex align-items-center justify-content-start gap-small">
+        <div class="user-info-detail-titlebox-title c-2 text-onback-low">اطلاعات اولیه</div>
+        <div class="user-info-detail-titlebox-hr border-b-300 border-color-light"></div>
+      </div>
+      <div class="mt-medium">
+        @if (!isLoading()) {
+          <ui-form-field
+            [error]="primaryForm.controls['name'].errors"
+            [disabled]="primaryForm.controls['name'].disabled"
+            [formControlName]="'name'"
+            [showError]="'show'"
+            [label]="'نام'"
+            [maxSize]="20"
+            [errorMessageMapper]="{
+              minlength: 'نام باید حداقل شامل ۲ کارکتر باشد',
+              maxlength: 'نام باید کمتر از 20 کارکتر باشد',
+            }"
+            [type]="'input'"
+            [hasCleaner]="true"
+          ></ui-form-field>
+        } @else {
+          <lib-ngx-skeleton-loading
+            [height]="'54px'"
+            [classes]="'radius-medium'"
+          ></lib-ngx-skeleton-loading>
+        }
+      </div>
+      <div class="mt-small">
+        @if (!isLoading()) {
+          <ui-form-field
+            [error]="primaryForm.controls['surname'].errors"
+            [disabled]="primaryForm.controls['surname'].disabled"
+            [formControlName]="'surname'"
+            [label]="'نام خانوادگی'"
+            [maxSize]="30"
+            [errorMessageMapper]="{
+              minlength: 'نام خانوادگی باید حداقل شامل ۲ کارکتر باشد',
+              maxlength: 'نام خانوادگی باید کمتر از 30 کارکتر باشد',
+            }"
+            [type]="'input'"
+            [hasCleaner]="true"
+          ></ui-form-field>
+        } @else {
+          <lib-ngx-skeleton-loading
+            [height]="'54px'"
+            [classes]="'radius-medium'"
+          ></lib-ngx-skeleton-loading>
+        }
+      </div>
+      <div class="mt-small w-100 d-flex align-items-center justify-content-center gap-small">
+        <div class="user-info-detail-item">
+          @if (!isLoading()) {
+            <ui-form-field
+              [error]="primaryForm.controls['gender'].errors"
+              [disabled]="primaryForm.controls['gender'].disabled"
+              [formControlName]="'gender'"
+              [label]="'جنسیت'"
+              [searchable]="false"
+              [options]="genderOptions"
+              [type]="'select'"
+            ></ui-form-field>
+          } @else {
+            <lib-ngx-skeleton-loading
+              [height]="'54px'"
+              [classes]="'radius-medium'"
+            ></lib-ngx-skeleton-loading>
+          }
+        </div>
+        <div class="user-info-detail-item">
+          @if (!isLoading()) {
+            <ui-form-field
+              [error]="primaryForm.controls['birthDate'].errors"
+              [disabled]="primaryForm.controls['birthDate'].disabled"
+              [formControlName]="'birthDate'"
+              [label]="'تاریخ تولد'"
+              [type]="'date'"
+              [dateRange]="'past'"
+            ></ui-form-field>
+          } @else {
+            <lib-ngx-skeleton-loading
+              [height]="'54px'"
+              [classes]="'radius-medium'"
+            ></lib-ngx-skeleton-loading>
+          }
+        </div>
+      </div>
+      <div class="mt-small">
+        @if (!isLoading()) {
+          <ui-form-field
+            [error]="primaryForm.controls['nationalCode'].errors"
+            [disabled]="primaryForm.controls['nationalCode'].disabled"
+            [formControlName]="'nationalCode'"
+            [label]="'کد ملی'"
+            [required]="true"
+            [readonly]="user()?.isNationalCodeVerified || false"
+            [inputType]="'text'"
+            [isNumericKeyboard]="true"
+            [maxSize]="10"
+            [convertNonEnglishDigits]="true"
+            [showError]="showErrorMessage() ? 'show' : 'auto'"
+            [errorMessageMapper]="{
+              required: 'وارد کردن کد ملی الزامیست',
+              invalidNotionalCode: 'کد ملی وارد شده معتبر نیست',
+              invalidShahkar: 'کدملی وارد شده برای مالک این شماره موبایل نمی‌باشد.',
+            }"
+            [hasHintStar]="user()?.isNationalCodeVerified || false"
+            [hint]="
+              user()?.isNationalCodeVerified
+                ? 'کد ملی شما با توجه به نتیجه شاهکار، قابل تغییر نیست.'
+                : 'شما برای انجام تراکنش و یا آغاز فرایند در اپلیکیشن، نیازمند ثبت کد ملی خود می‌باشید.'
+            "
+            [lock]="user()?.isNationalCodeVerified || false"
+            [type]="'input'"
+            [hasCleaner]="!user()?.isNationalCodeVerified"
+          ></ui-form-field>
+        } @else {
+          <lib-ngx-skeleton-loading
+            [height]="'54px'"
+            [classes]="'radius-medium'"
+          ></lib-ngx-skeleton-loading>
+        }
+      </div>
+    </form>
+    <form
+      class="user-info-detail w-100 mt-huge"
+      [formGroup]="getForm('address')"
+    >
+      <div class="user-info-detail-titlebox d-flex align-items-center justify-content-start gap-small">
+        <div class="user-info-detail-titlebox-title c-2 text-onback-low">اطلاعات آدرس</div>
+        <div class="user-info-detail-titlebox-hr border-b-300 border-color-light"></div>
+      </div>
+      <div class="mt-medium">
+        @if (!isLoading()) {
+          <ui-form-field
+            [error]="addressForm.controls['email'].errors"
+            [disabled]="addressForm.controls['email'].disabled"
+            [formControlName]="'email'"
+            [label]="'ایمیل'"
+            [inputType]="'email'"
+            [type]="'input'"
+            [allowedKeyDown]="isEmailCharacter"
+            [hasCleaner]="true"
+          ></ui-form-field>
+        } @else {
+          <lib-ngx-skeleton-loading
+            [height]="'54px'"
+            [classes]="'radius-medium'"
+          ></lib-ngx-skeleton-loading>
+        }
+      </div>
+      <div class="mt-small">
+        @if (!isLoading()) {
+          <ui-form-field
+            [error]="addressForm.controls['postalCode'].errors"
+            [disabled]="addressForm.controls['postalCode'].disabled"
+            [formControlName]="'postalCode'"
+            [label]="'کد پستی'"
+            [inputType]="'text'"
+            [isNumericKeyboard]="true"
+            [maxSize]="10"
+            [convertNonEnglishDigits]="true"
+            [errorMessageMapper]="{
+              minlength: 'کد پستی باید ۱۰ رقم باشد',
+              maxlength: 'کد پستی باید ۱۰ رقم باشد',
+              pattern: 'کد پستی فقط باید شامل اعداد باشد',
+            }"
+            [type]="'input'"
+            [hasCleaner]="true"
+          ></ui-form-field>
+        } @else {
+          <lib-ngx-skeleton-loading
+            [height]="'54px'"
+            [classes]="'radius-medium'"
+          ></lib-ngx-skeleton-loading>
+        }
+      </div>
+      <div class="mt-small">
+        @if (!isLoading()) {
+          <ui-form-field
+            [error]="addressForm.controls['phoneNumber'].errors"
+            [disabled]="addressForm.controls['phoneNumber'].disabled"
+            [formControlName]="'phoneNumber'"
+            [label]="'تلفن ثابت'"
+            [inputType]="'text'"
+            [isNumericKeyboard]="true"
+            [maxSize]="11"
+            [convertNonEnglishDigits]="true"
+            [errorMessageMapper]="{
+              minlength: 'تلفن ثابت باید پیش شماره شهر و ۱۱ رقم باشد',
+              maxlength: 'تلفن ثابت باید پیش شماره شهر و ۱۱ رقم باشد',
+              pattern: 'تلفن ثابت فقط باید شامل اعداد باشد',
+            }"
+            [type]="'input'"
+            [hasCleaner]="true"
+          ></ui-form-field>
+        } @else {
+          <lib-ngx-skeleton-loading
+            [height]="'54px'"
+            [classes]="'radius-medium'"
+          ></lib-ngx-skeleton-loading>
+        }
+      </div>
+      <div class="mt-small">
+        @if (!isLoading()) {
+          <ui-form-field
+            [error]="addressForm.controls['address'].errors"
+            [disabled]="addressForm.controls['address'].disabled"
+            [formControlName]="'address'"
+            [label]="'آدرس'"
+            [inputType]="'text'"
+            [multiLine]="true"
+            [errorMessageMapper]="{
+              minlength: 'آدرس باید بین ۱۲ تا 99 کارکتر باشد',
+              maxlength: 'آدرس باید بین ۱۲ تا 99 کارکتر باشد',
+            }"
+            [type]="'input'"
+            [hasCleaner]="true"
+          ></ui-form-field>
+        } @else {
+          <lib-ngx-skeleton-loading
+            [height]="'54px'"
+            [classes]="'radius-medium'"
+          ></lib-ngx-skeleton-loading>
+        }
+      </div>
+    </form>
+    <div class="mt-huge mb-medium w-100">
+      @if (!isLoading()) {
+        <ngx-button
+          (clickHandler)="submitForm()"
+          [isLoading]="isSubmitting()"
+          [disabled]="!primaryForm.valid || !addressForm.valid"
+          [style]="'fill'"
+          [fullWidth]="true"
+        >
+          ذخیره تغییرات
+        </ngx-button>
+      } @else {
+        <lib-ngx-skeleton-loading
+          [height]="'54px'"
+          [classes]="'radius-medium'"
+        ></lib-ngx-skeleton-loading>
+      }
+    </div>
+  </div>
+</common-ui-components-page-layout>

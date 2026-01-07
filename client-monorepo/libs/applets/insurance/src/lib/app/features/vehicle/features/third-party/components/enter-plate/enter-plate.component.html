@@ -1,0 +1,42 @@
+<form [formGroup]="enterPlateForm()"
+      class="enter-plate d-flex flex-column align-items-center surface-dim-level-1">
+  <div class="plate-wrapper d-flex align-items-center justify-content-center">
+    @defer (on viewport) {
+      <ngx-plate
+        (completePlate)="handleIsPlateComplete($event)"
+        (plateChange)="handlePlateChange($event)"
+        [textState]="'error'"
+        [showText]="showPlateError()"
+        [type]="'car'"
+        [text]="plateError()"
+        [plate]="this.data().plate"
+        style="width: 344px; height: 72px;"
+      ></ngx-plate>
+    } @placeholder {
+      <lib-ngx-skeleton-loading class="w-100 h-100"></lib-ngx-skeleton-loading>
+    }
+  </div>
+
+  @defer (on viewport) {
+    <ui-form-field [convertNonEnglishDigits]="true"
+                   [errorMessageMapper]="errorMessageMapper"
+                   [error]="enterPlateForm().controls.nationalCode.errors"
+                   [hasCleaner]="true"
+                   [isNumericKeyboard]="true"
+                   [maxSize]="10"
+                   [required]="true"
+                   [showError]="showNationalCodeError() ? 'show' : 'hidden'"
+                   class="plate-nationalCode"
+                   formControlName="nationalCode"
+                   hint="بر روی برگ سبز یا کارت خودرو قابل مشاهده است."
+                   inputType="text"
+                   label="کدملی صاحب پلاک"
+                   placeholder="مثال: ۰۰۷۹۹۹۹۹۹۹"
+                   data-tracking-id="plate-ssn-step"
+                   style="width: 344px; height: 72px;"
+                   type="input">
+    </ui-form-field>
+  } @placeholder {
+    <lib-ngx-skeleton-loading class="w-100" height="55px"></lib-ngx-skeleton-loading>
+  }
+</form>

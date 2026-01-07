@@ -1,0 +1,145 @@
+@import "@digipay/base-style/styleguide";
+
+.black-friday-categories-product {
+  padding: 120px 0;
+  position: relative;
+
+  .title {
+    color: #FFF;
+    text-align: center;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 32px; /* 100% */
+    margin-bottom: map-get($spacing-sizes, 'giant');
+  }
+
+  .filter-cat {
+    border: 1px solid #B4B7BD;
+    color: #B4B7BD;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 450;
+    line-height: 20px; /* 166.667% */
+    padding: map-get($spacing-sizes, 'tiny') map-get($spacing-sizes, 'pony');
+    text-align: center;
+
+    &.active {
+      border: 1px solid #DFE1E5;
+      background: rgba(255, 255, 255, 0.80);
+      color: #000 !important;
+    }
+  }
+
+  .products {
+    .product-item {
+      position: relative;
+      display: inline-block;
+      border-radius: 24px;
+      overflow: hidden;
+      z-index: 0;
+
+      img {
+        width: 227px;
+        height: 267px;
+        display: block;
+        border-radius: inherit;
+        object-fit: cover;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 3px;
+        border-radius: inherit;
+        background: linear-gradient(
+            223.86deg,
+            rgba(255, 255, 255, 0.5) -7.28%,
+            rgba(49, 26, 21, 0.5) 55.04%,
+            rgba(224, 224, 224, 0.5) 105.44%
+        );
+
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        z-index: 1;
+        pointer-events: none; // allow clicks on the image
+        background-size: 200% 200%;
+      }
+
+    }
+  }
+}
+
+@keyframes smoothFlow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1280px) {
+  .black-friday-categories-product {
+    padding-top: 84px;
+    padding-bottom: 50px;
+
+    &::before {
+      z-index: 2;
+      pointer-events: none;
+      inset: -45% 0% 36%;
+      height: 100%;
+      width: 100%;
+      background-position: center;
+      background-size: auto;
+    }
+
+    .title {
+      font-size: 18px;
+      width: 215px;
+      margin: 0 auto 20px;
+      text-align: center;
+    }
+
+    .filter-cat {
+      height: 28px;
+    }
+
+    .products {
+      gap: 12px !important;
+
+      .product-item {
+        width: 161px;
+        height: 189px;
+        border-radius: 16px !important;
+
+        img {
+          width: 161px;
+          height: 189px;
+          border-radius: 16px !important;
+        }
+      }
+
+    }
+
+  }
+}
+
+@media (max-width: 374px) {
+  .black-friday-categories-product {
+    .products {
+      .product-item {
+        width: 154px;
+        height: 197px;
+
+        img {
+          width: inherit;
+        }
+      }
+
+    }
+
+  }
+}

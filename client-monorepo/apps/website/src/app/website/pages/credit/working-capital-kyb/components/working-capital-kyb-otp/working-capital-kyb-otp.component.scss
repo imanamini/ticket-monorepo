@@ -1,0 +1,330 @@
+@import "../../../../../../style/globals";
+
+::ng-deep {
+  .mat-dialog-container {
+    padding: 40px 40px 32px 40px;
+    border-radius: 24px;
+  }
+
+  .cdk-overlay-dark-backdrop {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(21.5px);
+  }
+
+  .mat-form-field-invalid .mat-input-element {
+    border: 1px solid #FF2638 !important;
+    background: #FFEEF3 !important;
+  }
+}
+
+.login-applet {
+  position: relative;
+  direction: rtl;
+
+  &.get-password {
+    height: 100%;
+  }
+
+  &.login-success {
+    padding: 0 28px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+  }
+
+  &:not(.rules) .close {
+    position: absolute;
+
+    &.desktop {
+      top: 0;
+      left: 0;
+      cursor: pointer;
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      background: #F2F5F8;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+
+    &.mobile {
+      display: none;
+      top: 0;
+      margin-bottom: 12px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+  }
+
+  &.rules .close {
+    position: absolute;
+
+    &.desktop {
+      top: 0;
+      left: 0;
+      cursor: pointer;
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      background: #F2F5F8;
+      align-items: center;
+      justify-content: center;
+      display: none;
+    }
+
+    &.mobile {
+      display: none;
+      top: 0;
+      margin-bottom: 12px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+  }
+
+  .title {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .subtitle {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .ctas {
+    display: flex;
+    gap: 22px;
+    margin-top: 24px;
+
+    &.otp, &.get-password {
+      margin-top: 48px;
+    }
+  }
+
+  .text-error {
+    font-weight: 400;
+    font-size: 12px;
+    color: #FF2638;
+    margin-top: 8px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1.5;
+  }
+
+  // State -> otp
+
+  .timer-btn {
+    background: #F2F5F8;
+    line-height: unset;
+    width: 48%;
+    flex-grow: 1;
+    border-radius: 12px;
+    border: 1px solid transparent;
+
+    span {
+      color: #8D99A8;
+    }
+
+    &.time-over {
+      background: #F0F5FF;
+
+      span {
+        color: #0040FF;
+      }
+    }
+  }
+
+  .disable-timer {
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .otp-inputs-wrapper {
+    //width: 400px;
+    //max-width: 90%;
+    margin: 0 auto;
+
+    .inputs {
+      gap: 10px;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+    }
+
+    mat-error {
+      text-align: right;
+      font-size: 12px;
+    }
+  }
+
+  .otp-input {
+    width: 20%;
+    max-width: 56px;
+    margin: 0;
+    font-size: 14px;
+    box-sizing: border-box;
+    //padding: 0 5px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .otp-input input {
+    direction: ltr;
+    height: 48px;
+    text-align: center;
+    border: 1px solid $swatch_steel_200;
+    background: #F2F5F8;
+    border-radius: 12px;
+    font-family: "YekanBakh", Roboto, "Helvetica Neue", sans-serif;
+  }
+
+  .otp-input input:focus {
+    color: #131415;
+  }
+
+  ::ng-deep {
+    .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+      padding-bottom: unset;
+    }
+
+    .mat-form-field-infix {
+      width: unset;
+      padding: unset;
+      border-top: unset;
+    }
+
+    .mat-progress-bar {
+      border-radius: 8px;
+    }
+
+    .mat-progress-bar-fill::after {
+      background: #0040FF;
+    }
+  }
+
+  .edit-mobile {
+    padding: 0 18px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    background: #F0F5FF;
+    border-radius: 20px;
+    width: fit-content;
+    height: 28px;
+    color: #0040FF;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 2;
+    margin: auto auto 24px;
+  }
+
+
+  // Login success
+  .login-success-text {
+    font-weight: 500;
+    font-size: 14px;
+    color: #8D99A8;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  // Rules
+  .rules {
+    color: #424C5C;
+    font-weight: 500;
+    font-size: 12px;
+    margin-top: 16px;
+    text-align: center;
+
+    span {
+      color: #0040FF;
+      cursor: pointer
+    }
+
+  }
+
+  .rules-title {
+    font-weight: 700;
+    font-size: 20px;
+    color: #424C5C;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 12px;
+
+    .back {
+      cursor: pointer;
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      background: #F2F5F8;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      margin-left: 12px;
+    }
+  }
+
+
+  .rules-subtitle {
+    font-weight: 700;
+    font-size: 14px;
+    color: #424C5C;
+    line-height: 1.5;
+  }
+
+  .rules-description {
+    font-weight: 500;
+    font-size: 14px;
+    color: #424C5C;
+    line-height: 1.5;
+    max-height: 270px;
+    overflow: auto;
+    text-align: justify;
+    padding-left: 12px;
+  }
+}
+
+@media(max-width: 744px) {
+  .login-applet.get-password {
+    height: 470px;
+  }
+}
+
+@media (max-width: 400px) {
+  .login-applet:not(.rules) .close {
+    &.desktop {
+      display: none;
+    }
+
+    &.mobile {
+      display: block;
+    }
+  }
+
+
+  ::ng-deep {
+    .cdk-global-overlay-wrapper {
+      align-items: end !important;
+    }
+
+    .cdk-overlay-pane {
+      max-width: 100% !important;
+    }
+
+    .mat-dialog-container {
+      padding: 16px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+<header>
+  <div
+    class="container"
+    id="navbar"
+  >
+    <a
+      id="header-navbar-logo"
+      routerLink="/"
+    >
+      <img
+        alt="دیجی‌پی"
+        height="33"
+        ngSrc="/apps/website/src/assets/images/logos/mydigipay-fa.svg"
+        width="65"
+      />
+    </a>
+    <div id="navbar-menu-items">
+      <ul>
+        <li
+          (click)="openDigikalaCheque()"
+          class="navbar-menu-item"
+        >
+          <span> لیست محصولات </span>
+        </li>
+        <li
+          class="navbar-menu-item"
+          appScrollToAnchor="get-loan"
+        >
+          <span> شرایط دریافت </span>
+        </li>
+        <li
+          class="navbar-menu-item"
+          appScrollToAnchor="calculator"
+        >
+          <span> محاسبه اقساط </span>
+        </li>
+        <li
+          class="navbar-menu-item"
+          appScrollToAnchor="section-flow"
+        >
+          <span> مراحل دریافت </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

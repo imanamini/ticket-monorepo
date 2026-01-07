@@ -1,0 +1,9 @@
+export const SUBSCRIPTION_BASE_URL = 'subscription';
+
+export const SUBSCRIPTION_URLS = {
+  ORDER_STATE: SUBSCRIPTION_BASE_URL,
+  COMPLETE_INFO: SUBSCRIPTION_BASE_URL + '/complete-info',
+  UPLOAD_IMAGES: SUBSCRIPTION_BASE_URL + '/upload-images',
+  HEALTH_CHECK: SUBSCRIPTION_BASE_URL + '/health-check',
+  COMPLETE_JOURNEY: SUBSCRIPTION_BASE_URL + '/complete-journey',
+};

@@ -1,0 +1,34 @@
+<div
+  class="d-flex surface-back radius-medium px-plus py-minus gap-minus align-items-center cursor-pointer"
+  commonUtilitiesAppletOnHold
+  (handleOnHold)="moreActions()"
+  (click)="handleClick($event)"
+>
+  <div class="surface-elevated my-tiny p-low radius-rounded">
+    <common-icon-dp-icon
+      [iconSize]="'24'"
+      [icon]="C2C_FREQUENT_TRANSACTION_ICON_NAME_MAPPING[transaction()!.iconId]"
+      [iconType]="'bold'"
+      [classes]="'text-onback-brand'"
+    ></common-icon-dp-icon>
+  </div>
+  <div class="d-flex flex-column flex-basis-1 gap-tiny overflow-hidden">
+    <span class="l-1 text-onback-medium">{{ transaction()!.title }}</span>
+    <div class="d-flex text-onback-low gap-tiny c-2 flex-grow">
+      <span class="flex-shrink-0">{{ transaction()!.amount | thousands }} ریال</span>
+      -
+      <span class="text-ellipsis text-nowrap overflow-hidden">{{ transaction()!.subTitle }}</span>
+    </div>
+  </div>
+  <div class="d-flex align-items-center gap-tiny mr-auto">
+    @if (clickable()) {
+      <ngx-button
+        [style]="'link'"
+        [size]="'small'"
+        [mode]="'icon-only'"
+        [leftIcon]="{ name: 'Arrow-Left', type: 'linear' }"
+      >
+      </ngx-button>
+    }
+  </div>
+</div>

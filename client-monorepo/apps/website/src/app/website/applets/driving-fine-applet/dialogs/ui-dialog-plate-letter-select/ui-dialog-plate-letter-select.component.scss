@@ -1,0 +1,36 @@
+@import "globals";
+
+::ng-deep {
+  .mat-mdc-dialog-container {
+    border-radius: 16px !important;
+    padding: 16px !important;
+  }
+}
+
+.ui-dialog-letter-select {
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+
+  .top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+      color: $swatch_steel_500;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    span {
+      cursor: pointer;
+    }
+  }
+
+  .plate-letters {
+    margin-top: 20px;
+  }
+}

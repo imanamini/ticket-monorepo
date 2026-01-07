@@ -1,0 +1,70 @@
+@import "base-style/styleguide";
+
+:host {
+  @include flex-full-center;
+}
+
+.main {
+  &-layout {
+    margin: auto auto;
+    display: flex;
+    flex-direction: column;
+    padding: env(safe-area-inset-top) env(safe-area-inset-top) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    width: 100%;
+    height: 100dvh;
+    --container-width-large: 552px;
+    --container-height-large: 100vh;
+    max-width: min(map-get($container-width, 'large'), 100svw);
+    max-height: min(map-get($container-height, 'large'), 100dvh);
+    overflow: auto;
+    position: relative;
+    @include medium_screen {
+      max-width: min(map-get($container-width, 'medium'), 100svw);
+      max-height: min(map-get($container-height, 'medium'), 100dvh);
+    }
+    @include small_screen {
+      max-width: min(map-get($container-width, 'small'), 100svw);
+      max-height: min(map-get($container-height, 'small'), 100dvh);
+    }
+
+    &-header {
+      flex: 0 0 auto;
+    }
+
+    &-body {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: auto;
+      flex: 1 1 auto;
+
+      &-container {
+        flex-grow: 1;
+        width: 100%;
+
+        .support-messenger-button-mobile {
+          position: fixed;
+          left: 0;
+          bottom: 100px;
+          width: 40px;
+          height: 40px;
+          border: none;
+          background-color: #b4c7ff;
+          background-image: url("apps/dpx/src/assets/icon-general-support.svg");
+          background-repeat: no-repeat;
+          background-position: center center;
+          border-top-right-radius: 12px;
+          border-bottom-right-radius: 12px;
+          cursor: pointer;
+          z-index: 9999999;
+        }
+      }
+    }
+
+    &-navigation {
+      flex: 0 0 auto;
+    }
+  }
+}

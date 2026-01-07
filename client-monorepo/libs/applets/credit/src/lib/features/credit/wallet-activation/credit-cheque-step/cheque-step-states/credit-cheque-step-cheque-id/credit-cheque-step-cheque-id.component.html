@@ -1,0 +1,98 @@
+<app-credit-app-bar
+  (onBackButtonClick)="prevStep.emit()"
+  [backButton]="true"
+  [title]="'چک ' + (chequeOrder() ? translateOrder(chequeOrder()!) : 'ضمانت')"
+></app-credit-app-bar>
+<app-credit-stepper
+  [currentStep]="1"
+  [steps]="5"
+  [title]="'ثبت شماره چک'"
+></app-credit-stepper>
+<div class="rtl d-flex flex-column flex-grow w-100">
+  <div class="d-flex flex-column flex-grow w-100">
+    <div class="d-flex flex-column flex-grow w-100">
+      <div class="pt-plus px-plus mb-huge">
+        <div class="lottie-container radius-medium overflow-hidden">
+          <ng-lottie [options]="options"></ng-lottie>
+        </div>
+      </div>
+      <div class="px-plus d-flex flex-column flex-grow w-100">
+        <div [formGroup]="form">
+          <label class="b-2 text-onback-high mb-minus d-block">شماره ۱۶ رقمی مندرج بر روی چک را وارد کنید. </label>
+          <ui-form-field
+            [errorMessageMapper]="{
+              required: 'شناسه صیاد را وارد کنید.',
+            }"
+            [error]="form.controls['chequeId'].errors"
+            [isNumericKeyboard]="true"
+            [maxSize]="16"
+            formControlName="chequeId"
+            label="شناسه صیاد چک"
+          ></ui-form-field>
+          @if (relationOptions().length > 1) {
+            <ui-form-field
+              [errorMessageMapper]="{
+                required: 'مالکیت چک را انتخاب کنید.',
+              }"
+              [error]="form.controls['ownerRelative'].errors"
+              [options]="relationOptions()"
+              formControlName="ownerRelative"
+              label="مالکیت چک"
+              type="select"
+            ></ui-form-field>
+          }
+        </div>
+        @if (showScanner()) {
+          <div class="d-flex flex-column w-100">
+            <div class="d-flex w-100 flex-row align-items-center mb-plus gap-minus">
+              <ngx-divider
+                [color]="BorderColorsEnum.Light"
+                class="w-100"
+                orientation="horizontal"
+              ></ngx-divider>
+              <span class="b-3 text-onback-medium">یا</span>
+              <ngx-divider
+                [color]="BorderColorsEnum.Light"
+                class="w-100"
+                orientation="horizontal"
+              ></ngx-divider>
+            </div>
+            <ngx-button
+              (clickHandler)="scanBarcode()"
+              [fullWidth]="true"
+              [style]="'tinted-on-elevated'"
+              [mode]="'section'"
+              ngxTrackableId
+              trackerId="barcodeScannerButtonClick"
+              [rightIcon]="{ name: 'scan' }"
+              >اسکن بارکد چک
+            </ngx-button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="w-100 d-flex flex-column gap-medium p-plus align-items-flex-start flex-grow-0">
+    @if (isInstallment() || relationOptions().length === 1) {
+      <ngx-checkbox
+        ngxTrackableId
+        trackerId="chequeOwnerCheckboxClick"
+        class="justify-content-flex-start"
+        (checkedChange)="changeOwnerState($event)"
+        [(checked)]="checkOwner"
+      >
+        <span class="b-2 text-onback-high pr-small">خودم مالک چک هستم.</span>
+      </ngx-checkbox>
+    }
+    <ngx-button
+      (clickHandler)="onSubmit()"
+      [disabled]="form.invalid || showLoading()"
+      [fullWidth]="true"
+      [isLoading]="showLoading()"
+      [style]="'fill'"
+      ngxTrackableId
+      trackerId="chequeIdConfirmButtonClick"
+      >تایید و ادامه
+    </ngx-button>
+  </div>
+</div>

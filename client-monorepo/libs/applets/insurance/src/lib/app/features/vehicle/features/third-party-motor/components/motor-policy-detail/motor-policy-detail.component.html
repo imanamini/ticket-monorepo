@@ -1,0 +1,57 @@
+<div class="motor-policy-detail p-plus surface-high-contrast radius-big">
+  <div class="policy-detail-wrapper h-100">
+    <div class="d-flex flex-row gap-minus">
+      <div class="insurer-logo d-flex align-items-center justify-content-center radius-minus p-small surface-back">
+        <ngx-icon type="linear"
+                  name="motor"
+                  iconSize="24px">
+        </ngx-icon>
+      </div>
+      <div class="vehicle-details-wrapper">
+        <div class="insurer-name text-onback-medium st-8">
+          {{ policyDetail().insurerPartyName }}
+        </div>
+        <div class="d-flex mt-tiny gap-small flex-row align-items-center">
+          <div class="vehicle-detail l-2" tooltipType="hover">
+            {{ policyDetail().motorType }}
+          </div>
+          <div class="divider border-l-300 border-color-tint"></div>
+          <div class="vehicle-detail l-2" tooltipType="hover"
+               [ngxTooltip]="'مدل ' + policyDetail().buildYear">
+            {{ 'مدل ' + policyDetail().buildYear }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="extended-data extended">
+      <div
+              class="d-flex align-items-center justify-content-center mt-plus radius-minus gap-tiny w-100 pt-small pb-small surface-brand-tint">
+        <div class="bt-3">سقف تعهد مالی:</div>
+        <div class="st-8">{{ policyDetail().coverageRate | priceTransformer }}</div>
+      </div>
+
+      <div class="d-flex flex-row policy gap-small mt-plus justify-content-space-between align-items-center">
+        <div class="row d-flex flex-1 flex-column gap-small">
+          <div class="title bt-3">مدت بیمه‌نامه</div>
+          <p class="st-7">{{ policyDetail().duration }}</p>
+        </div>
+        <div class="divider border-l-300 border-color-tint"></div>
+        <div class="row d-flex flex-column flex-1 gap-small">
+          <div class="title bt-3">تخفیف ثالث</div>
+          <p
+                  class="st-7">{{ ( !policyDetail().thirdPartyDiscount ) ? 'بدون تخفیف' : policyDetail().thirdPartyDiscount + '%' }}
+          </p>
+        </div>
+        <div class="divider border-l-300 border-color-tint"></div>
+        <div class="row d-flex flex-column flex-1 gap-small">
+          <div class="title bt-3">تخفیف حوادث راننده</div>
+          <p
+                  class="st-7">{{ ( !policyDetail().driverDiscount || policyDetail().driverDiscount == 'صفر کیلومتر' ) ? 'بدون تخفیف' : policyDetail().driverDiscount + '%' }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

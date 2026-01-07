@@ -1,0 +1,24 @@
+.slider-grid {
+  width: 100%;
+  display: grid;
+  column-gap: var(--Spacing-Spacing-Plus, 20px);
+  row-gap: var(--Spacing-Spacing-Minus, 12px);
+  grid-template-columns:repeat(4, calc(25% - 15px));
+}
+
+.h-70 {
+  height: 70px;
+}
+
+.w-48 {
+  width: 48px;
+}
+
+.size-40 {
+  width: 40px;
+  height: 40px;
+}
+
+.multiply {
+  mix-blend-mode: multiply;
+}

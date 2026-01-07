@@ -1,0 +1,178 @@
+@if (loading()) {
+  <div class="d-flex flex-column gap-medium p-plus">
+    <lib-ngx-skeleton-loading
+      [width]="'100%'"
+      [height]="'56px'"
+      [borderRadius]="'4px'"
+    ></lib-ngx-skeleton-loading>
+    <lib-ngx-skeleton-loading
+      [width]="'100%'"
+      [height]="'40px'"
+      [borderRadius]="'4px'"
+    ></lib-ngx-skeleton-loading>
+    <lib-ngx-skeleton-loading
+      [width]="'100%'"
+      [height]="'450px'"
+      [borderRadius]="'4px'"
+    ></lib-ngx-skeleton-loading>
+    <lib-ngx-skeleton-loading
+      [width]="'100%'"
+      [height]="'150px'"
+      [borderRadius]="'4px'"
+    ></lib-ngx-skeleton-loading>
+  </div>
+} @else if (!loading() && post()) {
+  <div class="d-flex flex-column h-100 surface-elevated">
+    <ngx-app-bar
+      [title]="post()?.username!"
+      [rightButton]="{
+        icon: 'arrow-right',
+        style: 'neutral-link',
+        mode: 'icon-only',
+        size: 'medium',
+      }"
+      (onRightButtonClick)="goBack()"
+    ></ngx-app-bar>
+    <!-- Profile Info -->
+    <div
+      class="d-flex gap-small px-plus align-items-center justify-content-start"
+      (click)="goToProfile()"
+    >
+      <div class="store-logo radius-rounded border-100 border-color-light">
+        <ui-api-image
+          [imageId]="post()?.storeLogoImageId ?? ''"
+          [showFallbackImage]="true"
+          [width]="'36px'"
+          [height]="'36px'"
+        ></ui-api-image>
+      </div>
+      <div class="d-flex flex-column align-items-start gap-atom justify-content-center">
+        <div class="st-8">
+          {{ post()?.storeName ?? 'فروشگاه' }}
+        </div>
+        <div class="l-3">
+          {{ jalaliDate() }}
+        </div>
+      </div>
+    </div>
+    <!-- End Profile Info -->
+    <!-- Post Media -->
+    <div class="media-container w-100 mt-small surface-back">
+      @if (showLikeBadge()) {
+        <div
+          class="like-badge"
+          [ngStyle]="{ bottom: post()?.mediaType !== InstagramMediaTypes.IMAGE ? '68px' : '14px' }"
+        >
+          <ngx-badge
+            [size]="'lg'"
+            [status]="'neutral'"
+            [mode]="'bold'"
+          >
+            <div class="d-flex gap-tiny align-items-center">
+              <ngx-icon
+                [name]="'heart-2'"
+                [iconSize]="'20px'"
+                [type]="'bold'"
+                [classes]="'text-oninvert-high'"
+              ></ngx-icon>
+              <span class="bt-2 text-oninvert-high">{{ likeBadgeText() }}</span>
+            </div>
+          </ngx-badge>
+        </div>
+      }
+      @switch (post()?.mediaType) {
+        @case (InstagramMediaTypes.IMAGE) {
+          <div class="w-100">
+            <img
+              class="w-100"
+              [src]="post()?.downloadableThumbnailUrl"
+            />
+          </div>
+        }
+        @case (InstagramMediaTypes.VIDEO) {
+          @if (post()?.downloadableVideoUrl) {
+            <div class="w-100">
+              <common-ui-components-video-player
+                [videoUrl]="post()?.downloadableVideoUrl!"
+                [controls]="true"
+                [muted]="true"
+                [poster]="post()?.downloadableThumbnailUrl"
+              ></common-ui-components-video-player>
+            </div>
+          } @else {
+            <div class="d-flex justify-content-center align-items-center px-plus py-huge">
+              مشکلی در آدرس ویدئوی دریافتی به وجود آمده است!
+            </div>
+          }
+        }
+        @case (InstagramMediaTypes.SLIDE) {
+          @if (slides().length) {
+            <ngx-dp-carousel
+              [mode]="'CARD'"
+              [visibleItemCount]="1"
+              [(index)]="carouselActiveIndex"
+              [isFixedWidth]="false"
+              [centerMode]="true"
+              [showNavigation]="true"
+              [showButtons]="false"
+              [isFixedGap]="true"
+              [fixedGap]="0"
+              [changeStepThresholdPercentage]="20"
+              [swipeThreshold]="100"
+              [disableNavigationDots]="false"
+              [disableScaling]="true"
+              [navigationContainerClasses]="'surface-elevated'"
+              [enableAutoPlay]="false"
+            >
+              @for (slide of slides(); track $index) {
+                <ng-template ngxDpCarouselSlide>
+                  @if (slide.type === 'image') {
+                    <img
+                      class="w-100"
+                      [src]="slide.url"
+                    />
+                  } @else {
+                    <div class="w-100 h-100">
+                      <common-ui-components-video-player
+                        [videoUrl]="slide.url!"
+                        [controls]="true"
+                        [muted]="true"
+                      ></common-ui-components-video-player>
+                    </div>
+                  }
+                </ng-template>
+              }
+            </ngx-dp-carousel>
+          }
+        }
+      }
+    </div>
+    <!-- END Post Media -->
+
+    <!-- Post Description -->
+    <div
+      #postDescription
+      class="d-flex flex-column justify-content-start align-items-start px-plus gap-atom text-onback-high mt-medium"
+    >
+      <div
+        class="d-flex justify-content-start align-items-center st-6"
+        (click)="goToProfile()"
+      >
+        {{ post()?.username }}
+      </div>
+      <div
+        class="d-flex justify-content-start align-items-start c-3 pb-minus w-100 text-wrap"
+        [innerText]="post()?.caption"
+      ></div>
+    </div>
+    <!-- Post Description -->
+
+    <!-- Buttons -->
+    @if (showCta()) {
+      <div class="social-post-cta p-plus surface-elevated">
+        <stores-applet-social-cta [config]="ctaConfig()"></stores-applet-social-cta>
+      </div>
+    }
+    <!-- End Buttons -->
+  </div>
+}

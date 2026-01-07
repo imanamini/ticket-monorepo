@@ -1,0 +1,96 @@
+@import "../../../../style/globals";
+
+:host ::ng-deep {
+  #layout {
+    background: #f2f5f8;
+  }
+
+  .section-content-nav {
+    background-color: #fff;
+  }
+
+  .digipay-contact-form {
+    background-color: #7381ab;
+    padding-bottom: 128px;
+
+    h2 {
+      color: #fff;
+    }
+
+    .submit-button button {
+      background-color: #001a66;
+      border-color: #001a66;
+    }
+  }
+
+  .introduction-booklet > .container {
+    flex-direction: row-reverse !important;
+  }
+
+  .introduction-booklet .anchor-button-default-icon {
+    display: inline-flex;
+  }
+
+  .introduction-booklet > .container > div {
+    max-width: 50%;
+  }
+
+  .introduction-booklet > .container {
+    > div {
+      order: 2;
+    }
+
+    .image {
+      order: 1;
+    }
+  }
+
+  .introduction-booklet > .container > div img {
+    max-height: 570px;
+    max-width: 100%;
+  }
+
+  .introduction-booklet .container > div {
+    &:first-child {
+      padding-left: 16px;
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .introduction-booklet > .container {
+      flex-direction: column !important;
+    }
+    .introduction-booklet .container > div {
+      &:first-child {
+        max-width: 100%;
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      &:last-child {
+        padding-left: unset;
+        max-width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 744px) {
+    .introduction-booklet > .container > div > h1 {
+      text-align: right;
+    }
+
+    .introduction-booklet > .container > div ::ng-deep app-ui-button {
+      width: 100%;
+    }
+    .introduction-booklet .container > div {
+      &:first-child {
+        text-align: right;
+        padding-left: unset;
+      }
+
+      &:last-child {
+        max-width: 100%;
+      }
+    }
+  }
+}

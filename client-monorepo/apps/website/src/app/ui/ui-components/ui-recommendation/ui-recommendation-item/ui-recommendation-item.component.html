@@ -1,0 +1,22 @@
+<div
+  (click)="onItemClick()"
+  class="recommendation-item"
+>
+  <div class="image">
+    <ui-api-image
+      *ngIf="imageId"
+      [imageId]="imageId"
+      [styles]="{ borderRadius: '50%' }"
+      [width]="imageSize + 'px'"
+    ></ui-api-image>
+  </div>
+  <div class="text">
+    <div class="title">{{ mainText }}</div>
+    <h3
+      *ngIf="subTitle"
+      class="subtitle"
+    >
+      {{ subTitle }}
+    </h3>
+  </div>
+</div>

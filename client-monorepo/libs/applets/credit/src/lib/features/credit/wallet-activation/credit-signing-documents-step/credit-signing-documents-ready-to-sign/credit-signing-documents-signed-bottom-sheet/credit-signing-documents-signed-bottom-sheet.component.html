@@ -1,0 +1,55 @@
+<div class="d-flex flex-column justify-content-center align-items-center w-100 gap-big p-plus rtl">
+  <div class="d-flex flex-column w-100 justify-content-center align-items-center gap-minus pt-big">
+    @if (signImageId()) {
+      <div class="p-medium radius-huge surface-back d-flex flex-column justify-content-center align-items-center">
+        <credit-digipay-image
+          [imageId]="signImageId()!"
+          height="56px"
+          width="auto"
+        ></credit-digipay-image>
+      </div>
+    }
+    <span class="st-3 text-onback-high">با موفقیت امضا شد</span>
+  </div>
+  <div class="d-flex flex-column w-100 gap-small mb-big">
+    <div class="d-flex flex-row justify-content-space-between align-items-center">
+      <span class="st-8 text-onback-medium">سند</span>
+      <span class="bt-2 text-onback-high">{{ document()?.title }}</span>
+    </div>
+    <ngx-divider
+      class="w-100"
+      [orientation]="'horizontal'"
+      [color]="BorderColorsEnum.Air"
+    ></ngx-divider>
+    <div class="d-flex flex-row justify-content-space-between align-items-center">
+      <span class="st-8 text-onback-medium">امضا کننده</span>
+      <span class="bt-2 text-onback-high">{{ fullName() }}</span>
+    </div>
+    <ngx-divider
+      class="w-100"
+      [orientation]="'horizontal'"
+      [color]="BorderColorsEnum.Air"
+    ></ngx-divider>
+    <div class="d-flex flex-row justify-content-space-between align-items-center">
+      <span class="st-8 text-onback-medium">امضا شده در تاریخ</span>
+      <span class="bt-2 text-onback-high">{{ signDate() }}</span>
+    </div>
+  </div>
+  <div class="d-flex flex-column w-100 gap-minus">
+    <ngx-button
+      ngxTrackableId
+      trackerId="signingDocumenNextDocumentButton"
+      (clickHandler)="goToNextDocument()"
+      [fullWidth]="true"
+      >{{ nextButtonLabel() }}
+    </ngx-button>
+    <ngx-button
+      ngxTrackableId
+      trackerId="signingDocumenDownloadDocumentButton"
+      (clickHandler)="downloadDoc()"
+      [fullWidth]="true"
+      [style]="'tinted-on-elevated'"
+      >ذخیره سند
+    </ngx-button>
+  </div>
+</div>

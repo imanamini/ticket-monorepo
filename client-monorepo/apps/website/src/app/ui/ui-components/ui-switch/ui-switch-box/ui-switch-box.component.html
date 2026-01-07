@@ -1,0 +1,12 @@
+<div class="ui-switch-box">
+  <div class="text">
+    <h3 class="title">{{ title }}</h3>
+    <p>{{ subtitle }}</p>
+  </div>
+  <div class="switch">
+    <app-ui-switch
+      (changed)="onSwitchChange($event)"
+      [isOn]="checked"
+    ></app-ui-switch>
+  </div>
+</div>

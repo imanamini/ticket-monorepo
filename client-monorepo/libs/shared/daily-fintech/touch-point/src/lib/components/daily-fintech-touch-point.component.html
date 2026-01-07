@@ -1,0 +1,29 @@
+@if (!isLoading()) {
+  @if (hasValidToShow()) {
+    <div class="main-container mb-medium p-medium radius-minus justify-content-space-between d-flex">
+      <div class="d-flex align-items-center">
+        <common-icon-dp-icon
+          class="pinned-icon"
+          [icon]="asset()?.icon || ''"
+          [classes]="'text-oninvert-medium'"
+          [iconSize]="'24'"
+          [iconType]="'bold'"
+        >
+        </common-icon-dp-icon>
+        <div class="mr-tiny c-2 text-oninvert-high">{{ asset()?.title }}</div>
+      </div>
+      <div class="d-flex align-items-center">
+        <div class="st-6 text-oninvert-high">{{ asset()?.balance | thousands }}</div>
+        <div class="mr-micro c-2 text-oninvert-medium is-currency">ریال</div>
+      </div>
+    </div>
+  }
+} @else {
+  <div class="mb-medium">
+    <lib-ngx-skeleton-loading
+      [height]="'56px'"
+      [width]="'100%'"
+      [classes]="'radius-medium'"
+    ></lib-ngx-skeleton-loading>
+  </div>
+}

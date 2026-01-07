@@ -1,0 +1,11 @@
+<a
+  [routerLink]="'/careers/job/' + jobPost.jobPostId"
+  href="#"
+>
+  <div class="card">
+    <h4 class="card-subtitle">{{ jobPost.jobCategory.englishName }}/{{ jobPost.location }}</h4>
+    <h3 class="card-title">
+      {{ jobPost.title }}
+    </h3>
+  </div>
+</a>

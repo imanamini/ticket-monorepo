@@ -1,0 +1,107 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+:host {
+  width: 100%;
+}
+
+.pricing-wrapper {
+  @include flex-column;
+  border: 1px solid #dee3e7;
+  border-radius: 16px;
+  padding: 16px;
+
+  .device-info {
+    @include flex-row;
+    @include flex-center-between;
+    align-items: stretch;
+    border-bottom: 1px solid #DEE3E7;
+    gap: 8px;
+
+    .detail {
+      padding-bottom: 16px;
+      @include flex-column;
+      gap: 8px;
+
+      .title {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 24px;
+        text-align: right;
+      }
+
+      .sub-title {
+        color: #6e798d;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: normal;
+        text-align: right;
+      }
+    }
+
+    .selected-card {
+      .radio {
+        width: 24px;
+        min-width: 24px;
+        max-width: 24px;
+        height: 24px;
+        min-height: 24px;
+        max-height: 24px;
+        background: url("/insurance-assets/images/check-box-empty.svg") no-repeat;
+      }
+    }
+  }
+
+  .suggested-card {
+    margin-top: 8px;
+    @include flex-column;
+    gap: 8px;
+
+    .pricing-row {
+      @include flex-center-between;
+      line-height: 28px;
+
+      .title {
+        font-size: 12px;
+        font-weight: 610;
+      }
+
+      .value {
+        font-size: 16px;
+        font-weight: 400;
+
+        .not-exist {
+          color: #2c3544;
+          font-size: 14px;
+        }
+
+        .unit {
+          font-size: 18px;
+          font-weight: 500;
+          line-height: 32px;
+          color: #2c3544;
+        }
+      }
+    }
+
+    .background-pricing-row {
+      background-color: #FFFFFF;
+      border-radius: 8px;
+      padding: 4px 8px
+    }
+  }
+
+  &.active {
+    border: 1px solid #0040ff;
+
+    .device-info {
+      .radio {
+        background: url("/insurance-assets/images/check-box-filled.svg") no-repeat !important;
+      }
+    }
+  }
+
+  &.disabled {
+    background-color: #f2f2f8;
+  }
+
+}

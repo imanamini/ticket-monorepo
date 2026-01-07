@@ -1,0 +1,37 @@
+@import "@digipay/base-style/swatch";
+
+
+@keyframes tfShowUp {
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+::ng-deep ui-form-notice {
+  display: block;
+}
+
+.text-field-notice {
+  display: none;
+  text-align: start;
+  direction: rtl;
+  transform: scaleY(0);
+  transform-origin: top;
+  opacity: 0;
+  font-size: 12px;
+  padding: 8px 4px;
+
+  &.is-error {
+    color: $swatch_red_500;
+  }
+
+  &.is-hint {
+    color: $swatch_blue_500;
+  }
+
+  &.is-visible {
+    display: block;
+    animation: tfShowUp 0.3s forwards;
+  }
+}

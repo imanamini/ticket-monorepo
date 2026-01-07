@@ -1,0 +1,22 @@
+@if (loading()) {
+  <div class="w-100 d-flex justify-content-center my-big">
+    <ngx-spinner
+      [color]="'primary'"
+      [size]="'lg'"
+    ></ngx-spinner>
+  </div>
+} @else {
+  <ngx-uploader
+    [label]="'آپلود تصویر'"
+    [description]="'آپلود یک تصویر با فرمت PNG یا JPG'"
+    [type]="'image'"
+    [fileAcceptedFormats]="['png', 'jpg', 'jpeg']"
+    [multiple]="false"
+    [imageConfig]="imageConfig()"
+    [ableToChoosePickMethod]="true"
+    [showCameraConfig]="cameraConfig"
+    (onFileUpload)="uploadFile($event.file!)"
+    (onDeletedFile)="onRemoveFile()"
+    [imageApiBaseUrl]="creditImageBaseUrl"
+  ></ngx-uploader>
+}

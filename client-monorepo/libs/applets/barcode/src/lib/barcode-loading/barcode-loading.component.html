@@ -1,0 +1,13 @@
+<div
+  class="barcode-loading"
+  [class.show]="loadingService.loading()"
+>
+  <ngx-button
+    [mode]="'icon-only'"
+    [style]="'link'"
+    [isLoading]="true"
+    [size]="'large'"
+    [rightIcon]="{ name: 'loading' }"
+  ></ngx-button>
+  <p class="st-6 text-onback-medium">لطفا کمی منتظر بمانید...</p>
+</div>

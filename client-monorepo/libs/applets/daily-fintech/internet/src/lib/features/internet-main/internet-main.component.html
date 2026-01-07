@@ -1,0 +1,85 @@
+<common-ui-components-page-layout
+  [stickyHeader]="false"
+  [showBorder]="false"
+  title="بسته اینترنت"
+>
+  <div class="internet-page-wrapper">
+    @if (isLoaded()) {
+      <div class="page-content">
+        <daily-fintech-touch-point></daily-fintech-touch-point>
+        <form [formGroup]="internetForm()">
+          <div class="cell-number-field">
+            <ui-form-field
+              [errorMessageMapper]="errorMessageMapper()"
+              [error]="internetForm().controls['cellNumber'].errors"
+              [hasCleaner]="true"
+              [isNumericKeyboard]="true"
+              [showError]="errorStatus()"
+              class="flex-grow"
+              formControlName="cellNumber"
+              inputType="tel"
+              label="شماره همراه"
+              [maxSize]="11"
+              placeholder="مثال: ۰۹۰۰۰۰۰۰۰۰۰"
+              type="input"
+            >
+            </ui-form-field>
+            <div
+              class="cell-number-option surface-back d-flex justify-content-center align-items-center radius-medium p-small"
+              (click)="onSetNumberClicked()"
+            >
+              <span class="text-onback-brand">خودم</span>
+            </div>
+            @if (isSupportContact()) {
+              <div
+                class="cell-number-option surface-back d-flex justify-content-center align-items-center radius-medium p-small"
+                (click)="onSetContactClicked()"
+              >
+                <common-icon-dp-icon
+                  [icon]="'simcard'"
+                  [iconType]="'linear'"
+                  styles="color: #1159FC"
+                ></common-icon-dp-icon>
+              </div>
+            }
+          </div>
+          <p
+            class="tarabord-notice"
+            dir="rtl"
+          >
+            در صورتی که ترابرد کرده‌اید، اپراتور خود را تغییر دهید.
+          </p>
+          <daily-fintech-button-toggle
+            (toggleChange)="operatorSwitchChange($event)"
+            [enabled]="shouldSwitchBeEnabled()"
+            [options]="operatorSwitchOptions()"
+            [selectedOption]="getSelectedOperatorOption()"
+          ></daily-fintech-button-toggle>
+
+          <div class="button-container">
+            <div class="cashback-banner d-flex mb-minus w-100"></div>
+            <ngx-button
+              (clickHandler)="onSubmit()"
+              [style]="'fill'"
+              [fullWidth]="true"
+              [isLoading]="isSubmitting()"
+              [disabled]="!internetForm().valid || !this.internetForm().controls['cellNumber'].value || isSubmitting()"
+            >
+              خرید اینترنت
+            </ngx-button>
+          </div>
+        </form>
+        <daily-fintech-recommendation-list
+          class="recommendation_list"
+          (handleClick)="recentlyUsedNumberClick($event)"
+          [hasSpinner]="[]"
+          [itemType]="RECOMMENDATION_TYPES.INTERNET"
+          title="شماره‌های من"
+        >
+        </daily-fintech-recommendation-list>
+      </div>
+    } @else {
+      <internet-applet-main-skeleton></internet-applet-main-skeleton>
+    }
+  </div>
+</common-ui-components-page-layout>

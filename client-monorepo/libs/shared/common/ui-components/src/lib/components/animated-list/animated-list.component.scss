@@ -1,0 +1,18 @@
+:host {
+  width: 100%;
+}
+
+.animated-list-container {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.animated-item {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

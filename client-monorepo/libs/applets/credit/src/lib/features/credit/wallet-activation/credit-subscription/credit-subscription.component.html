@@ -1,0 +1,66 @@
+@if (!gettingStatus()) {
+  @switch (status()) {
+    @case (statusEnum.INITIATED) {
+      <app-credit-subscription-in-progress
+        (finishCountDown)="getStatus()"
+        (prevStep)="closeStep()"
+        class="d-flex flex-column flex-grow"
+      >
+      </app-credit-subscription-in-progress>
+    }
+    @case (statusEnum.FAILED) {
+      <app-credit-subscription-failed
+        (nextStep)="goToPaymentInfo()"
+        (goToSubscription)="gotoSubscription()"
+        (initiateSubscription)="subscriptionInitiate($event)"
+        (prevStep)="closeStep()"
+        [subscriptionDetail]="subscriptionDetail()!"
+        class="d-flex flex-column flex-grow"
+      >
+      </app-credit-subscription-failed>
+    }
+    @case (statusEnum.PAYMENT_CHOOSE) {
+      <app-credit-subscription-buy-info
+        (initiateSubscription)="subscriptionInitiate($event)"
+        (prevStep)="closeStep()"
+        [subscriptionDetail]="subscriptionDetail()!"
+        class="d-flex flex-column flex-grow"
+      >
+      </app-credit-subscription-buy-info>
+    }
+    @case (statusEnum.SUCCEED) {
+      <app-credit-subscription-succeed
+        (nextStep)="closeStep()"
+        (prevStep)="closeStep()"
+        [subscriptionDetail]="subscriptionDetail()!"
+        [chosenPaymentMethod]="chosenPaymentMethod()"
+        class="d-flex flex-column flex-grow"
+      >
+      </app-credit-subscription-succeed>
+    }
+    @case (statusEnum.DELAYED) {
+      <app-credit-subscription-delayed
+        (closeStep)="closeStep()"
+        [description]="description()"
+        [title]="title"
+        class="d-flex flex-column flex-grow"
+      >
+      </app-credit-subscription-delayed>
+    }
+    @case (statusEnum.ACCEPTED) {
+      <app-credit-subscription-digipay-accepted
+        (closeStep)="closeStep()"
+        class="d-flex flex-column flex-grow"
+      >
+      </app-credit-subscription-digipay-accepted>
+    }
+    @case (statusEnum.REJECTED) {
+      <app-credit-subscription-rejected
+        (closeStep)="closeStep()"
+        class="d-flex flex-column flex-grow"
+      >
+      </app-credit-subscription-rejected>
+    }
+  }
+}
+<credit-page-loading [active]="gettingStatus()!"></credit-page-loading>

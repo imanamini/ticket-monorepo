@@ -1,0 +1,19 @@
+<div class="le-icon-card-step-list-container">
+  <div class="le-icon-card-step-list">
+    <div
+      *ngFor="let step of payload.steps; let i = index"
+      class="le-icon-card-step-item-wrapper"
+    >
+      <div class="le-icon-card-step-item">
+        <div class="le-step-index">{{ i + 1 }}</div>
+        <div class="le-step-icon">
+          <img
+            [alt]="step.title"
+            [src]="step.icon"
+          />
+        </div>
+        <div class="le-step-title">{{ step.title }}</div>
+      </div>
+    </div>
+  </div>
+</div>

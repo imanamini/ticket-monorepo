@@ -1,0 +1,173 @@
+<app-base-layout
+  *ngIf="installmentSellsPage && installmentSellsPage.templateData"
+  [loaded]="loaded"
+  [showHeader]="false"
+>
+  <app-installment-sale-header></app-installment-sale-header>
+
+  <!--  section 1-->
+  <app-installment-sale-intro
+    [images]="installmentSellsPage.templateData.sectionIntro.images"
+    [values]="installmentSellsPage.templateData.sectionIntro.values"
+  ></app-installment-sale-intro>
+
+  <!--  section 3-->
+  <app-ui-basic-segment
+    *ngIf="installmentSellsPage.templateData.getCreditExplanation && installmentSellsPage.templateData.getCreditExplanation.title"
+    [content]="contentTemplateGetCreditExplanation"
+    [figure]="figureTemplateGetCreditExplanation"
+    [rtl]="true"
+    [title]="installmentSellsPage.templateData.getCreditExplanation?.title"
+    class="image-50"
+    id="get-loan"
+  ></app-ui-basic-segment>
+  <ng-template #contentTemplateGetCreditExplanation>
+    <div
+      [innerHTML]="installmentSellsPage.templateData.getCreditExplanation?.description"
+      class="fee-description"
+    ></div>
+    <app-ui-button
+      *ngIf="
+        installmentSellsPage.templateData.getCreditExplanation &&
+        installmentSellsPage.templateData.getCreditExplanation.firstCta &&
+        installmentSellsPage.templateData.getCreditExplanation.firstCta.title
+      "
+    >
+      {{ installmentSellsPage.templateData.getCreditExplanation.firstCta.title }}
+    </app-ui-button>
+  </ng-template>
+  <ng-template #figureTemplateGetCreditExplanation>
+    <div class="left-square-circle">
+      <img
+        [alt]="installmentSellsPage.templateData.getCreditExplanation?.title"
+        [src]="installmentSellsPage.templateData.getCreditExplanation?.artwork?.url"
+      />
+    </div>
+  </ng-template>
+
+  <!--  section 4-->
+  <app-ui-basic-segment
+    *ngIf="installmentSellsPage.templateData.noGuarantorExplanation && installmentSellsPage.templateData.noGuarantorExplanation.title"
+    [content]="contentTemplateNoGuarantorExplanation"
+    [figure]="figureTemplateNoGuarantorExplanation"
+    [rtl]="false"
+    [title]="installmentSellsPage.templateData.noGuarantorExplanation?.title"
+    class="image-50"
+  ></app-ui-basic-segment>
+  <ng-template #contentTemplateNoGuarantorExplanation>
+    <div
+      [innerHTML]="installmentSellsPage.templateData.noGuarantorExplanation?.description"
+      class="fee-description"
+    ></div>
+    <app-ui-button
+      *ngIf="
+        installmentSellsPage.templateData.noGuarantorExplanation &&
+        installmentSellsPage.templateData.noGuarantorExplanation.firstCta &&
+        installmentSellsPage.templateData.noGuarantorExplanation.firstCta.title
+      "
+    >
+      {{ installmentSellsPage.templateData.noGuarantorExplanation.firstCta.title }}
+    </app-ui-button>
+  </ng-template>
+  <ng-template #figureTemplateNoGuarantorExplanation>
+    <div class="right-square-circle">
+      <img
+        [alt]="installmentSellsPage.templateData.noGuarantorExplanation?.title"
+        [src]="installmentSellsPage.templateData.noGuarantorExplanation?.artwork?.url"
+      />
+    </div>
+  </ng-template>
+
+  <!--  section 5-->
+  <app-ui-basic-segment
+    *ngIf="installmentSellsPage.templateData.prepaymentExplanation && installmentSellsPage.templateData.prepaymentExplanation.title"
+    [content]="contentTemplatePrepaymentExplanation"
+    [figure]="figureTemplatePrepaymentExplanation"
+    [rtl]="true"
+    [title]="installmentSellsPage.templateData.prepaymentExplanation?.title"
+    class="image-50"
+  ></app-ui-basic-segment>
+  <ng-template #contentTemplatePrepaymentExplanation>
+    <div
+      [innerHTML]="installmentSellsPage.templateData.prepaymentExplanation?.description"
+      class="fee-description"
+    ></div>
+    <app-ui-button
+      *ngIf="
+        installmentSellsPage.templateData.prepaymentExplanation &&
+        installmentSellsPage.templateData.prepaymentExplanation.firstCta &&
+        installmentSellsPage.templateData.prepaymentExplanation.firstCta.title
+      "
+    >
+      {{ installmentSellsPage.templateData.prepaymentExplanation.firstCta.title }}
+    </app-ui-button>
+  </ng-template>
+  <ng-template #figureTemplatePrepaymentExplanation>
+    <div class="left-square-circle">
+      <img
+        [alt]="installmentSellsPage.templateData.prepaymentExplanation?.title"
+        [src]="installmentSellsPage.templateData.prepaymentExplanation?.artwork?.url"
+      />
+    </div>
+  </ng-template>
+
+  <!--  section 6-->
+  <app-ui-basic-segment
+    *ngIf="installmentSellsPage.templateData.paymentExplanation && installmentSellsPage.templateData.paymentExplanation.title"
+    [content]="contentTemplatePaymentExplanation"
+    [figure]="figureTemplatePaymentExplanation"
+    [rtl]="false"
+    [title]="installmentSellsPage.templateData.paymentExplanation?.title"
+    class="image-50"
+  ></app-ui-basic-segment>
+  <ng-template #contentTemplatePaymentExplanation>
+    <div
+      [innerHTML]="installmentSellsPage.templateData.paymentExplanation?.description"
+      class="fee-description"
+    ></div>
+    <app-ui-button
+      *ngIf="
+        installmentSellsPage.templateData.paymentExplanation &&
+        installmentSellsPage.templateData.paymentExplanation.firstCta &&
+        installmentSellsPage.templateData.paymentExplanation.firstCta.title
+      "
+    >
+      {{ installmentSellsPage.templateData.paymentExplanation.firstCta.title }}
+    </app-ui-button>
+  </ng-template>
+  <ng-template #figureTemplatePaymentExplanation>
+    <div class="right-square-circle">
+      <img
+        [alt]="installmentSellsPage.templateData.paymentExplanation?.title"
+        [src]="installmentSellsPage.templateData.paymentExplanation?.artwork?.url"
+      />
+    </div>
+  </ng-template>
+
+  <!--  section 7-->
+  <app-credit-calculator-based-on-basket-amount
+    id="calculator"
+    title="محاسبه اقساط"
+  ></app-credit-calculator-based-on-basket-amount>
+
+  <!--  section 8-->
+  <app-ui-horizontal-flow
+    *ngIf="installmentSellsPage.templateData.sectionFlow && installmentSellsPage.templateData.sectionFlow.steps.length > 0"
+    [steps]="installmentSellsPage.templateData.sectionFlow.steps"
+    [title]="installmentSellsPage.templateData.sectionFlow.title"
+    id="section-flow"
+  >
+  </app-ui-horizontal-flow>
+
+  <!--  section 9-->
+  <app-ui-faq
+    *ngIf="
+      installmentSellsPage.templateData.faq &&
+      installmentSellsPage.templateData.faq.faqItems &&
+      installmentSellsPage.templateData.faq.faqItems.length > 0
+    "
+    [faqs]="installmentSellsPage.templateData.faq.faqItems"
+    [subtitle]="installmentSellsPage.templateData.faq.subtitle"
+    [title]="installmentSellsPage.templateData.faq.title"
+  ></app-ui-faq>
+</app-base-layout>

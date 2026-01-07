@@ -1,0 +1,33 @@
+<app-base-layout [loaded]="true">
+  @if (branchesPage() && branchesPage().sectionValueProposition) {
+
+    <div class="mb-huge" [ngClass]="{'container' : !mobileMode()}">
+      <app-branches-header [data]="branchesPage().sectionValueProposition"></app-branches-header>
+    </div>
+  }
+  @if (branchesPage() && branchesPage().sectionAddress) {
+    <div class="container mb-plus">
+      <app-branches-address-intro [data]="branchesPage().sectionAddress"></app-branches-address-intro>
+    </div>
+  }
+  @if (branchesPage() && branchesPage().sectionRegistering) {
+    <div class="container">
+      <app-loan-guide [registering]="branchesPage().sectionRegistering"></app-loan-guide>
+    </div>
+  }
+  @if (branchesPage() && branchesPage().sectionSeoContent) {
+    <div class="container">
+      <app-ui-seo
+        *ngIf="branchesPage().sectionSeoContent"
+        [seoContent]="branchesPage().sectionSeoContent"
+      ></app-ui-seo>
+    </div>
+  }
+  @if (branchesPage() && branchesPage().faq) {
+    <app-ui-faq
+      [faqs]="branchesPage().faq.faqItems"
+      [title]="branchesPage().faq?.title"
+      [subtitle]="branchesPage().faq?.subtitle"
+    ></app-ui-faq>
+  }
+</app-base-layout>

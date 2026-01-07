@@ -1,0 +1,41 @@
+<div class="upload-document-guide">
+  <div class="tabs">
+    <div (click)="changeSelectedTab(UploadDocumentTypeEnum.VehicleCardForImage)"
+         [ngClass]="{selected: selectedTab() === UploadDocumentTypeEnum.VehicleCardForImage}"
+         class="tab">
+      کارت موتور سیکلت
+      <div class="underline"></div>
+    </div>
+    <div (click)="changeSelectedTab(UploadDocumentTypeEnum.DriverLicenseForImage)"
+         [ngClass]="{selected: selectedTab() === UploadDocumentTypeEnum.DriverLicenseForImage}"
+         class="tab">
+      گواهینامه
+      <div class="underline"></div>
+    </div>
+  </div>
+  <div class="tab-contents">
+    <div [ngClass]="{selected: selectedTab() === UploadDocumentTypeEnum.VehicleCardForImage}"
+         class="tab-content">
+      <img
+              class="little-card"
+              src="app/pages/vehicle/assets/image-templates/motorcycle-1.webp">
+      <img
+              class="little-card"
+              src="app/pages/vehicle/assets/image-templates/motorcycle-2.webp">
+    </div>
+    <div [ngClass]="{selected: selectedTab() === UploadDocumentTypeEnum.DriverLicenseForImage}"
+         class="tab-content">
+      <img
+              class="little-card"
+              src="app/pages/vehicle/assets/image-templates/govahi-1.png">
+    </div>
+  </div>
+  <div class="tab-actions">
+    <ins-button
+            (click)="close()"
+            [brandButton]="true"
+            [fullWidth]="true"
+            text="متوجه شدم"
+    ></ins-button>
+  </div>
+</div>

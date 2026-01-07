@@ -1,0 +1,36 @@
+<div class="issue-policy d-flex flex-column align-items-center justify-content-center">
+  <img
+    alt="Succeed"
+    width="160"
+    height="122"
+    ngSrc="insurance-assets/images/renewal-success-image.svg"
+  />
+  <div class="content d-flex flex-column align-items-center justify-content-center">
+    <div class="title text-onback-medium">'بیمه‌ی شما، با موفقیت صادر شد!'</div>
+    <div class="text text-onback-low">شما می‌توانید بیمه‌نامه جدید خود را از طریق دکمه‌ی زیر دریافت کنید!</div>
+  </div>
+
+  <used-steps-list [listItems]="listItems"> </used-steps-list>
+
+  <div class="buttons d-flex flex-column">
+    <ng-container>
+      <ui-button
+        (click)="goToPolicies()"
+        appearance="DEFAULT"
+      >
+        مشاهده بیمه نامه
+      </ui-button>
+      <ui-button
+        (click)="downloadPolicy()"
+        appearance="GRAY-STYLE"
+      >
+        <span
+          [size]="24"
+          icon="download-without-border"
+          ui-icon
+        ></span>
+        دانلود سند بیمه نامه
+      </ui-button>
+    </ng-container>
+  </div>
+</div>

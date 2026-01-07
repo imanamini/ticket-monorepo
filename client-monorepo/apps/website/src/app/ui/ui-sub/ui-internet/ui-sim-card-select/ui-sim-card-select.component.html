@@ -1,0 +1,13 @@
+<p class="text">نوع سیم‌کارت خود را انتخاب کنید.</p>
+<div class="cards">
+  <div
+    *ngFor="let simCard of simCards; let si = index"
+    class="sim-card"
+  >
+    <app-ui-sim-card
+      (clicked)="simCardClick(simCard)"
+      [selected]="simCard.value === selected"
+      [simTitle]="simCard.label"
+    ></app-ui-sim-card>
+  </div>
+</div>

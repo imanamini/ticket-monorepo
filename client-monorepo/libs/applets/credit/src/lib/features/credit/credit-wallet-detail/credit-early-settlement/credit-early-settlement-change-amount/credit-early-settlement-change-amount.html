@@ -1,0 +1,27 @@
+<div class="d-flex flex-column pt-big rtl">
+  <!-- Header -->
+  <app-credit-early-settlement-change-amount-header
+    [usedAmount]="usedAmount()"
+    [showUsedAmount]="!changeAmountView()"
+  />
+  <!-- End Header -->
+
+  <!-- Change amount action -->
+  <div class="d-flex flex-column pt-plus px-plus pb-big border-t-300 border-color-air surface-glass-high-contrast">
+    @if (changeAmountView()) {
+      <app-credit-early-settlement-change-amount-edit
+        [usedAmount]="amount()"
+        (changeAmountOutput)="changeAmountOutput($event)"
+        [maxAmount]="data.maxAmount"
+        [minAmount]="data.minAmount"
+      />
+    } @else {
+      <app-credit-early-settlement-change-amount-view
+        [amountView]="amount()"
+        (acceptAndPayClicked)="acceptAndPayClick()"
+        (editAmountClicked)="editAmountViewClick()"
+      />
+    }
+  </div>
+  <!-- End Change amount action -->
+</div>

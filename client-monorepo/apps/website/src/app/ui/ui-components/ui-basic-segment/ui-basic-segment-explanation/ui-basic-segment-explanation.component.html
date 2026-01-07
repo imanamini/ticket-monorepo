@@ -1,0 +1,101 @@
+<ng-container *ngIf="data">
+  <app-ui-basic-segment
+    *ngIf="data.title"
+    [content]="contentExplanation"
+    [figure]="figureExplanation"
+    [rtl]="rtl"
+    [title]="data.title"
+  ></app-ui-basic-segment>
+  <ng-template #figureExplanation>
+    <ng-lottie
+      *ngIf="animationPath; else image"
+      [options]="{ path: animationPath }"
+      class="d-flex justify-content-center"
+      width="fit-content"
+    ></ng-lottie>
+    <ng-template #image>
+      <img
+        *ngIf="data.artwork && data.artwork.url"
+        [alt]="data.title"
+        [src]="data.artwork.url"
+      />
+    </ng-template>
+  </ng-template>
+  <ng-template #contentExplanation>
+    <div
+      *ngIf="data.subtitle"
+      class="basic-segment-subtitle"
+    >
+      {{ data.subtitle }}
+    </div>
+    <div
+      *ngIf="data.description"
+      class="basic-segment-description"
+    >
+      {{ data.description }}
+    </div>
+    <div
+      *ngIf="data.values && data.values.length > 0"
+      class="values"
+    >
+      <ng-container *ngFor="let value of data.values">
+        <div class="value">
+          <div class="icon">
+            <img
+              *ngIf="value.icon && value.icon.url"
+              [alt]="value.title"
+              [src]="value.icon.url"
+            />
+          </div>
+          <div>
+            <div
+              *ngIf="value.title"
+              class="title"
+            >
+              {{ value.title }}
+            </div>
+            <div
+              *ngIf="value.description"
+              class="description"
+            >
+              {{ value.description }}
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="ctas">
+      <app-ui-button
+        *ngIf="data.firstCta && data.firstCta.link; else emitButton"
+        [link]="data.firstCta.link"
+        class="cta"
+        linkTarget="_blank"
+      >
+        <img
+          *ngIf="data.firstCta.icon && data.firstCta.icon.url"
+          [ngSrc]="data.firstCta.icon.url"
+          class="cta-icon"
+          height="24"
+          width="24"
+        />
+        {{ data.firstCta.title }}
+      </app-ui-button>
+      <ng-template #emitButton>
+        <app-ui-button
+          (click)="cta.emit(true)"
+          *ngIf="data.firstCta && data.firstCta.title"
+          class="cta"
+        >
+          <img
+            *ngIf="data.firstCta.icon && data.firstCta.icon.url"
+            [ngSrc]="data.firstCta.icon.url"
+            class="cta-icon"
+            height="24"
+            width="24"
+          />
+          {{ data.firstCta.title }}
+        </app-ui-button>
+      </ng-template>
+    </div>
+  </ng-template>
+</ng-container>

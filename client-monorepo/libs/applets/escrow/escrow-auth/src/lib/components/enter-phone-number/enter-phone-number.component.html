@@ -1,0 +1,57 @@
+<p class="text-onback-high t-6 text-align-center mb-small">
+  {{ phoneNumber() ? 'خرید و فروش اعتباری امن دیجی‌پی' : 'به خرید و فروش اعتباری امن دیجی‌پی خوش آمدید!' }}
+</p>
+<form [formGroup]="form">
+  <div class="h-80">
+    <ui-form-field
+      formControlName="phoneNumber"
+      [label]="'شماره همراه'"
+      [inputType]="'text'"
+      [isNumericKeyboard]="true"
+      [maxSize]="11"
+      [convertNonEnglishDigits]="true"
+      [error]="form.controls['phoneNumber'].errors ?? {}"
+      [hasValidationMark]="true"
+      [errorMessageMapper]="{
+        invalidCellNumber: 'شماره همراه وارد شده معتبر نیست',
+      }"
+      [lock]="!!phoneNumber()"
+      (keydown)="checkKeyCode($event)"
+    ></ui-form-field>
+  </div>
+
+  @if (phoneNumber()) {
+    <div class="d-flex flex-wrap justify-content-end">
+      <ngx-button
+        [mode]="'form'"
+        [size]="'large'"
+        [style]="'fill'"
+        [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+        (clickHandler)="getCode()"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  } @else {
+    <div class="d-flex flex-wrap justify-content-space-between">
+      <ngx-button
+        [mode]="'form'"
+        [size]="'large'"
+        [style]="'fill'"
+        [fullWidth]="true"
+        (clickHandler)="getCode()"
+        [disabled]="form.invalid"
+      >
+        تایید و ادامه
+      </ngx-button>
+      <p class="bt-3 mt-medium">
+        <a
+          routerLink="/auth/rules"
+          class="text-onback-brand"
+          >قوانین و مقررات</a
+        >
+        خرید و فروش امن دیجی‌پی را مطالعه کردم!
+      </p>
+    </div>
+  }
+</form>

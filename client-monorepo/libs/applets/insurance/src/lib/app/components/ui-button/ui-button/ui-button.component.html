@@ -1,0 +1,8 @@
+<button
+        (click)="onClick($event)"
+        [attr.disabled]="disabled ? 'disabled' : null"
+        [ngClass]="appearance.toLowerCase()"
+        [style.background-color]="backgroundColor()"
+        class="button">
+  <ng-content></ng-content>
+</button>

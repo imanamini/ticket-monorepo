@@ -1,0 +1,71 @@
+@if (showState !== 'loading') {
+  <div class="container-complete">
+    <div class="container mt-medium">
+      <div class="wrapper-message">
+        <div class="section-icon">
+          <ins-icon
+                  [name]="showState === 'success' ? IconEnum.Success : IconEnum.Warning"
+                  [width]="166"
+                  [height]="122"
+          ></ins-icon>
+        </div>
+        <ng-container [ngTemplateOutlet]="showState === 'success' ? success_temp : later_temp"></ng-container>
+        <div class="section-reference">
+          <b>شماره پیگیری سفارش:</b>
+          <span [textContent]="model?.applicationFormTrackingCode"></span>
+        </div>
+      </div>
+    </div>
+    <div id="footer-container">
+      <action-buttons [showDeActiveButton]="true"
+                      [deActiveButtonText]="showState === 'success' ? 'خانه' : 'بعداً'"
+                      [backgroundMode]="'transparent'"
+                      [activeButtonText]="showState === 'success' ? 'پیگیری سفارش' : 'الان تکمیل می‌کنم'"
+                      (activeButtonClicked)="handleActiveButtonClicked()"
+                      (deActiveButtonClicked)="handleDeActiveButtonClicked()"></action-buttons>
+    </div>
+  </div>
+} @else {
+  <div class="loading">
+    <ui-loading-spinner [size]="32"></ui-loading-spinner>
+  </div>
+}
+<ng-template #success_temp>
+  <div class="section-message">
+    <p class="notice">تبریک!</p>
+    <p class="title success">
+      شما با موفقیت فرآیند خریدبیمه شخص ثالث را طی کردید!
+    </p>
+    <p class="description">
+      بعد از بررسی و تایید کارشناسان بیمه دیجی‌پی، بیمه شما صادر خواهد شد. پیشرفت در فرآیند صدور از طریق پیامک و یا
+      از طریق دکمه پیگیری سفارش اطلاع رسانی خواهد شد.
+    </p>
+  </div>
+</ng-template>
+
+<ng-template #later_temp>
+  <div class="section-message">
+    <p class="notice">توجه!</p>
+    <p class="title not-success">
+      جزئیات بیمه‌نامه تکمیل نمی‌باشد
+    </p>
+    <p class="description">
+      کاربر گرامی برای صدور بیمه‌نامه نهایی خود، تا ۷۲ ساعت مهلت دارید تا اطلاعات بیمه‌نامه خود را تکمیل نمایید. در غیر
+      اینصورت بیمه‌نامه شخص ثالث شما از سوی شرکت بیمه‌گر ثبت نهایی و صادر نمی‌شود.
+    </p>
+    @if (model?.currentInsuranceDeadline) {
+      <div id="expire-time">
+        <div>
+          <ins-icon
+                  [height]="16"
+                  [name]="IconEnum.CalendarBlue"
+                  [width]="16"
+          ></ins-icon>
+          <span>تاریخ انقضاء بیمه‌نامه فعلی‌تان:</span>
+        </div>
+        <p [textContent]="model?.currentInsuranceDeadline"></p>
+      </div>
+    }
+  </div>
+</ng-template>
+

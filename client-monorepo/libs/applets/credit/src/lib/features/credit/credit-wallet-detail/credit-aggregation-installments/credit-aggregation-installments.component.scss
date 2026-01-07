@@ -1,0 +1,55 @@
+@import "@digipay/base-style/swatch";
+
+$space: 16px;
+
+:host {
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  height: calc(80vh - 32px);
+}
+
+.header {
+  padding: $space;
+  border-bottom: 1px solid $swatch_steel_200;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: $swatch-steel_500;
+}
+
+.description {
+  direction: rtl;
+  margin-bottom: 24px;
+  padding: $space;
+  font-size: 16px;
+}
+
+.wrapper-card {
+  direction: rtl;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background-color: $swatch-steel-100;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  margin-right: $space;
+  margin-left: $space;
+  border: 2px solid transparent;
+  cursor: pointer;
+
+  &.selected {
+    border: 2px solid $swatch-blue-500;
+    background-color: $swatch-blue_100;
+  }
+
+  &:last-child {
+    margin-bottom: 24px;
+  }
+
+  .wrapper-installment {
+    flex-grow: 1;
+  }
+}

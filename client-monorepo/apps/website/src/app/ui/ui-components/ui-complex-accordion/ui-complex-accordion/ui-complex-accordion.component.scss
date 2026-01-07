@@ -1,0 +1,175 @@
+@import "globals";
+
+.section {
+  padding: 12px 0;
+
+  .accordion-header {
+    padding: 0 16px;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 16px;
+
+    &:hover {
+      background: #fff;
+    }
+
+    &.disabled {
+      cursor: default;
+      color: inherit;
+    }
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 600;
+    width: 100%;
+    justify-content: right;
+    background-size: 24px 24px;
+    color: $text-color;
+
+    .icon {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background-color: #f0f5ff;
+    }
+  }
+
+  .section-subtitle {
+    padding-right: 40px;
+    background: url('./section-subtitle-icon.svg') no-repeat right 6px top 0;
+    background-size: 24px 24px;
+    font-size: 12px;
+    line-height: 20px;
+    padding-top: 6px;
+    margin-top: 8px;
+  }
+
+  .title-margin-space {
+    height: 24px;
+  }
+
+  .element-item {
+    margin-top: 16px;
+
+    &.first-element {
+      margin-top: 0;
+    }
+  }
+
+  .ctas {
+    margin-top: 20px;
+    margin-bottom: 8px;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    .cta {
+      display: flex;
+      align-items: center;
+
+      &:first-child {
+        ::ng-deep button {
+          padding-right: 5px;
+        }
+      }
+
+      ::ng-deep button {
+        font-size: 12px;
+      }
+
+      .button-icon {
+        width: 24px;
+        height: 24px;
+        margin-left: 11px;
+      }
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+
+      i {
+        filter: invert(15%) sepia(100%) saturate(3983%) hue-rotate(228deg) brightness(102%) contrast(117%);
+      }
+    }
+  }
+
+  .accordion-content {
+    padding: 0 24px;
+    background: #fff;
+    border-radius: 0 0 16px 16px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.1s, padding 0.1s ease-in;
+
+    &.expanded {
+      padding: 16px 24px;
+      max-height: 1000px;
+      transition: max-height 0.1s, padding 0.1s ease-in;
+    }
+  }
+
+  .collapsible-selector--arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .collapsible-selector--arrow::after {
+    content: '';
+    display: block;
+    position: relative;
+    height: 9px;
+    width: 16px;
+    background-image: url('/assets/images/icons/icon-charon-down.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    transform: rotate(0deg);
+    transition: all 0.3s ease;
+    margin-right: auto;
+  }
+
+  .collapsible-selector--arrow.active::after {
+    transform: rotate(180deg);
+    transition: all 0.3s ease;
+  }
+
+  .section-title.text-simple-items .icon {
+    border-radius: 50%;
+    background-color: #fff5ee;
+  }
+}
+
+@media (max-width: 1280px) {
+  .section {
+    .section-title {
+      font-size: 18px;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .section {
+    .section-title {
+      font-size: 14px;
+    }
+  }
+  .section .accordion {
+    .ctas {
+      align-items: center;
+    }
+  }
+}

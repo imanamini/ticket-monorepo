@@ -1,0 +1,32 @@
+
+.dialog {
+  padding: 16px;
+  direction: rtl;
+
+  header {
+    padding-top: 120px;
+    color: #2c3544;
+    font-size: 16px;
+    text-align: center;
+    background: url("apps/dpx/src/assets/c2c/c2c-disable-bank.svg") no-repeat center top 0/92px;
+  }
+
+  .description {
+    padding: 12px 0 28px;
+    text-align: center;
+    font-size: 12px !important;
+    color: #6e798d;
+    line-height: 20px;
+  }
+
+  ui-button {
+    display: block;
+    width: 100%;
+  }
+
+  .close {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+}

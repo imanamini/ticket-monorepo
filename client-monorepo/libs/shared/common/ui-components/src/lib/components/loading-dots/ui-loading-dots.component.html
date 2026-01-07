@@ -1,0 +1,26 @@
+<div
+  class="dots"
+  [style.font-size]="size + 'px'"
+>
+  <span
+    class="dot"
+    [ngStyle]="{
+      opacity: active() === 1 ? 1 : opacity,
+      backgroundColor: color,
+    }"
+  ></span>
+  <span
+    class="dot center"
+    [ngStyle]="{
+      opacity: active() === 2 ? 1 : opacity,
+      backgroundColor: color,
+    }"
+  ></span>
+  <span
+    class="dot"
+    [ngStyle]="{
+      opacity: active() === 3 ? 1 : opacity,
+      backgroundColor: color,
+    }"
+  ></span>
+</div>

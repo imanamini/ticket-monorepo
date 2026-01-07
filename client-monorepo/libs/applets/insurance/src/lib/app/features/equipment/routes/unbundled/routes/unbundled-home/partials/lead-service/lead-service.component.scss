@@ -1,0 +1,28 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.lead-new {
+  background: #f6f8ff;
+  padding: 50px 0;
+
+  .header {
+    .user-message {
+      @include column-center-between;
+      color: #061962;
+      margin-bottom: 56px;
+      line-height: 2;
+
+      .message-title {
+        font-weight: 800;
+        text-align: center;
+        font-size: 18px;
+      }
+
+      .message-describe {
+        font-size: 15px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+    }
+  }
+}

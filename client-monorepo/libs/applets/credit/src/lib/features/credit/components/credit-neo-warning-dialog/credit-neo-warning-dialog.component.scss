@@ -1,0 +1,38 @@
+.text {
+  color: #191919;
+  text-align: right;
+
+  &.first-description {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+}
+
+.dialog-image-wrapper {
+  text-align: center;
+  padding: 8px 0;
+
+  .warning-image {
+    width: 120px;
+    height: 120px;
+    display: inline-block;
+    max-width: 90%;
+    background-image: url("credit-neo-warning-dialog.svg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+  }
+}
+
+.second-description-row {
+  text-align: right;
+  display: flex;
+  font-size: 12px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+
+  .second-description-icon {
+    padding-left: 8px;
+    flex-grow: 0;
+  }
+}

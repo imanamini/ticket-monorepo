@@ -1,0 +1,34 @@
+@for (item of groupCards(); track item) {
+  <div
+    ngxTrackableId
+    [trackerId]="'fundProviderCardClick' + item.fundProviderName"
+    (click)="
+      onSelectFundProvider(
+        {
+          fundProviderCode: item.fundProviderCode,
+          allocationPrepaymentAmount: item.allocationPrepaymentAmount,
+          collaterals: item.collaterals,
+          userEntryPoint: item.userEntryPoint,
+        },
+        item
+      )
+    "
+    class="mb-small cursor-pointer px-plus"
+  >
+    <div
+      class="radius-big"
+      [class]="{ 'surface-brand-inverted': item.userEntryPoint === USER_ENTRY_POINT.WHITELIST }"
+    >
+      @if (item.userEntryPoint === USER_ENTRY_POINT.WHITELIST) {
+        <div class="st-8 d-flex px-plus flex-row align-items-center w-100 py-pony text-oninvert-high gap-small">
+          <ngx-icon
+            classes="text-oninvert-high"
+            name="star"
+          ></ngx-icon>
+          <span>این طرح ویژه شماست.</span>
+        </div>
+      }
+      <app-credit-fund-provider-groups-card [data]="item"> </app-credit-fund-provider-groups-card>
+    </div>
+  </div>
+}

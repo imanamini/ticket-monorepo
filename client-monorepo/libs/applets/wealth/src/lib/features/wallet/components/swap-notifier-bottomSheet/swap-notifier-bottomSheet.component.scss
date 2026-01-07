@@ -1,0 +1,51 @@
+.position-relative {
+  position: relative;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.badge-container {
+  position: absolute;
+  top: 64px;
+  right: 56px;
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 18.968px 0 rgba(0, 0, 0, 0.15);
+
+  animation: fade-scale 1s ease-in-out forwards;
+}
+
+.badge-title {
+  font-size: 12px;
+  font-weight: 875;
+  line-height: 3.696px;
+}
+
+.badge-icon-container {
+  padding: 5px;
+}
+
+.badge-icon {
+  display: block;
+  animation: rotate 3s infinite ease-in;
+  animation-delay: 1s;
+}
+
+@keyframes fade-scale {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

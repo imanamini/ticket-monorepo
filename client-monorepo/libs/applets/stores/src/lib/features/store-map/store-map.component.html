@@ -1,0 +1,58 @@
+@defer {
+  <div
+    [ngClass]="{ 'is-mobile': !isDesktop }"
+    class="d-flex store-map-layout"
+  >
+    <!-- Header -->
+    @if (!isDesktop) {
+      <stores-applet-map-header-mobile
+        [filterClasses]="'px-plus'"
+        [searchBarClasses]="'px-plus'"
+        [showBackButton]="true"
+      ></stores-applet-map-header-mobile>
+    }
+    <!-- End Header -->
+    <!-- Map -->
+    <div class="map-section">
+      <lib-shared-common-map
+        [points]="points()"
+        [currentLocation]="currentLocation()"
+        [locateButtonConfig]="locateMeButtonConfig()"
+        (areaChanged)="onAreaChange($event)"
+        (pointSelected)="onPointSelect($event)"
+        [mode]="isPartition21() ? 'NEW' : 'LEGACY'"
+      ></lib-shared-common-map>
+    </div>
+    <!-- End Map -->
+
+    <!-- OverLays -->
+    @if (isDesktop) {
+      <stores-applet-map-overlay-desktop
+        [loadingMode]="loadingBranches()"
+        [branchesToShow]="branchesListToShow()"
+        [totalAvailableStores]="totalAvailableItems()"
+        [selectedBranch]="selectedBranch()"
+        (goBackClicked)="handleBackBtn()"
+        (selectedBranchChange)="goToStoreShop($event!)"
+      ></stores-applet-map-overlay-desktop>
+    } @else {
+      <stores-applet-map-overlay-mobile
+        [loadingMode]="loadingBranches()"
+        [branchesToShow]="branchesListToShow()"
+        [totalAvailableStores]="totalAvailableItems()"
+        [selectedBranch]="selectedBranch()"
+        [(activeSnapIndex)]="activeSnap"
+        (selectedBranchChange)="goToStoreShop($event!)"
+        (goBackClicked)="handleBackBtn()"
+      >
+      </stores-applet-map-overlay-mobile>
+    }
+    <!-- End OverLays -->
+
+    <!-- Mobile Search Result -->
+    @if (showSearchResults() && !isDesktop) {
+      <stores-applet-map-search-result (branchSelected)="handleSearchResultBranchSelect($event)"></stores-applet-map-search-result>
+    }
+    <!-- End Mobile Search Result -->
+  </div>
+}

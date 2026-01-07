@@ -1,0 +1,87 @@
+﻿@use "../../style/mixins/ios" as ios;
+
+.bottom-sheet {
+  max-height: 80vh !important;
+}
+
+.third-party-bottom-sheet {
+  .mat-bottom-sheet-container {
+    max-height: 640px !important;
+    max-width: 552px !important;
+    border-radius: 16px 16px 0 0;
+  }
+}
+
+
+.mat-bottom-sheet-container:has(.button-select-list-items) {
+  max-width: 552px !important;
+  border-radius: 16px 16px 0 0;
+}
+
+.custom-digikala-style {
+  .mat-bottom-sheet-container {
+    //min-height: 470px !important;
+  }
+}
+
+
+.full-page-bottom-sheet {
+  max-height: 100vh !important;
+  height: 100vh !important;
+
+  .mat-bottom-sheet-container {
+    max-height: 100vh !important;
+    height: 100vh !important;
+    border-radius: unset !important;
+  }
+}
+
+@media screen and (min-width: 552px) {
+  .third-party-bottom-sheet {
+    .mat-bottom-sheet-container {
+      min-width: 552px !important;
+    }
+  }
+
+  .dg-select-bottom-sheet {
+    .mat-bottom-sheet-container {
+      max-width: 552px !important;
+      min-width: 552px !important;
+    }
+  }
+}
+
+.cdk-overlay-pane:not(.full-page-bottom-sheet, .full-page-modal) {
+  @include ios.set-style-ios($is-in-root: true) {
+    max-height: 80vh !important;
+    third-party-regulations {
+      height: 83%;
+    }
+  }
+}
+
+.cdk-overlay-pane.full-page-bottom-sheet {
+  @include ios.set-style-ios($is-in-root: true) {
+    max-height: 87vh !important;
+  }
+}
+
+.cdk-overlay-pane.full-page-modal {
+  @include ios.set-style-ios($is-in-root: true) {
+    max-height: 100vh !important;
+    min-height: 90vh !important;
+  }
+}
+
+.mat-bottom-sheet-container {
+  overscroll-behavior-y: none;
+  overflow: hidden !important;
+
+  .dg-select__options {
+    @include ios.over-scroll-behavior-none-ios();
+  }
+}
+
+ngx-bottom-sheet .all-width-container {
+  z-index: 10000 !important;
+}

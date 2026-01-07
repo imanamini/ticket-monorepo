@@ -1,0 +1,47 @@
+@if (isLoading() || filterServices().length) {
+  <div class="selected-services">
+    <div class="w-100 py-plus px-medium surface-elevated d-grid services-container radius-medium">
+      @if (!isLoading()) {
+        @for (service of filterServices(); track $index) {
+          <common-ui-components-framed-icon
+            ngxRouterLoading
+            class="cursor-pointer"
+            [size]="56"
+            [iconColor]="'#4657C3'"
+            [border]="'border-100 border-color-light'"
+            [showText]="true"
+            [type]="ServiceImagesType.ICON"
+            [bg]="'surface-elevated'"
+            [badge]="service.badge"
+            [text]="service.title || ''"
+            [showBadge]="true"
+            [icon]="service.icon || ''"
+            [trackerIdPrefix]="service.icon || ''"
+            [iconType]="'due'"
+            (click)="onServiceClicked(service)"
+          ></common-ui-components-framed-icon>
+        }
+        <common-ui-components-framed-icon
+          ngxRouterLoading
+          [type]="ServiceImagesType.ICON"
+          [size]="56"
+          [icon]="'more'"
+          [iconType]="'due'"
+          [text]="'همه خدمات'"
+          [showText]="true"
+          class="cursor-pointer"
+          [iconColor]="'#4657C3'"
+          (click)="onAllServicesClicked()"
+        ></common-ui-components-framed-icon>
+      } @else {
+        @for (item of rangeCreator(8); track $index) {
+          <lib-ngx-skeleton-loading
+            [height]="'56px'"
+            [classes]="'radius-medium'"
+            [width]="'56px'"
+          ></lib-ngx-skeleton-loading>
+        }
+      }
+    </div>
+  </div>
+}

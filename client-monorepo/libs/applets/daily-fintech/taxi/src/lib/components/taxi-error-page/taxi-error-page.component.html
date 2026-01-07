@@ -1,0 +1,22 @@
+<div class="error-page-container">
+  <div class="image">
+    <ng-content select="[image]"></ng-content>
+  </div>
+  <span
+    class="title"
+    *ngIf="title"
+    >{{ title }}</span
+  >
+  <p
+    class="description"
+    *ngIf="description"
+  >
+    {{ description }}
+  </p>
+  <div class="actions">
+    <ngx-button (clickHandler)="onClickRightButton()">{{ btnRightText }} </ngx-button>
+    <ngx-button (clickHandler)="onClickLeftButton()">
+      {{ btnLeftText }}
+    </ngx-button>
+  </div>
+</div>

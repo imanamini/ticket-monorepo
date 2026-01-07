@@ -1,0 +1,76 @@
+<div class="wrapper">
+  <div
+    [class]="['header', status() === 'LOADING' ? 'loading' : '']"
+    (click)="menuClickHandler()"
+  >
+    @if (status() === 'LOADING') {
+      <ngx-spinner
+        size="md"
+        color="primary"
+      ></ngx-spinner>
+    } @else {
+      <div class="title">
+        <span class="main">خریدها</span>
+
+        @if (totalPurchases()) {
+          <span class="sub">{{ 'مجموع مبلغ: ' + (totalPurchases() | thousands) }}</span>
+        }
+      </div>
+
+      <ngx-icon
+        [name]="detailIsOpen() ? 'arrow-2-up' : 'arrow-2-down'"
+        type="linear"
+        iconSize="24"
+      >
+      </ngx-icon>
+    }
+  </div>
+
+  @if (status() === 'SUCCESS') {
+    <div [class]="['body', detailIsOpen() ? 'isOpen' : '']">
+      @for (purchase of formattedDetailData(); track purchase.trackingCode) {
+        <div class="item">
+          <div class="purchase">
+            <credit-digipay-image
+              [imageId]="purchase.businessImageId"
+              width="50px"
+            ></credit-digipay-image>
+
+            <div class="content">
+              <div class="top">
+                <div class="right">{{ purchase.businessName }}</div>
+
+                <div class="left">
+                  <div class="icon"></div>
+                  {{ purchase.purchaseDate }}
+                </div>
+              </div>
+
+              <div class="bottom">
+                {{ purchase.purchaseTitle + ': ' + purchase.purchaseValue }}
+              </div>
+            </div>
+          </div>
+
+          @if (purchase.refunds.length > 0) {
+            @for (refund of purchase.refunds; track $index) {
+              <div class="refund">
+                <div class="refund-title">
+                  <credit-digipay-image
+                    [imageId]="refund.iconId"
+                    width="20px"
+                    class="ml-low"
+                  >
+                  </credit-digipay-image>
+                  {{ refund.title }}
+                </div>
+
+                <div>{{ refund.value }}</div>
+              </div>
+            }
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

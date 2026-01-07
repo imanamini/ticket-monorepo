@@ -1,0 +1,164 @@
+<app-ui-section
+  [sectionTitle]="boxTitle"
+  [state]="state"
+  class="top-up-product"
+>
+  <span
+    *uiSectionHeaderIcon
+    class="rocket-icon"
+  ></span>
+  <ng-container *ngIf="initialized">
+    <div class="title">
+      {{ templateData.title }}
+    </div>
+    <div
+      *ngIf="state === 2"
+      class="top-content"
+    >
+      <div class="type-number">
+        <div
+          [ngClass]="'is-' + selectedCarrier?.icon"
+          class="carrier"
+        >
+          <span class="icon"></span>
+        </div>
+        <div>
+          <div class="cell-number">
+            {{ cellNumber }}
+          </div>
+          <div class="sim-type">
+            <span class="icon"></span>
+            {{ simType === 1 ? 'سیم کارت دائمی' : 'سیم کارت اعتباری' }}
+          </div>
+        </div>
+      </div>
+      <app-ui-button
+        (click)="changeState(1)"
+        appearance="GREEN-TEXT"
+        size="SMALL"
+      >
+        ویرایش
+        <i class="icon-left-green"></i>
+      </app-ui-button>
+    </div>
+    <ng-container *ngIf="state === 1">
+      <app-ui-cell-number-field
+        (carrierChanged)="onCarrierChange($event)"
+        (cellNumberChange)="onCellNumberChange($event)"
+        [carrierOptions]="service.carriers"
+        [cellNumber]="cellNumber"
+        [errorMessage]="formValidnessDetails.cellNumber"
+        [mobileFriendly]="isMobile"
+        [selectCarrier]="true"
+        [selectedCarrier]="selectedCarrier"
+      ></app-ui-cell-number-field>
+
+      <app-ui-sim-type-switch
+        (changed)="onSimTypeChange($event)"
+        *ngIf="state === 1"
+        [value]="simType"
+      ></app-ui-sim-type-switch>
+    </ng-container>
+    <app-ui-recommendations-list
+      (itemClicked)="recommendationItemClicked($event)"
+      *ngIf="(recommendations || cachedNumbers.length > 0) && state === 1"
+      [recommendations]="recommendations ? recommendations.recommendations : cachedNumbers"
+      class="lg-recommendations"
+      displayStyle="ROW"
+    >
+    </app-ui-recommendations-list>
+    <ng-container>
+      <div
+        [ngClass]="state === 2 && !gettingPackages ? 'open' : 'closed'"
+        class="state"
+      >
+        <app-ui-hr-line></app-ui-hr-line>
+        <app-ui-switch-box
+          (switchChanged)="onFascinatingSwitchChange($event)"
+          *ngIf="supportFascinating"
+          [checked]="isFascinating"
+          [subtitle]="supportFascinating.subDescription"
+          [title]="supportFascinating.description"
+        ></app-ui-switch-box>
+
+        <app-ui-amount-input
+          (valueChanged)="onAmountChange($event)"
+          [enabled]="((isFascinating && supportFascinating.enableCustomAmount) || !isFascinating) && !serviceMessage"
+          [errorState]="!!formValidnessDetails.amountFactor || !!formValidnessDetails.amountRange"
+          [maxLength]="9"
+          [value]="amount"
+          class="amount-input"
+          placeholder="مبلغ دلخواه"
+        ></app-ui-amount-input>
+
+        <app-ui-form-hint
+          *ngIf="formValidnessDetails.amountFactor && !formValidnessDetails.amountRange"
+          appearance="error"
+        >
+          {{ formValidnessDetails.amountFactor }}
+        </app-ui-form-hint>
+
+        <app-ui-form-hint
+          *ngIf="formValidnessDetails.amountRange"
+          appearance="error"
+        >
+          {{ formValidnessDetails.amountRange }}
+        </app-ui-form-hint>
+
+        <app-ui-amount-suggestions
+          (selected)="onSuggestionSelect($event)"
+          *ngIf="suggestions.length > 0 && !serviceMessage"
+          [selectedValue]="amount"
+          [suggestions]="suggestions"
+          class="suggestions"
+        ></app-ui-amount-suggestions>
+      </div>
+    </ng-container>
+    <app-ui-warning-message
+      *ngIf="serviceMessage"
+      class="service-unavailable"
+    >
+      <p>{{ serviceMessage }}</p>
+    </app-ui-warning-message>
+    <div
+      *ngIf="state === 1"
+      class="w-100"
+      style="margin-top: 24px"
+    >
+      <app-ui-button
+        (click)="changeState(2)"
+        [disabled]="!isValid"
+        class="w-100"
+        >ادامه خرید شارژ</app-ui-button
+      >
+    </div>
+    <app-ui-pay-buttons
+      (ipgClick)="ipgPay()"
+      (walletClick)="walletPay()"
+      [enableIpg]="isValid && !gettingTicket && !serviceMessage"
+      [enableWallet]="isValid && walletBalanceIsSufficient && !gettingTicket && isLoggedIn && !serviceMessage"
+      [isLoggedIn]="isLoggedIn"
+      [ngClass]="state === 2 && !gettingPackages ? 'open' : 'closed'"
+      [sufficientBalance]="walletBalanceIsSufficient"
+      class="ui-pay-buttons"
+    ></app-ui-pay-buttons>
+  </ng-container>
+  <marquee
+    *ngIf="state === 1"
+    direction="down"
+    height="28px"
+    scrollamount="1"
+    width="100%"
+  >
+    <ng-container *ngFor="let text of templateData.promotion">
+      <div>
+        {{ text.text }}
+      </div>
+    </ng-container>
+  </marquee>
+  <app-ui-spinner
+    *ngIf="!initialized"
+    [size]="48"
+    style="height: 400px"
+  ></app-ui-spinner>
+</app-ui-section>

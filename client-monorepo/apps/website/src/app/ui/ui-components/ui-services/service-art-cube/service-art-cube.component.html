@@ -1,0 +1,15 @@
+<div class="services__intro-right">
+  <div>
+    <ul
+      [ngClass]="{ act: act } && cubeClass"
+      class="services__intro-right_cube"
+    >
+      <li
+        *ngFor="let image of images; let i = index"
+        [ngClass]="{ show: visibleImageIndex.includes(i) }"
+        [ngStyle]="{ backgroundImage: 'url(' + image.image.url + ')' }"
+        class="services__intro-right_cube-item"
+      ></li>
+    </ul>
+  </div>
+</div>

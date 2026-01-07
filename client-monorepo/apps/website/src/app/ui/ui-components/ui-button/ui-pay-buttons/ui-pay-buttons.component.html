@@ -1,0 +1,19 @@
+<app-ui-button
+  (clicked)="onIpgClick()"
+  [disabled]="!enableIpg"
+  appearance="OUTLINE-STEEL"
+  class="ipg"
+  size="BIG"
+  >پرداخت آنلاین
+</app-ui-button>
+<app-ui-button
+  (clicked)="onWalletClick()"
+  [disabled]="!enableWallet || !sufficientBalance"
+  [title]="walletButtonTitle"
+  appearance="DEFAULT"
+  class="wallet"
+  size="BIG"
+>
+  <ng-container *ngIf="sufficientBalance || !isLoggedIn">پرداخت با کیف پول</ng-container>
+  <ng-container *ngIf="!sufficientBalance && isLoggedIn">کیف پول (عدم موجودی)</ng-container>
+</app-ui-button>

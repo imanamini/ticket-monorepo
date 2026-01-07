@@ -1,0 +1,16 @@
+.form-section {
+  .container {
+    padding: 132px 16px 48px;
+  }
+
+  .segment-content {
+    max-width: 600px;
+    margin: auto;
+  }
+
+  ::ng-deep {
+    .input {
+      background: #fff;
+    }
+  }
+}

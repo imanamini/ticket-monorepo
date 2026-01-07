@@ -1,0 +1,37 @@
+@if (infoMapperItem() && infoMapperItem()?.hasCollateralAmount) {
+  <div class="w-100 d-flex flex-row justify-content-space-between align-items-center px-plus rtl">
+    <div class="b-2 text-onback-medium">مبلغ ضمانت</div>
+    <div class="st-7 text-onback-high">
+      @for (item of collateralOption().collateralAmount; track item; let i = $index) {
+        {{ i > 0 ? ' یا ' : '' }}
+        {{ item | IRR: 'hideRial' }}
+      }
+      <span class="b-1 is-currency text-onback-high">ریال</span>
+    </div>
+  </div>
+}
+@if (collateralOption()?.registerCost) {
+  <ngx-divider
+    [color]="BorderColorsEnum.Air"
+    orientation="horizontal"
+  ></ngx-divider>
+  <div class="w-100 d-flex mt-low flex-row justify-content-space-between align-items-center px-plus rtl">
+    <div class="b-2 text-onback-medium">هزینه ثبت‌نام</div>
+    <div class="st-7 text-onback-high">
+      {{ collateralOption()?.registerCost | IRR: 'hideRial' }}
+      <span class="b-1 is-currency text-onback-high">ریال</span>
+    </div>
+  </div>
+}
+@if (showHintMessage() && infoMapperItem() && infoMapperItem()?.calloutMessage && infoMapperItem()?.calloutMessage?.description) {
+  <ngx-callout
+    class="d-block mt-plus"
+    [title]="infoMapperItem()?.calloutMessage?.title"
+    [showTitleBlink]="false"
+    [mode]="'multiple'"
+    [cta]="infoMapperItem()?.ctaText"
+    [messages]="infoMapperItem()?.calloutMessage?.description"
+    (ctaClick)="onClick()"
+  >
+  </ngx-callout>
+}

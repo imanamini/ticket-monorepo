@@ -1,0 +1,54 @@
+<common-ui-components-page-layout
+  title="مدیریت اشتراک"
+  [hasBackAction]="false"
+  (onBackAction)="customBackAction()"
+  [actionText]="actionText()"
+  [actionTextMode]="'error'"
+  (onTextClick)="handleRefund()"
+  [leftButtonDisabled]="plan()?.status === SERVICE_PLAN_STATUS.REFUNDING"
+>
+  <!--  TODO-->
+  <!--  Handle loading-->
+  <ng-container content>
+    <div class="content-wrapper surface-back">
+      <subscription-applet-subscription-badge [plan]="plan()"></subscription-applet-subscription-badge>
+      @if (nextActionServices && nextActionServices.length > 0) {
+        <subscription-applet-user-actions [services]="nextActionServices"></subscription-applet-user-actions>
+      }
+      <h6 class="title">مدیریت امکانات</h6>
+      <h3 class="subtitle">خدمات اشتراک شما</h3>
+      @for (service of plan()?.services; track service) {
+        <ng-container>
+          @switch (service.type) {
+            @case (SERVICES_TYPE.CREDIT) {
+              <subscription-applet-credit-service [service]="service"></subscription-applet-credit-service>
+            }
+            @case (SERVICES_TYPE.BNPL_1PAY) {
+              <subscription-applet-bnpl-service [service]="service"></subscription-applet-bnpl-service>
+            }
+            @case (SERVICES_TYPE.BNPL_4PAY) {
+              <subscription-applet-bnpl-service [service]="service"></subscription-applet-bnpl-service>
+            }
+            @case (SERVICES_TYPE.DPCARD_ISUUANCE) {
+              @if (service.status === SERVICE_STATUS.USED) {
+                <subscription-applet-dp-card-service [service]="service"></subscription-applet-dp-card-service>
+              }
+            }
+          }
+        </ng-container>
+      }
+      @if (otherServices()) {
+        <subscription-applet-other-services [services]="otherServices()"></subscription-applet-other-services>
+      }
+      @if (merchantServices()) {
+        <div class="pt-big px-medium">
+          <subscription-applet-ui-plan-services
+            [servicesList]="merchantServices()"
+            [isManagementSection]="true"
+            [showDetails]="true"
+          ></subscription-applet-ui-plan-services>
+        </div>
+      }
+    </div>
+  </ng-container>
+</common-ui-components-page-layout>

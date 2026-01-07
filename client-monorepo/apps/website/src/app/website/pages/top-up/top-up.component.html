@@ -1,0 +1,39 @@
+<app-base-layout
+  *ngIf="topUpPage && topUpPage.templateData"
+  [loaded]="loaded"
+>
+  <!--  section 1-->
+  <app-top-up-product
+    *ngIf="topUpPage.templateData.sectionIntro"
+    [data]="topUpPage.templateData.sectionIntro"
+  ></app-top-up-product>
+
+  <!--  section 2-->
+  <app-ui-basic-segment-explanation
+    *ngIf="topUpPage.templateData.chargeExplanation"
+    [animationPath]="'/assets/lottie/top-up.json'"
+    [data]="topUpPage.templateData.chargeExplanation"
+    [rtl]="true"
+  ></app-ui-basic-segment-explanation>
+
+  <!--  section 3-->
+  <app-ui-similar-services
+    *ngIf="topUpPage.templateData.similar && topUpPage.templateData.similar.items && topUpPage.templateData.similar.items.length > 0"
+    [data]="topUpPage.templateData.similar"
+  ></app-ui-similar-services>
+
+  <!--  section 4-->
+  <app-ui-seo
+    *ngIf="topUpPage.templateData.sectionSeoContent && topUpPage.templateData.sectionSeoContent.content"
+    [seoContent]="topUpPage.templateData.sectionSeoContent"
+  ></app-ui-seo>
+
+  <!--  section 5-->
+  <app-ui-faq
+    *ngIf="topUpPage.templateData.faq && topUpPage.templateData.faq.faqItems && topUpPage.templateData.faq.faqItems.length > 0"
+    [faqs]="topUpPage.templateData.faq.faqItems"
+    [subtitle]="topUpPage.templateData.faq.subtitle"
+    [title]="topUpPage.templateData.faq.title"
+  >
+  </app-ui-faq>
+</app-base-layout>

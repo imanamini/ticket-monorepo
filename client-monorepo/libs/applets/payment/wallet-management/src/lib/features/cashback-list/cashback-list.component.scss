@@ -1,0 +1,23 @@
+@import '@digipay/base-style/swatch';
+
+.title-wrapper {
+  margin: 24px;
+  font-size: 18px;
+  line-height: 2;
+  color: $swatch_steel_900;
+  font-weight: 600;
+
+  .title-information {
+    font-size: 12px;
+    font-weight: 400;
+    color: $swatch_steel_500;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+  }
+}

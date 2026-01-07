@@ -1,0 +1,39 @@
+<div class="w-100 d-flex flex-wrap justify-content-center">
+  <wealth-applet-bnpl-banner
+    class="d-flex banner"
+    [bnplTitle]="(bnplAmount() | thousands) + ' ریال'"
+    [bnplDescription]="' اعتبار 4 قسطه'"
+    [displayFee]="true"
+  />
+
+  <p class="w-100 text-align-center st-7 text-onback-high mt-big">
+    {{ bnplAmount() / 10 | thousands }}
+    تومان اعتبار بدون کارمزد را از دست می‌دهید!
+  </p>
+  <p class="w-100 text-align-center c-2 text-onback-medium mt-minus">
+    با برداشت موجودی، دیگر دریافت اعتبار
+    <span class="c-1 text-onback-high">
+      {{ bnplAmount() / 10 | thousands }}
+    </span>
+    تومانی بدون کارمزد امکان پذیر نیست.
+  </p>
+
+  <div class="w-100 d-flex gap-small align-items-center mt-huge">
+    <ngx-button
+      [fullWidth]="true"
+      (clickHandler)="actionHandler('getCredit')"
+      [style]="'tinted-on-elevated'"
+      [size]="'medium'"
+    >
+      دریافت اعتبار
+    </ngx-button>
+    <ngx-button
+      [fullWidth]="true"
+      (clickHandler)="actionHandler('cashout')"
+      [style]="'fill'"
+      [size]="'medium'"
+    >
+      برداشت موجودی
+    </ngx-button>
+  </div>
+</div>

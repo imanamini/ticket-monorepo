@@ -1,0 +1,53 @@
+<common-ui-components-page-layout
+  [title]="config()?.title"
+  [showBackIcon]="true"
+  [showBorder]="false"
+>
+  @if (this.config()?.mode === 'products') {
+    <div class="px-plus stores-search-box surface-high-contrast pb-plus">
+      <ngx-search-box
+        [debounceTime]="1000"
+        [mode]="'section'"
+        (searchTextChange)="searchEnd($event)"
+        (searchEnd)="searchEnd($event)"
+        [placeHolder]="'جست‌و‌جو در محصولات'"
+        [(searchText)]="productListService.searchText"
+        #searchComponent
+      ></ngx-search-box>
+    </div>
+  }
+
+  <div
+    class="px-plus my-minus filters surface-high-contrast pb-small"
+    [class.has-search-box]="config()?.mode === 'products'"
+  >
+    <common-stores-products-sort-and-filter></common-stores-products-sort-and-filter>
+  </div>
+  <div
+    class="d-flex px-plus flex-wrap mt-plus justify-content-space-around"
+    commonUtilitiesScrolledToEnd
+    (scrolledToEnd)="loadNewPage()"
+  >
+    @if (products()?.length) {
+      @for (product of products(); track product.documentId) {
+        <common-stores-product-preview
+          (clicked)="goToProductPage($event)"
+          [product]="product"
+          [backgroundMode]="'back'"
+          [classes]="'mb-pony'"
+          [position]="$index + 1"
+          [hasInstallment]="hasInstallment()"
+          [showScore]="!singleStore()"
+        ></common-stores-product-preview>
+      }
+    } @else if (!productsLoading()) {
+      <div class="d-flex flex-col justify-content-center align-items-center">
+        <common-ui-components-no-item [description]="'هیچ کالایی پیدا نشد!'"></common-ui-components-no-item>
+      </div>
+    } @else {
+      @for (skeleton of rangeCreator(6); track $index) {
+        <common-stores-product-preview [isLoading]="true"></common-stores-product-preview>
+      }
+    }
+  </div>
+</common-ui-components-page-layout>

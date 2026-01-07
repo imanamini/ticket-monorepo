@@ -1,0 +1,45 @@
+@defer (on immediate) {
+  <owl-carousel-o
+    [options]="owlCarouselConfig"
+    (changed)="slidesChanged($event)"
+    (initialized)="carouselInitialized($event)"
+    (translated)="carouselTranslated($event)"
+    class="owl-carousel-wrapper"
+    #owlCarousel
+  >
+    <ng-container *ngFor="let slide of slidesData; let slideIndex = index">
+      <ng-template
+        carouselSlide
+        id="{{ slideIndex }}"
+      >
+        <ng-template
+          *ngTemplateOutlet="
+            templateRef;
+            context: {
+              slide,
+              isActive: activeSlideMap[slideIndex] ? activeSlideMap[slideIndex] : false,
+              isCenter: centeredSlideId === slideIndex,
+              slideIndex,
+            }
+          "
+        ></ng-template>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+} @placeholder {
+  <div class="placeholder-wrapper">
+    <ng-container *ngFor="let slide of slidesData.slice(0, 3); let slideIndex = index">
+      <ng-template
+        *ngTemplateOutlet="
+          templateRef;
+          context: {
+            slide,
+            isActive: true,
+            isCenter: centeredSlideId === slideIndex,
+            slideIndex,
+          }
+        "
+      ></ng-template>
+    </ng-container>
+  </div>
+}

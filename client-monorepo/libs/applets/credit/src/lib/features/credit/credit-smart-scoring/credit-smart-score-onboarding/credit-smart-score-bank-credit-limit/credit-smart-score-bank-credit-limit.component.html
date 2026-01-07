@@ -1,0 +1,49 @@
+<div class="d-flex flex-column justify-content-space-between h-100 pb-plus px-plus">
+  <div class="d-flex flex-column gap-medium">
+    <div class="d-flex flex-column gap-small">
+      <span class="st-1"> وام </span>
+      <span class="st-8 text-onback-medium">در مرحله بعدی سقف وام براساس رتبه اعتباری شما تعیین خواهد شد.</span>
+    </div>
+
+    <ngx-card
+      (click)="onNext()"
+      [cardMode]="'credit'"
+      [amount]="maxCreditAmount()"
+      [amountAlign]="'right'"
+      [cardBackground]="'#1159FC'"
+      [cardLabel]="'حداکثر سقف'"
+      [rightDetail]="creditRightDetail"
+      [width]="'100%'"
+      [height]="'126px'"
+      [logoWidth]="0"
+      [logoHeight]="0"
+    ></ngx-card>
+
+    <div class="radius-medium surface-back d-flex flex-column py-medium px-plus gap-small">
+      @for (message of messages; track $index) {
+        <div class="d-flex align-items-center gap-minus">
+          <div class="radius-rounded invert size-7 text-onback-high"></div>
+          <span class="st-8 text-onback-medium">{{ message }}</span>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center w-100">
+    <ngx-button
+      [mode]="'form'"
+      [size]="'large'"
+      [style]="'fill'"
+      [fullWidth]="true"
+      [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+      [isLoading]="isLoading()"
+      (clickHandler)="onNext()"
+    >
+      تعیین سقف وام
+    </ngx-button>
+  </div>
+</div>
+
+<ng-template #creditRightDetail>
+  <span class="b-3 text-oninvert-medium"> اقساط تا {{ maxInstallmentCount() }} ماه </span>
+</ng-template>

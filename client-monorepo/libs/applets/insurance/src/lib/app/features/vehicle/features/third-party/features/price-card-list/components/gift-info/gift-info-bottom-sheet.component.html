@@ -1,0 +1,25 @@
+<div id="container-gift-info">
+  @if (giftData && giftData.data && giftData.data.giftDetails) {
+    <ul>
+      @for (item of giftData?.data?.giftDetails; track giftData.data.id) {
+        <li>
+        <span>
+          <ins-icon
+            [name]="IconEnum.InfoBlueCircle"
+            [width]="24"
+            [height]="24"
+          ></ins-icon>
+        </span>
+          <p [textContent]="item"></p>
+        </li>
+      }
+    </ul>
+  }
+  <ins-button
+    (clickHandler)="onClose()"
+    [brandButton]="true"
+    [fullWidth]="true"
+    [size]="InsButtonSizeEnum.Large"
+    text="متوجه شدم">
+  </ins-button>
+</div>

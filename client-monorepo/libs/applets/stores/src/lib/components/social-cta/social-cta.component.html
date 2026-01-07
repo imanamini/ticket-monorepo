@@ -1,0 +1,22 @@
+<div class="d-flex gap-small">
+  @if (config()?.whatsappNumber) {
+    <ngx-button
+      [fullWidth]="true"
+      [style]="'tinted-on-elevated'"
+      [mode]="'form'"
+      [size]="'medium'"
+      (clickHandler)="handleSendMessageButton()"
+    >ارسال پیام
+    </ngx-button>
+  }
+
+  <ngx-button
+    [fullWidth]="true"
+    [style]="'fill'"
+    [mode]="'form'"
+    [size]="'medium'"
+    [isLoading]="goingToPay()"
+    (clickHandler)="openBottomSheet()"
+  >{{ secondaryBtnName() }}</ngx-button
+  >
+</div>

@@ -1,0 +1,24 @@
+<div class="loading">
+  <span class="images">
+    <img
+      src="../../../../../../assets/images/logo-type.svg"
+      alt=""
+    />
+    <img
+      src="../../../../../../assets/images/tagline.svg"
+      alt=""
+    />
+  </span>
+
+  <span class="title">
+    در حال فعالسازی اعتبار
+    <ngx-progress-bar
+      [config]="{
+        type: ProgressBarTypeTranslator.PROGRESS_BAR_MINI,
+        stepLength: 100,
+        activeIndex: nobitexCredit.progressValue$ | async,
+      }"
+    >
+    </ngx-progress-bar>
+  </span>
+</div>

@@ -1,0 +1,40 @@
+<div class="ui-dialog-fine-payment-cancellation">
+  <div class="top-bar">
+    <div class="title">انصراف از پرداخت بدهی</div>
+    <div
+      (click)="closeDialog()"
+      class="close"
+    >
+      <ngx-icon
+        [name]="'close'"
+        classes="text-onback-high cursor-pointer"
+      ></ngx-icon>
+    </div>
+  </div>
+  <div class="body">
+    <img
+      height="87"
+      ngSrc="../../../../../../assets/dialog/fine-payment-cancelation-artwork.svg"
+      width="112"
+    />
+    <div>
+      <div class="title">آیا از پرداخت بدهی انصراف می دهید؟</div>
+      <div class="description">توجه داشته باشید، در صورت انصراف از پرداخت، هزینه پرداخت شده به راهور عودت داده نمی‌شود.</div>
+    </div>
+    <div class="ctas">
+      <app-ui-button
+        (clicked)="closeDialog(true)"
+        appearance="FLAT-BLUE"
+        class="first-cta"
+      >
+        انصراف از پرداخت
+      </app-ui-button>
+      <app-ui-button
+        (clicked)="closeDialog(false)"
+        class="second-cta"
+      >
+        ادامه مسیر
+      </app-ui-button>
+    </div>
+  </div>
+</div>

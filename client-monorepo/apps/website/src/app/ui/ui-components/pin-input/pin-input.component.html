@@ -1,0 +1,69 @@
+<div class="pin-input">
+  <div
+    *ngIf="!hasAPhysicalKeyboard()"
+    [ngClass]="{ 'has-error': hasError }"
+    class="circles"
+  >
+    <div
+      [ngClass]="{ filled: this.value.length >= 1 }"
+      class="circle"
+    ></div>
+    <div
+      [ngClass]="{ filled: this.value.length >= 2 }"
+      class="circle"
+    ></div>
+    <div
+      [ngClass]="{ filled: this.value.length >= 3 }"
+      class="circle"
+    ></div>
+    <div
+      [ngClass]="{ filled: this.value.length === 4 }"
+      class="circle"
+    ></div>
+  </div>
+
+  <div
+    #inputs
+    *ngIf="hasAPhysicalKeyboard()"
+    [ngClass]="{ 'has-error': hasError }"
+    class="inputs"
+  >
+    <div class="input">
+      <input
+        (keyup)="inputKeyUp($event)"
+        realMaxLength="1"
+        secretInput
+        type="text"
+      />
+    </div>
+    <div class="input">
+      <input
+        (keyup)="inputKeyUp($event)"
+        realMaxLength="1"
+        secretInput
+        type="text"
+      />
+    </div>
+    <div class="input">
+      <input
+        (keyup)="inputKeyUp($event)"
+        realMaxLength="1"
+        secretInput
+        type="text"
+      />
+    </div>
+    <div class="input">
+      <input
+        (keyup)="inputKeyUp($event)"
+        realMaxLength="1"
+        secretInput
+        type="text"
+      />
+    </div>
+  </div>
+
+  <app-virtual-keypad
+    (emitPress)="keypadKeyPress($event)"
+    *ngIf="shouldDisplayVirtualKeyboard()"
+  ></app-virtual-keypad>
+</div>

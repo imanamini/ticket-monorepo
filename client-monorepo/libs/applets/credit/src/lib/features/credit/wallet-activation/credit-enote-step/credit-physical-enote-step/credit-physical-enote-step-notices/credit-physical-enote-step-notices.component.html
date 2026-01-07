@@ -1,0 +1,31 @@
+@if (!submittingData()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="prevStep.emit()"
+    [backButton]="true"
+    title="نکات مهم"
+    [actionText]="switchTypePossible() ? 'تغییر نوع سفته' : null!"
+    [actionImage]="switchTypePossible() ? 'edit-square' : undefined"
+    (onTextClick)="onChangeEnoteType()"
+  ></app-credit-app-bar>
+  <div class="main-section flex-full-height">
+    <div class="top-section">
+      <app-credit-scrollable-view>
+        <div class="page-content">
+          <app-credit-notices
+            title="برای جلوگیری از رد ضمانت موارد زیر را رعایت کنید:"
+            [notices]="notices"
+          ></app-credit-notices>
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+    <div class="bottom-section">
+      <ngx-button
+        (clickHandler)="onSubmit()"
+        [fullWidth]="true"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  </div>
+}
+<credit-page-loading [active]="submittingData()!"></credit-page-loading>

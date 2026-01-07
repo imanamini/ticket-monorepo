@@ -1,0 +1,27 @@
+<div
+  class="w-100 d-flex p-medium radius-plus gap-minus border-100 border-color-tint cursor-pointer"
+  (click)="onShowMore($event)"
+>
+  <img
+    class="feed-image radius-medium"
+    [src]="data().imageUrl || 'wealth-assets/icons/speaker.svg'"
+    [alt]="data().title"
+  />
+  <div class="w-100 d-flex flex-column justify-content-space-between">
+    <p
+      class="st-7 text-onback-high"
+      [innerHTML]="data().title"
+    ></p>
+    <div class="w-100 d-flex align-items-center justify-content-space-between news-card-date">
+      <span class="c-2 text-onback-medium">{{ data().date | jalaliDate }}</span>
+      <div class="d-flex align-items-center gap-micro">
+        <span class="c-2 text-onback-medium">بیشتر </span>
+        <ngx-icon
+          class="text-onback-medium"
+          [name]="'arrow-2-left'"
+          [iconSize]="'14px'"
+        />
+      </div>
+    </div>
+  </div>
+</div>

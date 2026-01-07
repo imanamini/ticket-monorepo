@@ -1,0 +1,25 @@
+<div class="container w-100">
+  @for (step of steps; track step; let i = $index) {
+    <div class="step">
+      <div class="icon-container">
+        <img
+          src="{{ step.id <= activeStep ? step.icon : step.disabledIcon }}"
+          alt="{{ step.title }}"
+        />
+        @if (i < steps.length - 1) {
+          <div
+            class="dots"
+            [ngClass]="{ 'active-dot': (activeStep | activeStep) > i }"
+          ></div>
+        }
+      </div>
+
+      <p
+        class="step-title"
+        [ngClass]="{ 'active-title': step.id === activeStep }"
+      >
+        {{ step.title }}
+      </p>
+    </div>
+  }
+</div>

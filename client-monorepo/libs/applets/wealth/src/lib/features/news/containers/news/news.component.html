@@ -1,0 +1,34 @@
+<div class="w-100 h-100 d-flex flex-wrap surface-elevated">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'اخبار اقتصادی'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="w-100 d-flex justify-content-center px-plus">
+    @if (isLoading()) {
+      <app-spinner class="h-100"></app-spinner>
+    } @else {
+      @if (feeds()) {
+        <div class="mt-big d-flex flex-wrap">
+          @for (feed of feeds(); track feed) {
+            <app-news-card
+              class="w-100 d-flex mb-plus"
+              [data]="feed"
+            ></app-news-card>
+          }
+        </div>
+      } @else {
+        <div class="content d-flex align-items-center">
+          <app-news-no-feed (onRetry)="loadFeed()"></app-news-no-feed>
+        </div>
+      }
+    }
+  </div>
+</div>

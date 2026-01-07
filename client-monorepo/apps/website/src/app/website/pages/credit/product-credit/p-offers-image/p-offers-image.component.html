@@ -1,0 +1,36 @@
+<section class="credit-product-offers">
+  <div class="container">
+    <h2
+      *ngIf="title"
+      class="text-align-center"
+    >
+      {{ title }}
+    </h2>
+    <div class="subtitle text-align-center">{{ subtitle }}</div>
+    <div>
+      <swiper-container
+        appSwiper
+        #swiper="appSwiper"
+        [config]="config"
+      >
+        <swiper-slide *ngFor="let item of data; let itemIndex = index">
+          <div class="benefit-card">
+            <div class="content">
+              <div class="content-front">
+                <a
+                  [href]="item.url"
+                  target="_blank"
+                ></a>
+                <img
+                  [src]="item.image.url"
+                  alt=""
+                  style="max-width: 100%"
+                />
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </div>
+</section>

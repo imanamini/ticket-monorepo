@@ -1,0 +1,50 @@
+<div>
+  <div class="st-7 mb-medium text-align-center">اطلاعات خودرو خود را وارد کنید.</div>
+  <div class="d-flex justify-content-center align-items-center mb-medium">
+    <ngx-plate
+      (plateChange)="onValueChange($event)"
+      [plate]="plateNo()"
+      [readonly]="mode() === 'edit'"
+    ></ngx-plate>
+  </div>
+  <ui-form-field
+    [label]="'نام خودرو'"
+    [(ngModel)]="name"
+  ></ui-form-field>
+
+  @if (payableAutomatically() && mode() === 'edit') {
+    <div class="my-medium border-100 border-color-light"></div>
+    <div class="surface-brand-tint radius-plus p-minus">
+      <ui-form-field
+        type="slide-toggle"
+        label="پرداخت خودکار از کیف پول"
+        [(ngModel)]="isAutoPay"
+      ></ui-form-field>
+      <p class="b-3">دیجی‌پی به صورت خودکار از کیف پول شما عوارضی را پرداخت می‌کند.</p>
+    </div>
+  }
+
+  <div class="d-flex gap-medium mt-large">
+    @if (mode() === 'edit') {
+      <ngx-button
+        [rightIcon]="{ name: 'delete' }"
+        [mode]="'form'"
+        [size]="'medium'"
+        [destructive]="true"
+        [fullWidth]="true"
+        [style]="'link'"
+        (clickHandler)="deletePlate()"
+        [isLoading]="ctaInProgress()"
+        [disabled]="ctaInProgress()"
+        >حذف خودرو
+      </ngx-button>
+    }
+    <ngx-button
+      [fullWidth]="true"
+      (clickHandler)="submit()"
+      [isLoading]="ctaInProgress()"
+      [disabled]="ctaInProgress()"
+      >{{ mode() === 'edit' ? 'ثبت اطلاعات' : 'ثبت خودرو' }}
+    </ngx-button>
+  </div>
+</div>

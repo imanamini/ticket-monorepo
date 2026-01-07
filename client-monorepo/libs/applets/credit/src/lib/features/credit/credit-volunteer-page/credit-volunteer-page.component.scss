@@ -1,0 +1,85 @@
+@import "../credit-styles/device-mixins";
+@import "@digipay/base-style/swatch";
+
+::ng-deep app-credit-volunteer-page {
+  display: flex;
+  flex-direction: column;
+}
+
+iframe {
+  width: 100%;
+  flex-grow: 1;
+}
+
+.iframe-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.top-section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.call-to-action-section {
+  flex: 0 0 auto;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+
+  .secondary-button {
+    width: 100%;
+  }
+
+  .primary-button {
+    width: 100%;
+  }
+
+  &.double-action {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &.cta-priority-low {
+    .secondary-button {
+      background-color: transparent !important;
+      color: $swatch_steel_500 !important;
+      box-shadow: none !important;
+    }
+
+    .primary-button {
+      background-color: $swatch_blue_100 !important;
+      color: $swatch_blue_500 !important;
+    }
+  }
+
+  &.cta-priority-high {
+    .secondary-button {
+      background-color: $swatch_blue_100 !important;
+      color: $swatch_blue_500 !important;
+    }
+  }
+}
+
+.message-image.image-pending {
+  background-image: url("./credit-volunteer-pending.svg");
+  height: 80px;
+}
+
+@include mediaMobile() {
+  .iframe-container {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+  }
+}

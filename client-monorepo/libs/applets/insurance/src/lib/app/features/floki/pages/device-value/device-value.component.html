@@ -1,0 +1,61 @@
+<div class="device-value-container flex-column d-flex justify-content-space-between py-minus px-medium">
+  <div class="device-value-header flex-column d-flex align-items-center gap-hulk">
+    <floki-header
+      [hasIcon]="true"
+      [iconName]="'close'"
+      class="icon-color"
+    >
+    </floki-header>
+
+    <div class="d-flex flex-column gap-minus align-items-center">
+      <p class="t-7">بیمه موبایل</p>
+      <p class="t-6">بیمه تجهیزات الکترونیک دیجی‌پی</p>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column gap-minus">
+    <p class="bt-2">ارزش گوشی موبایل خود را وارد کنید.</p>
+    <div [formGroup]="form">
+      <ui-form-field
+        [convertNonEnglishDigits]="true"
+        [hasCleaner]="false"
+        [hasHintStar]="true"
+        [hasRialStickyText]="true"
+        [hasValidationMark]="false"
+        [hintStatus]="'info'"
+        [hint]="form?.get('assetPrice')?.value | rialToToman"
+        [label]="'ارزش گوشی'"
+        [placeholder]="'ارزش گوشی'"
+        [required]="true"
+        [type]="'amount'"
+        formControlName="assetPrice"
+        [maxSize]="17"
+      ></ui-form-field>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column gap-big">
+    <div>
+      <ngx-alert
+        (clickAction)="openPricingGuid()"
+        [actionButton]="{ link: 'راهنمای ارزش‌گذاری' }"
+        [color]="'yellow'"
+        [hasCloseIcon]="false"
+        text="توجه داشته باشید در صورت بروز حادثه، خسارت پرداختی براساس ارزش اعلام شده شما تا سقف قیمت واقعی دستگاه در زمان خرید بیمه محاسبه می‌شود. بنابراین برای پوشش کامل، در تعیین ارزش واقعی دستگاه خود دقت کنید."
+        title=""
+      ></ngx-alert>
+    </div>
+    <div>
+      <ngx-button
+        (clickHandler)="submitApplicationForm()"
+        [disabled]="form.invalid || isSubmitting()"
+        [fullWidth]="true"
+        [size]="'large'"
+        [style]="'fill'"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  </div>
+</div>
+<ng-container #vc></ng-container>

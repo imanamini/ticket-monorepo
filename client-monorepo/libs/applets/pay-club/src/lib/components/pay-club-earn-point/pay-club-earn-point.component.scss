@@ -1,0 +1,15 @@
+.card-title {
+  .bold {
+    color: #0040ff;
+    font-weight: 800;
+  }
+}
+
+:host {
+  display: block;
+  position: relative;
+}
+
+.card-container {
+  grid-template-columns: repeat(2, 1fr);
+}

@@ -1,0 +1,83 @@
+<div class="information-container">
+  <p class="form-title">
+    برای فعال‌سازی بیمه‌نامه اطلاعات خود را تکمیل کنید.
+  </p>
+  <div [formGroup]="form"
+       class="content">
+    <div class="single-column">
+      <ui-form-field
+              [error]="form.controls.mobile.errors"
+              [readonly]="true"
+              formControlName="mobile"
+              label="شماره موبایل"
+              type="input">
+      </ui-form-field>
+    </div>
+    <div class="two-column">
+      <ui-form-field
+              [error]="form.controls.firstName.errors"
+              formControlName="firstName"
+              label="نام">
+      </ui-form-field>
+      <ui-form-field
+              [error]="form.controls.lastName.errors"
+              formControlName="lastName"
+              label="نام خانوادگی">
+      </ui-form-field>
+    </div>
+    <div class="single-column">
+      <ui-form-field
+              [error]="form.controls['nationalCode'].errors"
+              [formControlName]="'nationalCode'"
+              [label]="'کد ملی'"
+              [required]="true"
+              [inputType]="'text'"
+              [isNumericKeyboard]="true"
+              [maxSize]="10"
+              [convertNonEnglishDigits]="true"
+              [errorMessageMapper]="{
+              invalidNotionalCode: 'کد ملی وارد شده معتبر نیست',
+            }"
+              [type]="'input'"
+      ></ui-form-field>
+
+    </div>
+    <div class="single-column">
+      <ui-form-field
+              [error]="form.controls.productBrand.errors"
+              formControlName="productBrand"
+              label="برند"
+      ></ui-form-field>
+    </div>
+    <div class="single-column">
+      <ui-form-field
+              [error]="form.controls.productModel.errors"
+              formControlName="productModel"
+              label="مدل"
+      ></ui-form-field>
+    </div>
+    <div class="single-column">
+      <ui-form-field
+              [error]="form.controls.serialNumber.errors"
+              formControlName="serialNumber"
+              label="سریال دستگاه / IMEI"
+              [maxSize]="15"
+      ></ui-form-field>
+    </div>
+
+  </div>
+  <used-info-box
+          [bodyText]="'توجه کنید شناسه سریال (IMEI) وارد شده ملاک شناسایی دستگاه شما برای رسیدگی به شکایات و جبران خسارات خواهد بود و در ادامه قابل تغییر نیست.'"
+          [showFooter]="false">
+  </used-info-box>
+
+  <div class="buttons">
+    <journey-buttons
+            (nextClicked)="registerInfoSubscription()"
+            [disableNext]="form.invalid"
+            [hideBackBtn]="true"
+            [isReversed]="false"
+            [nextText]="'تایید و ثبت اطلاعات'">
+    </journey-buttons>
+  </div>
+</div>

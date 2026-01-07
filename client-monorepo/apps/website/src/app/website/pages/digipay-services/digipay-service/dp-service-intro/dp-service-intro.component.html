@@ -1,0 +1,65 @@
+<section class="services__intro">
+  <div class="container">
+    <div
+      [ngClass]="{
+        cube: templateData?.artworkType === 'cube',
+        'mockup-x': templateData?.artworkType === 'mobile',
+        'card-y': templateData?.artworkType === 'card',
+        default: templateData?.artworkType === 'default',
+      }"
+      class="services__intro-contain"
+    >
+      <ng-container [ngSwitch]="templateData?.artworkType">
+        <app-service-art-cube
+          *ngSwitchCase="'cube'"
+          [images]="templateData?.introImages || []"
+        ></app-service-art-cube>
+        <app-service-art-mobile
+          *ngSwitchCase="'mobile'"
+          [images]="templateData?.introImages || []"
+        ></app-service-art-mobile>
+        <app-service-art-card
+          *ngSwitchCase="'card'"
+          [images]="templateData?.introImages || []"
+        ></app-service-art-card>
+        <div *ngSwitchCase="'default'">
+          <img
+            *ngIf="
+              templateData &&
+              templateData.introImages &&
+              templateData.introImages[0] &&
+              templateData.introImages[0].image &&
+              templateData.introImages[0].image.url
+            "
+            [attr.alt]="templateData.introImages[0].image.altText"
+            [src]="templateData.introImages[0].image.url"
+          />
+        </div>
+      </ng-container>
+
+      <div class="services__intro-left credit__intro-sides-desc credit__intro">
+        <div>
+          <h1>
+            {{ templateData?.introTitle }} <br />
+            {{ templateData?.introSubtitle }}
+          </h1>
+          <p>{{ templateData?.introDescription }}</p>
+          <div class="ctas">
+            <ng-container *ngIf="templateData?.cta && templateData?.cta?.popup && templateData?.cta?.popup === 'yes'; else defaultCTA">
+              <app-popup-download></app-popup-download>
+            </ng-container>
+
+            <ng-template #defaultCTA>
+              <app-ui-button
+                *ngIf="templateData && templateData.cta"
+                [link]="templateData?.cta?.link || ''"
+              >
+                {{ templateData?.cta?.title }}
+              </app-ui-button>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+<div class="about-us-app-services d-flex justify-content-center align-content-center">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+    <div class="about-us-app-services-title mb-large">{{ templateData()?.appServices?.title }}</div>
+    <div
+      class="about-us-app-services-subtitle text-onback-low st-2 mb-huge">{{ templateData()?.appServices?.subtitle }}
+    </div>
+      <div class="about-us-app-services-logo-list">
+
+        @for (row of appServices(); track $index) {
+          <div class="logo-row d-flex justify-content-center gap-huge mb-6">
+            @for (logo of row; track logo.id) {
+              <div class="about-us-app-services-logo cursor-pointer d-flex justify-content-center align-items-center">
+                <a href="{{logo?.link}}" class="logo-link">
+                  <img src="{{ logo?.icon?.url }}" alt="App Service Logo">
+                </a>
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+  </div>
+</div>
+

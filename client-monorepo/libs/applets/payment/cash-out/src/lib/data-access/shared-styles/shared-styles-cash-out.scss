@@ -1,0 +1,71 @@
+@import "@digipay/base-style/swatch";
+@import "@digipay/base-style/mixins/responsive";
+
+:host {
+  height: 100%;
+}
+
+::ng-deep .cash-out-without-padding {
+  height: auto;
+}
+
+.content-wrapper {
+  background: white;
+  border-radius: 16px;
+  margin: auto;
+  padding-block: 40px;
+  padding-inline: 24px;
+  height: calc(100% - 57px);
+  box-sizing: border-box;
+}
+
+.mobile-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.center-container {
+  text-align: center;
+  position: absolute;
+  right: 50%;
+  top: 50%;
+}
+
+.loader-container {
+  @extend .center-container;
+}
+
+.alert-danger {
+  @extend .center-container;
+  color: red;
+  transform: translate(50%, -50%);
+  padding: 16px;
+  border-radius: 12px;
+  width: max-content;
+}
+
+
+@keyframes load {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #c9c6c6;
+  border-top: 2px solid gray;
+  border-radius: 60px;
+  animation: load 1s linear infinite;
+  margin: auto;
+}
+
+
+@include small_screen() {
+
+  ::ng-deep .cash-out-without-padding {
+    height: 80vh;
+  }
+}
+

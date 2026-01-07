@@ -1,0 +1,32 @@
+.bnpl-help-section {
+  padding: 24px 0;
+
+  .bnpl-help-section-title {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 600;
+    padding-right: 32px;
+    background: url("./section-title-icon.svg") no-repeat right center;
+    background-size: 24px 24px;
+  }
+
+  .bnpl-help-section-subtitle {
+    padding-right: 40px;
+    background: url("./section-subtitle-icon.svg") no-repeat right 6px top 0;
+    background-size: 24px 24px;
+    font-size: 12px;
+    line-height: 20px;
+    padding-top: 6px;
+    margin-top: 8px;
+  }
+
+  .title-margin-space {
+    height: 24px;
+  }
+  .element-item {
+    margin-top: 16px;
+    &.first-element {
+      margin-top: 0;
+    }
+  }
+}

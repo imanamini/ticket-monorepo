@@ -1,0 +1,51 @@
+<app-base-layout
+  *ngIf="isiranPage && isiranPage.templateData"
+  [justShowLogo]="true"
+  [loaded]="true"
+  [showFooter]="false"
+>
+  <!--section 1-->
+  <app-isiran-form [data]="isiranPage.templateData.sectionForm"></app-isiran-form>
+
+  <!--section 2-->
+  <app-ui-basic-segment-explanation
+    [data]="getCreditExplanation"
+    [rtl]="true"
+  >
+  </app-ui-basic-segment-explanation>
+
+  <!--section 3-->
+  <app-isiran-value
+    *ngIf="
+      isiranPage.templateData.sectionValue &&
+      isiranPage.templateData.sectionValue.values &&
+      isiranPage.templateData.sectionValue.values.length > 0
+    "
+    [features]="isiranPage.templateData.sectionValue.values"
+    [title]="isiranPage.templateData.sectionValue.title"
+  ></app-isiran-value>
+
+  <!--section 4-->
+  <!--  <app-credit-stores-->
+  <!--    *ngIf="merchants"-->
+  <!--    [creditStores]="merchants"-->
+  <!--    id="merchants"-->
+  <!--  ></app-credit-stores>-->
+
+  <!--section 5-->
+  <app-ui-horizontal-flow
+    *ngIf="sectionFlow && sectionFlow.steps.length > 0"
+    [steps]="sectionFlow.steps"
+    [title]="sectionFlow.title"
+  >
+  </app-ui-horizontal-flow>
+
+  <!--section 5-->
+  <app-ui-faq
+    *ngIf="isiranPage.templateData.faq && isiranPage.templateData.faq.faqItems && isiranPage.templateData.faq.faqItems.length > 0"
+    [faqs]="isiranPage.templateData.faq.faqItems"
+    [subtitle]="isiranPage.templateData.faq.subtitle"
+    [title]="isiranPage.templateData.faq.title"
+  >
+  </app-ui-faq>
+</app-base-layout>

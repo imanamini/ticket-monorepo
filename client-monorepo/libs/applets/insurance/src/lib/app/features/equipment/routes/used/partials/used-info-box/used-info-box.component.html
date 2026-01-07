@@ -1,0 +1,22 @@
+<div class="journey-info-box">
+  <div class="box-body">
+    <ngx-icon
+            name="error-circle"
+            type="bold"
+    ></ngx-icon>
+    <span>
+      {{ bodyText }}
+    </span>
+  </div>
+  @if (showFooter && footerText) {
+    <div class="box-divider"></div>
+    <div (click)="handleFooterClick($event)"
+         class="box-footer">
+      <span>{{ footerText }}</span>
+      <span icon="icon-general-arrow-left"
+            [size]="24"
+            ui-icon>
+    </span>
+    </div>
+  }
+</div>

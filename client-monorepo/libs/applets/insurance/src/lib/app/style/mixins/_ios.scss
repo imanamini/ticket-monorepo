@@ -1,0 +1,43 @@
+@import "insurance/src/lib/app/style/once/variables";;
+
+@mixin set-container-height-style-ios($height: 100%) {
+  @at-root :host-context(body.iphone-style) & {
+    max-height: calc(
+            95vh - env(safe-area-inset-bottom) - env(safe-area-inset-top)
+    ) !important;
+  }
+  height: $height;
+  @content;
+}
+
+@mixin set-container-margin-op-style-ios($margin-top: initial) {
+  @at-root :host-context(body.iphone-style) & {
+    margin-top: $offset-bottom-safari !important;
+  }
+  margin-top: $margin-top;
+  @content;
+}
+
+@mixin set-style-ios($is-in-root: false) {
+  @if $is-in-root {
+    @at-root body.iphone-style & {
+      @content;
+    }
+  } @else {
+    @at-root :host-context(body.iphone-style) & {
+      @content;
+    }
+  }
+}
+
+@mixin parentClass($parentTarget, $additionalCLass) {
+  @at-root #{selector-replace(&, $parentTarget, $parentTarget + $additionalCLass)} {
+    @content;
+  }
+}
+
+@mixin over-scroll-behavior-none-ios {
+  @at-root body.iphone-style & {
+    overscroll-behavior-y: none;
+  }
+}

@@ -1,0 +1,54 @@
+<ngx-app-bar
+  [rightIcon]="{ name: 'close' }"
+  (onRightIconClick)="goBack()"
+></ngx-app-bar>
+
+<div class="px-plus calc-mh">
+  <img
+    src="assets/shared/dg-card/dg-onboarding.svg"
+    class="w-100 mb-plus"
+  />
+
+  <common-ui-components-title-summary
+    [title]="'دیجی‌کارت چیست؟'"
+    [rightIcon]="{
+      name: 'bank-card',
+      iconSize: '24px',
+    }"
+    [showButton]="false"
+    [mode]="'PAGE_TITLE'"
+  ></common-ui-components-title-summary>
+
+  <p class="c-2 mt-low mb-big">
+    دیجی‌کارت فراتر از یک کارت بانکی است که با اتصال به کیف‌ پول دیجی‌پی قابلیت پرداخت در همه فروشگاه‌ها را به سادگی فراهم می‌کند.
+  </p>
+
+  <common-ui-components-title-summary
+    [title]="'مزایای دیجی‌کارت'"
+    [rightIcon]="{
+      name: 'star',
+      iconSize: '24px',
+    }"
+    [showButton]="false"
+    [mode]="'PAGE_TITLE'"
+  ></common-ui-components-title-summary>
+
+  <div class="dg-onboarding-callout mt-low">
+    <ngx-callout
+      [backgroundMode]="'elevated'"
+      [mode]="'multiple'"
+      [title]="''"
+      [showTitleBlink]="false"
+      [messages]="calloutMessages"
+    />
+  </div>
+
+  <div class="issue-btn mx-width-550">
+    <ngx-button
+      [fullWidth]="true"
+      [size]="'large'"
+      (clickHandler)="onComplete()"
+      >درخواست کارت</ngx-button
+    >
+  </div>
+</div>

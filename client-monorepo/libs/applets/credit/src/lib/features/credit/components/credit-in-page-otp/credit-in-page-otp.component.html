@@ -1,0 +1,59 @@
+<div class="d-flex flex-column w-100 py-huge flex-grow rtl">
+  @if (cellNumber()) {
+    <h4 class="st-2 text-onback-high text-align-right">
+      {{ cellNumber() }}
+    </h4>
+  }
+  @if (topDescription()) {
+    <p class="onback-medium b-2 text-align-right mb-big rtl">
+      {{ topDescription() }}
+    </p>
+  }
+  @if (!hideBottomDescription()) {
+    <p class="onback-medium b-2 text-align-right mt-medium">
+      {{ bottomDescription() }}
+    </p>
+  }
+  <ngx-otp
+    [(otp)]="otpCode"
+    [otpLength]="length()"
+    [supportText]="OtpErrorText()"
+    [status]="otpStatus()"
+    (otpCompleted)="onSubmit()"
+  />
+
+  <ngx-callout
+    [mode]="'single-with-title'"
+    [message]="warningText()?.message"
+    [title]="warningText()?.title"
+  >
+  </ngx-callout>
+
+  <div class="w-100 mt-big ltr d-flex flex-row justify-content-space-between gap-small">
+    <ngx-button
+      (clickHandler)="onSubmit()"
+      [disabled]="isSubmitting() || otpCode().length < length()"
+      [fullWidth]="true"
+      [isLoading]="isSubmitting()"
+      mode="form"
+    >
+      تایید و ادامه
+    </ngx-button>
+    @if (showResend()) {
+      <ngx-button
+        (clickHandler)="receiveNewCode()"
+        [disabled]="!timeIsOver()"
+        [fullWidth]="true"
+        mode="form"
+        [style]="'tinted-on-elevated'"
+      >
+        @if (!timeIsOver()) {
+          <span>{{ minute() }}:{{ second() }}</span>
+        }
+        @if (timeIsOver()) {
+          <span>{{ newCodeBtnText() }}</span>
+        }
+      </ngx-button>
+    }
+  </div>
+</div>

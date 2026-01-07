@@ -1,0 +1,33 @@
+<div class="radius-minus d-flex flex-column surface-dim-level-1 gap-medium card">
+  <div class="d-flex flex-row justify-content-space-between">
+    <div class="d-flex flex-row align-items-center gap-small">
+      <span class="fs-16 text-onback-medium">امکان خرید از: </span>
+    </div>
+
+    <div class="d-flex flex-row align-items-center gap-medium">
+      <span class="fs-18 fw-bold">{{ data().balance | thousands }} ریال</span>
+      <ngx-icon
+        class="card-action"
+        name="arrow-2-left"
+        [iconSize]="'18px'"
+        [classes]="'fw-bold'"
+        (click)="onNavigateToStore()"
+      ></ngx-icon>
+    </div>
+  </div>
+
+  <div class="d-flex flex-row justify-content-space-between align-items-center">
+    <div class="d-flex flex-row gap-medium">
+      @for (item of data().restriction?.businessIds; track $index) {
+        <span class="d-flex flex-row gap-medium">
+          <ui-api-image
+            [imageId]="item"
+            [width]="'24px'"
+            [height]="'24px'"
+            [borderRadius]="'50%'"
+          ></ui-api-image>
+        </span>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+
+.knowledge-btn {
+  box-sizing: border-box;
+  border: none;
+  width: 6.5rem;
+  height: 8rem;
+  background-color: transparent;
+}
+
+.flex-no-wrap {
+  flex-wrap: wrap;
+  overflow-x: scroll;
+  scrollbar-width: none;
+}
+
+@media (max-width: 680px) {
+  .flex-no-wrap::-webkit-scrollbar {
+    display: none;
+  }
+  .knowledge-btn {
+    line-height: 0.5rem;
+    font-size: 10px;
+  }
+
+  .b-3{
+    font-size: 10px!important;
+  }
+}

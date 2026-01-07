@@ -1,0 +1,74 @@
+@if (loading$ | async) {
+  <ui-loading-spinner></ui-loading-spinner>
+} @else {
+  <div class="data-register-result">
+    <journey-action-result
+      [data]="actionResultData">
+      @if (isHealthCheckAvailable) {
+        <ng-container>
+          <!-- General Message -->
+          شما نیازمند سلامت سنجی دستگاه خود جهت تایید و فعالسازی بیمه‌‌نامه‌ی دستگاه هستید!
+          <br>
+          انجام این تست صرفا با دستگاه بیمه‌شده قابل انجام است!
+          <br>
+          لینک تست از طریق پیامک ارسال شد.
+          <!-- END General Message -->
+
+          <!-- Open in chrome iPad -->
+          @if (showOpenInChromeIpad()) {
+            <ng-container>
+              برای گذراندن تست سلامت سنجی روی تبلت خود،
+              <br/>
+              می بایست لینک همین صفحه را در مرورگر گوگل کروم باز نموده و ادامه فرآیند را طی کنید
+              <br/>
+              <ui-button
+                (clicked)="openInChrome()"
+                [appearance]="'DEFAULT'">
+              </ui-button>
+              بازکردن در کروم
+            </ng-container>
+          }
+
+          <!-- END Open in chrome iPad -->
+
+          <!-- Open in chrome iPhone -->
+          @if (showOpenInChromeIphone()) {
+            <ng-container>
+              برای گذراندن تست سلامت روی دستگاه آیفون بهتر است از مرورگر کروم استفاد کنید.
+              <br/>
+              برای اینکار کافیست لینک کامل این صفحه را کپی کرده و در مرورگر کروم دستگاه موبایل وارد نمایید.
+              <br/>
+              <ui-button
+                (clicked)="openInChrome()"
+                [appearance]="'DEFAULT'">
+                بازکردن در کروم
+              </ui-button>
+            </ng-container>
+          }
+
+          <!-- END Open in chrome iPhone -->
+        </ng-container>
+      }
+
+    </journey-action-result>
+
+    <div class="result-info">
+      <p>
+        * درصورت عدم تکمیل اطلاعات و سلامت سنجی، وجه پرداختی به حساب شما باز خواهد گشت.
+      </p>
+    </div>
+  </div>
+}
+
+@if (showHealthCheckBtn()) {
+  <div class="button">
+    <journey-buttons
+      (nextClicked)="setHealthCheck(true)"
+      [disableNext]="(loading$ | async)"
+      [hideBackBtn]="true"
+      [idValue]="'used-complete-information-result'"
+      [isReversed]="false"
+      [nextText]="'آغاز فرآیند سلامت سنجی'">
+    </journey-buttons>
+  </div>
+}

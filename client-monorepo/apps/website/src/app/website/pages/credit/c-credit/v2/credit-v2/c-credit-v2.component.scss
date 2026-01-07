@@ -1,0 +1,9 @@
+.credit-wrapper {
+  gap: 80px;
+}
+
+@media (max-width: 1280px) {
+  .credit-wrapper {
+    gap: 40px !important;
+  }
+}

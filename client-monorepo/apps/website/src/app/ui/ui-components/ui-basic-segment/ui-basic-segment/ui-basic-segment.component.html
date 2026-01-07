@@ -1,0 +1,17 @@
+<section
+  [ngClass]="rtl ? 'basic-segment-recto' : 'basic-segment-verso'"
+  class="basic-segment"
+>
+  <div class="container">
+    <h2 class="title-mobile text-align-center">{{ title }}</h2>
+    <div class="basic-segment-content">
+      <h2 class="title-desktop">{{ title }}</h2>
+      <div>
+        <ng-container [ngTemplateOutlet]="content"></ng-container>
+      </div>
+    </div>
+    <div class="basic-segment-figure">
+      <ng-container [ngTemplateOutlet]="figure"></ng-container>
+    </div>
+  </div>
+</section>

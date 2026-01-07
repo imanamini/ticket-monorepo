@@ -1,0 +1,80 @@
+<common-story-carousel-story-carousel
+  [stories]="onboardingStories()"
+  [loop]="true"
+>
+  <ng-container story-content>
+    @if (isViewReady()) {
+      <div class="px-plus">
+        <div class="w-100 surface-glass-onback radius-medium p-big elevation-sticky-blur mb-medium">
+          <div class="phone-number-content w-100 d-flex flex-column align-items-center py-plus">
+            <span class="text-onback-high st-3 pb-low">خوش آمدید!</span>
+            <span class="text-onback-low bt-3 mb-medium text-align-center">جهت ورود، لطفا شماره موبایل خود را وارد کنید.</span>
+
+            <div
+              [formGroup]="form"
+              class="h-80 w-100"
+            >
+              <ui-form-field
+                formControlName="phoneNumber"
+                [label]="'شماره موبایل'"
+                [inputType]="'text'"
+                [isNumericKeyboard]="true"
+                [maxSize]="11"
+                [autoFocus]="false"
+                [autoComplete]="'off'"
+                [convertNonEnglishDigits]="true"
+                [error]="form.controls['phoneNumber'].errors"
+                [errorMessageMapper]="{
+                  invalidCellNumber: 'شماره موبایل وارد شده معتبر نیست',
+                }"
+                (keydown)="checkKeyCode($event)"
+              ></ui-form-field>
+            </div>
+            <div class="action-container mt-medium mb-minus w-100">
+              <ngx-button
+                [mode]="'form'"
+                [size]="'large'"
+                [style]="'fill'"
+                [fullWidth]="true"
+                [disabled]="form.controls['phoneNumber'].invalid || isSumbitForm()"
+                (click)="getCode()"
+                [isLoading]="isSumbitForm()"
+              >
+                قبول شرایط و ادامه
+              </ngx-button>
+            </div>
+
+            <div class="links-container w-100 d-flex align-items-center justify-content-space-between flex-wrap">
+              @if (presentativeCode()) {
+                <div class="d-flex gap-tiny text-onback-brand b-3 py-micro px-tiny">
+                  <span>کد معرف: </span>
+                  <span>{{ presentativeCode() }}</span>
+                </div>
+              } @else {
+                <ngx-button
+                  id="referral-button-in-login"
+                  [mode]="'form'"
+                  [size]="'tiny'"
+                  [style]="'link'"
+                  (click)="goToStep(LoginState.REPRESENTATIVE)"
+                >
+                  کد معرف دارید؟
+                </ngx-button>
+              }
+
+              <ngx-button
+                id="rules-button-in-login"
+                [mode]="'form'"
+                [size]="'tiny'"
+                [style]="'link'"
+                (click)="goToStep(LoginState.RULES)"
+              >
+                شرایط استفاده از دیجی‌پی
+              </ngx-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </ng-container>
+</common-story-carousel-story-carousel>

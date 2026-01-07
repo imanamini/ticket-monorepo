@@ -1,0 +1,23 @@
+<div
+  class="d-flex p-tiny radius-minus mx-plus"
+  [ngClass]="mode() === 'section' ? 'surface-back' : 'surface-elevated'"
+>
+  @for (tab of tabs(); track tab) {
+    <div
+      class="tab-header-container p-pony c-2 radius-small"
+      (click)="activateTab($index)"
+      [ngClass]="[
+        tab.isActive() ? (mode() === 'section' ? ' surface-elevated text-onback-high' : 'surface-back text-onback-high') : 'text-onback-disabled',
+      ]"
+    >
+      {{ tab.label() }}
+    </div>
+  }
+</div>
+@for (tab of tabs(); track tab) {
+  @if (tab.isActive()) {
+    <div class="px-plus pt-minus flex-grow">
+      <ng-container *ngComponentOutlet="tab.component()"></ng-container>
+    </div>
+  }
+}

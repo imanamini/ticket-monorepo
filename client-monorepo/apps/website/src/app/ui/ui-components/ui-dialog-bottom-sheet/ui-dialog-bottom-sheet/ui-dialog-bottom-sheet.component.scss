@@ -1,0 +1,49 @@
+::ng-deep ui-dialog-bottom-sheet {
+  display: flex;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.header {
+  position: relative;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .title {
+    font-size: 16px;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    padding: 24px;
+
+    &.right {
+      text-align: right;
+    }
+  }
+
+  .header-image {
+    height: 185px;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    background: blue;
+    margin-bottom: 12px;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 24px 24px;
+  margin-top: auto;
+}

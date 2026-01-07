@@ -1,0 +1,28 @@
+<div class="cards">
+  <div
+    class="card"
+    *ngFor="let card of cards()"
+    (click)="checkNeedToApprove(card)"
+    [ngClass]="checkOperator(operatorId())"
+  >
+    <div class="card-title">
+      <div class="card-image">
+        @if (card.imageId) {
+          <ui-api-image
+            [imageId]="card.imageId"
+            [width]="'24px'"
+            [height]="'24px'"
+          ></ui-api-image>
+        }
+      </div>
+      <p class="card-desc">{{ card.description }}</p>
+    </div>
+    <div class="card-amount">
+      <div>
+        <span class="amount-value">{{ card.amount | thousands }}</span
+        ><span class="rial">ریال</span>
+      </div>
+      <div class="back-icon"></div>
+    </div>
+  </div>
+</div>

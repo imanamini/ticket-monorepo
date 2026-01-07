@@ -1,0 +1,62 @@
+<section>
+  <div class="recommended-posts">
+    <div class="desktop">
+      <p>پیشنهاد سردبیر:</p>
+      <div
+        *ngIf="isBrowser"
+        class="desktop similar-service-card swiper-container"
+      >
+        <swiper-container
+          appSwiper
+          #swiper
+          [config]="config"
+          (slidechange)="slideChange($event)"
+        >
+          <swiper-slide *ngFor="let item of posts; let itemIndex = index">
+            <div
+              *ngIf="item.category"
+              class="similar-service-card-item"
+            >
+              <app-ui-blog-vertical-post-card [post]="item"></app-ui-blog-vertical-post-card>
+            </div>
+          </swiper-slide>
+        </swiper-container>
+
+        <!--        <swiper [config]="config" [pagination]="{ dynamicBullets: true }">-->
+        <!--          <ng-container *ngFor="let item of posts; let itemIndex = index">-->
+        <!--            <ng-template *ngIf="item.category" swiperSlide>-->
+        <!--              <div class="similar-service-card-item">-->
+        <!--                <app-ui-blog-vertical-post-card-->
+        <!--                  [post]="item"-->
+        <!--                ></app-ui-blog-vertical-post-card>-->
+        <!--              </div>-->
+        <!--            </ng-template>-->
+        <!--          </ng-container>-->
+        <!--        </swiper>-->
+        <div class="swiper-next-btn">
+          <ngx-icon
+            [iconSize]="'24'"
+            [name]="'arrow-2-left'"
+            class="text-onback-brand"
+          ></ngx-icon>
+        </div>
+        <div class="swiper-prev-btn">
+          <span
+            icon="icon-charon-right"
+            size="24"
+            appUiIcon
+          ></span>
+        </div>
+      </div>
+    </div>
+    <div class="non-desktop">
+      <p>پیشنهاد سردبیر:</p>
+      <ng-container *ngFor="let post of posts">
+        <app-ui-post-card
+          *ngIf="post.category"
+          [post]="post"
+        ></app-ui-post-card>
+      </ng-container>
+    </div>
+  </div>
+</section>

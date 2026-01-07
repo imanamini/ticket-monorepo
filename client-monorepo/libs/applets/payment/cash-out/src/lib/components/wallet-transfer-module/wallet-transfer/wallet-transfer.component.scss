@@ -1,0 +1,33 @@
+@import "@digipay/base-style/swatch";
+@import "@digipay/base-style/mixins/responsive";
+
+.wallet-content {
+  padding: 16px;
+  text-align: center;
+}
+
+.page-content{
+  padding: 0 24px;
+}
+
+.field {
+  display: block;
+  margin: 28px 0 0 0;
+}
+
+.submit-btn{
+  display: flex;
+  justify-content: left;
+}
+
+.form-text {
+  color: #6e798d;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: right;
+  line-height: 1.8em;
+
+  strong {
+    font-weight: 500;
+  }
+}

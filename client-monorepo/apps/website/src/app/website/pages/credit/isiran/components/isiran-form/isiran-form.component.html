@@ -1,0 +1,78 @@
+<section class="section-isiran-form">
+  <div class="container">
+    <div class="content">
+      <h1>
+        {{ data.title }}
+      </h1>
+      <div
+        *ngIf="data.subtitle"
+        class="subtitle"
+      >
+        {{ data.subtitle }}
+      </div>
+    </div>
+  </div>
+  <div class="form">
+    <app-ui-section>
+      <div class="title">اطلاعات خود را برای دریافت اعتبار خرید اقساطی وارد کنید.</div>
+      <div class="subtitle">
+        این اطلاعات در سامانه‌های احراز هویت بررسی می‌شود. برای اینکه بتوانید ثبت‌نام خود را بدون مشکل انجام دهید لطفا اطلاعات را بادقت وارد
+        کنید.
+      </div>
+
+      <div
+        *ngIf="form"
+        [formGroup]="form"
+      >
+        <ui-form-field
+          [errorMessageMapper]="{
+            required: 'شماره همراه را وارد کنید.',
+            invalidCellNumber: 'شماره همراه وارد شده نامعتبر است.',
+          }"
+          [error]="form?.controls?.cellNumber?.errors"
+          [isNumericKeyboard]="true"
+          [maxSize]="11"
+          formControlName="cellNumber"
+          inputType="tel"
+          label="شماره همراه"
+          type="input"
+        >
+        </ui-form-field>
+
+        <ui-form-field
+          [errorMessageMapper]="{
+            required: 'کد ملی را وارد کنید.',
+            invalidNationalCode: 'کد ملی وارد شده نامعتبر است.',
+          }"
+          [error]="form?.controls?.nationalCode?.errors"
+          [isNumericKeyboard]="true"
+          [maxSize]="10"
+          formControlName="nationalCode"
+          label="کد ملی"
+          type="input"
+        >
+        </ui-form-field>
+
+        <ui-form-field
+          [customDateRange]="[minBirthDate, maxBirthDate]"
+          [errorMessageMapper]="{
+            required: 'تاریخ تولد را انتخاب کنید.',
+            invalidBirthDate: 'تاریخ تولد نامعتبر است.',
+          }"
+          [error]="form?.controls?.birthDate?.errors"
+          formControlName="birthDate"
+          label="تاریخ تولد"
+          type="date"
+        >
+        </ui-form-field>
+      </div>
+      <app-ui-button
+        (click)="openConfirmDialog()"
+        [disabled]="!form?.valid"
+        size="BIG"
+      >
+        تایید و ادامه
+      </app-ui-button>
+    </app-ui-section>
+  </div>
+</section>

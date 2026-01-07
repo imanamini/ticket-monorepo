@@ -1,0 +1,33 @@
+<div class="card-notice">
+  <div
+    *ngIf="title"
+    class="title tab"
+  >
+    <span
+      icon="icon-hints"
+      size="24"
+      app-ui-icon
+    ></span>
+    <div class="text">
+      {{ title }}
+    </div>
+  </div>
+  <ul
+    *ngIf="notices && notices.length > 0"
+    class="items"
+  >
+    <li
+      *ngFor="let notice of notices"
+      [ngClass]="hasDots ? 'chains' : ''"
+    >
+      <span
+        icon="icon-hint"
+        size="16"
+        appUiIcon
+      ></span>
+      <span class="text">
+        {{ notice.text }}
+      </span>
+    </li>
+  </ul>
+</div>

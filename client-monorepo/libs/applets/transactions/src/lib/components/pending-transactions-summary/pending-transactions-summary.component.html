@@ -1,0 +1,29 @@
+@if (isLoading()) {
+  <common-ui-components-title-summary
+    title="در حال انجام"
+    [isLoading]="true"
+    [showButton]="false"
+    [wrapperClasses]="'mb-small'"
+  ></common-ui-components-title-summary>
+
+  <payment-transactions-transaction-cards
+    [id]="'pending-transactions'"
+    [transactionCards]="[]"
+    [isLoading]="true"
+    mode="pending"
+  ></payment-transactions-transaction-cards>
+} @else {
+  @if (transactionCards().length > 0) {
+    <common-ui-components-title-summary
+      title="در حال انجام"
+      [showButton]="false"
+      [wrapperClasses]="'mb-small'"
+    ></common-ui-components-title-summary>
+
+    <payment-transactions-transaction-cards
+      [id]="'pending-transactions'"
+      [transactionCards]="transactionCards()"
+      mode="pending"
+    ></payment-transactions-transaction-cards>
+  }
+}

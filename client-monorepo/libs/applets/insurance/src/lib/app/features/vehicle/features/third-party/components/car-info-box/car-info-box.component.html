@@ -1,0 +1,40 @@
+<div class="car-info-box d-flex flex-column align-items-center h-100"
+     id="car-info-box">
+
+  @if (showStepper()) {
+    <third-party-stepper [currentStep]="1"
+                         stepName="مرحله اول"
+                         title="اطلاعات خودرو"
+                         [totalSteps]="3"></third-party-stepper>
+  }
+
+  <div class="box-center d-flex flex-column w-100 gap-medium">
+    <p class="center-text py-small px-medium">
+      {{ text() }}
+      <ng-content select="[description]"></ng-content>
+    </p>
+
+    @if (showPlate() && this.plate() !== null) {
+      <div class="d-flex align-items-center justify-content-center">
+        <ngx-plate
+          type="car"
+          [size]="'small'"
+          [plate]="plate()"
+          [readonly]="true"
+        ></ngx-plate>
+      </div>
+    }
+
+    <div class="center-content px-medium">
+      <ng-content></ng-content>
+    </div>
+  </div>
+
+
+  <action-buttons (activeButtonClicked)="handleActiveButtonClicked($event)"
+                  (deActiveButtonClicked)="handleDeActiveButtonClicked($event)"
+                  [activeButtonText]="activeButtonText()"
+                  [deActiveButtonText]="deActiveButtonText()"
+                  backgroundMode="gray"
+                  class="mt-medium"></action-buttons>
+</div>

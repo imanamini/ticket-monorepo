@@ -1,0 +1,38 @@
+<div
+  class="wallet-types cash-wallet-types"
+  *ngIf="balanceInformation()?.cashoutableBalance !== 0"
+>
+  <div
+    class="point"
+    [style.background-color]="cashBackgroundColor"
+  ></div>
+  <span>نقدی</span>
+  <span class="amount">{{ balanceInformation()?.cashoutableBalance | thousands }}</span>
+  <span>ریال</span>
+</div>
+
+<div
+  class="wallet-types non-cash-wallet-types"
+  *ngIf="balanceInformation()?.nonCashoutableBalance !== 0"
+>
+  <div
+    class="point"
+    [style.background-color]="nonCashBackgroundColor"
+  ></div>
+  <span>نقدی غیرقابل برداشت</span>
+  <span class="amount">{{ balanceInformation()?.nonCashoutableBalance | thousands }}</span>
+  <span>ریال</span>
+</div>
+
+<div
+  class="wallet-types gift-wallet-types"
+  *ngIf="balanceInformation()?.timeBoundBalance !== 0"
+>
+  <div
+    class="point"
+    [style.background-color]="giftCardBackgroundColor"
+  ></div>
+  <span>کارت هدیه</span>
+  <span class="amount">{{ balanceInformation()?.timeBoundBalance | thousands }}</span>
+  <span>ریال</span>
+</div>

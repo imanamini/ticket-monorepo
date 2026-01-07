@@ -1,0 +1,82 @@
+<section>
+  <div class="container">
+    <div class="info">
+      @if (insuranceInquiry()?.image) {
+        <img
+          [alt]="insuranceInquiry().title"
+          [src]="insuranceInquiry().image.url"
+        />
+      }
+      @if (insuranceInquiry()?.title) {
+        <h2>{{ insuranceInquiry().title }}</h2>
+      }
+      @if (insuranceInquiry()?.subtitle) {
+        <span>{{ insuranceInquiry().subtitle }}</span>
+      }
+      @if (insuranceInquiry()?.description) {
+        <p>{{ insuranceInquiry().description }}</p>
+      }
+    </div>
+    <div class="box">
+      <p class="coming-soon">به زودی</p>
+      <div class="titles">
+        <div class="title">
+          @if (insuranceInquiry()?.inquiryBox?.icon) {
+            <div class="title-icon">
+              <img
+                [src]="insuranceInquiry().inquiryBox.icon.url"
+                alt=""
+              />
+            </div>
+          }
+          @if (insuranceInquiry()?.inquiryBox?.title) {
+            <h6>{{ insuranceInquiry().inquiryBox.title }}</h6>
+          }
+        </div>
+      </div>
+      @if (insuranceInquiry()?.inquiryBox?.inputs) {
+        <div class="inputs">
+          @if (insuranceInquiry()?.inquiryBox?.inputs.phoneNumberDefault) {
+            <div class="input">
+              <input
+                [defaultValue]="insuranceInquiry().inquiryBox.inputs.phoneNumberDefault"
+                disabled
+              />
+            </div>
+          }
+          @if (insuranceInquiry()?.inquiryBox?.inputs.serialNumberDefault) {
+            <div class="input">
+              <input
+                [defaultValue]="insuranceInquiry().inquiryBox.inputs.serialNumberDefault"
+                disabled
+              />
+            </div>
+          }
+        </div>
+      }
+      @if (insuranceInquiry()?.inquiryBox?.firstCta?.title) {
+        <div class="cta">
+          <app-ui-button
+            [disabled]="true"
+            class="cta-button"
+          >
+            {{ insuranceInquiry().inquiryBox.firstCta.title }}
+          </app-ui-button>
+        </div>
+      }
+      @if (insuranceInquiry()?.inquiryBox?.hint?.title) {
+        <div class="hint">
+          @if (insuranceInquiry()?.inquiryBox?.hint?.icon?.url) {
+            <div class="icon">
+              <img
+                [alt]="'hint-icon'"
+                [src]="insuranceInquiry().inquiryBox.hint.icon.url"
+              />
+            </div>
+          }
+          <p class="title">{{ insuranceInquiry().inquiryBox.hint.title }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

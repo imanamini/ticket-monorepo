@@ -1,0 +1,6 @@
+<div [id]="uniqueId" class="swiper-wrapper">
+  <ng-container
+          *ngFor="let item of list"
+          [ngTemplateOutlet]="item.template">
+  </ng-container>
+</div>

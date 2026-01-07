@@ -1,0 +1,78 @@
+<app-ui-page-title-bar
+  (emitCloseButtonClick)="closeDialog()"
+  [closeButton]="true"
+  title="جزییات وام"
+>
+</app-ui-page-title-bar>
+<div class="working-capital-dialog">
+  <div class="dialog-body">
+    <p class="body-title">مشخصات وام انتخابی شما:</p>
+    <div class="box">
+      <div class="row">
+        <p class="title">مبلغ وام</p>
+        <p
+          *ngIf="selectedPlan.creditAmount"
+          class="subtitle"
+        >
+          {{ selectedPlan.creditAmount | IRR }}<span class="is-currency">&nbsp;ریال</span>
+        </p>
+      </div>
+      <div class="row">
+        <p class="title">تعداد اقساط</p>
+        <p
+          *ngIf="selectedPlan.installmentCount"
+          class="subtitle"
+        >
+          {{ selectedPlan.installmentCount }}<span class="bolder fs-18">&nbsp;ماهه</span>
+        </p>
+      </div>
+      <div class="row">
+        <p class="title">مبلغ هر قسط</p>
+        <p
+          *ngIf="selectedPlan.installmentAmount"
+          class="subtitle"
+        >
+          {{ selectedPlan.installmentAmount | IRR }}<span class="is-currency">&nbsp;ریال</span>
+        </p>
+      </div>
+      <div class="row">
+        <p class="title">هزینه زیرساخت و خدمات</p>
+        <p
+          *ngIf="selectedPlan.allocationPrepaymentAmount"
+          class="subtitle"
+        >
+          {{ selectedPlan.allocationPrepaymentAmount | IRR }}<span class="is-currency">&nbsp;ریال</span>
+        </p>
+      </div>
+      <div class="row">
+        <p class="title">مجموع اقساط و هزینه زیرساخت</p>
+        <p
+          *ngIf="selectedPlan.payableAmount"
+          class="subtitle"
+        >
+          {{ selectedPlan.payableAmount | IRR }}<span class="is-currency">&nbsp;ریال</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="dialog-footer">
+    <app-ui-card-notice
+      [notices]="[{ text: textNotice }]"
+      title="نکات مهم"
+    ></app-ui-card-notice>
+  </div>
+  <div class="ctas">
+    <app-ui-button
+      (click)="closeDialog()"
+      appearance="GRAY-TEXT"
+      class="secondary-btn"
+      >تغییر طرح</app-ui-button
+    >
+    <app-ui-button
+      (click)="submit()"
+      [id]="'register-credit'"
+      appearance="BLUE-TEXT"
+      >از انتخاب خود اطمینان دارم</app-ui-button
+    >
+  </div>
+</div>

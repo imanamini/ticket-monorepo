@@ -1,0 +1,27 @@
+@import "@digipay/base-style/swatch";
+
+.page-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.warning-message {
+  font-size: 12px;
+  margin-top: 16px;
+  text-align: center;
+  color: $swatch_red_500;
+}
+
+.check-countdown {
+  margin-top: 16px;
+  background-color: $swatch_red_100;
+  color: $swatch_red_500;
+  line-height: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 24px;
+  border-radius: 18px;
+}

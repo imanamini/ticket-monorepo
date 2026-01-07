@@ -1,0 +1,77 @@
+<div class="section-branches-intro radius-big p-mega surface-elevated">
+  <div class="container">
+    @if (data() && data().title) {
+      <h1 class="text-align-center mb-giant">
+        {{ data().title }}
+      </h1>
+    }
+
+    <div class="maps">
+      <ng-container *ngFor="let map of data().addresses; let mapIndex = index">
+        <div class="item">
+          <div class="content d-flex justify-content-space-between">
+            <div class="d-flex flex-column gap-pony">
+              @if (map.title) {
+                <div class="title">
+                  {{ map.title }}
+                </div>
+              }
+              @if (map.address) {
+                <div class="address">
+                  {{ map.address }}
+                </div>
+              }
+              @if (map.open) {
+                <div class="open">
+                  <span> ساعت کاری: </span>
+                  {{ map?.open }}
+                </div>
+              }
+            </div>
+            <div>
+              @if (map.city || map.district) {
+                <div class="city d-flex align-items-center gap-small mb-pony">
+                <span
+                  icon="location"
+                  size="24"
+                  appUiIcon
+                ></span>
+                  {{ map?.city }}
+                  -
+                  {{ map?.district }}
+                </div>
+              }
+              @if (map.phone) {
+                <a href="tel:{{ map?.phone}}" class="phone d-flex align-items-center gap-small mb-pony">
+                   <span
+                     icon="mobile-device"
+                     size="24"
+                     appUiIcon
+                   ></span>
+                  <span>{{ map?.phone }}</span>
+                </a>
+              }
+              @if (map.link) {
+                <div class="text-align-left">
+                  <app-ui-button
+                    [link]="map.link"
+                    appearance="BLUE-TEXT"
+                    linkTarget="_blank"
+                    size="SMALL"
+                  >
+                    مسیریابی
+                    <ngx-icon
+                      [name]="'arrow-left'"
+                      class="text-onback-brand"
+                    ></ngx-icon>
+                  </app-ui-button>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+  </div>
+</div>

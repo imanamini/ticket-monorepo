@@ -1,0 +1,29 @@
+<div class="step-three d-flex flex-column h-100">
+  <div class="header">
+    فرمت JPG یا PNG برای تصاویر قابل قبول است.
+  </div>
+  <div class="content">
+    @for (uploadList of shouldBeUploadDocumentList; track uploadList.id) {
+      <div class="should-be-upload-item">
+        <div class="icon"></div>
+        <div class="detail">
+          <div class="title">{{ uploadList.title }}</div>
+          <div class="description">اصل گزارش تایید مراجع قضایی و انتظامی مرتبط با شکست حرز.</div>
+        </div>
+        <div class="upload-box">
+          <ui-upload-box
+            (selectedFile)="selectedFile($event , uploadList)"
+            [percent]="percent"
+            [uploadType]="uploadList.uploadType">
+          </ui-upload-box>
+        </div>
+      </div>
+    }
+  </div>
+  <action-buttons (activeButtonClicked)="onSave()"
+                  (deActiveButtonClicked)="handleDeActiveButtonClicked()"
+                  [backgroundMode]="'gray'"
+                  activeButtonText="تایید و ادامه"
+                  deActiveButtonText="بازگشت"
+  ></action-buttons>
+</div>

@@ -1,0 +1,33 @@
+<pay-club-applet-ui-dialog-btm-sheet
+  [title]="'قوانین و راهنما'"
+  [closeable]="true"
+>
+  <div
+    class="rules"
+    body
+  >
+    @for (rule of rules; track rule; let i = $index) {
+      <div class="rule">
+        <span class="rule-number">{{ i + 1 }}</span>
+        <div class="description-wrapper">
+          @if (rule && rule.title) {
+            <p class="rule-title">{{ rule.title }}</p>
+          }
+          @if (rule.htmlRule) {
+            <p
+              class="description"
+              [innerHTML]="rule.htmlRule"
+            ></p>
+          }
+          @if (rule && rule.items) {
+            <ul class="rule-items">
+              @for (item of rule.items; track item) {
+                <li>{{ item }}</li>
+              }
+            </ul>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</pay-club-applet-ui-dialog-btm-sheet>

@@ -1,0 +1,15 @@
+.container {
+  overflow: auto;
+  height: 100%;
+
+  .model-motorcycle-form {
+    flex: 1;
+
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 16px;
+    }
+  }
+}

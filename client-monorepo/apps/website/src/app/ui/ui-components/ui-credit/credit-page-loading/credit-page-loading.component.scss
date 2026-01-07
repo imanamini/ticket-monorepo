@@ -1,0 +1,18 @@
+.credit-page-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+::ng-deep credit-page-loading {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+::ng-deep credit-page-loading:empty {
+  display: none;
+}

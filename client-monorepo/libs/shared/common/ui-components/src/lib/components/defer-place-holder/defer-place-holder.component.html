@@ -1,0 +1,18 @@
+@if (mode() === 'placeholder') {
+  <div
+    class="place-holder"
+    [style.height]="height()"
+  ></div>
+} @else {
+  <div
+    [style.height]="height()"
+    class="w-100 px-plus"
+  >
+    <lib-ngx-skeleton-loading
+      [height]="height()"
+      [width]="'100%'"
+      [loadingEffect]="false"
+      [classes]="backgroundClass()"
+    ></lib-ngx-skeleton-loading>
+  </div>
+}

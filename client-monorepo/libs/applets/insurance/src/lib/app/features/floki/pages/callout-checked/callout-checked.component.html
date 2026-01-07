@@ -1,0 +1,22 @@
+<div class="messages d-flex flex-column gap-small cursor-default px-minus">
+  @for (message of messages(); track index; let index = $index; let last = $last) {
+    <div class="d-flex flex-column pb-small" [class.border-dotted-style]="!last">
+      <div class="d-flex align-items-center">
+        @if (mode() === CalloutModeEnum.CHECKED) {
+          <img alt="" height="24" src="assets/icons/coverage-checkbox.svg">
+        } @else {
+          <div
+            class="d-flex text-onback-brand surface-brand-tint align-items-center radius-giant digit-container justify-content-center	">
+            {{ index + 1 }}
+          </div>
+        }
+        <span class="bt-2 text-onback-high mr-small">{{ message.title }}</span>
+      </div>
+      @if (message.subTitle) {
+        <div class="mr-minus">
+          <span class="sub-title c-2 text-onback-low mr-big">{{ message.subTitle }}</span>
+        </div>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,17 @@
+@import "insurance/src/lib/app/style/once/variables";;
+
+span#circle-progress-percent {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+span#circle-progress-percent::after {
+  content: '%';
+}
+
+.canvas-wrap {
+  position: relative;
+}

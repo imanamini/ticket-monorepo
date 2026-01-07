@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.main-section {
+  direction: rtl;
+}
+
+
+
+/**
+  Default "ng-scroll-viewport" styles
+  causes the VirtualNumPad (or any fixed element)
+  to move off the page.
+  So, Reset this behaviour using these stylesheets.
+
+  related issue: https://github.com/MurhafSousli/ngx-scrollbar/issues/24
+ */
+:host ::ng-deep .ng-scroll-viewport {
+  contain: none !important;
+  transform: none !important;
+}
+
+:host ::ng-deep scrollbar-control {
+  z-index: 3;
+}

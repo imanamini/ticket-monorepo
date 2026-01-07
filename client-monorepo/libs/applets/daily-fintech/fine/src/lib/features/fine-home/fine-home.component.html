@@ -1,0 +1,67 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  [title]="'استعلام جریمه'"
+  [hasBackAction]="false"
+  [showBorder]="true"
+  [bodyClasses]="'surface-back'"
+  [headerClasses]="'surface-back'"
+  (onBackAction)="goToHome()"
+>
+  @if (isStableData()) {
+    <daily-fintech-touch-point class="mt-small mr-medium ml-medium"></daily-fintech-touch-point>
+    @if (!plateList().length) {
+      <div class="p-huge d-flex flex-column flex-grow justify-content-center align-items-center">
+        <div class="b-1 text-onback-high text-align-center">خودرویی برای شما ثبت نشده است.</div>
+        <div class="b-2 text-onback-low text-align-center">
+          برای استفاده از مزایایی مانند استعلام عوارض و پرداخت خودکار عوارضی، خودروی خود را ثبت کنید.
+        </div>
+        <div class="pt-big text-align-center">
+          <ngx-button
+            [mode]="'section'"
+            [size]="'large'"
+            [style]="'fill'"
+            [rightIcon]="{
+              name: 'plus',
+            }"
+            (click)="addNewVehicle()"
+          >
+            افزودن خودرو
+          </ngx-button>
+        </div>
+      </div>
+    } @else {
+      <div class="pt-huge px-medium d-flex flex-column gap-medium">
+        <common-ui-components-title-summary
+          [showButton]="false"
+          [title]="'خودروهای من'"
+        ></common-ui-components-title-summary>
+        @for (plate of plateList(); track plate.plateNo + plate.title) {
+          <fine-applet-fine-card
+            [plate]="plate"
+            (delete)="onDelete($event)"
+            (edit)="onEdit()"
+          ></fine-applet-fine-card>
+        }
+      </div>
+      <div class="add-vehicle-btn p-medium d-flex justify-content-end">
+        <ngx-button
+          [mode]="'section'"
+          [size]="'large'"
+          [style]="'fill'"
+          [rightIcon]="{
+            name: 'plus',
+          }"
+          (click)="addNewVehicle()"
+        >
+          افزودن خودرو
+        </ngx-button>
+      </div>
+    }
+  } @else {
+    <div class="pt-huge px-medium d-flex flex-column gap-medium">
+      <lib-ngx-skeleton-loading [height]="'150px'"></lib-ngx-skeleton-loading>
+      <lib-ngx-skeleton-loading [height]="'150px'"></lib-ngx-skeleton-loading>
+      <lib-ngx-skeleton-loading [height]="'150px'"></lib-ngx-skeleton-loading>
+    </div>
+  }
+</common-ui-components-page-layout>

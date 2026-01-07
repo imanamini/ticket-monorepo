@@ -1,0 +1,29 @@
+<div class="d-flex flex-column gap-small">
+  <ng-container [ngTemplateOutlet]="loading() ? loading_temp : null"></ng-container>
+  @if (campaignWageAmount()) {
+    <div class="d-flex flex-row align-items-center justify-content-flex-end gap-pony">
+      <ngx-badge [status]="'error'"
+                 size="sm"
+                 type="text"
+                 mode="bold">
+        {{ campaignDiscountAmount() }}%
+      </ngx-badge>
+      <div>
+        <s>{{ campaignWageAmount() | thousands }}&nbsp;تومان</s>
+      </div>
+    </div>
+  }
+  <div class="d-flex flex-row align-items-center justify-content-space-between">
+    <div class="bt-2">
+      حق بیمه
+    </div>
+    <div class="bt-1">
+      {{ ( wageAmount() | thousands )}}&nbsp;تومان
+    </div>
+  </div>
+</div>
+<ng-template #loading_temp>
+  <div id="loading-wrapper">
+    <ui-loading-spinner></ui-loading-spinner>
+  </div>
+</ng-template>

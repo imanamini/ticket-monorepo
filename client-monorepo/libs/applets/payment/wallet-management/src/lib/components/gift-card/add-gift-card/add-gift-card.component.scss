@@ -1,0 +1,86 @@
+@import "@digipay/base-style/swatch";
+
+.add-gift-card-container {
+
+  .title-wrapper {
+    margin-bottom: 24px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+    text-align: center;
+  }
+
+  .add-serial {
+    margin-bottom: 24px;
+
+    .or {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin: 24px;
+
+      .line {
+        flex-grow: 1;
+        height: 1px;
+        background-color: #f2f5f8;
+      }
+
+      > .text {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        color: #6e798d;
+      }
+    }
+
+    .scan {
+      ::ng-deep .ui-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+    }
+
+    .light-blue {
+      color: $swatch_blue_500;;
+      background: #f0f5ff;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      user-select: none;
+      font-size: 14px;
+      border-radius: 12px;
+      min-width: 120px;
+      padding: 0 30px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+  }
+
+  ui-button {
+    width: 100%;
+  }
+
+}
+
+:host ::ng-deep .icon-scan {
+  width: 24px;
+  height: 24px;
+  background-image: url("../../../../../../../../../apps/dpx/src/assets/wallet-management/scan.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+:host ui-button {
+  ::ng-deep .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

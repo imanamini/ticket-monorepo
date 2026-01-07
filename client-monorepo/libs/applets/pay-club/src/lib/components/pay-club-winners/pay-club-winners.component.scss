@@ -1,0 +1,8 @@
+.winners-list {
+  overflow: hidden;
+
+  &-content {
+    max-height: 285px;
+    overflow-y: auto;
+  }
+}

@@ -1,0 +1,55 @@
+<div class="complete-information">
+  <div [formGroup]="form"
+       class="content">
+    <div class="hint">
+      @if (isSelfInsurance) {
+        <span>
+          برای صدور بیمه نامه اطلاعات خود را تکمیل کنید.
+        </span>
+      } @else {
+        <span>
+         اطلاعات شخصی که قصد صدور بیمه نامه برای آن را دارید وارد کنید.
+        </span>
+      }
+    </div>
+    <div class="single-column">
+      <ui-form-field
+        [error]="form.controls.mobile.errors"
+        [readonly]="isSelfInsurance"
+        formControlName="mobile"
+        label="شماره موبایل"
+        type="input">
+      </ui-form-field>
+    </div>
+    <div class="two-column">
+      <ui-form-field
+        [error]="form.controls.firstName.errors"
+        formControlName="firstName"
+        label="نام">
+      </ui-form-field>
+      <ui-form-field
+        [error]="form.controls.lastName.errors"
+        formControlName="lastName"
+        label="نام خانوادگی">
+      </ui-form-field>
+    </div>
+    <div class="single-column">
+      <ui-form-field [error]="form.controls.nationalCode.errors"
+                     class="half"
+                     formControlName="nationalCode"
+                     label="کد ملی"
+      ></ui-form-field>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <journey-buttons
+      (nextClicked)="registerInformation()"
+      [disableNext]="form.invalid || (loading$ | async)"
+      [hideBackBtn]="true"
+      [idValue]="'used-personal-information'"
+      [isReversed]="false"
+      [nextText]="'تایید و ثبت اطلاعات'">
+    </journey-buttons>
+  </div>
+</div>

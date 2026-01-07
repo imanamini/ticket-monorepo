@@ -1,0 +1,81 @@
+<div [ngClass]="{'border-300 border-color-light':this.data().border}"
+     class="section-detail-card d-flex flex-column surface-elevated p-medium radius-big w-100"
+     [@.disabled]="!data().expandable">
+  <div class="d-flex flex-row gap-minus align-items-base-line justify-content-space-between">
+    <div class="right-header w-100 d-flex flex-row gap-minus align-items-center">
+      @if (data().icon || data().defaultIcon) {
+        <div class="icon d-flex justify-content-center align-items-center p-tiny surface-back radius-small">
+          <ins-icon [name]="data().icon"
+                    [iconSubstitution]="data().defaultIcon"
+                    [height]="data().iconSize ?? 32"
+                    [width]="data().iconSize ?? 32"></ins-icon>
+        </div>
+      }
+      <div class="header d-flex flex-column">
+        <span [textContent]="data().title"
+              class="title bt-2 text-onback-medium"></span>
+
+        @if (data().subtitle) {
+          <p [textContent]="data().subtitle"
+             class="subtitle c-3 text-onback-low"></p>
+        }
+      </div>
+    </div>
+
+    @if (data().badge) {
+      <ngx-badge [status]="data().badgeStatus"
+                 type="text"
+                 mode="fill"
+                 size="md">
+        <div class="badge-text">
+          {{ data().badge }}
+        </div>
+      </ngx-badge>
+    }
+  </div>
+
+  @if (data().descriptions?.length) {
+    <div class="card-details d-flex flex-column gap-plus surface-back radius-minus px-minus py-small mt-plus">
+      @for (item of data().descriptions; track item.title) {
+        <title-value-content [data]="item"></title-value-content>
+      }
+    </div>
+  }
+
+
+  @if (data().details.length) {
+    <div [@expandCollapse]="!expanded()"
+         class="card-details d-flex flex-column gap-plus">
+      <div [@expandDetails]="!expanded()"
+           class="d-flex flex-column gap-plus surface-back radius-minus">
+        @for (item of data().details; track item.title) {
+          <title-value-content [data]="item"></title-value-content>
+          @if (item.dashed) {
+            <ins-dashed-divider></ins-dashed-divider>
+          }
+        }
+      </div>
+
+      @if (data().alert) {
+        <ins-alert [title]="data().alert.title"
+                   [text]="data().alert.text"
+                   [size]="data().alert.size"
+                   [color]="data().alert.color"
+                   [hasIcon]="data().alert.hasIcon"
+                   [actionButton]="data().alert.actionButton"
+                   [hasCloseIcon]="data().alert.hasCloseIcon"></ins-alert>
+      }
+    </div>
+  }
+
+  @if (data().expandable) {
+    <div
+            (click)="handleExpandClicked()"
+            class="expandable-icon-box d-flex justify-content-center align-items-center radius-minus border-300 border-color-light surface-elevated cursor-pointer">
+      <ins-icon
+              [@rotateChevron]="!expanded()"
+              [name]="IconEnum.BottomChevronDarkGray"
+              [width]="8"></ins-icon>
+    </div>
+  }
+</div>

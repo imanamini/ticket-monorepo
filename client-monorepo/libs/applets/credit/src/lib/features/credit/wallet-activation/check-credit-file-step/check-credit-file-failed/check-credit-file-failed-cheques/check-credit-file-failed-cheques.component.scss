@@ -1,0 +1,32 @@
+.details-container {
+  gap: 16px;
+
+  .details {
+    cursor: pointer;
+    padding: 16px;
+    border-radius: 16px;
+
+    .bank-name {
+      white-space: pre-wrap;
+    }
+
+    .item-detail {
+      gap: 8px;
+      justify-content: flex-end;
+      align-items: flex-end;
+
+      .amount {
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 4px;
+      }
+    }
+  }
+    .no-data-image {
+      width: 80px;
+      height: 80px;
+      background: url(".././assets/check-credit-file-failed-no-data.svg")
+        no-repeat center center;
+      background-size: contain;
+    }
+}

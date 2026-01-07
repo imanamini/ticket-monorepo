@@ -1,0 +1,29 @@
+<form [formGroup]="exInsurerForm()"
+      class="ex-insurer-form">
+  <ui-form-field [autoFocus]="false"
+                 [errorMessageMapper]="errorMapper"
+                 [error]="exInsurerForm()?.controls.name.errors"
+                 [options]="insurers"
+                 [searchable]="true"
+                 [showError]="showError()?'show':'hidden'"
+                 [overflowToContainer]="true"
+                 [showRadioOptions]="showRadioButton"
+                 selectOpenType="auto"
+                 formControlName="name"
+                 label="شرکت بیمه‌گر قبلی"
+                 placeholder="جستجو..."
+                 type="select"></ui-form-field>
+
+  @if (exInsurerForm()?.controls.name.value === extraInsurerForm.NewCar) {
+    <ngx-date-picker
+            [errorMessageMapper]="errorMapper"
+            [error]="exInsurerForm()?.controls.releaseDate?.errors"
+            [showError]="showError()?'show':'hidden'"
+            [customDateRange]="dataRange"
+            controlName="releaseDate"
+            [pickType]="CalendarPickTypeEnum.SWIPEABLE_COMPLETE_DATE"
+            label="تاریخ ترخیص خودرو"
+            [form]="exInsurerForm()"
+    ></ngx-date-picker>
+  }
+</form>

@@ -1,0 +1,25 @@
+.direction-rtl {
+  direction: rtl;
+}
+
+.checkbox {
+  > div {
+    width: 20px;
+    height: 20px;
+  }
+
+  .active-checkbox {
+    background-color: #1159fc;
+    position: relative;
+
+    .white-small-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 6px;
+      height: 6px;
+      background-color: #fff;
+    }
+  }
+}

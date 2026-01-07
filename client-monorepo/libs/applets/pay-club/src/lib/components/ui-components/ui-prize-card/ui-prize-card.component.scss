@@ -1,0 +1,88 @@
+
+.prize-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border: 1px solid #DCDCDC;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  margin-bottom: 16px;
+
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .information-wrapper {
+    display: flex;
+    align-items: flex-start;
+
+    .logo {
+      margin-left: 8px;
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
+    .information {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .prize-title {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 21px;
+        margin: unset;
+      }
+
+      .prize-description {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+        margin: unset;
+      }
+
+      .status {
+        display: flex;
+        align-items: center;
+
+        .text {
+          border-radius: 12px;
+          padding: 0 10px;
+          font-size: 12px;
+          display: flex;
+          align-items: center;
+          margin-left: 8px;
+          height: 24px;
+        }
+
+        .score:before {
+          content: '';
+          display: flex;
+          background: url("apps/dpx/src/assets/pay-club/coin-red.svg") no-repeat center center;
+          width: 14px;
+          height: 14px;
+          margin-left: 4px;
+        }
+
+        .score {
+          color: #FF2638;
+          background: rgba(255, 38, 56, 0.1);
+          font-weight: 900;
+        }
+
+        .state {
+          color: #828CB1;
+          background: #F0F5FF;
+          font-weight: 700;
+          white-space: nowrap;
+        }
+      }
+
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@if (!loading()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="back.emit()"
+    [backButton]="true"
+    title="چک ضمانت"
+  ></app-credit-app-bar>
+  <app-credit-stepper
+    [currentStep]="5"
+    [steps]="5"
+    [title]="'تحویل اصل چک'"
+  ></app-credit-stepper>
+  <div class="d-flex flex-column flex-grow p-plus rtl">
+    <span class="st-6 text-onback-high mb-minus">انتخاب شعبه حضوری برای تحویل چک</span>
+    <div class="recent-address d-flex flex-column flex-grow rtl">
+      <app-credit-scrollable-view [fullHeightContent]="true">
+        <div class="d-flex flex-column flex-grow gap-minus rtl">
+          @for (item of shapedAddresses(); track index; let index = $index) {
+            <common-ui-components-selection-box
+              (selectedOption)="selectAddress(item, index)"
+              [config]="item.listOption!"
+              [checkboxType]="true"
+            >
+              <div class="b2 text-onback-medium">
+                {{ item.deliveryProviderAddress.fullAddress }}
+              </div>
+            </common-ui-components-selection-box>
+          }
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+    <div class="pt-plus">
+      <ngx-button
+        (clickHandler)="openTimePickerBottomSheet()"
+        [fullWidth]="true"
+        [style]="'fill'"
+        [disabled]="!selectedAddress()"
+        ngxTrackableId
+        trackerId="chequeDeliveryAddressesConfirmButton"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  </div>
+}
+<credit-page-loading [active]="loading()"></credit-page-loading>

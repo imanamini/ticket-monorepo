@@ -1,0 +1,94 @@
+@import "../../../../../../../../node_modules/@digipay/base-style/styleguide";
+
+:host {
+  width: 100%;
+  display: block;
+}
+
+.carousel {
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.items-container {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  border: none;
+  overflow: visible;
+
+  .carousel-item {
+    transition: transform 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out;
+  }
+
+  // Specific Card modes
+  &.cards {
+    &.active {
+      transform: scale(1.2);
+    }
+
+    &.is-next {
+      transform: scale(0.8);
+    }
+
+    &.is-prev {
+      transform: scale(0.8);
+    }
+  }
+}
+
+.navigation-container {
+  .dots {
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      background: map-get($shade-colors, onelevated-shade-80);
+      transition: width 0.5s ease-out, background-color 0.5s ease-in;
+
+      &.active {
+        width: 14px;
+        background: map-get($shade-colors, onback-shade-20);
+      }
+    }
+  }
+
+  .buttons {
+    .button {
+
+
+      &.prev {
+        background: #E8EFF9;
+        color: #1159FC;
+      }
+
+      &.next {
+        background: #000431;
+        color: white;
+      }
+    }
+  }
+}
+
+
+.carousel-control {
+  justify-content: center;
+  padding: 8px;
+}
+
+.prev {
+  border: none;
+  background: none;
+  left: 10px;
+}
+
+.next {
+  border: none;
+  background: none;
+  right: 10px;
+}

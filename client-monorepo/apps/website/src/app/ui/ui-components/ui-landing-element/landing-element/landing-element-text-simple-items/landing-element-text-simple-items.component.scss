@@ -1,0 +1,36 @@
+@import "globals";
+
+.le-text-card {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: #f2f5f8;
+  //border: 1px solid $swatch_steel_200;
+
+  .le-icon img {
+    width: 56px;
+  }
+
+  .le-description {
+    padding-right: 16px;
+    font-size: 12px;
+    line-height: 20px;
+
+    ::ng-deep ul {
+      list-style: disc;
+
+      li {
+        color: #2c3544;
+        font-size: 16px;
+        font-weight: 400;
+        margin-bottom: 8px;
+
+        a {
+          text-decoration: underline;
+          color: revert;
+        }
+      }
+    }
+  }
+}

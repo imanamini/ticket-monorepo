@@ -1,0 +1,24 @@
+<p class="b-2 text-onback-medium mb-plus">
+  {{ title() }}
+</p>
+<div class="w-100 d-flex flex-column gap-medium p-plus radius-plus border-300 border-color-light">
+  @for (notice of notices(); track notice; let noticeIndex = $index; let last = $last) {
+    <div class="d-flex flex-row align-item-start gap-pony py-small">
+      <div
+        class="number radius-rounded surface-back b-3 text-onback-high d-flex flex-column justify-content-center align-items-center pt-tiny"
+      >
+        {{ noticeIndex + 1 }}
+      </div>
+      <div
+        class="b-2 text-onback-high"
+        [innerHTML]="notice"
+      ></div>
+    </div>
+    @if (!last) {
+      <ngx-divider
+        [color]="BorderColorsEnum.Air"
+        orientation="horizontal"
+      ></ngx-divider>
+    }
+  }
+</div>

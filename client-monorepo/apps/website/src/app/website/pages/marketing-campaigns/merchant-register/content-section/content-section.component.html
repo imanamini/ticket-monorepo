@@ -1,0 +1,22 @@
+<section>
+  <div class="container content-section">
+    <div
+      class="d-flex content"
+      *ngFor="let item of contentSection"
+    >
+      <div>
+        <video controls>
+          <source
+            [src]="item.media?.url + '#t=0.5'"
+            type="video/mp4"
+          />
+        </video>
+      </div>
+      <div class="d-flex flex-column description">
+        <span class="fs-20 smallTitle"> {{ item.smallTitle }} </span>
+        <span class="fs-34 boldTitle"> {{ item.boldTitle }} </span>
+        <span class="fs-16 smallTitle"> {{ item.description }} </span>
+      </div>
+    </div>
+  </div>
+</section>

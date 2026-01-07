@@ -1,0 +1,66 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.pricing-list-container {
+  padding: 24px;
+
+  .title {
+    @include flex-center-start;
+    padding-bottom: 16px;
+
+    p {
+      font-weight: 600;
+      text-align: right;
+      font-size: 14px;
+      color: #2c3544;
+    }
+  }
+
+  .suggested-price-card {
+    border: 1px solid #F2F5F8;
+    border-radius: 16px;
+    padding: 16px;
+
+    .suggested-price-card-title {
+      padding-bottom: 8px;
+
+      @include flex-center-between;
+      border-bottom: 1px solid #F2F5F8;
+
+      .header-item {
+        font-weight: 800;
+        color: #000;
+      }
+    }
+
+    .suggested-price-card-container {
+      @include flex-column;
+      height: 252px;
+      min-height: 212px;
+      overflow: scroll;
+      margin: 8px 0;
+      gap: 8px;
+
+      .pricing-row {
+        @include flex-center-between;
+        border-radius: 8px;
+        width: 100%;
+        height: 36px;
+        background-color: #F2F5F8;
+        padding: 8px;
+        margin: 4px 0;
+
+        .suggest {
+          font-size: 12px;
+        }
+
+        .price {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .footer {
+    margin-top: 24px;
+  }
+}

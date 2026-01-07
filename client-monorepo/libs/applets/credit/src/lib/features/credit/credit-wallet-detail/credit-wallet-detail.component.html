@@ -1,0 +1,83 @@
+@if (!gettingData() && data() && data()?.header) {
+  <app-credit-wallet-detail-header
+    (closeClick)="onHeaderCloseClick()"
+    [balance]="data()?.header?.creditAmount"
+    [collapse]="collapseHeader()!"
+    [color]="fundProviderColor()!"
+    [creditId]="creditId()!"
+    [leftLabel]="data()?.header?.leftLabelTitle"
+    [leftValue]="data()?.header?.leftLabelValue"
+    [rightLabel]="data()?.header?.rightLabelTitle"
+    [rightValue]="data()?.header?.rightLabelValue"
+    [serviceType]="data()?.header?.serviceType"
+    [showAgreements]="showAgreements()!"
+    [title]="data()?.header?.fundProviderName"
+  ></app-credit-wallet-detail-header>
+}
+
+@if (!gettingData()) {
+  <div
+    [class]="[collapseHeader() ? 'remove-curves' : '', 'fundProviderCode-' + fundProviderCode()]"
+    class="full-height content-wrapper"
+  >
+    <app-credit-scrollable-view
+      (scroll)="onScroll($event)"
+      [fullHeightContent]="true"
+    >
+      <div class="detail-content">
+        @if (!showEarlySettlement() && data() && data()?.bodyMessage) {
+          <app-credit-wallet-detail-full-message
+            [description]="data()?.bodyMessage?.description"
+            [imageId]="data()?.bodyMessage?.imageId"
+          ></app-credit-wallet-detail-full-message>
+        }
+        @if (showEarlySettlement() || (data() && !data()?.bodyMessage)) {
+          @if (data()?.headerMessage) {
+            <ui-credit-callout-message
+              [description]="data()?.headerMessage?.description"
+              [title]="data()?.headerMessage?.title"
+            ></ui-credit-callout-message>
+          }
+          @if (showEarlySettlement()) {
+            <app-credit-early-settlement
+              [bnplType]="bnplType()!"
+              [creditId]="creditId()!"
+              [customerType]="data()?.customerType"
+            ></app-credit-early-settlement>
+          }
+          @if (!data()?.isMultiContractSupport && data()?.contracts && data()!.contracts[0]!) {
+            <app-credit-wallet-detail-single-contract
+              [contract]="data()!.contracts[0]!"
+              [creditId]="creditId()!"
+              [fundProviderCode]="fundProviderCode()!"
+              [totalInstallmentCount]="data()?.header?.installmentCount"
+              [maxPaymentAmount]="data()?.maxLimitAmount"
+              [serviceType]="serviceType"
+            ></app-credit-wallet-detail-single-contract>
+          }
+          @if (data()?.isMultiContractSupport) {
+            <app-credit-wallet-detail-multi-contract
+              [aggregationEnabled]="aggregationEnabled()!"
+              [contracts]="data()?.contracts"
+              [creditId]="creditId()!"
+              [fundProviderCode]="fundProviderCode()!"
+              [totalInstallmentCount]="data()?.header?.installmentCount"
+              [maxPaymentAmount]="data()?.maxLimitAmount"
+            ></app-credit-wallet-detail-multi-contract>
+          }
+        }
+      </div>
+    </app-credit-scrollable-view>
+    <!--    @if (aggregationEnabled()) {-->
+    <!--      <app-credit-aggregation-bottom-->
+    <!--        (actionClicked)="onAggregationClick()"-->
+    <!--        [aggregationTotalAmount]="aggregationTotalAmount()!"-->
+    <!--        [tooltipEnabled]="true"-->
+    <!--        actionTitle="پرداخت تجمیعی"-->
+    <!--        amountTitle="بدهی‌های سررسید شده"-->
+    <!--      >-->
+    <!--      </app-credit-aggregation-bottom>-->
+    <!--    }-->
+  </div>
+}
+<credit-page-loading [active]="gettingData()!"></credit-page-loading>

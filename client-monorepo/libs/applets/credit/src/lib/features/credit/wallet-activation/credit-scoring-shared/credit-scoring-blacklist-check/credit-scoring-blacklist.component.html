@@ -1,0 +1,19 @@
+<app-credit-app-bar
+  (onBackButtonClick)="close.emit()"
+  [backButton]="true"
+  title="امکان‌سنجی دریافت وام"
+>
+</app-credit-app-bar>
+<div class="main-section flex-full-height">
+  <div class="page-content">
+    <ngx-status-result
+      (clicked)="close.emit()"
+      [buttons]="buttons"
+      [description]="description"
+      [title]="title"
+      [type]="'Status'"
+      [iconState]="'error'"
+    >
+    </ngx-status-result>
+  </div>
+</div>

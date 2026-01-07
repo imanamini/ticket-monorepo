@@ -1,0 +1,28 @@
+.cashin-container {
+  height: 100dvh;
+}
+
+ngx-checkbox {
+  .check-box-text {
+    height: 26px;
+    align-items: center;
+  }
+}
+
+.auto-fill-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+
+  .button {
+    height: 32px;
+  }
+}
+
+.active-amount {
+  background-color: var(--onback-shade-30) !important;
+}
+
+.dg-hint-message{
+    color: var(--color-brand);
+}

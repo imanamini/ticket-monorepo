@@ -1,0 +1,21 @@
+<div class="accordion d-flex flex-column">
+  @for (item of accordionItems(); track item.id) {
+    <div [ngClass]="{'active':accordionSelected === item.id}"
+         class="item d-flex flex-column gap-medium px-medium pt-medium border-b-300 border-color-light cursor-pointer">
+      <div class="header d-flex flex-row align-items-center justify-content-space-between gap-minus"
+           (click)="toggleAccordion(item.id)">
+        <div [textContent]="item.title"
+             class="c-1 text-onback-high cursor-pointer title"></div>
+        <div class="icon cursor-pointer">
+          <div [@rotateChevron]="accordionSelected === item.id" class="line surface-brand vertical radius-large"></div>
+          <div class="line surface-brand horizontal radius-large"></div>
+        </div>
+      </div>
+      <div [@expandCollapse]="accordionSelected === item.id"
+           class="content">
+        <p [innerHTML]="item.description"
+           class="description c-3 text-onback-low cursor-pointer pb-medium"></p>
+      </div>
+    </div>
+  }
+</div>

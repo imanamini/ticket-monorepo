@@ -1,0 +1,67 @@
+<ngx-app-bar
+  class="w-100"
+  [title]="'توثیق دارایی'"
+  [rightButton]="{
+    icon: 'arrow-right',
+    style: 'neutral-link',
+    mode: 'icon-only',
+    size: 'medium',
+  }"
+  (onRightButtonClick)="onBackHandler()"
+/>
+
+<div class="d-flex flex-wrap w-100 container">
+  @if (isLoading) {
+    <div class="loading-container">
+      <app-spinner></app-spinner>
+    </div>
+  }
+
+  <div class="detail px-big">
+    <img
+      src="./wealth-assets/svg/collateral-approved.svg"
+      alt=""
+    />
+
+    <div class="w-100 mt-big">
+      <p class="title">وثیقه شدن واحد‌های شما در صندوق {{ state.instrumentTitle }} انجام شد</p>
+    </div>
+
+    <div class="w-100 mt-small">
+      <p class="description">شما اعتبار ۴ قسطه دریافت کرده‌اید. اکنون می‌توانید خرید خود را از فروشگاه‌های موجود انجام دهید.</p>
+    </div>
+
+    <div class="w-100 mt-big">
+      <wealth-applet-bnpl-banner
+        class="d-flex"
+        [bnplTitle]="state.collateralAmount + 'ریال اعتبار 4 قسطه'"
+        [bnplDescription]="'بازپرداخت: یکم تا پنجم ماه بعد از استفاده'"
+      />
+    </div>
+  </div>
+
+  <div class="button-container mt-medium">
+    <ngx-button
+      class="view-store"
+      [style]="'tinted-on-elevated'"
+      [fullWidth]="true"
+      (clickHandler)="continue('store')"
+      [size]="'medium'"
+      [buttonId]="'COLLATERAL_VIEW_STORES'"
+      [disabled]="isLoading"
+    >
+      مشاهده فروشگاه‌ها
+    </ngx-button>
+
+    <ngx-button
+      [style]="'fill'"
+      [fullWidth]="true"
+      (clickHandler)="continue('bnpl')"
+      [size]="'medium'"
+      [buttonId]="'COLLATERAL_VIEW_BNPL'"
+      [disabled]="isLoading"
+    >
+      مشاهده اعتبار
+    </ngx-button>
+  </div>
+</div>

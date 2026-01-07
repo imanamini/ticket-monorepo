@@ -1,0 +1,54 @@
+<common-ui-components-page-layout
+  [showBorder]="true"
+  [title]="'کد احراز هویت'">
+  <div class="otp-page">
+    <div class="container page">
+      <div class="row">
+        <div class="col-md-12 auth-container">
+          <img
+            class="digipay-img"
+            height="16"
+            src="/assets/cash-out/wallet-transfer/digipay.svg"
+            width="16"
+          />
+          <label class="for-receive-code-lbl">
+            {{ userCellNumberService.cellNumber() }}
+          </label>
+          <label class="enter-phone-lbl">کد فعال‌سازی را وارد کنید</label>
+
+          <cash-out-applet-pin-input
+            [type]="'OTP'"
+            [value]="code()"
+            [hasError]="invalidOtpError"
+            [errorMessage]="'کد وارد شده صحیح نمی باشد'"
+            (pinChange)="onCodeChange($event)"
+            type="PIN"
+          ></cash-out-applet-pin-input>
+          <div class="col-md-12 auth-actions">
+            <ngx-button
+              (clickHandler)="receiveNewCode()"
+              [class.disable-timer]="!timeIsOver"
+              [disabled]="!timeIsOver"
+              [style]="'tinted-on-elevated'"
+            >
+              <span *ngIf="!timeIsOver">{{ minute }}:{{ second }}</span>
+              <span
+                class="get-code"
+                *ngIf="timeIsOver"
+                >دریافت کد جدید</span
+              >
+            </ngx-button>
+
+            <ngx-button
+              [brandButton]="true"
+              (clickHandler)="onSubmit()"
+              [disabled]="isSubmitting || code().length < 5"
+              [isLoading]="isSubmitting"
+              >تایید
+            </ngx-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</common-ui-components-page-layout>

@@ -1,0 +1,74 @@
+<app-credit-app-bar
+  (onBackButtonClick)="onBack()"
+  (onTextClick)="openQueryBottomSheet()"
+  [backButton]="true"
+  [title]="'رسید کارت ملی'"
+  actionText="استعلام وضعیت"
+></app-credit-app-bar>
+<app-credit-stepper
+  [currentStep]="step()!"
+  [steps]="totalSteps()!"
+  title="تکمیل اطلاعات"
+></app-credit-stepper>
+<div class="d-flex flex-column flex-grow">
+  <app-credit-scrollable-view>
+    <div class="page-content rtl d-flex flex-column flex-grow align-items-center justify-content-flex-start px-plus">
+      <div class="main-image w-100 d-flex flex-row justify-content-center mb-plus">
+        @defer {
+          <div class="card-image radius-medium"></div>
+        } @placeholder (minimum 500ms) {
+          <div class="skeleton-image">
+            <lib-ngx-skeleton-loading
+              width="320px"
+              height="143px"
+            ></lib-ngx-skeleton-loading>
+          </div>
+        }
+      </div>
+      <div class="d-flex flex-column gap-small">
+        <p class="st-8 text-onback-medium text-align-center">کد رهگیری کارت‌ ملی خود را وارد کنید</p>
+        <form
+          [formGroup]="form"
+          class="serial-form gap-small w-100 ltr d-flex flex-row justify-content-center align-items-center"
+          id="form"
+        >
+          <input
+            [attr.inputmode]="'numeric'"
+            class="serial-number border-300 border-color-tint text-align-center d-flex align-items-center radius-small"
+            formControlName="trackingCode"
+            maxlength="10"
+            pattern="[0-9]*"
+            placeholder="مثال:۲۶۸۷۹۸۷۸۷۶"
+            type="text"
+          />
+        </form>
+        <p
+          class="l-3 text-align-center"
+          [class.text-onback-error]="errorMessage().length"
+          [class.text-onback-brand]="!errorMessage().length"
+        >
+          {{ errorMessage() || hintMessage }}
+        </p>
+      </div>
+    </div>
+  </app-credit-scrollable-view>
+</div>
+<div class="d-flex flex-column gap-medium px-plus pt-pony pb-mega">
+  <ngx-button
+    (clickHandler)="submit()"
+    [disabled]="form.invalid || loading()"
+    [fullWidth]="true"
+    [isLoading]="loading()"
+    [style]="'fill'"
+  >
+    تایید کد رهگیری
+  </ngx-button>
+  <ngx-button
+    (clickHandler)="haveNationalCardFunc()"
+    [disabled]="loading()"
+    [fullWidth]="true"
+    [style]="'link'"
+  >
+    کارت ملی هوشمند دارم
+  </ngx-button>
+</div>

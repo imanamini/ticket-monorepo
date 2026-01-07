@@ -1,0 +1,32 @@
+<div class="digipay-dialog">
+  <h3 mat-dialog-title>{{ title }}</h3>
+  <div mat-dialog-content>
+    <ng-content></ng-content>
+  </div>
+  <div
+    [align]="alignActions"
+    mat-dialog-actions
+  >
+    <button
+      (click)="confirmButtonClick()"
+      *ngIf="confirmText"
+      [disabled]="confirmSpinner || disableConfirm"
+      class="resolve"
+      mat-button
+    >
+      <ng-container *ngIf="!confirmSpinner">{{ confirmText }}</ng-container>
+      <ng-container *ngIf="confirmSpinner">
+        <app-ui-spinner></app-ui-spinner>
+      </ng-container>
+    </button>
+    <button
+      (click)="rejectClick()"
+      *ngIf="rejectText"
+      [ngClass]="rejectClass"
+      class="reject"
+      mat-button
+    >
+      {{ rejectText }}
+    </button>
+  </div>
+</div>

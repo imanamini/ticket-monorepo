@@ -1,0 +1,69 @@
+<div class="d-flex flex-wrap">
+  <wealth-applet-app-bar-wrapper
+    class="w-100"
+    [title]="wallet()?.title"
+    (onBack)="onBackHandler()"
+  />
+
+  @if (loading()) {
+    <app-spinner class="w-100" />
+  } @else {
+    <div class="w-100 d-flex flex-wrap px-plus mt-plus">
+      <wealth-applet-wallets-balance
+        [wallet]="wallet()"
+        (detaileHandler)="balanceDetaile()"
+        (swapHandler)="swap()"
+        class="w-100 d-flex flex-wrap radius-plus surface-elevated px-plus pt-plus pb-minus"
+      />
+
+      <wealth-applet-wallet-actions
+        class="w-100 d-flex mt-medium"
+        [buttons]="walletActions()"
+        (actionHandler)="actionHandler($event)"
+      />
+
+      <div class="d-flex justify-content-center align-items-center cursor-pointer w-100 pt-pony">
+        <img
+          (click)="openCampaignGuid()"
+          src="./wealth-assets/images/motorcycle-campaign/motorcycle-campaign-banner.png"
+          width="100%"
+          alt="banner"
+        />
+      </div>
+
+      <wealth-applet-wallet-yield-details
+        [wallet]="wallet().wallets"
+        [skeleton]="skeleton()"
+        [annualProfit]="annualProfit()"
+        class="w-100 mt-medium d-flex flex-wrap radius-plus surface-elevated p-plus"
+      />
+
+      <wealth-applet-wallet-registration-details
+        class="w-100 d-flex mt-medium"
+        [wallet]="wallet().wallets[0]"
+        (getWalletInfo)="getWallet()"
+      />
+
+      @if (wallet()?.hasTransactions && wallet().bnpl.status !== 'None') {
+        <div class="w-100 credit-container">
+          <div
+            class="credit-wrapper"
+            [id]="wallet().bnpl.status + '_CREDIT'"
+          ></div>
+          <wealth-applet-wallet-credit
+            class="w-100 d-flex"
+            [walletTitle]="wallet().title"
+            [creditStatusEnum]="wallet().bnpl.status"
+            [creditAmount]="wallet().bnpl.amount"
+            (handleBnplClicked)="handleCredit()"
+          />
+        </div>
+      }
+
+      <wealth-applet-wallet-guids-and-descriptions
+        [walletId]="walletId()"
+        class="w-100 d-flex flex-wrap radius-plus surface-elevated p-plus my-medium"
+      />
+    </div>
+  }
+</div>

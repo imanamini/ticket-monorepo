@@ -1,0 +1,17 @@
+.le-alert-box {
+  background-color: #f2f5f8;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+
+  .le-icon {
+    align-self: flex-start;
+  }
+
+  .le-description {
+    padding-right: 6px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+}

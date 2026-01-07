@@ -1,0 +1,34 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.store-map-layout {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  position: fixed;
+  inset: 0;
+
+  &.is-mobile {
+    stores-applet-map-header-mobile {
+      position: absolute;
+      top: 44px;
+      z-index: 99;
+      right: 0;
+      left: 0;
+    }
+  }
+}
+
+.map-section {
+  flex-grow: 1;
+  z-index: 97;
+
+  stores-applet-map-overlay-mobile {
+    height: 300px;
+  }
+}

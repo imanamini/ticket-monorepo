@@ -1,0 +1,53 @@
+@if (data()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="onBack()"
+    [backButton]="true"
+    [title]="data()?.pageTitle"
+  ></app-credit-app-bar>
+  <div class="main-section flex-full-height">
+    <div class="top-section d-flex flex-column">
+      <app-credit-scrollable-view [fullHeightContent]="true">
+        <div class="page-content p-big">
+          <div class="enote-result-message">
+            @if (data()?.imageId) {
+              <div class="enote-image-box mb-big">
+                @if (fileData()) {
+                  <pdf-viewer
+                    [original-size]="false"
+                    [render-text]="true"
+                    [src]="fileData()"
+                    [zoom-scale]="'page-fit'"
+                    class="viewer"
+                  ></pdf-viewer>
+                }
+                @if (!fileData()) {
+                  <ngx-spinner
+                    [color]="'primary'"
+                    [size]="'lg'"
+                  ></ngx-spinner>
+                }
+              </div>
+            }
+            @if (data()?.title) {
+              <p class="st-6 mb-small text-onback-high">{{ data()?.title }}</p>
+            }
+            @if (data()?.description) {
+              <p class="b-2 text-onback-medium text-align-center">
+                {{ data()?.description }}
+              </p>
+            }
+          </div>
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+    <div class="call-to-action-section p-big">
+      <ngx-button
+        (clickHandler)="onSubmit()"
+        [fullWidth]="true"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  </div>
+}
+<credit-page-loading [active]="!data()"></credit-page-loading>

@@ -1,0 +1,57 @@
+<div class="d-flex flex-column surface-elevated h-100svh position-relative">
+  <wealth-applet-app-bar-wrapper
+    class="w-100"
+    [title]="'برداشت از کیف ثروت'"
+    (onBack)="onBackHandler()"
+  />
+
+  @if (loading()) {
+    <app-spinner />
+  } @else {
+    <div class="flex-1 d-flex flex-column align-items-center surface-elevated">
+      <div class="w-100 mt-big px-plus">
+        <p class="b-2 text-onback-high text-align-right">
+          برای برداشت از کیف ثروت، یکی از شماره شبا‌های ذخیره شده زیر را انتخاب و یا شماره شبا جدیدی وارد کنید.
+        </p>
+      </div>
+
+      <div class="w-100 d-flex flex-column gap-medium px-plus mt-big">
+        @for (account of bankAccounts(); track account.shebaNumberId) {
+          <wealth-applet-bank-account-card
+            [bankAccount]="account"
+            [selectedAccountId]="selectedAccountId()"
+            (selectedAccount)="onSelectAccount(account)"
+            (deletedAccount)="onDeleteAccount(account)"
+            class="w-100"
+          >
+          </wealth-applet-bank-account-card>
+        }
+      </div>
+
+      <div class="d-flex flex-column align-items-center w-100 mt-big">
+        <ngx-button
+          [size]="'medium'"
+          [style]="'link'"
+          (clickHandler)="onAddNewAccount()"
+        >
+          اضافه کردن شبا جدید
+        </ngx-button>
+      </div>
+    </div>
+
+    <div class="w-100 d-flex flex-wrap surface-elevated py-medium sticky-action-group px-plus">
+      <ngx-button
+        class="mt-medium"
+        [style]="'fill'"
+        size="medium"
+        [fullWidth]="true"
+        [mode]="'form'"
+        (clickHandler)="cashout()"
+        [isLoading]="btnLoading()"
+        [disabled]="bankAccounts().length < 1"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  }
+</div>

@@ -1,0 +1,32 @@
+.ui-tool-tip {
+  position: relative;
+  width: fit-content;
+
+  .tool-tip-wrapper {
+    z-index: 10;
+    position: absolute;
+    //top: -10px;
+    left: 50%;
+    right: 50%;
+    width: fit-content;
+    transform: translate(35%, -110%);
+    border-radius: 16px;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    background: rgba(66, 76, 92, 0.9);
+
+    &::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 10px solid rgba(38, 49, 64, 0.64);
+      position: absolute;
+      transform: translate(-50%, -50%);
+      bottom: -15px;
+      left: 50%;
+      right: 33%;
+    }
+  }
+}

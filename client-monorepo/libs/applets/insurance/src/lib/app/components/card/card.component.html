@@ -1,0 +1,22 @@
+<div class="card-container">
+
+  <div *ngIf="hasHeader" class="header">
+    <div
+            (click)="closeEvent.emit()"
+            [class.back]="headerIcon === 'back'"
+            [class.close-icon]="headerIcon === 'close'"
+            [class.no-icon]="headerIcon === 'no-icon'"
+            class="icon">
+    </div>
+    <span class="title">{{ cardTitle }}</span>
+  </div>
+
+  <div
+          [ngStyle]="{'padding': contentSpace + 'px'}" class="content">
+    <ng-content select="[card-body]"></ng-content>
+  </div>
+
+  <div [ngStyle]="{'padding': contentSpace + 'px'}" class="footer">
+    <ng-content select="[card-footer]"></ng-content>
+  </div>
+</div>

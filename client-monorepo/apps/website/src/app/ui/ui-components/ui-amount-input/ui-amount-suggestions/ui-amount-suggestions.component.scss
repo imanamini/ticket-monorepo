@@ -1,0 +1,48 @@
+@import "globals";
+
+:host {
+  display: block;
+}
+
+$padding: 4px;
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 (-1 * $padding);
+
+  .suggestion-wrapper {
+    flex: 0 1 33.33%;
+    padding: 0 ($padding + 2);
+  }
+
+  .suggestion {
+    height: 40px;
+    text-align: center;
+    //padding: em(12, 8) em(12, 20);
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 0 0 12px 0;
+    white-space: nowrap;
+    font-weight: 700;
+    font-size: 14px;
+    border: 1px solid #afb9c5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8d99a8;
+
+    &.selected {
+      border: 1px solid #0040ff;
+      background-color: #f0f5ff;
+      color: $primary-blue;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .suggestions .suggestion-wrapper {
+    padding: 0 ($padding);
+  }
+}

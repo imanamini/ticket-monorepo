@@ -1,0 +1,15 @@
+  <div class="mt-auto d-flex align-items-center">
+      <ngx-checkbox
+        [size]="20"
+        (click)="onAcceptingTerms()"
+        [checked]="termsAccepted()"
+        wrapperCLasses="c-3"
+        formControlName="acceptContract"
+      >
+      </ngx-checkbox>
+      <div class="c-3 text-onback-high">
+        شرایط
+        <span class="text-onback-brand terms-label c-3" (click)="openRulesAndConditions()">قوانین و مقررات</span>
+       را مطالعه نموده و می‌پذیرم.
+      </div>
+    </div>

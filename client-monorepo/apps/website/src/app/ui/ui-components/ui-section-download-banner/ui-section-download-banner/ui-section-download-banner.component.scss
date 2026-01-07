@@ -1,0 +1,35 @@
+@import "globals";
+
+.ui-section-download-banner {
+  background-color: $swatch_steel_100;
+  padding: 64px 0;
+}
+
+.container {
+  background: url('/assets/images/download-banners/desktop.svg') center center/cover no-repeat;
+  width: 100%;
+  height: 392px;
+  cursor: pointer;
+}
+
+@media (max-width: 1280px) {
+  .ui-section-download-banner {
+    padding: 32px 0;
+  }
+
+  .container {
+    background: url('/assets/images/download-banners/tablet.svg') center center/cover no-repeat;
+    height: 342px;
+  }
+}
+
+@media (max-width: 744px) {
+  .ui-section-download-banner {
+    padding: 16px 0;
+  }
+
+  .container {
+    background: url('/assets/images/download-banners/mobile.svg') center center/cover no-repeat;
+    height: 200px;
+  }
+}

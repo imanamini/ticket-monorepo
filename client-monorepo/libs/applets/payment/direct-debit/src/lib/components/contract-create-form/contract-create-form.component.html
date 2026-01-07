@@ -1,0 +1,118 @@
+<div class="h-100">
+  @if (!loadingRedirection()) {
+    @if (form) {
+      <common-ui-components-page-layout
+        [title]="'پرداخت مستقیم'"
+        [showBorder]="true"
+        [hasBackAction]="false"
+        (onBackAction)="onBack()"
+      >
+        <div class="h-100 px-medium">
+          <form
+            class="d-flex flex-column justify-content-space-between h-100"
+            [formGroup]="form"
+          >
+            <div>
+              <section>
+                <ng-container formGroupName="validate">
+                  <div class="d-flex gap-small">
+                    <span
+                      for="nationalCode"
+                      class="c-1 text-onback-medium pb-minus"
+                      >احراز هویت</span
+                    >
+                    <div class="bar border-b-100 border-color-tint mb-plus"></div>
+                  </div>
+
+                  <ui-form-field
+                    [error]="FormValidate.controls['nationalCode'].errors ?? {}"
+                    [disabled]="FormValidate.controls['nationalCode'].disabled"
+                    formControlName="nationalCode"
+                    name="nationalCode"
+                    [label]="'کد ملی'"
+                    [required]="true"
+                    [inputType]="'text'"
+                    [isNumericKeyboard]="true"
+                    [maxSize]="10"
+                    [convertNonEnglishDigits]="true"
+                    [errorMessageMapper]="{
+                      required: 'وارد کردن کد ملی الزامیست',
+                      invalidNotionalCode: 'کد ملی وارد شده معتبر نیست',
+                    }"
+                    [type]="'input'"
+                    [hasCleaner]="true"
+                  ></ui-form-field>
+                </ng-container>
+              </section>
+              <section>
+                <ng-container formGroupName="detail">
+                  <div class="d-flex gap-small">
+                    <span
+                      for="nationalCode"
+                      class="c-1 text-onback-medium pb-minus"
+                      >اطلاعات پرداخت</span
+                    >
+                    <div class="bar border-b-100 border-color-tint mb-plus"></div>
+                  </div>
+
+                  <ui-form-field
+                    [required]="true"
+                    [errorMessageMapper]="{
+                      required: 'فیلد انتخاب بانک الزامیست.',
+                    }"
+                    [error]="FormDetail.controls.bankCode.errors ?? {}"
+                    [hasCleaner]="true"
+                    [options]="bankCodeOptions()"
+                    formControlName="bankCode"
+                    label="انتخاب بانک"
+                    type="select"
+                  ></ui-form-field>
+
+                  <ui-form-field
+                    [required]="true"
+                    [errorMessageMapper]="{
+                      required: 'فیلد سقف مبلغ هر تراکنش الزامیست.',
+                    }"
+                    [error]="FormDetail.controls.maxDailyTransactionAmount.errors ?? {}"
+                    [hasCleaner]="true"
+                    [options]="transactionAmountOptions()"
+                    [readonly]="FormDetail.controls.bankCode.invalid"
+                    formControlName="maxDailyTransactionAmount"
+                    label="سقف مبلغ هر تراکنش"
+                    [searchable]="false"
+                    type="select"
+                  ></ui-form-field>
+                </ng-container>
+              </section>
+            </div>
+            <div class="my-medium d-flex flex-column gap-small">
+              <span class="bt-2"
+                >ثبت و ادامه به معنی پذیرش
+                <a
+                  (click)="openBottomSheetTerms()"
+                  class="term text-onback-brand cursor-pointer"
+                >
+                  قوانین و مقررات
+                </a>
+                پرداخت مستقیم است.</span
+              >
+              <ngx-button
+                [mode]="'form'"
+                [size]="'large'"
+                [style]="'fill'"
+                [fullWidth]="true"
+                [isLoading]="loading()"
+                [disabled]="loading()"
+                (clickHandler)="openBottomSheetConfirm()"
+              >
+                ثبت و ادامه
+              </ngx-button>
+            </div>
+          </form>
+        </div>
+      </common-ui-components-page-layout>
+    }
+  } @else {
+    <direct-debit-contract-create-loading></direct-debit-contract-create-loading>
+  }
+</div>

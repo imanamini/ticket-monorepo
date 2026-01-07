@@ -1,0 +1,20 @@
+<ngx-app-bar
+  class="w-100"
+  [title]="'مدیریت ثروت'"
+  [rightButton]="{
+    icon: 'arrow-right',
+    style: 'neutral-link',
+    mode: 'icon-only',
+    size: 'medium',
+  }"
+  (onRightButtonClick)="onBackHandler()"
+/>
+
+<div class="temporary-down-container">
+  <div class="temporary-down-content">
+    <img src="wealth-assets/svg/temporary-down.svg" />
+    <p class="temporary-down-title">در حال بهبود زیرساخت هستیم</p>
+
+    <p class="temporary-down-description">سرویس مدیریت ثروت به دلیل عملیات فنی از ساعت ۱۸:۳۰ تا ۲۳:۰۰ در دسترس نخواهد بود.</p>
+  </div>
+</div>

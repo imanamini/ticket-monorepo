@@ -1,0 +1,15 @@
+@import "globals";
+
+/**
+  Some global styles to modify the Material's default style
+ */
+.mat-bottom-sheet-container {
+  background: #fff;
+  direction: rtl;
+  padding: 20px 16px !important;
+  border-radius: 16px 16px 0 0 !important;
+}
+
+.mat-mdc-dialog-container {
+  padding: 0 !important;
+}

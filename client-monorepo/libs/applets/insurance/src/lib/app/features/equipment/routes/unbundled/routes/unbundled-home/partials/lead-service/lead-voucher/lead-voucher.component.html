@@ -1,0 +1,123 @@
+<div class="lead-voucher">
+  <div class="device-info-main">
+    <div class="schema">
+      <div class="device-image">
+        <insurtech-collection-image-cdn
+                [category]="'category'"
+                [status]="'pending'"
+                [subCategory]="leadInfo.productCategory"
+        ></insurtech-collection-image-cdn>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="device-info">
+        <div class="detail-title large"> محصول شما :</div>
+        <div class="detail-text">
+          {{ leadInfo.productCategory }} {{ leadInfo.productName }}
+        </div>
+      </div>
+      <div class="insurer">
+        {{ leadInfo.planTitle }}
+      </div>
+      @if (!leadInfo.isSpecialUser) {
+        <div class="no-subscription">
+          <img
+                  alt=""
+                  class="img"
+                  src="assets/icons/digikala-sign.svg">
+          اشتراک عادی دیجیکالا
+        </div>
+      }
+      @if (leadInfo.isSpecialUser) {
+        <div class="has-subscription">
+          <img
+                  alt=""
+                  class="img"
+                  src="assets/icons/digiplus.svg">
+          اشتراک دیجی پلاس
+        </div>
+      }
+      <div class="detail-title">ارزش مالی خرید شما :
+        <span class="detail-text">
+          {{ leadInfo.productPrice  | thousands }}تومان
+        </span>
+      </div>
+
+      <div class="detail-title">شماره سریال دستگاه / IMEI :
+        <span class="detail-text">{{ leadInfo.serialNumber }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="voucher">
+    <div class="detail-list">
+      <ui-detail-list [itemsList]="itemList"></ui-detail-list>
+
+      <div class="list-policy list-item d-flex flex-row justify-content-between align-items-center">
+        <span class="policy-title">مبلغ حق بیمه:</span>
+        <div class="policy-price">
+          <div class="policy-display-wage d-flex flex-column flex-nowrap">
+            <div class="d-flex gap-tiny flex-row flex-nowrap">
+              <span>{{ leadInfo.wageAmount | thousands }}</span>
+              <span>تومان</span>
+            </div>
+          </div>
+          @if (areWageAndDisplayDifferent()) {
+            <div class="d-flex flex-row gap-tiny align-items-center justify-content-center">
+              <span class="price-percentage badge radius-small p-tiny surface-error text-oninvert-high">
+                {{ wageDiscountPercent }}%
+              </span>
+              <span class="price-line-through">
+                {{ leadInfo.displayWageAmount | thousands }}
+              </span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="list-tax d-flex list-item flex-row justify-content-space-between">
+        <span>مالیات:</span>
+        <span>{{ leadInfo.taxAmount| thousands }} تومان</span>
+      </div>
+
+      <div class="list-payable d-flex list-item flex-row justify-content-space-between">
+        <span>مبلغ قابل پرداخت:</span>
+        <div class="flex-row flex-nowrap">{{ leadInfo.payableAmount| thousands }} تومان</div>
+      </div>
+    </div>
+    @if (leadInfo.orderDeadLineDays) {
+      <div class="voucher-section">
+        @if (!leadInfo.discountCode) {
+          <ng-container>
+            <div class="field">
+              <ui-form-field
+                      [(ngModel)]="voucherCode"
+                      label="اعمال کد تخفیف">
+              </ui-form-field>
+            </div>
+            <div class="button">
+              <ui-button
+                      (click)="addVoucherCode()"
+                      [disabled]="isLoading"
+                      appearance="OUTLINE-BLUE">
+                اعمال تخفیف
+              </ui-button>
+            </div>
+          </ng-container>
+        }
+        @if (leadInfo.discountCode) {
+          <ng-container>
+            <hint
+                    (actionClicked)="actionClick($event)"
+                    [hintOptions]="voucherHintOption">
+            </hint>
+          </ng-container>
+        }
+      </div>
+    }
+    @if (leadInfo.orderDeadLineDays) {
+      <ui-button (click)="payRequest()">
+        پرداخت و صدور بیمه‌نامه
+      </ui-button>
+    }
+  </div>
+</div>

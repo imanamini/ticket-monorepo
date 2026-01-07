@@ -1,0 +1,87 @@
+@import "globals";
+
+::ng-deep {
+  .mat-bottom-sheet-container {
+    padding: 0 !important;
+    width: 100%;
+    max-width: unset;
+    max-height: unset;
+  }
+
+  .cdk-global-overlay-wrapper {
+    width: 100vw;
+  }
+
+  .cdk-overlay-pane {
+    width: 100%;
+  }
+}
+
+.ui-merchants-filter-dialog {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .top-part {
+    height: 36px;
+    padding: 16px 0;
+    width: 100%;
+    flex: 0 0 auto;
+
+    div {
+      margin: auto;
+      width: 32px;
+      height: 4px;
+      border-radius: 100px;
+      background-color: $swatch_steel_500;
+    }
+  }
+
+  .filters {
+    width: 100%;
+    max-height: 700px;
+    overflow-y: auto;
+    flex: 1 1 auto;
+
+    & > div:last-child {
+      margin-bottom: 104px;
+    }
+  }
+
+  .filter-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 24px;
+    border-bottom: 1px solid $swatch_steel_200;
+  }
+
+  .submit {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 47px;
+    border-top: 1px solid $swatch_steel_200;
+    background: $swatch_steel_100;
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 744px) {
+  .ui-merchants-filter-dialog {
+    .submit {
+      padding: 16px;
+
+      .cta {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}

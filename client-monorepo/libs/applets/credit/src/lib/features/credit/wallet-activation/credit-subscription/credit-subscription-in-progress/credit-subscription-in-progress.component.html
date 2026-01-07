@@ -1,0 +1,27 @@
+<app-credit-app-bar
+  (onBackButtonClick)="prevStep.emit()"
+  [backButton]="true"
+  title="اشتراک مناسب شما"
+></app-credit-app-bar>
+<div class="main-section rtl d-flex flex-column flex-grow">
+  <div class="d-flex flex-column flex-grow">
+    <app-credit-scrollable-view [fullHeightContent]="true">
+      <div class="d-flex flex-column flex-grow align-items-center justify-content-center p-big rtl">
+        <ngx-status-result
+          (finished)="onFinish()"
+          [description]="description"
+          [timer]="timer"
+          [title]="title"
+        >
+          <ng-container status-image>
+            <ngx-waiting-stepper
+              [state]="WaitingStepperStateEnum.PROGRESS"
+              [isSelfProgress]="true"
+              [timerDeadline]="timer.timeInSeconds"
+            ></ngx-waiting-stepper>
+          </ng-container>
+        </ngx-status-result>
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+</div>

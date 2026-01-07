@@ -1,0 +1,17 @@
+<div class="main-header d-flex align-items-center justify-content-space-between py-minus px-medium">
+  <div
+          [class.hide-header-icon]="hideCloseIcon()"
+          (click)="isCloseMode() ? onClose() : rightIconClicked.emit()" class="cursor-pointer">
+    <ngx-icon [name]="isCloseMode() ? 'close' : 'arrow-right'" classes="text-onback-brand"></ngx-icon>
+  </div>
+  <div class="st-6 text-onback-medium">{{ title() }}</div>
+  <div [class]="'cursor-pointer ' + (!leftIconName() ? 'px-minus' : '')" (click)="handleFaq()">
+    @if (leftIconName()) {
+      <ngx-icon
+              [name]="leftIconName()"
+              iconSize="20px"
+              class="text-onback-high"
+      ></ngx-icon>
+    }
+  </div>
+</div>

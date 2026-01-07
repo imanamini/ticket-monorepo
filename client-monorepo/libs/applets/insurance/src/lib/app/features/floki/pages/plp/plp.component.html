@@ -1,0 +1,112 @@
+<div class="plp-container h-100">
+  <div class="wrapper-product-detail">
+    <div class="header-container p-minus cursor-default">
+      <div [style.background-color]="selectedProduct()?.productBackgroundColor" class="shapes">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="d-flex  align-items-center">
+        <div class="flex-2">
+          <floki-header
+            (iconClickHandler)="onBack()"
+            [hasIcon]="true"
+            [iconName]="'arrow-right'"
+            [iconTitle]="'قبلی'"
+            class="icon-color"
+          >
+          </floki-header>
+        </div>
+        <p class="flex-3 text-onback-medium st-6">انتخاب بیمه</p>
+      </div>
+      <div class="d-flex align-items-center  justify-content-space-between px-medium	mt-medium">
+        <div class="d-flex flex-column gap-medium">
+          <div class="st-4 text-onback-high">
+            {{ selectedProduct()?.name }}
+          </div>
+          <div class="c-1 text-onback-medium">
+            {{ selectedProduct()?.description }}
+          </div>
+        </div>
+        @if (selectedProduct()?.productImagePath) {
+          <img width="64" [alt]="selectedProduct()?.name" [lazy-load-image]="selectedProduct()?.productImageName"
+               [application-form-id]="formId()" src="assets/icons/zomorod-plan.svg">
+        }
+      </div>
+    </div>
+    <callout-checked [messages]="coverages()" class="p-minus"></callout-checked>
+  </div>
+
+  <div class="py-medium surface-high-contrast d-flex flex-column justify-content-space-between">
+    <div class="px-medium d-flex align-items-center justify-content-space-between">
+      <div class="d-flex align-items-center cursor-default">
+        <div class="c-3 text-onback-medium">
+          ارزش گوشی :
+        </div>
+        <div class="st-8 text-onback-high">
+          {{ formApplicationInfo()?.assetPrice| number }} ریال
+        </div>
+      </div>
+      <div (click)="editDeviceValue()"
+           class="c-3 text-onback-medium text-onback-brand d-flex align-items-center gap-tiny">
+        <span class="bt-2 cursor-pointer">ویرایش</span>
+        <ngx-icon [iconSize]="'24px'"
+                  [name]="'edit-square'"
+                  [type]="'linear'"
+        >
+        </ngx-icon>
+      </div>
+    </div>
+    <div class="pt-minus">
+      <ngx-divider [color]="BorderColorsEnum.Air"
+                   orientation="horizontal"></ngx-divider>
+    </div>
+    <div class="px-medium py-small pb-medium">
+      <p class="st-8 text-onback-high">
+        طرح‌ها
+      </p>
+    </div>
+    <div #container_product_temp class="product-slider d-flex gap-small">
+      @defer {
+        @for (product of formApplicationInfo()?.products; track product.id; let index = $index; let first = $first; let last = $last; ) {
+          <div class="slide mb-minus"
+               (mousedown)="onStartSliderDrag($event)"
+               (mousemove)="onMoveSliderDrag($event)"
+               (mouseleave)="onEndSliderDrag($event)"
+               (mouseup)="onEndSliderDrag($event)"
+          >
+            <product-card
+              class="d-inline-block"
+              [active]="product.id === selectedProduct()?.id"
+              [product]="product"
+              [class.mr-medium]="first"
+              [class.ml-medium]="last"
+              [application-form-Id]="formId()"
+              (productCard)="onSelectProduct($event, index)">
+            </product-card>
+          </div>
+        }
+      } @placeholder (minimum 10ms) {
+        <div class="px-medium d-flex gap-minus">
+          @for (item of [0, 1, 2]; track item) {
+            <lib-ngx-skeleton-loading borderRadius="16px" width="156px" height="128px"
+                                      [loadingEffect]="true"></lib-ngx-skeleton-loading>
+          }
+        </div>
+      }
+    </div>
+    <div class="mt-medium px-medium">
+      <ngx-button
+        (click)="onSaveProductToDraft()"
+        [fullWidth]="true"
+        [size]="'large'"
+        [style]="'fill'">
+        سفارش بیمه
+      </ngx-button>
+      <div (click)="goToTermsAndCondition()" class="d-flex gap-tiny justify-content-center mt-minus cursor-pointer">
+        <span class="text-onback-brand">شرایط و قوانین استفاده از بیمه دیجی‌پی</span>
+        <span>را می‌پذیرم.</span>
+      </div>
+    </div>
+  </div>
+</div>

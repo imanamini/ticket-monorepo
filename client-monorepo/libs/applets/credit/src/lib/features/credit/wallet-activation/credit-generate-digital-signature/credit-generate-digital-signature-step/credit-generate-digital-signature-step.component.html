@@ -1,0 +1,102 @@
+@if (!showLoading() && !errorType()) {
+  @if (showOnBoarding()) {
+    <app-credit-generate-digital-signature-on-boarding
+      (close)="closeStep()"
+      (visit)="visitOnBoarding()"
+      [creditId]="creditId()!"
+      [fundProviderCode]="fundProviderCode()!"
+      class="d-flex flex-column flex-grow"
+    ></app-credit-generate-digital-signature-on-boarding>
+  }
+  @if (showSignatureExist()) {
+    <app-credit-generate-digital-signature-exist
+      (reload)="getStatus()"
+      (next)="goToPasswordValidation()"
+      [creditId]="creditId()"
+      [fundProviderCode]="fundProviderCode()"
+      class="d-flex flex-column flex-grow"
+    ></app-credit-generate-digital-signature-exist>
+  }
+  @if (signatureExpired()) {
+    <app-credit-generate-digital-signature-password-expired
+      [initiative]="true"
+      (goBack)="backToCreditStepper()"
+      (init)="getStatus()"
+      errorText="امضای دیجیتال شما منقضی شده ‌است"
+      errorDescription="اعتبار یک‌ساله امضای دیجیتال شما به پایان رسیده است. در صورت نیاز، لطفاً برای ساخت دوباره امضا اقدام کنید."
+      class="d-flex flex-column flex-grow"
+    ></app-credit-generate-digital-signature-password-expired>
+  }
+  @if (!showOnBoarding() && !showSignatureExist() && !signatureExpired()) {
+    <app-credit-app-bar
+      (onBackButtonClick)="closeStep()"
+      [backButton]="true"
+      [title]="'امضای دیجیتال'"
+    ></app-credit-app-bar>
+    <app-credit-scrollable-view [fullHeightContent]="true">
+      <div class="d-flex flex-column flex-grow px-plus pt-pony gap-plus rtl">
+        <p class="st-8 text-onback-high">برای ثبت‌ امضای دیجیتال، مراحل زیر را طی کنید:</p>
+        <div class="steps-container d-flex flex-row align-items-center w-100 rtl gap-medium">
+          <div class="counter-container d-flex flex-column align-items-center justify-content-flex-start">
+            @for (step of steps; track step.status; let index = $index) {
+              <span
+                class="item pt-tiny radius-rounded d-flex align-items-center justify-content-center st-7"
+                [class]="{
+                  'surface-brand': step?.status === activeState(),
+                  'text-oninvert-high': step?.status === activeState(),
+                  'surface-back': step?.status > activeState(),
+                  'text-onback-low': step?.status > activeState(),
+                  'item-done-icon': step?.status! < activeState()!,
+                }"
+                >{{ step?.status! < activeState()! ? '' : index + 1 }}
+              </span>
+
+              @if (index < steps.length - 1) {
+                <div class="item-line"></div>
+              }
+            }
+          </div>
+          <div class="steps gap-medium w-100 d-flex flex-column align-items-center justify-content-flex-start">
+            @for (step of steps; track step?.status) {
+              <div
+                class="step p-minus rtl w-100 radius-medium d-flex flex-row align-items-center"
+                (click)="goToStep(step?.url!)"
+                ngxTrackableId
+                [trackerId]="'digitalSignatureStep-' + step.url"
+                [class]="{
+                  active: step?.status === activeState(),
+                  'surface-back': step?.status === activeState(),
+                  'border-300': step?.status !== activeState(),
+                  'border-color-air': step?.status !== activeState(),
+                }"
+              >
+                <div class="p-small">
+                  <ngx-icon
+                    [name]="step?.icon"
+                    [type]="step?.status === activeState() ? 'Bold' : 'Linear'"
+                    [classes]="step?.status === activeState() ? 'text-onback-low' : 'text-onback-disabled'"
+                  ></ngx-icon>
+                </div>
+                <span
+                  class="st-8"
+                  [class]="{
+                    'text-onback-high': step?.status === activeState(),
+                    'text-onback-disabled': step?.status !== activeState(),
+                  }"
+                  >{{ step?.title }}
+                </span>
+                @if (step?.status! >= activeState()!) {
+                  <ngx-icon
+                    name="arrow-2-left"
+                    [classes]="'mr-auto ' + (step?.status! === activeState() ? 'text-onback-hight' : 'text-onback-disabled')"
+                  ></ngx-icon>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </app-credit-scrollable-view>
+  }
+}
+<credit-page-loading [active]="showLoading()"></credit-page-loading>

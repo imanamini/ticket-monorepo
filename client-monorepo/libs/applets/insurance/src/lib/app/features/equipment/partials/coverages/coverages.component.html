@@ -1,0 +1,52 @@
+<ng-container>
+  <div class="coverages-wrapper">
+    <div class="coverages-header">
+      <span>
+      </span>
+      <div (click)="closeDialog(false)"
+           class="close-icon">
+        <img alt="close"
+             src="insurance-assets/icons/icon-general-close.svg">
+      </div>
+    </div>
+    <div class="coverages">
+      <div class="coverage-text bt-1">
+        <div class="bold">
+          همیشه وقتی فکرش رو نمیکنی اتفاق میوفته!
+        </div>
+        <br/>
+        حوادث، بخش غیر قابل پیش‌بینی و انکار ناپذیر زندگی همه ما هستند که کم و بیش زندگی روزمره ما را تحت تاثیر قرار
+        می‌دهند و در بسیاری از موارد هزینه‌های مالی هنگفتی را به ما تحمیل می‌کنند.
+        <br/>
+        به همین جهت بیمه تجهیزات الکترونیک دیجی‌پی ، راهکاری ارائه کرده است تا با بروز حوادث ضرر مالی متوجه شما نشود و
+        زندگی فردی‌تان کمتر تحت تاثیر حادثه قرار بگیرد.
+        <br/>
+        متداول‌ترین حوادث تحت پوشش بیمه دیجی‌پی:
+      </div>
+      <div class="items">
+        <ng-container *ngFor="let item of data.coverages">
+          <div class="item">
+            {{ item }}
+          </div>
+        </ng-container>
+      </div>
+      <div class="coverage-text bt-1">
+        مزایای بیمه دیجی‌پی:
+        <br/>
+        پایین‌ترین قیمت حق بیمه
+        <br/>
+        پوشش سرقت بدون قید و شرط و تنها با ارائه مستندات قضایی
+        <br/>
+        امکان تعمیر کالای آسیب‌دیده به صورت رایگان
+        <br/>
+        پرداخت خسارت با یک کلیک
+      </div>
+    </div>
+    <div class="footer">
+      <ui-button
+              (click)="goToMoreInfo()">
+        اطلاعات بیشتر
+      </ui-button>
+    </div>
+  </div>
+</ng-container>

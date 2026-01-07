@@ -1,0 +1,38 @@
+.user-info {
+  &-top {
+    &-avatarbox {
+      height: 80px;
+      width: 80px;
+      position: relative;
+
+      &.bg {
+        background-image: url("libs/shared/common/assets/src/lib/images/avatar-placeholder.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      &-upload {
+        height: 32px;
+        width: 32px;
+        position: absolute;
+        bottom: -8px;
+        right: -8px;
+      }
+    }
+  }
+
+  &-detail {
+    &-titlebox {
+      &-hr {
+        flex-grow: 1;
+      }
+    }
+
+    &-item {
+      flex-grow: 1;
+      flex-shrink: 0;
+      flex-basis: 0;
+    }
+  }
+}

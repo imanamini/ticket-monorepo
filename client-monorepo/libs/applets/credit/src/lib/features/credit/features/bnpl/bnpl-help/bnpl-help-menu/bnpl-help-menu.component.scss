@@ -1,0 +1,56 @@
+:host {
+  background-color: #FFFFFF;
+  display: block;
+}
+
+.bnpl-menu-title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.bnpl-menu-container {
+  display: block;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  margin: 0;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .bnpl-help-menu-list {
+    display: flex;
+    padding: 24px 0;
+    gap: 8px;
+
+    .bnpl-help-menu-item {
+      white-space: nowrap;
+      font-size: 12px;
+      line-height: 20px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      padding: 10px 40px 10px 16px;
+      background: url("./bnpl-help-menu-icon.svg") #f0f5ff no-repeat right 8px center;
+      background-size: 24px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  }
+}
+
+
+@media (min-width: 481px) {
+
+  .bnpl-menu-container {
+    .bnpl-help-menu-list {
+      flex-wrap: wrap;
+
+      .bnpl-help-menu-item {
+        flex-grow: 1;
+      }
+    }
+  }
+}

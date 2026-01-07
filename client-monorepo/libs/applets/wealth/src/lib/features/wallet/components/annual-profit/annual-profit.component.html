@@ -1,0 +1,72 @@
+<div class="w-100 d-flex flex-wrap">
+  @if (skeleton()) {
+    @for (item of skeletonRowItems(); track $index) {
+      <div class="w-100 d-flex gap-small align-items-center my-plus">
+        <ngx-divider
+          [color]="BorderColorsEnum.Light"
+          orientation="horizontal"
+          [dividerStyle]="'dashed'"
+        />
+        <lib-ngx-skeleton-loading
+          [height]="'20px'"
+          [width]="'50px'"
+          class="radius-small"
+        />
+      </div>
+
+      @for (item of skeletonItems(); track $index) {
+        <div class="w-100 d-flex align-item-center gap-small mb-low">
+          <div class="gap-tiny d-flex align-items-center justify-content-end bar-container">
+            <lib-ngx-skeleton-loading
+              [height]="'20px'"
+              class="radius-small"
+              [style.width]="Math.random() * 100 + '%'"
+            />
+          </div>
+          <div class="month-title">
+            <lib-ngx-skeleton-loading
+              [height]="'20px'"
+              class="radius-small"
+              [style.width]="Math.random() + '%'"
+            />
+          </div>
+        </div>
+      }
+    }
+  } @else {
+    @for (item of detail()?.annuallyPnls; track $index) {
+      <div class="w-100 position-relative">
+        <div class="d-flex align-items-center my-plus">
+          <ngx-divider
+            [color]="BorderColorsEnum.Light"
+            orientation="horizontal"
+            [dividerStyle]="'dashed'"
+          />
+          <p class="title c-1 text-onback-medium surface-elevated pr-minus">
+            {{ item.title }}
+          </p>
+        </div>
+
+        @for (month of item.monthlyPnls; track $index) {
+          <div class="w-100 d-flex align-item-center gap-small mb-low">
+            <div class="gap-tiny d-flex align-items-center justify-content-end bar-container">
+              <span class="l-2 text-onback-low profit-text">
+                {{ month.amount | thousands }}
+                <span class="is-currency"> ریال</span>
+              </span>
+              <div
+                class="bar radius-small"
+                [style.width]="percentOfTotal(month.amount, item.monthlyPnls) + '%'"
+              ></div>
+            </div>
+            <div class="month-title">
+              <span class="c-2 text-onback-low">
+                {{ month.title }}
+              </span>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  }
+</div>

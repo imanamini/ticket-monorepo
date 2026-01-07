@@ -1,0 +1,8 @@
+export enum CreditPassWordRegistrationStatus {
+  REGISTRATION_STEP,
+  VERIFICATION_STEP,
+  CONFIRMATION_STEP,
+  ERROR_STEP,
+  FINAL_STEP,
+  VALIDATION_STEP,
+}

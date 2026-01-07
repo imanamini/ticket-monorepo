@@ -1,0 +1,8 @@
+---
+.trigger-options:
+  changes:
+    - "apps/dpx/**/*"
+  dependent-projects:
+    - PROJECT_NAME: "dpx"
+      DOCKERFILE_NAME: "Dockerfile"
+      FILE_PATH: "app/frontend/dpx-values.yml"

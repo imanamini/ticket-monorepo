@@ -1,0 +1,13 @@
+.logo-name {
+  grid-template-columns: auto 3fr;
+}
+
+.logo-container {
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+}
+
+.project-info {
+  grid-template-columns: 1fr 1.2fr 1.2fr;
+}

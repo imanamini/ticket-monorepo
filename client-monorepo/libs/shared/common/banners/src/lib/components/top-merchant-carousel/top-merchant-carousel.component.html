@@ -1,0 +1,49 @@
+<div class="d-flex flex-column pr-plus">
+  <common-ui-components-title-summary
+    [title]="banner().title"
+    [showButton]="false"
+    [wrapperClasses]="'mb-small'"
+  ></common-ui-components-title-summary>
+  <common-ui-components-horizontal-scroll>
+    @for (slide of slides(); track slide.uuid) {
+        <div (click)="handleStoreClicked(slide.extractedData.store)"
+             class="d-flex flex-column gap-medium radius-plus surface-elevated p-medium cursor-pointer">
+          <div class="d-flex flex-column gap-tiny">
+            <div class="d-flex align-items-center justify-content-space-between gap-small">
+              <ui-api-image
+                [imageId]="slide.extractedData?.store?.logoImageId"
+                [width]="'30px'"
+                [height]="'30px'"
+                [borderRadius]="'9px'"
+                [fallbackImage]="'assets/fallback/digipay-logo-24x24-fallback.svg'"
+                [showLoading]="loadingEffect()"
+                [lazy]="true"
+                [lazyConfig]="{ root: '.dpx-main-layout-body' }"
+              ></ui-api-image>
+              <div class="d-flex align-items-center gap-tiny">
+                <common-rate-count [size]="'tiny'" [minimumCount]="0" [showCount]="false" [rateAmount]="slide.extractedData?.store.score.score"></common-rate-count>
+                <ngx-badge type="text" size="tiny" status="warning" mode="bold">
+                  <ngx-icon name="star" iconSize="16px"></ngx-icon>
+                  <span class="l-2 text-onback-high">{{ TopMerchantBadges[slide.extractedData.badge] }}</span>
+                </ngx-badge>
+                <ngx-icon name="arrow-2-left" iconSize="24px" classes="text-onback-low"></ngx-icon>
+              </div>
+            </div>
+            <div class="d-flex flex-column gap-micro">
+              <span class="st-5 text-onback-high">{{ slide.extractedData?.store.title }}</span>
+              <span [style.max-width]="'240px'"
+                    class="c-3 text-onback-low text-ellipsis text-no-wrap overflow-hidden">{{ slide.extractedData?.store.description | stripTags }}</span>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-low">
+            @for (item of slide.extractedData.products.slice(0, 4); track $index) {
+              <div class="d-flex align-items-center justify-content-center p-low surface-back radius-small cursor-pointer"
+                   (click)="handleProductClicked(item,$event)">
+                <img [ngSrc]="item.image" [width]="44" [height]="44" alt="document" class="image-preview radius-small">
+              </div>
+            }
+          </div>
+        </div>
+    }
+  </common-ui-components-horizontal-scroll>
+</div>

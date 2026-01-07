@@ -1,0 +1,104 @@
+<div
+  [ngStyle]="{ height: stylesMapper[mode()].height }"
+  [class]="
+    'd-flex justify-content-space-between align-items-center pb-small position-relative ' +
+    wrapperClasses() +
+    ' ' +
+    stylesMapper[mode()].wrapper
+  "
+  id="{{ wrapperId() }}"
+>
+  @if (!isLoading()) {
+    <div class="d-flex gap-small half-section align-items-center">
+      <div [class]="'title gap-micro text-onback-high position-relative ' + stylesMapper[mode()].title + ' ' + stylesMapper[mode()].align">
+        @if (rightIcon()) {
+          <ngx-icon
+            [name]="rightIcon()!.name"
+            [type]="rightIcon()!.iconType ?? 'linear'"
+            [iconSize]="rightIcon()!.iconSize ?? '14px'"
+          ></ngx-icon>
+        }
+        {{ title() }}
+        @if (hasDivider()) {
+          <div class="divider">
+            <ngx-divider></ngx-divider>
+          </div>
+        }
+      </div>
+      @if (mode() === 'SUBTITLE') {
+        <div class="w-100 border-t-300 border-color-tint"></div>
+      }
+    </div>
+    <div class="half-section d-flex justify-content-end align-items-center">
+      @if (description() !== '') {
+        <div [class]="'text-onback-high ' + stylesMapper[mode()].description">{{ description() }}</div>
+      }
+    </div>
+    @if (showButton()) {
+      <div class="title-summary-btn">
+        @if (!buttonIcon()) {
+          <ngx-button
+            ngxTrackableId
+            [trackerId]="buttonTrackerId()"
+            [isSharedComponent]="true"
+            [mode]="'section'"
+            [style]="'link'"
+            [size]="'medium'"
+            (click)="handleAction()"
+          >
+            {{ buttonTitle() }}
+          </ngx-button>
+        } @else {
+          @if (buttonIconReversed()) {
+            <ngx-button
+              ngxTrackableId
+              [trackerId]="buttonTrackerId()"
+              [isSharedComponent]="true"
+              [mode]="'form'"
+              [style]="'link'"
+              [size]="'medium'"
+              [leftIcon]="{
+                name: buttonIcon()!,
+                type: 'linear',
+              }"
+              (click)="handleAction()"
+            >
+              {{ buttonTitle() }}
+            </ngx-button>
+          } @else {
+            <ngx-button
+              ngxTrackableId
+              [trackerId]="buttonTrackerId()"
+              [isSharedComponent]="true"
+              [mode]="'form'"
+              [style]="'link'"
+              [size]="'medium'"
+              [rightIcon]="{
+                name: buttonIcon()!,
+                type: 'linear',
+              }"
+              (click)="handleAction()"
+            >
+              {{ buttonTitle() }}
+            </ngx-button>
+          }
+        }
+      </div>
+    }
+  } @else {
+    <lib-ngx-skeleton-loading
+      [height]="'30px'"
+      [width]="'130px'"
+      [classes]="'radius-tiny'"
+      [loadingEffect]="loadingEffect()"
+    ></lib-ngx-skeleton-loading>
+    @if (showButton()) {
+      <lib-ngx-skeleton-loading
+        [height]="'19px'"
+        [width]="'69px'"
+        [classes]="'radius-tiny'"
+        [loadingEffect]="loadingEffect()"
+      ></lib-ngx-skeleton-loading>
+    }
+  }
+</div>

@@ -1,0 +1,40 @@
+.comment {
+  background: #f8f9fe;
+  font-size: 14px;
+  padding: 1.4em 1em;
+  color: #061962;
+  border-radius: 14px;
+}
+
+.comment-author {
+  font-size: 13px;
+  margin: 0 0 1em;
+  font-weight: 500;
+}
+
+.comment-time {
+  font-size: 11px;
+  margin: 0 0 1em;
+}
+
+.comment-body {
+  font-size: 14px;
+  margin: 1em 0 0;
+  line-height: 1.35em;
+}
+
+.reply-button {
+  font-size: 12px;
+  color: #fff;
+  background: #828cb1;
+  border-radius: 8px;
+  padding: 4px 8px;
+  display: inline-block;
+  margin: 20px 0 0;
+  cursor: pointer;
+}
+
+:host ::ng-deep .comment .comment {
+  background: #e7ecfd;
+  margin: 20px 20px 0 0;
+}

@@ -1,0 +1,30 @@
+<div class="location-base-banner radius-big w-100 d-flex flex-column align-items-start justify-content-center">
+  <div class="location-base-banner-lottie-box radius-tl-big radius-tr-big radius-bl-atom radius-br-atom w-100">
+    <ng-lottie
+      (animationCreated)="handleAnimation($event)"
+      [options]="lottieConfig"
+    ></ng-lottie>
+  </div>
+  <div
+    class="location-base-banner-text surface-glass-onback radius-tl-atom radius-tr-atom radius-bl-big radius-br-big w-100 py-medium px-plus d-flex align-items-center justify-content-start gap-pony"
+  >
+    <div class="h-100 d-flex align-items-center justify-content-center p-small text-onback-brand">
+      <common-icon-dp-icon
+        [iconSize]="'48'"
+        [icon]="'shopping-bag'"
+      ></common-icon-dp-icon>
+    </div>
+    <div class="h-100 d-flex align-items-center justify-content-space-between flex-grow">
+      <div class="h-100 d-flex flex-column align-items-start justify-content-space-between">
+        <div class="st-6 tex-onback-high">خرید حضوری!</div>
+        <div class="c-2 tex-onback-high">از فروشگاه‌های نزدیک</div>
+      </div>
+      <ngx-button
+        [mode]="'icon-only'"
+        [size]="'small'"
+        [style]="'tinted-on-back'"
+        [rightIcon]="{ name: 'arrow-left' }"
+      ></ngx-button>
+    </div>
+  </div>
+</div>

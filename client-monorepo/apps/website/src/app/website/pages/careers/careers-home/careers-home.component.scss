@@ -1,0 +1,45 @@
+@import "globals";
+@import "@digipay/base-style/styleguide";
+
+:host {
+  display: block;
+  background: #f6f8ff;
+}
+
+.careers-container {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+
+#body-container {
+  margin-top: 64px;
+  margin-bottom: 64px;
+}
+
+.page-title {
+  color: #001a66;
+  font-weight: 800;
+  font-size: 24px;
+  margin-bottom: 0.5em;
+}
+
+:host ::ng-deep {
+  .content-box {
+    background: #fff;
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid $swatch_steel_200;
+  }
+}
+
+
+
+@media (max-width: 767px) {
+  :host ::ng-deep {
+    .content-box {
+      padding: 24px;
+    }
+  }
+}

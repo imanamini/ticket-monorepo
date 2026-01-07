@@ -1,0 +1,91 @@
+@if (!showLoading()) {
+  @switch (status()) {
+    @case (CREDIT_SCORING_SMC_STATUS.INITIATED) {
+      @if (isBlackList()) {
+        <app-credit-scoring-blacklist
+          (close)="close()"
+          class="flex-full-height"
+        ></app-credit-scoring-blacklist>
+      }
+    }
+    @case (CREDIT_SCORING_SMC_STATUS.IN_PROGRESS) {
+      <app-credit-scoring-smc-step-in-progress
+        (back)="goToSteps()"
+        class="flex-full-height"
+      >
+      </app-credit-scoring-smc-step-in-progress>
+    }
+    @case (CREDIT_SCORING_SMC_STATUS.ICS) {
+      <app-credit-scoring-smc-step-otp
+        [creditId]="creditId()!"
+        (back)="goToSteps()"
+        (reloadStatus)="getStatus()"
+        (nextStep)="nextStep($event)"
+        class="flex-full-height"
+      >
+      </app-credit-scoring-smc-step-otp>
+    }
+    @case ('UNREADY') {
+      <app-credit-scoring-smc-unready-report
+        (close)="close()"
+        (back)="goToSteps()"
+        class="flex-full-height"
+      >
+      </app-credit-scoring-smc-unready-report>
+    }
+    @case (CREDIT_SCORING_SMC_STATUS.REJECTED) {
+      <app-credit-scoring-smc-result-page
+        [creditId]="creditId()!"
+        [fundProviderCode]="fundProviderCode()!"
+        (close)="close()"
+        (back)="goToSteps()"
+        [status]="'FAILED'"
+        class="flex-full-height"
+      >
+      </app-credit-scoring-smc-result-page>
+    }
+    @case (CREDIT_SCORING_SMC_STATUS.FAILED) {
+      <app-credit-scoring-smc-result-page
+        [creditId]="creditId()!"
+        (close)="close()"
+        (back)="goToSteps()"
+        [status]="'FAILED'"
+        class="flex-full-height"
+      >
+      </app-credit-scoring-smc-result-page>
+    }
+    @case ('SHAHKAR_FAILED') {
+      <app-credit-scoring-smc-result-page
+        [creditId]="creditId()!"
+        [fundProviderCode]="fundProviderCode()!"
+        (close)="close()"
+        (back)="goToSteps()"
+        [status]="'SHAHKAR_FAILED'"
+        class="flex-full-height"
+      >
+      </app-credit-scoring-smc-result-page>
+    }
+    @case (CREDIT_SCORING_SMC_STATUS.FAILED) {
+      <app-credit-scoring-smc-result-page
+        [creditId]="creditId()!"
+        (close)="close()"
+        (back)="goToSteps()"
+        status="FAILED"
+        class="flex-full-height"
+      >
+      </app-credit-scoring-smc-result-page>
+    }
+    @case (CREDIT_SCORING_SMC_STATUS.COMPLETED) {
+      <app-credit-scoring-smc-step-success-page
+        [creditId]="creditId()!"
+        (finish)="goToWallet()"
+        (back)="goToSteps()"
+        (close)="close()"
+        (creditAmountLoaded)="onCreditAmountLoaded($event)"
+        class="flex-full-height"
+      >
+      </app-credit-scoring-smc-step-success-page>
+    }
+  }
+}
+<credit-page-loading [active]="showLoading()!"></credit-page-loading>

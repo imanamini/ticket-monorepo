@@ -1,0 +1,138 @@
+<div class="w-100 d-flex flex-column surface-elevated">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'تامین مالی جمعی'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  @if (loading()) {
+    <app-spinner class="h-100"></app-spinner>
+  } @else {
+    <app-image
+      class="w-100"
+      [imageUrl]="crowd()?.bannerImageUrl"
+      [defaultImage]="'./wealth-assets/images/crowd-cover-' + crowd()?.symbol + '.png'"
+      [alt]="crowd()?.title"
+    />
+
+    <div class="w-100 d-flex flex-wrap px-plus">
+      <div class="w-100 mt-minus d-grid project-info">
+        @for (info of crowd() | crowdInfo; track info; let lastItem = $last) {
+          <div class="d-flex justify-content-space-around item">
+            <div class="d-flex align-items-center justify-content-center flex-column">
+              <div class="d-flex align-items-center justify-content-center">
+                <span class="b-3 text-onback-low">
+                  {{ info.key }}
+                </span>
+              </div>
+
+              <span class="c-2 text-onback-high">
+                {{ info.value }}
+              </span>
+            </div>
+            @if (!lastItem) {
+              <ngx-divider
+                class="h-100"
+                [color]="BorderColorsEnum.Light"
+                orientation="vertical"
+              ></ngx-divider>
+            }
+          </div>
+        }
+      </div>
+
+      <app-project-status-detail
+        class="w-100"
+        [crowd]="crowd()"
+      />
+
+      @if (crowd && crowd().customerInvestedAmount && crowd().customerInvestedAmount > 0) {
+        <div class="w-100 d-grid mt-big mb-minus pt-big user-investment-info-container">
+          <div class="title d-flex align-items-center gap-tiny">
+            <img
+              src="./wealth-assets/svg/money-paper.svg"
+              alt="مبلغ سرمایه‌گذاری شده شما"
+            />
+            <span class="c-2 text-onback-medium"> مبلغ سرمایه‌گذاری شده شما </span>
+          </div>
+
+          <div class="amount">
+            <span class="st-2 text-onback-high">
+              {{ crowd().customerInvestedAmount | thousands }}
+              <span class="st-8 is-currency"> ریال </span>
+            </span>
+          </div>
+
+          @if (crowd().participantReportFilePath) {
+            <div class="d-flex justify-content-end action">
+              <ngx-button
+                [style]="'tinted-on-elevated'"
+                size="small"
+                [fullWidth]="true"
+                (clickHandler)="getDocument()"
+                [isLoading]="downloading()"
+              >
+                دریافت گواهی
+              </ngx-button>
+            </div>
+          }
+        </div>
+      }
+
+      <div class="w-100 mt-medium">
+        <ngx-callout
+          [mode]="'single-with-title'"
+          [title]="'نکته مهم'"
+          [message]="
+            'تا پایان مدت این طرح، امکان برداشت اصل پول سرمایه‌گذاری شده را ندارید.با اتمام طرح، سرمایه شما به صورت خودکار به حساب بانکی سجامی شما واریز خواهد شد.'
+          "
+        />
+      </div>
+
+      <div class="w-100 mt-medium">
+        <ngx-segmented-control
+          [mode]="'SECTION_SEGMENT'"
+          [options]="options()"
+          [selectedOption]="options()[0]"
+          (change)="activeSegment.set($event.id)"
+          class="segment-style"
+        >
+        </ngx-segmented-control>
+        <div class="w-100 d-flex mt-big">
+          @if (activeSegment() === 1) {
+            <app-crowd-introduction-segment
+              class="w-100"
+              [crowd]="crowd()"
+            />
+          } @else if (activeSegment() === 2) {
+            <app-crowd-document-segment
+              class="w-100"
+              [crowd]="crowd()"
+            />
+          } @else if (activeSegment() === 3) {
+            <app-crowd-calendar-segment [crowd]="crowd()" />
+          }
+        </div>
+      </div>
+    </div>
+
+    @if (crowd().successPercentage < 100 && crowd().buyable) {
+      <div class="w-100 surface-elevated px-plus py-medium sticky-action-group">
+        <ngx-button
+          size="medium"
+          [fullWidth]="true"
+          (clickHandler)="showRisk()"
+          [buttonId]="'CROWD_BUY'"
+        >
+          سرمایه‌گذاری
+        </ngx-button>
+      </div>
+    }
+  }
+</div>

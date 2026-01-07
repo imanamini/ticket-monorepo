@@ -1,0 +1,72 @@
+.loader {
+  margin: auto;
+}
+
+.text {
+  font-weight: normal;
+  color: white;
+}
+
+.wallet-card-img {
+  // todo fix svg
+  // background: url('../../../../../assets/image/tgs/wallet-tgs.svg') no-repeat 0 0/100%;
+  width: 264px;
+  height: 144px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    .logo {
+      // todo fix svg
+      // background: url('../../../../../assets/image/tgs/digipay-logo.png') no-repeat 0 0/100%;
+      width: 32px;
+      height: 32px;
+    }
+
+    .title {
+      font-size: 14px;
+    }
+  }
+
+  .content {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+  }
+
+  .user-name {
+    font-size: 14px;
+    text-align: left;
+    // todo fix
+    // @extend .text;
+  }
+}
+
+.wallet-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+// @include mediaMobile() {
+//  .loader-container{
+//    padding: 15px;
+//  }
+//  .wallet-container {
+//    padding: 20px;
+//    max-height: 100%;
+//    .wallet-card-box {
+//      min-height: 225px;
+//      align-items: flex-start;
+//    }
+//  }
+// }
+

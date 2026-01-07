@@ -1,0 +1,16 @@
+@if (isLoaded()) {
+  <div class="container">
+    <div class="pt-huge">
+      @for (item of categorizeList(); track $index) {
+        <div class="items-container">
+          <subscription-applet-ui-plan-services
+            class="w-100"
+            [title]="item.title"
+            [servicesList]="item.services"
+            [showDetails]="true"
+          ></subscription-applet-ui-plan-services>
+        </div>
+      }
+    </div>
+  </div>
+}

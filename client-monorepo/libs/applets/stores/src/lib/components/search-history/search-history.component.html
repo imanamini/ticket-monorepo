@@ -1,0 +1,46 @@
+<div class="suggested-services d-flex flex-column align-items-stretch justify-content-start gap-small">
+  <div class="px-plus">
+    <common-ui-components-title-summary
+      [isLoading]="historyLoading()"
+      [title]="'جست‌و‌جوهای اخیر'"
+      [buttonIcon]="'delete'"
+      [buttonTitle]="'حذف همه'"
+      [buttonIconReversed]="true"
+      [mustReturnAction]="true"
+      (onButtonClicked)="removeAllHistory()"
+    ></common-ui-components-title-summary>
+  </div>
+  <div class="px-atom">
+    <common-ui-components-horizontal-scroll [classes]="'pr-plus'">
+      @if (historyLoading()) {
+        @for (_ of rangeCreator(5); track $index) {
+          <ngx-chip
+            [id]="''"
+            [isLoading]="true"
+          ></ngx-chip>
+        }
+      } @else {
+        @for (history of searchHistory(); track $index) {
+          <ngx-chip
+            [id]="history"
+            [classes]="'cursor-pointer'"
+            [size]="'MEDIUM'"
+            [pressed]="false"
+            [disableAnimations]="true"
+            [disableClick]="false"
+            [label]="history"
+            (click)="itemClickedHandle(history)"
+          >
+            <ngx-icon
+              trailingComponent
+              (click)="removeItem($event, history)"
+              [name]="'close'"
+              [classes]="'text-onback-high'"
+              [iconSize]="'16px'"
+            ></ngx-icon>
+          </ngx-chip>
+        }
+      }
+    </common-ui-components-horizontal-scroll>
+  </div>
+</div>

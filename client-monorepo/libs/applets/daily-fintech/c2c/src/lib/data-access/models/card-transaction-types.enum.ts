@@ -1,0 +1,3 @@
+export enum CARD_TRANSACTION_TYPES {
+  CARD_TO_CARD = 4,
+}

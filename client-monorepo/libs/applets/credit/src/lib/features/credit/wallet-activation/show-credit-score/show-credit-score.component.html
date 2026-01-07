@@ -1,0 +1,38 @@
+@if (data()) {
+  <app-credit-app-bar
+    [buttonLink]="data()?.backUrl || creditHomeUrl()!"
+    [closeButton]="true"
+    [title]="data()?.title"
+  ></app-credit-app-bar>
+}
+@if (data()) {
+  <app-credit-scrollable-view>
+    <div class="page-content">
+      <div class="score">
+        <app-credit-score-circle
+          [color]="data()?.circle?.color"
+          [fillColor]="data()?.circle?.fillColor"
+          [imageId]="data()?.circle?.imageId"
+          [percent]="data()?.circle?.percent"
+          [score]="data()?.circle?.score"
+          [subtitle]="data()?.circle?.subtitle"
+        ></app-credit-score-circle>
+      </div>
+      <h2 class="title">{{ data()?.level }}</h2>
+      <div class="text">
+        <p>{{ data()?.description }}</p>
+      </div>
+      @if (data()?.button) {
+        <div class="actions">
+          <ngx-button
+            (clickHandler)="buttonClick()"
+            [style]="'tinted-on-elevated'"
+            [fullWidth]="true"
+          >
+            {{ data()?.button?.text }}
+          </ngx-button>
+        </div>
+      }
+    </div>
+  </app-credit-scrollable-view>
+}

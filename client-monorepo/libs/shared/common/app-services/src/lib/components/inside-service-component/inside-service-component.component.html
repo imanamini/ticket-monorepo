@@ -1,0 +1,55 @@
+<div
+  class="d-flex flex-column radius-medium surface-elevated pt-medium pb-big"
+  [ngClass]="serviceType() === 'bill' ? 'pr-plus' : 'px-plus'"
+>
+  <div class="d-flex align-items-center justify-content-space-between">
+    @if (!isLoading()) {
+      <div class="d-flex flex-column">
+        <p class="c-2 text-onback-low">{{ title() }}</p>
+        <p class="st-8">{{ subTitle() }}</p>
+      </div>
+      @if (hasAction()) {
+        <div
+          class="surface-back radius-huge py-small px-small cursor-pointer"
+          (click)="onActionClick()"
+        >
+          <common-icon-dp-icon
+            [classes]="'text-onback-medium'"
+            iconSize="20"
+            [icon]="'arrow-left'"
+            [iconType]="'linear'"
+          ></common-icon-dp-icon>
+        </div>
+      }
+    } @else {
+      <div class="d-flex flex-column gap-micro">
+        <lib-ngx-skeleton-loading
+          [width]="'82px'"
+          [height]="'20px'"
+        ></lib-ngx-skeleton-loading>
+        <lib-ngx-skeleton-loading
+          [width]="'137px'"
+          [height]="'24px'"
+        ></lib-ngx-skeleton-loading>
+      </div>
+    }
+  </div>
+  <common-app-services-categorized-service-builder
+    [isLoading]="isLoading()"
+    [services]="services()"
+    [itemsToShow]="itemsToShow()"
+    [iconSize]="iconSize()"
+    [category]="category()"
+    [insideServiceMode]="true"
+    [iconColor]="iconColor()"
+    (clickOnService)="onServiceClick($event)"
+    [hasTitle]="false"
+    [doFilter]="doFilter()"
+    [serviceType]="serviceType()"
+    [bills]="bills()"
+  >
+  </common-app-services-categorized-service-builder>
+  <div #ngContentWrapper>
+    <ng-content></ng-content>
+  </div>
+</div>

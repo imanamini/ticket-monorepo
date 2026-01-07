@@ -1,0 +1,48 @@
+<div class="d-flex flex-column gap-plus">
+  <div class="title d-flex align-items-center">
+    <common-icon-dp-icon
+      [iconSize]="'30'"
+      icon="card-to-card"
+      iconType="bold"
+    ></common-icon-dp-icon>
+    <span class="st-6 mr-small">دیجی‌کارت فعال</span>
+  </div>
+  <div class="d-flex p-minus surface-brand-tint cursor-pointer radius-medium gap-low">
+    <common-icon-dp-icon
+      [icon]="'info-circle'"
+      [iconSize]="'20'"
+      [iconType]="'linear'"
+      [class]="'text-onback-brand mt-low'"
+    ></common-icon-dp-icon>
+
+    <div class="d-flex flex-column">
+      <span class="st-6"> کاربر گرامی؛ </span>
+      <span class="c-2"> با کدملی ۰۳۱***۰۳۲ یک دیجی‌کارت وجود دارد.</span>
+    </div>
+  </div>
+  <ngx-callout
+    [backgroundMode]="'default'"
+    [mode]="'multiple'"
+    [showTitleBlink]="true"
+    [title]=""
+    [messages]="[
+      'برای استفاده از مزایای دیجی‌کارت در پروفایل فعلی، از دکمه اتصال استفاده کنید.',
+      'در صورت اتصال، دسترسی به وام و اعتبارهای پروفایل قبلی امکان پذیر نیست.'
+    ]"
+  ></ngx-callout>
+  <div class="d-flex gap-small actions mt-tiny">
+    <ngx-button
+      [fullWidth]="true"
+      [style]="'tinted-on-elevated'"
+      (clickHandler)="cancel()"
+    >
+      انصراف
+    </ngx-button>
+    <ngx-button
+      [fullWidth]="true"
+      (clickHandler)="approve()"
+    >
+      اتصال
+    </ngx-button>
+  </div>
+</div>

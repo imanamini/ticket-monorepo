@@ -1,0 +1,31 @@
+<div class="py-big px-plus">
+  <div class="d-flex align-items-center gap-minus">
+    <lib-ngx-skeleton-loading
+      [height]="'56px'"
+      [width]="'250px'"
+    ></lib-ngx-skeleton-loading>
+    <lib-ngx-skeleton-loading
+      [width]="'56px'"
+      [height]="'56px'"
+    ></lib-ngx-skeleton-loading>
+  </div>
+  <lib-ngx-skeleton-loading
+    [width]="'200px'"
+    [height]="'30px'"
+    [classes]="'my-large'"
+  ></lib-ngx-skeleton-loading>
+  <div class="d-grid skeleton-container">
+    @for (skeleton of rangeCreator(4); track $index) {
+      <lib-ngx-skeleton-loading
+        [width]="'150px'"
+        [height]="'40px'"
+        [classes]="'radius-giant'"
+      ></lib-ngx-skeleton-loading>
+    }
+  </div>
+  <lib-ngx-skeleton-loading
+    [height]="'56px'"
+    [width]="'100%'"
+    [classes]="'mt-huge'"
+  ></lib-ngx-skeleton-loading>
+</div>

@@ -1,0 +1,120 @@
+<app-base-layout
+  *ngIf="templateData"
+  [loaded]="loaded"
+>
+  <!--  section 1-->
+  <app-ui-introduction-default
+    *ngIf="templateData"
+    [buttons]="introButtons"
+    [features]="config.value"
+    [introductionType]="templateData?.introType"
+    [sliderImages]="templateData?.sectionIntro?.products"
+    [titleTemplate]="titleTemplate"
+    class="credit-intro-section"
+  >
+    <div class="title desktop">
+      <h1>
+        {{ templateData?.sectionIntro?.title }}
+      </h1>
+      <h2>{{ templateData?.sectionIntro?.subtitle }}</h2>
+    </div>
+  </app-ui-introduction-default>
+  <ng-template #titleTemplate>
+    <div class="title mobile">
+      <h1>
+        {{ templateData?.sectionIntro?.title }}
+      </h1>
+      <h2>{{ templateData?.sectionIntro?.subtitle }}</h2>
+    </div>
+  </ng-template>
+  <ng-template #introButtons>
+    <div class="ctas">
+      <app-ui-button
+        *ngIf="templateData.sectionIntro.firstCta && templateData.sectionIntro.firstCta.title"
+        [id]="templateData?.sectionIntro?.firstCta?.id"
+        [linkTarget]="'_blank'"
+        [link]="templateData?.sectionIntro?.firstCta?.link || ''"
+        size="MEDIUM"
+      >
+        {{ templateData.sectionIntro.firstCta.title }}
+      </app-ui-button>
+      <app-ui-button
+        *ngIf="templateData.sectionIntro.secondCta && templateData.sectionIntro.secondCta.title"
+        [appearance]="'BLUE-TEXT'"
+        [id]="templateData?.sectionIntro?.secondCta?.id"
+        [linkTarget]="'_blank'"
+        [link]="templateData?.sectionIntro?.secondCta?.link || ''"
+        size="MEDIUM"
+      >
+        {{ templateData.sectionIntro.secondCta.title }}
+      </app-ui-button>
+    </div>
+  </ng-template>
+
+  <!--  section 2-->
+  <app-swiper-continuous-content
+    *ngIf="config && config.shortFlow && config.shortFlow.steps && config.shortFlow.steps.length > 0"
+    [data]="config.shortFlow.steps"
+    [subtitle]="config.shortFlow.subtitle"
+    [title]="config.shortFlow.title"
+  ></app-swiper-continuous-content>
+
+  <!--  section 3-->
+  <app-ui-digikala-product
+    *ngIf="templateData.sectionDigikalaProducts?.title"
+    [creditConfig]="config"
+    [digikalaProducts]="digikalaProducts"
+    [productSingle]="productSingle"
+    [templateData]="templateData?.sectionDigikalaProducts"
+  ></app-ui-digikala-product>
+
+  <!--  section 4-->
+  <app-p-offers-image
+    *ngIf="templateData && templateData.sectionOffers && templateData.sectionOffers.images && templateData.sectionOffers.images.length > 0"
+    [data]="templateData.sectionOffers.images"
+    [subtitle]="templateData.sectionOffers.subtitle"
+    [title]="templateData.sectionOffers.title"
+  ></app-p-offers-image>
+
+  <!--  section 5-->
+  <app-p-digikala-sub-category
+    *ngIf="templateData.sectionDigikalaCategoriesProducts"
+    [creditConfig]="config"
+    [digikalaProducts]="digikalaCategoriesProducts"
+    [productSingle]="productSingle"
+    [templateData]="templateData.sectionDigikalaCategoriesProducts"
+  >
+  </app-p-digikala-sub-category>
+
+  <app-p-credit-register
+    *ngIf="templateData && templateData.sectionRegister && templateData.sectionRegister.title"
+    [templateData]="templateData"
+  ></app-p-credit-register>
+
+  <app-p-credit-popular
+    *ngIf="templateData && templateData.sectionBrands && templateData.sectionBrands.brands && templateData.sectionBrands.brands.length > 0"
+    [templateData]="templateData"
+  ></app-p-credit-popular>
+
+  <app-p-credit-type
+    *ngIf="templateData?.sectionProducts?.title"
+    [templateData]="templateData"
+  ></app-p-credit-type>
+  <!--  section 6-->
+  <app-ui-faq
+    *ngIf="templateData && templateData.faq && templateData.faq.faqItems && templateData.faq.faqItems.length > 0"
+    [faqs]="templateData.faq.faqItems"
+    [subtitle]="templateData.faq.subtitle"
+    [title]="templateData.faq.title"
+  >
+  </app-ui-faq>
+
+  <!--  section 7-->
+  <app-blog-cards
+    *ngIf="templateData && templateData.relatedPosts && posts.length > 0"
+    [blogPosts]="posts"
+    [subtitle]="templateData.relatedPosts.subtitle"
+    [title]="templateData.relatedPosts.title"
+  >
+  </app-blog-cards>
+</app-base-layout>

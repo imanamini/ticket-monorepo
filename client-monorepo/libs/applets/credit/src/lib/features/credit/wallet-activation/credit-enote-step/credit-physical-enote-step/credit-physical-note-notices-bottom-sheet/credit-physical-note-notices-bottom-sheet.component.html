@@ -1,0 +1,16 @@
+<div class="notices-bottom-sheet">
+  <app-credit-notices
+    title="برای جلوگیری از رد ضمانت موارد زیر را رعایت کنید:"
+    [notices]="notices"
+  >
+  </app-credit-notices>
+
+  <div class="call-to-action-wrapper">
+    <ngx-button
+      (clickHandler)="bottomSheetService.closeBottomSheet()"
+      [fullWidth]="true"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

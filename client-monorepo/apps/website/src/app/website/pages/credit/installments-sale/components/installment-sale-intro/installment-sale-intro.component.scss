@@ -1,0 +1,95 @@
+.section-intro {
+  .container {
+    display: flex;
+  }
+
+  h1 {
+    font-size: 48px;
+    margin-bottom: 24px;
+    color: #000d33;
+
+    span {
+      font-size: 64px;
+    }
+  }
+
+  .right-side {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-around;
+
+    .values {
+      margin-bottom: 24px;
+
+      .value {
+        padding: 0 8px;
+        border-left: 1px solid rgba(0, 0, 0, 0.2);
+        color: #2c3544;
+        font-size: 16px;
+        font-weight: 600;
+        display: inline-block;
+
+        &:last-child {
+          border-left: unset;
+        }
+      }
+    }
+
+    .ctas {
+      display: flex;
+      gap: 8px;
+    }
+  }
+
+  .left-side {
+    position: relative;
+    margin-right: auto;
+
+    .image {
+      display: inline-block;
+      height: 478px;
+      width: 376px;
+      background: url('assets/roomi.svg') no-repeat 0 0/100%;
+
+      swiper {
+        clip-path: url(#clip0_415_23762);
+      }
+
+      img {
+        width: 100%;
+        object-fit: contain;
+        height: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .section-intro .container {
+    flex-direction: column-reverse;
+    align-items: center;
+
+    .left-side {
+      margin-right: unset;
+    }
+  }
+  .section-intro h1 {
+    font-size: 22px;
+
+    span {
+      font-size: 40px;
+    }
+  }
+
+  .section-intro .right-side .ctas {
+    flex-direction: column;
+  }
+
+  .section-intro .left-side {
+    .image {
+      height: 350px;
+      width: 280px;
+    }
+  }
+}

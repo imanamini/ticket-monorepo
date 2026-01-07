@@ -1,0 +1,78 @@
+@import "globals";
+
+.fine-payment-result {
+  .top-bar {
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $swatch_steel_200;
+    padding: 14px 48px;
+
+    .cta {
+      margin-left: -15px;
+      color: $swatch_red_500;
+    }
+  }
+
+  .fine-payment-result-body {
+    padding: 32px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .app-promotion {
+      height: 145px;
+      width: 100%;
+      padding: 16px 16px 10px 16px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-direction: column;
+      border-radius: 12px;
+      background: url('app-promotion-desktop.png') no-repeat center center/cover;
+
+      .text {
+        .title {
+          font-size: 17px;
+          font-weight: 700;
+          color: #fff;
+        }
+
+        .subtitle {
+          font-size: 13px;
+          font-weight: 400;
+          color: #fff;
+          opacity: 70%;
+        }
+      }
+
+      .cta {
+        display: flex;
+        gap: 4px;
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .fine-payment-result {
+    .top-bar {
+      padding: 16px;
+    }
+
+    .fine-payment-result-body {
+      padding: 16px;
+
+      .app-promotion {
+        background: url('app-promotion-mobile.png') no-repeat center center/cover;
+        width: 100%;
+        aspect-ratio: 2 / 1;
+
+        .text {
+          max-width: 60%;
+        }
+      }
+    }
+  }
+}

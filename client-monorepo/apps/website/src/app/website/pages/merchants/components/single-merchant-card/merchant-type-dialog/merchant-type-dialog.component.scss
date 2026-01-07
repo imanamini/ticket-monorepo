@@ -1,0 +1,144 @@
+@import "globals";
+
+
+
+::ng-deep {
+  .mat-mdc-dialog-container {
+    padding: 0;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+
+  .mat-bottom-sheet-container {
+    padding: 0 !important;
+    overflow: hidden;
+  }
+}
+
+.merchant-type-dialog {
+  display: flex;
+  flex-direction: column;
+  direction: rtl;
+  padding: 48px;
+
+  .top-bar {
+    display: none;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .title {
+      color: $swatch_steel_900;
+      font-size: 20px;
+      font-weight: 400;
+    }
+
+    .description {
+      border-radius: 16px;
+      border: 1px solid $swatch_steel_200;
+      padding: 16px;
+      color: $swatch_steel_500;
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: -0.7px;
+
+      span {
+        color: $swatch_steel_900;
+      }
+    }
+
+    ::ng-deep {
+      .swiper-slide {
+        width: auto;
+      }
+    }
+
+    .swiper {
+      margin: 0;
+      overflow: visible;
+    }
+
+    .swiper-slide {
+      width: 138px;
+      height: 175px;
+      padding: 16px 10px 32px 24px;
+      border-radius: 16px;
+      border: 1px solid $swatch_steel_200;
+
+      .step-number {
+        width: 24px;
+        height: 24px;
+        border: 1px solid $swatch_steel_200;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $swatch_steel_500;
+        font-size: 14px;
+        font-weight: 450;
+      }
+
+      .step-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-right: 14px;
+      }
+
+      .step-name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $swatch_steel_900;
+        font-size: 11px;
+        font-weight: 300;
+        letter-spacing: -0.55px;
+        margin-top: 8px;
+        text-align: center;
+        width: 100%;
+        padding-right: 10px;
+      }
+    }
+  }
+
+  .cta {
+    margin-top: 24px;
+    display: block;
+    width: 100%;
+  }
+}
+
+@media (max-width: 744px) {
+  .merchant-type-dialog {
+    padding: 32px 16px 16px 16px;
+
+    .top-part {
+      display: block;
+      height: 4px;
+      padding-bottom: 16px;
+      width: 100%;
+
+      div {
+        margin: auto;
+        width: 32px;
+        height: 4px;
+        border-radius: 100px;
+        background-color: $swatch_steel_500;
+      }
+    }
+
+    .content {
+      .title {
+        font-size: 14px;
+        font-weight: 300;
+      }
+    }
+
+    .cta {
+      margin-top: 16px;
+    }
+  }
+}

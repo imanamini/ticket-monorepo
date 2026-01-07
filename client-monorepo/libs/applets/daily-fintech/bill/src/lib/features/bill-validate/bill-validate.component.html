@@ -1,0 +1,17 @@
+<common-ui-components-page-layout
+  [title]="pageTitle()"
+  [showBorder]="false"
+>
+  @if (loading()) {
+    <bill-applet-validation-skeleton />
+  } @else {
+    @if (billMethods().length === 1) {
+      <bill-applet-standard-inquiry class="page-content py-huge px-medium"></bill-applet-standard-inquiry>
+    } @else {
+      <common-ui-components-tab-group
+        class="pt-medium"
+        [tabs]="tabs()"
+      ></common-ui-components-tab-group>
+    }
+  }
+</common-ui-components-page-layout>

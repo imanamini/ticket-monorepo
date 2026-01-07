@@ -1,0 +1,89 @@
+@import "globals";
+
+.ui-seo {
+  .container {
+    .title {
+      font-size: 17px;
+      font-weight: 800;
+      color: $swatch_steel_900;
+    }
+
+    ::ng-deep {
+      h3 {
+        font-size: 17px;
+        font-weight: 800;
+        color: $swatch_steel_900;
+      }
+    }
+
+    .content {
+      overflow: hidden;
+      transition: max-height 0.3s ease-in;
+
+      h4 {
+        color: $swatch_steel_900;
+      }
+
+      p {
+        text-align: justify;
+        color: $swatch_steel_500;
+        font-size: 13px;
+        font-weight: 300;
+      }
+    }
+
+    .ctas {
+      transform: translateX(20px);
+
+      .icon {
+        transition: transform ease-in-out 200ms;
+
+        &.rotate {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .ui-seo {
+    .container {
+      .title {
+        font-size: 15px;
+      }
+
+      ::ng-deep {
+        h3 {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .ui-seo {
+    .container {
+      .title {
+        font-size: 12px;
+      }
+
+      .content {
+        p {
+          font-size: 11px;
+        }
+      }
+
+      ::ng-deep {
+        h3 {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+* {
+  font-family: 'yekan-bakh';
+}

@@ -1,0 +1,13 @@
+:host{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.message-image {
+  background-image: url("../../assets/images/no-active-plan.svg");
+  height: 96px;
+  width: 96px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}

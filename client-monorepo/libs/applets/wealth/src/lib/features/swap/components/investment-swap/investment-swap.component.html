@@ -1,0 +1,64 @@
+<div class="w-100 d-flex flex-wrap align-items-center justify-content-space-between">
+  <div class="flex-1 d-flex align-items-center gap-tiny">
+    <img
+      [src]="getImage(swapData()?.walletName)"
+      [alt]="swapData()?.walletName"
+    />
+    <span class="st-8 text-onback-medium">
+      {{ swapData().walletTitle }}
+    </span>
+
+    <ngx-button
+      [mode]="'icon-only'"
+      [style]="'neutral-link'"
+      [size]="'tiny'"
+      [leftIcon]="{
+        name: 'arrow-2-left',
+      }"
+    />
+  </div>
+
+  @if (swapData().activationRequired) {
+    @if (swapData().status === EWalletActivation.PolicyCreationPending) {
+      <div class="w-100 mt-small">
+        <ngx-alert
+          [color]="'yellow'"
+          [text]="'بعد از فعال‌سازی امکان تبدیل دارایی خود را دارید.'"
+          [title]="'طرح در حال فعال‌سازی ...'"
+          [hasCloseIcon]="false"
+          [size]="'sm'"
+        />
+      </div>
+    } @else {
+      <ngx-button
+        [mode]="'section'"
+        [style]="'tinted-on-elevated'"
+        [size]="'small'"
+        (clickHandler)="onActiveWallet($event)"
+      >
+        فعال‌سازی
+      </ngx-button>
+    }
+  } @else if (swapData().status === EWalletActivation.Active) {
+    <div class="d-flex flex-column gap-tiny align-items-end">
+      <div class="d-flex gap-tiny align-items-center">
+        @if (swapData().isOrigin) {
+          <ngx-button
+            [size]="'tiny'"
+            [mode]="'icon-only'"
+            [leftIcon]="{
+              name: 'question-mark-circle',
+            }"
+            [style]="'link'"
+            (clickHandler)="onMaximunSwap($event)"
+          />
+        }
+        <p class="l-2 text-onback-low">{{ amountText() }}</p>
+      </div>
+      <p class="l-2 text-onback-medium">
+        {{ swapData().isOrigin ? (swapData()?.walletSwapableBalance | thousands) : (swapData()?.walletTotal | thousands) }}
+        <span class="is-currency">ریال</span>
+      </p>
+    </div>
+  }
+</div>

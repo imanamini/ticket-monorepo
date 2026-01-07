@@ -1,0 +1,30 @@
+<div
+  (click)="onClickMethod()"
+  [class.selected]="selected"
+  class="method-container"
+>
+  <div class="right-part">
+    <div class="icon">
+      <ui-api-image
+        *ngIf="selected"
+        [imageId]="method.hoverImageId"
+        width="24px"
+      >
+      </ui-api-image>
+      <ui-api-image
+        *ngIf="!selected"
+        [imageId]="method.imageId"
+        width="24px"
+      >
+      </ui-api-image>
+    </div>
+    <div class="description">
+      <p class="title">{{ method.title }}</p>
+      <p class="detail">{{ method.description }}</p>
+    </div>
+  </div>
+  <div
+    [class.selected]="selected"
+    class="radio"
+  ></div>
+</div>

@@ -1,0 +1,226 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.payment-result-content {
+  @include column-center;
+
+  .describe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .icon {
+      width: 90px;
+      height: 90px;
+      background: url("/insurance-assets/icons/success-payment-checked.svg") no-repeat center;
+      background-size: contain;
+    }
+
+    .title {
+      font-size: 1.2rem;
+      color: #00a34d;
+      margin: 30px 0;
+      font-weight: 600;
+    }
+
+    .description-success {
+      margin-bottom: 40px;
+      color: #6e798d;
+    }
+  }
+
+  .buttons {
+    @include flex-center;
+    margin: 40px auto;
+  }
+
+  .more-info {
+
+    .top {
+      @include flex-center;
+
+      .remaining-days, .success-info {
+        @extend %radius-norm;
+        border: 1px solid #dee3e7;
+        padding: 20px;
+      }
+
+      .remaining-days {
+        background: url("/insurance-assets/images/progress.svg") center center no-repeat;
+        height: 220px;
+        width: 280px;
+        position: relative;
+
+        .content {
+          margin: 65px 0;
+          text-align: center;
+
+          .remain, .description {
+            text-align: center;
+          }
+
+          .remain {
+            color: #002fa3;
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin: 10px 0;
+
+            .days {
+              font-weight: 600;
+              font-size: 1.2em;
+            }
+          }
+
+          .description {
+            font-size: .8rem;
+            color: #6e798d;
+          }
+        }
+      }
+
+      .success-info {
+        position: relative;
+        margin-left: 20px;
+        width: 440px;
+        height: 220px;
+        background: url("/insurance-assets/images/payment-result-back-ground.svg") left 0 no-repeat;
+
+        .head {
+          border-bottom: 1px solid #dee3e7;
+          width: 100%;
+          padding-bottom: 15px;
+          max-width: 320px;
+
+          .head-title {
+            color: #424c5c;
+            font-size: .8rem;
+            margin-bottom: 12px;
+          }
+
+          .head-value {
+            font-weight: 600;
+            color: #0040ff;
+          }
+
+        }
+
+        .list {
+          max-width: 320px;
+          margin-top: 20px;
+
+          .list-item {
+            font-size: .8rem;
+            padding: 10px 0;
+            @include flex-center-between;
+
+            .title {
+              font-weight: 500;
+              color: #6e798d;
+            }
+
+            .value {
+              font-weight: 600;
+              color: #424c5c;
+            }
+          }
+        }
+
+        .digipay-icon {
+          left: 23px;
+          top: 23px;
+          position: absolute;
+          background-size: contain !important;
+          width: 32px;
+          height: 32px;
+          background: url("/insurance-assets/icons/logo-digipay-sign-white.png") left top no-repeat;
+        }
+      }
+    }
+  }
+
+  .tips-container {
+    width: 100%;
+  }
+
+}
+
+@include mediaTablet() {
+  .payment-result-content {
+    max-width: 670px;
+
+    .describe {
+      margin-bottom: 24px;
+
+      .icon {
+        width: 60px;
+        height: 60px;
+      }
+
+      .title {
+        margin: 15px 0;
+      }
+
+      .description-success, .title {
+        text-align: center;
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+    }
+
+    .buttons {
+      order: 1;
+      flex-direction: column;
+      width: 100%;
+      margin: 40px auto 0;
+
+      .link {
+        width: 100%;
+
+        ui-button {
+          margin: 0 0 10px 0 !important;
+          width: 100% !important;
+        }
+      }
+    }
+
+    .more-info {
+      width: 100%;
+
+      .top {
+        width: 100%;
+
+        .remaining-days {
+          display: none;
+        }
+
+        .success-info {
+          width: 100%;
+          min-width: 345px;
+          margin-left: 0;
+
+          .list {
+            width: 75%;
+            min-width: 240px;
+            max-width: unset;
+          }
+        ;
+
+          .head {
+            width: 75%;
+            min-width: 240px;
+            max-width: unset;
+
+            .head-value {
+              width: 100%;
+              font-size: .8rem;
+            }
+          }
+        }
+      }
+    }
+
+    .tips-container {
+      order: 2;
+    }
+  }
+
+}

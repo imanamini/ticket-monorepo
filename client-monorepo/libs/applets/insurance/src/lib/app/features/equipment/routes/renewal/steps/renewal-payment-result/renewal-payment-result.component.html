@@ -1,0 +1,112 @@
+<ui-loading-spinner *ngIf="loading$ | async; else Content"></ui-loading-spinner>
+
+<ng-template #Content>
+  <div
+          class="payment-result">
+    <journey-action-result
+            [data]="actionResultData">
+
+      <!-- Payment Success -->
+      <ng-container *ngIf="showPaymentSuccess()">
+
+        <!-- Health check available -->
+        <ng-container *ngIf="isHealthCheckAvailable">
+          <!-- General Message -->
+          شما نیازمند سلامت سنجی دستگاه خود جهت تایید و فعالسازی بیمه‌‌نامه‌ی دستگاه هستید!
+          <br/>
+          درصورت عدم تایید، وجه پرداختی به حساب شما باز خواهد گشت.
+          <!-- END General Message -->
+
+          <!-- Desktop Message -->
+          <ng-container *ngIf="isDesktop">
+            <br>
+            انجام این تست صرفا با دستگاه بیمه‌شده قابل انجام است!
+            <br>
+            لینک تست از طریق پیامک ارسال شد.
+          </ng-container>
+          <!-- END Desktop Message -->
+
+          <!-- Open in chrome iPad -->
+          <ng-container *ngIf="showOpenInChromeIpad()">
+            برای گذراندن تست سلامت سنجی روی تبلت خود،
+            <br/>
+            می بایست لینک همین صفحه را در مرورگر گوگل کروم باز نموده و ادامه فرآیند را طی کنید
+            <br/>
+            <ui-button
+                    (clicked)="openInChrome()"
+                    [appearance]="'DEFAULT'">
+            </ui-button>
+            بازکردن در کروم
+          </ng-container>
+          <!-- END Open in chrome iPad -->
+
+          <!-- Open in chrome iPhone -->
+          <ng-container *ngIf="showOpenInChromeIphone()">
+            برای گذراندن تست سلامت روی دستگاه آیفون بهتر است از مرورگر کروم استفاد کنید.
+            <br/>
+            برای اینکار کافیست لینک کامل این صفحه را کپی کرده و در مرورگر کروم دستگاه موبایل وارد نمایید.
+            <br/>
+            <ui-button
+                    (clicked)="openInChrome()"
+                    [appearance]="'DEFAULT'">
+              بازکردن در کروم
+            </ui-button>
+          </ng-container>
+          <!-- END Open in chrome iPhone -->
+        </ng-container>
+        <!-- END Health check available -->
+
+        <!-- Health check NOT available -->
+        <ng-container *ngIf="!isHealthCheckAvailable">
+          {{
+            journey === JourneyNamesModel.RENEWAL ?
+              'شما میتوانید فرآیند تمدید بیمه نامه را ادامه بدهید.'
+              : 'شما میتوانید فرآیند صدور بیمه نامه را ادامه بدهید.'
+          }}
+        </ng-container>
+        <!-- END Health check NOT available -->
+      </ng-container>
+      <!-- End Payment Success -->
+
+      <!-- Payment Failed -->
+      <ng-container
+              *ngIf="paymentResultData
+      && !paymentResultData.paymentSuccess">
+        مشکلی در فرآیند پرداخت حق بیمه رخ داده است. لطفا مجددا تلاش فرمایید
+      </ng-container>
+      <!-- END Failed -->
+    </journey-action-result>
+
+    <!-- Buttons -->
+    <div class="button" id="renewal-payment-result-13">
+      <ng-container *ngIf="showPaymentSuccess()">
+        <journey-buttons
+                (nextClicked)="continueProcess()"
+                *ngIf="!isHealthCheckAvailable"
+                [disableNext]="(loading$ | async)"
+                [hideBackBtn]="true"
+                [isReversed]="false"
+                [nextText]="'ادامه فرآیند'">
+        </journey-buttons>
+        <journey-buttons
+                (nextClicked)="setHealthCheck(true)"
+                *ngIf="showHealthCheckBtn()"
+                [disableNext]="(loading$ | async)"
+                [hideBackBtn]="true"
+                [isReversed]="false"
+                [nextText]="'آغاز فرآیند سلامت سنجی'">
+        </journey-buttons>
+      </ng-container>
+      <ng-container *ngIf="showRetryBtn()">
+        <journey-buttons
+                (nextClicked)="goToStepper()"
+                [disableNext]="(loading$ | async)"
+                [hideBackBtn]="true"
+                [isReversed]="false"
+                nextText="تلاش مجدد">
+        </journey-buttons>
+      </ng-container>
+    </div>
+    <!-- END Buttons -->
+  </div>
+</ng-template>

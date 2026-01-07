@@ -1,0 +1,57 @@
+<svg width="100" height="85" viewBox="0 0 100 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g id="Group 2">
+    <path id="Fill 1" fill-rule="evenodd" clip-rule="evenodd"
+          d="M11.053 72.4408C24.0614 87.5058 59.4399 90.285 81.9278 73.7848C104.416 57.2833 102.154 31.6169 92.6458 17.2827C83.1368 2.94981 61.2135 -2.37842 36.132 14.5773C11.0505 31.5331 -1.95541 57.3759 11.053 72.4408Z"
+          fill="#F2F5F8"/>
+    <path id="Fill 4" fill-rule="evenodd" clip-rule="evenodd"
+          d="M1.61533 33.9246C6.51772 39.7033 12.7531 29.4486 21.9245 17.4394C28.5466 8.77007 36.1604 9.08165 36.2095 3.61202C36.2745 -3.88855 23.4539 1.58108 15.305 8.3321C5.88436 16.1367 -2.6132 28.9405 1.61533 33.9246Z"
+          fill="#F2F5F8"/>
+    <g id="Stroke 1">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M24.3647 38.0055V66.5963C24.3647 69.9536 27.0504 72.6728 30.3657 72.6728H72.3711C75.6864 72.6728 78.3721 69.9536 78.3721 66.5963V38.0356"
+            fill="#B4C7FF"/>
+      <path
+        d="M24.3647 38.0055V66.5963C24.3647 69.9536 27.0504 72.6728 30.3657 72.6728H72.3711C75.6864 72.6728 78.3721 69.9536 78.3721 66.5963V38.0356"
+        stroke="#3C6DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <path id="Stroke 3" d="M42.3669 54.5742L26.3647 70.888" stroke="#3C6DFF" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round"/>
+    <path id="Stroke 5" d="M60.3701 54.5742L76.3722 70.888" stroke="#3C6DFF" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round"/>
+    <path id="Stroke 7" fill-rule="evenodd" clip-rule="evenodd"
+          d="M78.3721 41.3263V41.3526C78.3721 42.878 77.4932 44.3058 76.0252 45.1592L58.1255 55.6004C54.0602 57.9705 48.7257 57.9705 44.6592 55.6004L26.7141 45.1367C25.2436 44.2795 24.3647 42.8517 24.3647 41.3263V38.3757C24.3647 34.23 27.6629 30.8676 31.7294 30.8676H71.0074C75.0739 30.8676 78.3721 34.23 78.3721 38.3757V41.3263Z"
+          fill="#B4C7FF" stroke="#3C6DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <g id="Stroke 9">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M51.8681 50.2404L43.6455 42.6785V42.6773H37.4776C35.2057 42.6773 33.3657 40.985 33.3657 38.8953V19.9859C33.3657 17.8961 35.2057 16.2038 37.4776 16.2038H66.2599C68.5306 16.2038 70.3706 17.8961 70.3706 19.9859V38.8953C70.3706 40.985 68.5306 42.6773 66.2599 42.6773H60.092L51.8681 50.2393"
+            fill="white"/>
+      <path
+        d="M51.8681 50.2404L43.6455 42.6785V42.6773H37.4776C35.2057 42.6773 33.3657 40.985 33.3657 38.8953V19.9859C33.3657 17.8961 35.2057 16.2038 37.4776 16.2038H66.2599C68.5306 16.2038 70.3706 17.8961 70.3706 19.9859V38.8953C70.3706 40.985 68.5306 42.6773 66.2599 42.6773H60.092L51.8681 50.2393"
+        stroke="#3C6DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g id="Group 4">
+      <path id="Stroke 11 Copy" d="M41.9926 26.028V33.5041" stroke="#3C6DFF" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round"/>
+      <path id="Stroke 11 Copy_2" d="M38.9517 27.622L45.0339 31.9101" stroke="#3C6DFF" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+      <path id="Stroke 11 Copy_3" d="M45.0341 27.622L38.9519 31.9101" stroke="#3C6DFF" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g id="Group 4 Copy">
+      <path id="Stroke 11 Copy_4" d="M51.935 26.028V33.5041" stroke="#3C6DFF" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round"/>
+      <path id="Stroke 11 Copy_5" d="M48.8941 27.622L54.9763 31.9101" stroke="#3C6DFF" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+      <path id="Stroke 11 Copy_6" d="M54.9765 27.622L48.8943 31.9101" stroke="#3C6DFF" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g id="Group 4 Copy 3">
+      <path id="Stroke 11 Copy_7" d="M61.8769 26.028V33.5041" stroke="#3C6DFF" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round"/>
+      <path id="Stroke 11 Copy_8" d="M58.8365 27.622L64.9187 31.9101" stroke="#3C6DFF" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+      <path id="Stroke 11 Copy_9" d="M64.9184 27.622L58.8362 31.9101" stroke="#3C6DFF" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+</svg>

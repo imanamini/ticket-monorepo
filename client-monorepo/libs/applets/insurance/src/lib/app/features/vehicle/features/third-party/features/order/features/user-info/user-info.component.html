@@ -1,0 +1,58 @@
+@if (!hasReTry()) {
+  <div class="user-info d-flex flex-column h-100">
+    <third-party-stepper [currentStep]="3"
+                         stepName="مرحله آخر"
+                         title="تکمیل اطلاعات و مدارک"
+                         [backgroundGray]="true"
+                         [totalSteps]="3"
+                         class="mb-medium"></third-party-stepper>
+    <div class="user-info-content d-flex flex-column">
+      <p class="content-text text-onback-medium">
+        تکمیل اطلاعات و مدارک مالک خودرو جهت صدور بیمه‌نامه نهایی الزامی است.
+      </p>
+
+      <div class="content-plate d-flex flex-column align-items-center gap-medium">
+        @if (isPlateEditable) {
+          @defer (when userInfo) {
+            <ngx-plate
+                    class="plate"
+                    (completePlate)="handleIsPlateComplete($event)"
+                    (plateChange)="handlePlateChange($event)"
+                    [textState]="'error'"
+                    [showText]="showPlateError"
+                    [type]="'car'"
+                    [text]="plateError"
+                    [plate]="plate"
+            ></ngx-plate>
+          } @placeholder {
+            <lib-ngx-skeleton-loading height="60px"
+                                      width="256px"></lib-ngx-skeleton-loading>
+          }
+        } @else {
+          <ngx-plate
+                  class="plate"
+                  type="car"
+                  [size]="'small'"
+                  [plate]="plate"
+                  [readonly]="true"
+          ></ngx-plate>
+        }
+      </div>
+      <user-info-form [userInfoForm]="userInfoForm()"
+                      [showError]="showError"
+                      [userInfo]="userInfo()"></user-info-form>
+      <ins-alert [hasIcon]="true"
+                 [size]="AlertSizeEnum.Small"
+                 text="صاحب پلاک شخصی است که نام او بر روی (کارت خودرو) و یا (برگ سبز خوردو) درج شده است.">
+      </ins-alert>
+    </div>
+    <action-buttons [showDeActiveButton]="false"
+                    (activeButtonClicked)="handleActiveButtonClick()"
+                    (deActiveButtonClicked)="handleDeActiveButtonClicked()"
+                    backgroundMode="gray"
+                    deActiveButtonText="بازگشت"
+                    activeButtonText="تایید و ادامه"></action-buttons>
+  </div>
+} @else {
+  <retry-error (retryButtonClicked)="getUserInfo()"></retry-error>
+}

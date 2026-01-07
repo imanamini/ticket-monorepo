@@ -1,0 +1,75 @@
+<div class="top-up-type-picker">
+  <p class="border-100 pr-plus pb-minus border-100 border-color-light pt-big mb-plus">مبلغ شارژ</p>
+  <div class="px-plus pb-plus">
+    <div
+      *ngIf="hasAnyFascinatingPackage()"
+      class="fascinating-top-up"
+    >
+      <div class="text">
+        <h3 class="title-wrapper">{{ getFascinatingPackageTitle() }}</h3>
+        <p class="desc">{{ getFascinatingDescription() }}</p>
+      </div>
+      <div class="switch">
+        <ui-form-field
+          type="slide-toggle"
+          [(ngModel)]="isFascinating"
+          (change)="switchChange()"
+        ></ui-form-field>
+      </div>
+    </div>
+    <div
+      *ngIf="getPackageGroup()"
+      class="amounts"
+    >
+      <div
+        (click)="onSelectAmount(amount)"
+        *ngFor="let amount of getPackageGroup().chargePackages"
+        [ngClass]="{
+          'border-color-brand surface-brand-tint text-onback-brand': this.selectedAmount && this.selectedAmount.amount === amount.amount,
+        }"
+        class="amount b-2 border-100 border-color-light radius-giant py-small px-minus text-onback-low text-align-center cursor-pointer"
+      >
+        {{ amount.amount | thousands }}
+        <span class="unit">ریال</span>
+      </div>
+    </div>
+    @if (isFascinating) {
+      <div class="fascinating-info">
+        <top-up-applet-fascinating-info [data]="this.selectedAmount?.info ?? []"></top-up-applet-fascinating-info>
+      </div>
+    }
+
+    @if (!isFascinating && !this.isShatelOperator()) {
+      <div
+        [formGroup]="form"
+        class="mt-medium"
+      >
+        <ui-form-field
+          [errorMessageMapper]="{
+            invalidMultiple: invalidAmountError,
+            invalidAmount: invalidAmountError,
+          }"
+          [error]="form.controls['formattedAmount'].errors"
+          [hasCleaner]="true"
+          [isNumericKeyboard]="true"
+          class="flex-grow"
+          formControlName="formattedAmount"
+          inputType="text"
+          label="مبلغ دلخواه (ریال)"
+          type="amount"
+        >
+        </ui-form-field>
+      </div>
+    }
+    <div class="mt-mega">
+      <ngx-button
+        (clickHandler)="continue()"
+        [style]="'fill'"
+        [fullWidth]="true"
+        [disabled]="(!this.selectedAmount && mode === 'SELECT_PACKAGE') || (mode === 'VARIANT_VALUE' && form.invalid)"
+      >
+        ادامه
+      </ngx-button>
+    </div>
+  </div>
+</div>

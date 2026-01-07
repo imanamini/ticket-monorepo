@@ -1,0 +1,97 @@
+@if (!gettingData()) {
+  <div class="position-relative d-flex flex-column flex-grow w-100">
+    <app-credit-app-bar
+      (onBackButtonClick)="prevStep.emit()"
+      [backButton]="!isModeBottomSheet()"
+      title="چک ضمانت"
+    ></app-credit-app-bar>
+    <app-credit-stepper
+      [currentStep]="2"
+      [steps]="5"
+      [title]="'نوشتن چک'"
+    ></app-credit-stepper>
+    <div class="main-section d-flex flex-column rtl">
+      <div class="top-section d-flex flex-column px-plus pl-m-atom">
+        <p class="b-2 text-onback-medium mt-pony">اطلاعات چک خود را طبق تصویر زیر بنویسید.</p>
+        <div
+          #chequeRawElement
+          class="cheque-image text-onback-brand mt-minus radius-medium"
+        >
+          <span [class]="'cheque-date-digit'">
+            @for (item of dueDate(); track i; let i = $index) {
+              <span [class]="'item-' + (i + 1)">{{ dueDate()[dueDate().length - (i + 1)] }}</span>
+            }
+          </span>
+          <span class="cheque-date-letter">{{ chequeGuidData()?.dueDateInLetters }}</span>
+          <span class="amount-letter">{{ chequeGuidData()?.amountInLetters }}</span>
+          <span class="fund-provider">{{ chequeGuidData()?.receiverName }}</span>
+          <span class="signature-hint">{{ chequeGuidData()?.signatureHint }}</span>
+          <span class="national-code">{{ chequeGuidData()?.receiverNationalId }}</span>
+          <span [class]="'amount-digit'">
+            @for (item of chequeGuidData().amount.toString(); track i; let i = $index) {
+              <span [class]="'item-' + (i + 1)">{{
+                chequeGuidData().amount.toString()[chequeGuidData().amount.toString().length - (i + 1)]
+              }}</span>
+            }
+          </span>
+        </div>
+        @if (chequeImage()) {
+          <div
+            class="image-container radius-tr-medium radius-br-medium mt-minus overflow-hidden"
+            (mousemove)="touched.set(true)"
+            (touchstart)="touched.set(true)"
+            [class.radius-medium]="isDesktop()"
+          >
+            @if (isDesktop()) {
+              <img
+                magnifier
+                [zoomable]="true"
+                [src]="chequeImage()"
+              />
+            } @else {
+              @if (showLottie() && !touched() && !showHint()) {
+                <div class="hint-lottie d-flex flex-column justify-content-center align-items-center">
+                  <div class="back-drop surface-dim-glass radius-rounded"></div>
+                  <ng-lottie [options]="options()"></ng-lottie>
+                </div>
+              }
+              <img
+                panZoom
+                [src]="chequeImage()"
+              />
+            }
+          </div>
+        } @else {
+          <credit-page-loading [active]="true"></credit-page-loading>
+        }
+      </div>
+      <div class="bottom-section pt-pony px-plus pb-plus d-flex flex-column gap-medium rtl align-items-flex-start">
+        <ngx-button
+          ngxTrackableId
+          trackerId="chequeGuidConfirmButtonClick"
+          (clickHandler)="onSubmit()"
+          [style]="'fill'"
+          [disabled]="!isDesktop() && !touched()"
+          [fullWidth]="true"
+          >تایید و ادامه
+        </ngx-button>
+      </div>
+    </div>
+    @if (showHint()) {
+      <div class="hint-overlay rtl surface-dim-glass d-flex flex-column align-items-center justify-content-center flex-grow px-big">
+        <div class="hint-image mb-huge"></div>
+        <span class="st-1 text-oninvert-high mb-massive text-align-center">اکنون اطلاعات چک را مانند نمونه نمایش‌داده‌شده بنویسید.</span>
+        <ngx-button
+          ngxTrackableId
+          trackerId="chequeGuidHintButtonClick"
+          [fullWidth]="false"
+          [mode]="hintButtons.mode"
+          [style]="hintButtons.style"
+          (clickHandler)="hideHintOverlay()"
+          >{{ hintButtons.label }}
+        </ngx-button>
+      </div>
+    }
+  </div>
+}
+<credit-page-loading [active]="gettingData()"></credit-page-loading>

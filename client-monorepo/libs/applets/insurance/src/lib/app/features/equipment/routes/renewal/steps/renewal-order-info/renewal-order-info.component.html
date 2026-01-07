@@ -1,0 +1,39 @@
+<div class="insurance-info">
+  <div class="head-hint">
+    لطفا اطلاعات مربوط به بیمه‌نامه خود را مطالعه و در صورت تایید، ادامه بدهید.
+  </div>
+
+  @if (orderInfo) {
+    <div class="info-content">
+      <div class="content-device">
+        <div class="device-model">
+          مدل دستگاه
+        </div>
+
+        <div class="device-detail">
+          <div class="detail-name">
+            {{ orderInfo.productName }}
+          </div>
+          <div class="detail-image">
+            <img alt="" src="assets/icons/mobile-red-shield.svg"/>
+          </div>
+        </div>
+      </div>
+      <renewal-steps-list
+              [hideBorders]="true"
+              [listItems]="listItems">
+      </renewal-steps-list>
+    </div>
+  }
+
+  <div class="buttons">
+    <journey-buttons
+            (nextClicked)="goToNextStep()"
+            [disableNext]="isSubmitting"
+            [hideBackBtn]="true"
+            [idValue]="'renewal-order-info-9'"
+            [isReversed]="false"
+            nextText="تایید و ادامه">
+    </journey-buttons>
+  </div>
+</div>

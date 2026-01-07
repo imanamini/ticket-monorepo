@@ -1,0 +1,26 @@
+<c2c-applet-c2c-card-title
+  [titleText]="'پرتکرارها'"
+  [infoText]="transActionNumber()"
+  [hasLeftLine]="true"
+></c2c-applet-c2c-card-title>
+<div class="pt-low">
+  @if (hasFrequentTransaction()) {
+    <section>
+      <div class="d-flex flex-column gap-minus">
+        @for (c2cTransaction of c2cFrequentTransactions(); track c2cTransaction.id) {
+          <c2c-applet-c2c-frequent-transaction-card
+            class="item"
+            [transaction]="c2cTransaction"
+            (moreAction)="moreAction(c2cTransaction)"
+            (clickCard)="onClickedItem(c2cTransaction)"
+          ></c2c-applet-c2c-frequent-transaction-card>
+        }
+      </div>
+    </section>
+  } @else {
+    <div class="d-flex flex-column justify-content-center align-items-center gap-low">
+      <span class="empty-transaction"></span>
+      <span class="c-1 text-onback-low">کارت به کارت پرتکراری ثبت نشده‌است.</span>
+    </div>
+  }
+</div>

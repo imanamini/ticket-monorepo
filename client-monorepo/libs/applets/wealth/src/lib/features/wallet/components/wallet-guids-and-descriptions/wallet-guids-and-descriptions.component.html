@@ -1,0 +1,22 @@
+<div class="w-100 d-flex flex-column">
+  <p class="st-8 text-onback-high mb-medium">راهنما و توضیحات</p>
+  @for (guid of hintsList(); track $index) {
+    <div
+      (click)="handleClick(guid.route)"
+      class="w-100 d-flex align-items-center justify-content-space-between surface-glass-onelevated radius-medium py-minus px-medium mb-small cursor-pointer"
+    >
+      <div class="flex-1 d-flex align-items-center gap-small">
+        <img
+          [src]="guid.icon"
+          alt="get-credit-guid"
+        />
+        <div class="flex-1 d-flex flex-wrap">
+          <p class="c-1 text-onback-medium">
+            {{ guid.title }}
+          </p>
+        </div>
+      </div>
+      <ngx-icon name="arrow-left" />
+    </div>
+  }
+</div>

@@ -1,0 +1,15 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  [showBorder]="false"
+  title="انتخاب بسته اینترنت"
+>
+  @if (bundleCategory()) {
+    <internet-applet-badge-component
+      [packages]="bundleCategory()"
+      (selectTitle)="onSelectBadge($event)"
+    ></internet-applet-badge-component>
+  }
+  @if (selectedItem()) {
+    <internet-applet-package [package]="selectedItem()"></internet-applet-package>
+  }
+</common-ui-components-page-layout>

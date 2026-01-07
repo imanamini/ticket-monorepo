@@ -1,0 +1,27 @@
+:host {
+  height: 100%;
+}
+
+.update-popup {
+  overflow: auto;
+
+  .title {
+    background: -webkit-linear-gradient(#1159FC, #000060);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .content {
+    flex: 1;
+    overflow: auto;
+
+    .texts {
+      max-width: 360px;
+    }
+  }
+}
+
+
+
+

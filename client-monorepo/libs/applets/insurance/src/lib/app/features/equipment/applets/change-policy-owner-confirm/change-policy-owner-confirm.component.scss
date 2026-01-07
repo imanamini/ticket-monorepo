@@ -1,0 +1,47 @@
+@import "../../../../style/once/global";
+
+.confirm-step {
+  .body {
+    background-color: #f2f5f8;
+    padding: 16px;
+
+    .inner-body {
+      background-color: #ffffff;
+      padding: 0 12px;
+      @extend %radius-norm;
+
+      .general-info {
+        border-bottom: 1px solid #dee3e7
+      }
+
+      .transfer-to, .transfer-from {
+        font-size: .95rem;
+        font-weight: 500;
+
+        .heading {
+          margin: 14px 0 8px 0;
+        }
+
+        .item {
+          padding: 8px;
+          @include flex-center-between;
+
+          .key {
+            color: #424c5c;
+            font-size: .86rem;
+            font-weight: 400;
+          }
+
+          .value {
+          }
+        }
+
+      }
+    }
+  }
+
+  .footer {
+    @include flex-center-between;
+    padding: 16px;
+  }
+}

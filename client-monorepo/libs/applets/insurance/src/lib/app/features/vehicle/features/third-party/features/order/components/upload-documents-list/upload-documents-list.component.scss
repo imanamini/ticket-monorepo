@@ -1,0 +1,50 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.upload-documents-list {
+  height: 100%;
+  @include flex-column;
+
+  .header {
+    .title {
+      color: #2c3544;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 28px;
+      padding: 8px 0;
+    }
+
+    .plate {
+      margin-top: 16px;
+      @include flex-center;
+      width: 100%;
+    }
+  }
+
+  .content {
+    @include flex-column;
+    padding: 16px;
+    flex: 1;
+    overflow: auto;
+
+    .document {
+      @include flex-column;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .doc-header {
+      @include flex-center-between;
+
+      .title {
+        color: #0040ff;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 24px;
+      }
+
+      .icon {
+        cursor: pointer;
+      }
+    }
+  }
+}

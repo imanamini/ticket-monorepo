@@ -1,0 +1,20 @@
+<div class="working-capital-not-exist">
+  <div class="image"></div>
+  <div class="text-align-center subtitle">
+    {{ error.subtitle }}
+  </div>
+  <div class="text-align-center description">
+    {{ error.description }}
+    <br />
+    شماره پشتیبانی :
+    <span class="bold">
+      <a href="tel:02153924000"> 021-53924000 (6) </a>
+    </span>
+  </div>
+  <app-ui-button
+    (click)="onClick(error.ctaLink)"
+    [id]="'rejected-request'"
+  >
+    {{ error.ctaText }}
+  </app-ui-button>
+</div>

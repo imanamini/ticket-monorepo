@@ -1,0 +1,55 @@
+@if (!showCaptureImage()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="prevStep.emit()"
+    [backButton]="true"
+    [title]="'چک ضمانت'"
+  ></app-credit-app-bar>
+  <app-credit-stepper
+    [currentStep]="4"
+    [steps]="5"
+    [title]="'آپلود تصویر چک'"
+  ></app-credit-stepper>
+  @if (!uploading()) {
+    @if (selectedFileBlob()) {
+      <app-credit-cheque-step-camera-capture
+        [mode]="'confirm'"
+        [capturing]="false"
+        [capturedImage]="selectedFileBlob()!"
+        (retry)="this.selectedFile.set(undefined)"
+        (confirm)="onConfirm()"
+      ></app-credit-cheque-step-camera-capture>
+    } @else {
+      <div class="d-flex flex-column flex-grow">
+        <div class="flex-grow justify-content-center pb-plus">
+          <ngx-status-result
+            (clicked)="openPicker()"
+            [buttons]="buttons"
+            description="تصویر واضحی از چک نوشته شده در مرحله قبل را اینجا آپلود کنید."
+            title="تصویر روی چک"
+            [type]="'Empty'"
+          >
+            <ng-container status-image>
+              <div [class]="'status-image'"></div>
+            </ng-container>
+          </ngx-status-result>
+        </div>
+      </div>
+    }
+  } @else {
+    <credit-page-loading [active]="true"></credit-page-loading>
+  }
+} @else {
+  <app-credit-cheque-step-capture-image
+    (captureEvent)="setCapturedFile($event)"
+    (close)="showCaptureImage.set(false)"
+  >
+  </app-credit-cheque-step-capture-image>
+}
+<input
+  #uploadFromDevice
+  type="file"
+  [hidden]="true"
+  accept=".jpg,.jpeg,.png"
+  [multiple]="false"
+  (change)="selectFile($event)"
+/>

@@ -1,0 +1,37 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  [hasBackAction]="false"
+  [showBorder]="false"
+  title=" "
+  (onBackAction)="goBack()"
+>
+  <div class="d-flex h-100 flex-column">
+    <img
+      class="status-image"
+      [src]="imageSrc"
+      alt=""
+    />
+    <div class="content-container px-plus pt-big surface-elevated">
+      <div class="content-title d-flex flex-column align-items-center pb-minus">
+        <p class="title st-3 text-align-center">اشتراک {{ plan?.title }} دیجی‌پی با موفقیت برای شما فعال شد!</p>
+        <p class="subtitle c-1 text-onback-medium pt-minus">امکانات اشتراک برای شما فعال شد.</p>
+      </div>
+      <subscription-applet-plan-services [plan]="plan"></subscription-applet-plan-services>
+    </div>
+    <div style="min-height: 100px"></div>
+    <div class="p-plus action-container">
+      <ngx-button
+        [fullWidth]="true"
+        (clickHandler)="goBack()"
+      >
+        {{ isContinueFlow() ? 'ادامه فرآیند' : 'مشاهده‌ی صفحه اشتراک' }}
+      </ngx-button>
+    </div>
+  </div>
+</common-ui-components-page-layout>
+<!--TODO-->
+<!--Handle loading -->
+<!--<div class="page-loading" *ngIf="isLoading">-->
+<!--  <div>-->
+<!--  </div>-->
+<!--</div>-->

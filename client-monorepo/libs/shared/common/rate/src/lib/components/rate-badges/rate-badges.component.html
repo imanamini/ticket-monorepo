@@ -1,0 +1,20 @@
+<common-ui-components-horizontal-scroll>
+  <div class="d-flex gap-small">
+    @for (badge of badges; track $index) {
+      <common-ui-components-framed-icon
+        [type]="ServiceImagesType.ICON"
+        [size]="'LARGE'"
+        [bg]="'surface-back'"
+        [icon]="badge.icon"
+        [iconStyle]="badge.style"
+        [enableGradient]="true"
+        [gradientConfig]="badge.gradient"
+        [iconType]="badge.iconType"
+        [text]="badge.title"
+        [showText]="true"
+        [trackerIdPrefix]="'rate-badges'"
+        (click)="handleClick($index)"
+      ></common-ui-components-framed-icon>
+    }
+  </div>
+</common-ui-components-horizontal-scroll>

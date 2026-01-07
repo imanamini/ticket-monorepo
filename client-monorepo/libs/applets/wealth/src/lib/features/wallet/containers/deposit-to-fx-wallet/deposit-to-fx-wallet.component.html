@@ -1,0 +1,92 @@
+<div class="d-flex flex-column surface-elevated h-100svh position-relative">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'خرید'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="flex-1 d-flex flex-column align-items-center py-big surface-elevated p-plus">
+    <wealth-applet-detail-deposit
+      class="w-100 surface-glass-onelevated radius-minus px-plus py-medium"
+      [walletTitle]="state()?.walletTitle ?? ''"
+      [walletBalance]="state()?.balance ?? 0"
+      [walletName]="'WALLET_FX'"
+      [walletDescriptions]="'سود موثر سالانه 30٪ به صورت روز شمار'"
+    />
+
+    <div class="w-100 d-flex flex-column mt-big">
+      <span class="b-2 mb-medium">مبلغ مورد نظر برای خرید را وارد کنید.</span>
+      <ui-form-field
+        [label]="'مبلغ مورد نظر'"
+        class="w-100"
+        [stepValue]="5000000"
+        [type]="'amount-chip'"
+        [maxSize]="16"
+        [formControl]="amountController"
+        [isNumericKeyboard]="true"
+        [convertNonEnglishDigits]="true"
+        [required]="true"
+        [hasCleaner]="true"
+        [error]="amountController.errors ?? {}"
+        [errorMessageMapper]="{
+          min: minAmountError(),
+          max: maxAmountError(),
+        }"
+      ></ui-form-field>
+    </div>
+  </div>
+
+  <div class="w-100 mt-medium d-flex flex-wrap surface-elevated">
+    <div class="w-100 d-flex px-plus">
+      <ngx-callout
+        class="w-100"
+        [title]="'نکات مهم'"
+        [mode]="'multiple'"
+        [messages]="[
+          'خرید فقط از طریق کارت بانکی خودتان امکان پذیر است.',
+          'خرید مبالغ بیشتر از ۲۰۰ میلیون تومان را در چند روز انجام دهید.',
+        ]"
+      />
+    </div>
+
+    <div class="w-100 mt-medium d-flex flex-column gap-small surface-elevated py-medium sticky-action-group px-plus">
+      @if (!!state()?.requireAgreement) {
+        <ngx-checkbox
+          class="d-flex align-items-center"
+          (checkedChange)="onToggleAgreement($event)"
+          [checked]="agreementChecked()"
+        >
+          <div class="d-flex gap-tiny check-box-text">
+            <span>شرایط</span>
+            <span
+              (click)="agreementView(pdfType.REGULATIONS)"
+              class="text-onback-brand"
+            >
+              قوانین و مقررات
+            </span>
+            <span>را می‌پذیرم.</span>
+          </div>
+        </ngx-checkbox>
+      }
+
+      <ngx-button
+        [buttonId]="(state()?.walletName ?? 'WALLET_FX') + '_CASH_IN'"
+        [style]="'fill'"
+        [fullWidth]="true"
+        [mode]="'form'"
+        size="medium"
+        [disabled]="(!!state()?.requireAgreement && !agreementChecked()) || amountController.invalid || btnLoading()"
+        (clickHandler)="cashin()"
+        [isLoading]="btnLoading()"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="d-flex flex-column flex-grow w-100">
+  <div class="flex-grow justify-content-center rtl w-100">
+    <ngx-status-result
+      [title]="data()?.title"
+      [state]="status() === 'SUCCESS' ? 'DONE' : status() === 'FAILED' ? 'FAILED' : 'DEFAULT'"
+      [description]="data()?.description"
+      [buttons]="buttons()"
+      (clicked)="onActionClick($event)"
+    >
+      <ng-container status-image>
+        @if (status() === 'SUCCESS') {
+          <ngx-waiting-stepper
+            [state]="WaitingStepperStateEnum.SUCCESS"
+            [progressPercentage]="100"
+          ></ngx-waiting-stepper>
+        } @else if (status() === 'FAILED' || status() === 'SHAHKAR_FAILED') {
+          <ngx-waiting-stepper
+            [state]="WaitingStepperStateEnum.FAILED"
+            [progressPercentage]="100"
+          ></ngx-waiting-stepper>
+        }
+      </ng-container>
+      @if (data()?.callout) {
+        <ng-container html-content>
+          <ngx-callout
+            [mode]="'multiple'"
+            [showTitleBlink]="false"
+            [title]="data()?.callout?.title"
+            [messages]="data()?.callout?.messages"
+          >
+          </ngx-callout>
+        </ng-container>
+      }
+    </ngx-status-result>
+  </div>
+</div>

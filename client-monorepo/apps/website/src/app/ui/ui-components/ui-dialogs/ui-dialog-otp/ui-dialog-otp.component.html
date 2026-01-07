@@ -1,0 +1,59 @@
+<div class="dialog-otp">
+  <div
+    (click)="onDialogReject()"
+    class="close desktop"
+  >
+    <ngx-icon
+      class="cursor-pointer"
+      [name]="'close'"
+      [iconSize]="'24px'"
+    ></ngx-icon>
+  </div>
+  <div class="close mobile">
+    <img
+      alt=""
+      src="assets/images/icons/icon-line.svg"
+    />
+  </div>
+  <div class="sms-icon"></div>
+  <app-ui-pin-input
+    (pinChange)="onTokenChange($event)"
+    [description]="'کد ارسال شده به شماره ' + data.cellNumber + ' را وارد نمایید'"
+    [hasError]="pinError"
+    [value]="form.value.token"
+    type="OTP"
+  ></app-ui-pin-input>
+
+  <app-ui-form-hint
+    *ngIf="errorMessage"
+    appearance="error"
+    class="error"
+    >{{ errorMessage }}</app-ui-form-hint
+  >
+
+  <div class="actions">
+    <app-ui-button
+      (clicked)="resend()"
+      [disabled]="reSendCountDown > 0"
+      appearance="OUTLINE-STEEL"
+      class="secondary"
+      size="SMALL"
+    >
+      <app-ui-count-down-text
+        (finished)="reSendCountDown = 0"
+        *ngIf="reSendCountDown > 0"
+        [seconds]="reSendCountDown"
+      ></app-ui-count-down-text>
+      <ng-container *ngIf="reSendCountDown === 0">ارسال مجدد</ng-container>
+    </app-ui-button>
+    <app-ui-button
+      (clicked)="verifyOtp()"
+      [disabled]="form.invalid"
+      appearance="DEFAULT"
+      class="primary"
+      size="SMALL"
+      style="flex-grow: 1; width: 51%"
+      >پرداخت با کیف پول
+    </app-ui-button>
+  </div>
+</div>

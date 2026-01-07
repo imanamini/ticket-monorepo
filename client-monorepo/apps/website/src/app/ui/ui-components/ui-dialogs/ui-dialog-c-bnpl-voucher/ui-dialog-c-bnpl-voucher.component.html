@@ -1,0 +1,62 @@
+<div class="modal-simple">
+  <div
+    (click)="closeDialog()"
+    class="close"
+  >
+    <ngx-icon
+      class="cursor-pointer"
+      [name]="'close'"
+      [iconSize]="'24px'"
+    ></ngx-icon>
+  </div>
+  <div class="dialog-body">
+    <div class="top-part">
+      <div class="brand-icon">
+        <img
+          [ngSrc]="templateData.icon.url"
+          width="40"
+          height="40"
+        />
+      </div>
+      <div class="brand-title">
+        {{ templateData.name }}
+      </div>
+      <div class="subtitle">برای استفاده از کد تخفیف، آن را کپی کنید.</div>
+    </div>
+    <div class="discount-section">
+      <div
+        class="discount-field"
+        (click)="copyToClipboard(templateData.code)"
+      >
+        <span class="code">{{ templateData.code }}</span>
+        <span
+          appUiIcon
+          icon="icon-copy-gray"
+          size="24"
+        ></span>
+      </div>
+      <div class="notice">
+        <div
+          [ngClass]="isCopy ? 'show' : 'hide'"
+          class="is-copy"
+        >
+          <span>کد تخفیف کپی شد.</span>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-part">
+      <app-ui-button
+        class="button"
+        [link]="templateData.websiteUrl"
+        linkTarget="_blank"
+      >
+        <span class="url">مشاهده وبسایت</span>
+        <span
+          appUiIcon
+          size="24"
+          icon="icon-arrow-left-white"
+        ></span>
+      </app-ui-button>
+    </div>
+  </div>
+</div>

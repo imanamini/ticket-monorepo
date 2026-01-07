@@ -1,0 +1,16 @@
+<div class="container surface-elevated">
+  <div class="plan-status">
+    <p class="status-title">اشتراک شما</p>
+    <div
+      [ngClass]="subscriptionClassMapper[plan()?.type!]"
+      class="status-badge"
+    >
+      <div class="badge-icon"></div>
+      <p class="badge-title">{{ plan()?.title }}</p>
+    </div>
+  </div>
+  <div class="plan-expiration">
+    <p class="expiration-title">پایان اشتراک</p>
+    <p class="expiration-date">{{ plan()?.expirationDateString }}</p>
+  </div>
+</div>

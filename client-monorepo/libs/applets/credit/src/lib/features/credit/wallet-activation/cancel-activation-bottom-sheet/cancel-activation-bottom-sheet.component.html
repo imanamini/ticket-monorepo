@@ -1,0 +1,68 @@
+@if (!gettingData() && ['GET_REASON', 'WRITE_REASON'].includes(status()!)) {
+  <ngx-bottom-sheet-header
+    [showResizable]="true"
+    [title]="'دلیل لغو فرآیند'"
+  >
+  </ngx-bottom-sheet-header>
+  <div class="cancel-bottom-sheet pt-minus pb-plus px-plus">
+    <div class="st-8 text-onback-low mb-medium">چرا می‌خواهید طرح اعتباری خود را لغو کنید؟</div>
+    @if (status() === 'GET_REASON') {
+      <div class="d-flex flex-column gap-minus">
+        @for (opt of options(); track opt.value) {
+          <common-ui-components-selection-box
+            (selectedOption)="selectedOptionFn($event)"
+            [config]="opt"
+            [checkboxType]="opt.checkboxType!"
+          >
+          </common-ui-components-selection-box>
+        }
+      </div>
+    }
+    @if (status() === 'WRITE_REASON') {
+      <ui-form-field
+        [(ngModel)]="description"
+        dir="rtl"
+        label="دلیل لغو را اینجا بنویسید."
+        [multiLine]="true"
+        type="input"
+      >
+      </ui-form-field>
+    }
+    <div
+      class="d-flex align-items-center gap-medium"
+      [class]="{ 'mt-plus': status() === 'GET_REASON' }"
+    >
+      <ngx-button
+        (clickHandler)="close()"
+        [style]="'tinted-on-elevated'"
+      >
+        بستن
+      </ngx-button>
+      <ngx-button
+        (clickHandler)="onConfirm()"
+        [fullWidth]="true"
+        [style]="'fill'"
+        [disabled]="!selectedOption() && !description()?.length"
+      >
+        تایید و لغو فرآیند
+      </ngx-button>
+    </div>
+  </div>
+}
+
+@if (gettingData()) {
+  <div class="bottom-sheet-loading-wrapper">
+    <ngx-spinner
+      size="md"
+      color="primary"
+    ></ngx-spinner>
+  </div>
+}
+
+<ng-template #arrowLeftIcon>
+  <ngx-icon
+    iconSize="24px"
+    name="arrow-2-left"
+    type="linear"
+  ></ngx-icon>
+</ng-template>

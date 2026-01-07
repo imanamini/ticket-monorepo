@@ -1,0 +1,45 @@
+<div class="about-history ">
+  <div class="container">
+    @if (templateData()?.mainHistory?.history) {
+      <div class="history-wrapper surface-high-contrast radius-big p-huge d-flex gap-huge">
+        <div class="content mt-minus d-flex flex-column gap-medium">
+          <div class="history-title d-flex gap-medium flex-column">
+            <div class="title st-1"><span
+              class="text-onback-brand">{{ templateData().mainHistory?.blueTitle + ' ' }}</span>{{ templateData().mainHistory?.blackTitle }}
+            </div>
+            <div class="subtitle b-2"> {{ templateData().mainHistory?.description }}
+            </div>
+          </div>
+          <div class="history-list">
+            @for (item of templateData().mainHistory.history; track $index; let last = $last) {
+              <app-about-us-history-item
+                [historyItem]="item"
+                [isActive]="activeIndex() === $index"
+                (click)="setActiveIndex($index)">
+              </app-about-us-history-item>
+
+              @if (!last) {
+                <ngx-divider orientation="horizontal" [color]="BorderColorsEnum.Tint"></ngx-divider>
+              }
+            }
+          </div>
+        </div>
+        <div class="gallery radius-medium">
+          @if (activeHistoryItem()?.image?.url) {
+            <img
+              [src]="activeHistoryItem().image.url"
+              alt="history-image"
+              class="radius-medium"
+            />
+          }
+          @if (activeHistoryItem().subtitle) {
+            <span class="year st-6">{{ activeHistoryItem().subtitle }}</span>
+          }
+          @if (activeHistoryItem().description) {
+            <span class="description b-2 text-oninvert-high" [innerHTML]="activeHistoryItem().description"></span>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>

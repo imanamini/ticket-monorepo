@@ -1,0 +1,20 @@
+.file-picker-sheet {
+  direction: rtl;
+
+  .actions {
+    cursor: pointer;
+
+    .action {
+      input[type="file"] {
+        position: absolute;
+        z-index: -1;
+        visibility: hidden;
+      }
+
+      .text {
+        color: #6e798d;
+        font-size: 14px;
+      }
+    }
+  }
+}

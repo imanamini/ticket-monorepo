@@ -1,0 +1,7 @@
+.store-title-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 60px;
+}

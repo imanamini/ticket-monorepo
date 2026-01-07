@@ -1,0 +1,78 @@
+<div class="ub-footer">
+  <div class="inner-footer">
+    <div class="head">
+      <div class="icon"></div>
+    </div>
+    <div class="nav-list">
+      <a class="nav-list-item" href="https://www.mydigipay.com/contactus">تماس با ما </a>
+      <a class="nav-list-item" href="https://www.mydigipay.com/about">درباره ما</a>
+      <a class="nav-list-item" href="https://www.mydigipay.com/careers/">فرصت های شغلی</a>
+      <a class="nav-list-item" href="https://www.mydigipay.com/faq/">سوالات متداول</a>
+    </div>
+    <div class="about-company">
+      <div class="contact">
+        <div class="mobile">
+          <div class="icon"></div>
+          <a class="cell-phone" href="tel:02153924000">۰۲۱-53924000</a>
+        </div>
+        <div class="address"> تهران، خیابان ملاصدرا، خیابان شیخ بهایی شمالی، نبش لادن، پلاک ۸۵</div>
+      </div>
+      <span *ngIf="size === 'LG'" [ngTemplateOutlet]="social_media"></span>
+    </div>
+    <span *ngIf="size === 'SM' || size === 'XS'" [ngTemplateOutlet]="social_media"></span>
+    <div class="footer-license-container">
+      <ul class="footer-license-list">
+        <li class="footer-license-item">
+          <a href="https://logo.samandehi.ir/Verify.aspx?id=163588&amp;p=rfthgvkaxlaodshwmcsimcsi">
+            <img alt="" src="https://www.mydigipay.com/wp-content/themes/publisher/img/as--sign-resaneh.svg">
+          </a>
+        </li>
+        <li class="footer-license-item">
+          <a href="https://logo.saramad.ir/verify.aspx?CodeShamad=1-2-767877-63-0-2">
+            <img alt="" src="https://www.mydigipay.com/wp-content/themes/publisher/img/as--sign-resaneh2.svg">
+          </a>
+        </li>
+        <li class="footer-license-item">
+          <a href="https://trustseal.enamad.ir/?id=140000&amp;Code=uRw7AnjLqvHolCe6MOxF">
+            <img alt="" src="https://www.mydigipay.com/wp-content/themes/publisher/img/as--sign-enamad.svg">
+          </a>
+        </li>
+      </ul>
+      <div class="describe-company">
+        <p>شرکت نوآوران پرداخت مجازی ایرانیان، با نام تجاری دیجی‌پی، تحت مجوز پرداخت‌یاری و با هدف ارتقای کیفیت تجربه
+          پرداخت آنلاین فعالیت می‌کند. با سرمایه‌گذاری گروه دیجی‌کالا در دیجی‌پی، این شرکت رسما به گروه دیجی‌کالا پیوست
+          و اسفند ۱۳۹۷ از اولین نسخه اپلیکیشن خود رونمایی کرد.</p>
+        <p>دیجی‌پی نه تنها به عنوان یک اپلیکیشن پرداخت موبایلی به کاربران خدمات مختلف ارائه می‌کند، بلکه امکان <a
+                href="https://www.mydigipay.com/credit/"> خرید اقساطی از دیجی‌کالا </a> را فراهم و تسهیل کرده است.</p>
+      </div>
+    </div>
+    <div class="foot">
+      <div class="text">کلیه حقوق این سایت متعلق به شرکت نوآوران پرداخت مجازی ایرانیان (دیجی پی) میباشد</div>
+    </div>
+  </div>
+</div>
+
+<ng-template #social_media>
+  <div class="social-media">
+    <a
+            class="social-media-item twitter"
+            href="https://twitter.com/digipay_team"
+            target="_blank">
+    </a>
+    <a
+            class="social-media-item linkedin"
+            href="https://www.linkedin.com/company/mydigipay"
+            target="_blank">
+    </a>
+    <a
+            class="social-media-item aparat"
+            href="http://aparat.com/digipay"
+            target="_blank">
+    </a>
+    <a
+            class="social-media-item instagram"
+            href="https://www.instagram.com/mydigipay/?hl=en"
+            target="_blank">
+    </a>
+  </div>
+</ng-template>

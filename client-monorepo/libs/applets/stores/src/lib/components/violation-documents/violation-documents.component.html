@@ -1,0 +1,60 @@
+<div class="documents-wrapper d-flex flex-column gap-minus px-plus h-100">
+  <div [formGroup]="form">
+    <ui-form-field
+      [multiLine]="true"
+      [formControlName]="'description'"
+      [label]="'توضیحات خود را وارد کنید'"
+      [hint]="'پرکردن این قسمت می‌تواند در پیشرفت فرایند پیگیری موثر باشد.'"
+    ></ui-form-field>
+  </div>
+
+  <div class="uploaders d-flex flex-column gap-medium">
+    <div class="d-flex flex-column gap-tiny">
+      <common-ui-components-title-summary
+        [title]="'بارگذاری مستندات'"
+        [showButton]="false"
+        [rightIcon]="{ name: 'docuemnt-file', iconSize: '20px' }"
+      ></common-ui-components-title-summary>
+      <div class="d-flex justify-content-start b-3 text-onback-medium">
+        به منظور تسهیل در پیشرفت فرآیند، لطفا اسکرین شات از فاکتور یا عکس از محصول و یا موارد مربوطه را بارگذاری کنید.
+      </div>
+    </div>
+    <div class="d-flex flex-column">
+      @for (file of files(); track file.id) {
+        <div #fileUploader>
+          <ngx-uploader
+            [type]="'image'"
+            [fileAcceptedFormats]="['png', 'jpg', 'jpeg']"
+            [multiple]="false"
+            [label]="file.file ? '' : 'بارگذاری مستندات'"
+            [description]="'حداکثر 3 فایل با فرمت PNG/JPG/JPEG (حداکثر ۳۰۰ کیلوبایت)'"
+            (onFileUpload)="handleFilesUploaded($index, $event)"
+            (onDeletedFile)="removeImage($index)"
+          ></ngx-uploader>
+        </div>
+      }
+      @if (showMoreImagesBtn()) {
+        <ngx-button
+          [fullWidth]="true"
+          [style]="'tinted-on-elevated'"
+          [mode]="'form'"
+          [size]="'medium'"
+          [disabled]="moreImagesBtnDisabled()"
+          (clickHandler)="addAnotherImage()"
+          >افزودن
+        </ngx-button>
+      }
+    </div>
+  </div>
+
+  <div class="submit-button p-plus surface-elevated">
+    <ngx-button
+      [size]="'large'"
+      [style]="'fill'"
+      [mode]="'form'"
+      [fullWidth]="true"
+      (clickHandler)="handleSubmitDocuments()"
+      >ثبت گزارش
+    </ngx-button>
+  </div>
+</div>

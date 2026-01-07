@@ -1,0 +1,26 @@
+<div class="menu-bottom-sheet-header"></div>
+@if (!selectedItem()) {
+  <div>
+    @for (item of items(); track item) {
+      <div
+        class="menu-item"
+        (click)="onClick(item.type)"
+      >
+        {{ item.title }}
+      </div>
+    }
+  </div>
+}
+
+@if (selectedItem()) {
+  @switch (selectedItem()) {
+    @case ('SHOW_AGREEMENTS') {
+      <app-credit-wallet-detail-header-menu-agreements
+        [creditId]="creditId()!"
+        (goMainClicked)="goMainList()"
+      >
+      </app-credit-wallet-detail-header-menu-agreements>
+    }
+  }
+}
+<div class="menu-bottom-sheet-footer"></div>

@@ -1,0 +1,12 @@
+<div class="le-alert-box">
+  <div class="le-icon">
+    <img
+      [src]="payload.icon?.url"
+      alt=""
+    />
+  </div>
+  <div
+    [innerHTML]="payload.steps[0].description"
+    class="le-description"
+  ></div>
+</div>

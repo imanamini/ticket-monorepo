@@ -1,0 +1,45 @@
+<svg width="3362" height="1460" viewBox="0 0 3362 1460" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_871_877)">
+<rect width="3362" height="1460" rx="32" fill="#131313"/>
+<g clip-path="url(#clip1_871_877)">
+<rect x="-1421" y="-18" width="5749" height="1406" fill="black"/>
+<g filter="url(#filter0_f_871_877)">
+<ellipse cx="2143.11" cy="1397.42" rx="897.015" ry="746.86" fill="#F55929"/>
+</g>
+<g filter="url(#filter1_f_871_877)">
+<ellipse cx="1193.5" cy="-502" rx="717.5" ry="597" fill="#1E6CFF"/>
+</g>
+<g filter="url(#filter2_f_871_877)">
+<ellipse cx="1540.68" cy="1435.62" rx="792.69" ry="660.023" fill="black"/>
+</g>
+</g>
+<rect x="-393" y="555" width="4147" height="1482" fill="url(#paint0_linear_871_877)"/>
+</g>
+<defs>
+<filter id="filter0_f_871_877" x="643.062" y="47.5231" width="3000.1" height="2699.79" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="301.518" result="effect1_foregroundBlur_871_877"/>
+</filter>
+<filter id="filter1_f_871_877" x="-127.036" y="-1702.04" width="2641.07" height="2400.07" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="301.518" result="effect1_foregroundBlur_871_877"/>
+</filter>
+<filter id="filter2_f_871_877" x="476.627" y="504.229" width="2128.11" height="1862.78" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="135.683" result="effect1_foregroundBlur_871_877"/>
+</filter>
+<linearGradient id="paint0_linear_871_877" x1="1680.5" y1="555" x2="1680.5" y2="1120.01" gradientUnits="userSpaceOnUse">
+<stop stop-color="#131313" stop-opacity="0"/>
+<stop offset="1" stop-color="#131313"/>
+</linearGradient>
+<clipPath id="clip0_871_877">
+<rect width="3362" height="1460" rx="32" fill="white"/>
+</clipPath>
+<clipPath id="clip1_871_877">
+<rect width="5342" height="1566" fill="white" transform="translate(-990 -18)"/>
+</clipPath>
+</defs>
+</svg>

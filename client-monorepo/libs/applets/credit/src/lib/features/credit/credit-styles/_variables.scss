@@ -1,0 +1,26 @@
+$font-family: "yekan-bakh";
+$_color-selected-handle: #39bf7c;
+$_color-unselected-handle: white;
+$_color-unselected-track: lightgray;
+$_color-selected-track: rgba(57, 191, 124, 0.4);
+$_color-disabled-selected-track: $_color-selected-track;
+$_color-disabled-unselected-track: $_color-unselected-track;
+$_color-icon-color: transparent;
+
+$DESKTOP_MIN_WIDTH: 614px;
+$DESKTOP_XS_MIN: $DESKTOP_MIN_WIDTH;
+$DESKTOP_SM_MIN: 727px;
+$DESKTOP_MD_MIN: 787px;
+$DESKTOP_LG_MIN: 871px;
+$DESKTOP_XL_MIN: 920px;
+$DESKTOP_XXL_MIN: 1149px;
+$MOBILE_IPHONE5_MIN: 320px;
+
+$DESKTOP_XS_MAX: $DESKTOP_SM_MIN - 1px;
+$DESKTOP_SM_MAX: $DESKTOP_MD_MIN - 1px;
+$DESKTOP_MD_MAX: $DESKTOP_LG_MIN - 1px;
+$DESKTOP_LG_MAX: $DESKTOP_XL_MIN - 1px;
+$DESKTOP_XL_MAX: $DESKTOP_XXL_MIN - 1px;
+$MOBILE_IPHONE5_MAX: 360px;
+
+$illustrator-size: 164px;

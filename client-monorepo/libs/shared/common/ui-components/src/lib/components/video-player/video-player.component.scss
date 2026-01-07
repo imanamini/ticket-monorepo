@@ -1,0 +1,16 @@
+.video-wrapper {
+  display: block;
+  line-height: 0;
+  height: auto;
+
+  video {
+    width: 100% !important;
+    max-height: 90vh;
+    height: auto;
+
+    // Hide fullscreen button in WebKit browsers (Chrome, Safari, Edge)
+    &::-webkit-media-controls-fullscreen-button {
+      display: none !important;
+    }
+  }
+}

@@ -1,0 +1,97 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.coverage-list {
+  .coverage-item {
+    cursor: pointer;
+    width: 100%;
+    height: 88px;
+    border: 2px solid #dee3e7;
+    @extend %radius-norm;
+    padding: 20px;
+    @include flex-center-start;
+    background: #ffffff;
+
+    &.selected {
+      border-color: $primary-blue;
+    }
+
+    .image-wrapper {
+      width: 56px;
+      height: 56px;
+    }
+
+    .content {
+      margin: 0 15px;
+
+      .title {
+        font-weight: 600;
+        color: #2c3544;
+        margin-bottom: 15px;
+      }
+
+      .description {
+        font-size: .9rem;
+        color: #6e798d;
+      }
+    }
+
+    .selection {
+      margin-right: auto;
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      input[type=checkbox] {
+        cursor: pointer;
+        position: relative;
+        appearance: none;
+        font-size: inherit;
+        width: 24px;
+        margin: 0;
+        color: inherit;
+        outline: none;
+        transition: 300ms ease-out;
+        font-family: 'Font Awesome 6 Free';
+
+        &::before {
+          font-family: 'Font Awesome 6 Free';
+          content: '\f111';
+          display: inline-block;
+          text-align: center;
+          width: 1em;
+          font-size: 24px;
+          color: #424c5c;
+        }
+
+        &:checked::before {
+          font-weight: 900;
+        }
+
+        &:checked {
+          + span {
+            color: #0037d1;
+          }
+        }
+
+        &:active {
+          transform: scale(.6);
+
+        }
+
+        + span {
+          margin-right: 8px;
+        }
+      }
+
+      input[type=checkbox]:checked::before {
+        font-family: 'Font Awesome 6 Free';
+        content: '\f058';
+        font-size: 24px;
+        color: #0037d1;
+        cursor: pointer;
+      }
+
+    }
+  }
+}

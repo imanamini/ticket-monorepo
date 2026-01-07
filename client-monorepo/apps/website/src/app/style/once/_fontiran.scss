@@ -1,0 +1,27 @@
+@import "globals";
+@import "@digipay/base-style/styleguide";
+
+:root {
+  margin: 0;
+  padding: 0;
+  font-size: $base-font-size + px;
+}
+
+html {
+  font-size: $base-font-size + px;
+}
+
+html,
+body,
+input,
+button,
+span,
+p,
+* {
+  font-family: $primary-font;
+  font-feature-settings: $base-font-feature-settings !important;
+}
+
+body {
+  color: $text-color;
+}

@@ -1,0 +1,187 @@
+@import "../../../../assets/fonts/custom-fonts";
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.main-section {
+  flex-grow: 1;
+
+  .top-section {
+    flex-grow: 1;
+  }
+
+  .bottom-section {
+    flex-grow: 0;
+  }
+}
+
+.cheque-image {
+  top: -100000px;
+  left: -100000px;
+  border-color: #fff;
+  background: url("../../assets/cheque-hq.webp") no-repeat center center;
+  position: fixed;
+  z-index: -9;
+  width: 829px;
+  height: 419px;
+  background-size: 829px 419px;
+  font-weight: 700;
+
+  span{
+    position: absolute;
+    z-index: 1;
+    font-family: "Digi Sarvenaz" !important;
+    text-align: justify;
+    width: fit-content;
+    text-wrap: nowrap;
+    white-space: nowrap;
+    letter-spacing: normal;
+    * {
+      text-align: justify;
+      letter-spacing: normal;
+    }
+
+
+    &.cheque-date-digit{
+      top: 42px;
+      right: 97px;
+      font-size: 32px;
+      letter-spacing: 12px;
+
+      span{
+        position: absolute;
+        right: 12px;
+
+        @for $i from 1 through 8 {
+            &.item-#{$i} {
+              right: #{(($i - 1) * 21) + 12}px;
+            }
+        }
+      }
+
+    }
+
+    &.cheque-date-letter{
+      top: 85px;
+      right: 145px;
+      font-size: 20px;
+    }
+
+    &.amount-letter{
+      top: 140px;
+      right: 200px;
+      font-size: 24px;
+      max-width: 100%;
+    }
+
+    &.fund-provider{
+      top: 195px;
+      right: 70px;
+      font-size: 24px;
+    }
+
+    &.signature-hint{
+      top: 280px;
+      right: 65px;
+      font-size: 24px;
+    }
+
+    &.national-code{
+      top: 180px;
+      right: 508px;
+      font-size: 32px;
+    }
+
+    &.amount-digit{
+      top: 258px;
+      right: 469px;
+      font-size: 47px;
+      span{
+        position: absolute;
+        right: 10px;
+
+        @for $i from 1 through 30 {
+          &.item-#{$i} {
+            right: #{(($i - 1) * 20.5) + 8}px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.image-container{
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-height: 419px;
+
+  img{
+    width: 100%;
+    height: 100%;
+  }
+
+  .hint-lottie{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    .back-drop{
+      position: absolute;
+      box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.20);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      width: 115px;
+      height: 115px;
+    }
+
+    ng-lottie{
+      transform: scale(3.5);
+      z-index: 1;
+    }
+  }
+}
+
+@media screen and (max-width: 768px ) {
+  img{
+    width: 829px !important;
+    height: 419px !important;;
+  }
+}
+
+.hint-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+
+  &::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    backdrop-filter: blur(7.5px);
+  }
+}
+
+.hint-image{
+  background-image: url("../../assets/hint-img.svg");
+  height: 115px;
+  width: 115px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}

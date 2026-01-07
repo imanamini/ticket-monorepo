@@ -1,0 +1,103 @@
+@if (!isEmpty() && !isLoading()) {
+  <div
+    class="fsp d-flex flex-column gap-low justify-content-center align-items-center cursor-pointer"
+    ngxTrackableId
+    ngxRouterLoading
+    (click)="handleClick()"
+    [trackerId]="FrequentServicesIdEnum[frequentService().id]"
+    [isSharedComponent]="true"
+  >
+    <div
+      class="fsp-iconbox p-minus d-flex align-items-center justify-content-center radius-medium"
+      [ngClass]="{
+        'surface-back': !frequentService().docked && !isBig(),
+        'p-minus': !isBig(),
+        'p-big': isBig(),
+        'surface-elevated': !frequentService().docked && isBig(),
+      }"
+      [ngStyle]="iconboxStyle()"
+    >
+      @if (frequentService().logoType === 'icon' && frequentService().icon) {
+        <div
+          class="fsp-iconbox-inner"
+          [ngStyle]="frequentService()?.status === AppServiceStatus.DISABLED ? disableBoxStyle() : innerBoxStyle()"
+          [ngClass]="{ 'gradient-text': !frequentService().docked && !isInvert(), big: isBig() }"
+        >
+          <common-icon-dp-icon
+            [classes]="frequentService().docked || isInvert() ? 'text-oninvert-high' : ''"
+            [icon]="frequentService().icon ?? ''"
+            [iconSize]="isBig() ? '40' : '32'"
+          ></common-icon-dp-icon>
+        </div>
+      } @else {
+        <div class="fsp-iconbox-inner">
+          <img
+            [ngStyle]="{ height: isBig() ? '40px' : '32px', width: isBig() ? '40px' : '32px' }"
+            src="/assets/services/{{ frequentService().image }}"
+          />
+        </div>
+      }
+    </div>
+    @if (showTitle()) {
+      <div
+        class="fsp-text"
+        [ngClass]="{
+          'text-onback-medium': !frequentService().docked || darkTitle(),
+          'text-oninvert-high': frequentService().docked,
+          'l-2': !isBig(),
+          'c-3': isBig(),
+        }"
+      >
+        {{ frequentService().title }}
+      </div>
+    }
+    @if (frequentService().docked) {
+      <div class="checked radius-rounded remove">
+        <common-icon-dp-icon
+          [icon]="'Minus'"
+          [iconType]="'linear'"
+          [classes]="'text-oninvert-high'"
+          [iconSize]="'20'"
+        ></common-icon-dp-icon>
+      </div>
+    } @else if (frequentService().selected) {
+      <div class="checked radius-rounded surface-brand">
+        <common-icon-dp-icon
+          [icon]="'Check'"
+          [iconType]="'linear'"
+          [classes]="'text-oninvert-high'"
+          [iconSize]="'20'"
+        ></common-icon-dp-icon>
+      </div>
+    } @else if (badge()) {
+      <div class="fsp-badge">
+        <ngx-badge
+          [status]="SERVICE_BADGE_STATUS_MAPPER[badge()?.status]"
+          [size]="'tiny'"
+          [mode]="SERVICE_BADGE_MODE_MAPPER[badge()?.mode]"
+          >{{ badge()?.content }}
+        </ngx-badge>
+      </div>
+    }
+  </div>
+} @else {
+  <div class="empty-fsp d-flex flex-column gap-low justify-content-center align-items-center">
+    @if (isLoading()) {
+      <lib-ngx-skeleton-loading
+        [height]="isBig() ? '88px' : '56px'"
+        [width]="isBig() ? '88px' : '56px'"
+        [classes]="'radius-medium'"
+      ></lib-ngx-skeleton-loading>
+      @if (showTitle()) {
+        <lib-ngx-skeleton-loading
+          [height]="isBig() ? '18px' : '16px'"
+          [width]="isBig() ? '88px' : '56px'"
+          [classes]="'radius-medium'"
+        ></lib-ngx-skeleton-loading>
+      }
+    } @else if (isEmpty()) {
+      <div class="empty-fsp-iconbox border-color-air radius-medium surface-glass border-300"></div>
+      <div class="empty-fsp-text"></div>
+    }
+  </div>
+}

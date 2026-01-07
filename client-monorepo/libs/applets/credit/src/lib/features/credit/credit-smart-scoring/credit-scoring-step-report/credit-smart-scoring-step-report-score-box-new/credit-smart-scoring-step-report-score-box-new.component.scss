@@ -1,0 +1,28 @@
+.gauge-container{
+  width: 230px;
+  position: relative;
+  direction: ltr;
+
+  *{
+    direction: rtl;
+  }
+
+  .value-labels{
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+  }
+  .current-value-container{
+    position: absolute;
+    top:45px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .value{
+      font-size: 32px;
+      font-weight: 700;
+      height: 34px;
+    }
+  }
+}

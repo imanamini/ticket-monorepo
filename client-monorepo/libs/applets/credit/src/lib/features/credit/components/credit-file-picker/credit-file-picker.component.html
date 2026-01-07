@@ -1,0 +1,43 @@
+<div class="file-picker-sheet">
+  <ngx-bottom-sheet-header
+    [showResizable]="true"
+    [title]="'انتخاب روش آپلود تصویر ' + imageType()"
+  ></ngx-bottom-sheet-header>
+  <div class="actions d-flex flex-column gap-small align-items-center p-plus w-100">
+    @if (showCamera()) {
+      <label
+        class="action w-100 cursor-pointer"
+        (click)="openCamera()"
+      >
+        <span class="b-2 text-onback-medium">عکاسی از {{ imageType() }}</span>
+      </label>
+      <ngx-divider
+        [color]="BorderColorsEnum.Tint"
+        orientation="horizontal"
+      ></ngx-divider>
+    }
+    <label
+      class="action w-100 cursor-pointer"
+      for="file"
+    >
+      <span class="b-2 text-onback-medium">انتخاب عکس از گالری</span>
+      <input
+        (change)="fileChange($event)"
+        id="file"
+        type="file"
+      />
+    </label>
+    @if (showDelete()) {
+      <ngx-divider
+        [color]="BorderColorsEnum.Tint"
+        orientation="horizontal"
+      ></ngx-divider>
+      <div
+        (click)="actionClicked('delete')"
+        class="action w-100 cursor-pointer"
+      >
+        <span class="text text-onback-error">حذف</span>
+      </div>
+    }
+  </div>
+</div>

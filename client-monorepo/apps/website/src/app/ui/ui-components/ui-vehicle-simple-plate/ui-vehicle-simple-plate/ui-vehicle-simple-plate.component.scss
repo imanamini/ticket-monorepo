@@ -1,0 +1,66 @@
+@import "globals";
+
+
+
+:host {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.simple-plate {
+  border: 1px solid $swatch_steel_200;
+  color: $swatch_steel_500;
+  border-radius: 6px;
+  direction: ltr;
+  display: inline-flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 450;
+  width: 128px;
+  height: 32px;
+  box-sizing: border-box;
+  user-select: none;
+
+  &.withoutBorder {
+    border: none;
+    color: $swatch_steel_900;
+
+    .plate-part {
+      flex-grow: 0;
+    }
+
+    .dash,
+    .country-name {
+      display: block;
+      margin: 0 4px;
+    }
+  }
+
+  .plate-part {
+    text-align: center;
+    flex-grow: 1;
+    line-height: 32px;
+    font-size: 18px;
+    font-weight: 450;
+  }
+
+  .plate-part:last-child {
+    border-left: 1px solid $swatch_steel_200;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.plate-letter {
+  opacity: 0.6;
+}
+
+.vehicle-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 0 12px;
+}

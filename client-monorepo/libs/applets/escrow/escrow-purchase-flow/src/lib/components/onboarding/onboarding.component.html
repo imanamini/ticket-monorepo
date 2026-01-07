@@ -1,0 +1,20 @@
+<div class="text-align-center">
+  <img
+    class="mb-huge"
+    src="assets/images/lock.png"
+    alt=""
+  />
+  <p class="t-6 mb-small">لطفا با فروشنده هماهنگ باشید!</p>
+  <p class="b-2 mb-huge text-onback-medium">
+    برای خرید محصول لطفا در چت دیوار با فروشنده سر مبلغ به توافق برسید و مبلغ توافق شده را در این صفحه وارد کنید.
+  </p>
+  <ngx-button
+    [mode]="'section'"
+    [size]="'large'"
+    [style]="'tinted-on-elevated'"
+    [fullWidth]="true"
+    (clickHandler)="closeBottomSheet()"
+  >
+    متوجه شدم!
+  </ngx-button>
+</div>

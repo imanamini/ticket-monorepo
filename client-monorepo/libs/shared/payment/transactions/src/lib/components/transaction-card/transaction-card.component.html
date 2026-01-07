@@ -1,0 +1,102 @@
+<div
+  class="d-flex gap-minus py-minus"
+  style="min-width: 280px"
+  (click)="handleClick()"
+>
+  <payment-transactions-transaction-card-image [imageConfig]="config().image"></payment-transactions-transaction-card-image>
+  <div class="d-flex flex-column gap-micro flex-grow">
+    <div class="d-flex gap-minus">
+      <div class="d-flex justify-content-space-between w-100 align-items-center">
+        <span class="c-2">{{ config().title }}</span>
+        @if (config().type === 'pending') {
+          <div
+            class="d-flex gap-tiny mr-auto align-items-center"
+            [ngClass]="
+              config().amount.amountStyle === 'income'
+                ? 'text-onback-brand'
+                : config().amount.amountStyle === 'disabled'
+                  ? 'text-onback-disabled '
+                  : config().amount.amountStyle === 'dense'
+                    ? 'text-onback-low '
+                    : ''
+            "
+          >
+            <span class="fs-14">{{ config().amount.value | thousands }}</span>
+            <span class="fs-10 is-currency">{{ config().amount.currency }}</span>
+          </div>
+        }
+      </div>
+      @if (config().type === 'history') {
+        <div
+          class="d-flex gap-tiny"
+          [ngClass]="
+            config().amount.amountStyle === 'income'
+              ? 'text-onback-brand'
+              : config().amount.amountStyle === 'disabled'
+                ? 'text-onback-disabled '
+                : config().amount.amountStyle === 'dense'
+                  ? 'text-onback-low '
+                  : ''
+          "
+        >
+          <span>{{ config().amount.value | thousands }}</span>
+          <span class="is-currency">{{ config().amount.currency }}</span>
+          @if (config().amount.amountStyle === 'income') {
+            <span>+</span>
+          }
+        </div>
+      } @else if (config().type === 'frequent') {
+        <img
+          class="mr-auto"
+          src="assets/arrow-left.svg"
+        />
+      }
+    </div>
+    @if (config().description) {
+      <div class="w-100 text-onback-low c-3">
+        {{ config().description }}
+      </div>
+    }
+    @if (config().type === 'upcoming') {
+      <div class="d-flex gap-tiny text-onback-low c-3">
+        <span>{{ config().amount.value | thousands }}</span>
+        <span class="fs-10 is-currency">{{ config().amount.currency }}</span>
+        <span>.</span>
+        @if (config().status.style === 'error') {
+          <span>{{ config().status.message }}</span>
+        } @else {
+          <span>{{ config().status.message | date | jalaliDate }}</span>
+        }
+      </div>
+    } @else {
+      @if (config().type !== 'frequent') {
+        <div class="d-flex gap-tiny text-onback-low c-3">
+          <span
+            [ngClass]="{
+              'text-onback-error': config().status.style === 'error',
+            }"
+            >{{ config().status.message }}</span
+          >
+          <span>.</span>
+          <span>{{ config().date | jalaliDate }}</span>
+        </div>
+      } @else {
+        <span class="text-onback-low c-3">{{ config().status.message }}</span>
+      }
+    }
+  </div>
+  @if (config().type === 'upcoming') {
+    <ngx-button
+      [mode]="'icon-only'"
+      [size]="'small'"
+      [style]="config().buttonType === 'urgent' ? 'fill' : 'tinted-on-elevated'"
+      [brandButton]="config().buttonType === 'urgent'"
+      class="mr-auto"
+      [leftIcon]="{ name: 'arrow-left' }"
+    >
+    </ngx-button>
+  }
+</div>
+@if (config().showDivider) {
+  <span class="divider"></span>
+}

@@ -1,0 +1,53 @@
+<div class="header-title">{{ headerTitle() }}</div>
+<div class="journey-type-list">
+  @for (item of journeyTypes(); track item) {
+    <div
+      (click)="onClick(item)"
+      ngxTrackableId
+      trackerId="journeyTypeClick"
+      [class]="{
+        selected: selectedFlowType() === item.type,
+        'not-active': !item.active,
+      }"
+      class="journey-type-item"
+    >
+      <div class="journey-type-item-row-header">
+        <div class="journey-type-header-data">
+          <div class="journey-type-title-row">
+            <div class="journey-type-title">{{ item.title }}</div>
+            <div class="journey-type-value">{{ item.cost }}</div>
+          </div>
+          <div class="journey-type-subtitle">
+            {{ item.subtitle }}
+          </div>
+        </div>
+        <div>
+          @if (item.active) {
+            <ngx-icon
+              class="text-onback-brand"
+              [name]="'check-circle'"
+              [type]="'bold'"
+            ></ngx-icon>
+          }
+          @if (!item.active) {
+            <div class="not-active-badge">غیرفعال</div>
+          }
+        </div>
+      </div>
+      <div class="journey-type-item-description">
+        <div [innerHTML]="item.description"></div>
+        @if (item.linkTitle && item.link) {
+          <div>
+            <span
+              ngxTrackableId
+              trackerId="openLinkUrlButtonClick"
+              (click)="openLinkUrl(item.linkTitle, item.link)"
+              class="journey-type-link"
+              >{{ item.linkTitle }}
+            </span>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

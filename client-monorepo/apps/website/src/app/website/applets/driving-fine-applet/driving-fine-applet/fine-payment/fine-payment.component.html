@@ -1,0 +1,107 @@
+<div class="fine-payment">
+  <div class="top-bar">
+    <div>نتیجه استعلام خلافی شما</div>
+    <app-ui-button
+      (clicked)="previousStep()"
+      appearance="CUSTOM"
+      backgroundColor="unset"
+      border="none"
+      class="cta"
+      color="#FF2638"
+    >
+      بازگشت
+      <span
+        icon="icon-charon-left-red"
+        size="20"
+        appUiIcon
+      ></span>
+    </app-ui-button>
+  </div>
+  <ng-container *ngIf="finePaymentStates !== 'SERVICE_ERROR'; else serviceError">
+    <div class="fine-payment-body">
+      <app-ui-card-notice
+        [notices]="notices"
+        hasDots="true"
+        title="نکات مهم"
+      ></app-ui-card-notice>
+      <div
+        [ngClass]="finePaymentStates === 'LOADING' ? 'loading' : ''"
+        class="inquiry-detail"
+      >
+        <app-ui-vehicle-fine
+          *ngIf="finePaymentStates === 'SUCCESS' && inquiryDetail"
+          [trafficFine]="inquiryDetail.getValue()"
+        >
+        </app-ui-vehicle-fine>
+
+        <app-ui-spinner
+          *ngIf="finePaymentStates === 'LOADING'"
+          size="40"
+        ></app-ui-spinner>
+      </div>
+
+      <div class="ctas">
+        <app-ui-button
+          (clicked)="payFine(PaymentGateways.IPG)"
+          [disabled]="finePaymentStates !== 'SUCCESS' || !hasFine"
+          appearance="FLAT-BLUE"
+          class="first-cta"
+        >
+          پرداخت با کارت
+        </app-ui-button>
+        <app-ui-button
+          (clicked)="payFine(PaymentGateways.WALLET)"
+          [disabled]="finePaymentStates !== 'SUCCESS' || !hasFine"
+          class="second-cta"
+        >
+          پرداخت از کیف پول
+        </app-ui-button>
+      </div>
+      <marquee
+        direction="down"
+        height="28px"
+        scrollamount="1"
+        width="100%"
+      >
+        <ng-container *ngFor="let promotion of servicePromotions">
+          <div class="promotion">
+            <img
+              *ngIf="promotion.icon && promotion.icon.url"
+              [ngSrc]="promotion.icon.url"
+              class="icon"
+              height="20"
+              width="20"
+            />
+            {{ promotion.text }}
+          </div>
+        </ng-container>
+      </marquee>
+    </div>
+  </ng-container>
+  <ng-template #serviceError>
+    <div class="service-error">
+      <span
+        [size]="96"
+        icon="icon-connection-error"
+        appUiIcon
+      ></span>
+      <div class="error-title">فعلا امکان استعلام وجود ندارد.</div>
+      <div class="error-description">
+        {{ serviceErrorMessage }}
+      </div>
+      <div class="ctas">
+        <app-ui-button
+          appearance="FLAT-BLUE"
+          class="transactions cta"
+          routerLink="/profile/transactions/."
+          >تراکنش ها
+        </app-ui-button>
+        <app-ui-button
+          (clicked)="loadFineData(fineTrackingCode)"
+          class="retry cta"
+          >تلاش مجدد</app-ui-button
+        >
+      </div>
+    </div>
+  </ng-template>
+</div>

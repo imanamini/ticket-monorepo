@@ -1,0 +1,29 @@
+<div class="error-container d-flex h-100 align-items-center px-plus">
+  <common-ui-components-error-result
+    [title]="'دسترسی به حساب تا ' + resetTime() + ' مسدود است.'"
+    [description]="
+      'به دلیل تلاش‌های ناموفق زیاد برای دسترسی به حساب، موقتا دسترسی امکان‌پذیر نیست. لطفا دقایقی دیگر دوباره امتحان کنید و یا با پشتیبانی دیجی‌پی تماس بگیرید.'
+    "
+  >
+    <ng-container status-image>
+      <img
+        src="assets/error-triangle-white.svg"
+        alt="error"
+      />
+    </ng-container>
+    <ng-container actions>
+      <ngx-button
+        [mode]="'section'"
+        [size]="'large'"
+        [style]="'tinted-on-back'"
+        [rightIcon]="{
+          name: 'headphone',
+          type: 'linear',
+        }"
+        (clickHandler)="support()"
+      >
+        تماس با پشتیبانی
+      </ngx-button>
+    </ng-container>
+  </common-ui-components-error-result>
+</div>

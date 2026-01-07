@@ -1,0 +1,50 @@
+<section class="section-swiper-continuous-content">
+  <div class="container position-relative">
+    @if (title()) {
+      <h2 class="text-align-center">{{ title() }}</h2>
+    }
+    <div class="subtitle text-align-center">{{ subtitle() }}</div>
+    <div>
+      <div
+        class="swiper-continuous-button-next"
+        (click)="swiper.slidePrev()"
+      >
+        <i class="swiper-continuous-icon__arrow-right"></i>
+      </div>
+      <div
+        class="swiper-continuous-button-prev"
+        (click)="swiper.slideNext()"
+      >
+        <i class="swiper-continuous-icon__arrow-left"></i>
+      </div>
+      <swiper-container
+        appSwiper
+        #swiper="appSwiper"
+        [config]="config"
+      >
+        @for (item of data(); track item; let itemIndex = $index) {
+          <swiper-slide>
+            <div class="item-card">
+              <div class="icon">
+                @if (item.icon) {
+                  <img
+                    [src]="item.icon?.url"
+                    alt=""
+                  />
+                }
+              </div>
+              <div>
+                <div class="title">
+                  {{ item.title }}
+                </div>
+                <div class="subtitle">
+                  {{ item.subtitle }}
+                </div>
+              </div>
+            </div>
+          </swiper-slide>
+        }
+      </swiper-container>
+    </div>
+  </div>
+</section>

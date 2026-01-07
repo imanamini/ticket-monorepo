@@ -1,0 +1,47 @@
+@if (slideIndices().length > 0) {
+  <ngx-dp-carousel
+    (indexChange)="handleCarouselIndexChange($event)"
+    [centerMode]="true"
+    [changeStepThresholdPercentage]="0"
+    [disableScaling]="true"
+    [index]="currentSlide()"
+    [isFixedGap]="true"
+    [mode]="'SINGLE'"
+    [showButtons]="false"
+    [showNavigation]="showNavigation()"
+    [visibleItemCount]="1"
+    [showDots]="showDots()"
+  >
+    @for (slide of slideIndices(); track $index) {
+      <ng-template ngxDpCarouselSlide>
+        <div class="d-flex justify-content-center align-items-center w-100">
+          <div
+            class="d-grid py-small px-medium gap-medium"
+            [style]="{ 'grid-template-columns': gridColumns() }"
+          >
+            @for (store of getStoresForSlide(slide); track store.id || $index) {
+              <app-credit-store-card [storeInfo]="store"></app-credit-store-card>
+            }
+
+            @if (showMoreButton() && slide === slideIndices().length - 1) {
+              <div
+                class="more-stores"
+                (click)="onMoreClick()"
+              >
+                <div class="more-stores-content">
+                  <div class="more-stores-image">
+                    <ngx-icon
+                      [name]="'more'"
+                      classes="text-onback-brand"
+                    ></ngx-icon>
+                  </div>
+                  <span class="store-title-text text-onback-medium text-align-center l-2 w-100">بیشتر</span>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </ng-template>
+    }
+  </ngx-dp-carousel>
+}

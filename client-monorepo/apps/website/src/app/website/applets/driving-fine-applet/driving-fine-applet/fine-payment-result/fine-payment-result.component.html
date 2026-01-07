@@ -1,0 +1,41 @@
+<div class="fine-payment-result">
+  <div class="top-bar">
+    <div>پرداخت موفق خلافی</div>
+    <app-ui-button
+      appearance="GREEN-TEXT"
+      class="cta"
+      link="/profile/transactions"
+    >
+      مشاهده تراکنش‌ها
+      <span
+        icon="icon-charon-left-green"
+        size="20"
+        appUiIcon
+      ></span>
+    </app-ui-button>
+  </div>
+  <div class="fine-payment-result-body">
+    <app-ui-vehicle-fine [vehiclePlate]="vehiclePlate"> </app-ui-vehicle-fine>
+    <div class="app-promotion">
+      <div class="text">
+        <div class="title">امکان پرداخت اعتباری</div>
+        <div class="subtitle">برای خلافی خودرو به زودی در اپلیکیشن دیجی‌پی</div>
+      </div>
+      <app-ui-button
+        appearance="CUSTOM"
+        backgroundColor="unset"
+        border="none"
+        color="#fff"
+        link="/download"
+        linkTarget="_blank"
+      >
+        دانلود اپلیکیشن
+        <span
+          icon="icon-download-white"
+          size="20"
+          appUiIcon
+        ></span>
+      </app-ui-button>
+    </div>
+  </div>
+</div>

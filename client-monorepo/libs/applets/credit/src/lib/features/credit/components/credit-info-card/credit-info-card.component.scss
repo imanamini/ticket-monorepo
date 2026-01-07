@@ -1,0 +1,30 @@
+@import "@digipay/base-style/swatch";
+
+.card-container {
+  margin: 0 auto;
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  line-height: 1.7;
+  gap: 8px;
+
+  .card-body {
+    &.is-single {
+      padding-top: 16px;
+    }
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    &-icon {
+      margin-left: 6px;
+      width: 22px;
+      height: 22px;
+      padding-bottom: 4px;
+    }
+  }
+}

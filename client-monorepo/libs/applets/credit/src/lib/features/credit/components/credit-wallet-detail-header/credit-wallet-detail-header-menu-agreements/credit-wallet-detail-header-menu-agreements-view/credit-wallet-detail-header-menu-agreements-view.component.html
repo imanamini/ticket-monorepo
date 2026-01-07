@@ -1,0 +1,81 @@
+<div class="title">
+  <div
+    (click)="back()"
+    class="ml-medium cursor-pointer"
+  >
+    <ngx-icon
+      name="'arrow-right'"
+      type="'linear'"
+    ></ngx-icon>
+  </div>
+  <div>
+    <span>{{ CreditAgreementTypeMapper![ agreement()?.agreementType! ] }}</span>
+    <span class="title-date">{{ agreement()?.modificationTime | jalaliDate: 'jYY/jM/jD' }}</span>
+  </div>
+</div>
+
+<div class="pdf-wrapper">
+  @if (gettingPdf()) {
+    <ngx-spinner
+      size="md"
+      color="primary"
+    ></ngx-spinner>
+  }
+
+  @if (!gettingPdf()) {
+    @if (!pdfInitiating()) {
+      <div class="zoom-buttons">
+        <div
+          (click)="zoomIn()"
+          [class]="{ disabled: zoom() >= maxZoom() }"
+          class="zoom-in-button"
+        >
+          <ngx-icon
+            [name]="'zoom-in'"
+            [type]="'linear'"
+          >
+          </ngx-icon>
+        </div>
+        <div
+          (click)="zoomOut()"
+          [class]="{ disabled: zoom() <= minZoom() }"
+          class="zoom-out-button"
+        >
+          <ngx-icon
+            [name]="'zoom-out'"
+            [type]="'linear'"
+          >
+          </ngx-icon>
+        </div>
+      </div>
+    }
+    <app-credit-scrollable-view>
+      <div class="content">
+        @if (pdfInitiating()) {
+          <div class="pdf-initiating">در حال آماده سازی...</div>
+        }
+        <pdf-viewer
+          (after-load-complete)="onLoadCompleted()"
+          [original-size]="false"
+          [render-text]="true"
+          [src]="fileData()"
+          [zoom-scale]="'page-width'"
+          [zoom]="zoom() / 100"
+          class="pdf-view"
+        >
+        </pdf-viewer>
+      </div>
+    </app-credit-scrollable-view>
+  }
+</div>
+
+<div class="download-wrapper">
+  <ngx-button
+    (clickHandler)="onDownloadHandler()"
+    [fullWidth]="true"
+    [style]="'tinted-on-elevated'"
+  >
+    <ngx-icon [name]="'download'"></ngx-icon>
+    ذخیره قرارداد
+  </ngx-button>
+</div>

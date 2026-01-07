@@ -1,0 +1,42 @@
+<div class="section-detail d-flex flex-column h-100">
+  <insurance-header title="جزئیات بیمه‌نامه"
+                    [closeIconName]="IconEnum.Back"
+                    [leftIcons]="headerLeftIcons()"
+                    (closeIconClicked)="handleBackClicked()"></insurance-header>
+
+  @if (isLoading()) {
+    <full-screen-loading></full-screen-loading>
+  } @else {
+    <div class="section-detail-content d-flex flex-column align-items-center gap-plus py-big px-plus">
+      @if (infoText()) {
+        <ins-alert [text]="infoText()"
+                   [size]="AlertSizeEnum.Small"
+                   [hasIcon]="true"
+                   [color]="alertColor()">
+        </ins-alert>
+      }
+
+      @for (item of details(); track $index) {
+        <section-card [data]="item"></section-card>
+      }
+    </div>
+    @if (showMajorActionButton()) {
+      <action-buttons [showDeActiveButton]="showMinorActionButton()"
+                      [activeButtonBackground]="payable() > 0 ? InsButtonStyleEnum.Brand : InsButtonStyleEnum.Fill"
+                      (deActiveButtonClicked)="minorActionButtonClicked()"
+                      (activeButtonClicked)="handleActiveButtonClicked()"
+                      [deActiveButtonText]="minorButtonText()"
+                      [activeButtonText]="majorButtonText()">
+        @if (hasPriceConflict()) {
+          <div class="d-flex flex-row justify-content-space-between align-items-center w-100" topContent>
+            <p class="st-8 text-onback-low">مبلغ مابه‌التفاوت پرداختی:</p>
+            <p class="st-8 text-onback-high">
+              <span class="t-6 text-onback-high">{{ ( payable() / 10 ) | thousands }}</span>
+              تومان
+            </p>
+          </div>
+        }
+      </action-buttons>
+    }
+  }
+</div>

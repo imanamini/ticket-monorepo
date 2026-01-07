@@ -1,0 +1,76 @@
+@if (!retryTypeState()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="goBack()"
+    (onTextClick)="onActionClick()"
+    [actionImage]="actionImage()"
+    [backButton]="true"
+    [title]="pageTitle()"
+  >
+  </app-credit-app-bar>
+}
+
+@if (!gettingData()) {
+  <div class="main-section flex-full-height">
+    <div class="top-section">
+      <app-credit-scrollable-view [fullHeightContent]="true">
+        <div
+          class="page-content"
+          [class.no-padding]="retryTypeState()"
+        >
+          <ngx-status-result
+            (clicked)="onCtaClick($event)"
+            [title]="statusData()?.title"
+            [description]="statusData()?.message"
+            [buttons]="buttons[statusData()?.status]"
+            [timer]="statusData()?.status === statusEnum.PENDING && statusData()?.checkCountDown ? timer() : null"
+            [iconState]="iconState()"
+            [type]="typeState()"
+            [hasCloseIcon]="retryTypeState()"
+            (closed)="goBack()"
+          >
+            <ng-container status-image>
+              @if (statusData()?.status !== statusEnum.FAILED && statusData()?.status !== statusEnum.SERVICE_UNAVAILABLE) {
+                <ngx-waiting-stepper
+                  [isSelfProgress]="true"
+                  [timerDeadline]="timer().timeInSeconds"
+                  [state]="
+                    statusData()?.status === statusEnum.PENDING && statusData()?.checkCountDown
+                      ? WaitingStepperStateEnum.PROGRESS
+                      : WaitingStepperStateEnum.SUCCESS
+                  "
+                >
+                </ngx-waiting-stepper>
+              }
+            </ng-container>
+            <ng-container html-content>
+              <ng-container [ngTemplateOutlet]="errorsTemplate"></ng-container>
+            </ng-container>
+          </ngx-status-result>
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+  </div>
+}
+<credit-page-loading [active]="gettingData()!"></credit-page-loading>
+<ng-template #errorsTemplate>
+  @if (errors() && errors().length > 0 && (statusData()?.status === statusEnum.FAILED || statusData()?.status === statusEnum.REJECTED)) {
+    <ngx-callout
+      [mode]="'multiple'"
+      [messages]="errorsMap()"
+      [title]="'دلیل(دلایل) رد:'"
+      [showTitleBlink]="true"
+    />
+  } @else if (
+    statusData()?.errorMessages &&
+    statusData()?.errorMessages?.length! > 0 &&
+    (statusData()?.status === statusEnum.FAILED || statusData()?.status === statusEnum.REJECTED)
+  ) {
+    <ngx-callout
+      [mode]="'multiple'"
+      [title]="'دلیل(دلایل) رد:'"
+      [showTitleBlink]="true"
+      [messages]="statusData()?.errorMessages"
+    >
+    </ngx-callout>
+  }
+</ng-template>

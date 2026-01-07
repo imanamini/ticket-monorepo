@@ -1,0 +1,13 @@
+<div [ngClass]="'status-'+status" [ngStyle]="{
+      color: color && colorized? color : 'black' ,
+      backgroundColor: backgroundColor && colorized? backgroundColor: 'rgba(38, 49, 64, 0)'
+    }"
+     class="status-badge">
+
+  <span [ngClass]="'circle-'+status" [ngStyle]="color ? {backgroundColor: color} : {}"
+        class="circle">
+  </span>
+  <span>
+    <ng-content></ng-content>
+  </span>
+</div>

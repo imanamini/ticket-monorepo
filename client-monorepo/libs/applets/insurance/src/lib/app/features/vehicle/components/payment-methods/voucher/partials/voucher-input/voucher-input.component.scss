@@ -1,0 +1,12 @@
+::ng-deep {
+  .custom-digikala-style {
+    & .voucher-input {
+      height: 410px !important;
+    }
+  }
+}
+
+.icon-wrapper {
+  width: 80px;
+  height: 80px;
+}

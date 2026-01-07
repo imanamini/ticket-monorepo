@@ -1,0 +1,40 @@
+section {
+  .promotion-banner {
+    display: flex;
+    justify-content: center;
+
+    img {
+      border-radius: 16px;
+    }
+  }
+}
+.container {
+  .video {
+    margin: auto auto 64px;
+    width: 794px;
+    height: 434px;
+
+    video {
+      border-radius: 14px;
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .container {
+    .video {
+      width: 100%;
+      max-width: 650px;
+      height: unset;
+      margin-bottom: 32px;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .container {
+    .video {
+      margin-bottom: 16px;
+    }
+  }
+}

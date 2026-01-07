@@ -1,0 +1,150 @@
+<location-trap
+  [canBack]="canBack()"
+  [canExit]="true"
+>
+</location-trap>
+
+@if (isMobile) {
+  <!-- Main Content -->
+  @if (!showHealthCheck) {
+    <div class="used-device-layout">
+      @if ((state$ | async) && showHeader()) {
+        <!-- header -->
+        <div class="header">
+          <used-header
+            [state]="stateData[activeStepIndex]?.state"
+            [headerData]="headerData$ | async"
+            [isMobile]="true"
+          >
+          </used-header>
+        </div>
+        <!-- end header -->
+      }
+      @if (errorPageText()) {
+        <div
+          class="error-container d-flex flex-column align-items-center justify-content-center gap-minus"
+          style="height: 80vh"
+        >
+          <div class="error-content">
+            <img
+              class="illustration"
+              src="insurance-assets/images/error-transfer-detail.png"
+            />
+            <p class="error-title">مشکلی رخ داده‌است!</p>
+            <p class="error-description">{{ errorPageText() }} لطفا با پشتیبانی برای پیگیری وضعیت تماس بگیرید.</p>
+            <p class="call-center">۰۲۱ - 53924000</p>
+            <div class="button-wrapper">
+              <ui-button
+                (click)="goToBack()"
+                appearance="BLUE-TEXT"
+              >
+                بازگشت به صفحه اصلی
+              </ui-button>
+            </div>
+          </div>
+        </div>
+      } @else {
+        @if (state$ | async) {
+          <div
+            [ngClass]="{ 'remove-margin': stateData[activeStepIndex]?.state === 1 && showOnBoarding }"
+            class="used-device-content"
+          >
+            <!-- Steps -->
+
+            @if (!showPaymentResult && stateData) {
+              @switch (stateData[activeStepIndex]?.state) {
+                @case (1) {
+                  @defer {
+                    <used-device-info> </used-device-info>
+                  }
+                }
+                @case (2) {
+                  @defer {
+                    <used-pricing
+                      (hasError)="hasError($event)"
+                      [journey]="JourneyNamesModel.USED_DEVICE"
+                    >
+                    </used-pricing>
+                  }
+                }
+                @case (3) {
+                  @defer {
+                    <used-pre-payment
+                      (hasError)="hasError($event)"
+                      [uniqueCode]="uniqueCode"
+                      [journey]="JourneyNamesModel.USED_DEVICE"
+                    >
+                    </used-pre-payment>
+                  }
+                }
+                @case (4) {
+                  @defer {
+                    <used-complete-information (hasError)="hasError($event)"> </used-complete-information>
+                  }
+                }
+                @case (5) {
+                  @defer {
+                    <used-upload-file> </used-upload-file>
+                  }
+                }
+                @case (6) {
+                  @defer {
+                    <used-complete-information-result
+                      (hasError)="hasError($event)"
+                      [journey]="JourneyNamesModel.USED_DEVICE"
+                    >
+                    </used-complete-information-result>
+                  }
+                }
+                @case (7) {
+                  @defer {
+                    <used-issue-policy (hasError)="hasError($event)"> </used-issue-policy>
+                  }
+                }
+              }
+            }
+            <!-- End Steps -->
+
+            @if (showPaymentResult) {
+              @defer {
+                <!-- Payment Result -->
+                <used-payment-result [journey]="JourneyNamesModel.USED_DEVICE"> </used-payment-result>
+                <!-- End Payment Result -->
+              }
+            }
+          </div>
+        }
+      }
+    </div>
+  }
+
+  <!-- End Main Content -->
+
+  @if (showHealthCheck) {
+    <!-- Health Check -->
+    @defer {
+      <div class="health-check">
+        <health-check [journey]="JourneyNamesModel.USED_DEVICE"> </health-check>
+      </div>
+      <!-- End Health Check -->
+    }
+  }
+} @else {
+  @defer {
+    @if (actionResultData) {
+      <div class="use-mobile-notice">
+        <journey-action-result
+          (actionButtonClicked)="goToHome()"
+          [data]="actionResultData"
+        >
+        </journey-action-result>
+      </div>
+    }
+  }
+}
+
+@if (isLoading()) {
+  <div class="loading-container">
+    <ui-loading-spinner></ui-loading-spinner>
+  </div>
+}

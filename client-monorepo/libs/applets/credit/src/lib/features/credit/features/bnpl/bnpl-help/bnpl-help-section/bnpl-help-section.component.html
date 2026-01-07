@@ -1,0 +1,18 @@
+<section class="bnpl-help-section">
+  <div class="bnpl-help-section-title">{{ section()?.title }}</div>
+  @if (section()?.subTitle) {
+    <div
+      class="bnpl-help-section-subtitle"
+      [innerHTML]="section()?.subTitle"
+    ></div>
+  }
+  <div class="title-margin-space"></div>
+  @for (element of section()?.items; track $index) {
+    <div
+      class="element-item"
+      [ngClass]="{ 'first-element': $index === 0 }"
+    >
+      <ui-landing-element [element]="element"></ui-landing-element>
+    </div>
+  }
+</section>

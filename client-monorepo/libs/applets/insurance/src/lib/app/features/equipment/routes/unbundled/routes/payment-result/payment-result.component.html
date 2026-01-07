@@ -1,0 +1,17 @@
+<div class="payment-result">
+
+  <failed-payment-result
+          *ngIf="!result?.paymentSuccess"
+          [resultList]="resultList"
+          [result]="result">
+  </failed-payment-result>
+
+  <success-payment-result
+          *ngIf="result?.paymentSuccess"
+          [resultList]="resultList"
+          [result]="result">
+  </success-payment-result>
+
+</div>
+
+

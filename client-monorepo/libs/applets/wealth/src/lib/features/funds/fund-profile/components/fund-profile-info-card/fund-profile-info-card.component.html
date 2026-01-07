@@ -1,0 +1,119 @@
+<div class="w-100 d-flex justify-content-space-between align-items-start actions">
+  <ngx-button
+    [mode]="'icon-only'"
+    [style]="'neutral-link'"
+    [leftIcon]="{
+      name: 'arrow-right',
+    }"
+    [size]="'small'"
+    (clickHandler)="onBackClicked()"
+  />
+
+  <!-- ? Logo -->
+  <div class="w-100 d-flex align-items-center justify-content-center">
+    <div class="d-flex align-items-center justify-content-center radius-rounded border-100 border-color-air circle">
+      <app-image
+        [imageUrl]="profile()?.thumbnailLogoAddress"
+        defaultImage="wealth-assets/icons/default-instrument.svg"
+      />
+    </div>
+  </div>
+
+  <ngx-button
+    [mode]="'icon-only'"
+    [style]="'neutral-link'"
+    [leftIcon]="{
+      name: 'bank-card',
+    }"
+    [size]="'small'"
+    (clickHandler)="onTransactionsClicked()"
+  />
+</div>
+
+<div class="w-100 d-flex flex-wrap">
+  <!-- ? name -->
+  <div class="w-100 mt-medium">
+    <p class="text-onback-high text-align-center st-3">
+      {{ profile().title }}
+      @if (profile().displaySymbol) {
+        <span class="st-8 text-onback-medium"> ({{ profile().displaySymbol }}) </span>
+      }
+    </p>
+    @if (profile().oldName) {
+      <p class="st-8 text-onback-medium text-align-center">(نام قبلی: {{ profile().oldName }})</p>
+    }
+  </div>
+
+  <!-- ? Risk -->
+  <div class="w-100 d-flex flex-wrap justify-content-center mt-medium">
+    <ngx-badge
+      size="md"
+      [status]="riskLevel().badge"
+      mode="fill"
+      type="text"
+    >
+      {{ riskLevel().text }}
+    </ngx-badge>
+  </div>
+
+  <!-- ? liquidity -->
+  <div class="w-100 mt-tiny my-medium">
+    <p class="text-align-center b-2">نقد شوندگی {{ profile().liquidityPolicy }}</p>
+  </div>
+
+  <!-- ? Profit table -->
+  @if (config()?.hasProfitTable) {
+    <div
+      class="w-100 d-flex radius-medium px-medium py-minus gap-tiny justify-content-space-between surface-glass-onelevated"
+      [ngClass]="{ 'three-columns': profile().compoundProfit }"
+    >
+      @for (profit of fundProfitDetail(); track profit; let last = $last) {
+        <div class="d-flex w-100 justify-content-center">
+          <div class="d-flex flex-column align-items-center">
+            <div class="c-1 text-onback-high">
+              {{ profit.title }}
+            </div>
+            <div
+              dir="ltr"
+              class="c-1 text-onback-brand mt-tiny"
+            >
+              {{ profit.value }}
+            </div>
+          </div>
+        </div>
+        @if (!last) {
+          <ngx-divider
+            class="h-100"
+            [color]="BorderColorsEnum.Light"
+            orientation="vertical"
+          />
+        }
+      }
+    </div>
+  }
+
+  <!-- ? Periodic profit distribution -->
+  <div class="w-100 d-flex flex-wrap mt-medium radius-medium surface-glass-onelevated flex-column gap-medium p-medium">
+    @for (item of config().statistics; track $index; let last = $last) {
+      <div
+        class="d-flex align-items-center justify-content-space-between gap-tiny"
+        [ngClass]="{ 'flex-column': !item.singleLine }"
+      >
+        <div class="c-1 text-onback-high d-flex align-items-center justify-content-space-between">
+          {{ item.key }}
+        </div>
+        <div class="mt-tiny c-1 text-onback-medium">
+          {{ item.value || 'سود این صندوق‌، بیست‌و‌پنجم هر ماه به حساب بانکی متصل به سجام واریز می‌شود.' }}
+        </div>
+      </div>
+
+      @if (!last) {
+        <ngx-divider
+          class="w-100"
+          [color]="BorderColorsEnum.Tint"
+          orientation="horizontal"
+        />
+      }
+    }
+  </div>
+</div>

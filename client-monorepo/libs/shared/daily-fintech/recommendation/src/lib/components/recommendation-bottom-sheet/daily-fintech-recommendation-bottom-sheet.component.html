@@ -1,0 +1,55 @@
+<div class="d-flex flex-column gap-big surface-elevated">
+  <div class="cell-number-title">گزینه‌ها</div>
+  @if (cellNumber.pinned) {
+    <div
+      class="d-flex gap-minus cursor-pointer"
+      (click)="unpinClick()"
+    >
+      <common-icon-dp-icon
+        [classes]="'text-onback-low'"
+        [iconSize]="'24'"
+        [icon]="'unPin'"
+        [iconType]="'linear'"
+      ></common-icon-dp-icon>
+      <span class="text-onback-low fs-14 fw-normal">حذف از پرکاربردها</span>
+    </div>
+  } @else {
+    <div
+      class="d-flex gap-minus cursor-pointer"
+      (click)="pinClick()"
+    >
+      <common-icon-dp-icon
+        [classes]="'text-onback-high'"
+        [iconSize]="'24'"
+        [iconType]="'linear'"
+        [icon]="'pin'"
+      ></common-icon-dp-icon>
+      <span class="text-onback-low b-2">افزودن به پرکاربردها</span>
+    </div>
+  }
+  <div
+    (click)="editClick()"
+    class="d-flex gap-minus cursor-pointer"
+  >
+    <common-icon-dp-icon
+      [classes]="'text-onback-low'"
+      [iconSize]="'24'"
+      [iconType]="'linear'"
+      [icon]="'Edit-square'"
+    ></common-icon-dp-icon>
+    <span class="text-onback-low b-2">ویرایش نام</span>
+  </div>
+
+  <div
+    (click)="deleteClick()"
+    class="d-flex gap-minus cursor-pointer"
+  >
+    <common-icon-dp-icon
+      [classes]="'text-onback-error'"
+      [iconSize]="'24'"
+      [iconType]="'linear'"
+      [icon]="'delete'"
+    ></common-icon-dp-icon>
+    <span class="text-onback-error b-2">حذف از لیست</span>
+  </div>
+</div>

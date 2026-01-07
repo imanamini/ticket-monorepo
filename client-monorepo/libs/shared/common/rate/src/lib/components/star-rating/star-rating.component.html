@@ -1,0 +1,21 @@
+<div class="d-flex flex-column gap-plus justify-content-center align-items-center">
+  <div class="b-1">به تجربه خرید از این فروشگاه چه امتیازی می‌دهید؟</div>
+  <div class="stars-wrapper d-flex gap-small px-plus pt-minus pb-pony radius-plus surface-back flex-row-reverse">
+    @for (i of stars(); track $index) {
+      <div
+        class="d-flex flex-column gap-micro align-items-center"
+        (click)="handleRateClick($index)"
+        #starElement
+      >
+        <common-icon-dp-icon
+          [icon]="'star'"
+          [styles]="i ? 'color: #3484ff' : 'color: #D9DEE9CC'"
+          [gradientMode]="i ? 'tint' : 'none'"
+          [iconType]="'bold'"
+        >
+        </common-icon-dp-icon>
+        <div class="b-3">{{ $index + 1 }}</div>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,98 @@
+<common-ui-components-page-layout
+  [showBorder]="false"
+  [hasBackAction]="true"
+  [stickyHeader]="true"
+  [title]="'تنظیمات ارسال'"
+>
+  <div class="d-flex flex-column justify-content-space-between h-100vh p-medium">
+    <div>
+      <p class="st-8 mb-small">نحوه ارسال کالا</p>
+      <p class="b-3 text-onback-medium">
+        لطفا پس از ارسال مرسوله، اطلاعات زیر را وارد نمایید؛ در غیر این صورت، سفارش پس از زمان مشخص شده لغو خواهد شد.
+      </p>
+
+      <div
+        [formGroup]="deliveryForm"
+        class="mt-medium"
+      >
+        <div class="d-flex gap-small">
+          <div class="w-50">
+            <ui-form-field
+              [formControlName]="'type'"
+              [label]="'نحوه ارسال'"
+              [type]="'select'"
+              [placeholder]="'انتخاب کنید'"
+              [error]="deliveryForm.controls['type'].errors ?? {}"
+              [options]="deliveryOptions()"
+            ></ui-form-field>
+          </div>
+          <div class="w-50">
+            <ui-form-field
+              [formControlName]="'deliverTime'"
+              [label]="'زمان ارسال'"
+              [type]="'date'"
+              [customDateRange]="deliverTimeDateRange"
+              [error]="deliveryForm.controls['deliverTime'].errors ?? {}"
+              [initialCalendarView]="'days'"
+            ></ui-form-field>
+          </div>
+        </div>
+        @if (deliveryForm.controls['type'].value === DeliveryTypeEnum.POST) {
+          <ui-form-field
+            [formControlName]="'postTrackingCode'"
+            [isNumericKeyboard]="true"
+            [label]="'کد رهگیری پستی'"
+            [error]="deliveryForm.controls['postTrackingCode'].errors ?? {}"
+            [errorMessageMapper]="{
+              required: 'کد پستی را وارد کنید.',
+            }"
+          ></ui-form-field>
+        } @else if (deliveryForm.controls['type'].value === DeliveryTypeEnum.COURIER) {
+          <div class="d-flex gap-small">
+            <div class="w-100">
+              <ui-form-field
+                [formControlName]="'courierFullName'"
+                [label]="'نام و نام خانوادگی پیک'"
+                [error]="deliveryForm.controls['courierFullName'].errors ?? {}"
+                [inputType]="'text'"
+              ></ui-form-field>
+            </div>
+            <div class="w-100">
+              <ui-form-field
+                [formControlName]="'courierCellNumber'"
+                [label]="'شماره همراه پیک'"
+                [error]="deliveryForm.controls['courierCellNumber'].errors ?? {}"
+                [isNumericKeyboard]="true"
+                [maxSize]="11"
+                [errorMessageMapper]="{
+                  required: 'شماره همراه را وارد کنید.',
+                  invalidCellNumber: 'شماره همراه وارد شده معتبر نیست',
+                }"
+              ></ui-form-field>
+            </div>
+          </div>
+        }
+
+        <ui-form-field
+          [formControlName]="'description'"
+          [label]="'توضیحات (اختیاری)'"
+          [error]="deliveryForm.controls['description'].errors ?? {}"
+          [errorMessageMapper]="{ maxLength: 'حداکثر 255 کاراکتر' }"
+          [multiLine]="true"
+        ></ui-form-field>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <ngx-button
+        [mode]="'form'"
+        [size]="'large'"
+        [style]="'fill'"
+        [fullWidth]="true"
+        [disabled]="deliveryForm.invalid"
+        (clickHandler)="submitDeliveryCode(deliveryForm)"
+      >
+        تایید
+      </ngx-button>
+    </div>
+  </div>
+</common-ui-components-page-layout>

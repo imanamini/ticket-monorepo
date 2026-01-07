@@ -1,0 +1,153 @@
+<div class="motor-price-card-list d-flex flex-column h-100">
+  <div
+          class="edit-bar d-flex flex-row align-items-center justify-content-space-between surface-back w-100 pt-medium pb-low px-medium">
+    <div class="car-info d-flex flex-row justify-content-center align-items-center gap-tiny">
+      @if (motorInfo()) {
+        <ngx-icon type="linear"
+                  name="motor"
+                  iconSize="24px">
+        </ngx-icon>
+
+        <p class="title st-8 text-onback-medium"
+           [ngxTooltip]="motorInfo().title"
+           tooltipType="hover"
+           tooltipPosition="right">
+          {{ motorInfo().title }}
+        </p>
+      }
+    </div>
+
+    <div
+            class="d-flex flex-row justify-content-center align-items-center bt-2 text-oninvert-brand gap-tiny cursor-pointer"
+            (click)="editMotorInfoClicked()">
+      <ngx-icon type="linear"
+                name="edit-square"
+                iconSize="20px">
+      </ngx-icon>
+      <span class="edit-text cursor-pointer">ویرایش اطلاعات</span>
+    </div>
+  </div>
+
+  <div class="motor-price-card-list-content d-flex flex-column">
+    <div class="limit-and-duration-select w-100 p-medium">
+      <div class="container surface-glass-high-contrast p-medium radius-plus">
+        <div class="d-flex align-items-center justify-content-space-between">
+          <div class="d-flex align-items-center gap-tiny st-8 text-onback-high">
+            <ngx-icon name="insurance"
+                      classes="text-onback-low"
+                      iconSize="24px"></ngx-icon>
+            سقف تعهدات و مدت قرارداد
+          </div>
+          <ins-icon
+                  (click)="onLimitAndDuration()"
+                  [name]="IconEnum.InfoBlue"
+                  [width]="24"
+                  [height]="24">
+          </ins-icon>
+        </div>
+        @if (form) {
+          <div class="inputs" [formGroup]="form">
+            @if (( coverageRateInputList | async ).length > 0) {
+              <ui-form-field
+                      data-tracking-id="input-coverage-rate"
+                      [options]="coverageRateInputList | async"
+                      [showRadioOptions]="true"
+                      [searchable]="false"
+                      class="financial-commitment-input"
+                      type="select"
+                      label="تعهد مالی"
+                      selectOpenType="auto"
+                      formControlName="coverageRate"
+                      selectBottomSheetMaxHeight="90vh">
+              </ui-form-field>
+            }
+
+            @if (( durationInputList | async ).length > 0) {
+              <ui-form-field
+                      data-tracking-id="input-duration"
+                      [options]="durationInputList| async"
+                      [showRadioOptions]="true"
+                      [searchable]="false"
+                      class="duration-input"
+                      type="select"
+                      selectOpenType="auto"
+                      label="مدت اعتبار بیمه‌نامه جدید"
+                      formControlName="duration"
+                      selectBottomSheetMaxHeight="90vh">
+              </ui-form-field>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="cards-container px-medium">
+      <div class="filter-and-sort">
+        <filter-button (filterButtonClicked)="filterButtonClicked()"
+                       [selectedInsuranceCompanies]="selectedCompaniesFilter()"
+                       (deleteFiltersClicked)="deleteFilters()"
+        ></filter-button>
+        <sort-button (sortButtonClicked)="sortButtonClicked()"
+                     [selectedSortMethod]="selectedSortMethod()"
+                     (deleteSortClicked)="deleteSortMethod()"></sort-button>
+      </div>
+
+      <div class="my-medium">
+        @if (isLoading()) {
+          <lib-ngx-skeleton-loading
+                  width="100%"
+                  height="348px"
+          ></lib-ngx-skeleton-loading>
+          <div class="my-minus">
+            <lib-ngx-skeleton-loading
+                    width="100%"
+                    height="140px"
+            ></lib-ngx-skeleton-loading>
+          </div>
+        } @else {
+          @if (hasError()) {
+            <ng-container [ngTemplateOutlet]="error_plp"></ng-container>
+          } @else {
+            @if (filteredInsuranceItems()?.length === 0) {
+              <ng-container [ngTemplateOutlet]="not_found_plp"></ng-container>
+            } @else {
+              @for (item of filteredInsuranceItems(); track item.company?.id; let idx = $index) {
+                <plp-card-item [insurance-card-info]="item"
+                               (select-item)="onSelectCard($event)"
+                               (gift-info)="onSelectGift($event)"
+                ></plp-card-item>
+
+                @if (idx === 0) {
+                  <div
+                          class="business-value d-flex justify-content-space-around gap-plus p-big radius-plus">
+                    @for (item of businessValueItems(); track i; let i = $index) {
+                      <div class="d-flex flex-column gap-small align-items-center">
+                        <ins-icon [name]="item.icon"
+                                  [width]="32"
+                                  [height]="32"></ins-icon>
+                        <span [textContent]="item.text"
+                              class="b-3 text-onback-high"></span>
+                      </div>
+                    }
+                  </div>
+                }
+              }
+            }
+          }
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #not_found_plp>
+  <not-found-insurance-company [background-color]="'white'"></not-found-insurance-company>
+</ng-template>
+
+<ng-template #error_plp>
+  <error-retry (retry)="retryClicked()"></error-retry>
+</ng-template>
+
+@if (isRoutingToOrderPage()) {
+  <fullscreen-loading></fullscreen-loading>
+}

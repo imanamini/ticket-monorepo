@@ -1,0 +1,13 @@
+@if (showPersonalInfo) {
+  <used-personal-information
+    (dataRegistered)="personalInfoForm($event)"
+    [uniqueCode]="uniqueCode">
+  </used-personal-information>
+} @else {
+  <used-imei-information
+    (imeiRegistered)="onRegister($event)"
+    [preSelectedImei]="orderInfo?.serialNumber"
+    [uniqueCode]="uniqueCode">
+  </used-imei-information>
+}
+

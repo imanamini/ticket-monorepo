@@ -1,0 +1,18 @@
+<pay-club-applet-ui-content-card
+  cardTitle="امتیازگیری"
+  [hasCardAction]="true"
+  (onActionClick)="onActionClicked()"
+  cardActionText="همه"
+>
+  <div class="d-grid card-container gap-medium px-plus">
+    @for (way of scoringItems() | slice: 0 : 4; track way) {
+      <pay-club-applet-ui-point-card
+        [title]="way.text"
+        [description]="way.description"
+        [points]="way.point"
+        [iconName]="way.icon"
+        (clicked)="onPointCardClick(way)"
+      ></pay-club-applet-ui-point-card>
+    }
+  </div>
+</pay-club-applet-ui-content-card>

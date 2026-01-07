@@ -1,0 +1,106 @@
+<div class="position-relative d-flex flex-column flex-grow w-100">
+  @if (!showLoading()) {
+    <app-credit-app-bar
+      (onBackButtonClick)="prevStep.emit()"
+      [backButton]="true"
+      title="چک ضمانت"
+    ></app-credit-app-bar>
+    <app-credit-stepper
+      [currentStep]="3"
+      [steps]="5"
+      [title]="'ثبت چک در سامانه صیاد'"
+    ></app-credit-stepper>
+    <div class="d-flex flex-column flex-grow rtl position-relative">
+      <div class="d-flex flex-column flex-grow pt-plus px-plus">
+        <app-credit-scrollable-view [fullHeightContent]="true">
+          <div class="d-flex flex-column flex-grow gap-minus rtl">
+            <div class="surface-back d-flex flex-row justify-content-space-between align-items-center px-medium py-plus radius-medium">
+              <span class="st-8 text-onback-high">راهنمای ثبت صیادی</span>
+              <ngx-button
+                [mode]="'icon-only'"
+                [size]="'tiny'"
+                [style]="'link'"
+                [rightIcon]="{ name: 'arrow-2-left' }"
+                ngxTrackableId
+                trackerId="creditChequeSayadHintButton"
+                (clickHandler)="openSayadHintBottomSheet()"
+              >
+              </ngx-button>
+            </div>
+            <div class="py-minus px-medium d-flex flex-column gap-small w-100">
+              @for (tableItem of guides(); track tableItem; let last = $last) {
+                @if (tableItem.value === 'divider') {
+                  <ngx-divider
+                    [color]="BorderColorsEnum.Light"
+                    class="my-tiny w-100"
+                    orientation="horizontal"
+                  ></ngx-divider>
+                } @else {
+                  <div class="d-flex py-low flex-row justify-content-space-between align-items-center">
+                    <div class="b-2 text-onback-medium">{{ tableItem.label }}</div>
+                    @if (!tableItem.copyable) {
+                      <div class="st-8 text-onback-high d-flex flex-row align-items-center">
+                        <span>{{ tableItem.value }}</span>
+                        @if (tableItem.currency) {
+                          <span class="is-currency">ریال</span>
+                        }
+                      </div>
+                    }
+                    @if (tableItem.copyable) {
+                      <div
+                        (click)="copyToClipboard(tableItem.value)"
+                        ngxTrackableId
+                        [trackerId]="tableItem.name + 'CopyToClipboardButtonClick'"
+                        class="d-flex flex-row justify-content-center align-items-center gap-micro cursor-pointer"
+                      >
+                        <div class="st-8 text-onback-high d-flex flex-row align-items-center">
+                          <span>{{ tableItem.value }}</span>
+                          @if (tableItem.currency) {
+                            <span class="is-currency">ریال</span>
+                          }
+                        </div>
+                        <ngx-icon
+                          class="text-onback-brand"
+                          [name]="'document-copy'"
+                        ></ngx-icon>
+                      </div>
+                    }
+                  </div>
+                }
+              }
+            </div>
+          </div>
+        </app-credit-scrollable-view>
+      </div>
+      <div class="rtl d-flex flex-column pt-pony px-plus pb-plus">
+        <ngx-button
+          (clickHandler)="submit.emit(true)"
+          [disabled]="loading()"
+          [fullWidth]="true"
+          [isLoading]="loading()"
+          [style]="'fill'"
+          ngxTrackableId
+          trackerId="chequeSayadInfoConfirmButtonClick"
+          >تایید و ادامه
+        </ngx-button>
+      </div>
+    </div>
+  } @else {
+    <credit-page-loading [active]="showLoading()!"></credit-page-loading>
+  }
+  @if (showHint()) {
+    <div class="hint-overlay rtl surface-dim-glass d-flex flex-column align-items-center justify-content-center flex-grow px-big">
+      <div class="hint-image mb-huge"></div>
+      <span class="st-1 text-oninvert-high mb-massive text-align-center">اکنون چک را طبق اطلاعات، در سامانه صیاد ثبت نمایید.</span>
+      <ngx-button
+        ngxTrackableId
+        trackerId="creditChequeSayadHintOverlayButton"
+        [fullWidth]="false"
+        [mode]="hintButtons.mode"
+        [style]="hintButtons.style"
+        (clickHandler)="showHint.set(false)"
+        >{{ hintButtons.label }}
+      </ngx-button>
+    </div>
+  }
+</div>

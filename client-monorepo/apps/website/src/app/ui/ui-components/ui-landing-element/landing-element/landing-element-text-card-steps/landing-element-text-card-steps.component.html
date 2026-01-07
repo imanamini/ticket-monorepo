@@ -1,0 +1,12 @@
+<div class="le-text-card-steps">
+  <div
+    *ngFor="let step of payload.steps; let i = index"
+    class="le-text-card"
+  >
+    <div class="le-index">{{ i + 1 }}</div>
+    <div
+      [innerHTML]="step.description"
+      class="le-description"
+    ></div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="d-flex flex-column w-100 flex-grow rtl">
+  <div class="flex-grow justify-content-center rtl">
+    <ngx-status-result
+      [title]="data().title"
+      [buttons]="data().buttons"
+      (clicked)="onActionClick($event)"
+      [description]="data().description"
+      [iconState]="data().iconState"
+      [type]="data().type"
+      [hasCloseIcon]="data().hasCloseIcon"
+      (closed)="back.emit()"
+    >
+      <div
+        html-content
+        class="d-flex flex-column flex-grow justify-content-flex-end gap-medium"
+      >
+        @if (data().alert) {
+          <ngx-alert
+            [color]="'yellow'"
+            [hasCloseIcon]="false"
+            [text]="data().alert"
+          />
+        }
+        @if (data().calloutMessages && data().calloutMessages.length) {
+          <ngx-callout
+            [mode]="'multiple'"
+            [showTitleBlink]="true"
+            [messagesDashed]="false"
+            [title]="data().calloutTitle"
+            [messages]="data().calloutMessages"
+          />
+        }
+      </div>
+    </ngx-status-result>
+  </div>
+</div>

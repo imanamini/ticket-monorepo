@@ -1,0 +1,224 @@
+<div class="w-100">
+  @if (assets.fund.length > 0) {
+    <ng-container
+      [ngTemplateOutlet]="header"
+      [ngTemplateOutletContext]="{ more: assets.fund.length > 3, type: 'fund' }"
+    ></ng-container>
+    @if (balance()) {
+      <div class="profile-asset-list-container mt-medium pb-medium">
+        <div class="d-flex flex-row justify-content-space-between align-items-center border-bottom">
+          <span class="balance-profile-asset line-h-3"> مجموع دارایی </span>
+
+          <ng-container *ngTemplateOutlet="balanceTemplate; context: { balance: balance() }"> </ng-container>
+        </div>
+
+        @for (item of assets.fund | slice: 0 : 4; let last = $last; track $index) {
+          <ng-container *ngTemplateOutlet="portfoItems; context: { item, last }"> </ng-container>
+        }
+      </div>
+    } @else {
+      <div class="empty-profile mt-medium">
+        <img src="wealth-assets/images/epmty-profile.png" />
+        <span
+          (click)="goToProfile()"
+          class="detail-link"
+        >
+          شروع سرمایه‌گذاری
+          <ngx-icon name="arrow-left"></ngx-icon>
+        </span>
+      </div>
+    }
+  }
+  @if (assets.ipo.length > 0) {
+    <div class="mt-3">
+      <ng-container
+        [ngTemplateOutlet]="header"
+        [ngTemplateOutletContext]="{ more: assets.ipo.length > 4, type: 'ipo' }"
+      ></ng-container>
+
+      @if (ipoBalance()) {
+        <div class="profile-asset-list-container mt-medium pb-medium">
+          <div class="d-flex flex-row justify-content-space-between align-items-center border-bottom">
+            <span class="balance-profile-asset line-h-3"> مجموع دارایی </span>
+
+            <ng-container *ngTemplateOutlet="balanceTemplate; context: { balance: ipoBalance() }"> </ng-container>
+          </div>
+
+          @for (item of assets.ipo | slice: 0 : 4; let last = $last; track $index) {
+            <ng-container *ngTemplateOutlet="portfoItems; context: { item, last }"> </ng-container>
+          }
+        </div>
+      } @else {
+        <div class="empty-profile mt-medium">
+          <img src="wealth-assets/images/epmty-profile.png" />
+          <span
+            (click)="goToProfile()"
+            class="detail-link"
+          >
+            شروع سرمایه‌گذاری
+            <ngx-icon name="arrow-left"></ngx-icon>
+          </span>
+        </div>
+      }
+    </div>
+  }
+  @if (assets.crowd.length > 0) {
+    <div class="mt-3">
+      <ng-container
+        [ngTemplateOutlet]="header"
+        [ngTemplateOutletContext]="{
+          more: assets.crowd.length > 3,
+          type: 'crowd',
+        }"
+      ></ng-container>
+
+      @if (crowdBalance()) {
+        <div class="profile-asset-list-container mt-medium pb-medium">
+          <div class="d-flex flex-row justify-content-space-between align-items-center border-bottom">
+            <span class="balance-profile-asset line-h-3"> مجموع دارایی </span>
+
+            <ng-container *ngTemplateOutlet="balanceTemplate; context: { balance: crowdBalance() }"> </ng-container>
+          </div>
+
+          @for (item of assets.crowd | slice: 0 : 4; let last = $last; track $index) {
+            <ng-container *ngTemplateOutlet="portfoItems; context: { item, last }"> </ng-container>
+          }
+        </div>
+      } @else {
+        <div class="empty-profile mt-medium">
+          <img src="wealth-assets/images/epmty-profile.png" />
+          <span
+            (click)="goToProfile()"
+            class="detail-link"
+          >
+            شروع سرمایه‌گذاری
+            <ngx-icon name="arrow-left"></ngx-icon>
+          </span>
+        </div>
+      }
+    </div>
+  }
+  @if (assets.stock.length > 0) {
+    <div class="mt-3">
+      <ng-container
+        [ngTemplateOutlet]="header"
+        [ngTemplateOutletContext]="{
+          more: assets.stock.length > 3,
+          type: 'Stock',
+        }"
+      ></ng-container>
+
+      @if (stockBalance()) {
+        <div class="profile-asset-list-container mt-medium pb-medium">
+          <div class="d-flex flex-row justify-content-space-between align-items-center border-bottom">
+            <span class="balance-profile-asset line-h-3"> مجموع دارایی </span>
+
+            <ng-container *ngTemplateOutlet="balanceTemplate; context: { balance: stockBalance() }"> </ng-container>
+          </div>
+
+          @for (item of assets.stock | slice: 0 : 4; let last = $last; track $index) {
+            <ng-container *ngTemplateOutlet="portfoItems; context: { item, last }"> </ng-container>
+          }
+        </div>
+      } @else {
+        <div class="empty-profile mt-medium">
+          <img src="wealth-assets/images/epmty-profile.png" />
+          <span
+            (click)="goToProfile()"
+            class="detail-link"
+          >
+            شروع سرمایه‌گذاری
+            <ngx-icon name="arrow-left"></ngx-icon>
+          </span>
+        </div>
+      }
+    </div>
+  }
+</div>
+
+<ng-template
+  #header
+  let-more="more"
+  let-type="type"
+  let-total="total"
+>
+  <div class="d-flex flex-row justify-content-space-between">
+    <span class="profile-title">{{
+      type === 'Stock' ? 'موجودی سهام' : type === 'crowd' ? 'موجودی تامین مالی جمعی' : 'موجودی صندوق‌ها'
+    }}</span>
+    @if (more) {
+      <span
+        (click)="goToMore(type)"
+        class="detail-link"
+      >
+        بیشتر
+        <ngx-icon name="arrow-2-left"></ngx-icon>
+      </span>
+    }
+  </div>
+</ng-template>
+
+<ng-template
+  #portfoItems
+  let-item="item"
+  let-last="last"
+>
+  <div>
+    <div
+      class="items py-pony"
+      [style.padding-bottom]="last ? '0 !important' : ''"
+    >
+      <div class="d-flex flex-row gap-8">
+        <div class="item-logo">
+          @if (item.investmentType === 'CrowdFund') {
+            <img
+              src="./wealth-assets/svg/crowd-logo.svg"
+              [alt]="item.title"
+            />
+          } @else {
+            <app-image
+              [imageUrl]="item?.logoAddress"
+              defaultImage="wealth-assets/icons/default-instrument.svg"
+            ></app-image>
+          }
+        </div>
+        <div class="d-flex flex-column gap-7">
+          <span
+            class="item-title"
+            (click)="goToDetail(item)"
+            >{{ item.title }}</span
+          >
+          @if (item.investmentType !== 'CrowdFund') {
+            <span class="item-date">به‌روز رسانی {{ item.lastUpdatedAt | formatedDate }}</span>
+          }
+        </div>
+      </div>
+
+      @if (canSee()) {
+        <span class="item-price line-h-3">
+          {{ item.price | number }}
+          <span class="item-rial is-currency"> ریال </span>
+        </span>
+      } @else {
+        <span class="item-price line-h-3"> ******** </span>
+      }
+    </div>
+    @if (!last) {
+      <hr class="items-divider m-atom" />
+    }
+  </div>
+</ng-template>
+
+<ng-template
+  #balanceTemplate
+  let-balance="balance"
+>
+  @if (canSee()) {
+    <span class="balance-profile-asset">
+      {{ balance | number }}
+      <span class="rial is-currency"> ریال </span>
+    </span>
+  } @else {
+    <span class="balance-profile-asset line-h-3"> ******** </span>
+  }
+</ng-template>

@@ -1,0 +1,28 @@
+<section
+  [ngClass]="type"
+  class="timeline"
+>
+  <div class="container">
+    <h2 class="text-align-center">{{ title }}</h2>
+    <div class="timeline-contain">
+      <div class="timeline-blue-line"></div>
+      <div class="timeline-items">
+        <ul *ngIf="steps && steps.length > 0">
+          <li *ngFor="let step of steps; let itemIndex = index">
+            <div>
+              <i>
+                <img
+                  [attr.alt]="step.title"
+                  [src]="step.icon.url"
+                />
+              </i>
+              <div class="timeline-number">{{ itemIndex + 1 }}</div>
+              <div class="timeline-title">{{ step.title }}</div>
+              <div class="timeline-desc">{{ step.text }}</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

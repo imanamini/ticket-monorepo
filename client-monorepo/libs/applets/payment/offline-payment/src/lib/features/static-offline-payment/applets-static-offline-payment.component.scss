@@ -1,0 +1,123 @@
+
+.container {
+  background: #F2F5F8FF;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.invoice {
+  background: #fff;
+  position: relative;
+  margin: 16px;
+  padding-bottom: 17px;
+  border-radius: 16px;
+  direction: rtl;
+
+  &::after, &::before {
+    content: '';
+    position: absolute;
+    height: 5px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+  }
+
+  &:after {
+    bottom: -5px;
+  }
+
+  .invoice-info {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding-right: 16px;
+
+    .info-title {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      .title {
+        color: #2C3544FF;
+        font-size: 14px;
+      }
+
+      .time {
+        color: #6E798DFF;
+        font-size: 12px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .tracking-code {
+    margin: 26px 0 24px 0;
+
+    p {
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid #DEE3E7FF;
+      line-height: 0.1em;
+      margin: 10px 0 20px;
+    }
+
+    p span {
+      background: #fff;
+      padding: 0 10px;
+      color: #DEE3E7FF;
+      font-family: 'Courier New';
+      font-weight: 700;
+      font-size: 14px;
+    }
+  }
+
+  .invoice-detail {
+    margin: 24px 16px;
+    padding-bottom: 22px;
+    border-bottom: 1px dashed #DEE3E7FF;
+
+    .title {
+      color: #8D99A8FF;
+      font-size: 12px;
+    }
+
+    .detail {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-top: 22px;
+      gap: 10px;
+
+
+      .detail-title {
+        color: #8D99A8FF;
+        line-height: 24px;
+        font-size: 12px;
+      }
+
+      .detail-info {
+        color: #2C3544FF;
+        font-weight: 500;
+        white-space: nowrap;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .invoice-price {
+    padding: 24px 16px;
+    display: flex;
+    justify-content: space-between;
+
+    .price-title {
+      color: #8D99A8FF;
+      font-weight: 400;
+    }
+
+    .price {
+      color: #424C5CFF;
+      font-size: 18px;
+    }
+  }
+}

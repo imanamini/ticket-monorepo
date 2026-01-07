@@ -1,0 +1,42 @@
+@use "insurance/src/lib/app/style/mixins/ios" as ios;
+
+:host {
+  width: 100%;
+  flex: 1;
+  .plate-content{
+    @include ios.over-scroll-behavior-none-ios();
+  }
+}
+
+.plate {
+
+  &-content {
+
+    flex: 1;
+    overflow: auto;
+    width: 100%;
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
+
+    .content-message {
+      padding: 8px 0;
+      font-size: 16px;
+      line-height: 28px;
+    }
+
+    .my-plates {
+      &-text {
+        line-height: normal;
+      }
+    }
+
+    .no-plate {
+      line-height: normal;
+      text-align: center;
+    }
+  }
+}

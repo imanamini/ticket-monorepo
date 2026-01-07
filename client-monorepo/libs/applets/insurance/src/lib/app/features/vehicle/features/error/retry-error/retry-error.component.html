@@ -1,0 +1,7 @@
+<div id="error-container">
+  <error-retry [show-retry-icon]="false"></error-retry>
+  <action-buttons (activeButtonClicked)="retryButtonClicked.emit()"
+                  [showDeActiveButton]="false"
+                  activeButtonText="تلاش مجدد">
+  </action-buttons>
+</div>

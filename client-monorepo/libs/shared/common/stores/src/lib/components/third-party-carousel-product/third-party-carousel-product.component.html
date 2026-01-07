@@ -1,0 +1,25 @@
+<div class="product-container">
+  <div class="product-image-container">
+    <img
+      [ngSrc]="product().image"
+      [alt]="'Product'"
+      class="product-image"
+      loading="lazy"
+      [width]="88"
+      [height]="88"
+    />
+    @if (product().discount) {
+      <div class="discount-badge">
+        <ngx-badge
+          [mode]="'bold'"
+          [status]="'error'"
+          [size]="'tiny'"
+          [template]="percentbox"
+        ></ngx-badge>
+        <ng-template #percentbox>
+          <span class="ltr">{{ product().discount }} %</span>
+        </ng-template>
+      </div>
+    }
+  </div>
+</div>

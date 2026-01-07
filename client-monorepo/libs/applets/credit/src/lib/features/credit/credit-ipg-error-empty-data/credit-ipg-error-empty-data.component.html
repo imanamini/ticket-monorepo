@@ -1,0 +1,18 @@
+<div class="h-100">
+  <ngx-status-result
+    [type]="'Status'"
+    [title]="'عملیات ناموفق'"
+    [description]="'متاسفانه تراکنش شما ناموفق بود.\n' + 'در صورت عدم بازگشت وجه تا ۷۲ ساعت، با پشتیبانی تماس بگیرید.'"
+    [buttons]="[
+      {
+        id: 'primary',
+        label: 'متوجه شدم',
+        style: 'fill',
+        mode: 'form',
+        fullWidth: true,
+      },
+    ]"
+    [iconState]="'error'"
+    (clicked)="onCta()"
+  />
+</div>

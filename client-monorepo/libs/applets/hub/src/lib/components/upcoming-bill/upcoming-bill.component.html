@@ -1,0 +1,50 @@
+@if (showComponent()) {
+  <common-ui-components-horizontal-scroll>
+    <div class="d-flex gap-small text-no-wrap">
+      @for (bill of bills(); track bill.payload.billInfo.billId) {
+        <div
+          class="d-flex surface-glass-onelevated radius-medium pr-medium pl-minus py-minus gap-minus align-items-center cursor-pointer"
+          (click)="billClick(bill)"
+        >
+          <ui-api-image
+            [imageId]="bill.payload.billInfo.imageId"
+            [width]="'18px'"
+            [height]="'18px'"
+          ></ui-api-image>
+          <div class="d-flex flex-column flex-basis-1">
+            <span class="c-2 text-onback-medium">{{ bill.payload.billInfo.name }}</span>
+            <div class="d-flex gap-tiny">
+              <span class="text-onback-low l-3">قابل پرداخت</span>
+              <span class="text-onback-high l-1 is-currency">{{ bill.payload.billInfo.amount | thousands }} ریال</span>
+            </div>
+          </div>
+          <ngx-button
+            [style]="'link'"
+            [size]="'small'"
+            [mode]="'icon-only'"
+            [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+          >
+          </ngx-button>
+        </div>
+      }
+    </div>
+  </common-ui-components-horizontal-scroll>
+} @else {
+  <div class="d-flex surface-glass-high-contrast radius-medium p-minus pr-medium gap-minus align-items-center">
+    <lib-ngx-skeleton-loading
+      [width]="'32px'"
+      [height]="'32px'"
+      [borderRadius]="'50%'"
+    ></lib-ngx-skeleton-loading>
+    <div class="d-flex flex-column gap-tiny">
+      <lib-ngx-skeleton-loading
+        [width]="'50px'"
+        [height]="'16px'"
+      ></lib-ngx-skeleton-loading>
+      <lib-ngx-skeleton-loading
+        [width]="'80px'"
+        [height]="'16px'"
+      ></lib-ngx-skeleton-loading>
+    </div>
+  </div>
+}

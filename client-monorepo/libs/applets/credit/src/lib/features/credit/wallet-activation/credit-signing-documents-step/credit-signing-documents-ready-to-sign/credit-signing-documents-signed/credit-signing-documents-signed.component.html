@@ -1,0 +1,10 @@
+<div class="d-flex flex-column flex-grow rtl">
+  <span class="d-block mt-minus mb-medium b-2 text-onback-high w-100 text-align-center">
+    اسناد مورد نیاز برای دریافت اعتبار را بررسی و امضا کنید.
+  </span>
+  <div class="documents-container d-flex flex-row align-items-flex-start flex-grow gap-medium">
+    @for (doc of documents(); track doc.docId) {
+      <app-credit-signing-documents-list-item [document]="doc"></app-credit-signing-documents-list-item>
+    }
+  </div>
+</div>

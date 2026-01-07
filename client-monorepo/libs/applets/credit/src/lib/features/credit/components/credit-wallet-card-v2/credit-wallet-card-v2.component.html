@@ -1,0 +1,77 @@
+<ngx-card
+  (click)="cardClicked()"
+  [amount]="wallet()?.balance"
+  [amountAlign]="'right'"
+  [cardBackground]="wallet()?.color"
+  [cardLabel]="wallet()?.topCardTitle"
+  [cardLogo]="wallet()?.icon"
+  [width]="'100%'"
+  [cardMode]="wallet()?.serviceType === SERVICE_TYPE.BNPL ? 'bnpl' : 'credit'"
+  [leftDetail]="creditLeftDetail"
+  [rightDetail]="creditRightDetail"
+  [logoWidth]="32"
+  [logoHeight]="32"
+  [mainLabel]="hasMainLabel() ? wallet()?.rightLabel.value : ''"
+  class="radius-plus"
+></ngx-card>
+<ng-template #creditRightDetail>
+  <div>
+    @if (wallet()?.rightLabel) {
+      <span
+        class="fs-10 text-oninvert-high"
+        [class]="!!wallet()?.rightLabel?.backgroundColor ? ['radius-giant', 'p-tiny'] : []"
+        [style.background]="wallet()?.rightLabel?.backgroundColor ?? 'transparent'"
+      >
+        @if (wallet()?.rightLabel?.imageId) {
+          <credit-digipay-image
+            [imageId]="wallet()?.rightLabel?.imageId"
+            height="16px"
+            width="16px"
+          ></credit-digipay-image>
+        }
+        {{ wallet()?.rightLabel.value }}
+      </span>
+    }
+  </div>
+</ng-template>
+<ng-template #creditLeftDetail>
+  <div>
+    @if (wallet()?.leftLabel) {
+      <span
+        class="fs-10 text-oninvert-high"
+        [class]="!!wallet()?.leftLabel?.backgroundColor ? ['radius-giant', 'p-tiny'] : []"
+        [style.background]="wallet()?.leftLabel?.backgroundColor ?? 'transparent'"
+      >
+        @if (wallet()?.leftLabel?.imageId) {
+          <credit-digipay-image
+            [imageId]="wallet()?.leftLabel?.imageId"
+            height="16px"
+            width="16px"
+          ></credit-digipay-image>
+        }
+        {{ wallet()?.leftLabel?.value }}
+      </span>
+    }
+  </div>
+</ng-template>
+<ng-template #activationPreRegisterTemplate>
+  @if (walletInProgressActive()) {
+    <ngx-badge
+      [size]="'tiny'"
+      [mode]="'fill'"
+      [status]="'warning'"
+      [style]="'bold'"
+    >
+      ادامه فعال‌سازی
+    </ngx-badge>
+  } @else {
+    <ngx-badge
+      [size]="'tiny'"
+      [mode]="'fill'"
+      [status]="'neutral'"
+      [style]="'bold'"
+    >
+      جزییات
+    </ngx-badge>
+  }
+</ng-template>

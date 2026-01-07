@@ -1,0 +1,56 @@
+@if (!errorState()) {
+  <app-credit-app-bar
+    (onCloseButtonClick)="onBack()"
+    (onTextClick)="changeNoteTypeClicked.emit()"
+    [actionText]="switchTypePossible() ? 'تغییر نوع سفته' : null!"
+    [closeButton]="true"
+    [title]="pageTitle()"
+    [actionImage]="switchTypePossible() ? 'edit-square' : null!"
+  ></app-credit-app-bar>
+
+  <div class="main-section flex-full-height">
+    <div class="top-section">
+      <app-credit-scrollable-view [fullHeightContent]="true">
+        <div class="page-content">
+          <div class="credit-message-wrapper">
+            <div class="info-image">
+              <credit-digipay-image
+                [imageId]="imageId()"
+                [styles]="{ maxWidth: '80%', maxHeight: '160px', margin: 'auto' }"
+              >
+              </credit-digipay-image>
+            </div>
+
+            <div class="info-title">جزییات سفته الکترونیک:</div>
+
+            <div class="info-table">
+              <div class="table-row">
+                <div>مبلغ ضمانت قابل ارائه</div>
+                <div>{{ guaranteeAmount() | IRR }}</div>
+              </div>
+              <div class="table-row">
+                <div>پرداختی شما برای خرید سفته</div>
+                <div>{{ payAmount() | IRR }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+
+    <div class="bottom-section">
+      <ngx-button
+        (clickHandler)="onPrimaryButtonClick()"
+        [fullWidth]="true"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  </div>
+} @else {
+  <app-credit-enote-step-error
+    [state]="errorState()"
+    (goToSana)="goToSana.emit()"
+    (submitted)="retry()"
+  ></app-credit-enote-step-error>
+}

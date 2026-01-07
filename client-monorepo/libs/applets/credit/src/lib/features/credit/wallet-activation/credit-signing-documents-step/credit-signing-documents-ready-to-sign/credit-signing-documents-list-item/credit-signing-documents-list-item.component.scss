@@ -1,0 +1,24 @@
+:host {
+  display: inline-flex;
+}
+
+
+
+.document-item {
+  width: 144px;
+
+  .document-preview {
+    height: 144px;
+  }
+
+  .document-thumbnail {
+    width: 77px;
+    height: 74px;
+    background: url("./document-thumbnail.svg") no-repeat center center;
+    background-size: 100% 100%;
+  }
+}
+
+::ng-deep .ng2-pdf-viewer-container {
+  overflow: hidden !important;
+}

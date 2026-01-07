@@ -1,0 +1,12 @@
+.title{
+  text-align: center;
+  font-weight: 450;
+}
+
+@media screen and (max-width: 744px) {
+ .content{
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ }
+}

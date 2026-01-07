@@ -1,0 +1,139 @@
+<div class="w-100 d-flex flex-wrap flex-column justify-content-center align-items-center">
+  <p class="c-1 text-onback-medium">موجودی کل</p>
+  <p class="text-onback-medium my-small">
+    <span class="t-4">
+      {{ wallet()?.totalBalance | thousands }}
+    </span>
+    <span class="t-6 is-currency"> ریال </span>
+  </p>
+
+  <div class="border-100 border-color-light radius-minus px-small py-tiny d-flex align-items-center gap-tiny">
+    @for (btn of inventoryTypeButtons(); track $index; let last = $last) {
+      <ngx-icon
+        class="cursor-pointer"
+        [ngClass]="selectedTab() === btn.value ? 'text-onback-brand' : 'text-onback-low'"
+        [name]="btn.icon"
+        [type]="btn.iconType"
+        (click)="changeTab(btn.value)"
+      />
+      @if (!last) {
+        <ngx-divider
+          class="h-100"
+          [color]="BorderColorsEnum.Light"
+          [orientation]="'vertical'"
+          [style]="'solid'"
+        />
+      }
+    }
+  </div>
+
+  <div class="w-100 d-flex mt-big">
+    @switch (selectedTab()) {
+      @case ('wallets_balance') {
+        <wealth-applet-assets-bar
+          class="w-100"
+          [config]="walletBarConfig()"
+        />
+      }
+      @case ('collectible_balance') {
+        <wealth-applet-assets-bar
+          class="w-100"
+          [config]="collectibleBarConfig()"
+        />
+      }
+    }
+  </div>
+
+  <div class="w-100 mt-medium d-grid grid-cols-2">
+    @switch (selectedTab()) {
+      @case ('wallets_balance') {
+        <ng-container *ngTemplateOutlet="inventoryTemplate; context: { $implicit: walletBalanceInfo(), showGram: true }"></ng-container>
+      }
+      @case ('collectible_balance') {
+        <ng-container *ngTemplateOutlet="inventoryTemplate; context: { $implicit: collectibleInfo(), showGram: false }"></ng-container>
+      }
+    }
+  </div>
+
+  <ngx-divider
+    class="w-100 my-minus"
+    [color]="BorderColorsEnum.Air"
+    [orientation]="'horizontal'"
+    [style]="'solid'"
+  />
+
+  <div class="w-100 d-flex align-items-center btns-container">
+    <ngx-button
+      [size]="'small'"
+      [style]="wallet().swapEnabled ? 'link' : 'neutral-link'"
+      (clickHandler)="onSwap()"
+      [disabled]="!wallet().swapEnabled"
+      [leftIcon]="{
+        name: 'transaction',
+      }"
+    >
+      تبدیل دارایی
+    </ngx-button>
+    @if (details()) {
+      <ngx-divider
+        class="btns-divider"
+        [color]="BorderColorsEnum.Light"
+        [orientation]="'vertical'"
+        [style]="'solid'"
+      />
+      <ngx-button
+        [size]="'small'"
+        [style]="'link'"
+        (clickHandler)="onDetail()"
+        [leftIcon]="{
+          name: 'arrow-2-left',
+        }"
+      >
+        جزییات
+      </ngx-button>
+    }
+  </div>
+</div>
+
+<ng-template
+  #inventoryTemplate
+  let-items
+  let-showGram="showGram"
+>
+  @for (inventory of items; track $index; let last = $last) {
+    <div
+      class="col-span-1 d-flex flex-column gap-micro"
+      [ngClass]="last ? 'pr-medium' : 'pr-small'"
+    >
+      <p class="l-3 text-onback-medium d-flex flex-wrap align-items-center gap-tiny">
+        <span
+          class="bullet"
+          [style.background]="inventory.color"
+        ></span>
+        {{ inventory.title }}
+      </p>
+      <p class="c-2 position-relative d-flex flex-wrap gap-micro">
+        @if (inventory.type === 'gold') {
+          {{ goldPricePublisher()?.balance ?? inventory.value | thousands }}
+        } @else {
+          {{ inventory.value | thousands }}
+        }
+        <span class="is-currency"> ریال </span>
+        @if (showGram && inventory.type === 'gold') {
+          <span class="l-2 text-onback-low d-flex gap-micro">
+            (
+            @if (goldPricePublisher()?.anyGoldPendingTrade) {
+              <ngx-spinner
+                [size]="'sm'"
+                [color]="'black'"
+              ></ngx-spinner>
+            } @else {
+              {{ goldPricePublisher()?.weightInGrams ?? inventory?.gram ?? 0 }}
+            }
+            گرم)
+          </span>
+        }
+      </p>
+    </div>
+  }
+</ng-template>

@@ -1,0 +1,51 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+:host {
+  width: 100%;
+}
+
+.stepper {
+  @include flex-column();
+  gap: 8px;
+  padding-top: 16px;
+
+  &-content {
+    @include flex-center();
+    gap: 8px;
+    padding: 0 16px;
+
+    .step-name {
+      color: #3c6dff;
+      font-weight: 540;
+      font-size: 12px;
+      line-height: 20px;
+    }
+
+    .title {
+      flex: 1 1 auto;
+      font-weight: 524;
+      font-size: 12px;
+      line-height: 20px;
+      color: #6e798d;
+    }
+
+    .step {
+      font-size: 12px;
+      line-height: 20px;
+    }
+  }
+
+  &-progress-bar {
+    background-color: #f2f5f8;
+
+    .active {
+      height: 4px;
+      background-color: #3c6dff;
+    }
+  }
+
+  .background-white {
+    background-color: #ffffff !important;
+  }
+}
+

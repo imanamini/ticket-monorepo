@@ -1,0 +1,54 @@
+.bnpl-help-header {
+  padding: 16px 24px;
+  max-width: 480px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-bottom: 1px solid #F2F5F8;
+
+  .bnpl-help-page-title {
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 600;
+    color: #6e798d;
+  }
+}
+
+.bnpl-help {
+  background-color: #ffffff;
+  max-width: 480px;
+  margin: 0 auto;
+  color: #2C3544;
+  overflow: auto;
+  max-height: 100%;
+}
+
+ui-bnpl-help-menu {
+  border-bottom: 1px solid #dee3e7;
+}
+
+.section-wrapper {
+  border-bottom: 1px solid #dee3e7;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+@media (min-width: 481px) {
+  .bnpl-help-header {
+    border-radius: 16px;
+    margin: 24px auto;
+    border-bottom: none;
+
+    .bnpl-help-page-title {
+      font-size: 18px;
+      line-height: 32px;
+      font-weight: 600;
+    }
+  }
+  .bnpl-help {
+    border-radius: 16px;
+    margin-bottom: 24px;
+    padding: 24px 24px 0;
+  }
+}

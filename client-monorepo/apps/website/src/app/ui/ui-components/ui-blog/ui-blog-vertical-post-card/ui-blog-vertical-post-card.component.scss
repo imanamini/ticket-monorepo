@@ -1,0 +1,123 @@
+@import "globals";
+
+
+
+.vertical-post-card {
+  background-color: #ffffff;
+  border: 1px solid $swatch_steel_200;
+  border-radius: 16px;
+  position: relative;
+
+  .play-layer {
+    background-color: $swatch_steel_500;
+    mix-blend-mode: multiply;
+    position: absolute;
+    width: 100%;
+    height: 257px;
+    top: 0;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .play-icon {
+    width: 100%;
+    height: 257px;
+    top: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image {
+    img {
+      width: 100%;
+      border-radius: 16px 16px 0 0;
+      object-fit: cover;
+    }
+  }
+
+  .content {
+    padding: 0 16px 0;
+
+    .details {
+      padding: 17px 0;
+      display: flex;
+      align-items: center;
+
+      .stats {
+        display: flex;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 200%;
+        color: $swatch_steel_400;
+
+        .date {
+          display: flex;
+          align-items: center;
+
+          .icon {
+            margin-right: 4px;
+          }
+        }
+      }
+
+      .category {
+        margin-right: auto;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 200%;
+        color: $swatch_red_400;
+        border-radius: 18px;
+        border: 1px solid $swatch_red_400;
+        background: $swatch_red_100;
+        padding: 0 12px;
+        height: fit-content;
+        cursor: pointer;
+      }
+    }
+
+    .h-divider {
+      border-top: 1px solid $swatch_steel_200;
+    }
+
+    .title {
+      display: block;
+      min-height: 50px;
+      margin-top: 32px;
+      color: $swatch_steel_700;
+      text-align: right;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 200%;
+      cursor: pointer;
+    }
+
+    .description {
+      min-height: 120px;
+      margin-top: 8px;
+      font-size: 12px;
+      font-weight: 400;
+      margin-bottom: 32px;
+      color: $swatch_steel_500;
+      line-height: 200%;
+    }
+
+    .read-more {
+      display: flex;
+      justify-content: flex-end;
+      align-content: center;
+      align-items: center;
+      color: $swatch_blue_500;
+      position: absolute;
+      bottom: 0;
+      width: calc(100% - 32px);
+      left: 16px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 24px;
+      padding: 16px 0;
+      margin-top: 32px;
+    }
+  }
+}

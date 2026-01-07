@@ -1,0 +1,19 @@
+@import '@digipay/base-style/swatch';
+
+.segment-content {
+  position: relative;
+  overflow: hidden;
+}
+
+.transactions-container {
+  position: relative;
+}
+
+.transaction {
+  position: relative;
+}
+
+
+.min-h-72 {
+  min-height: 18rem;
+}

@@ -1,0 +1,75 @@
+@if (showWidget()) {
+  <div
+    class="payment-container w-100"
+    [ngClass]="containerClasses()"
+    [ngStyle]="containerStyles()"
+  >
+    @switch (displayData()?.displayState) {
+      @case (INSTALLMENT_WIDGET_STATES.OVERDUE) {
+        <!-- Case 1: Basic payment with date -->
+        <common-installment-installment-info-card
+          [showDefault]="true"
+          [amount]="displayData()?.totalAmount || 0"
+          (paymentClick)="handlePayment()"
+          [mode]="installmentMode()"
+          [title]="widgetTitle()"
+        >
+          <!-- This content goes into <ng-content></ng-content> -->
+          <div class="date l-2 text-onback-low">
+            {{ displayData()?.date ? 'تاریخ سررسید: ' + (displayData()?.date | date | jalaliDate) : 'تاریخ سررسید: تسویه زودهنگام' }}
+          </div>
+        </common-installment-installment-info-card>
+      }
+
+      @case (INSTALLMENT_WIDGET_STATES.UPCOMING_PENALTY) {
+        <!-- Case 2: Warning with days remaining -->
+        <common-installment-installment-info-card
+          [showDefault]="true"
+          [amount]="displayData()?.totalAmount || 0"
+          (paymentClick)="handlePayment()"
+          [mode]="installmentMode()"
+          [title]="widgetTitle()"
+        >
+          <!-- This content goes into <ng-content></ng-content> -->
+          <div class="date l-2 text-onback-warning">
+            {{ displayData()?.daysRemaining === 0 ? 'آخرین روز بدون جریمه' : displayData()?.daysRemaining + ' روز مانده تا جریمه' }}
+          </div>
+        </common-installment-installment-info-card>
+      }
+
+      @case (INSTALLMENT_WIDGET_STATES.MULTIPLE_OVERDUE) {
+        <!-- Case 3: Multiple overdue -->
+        <common-installment-installment-info-card
+          [showDefault]="false"
+          [itemCount]="displayData()?.itemCount || 0"
+          (paymentClick)="handlePayment()"
+          [mode]="installmentMode()"
+        >
+          <div class="d-flex align-items-center gap-micro">
+            <span class="c-1 text-onback-medium">{{ widgetTitle() }}</span>
+            <span class="l-3 text-onback-low">(شامل{{ displayData()?.itemCount }}قسط)</span>
+          </div>
+          <div class="amount l-2 text-onback-low">
+            مجموع بدهی:
+            <span class="c-1 text-onback-high">{{ displayData()?.totalAmount | thousands }}</span>
+            <span class="c-1 text-onback-high currency is-currency"> ریال </span>
+          </div>
+        </common-installment-installment-info-card>
+      }
+
+      @case (INSTALLMENT_WIDGET_STATES.PENALTY_ACTIVE) {
+        <!-- Case 4: Penalty -->
+        <div class="penalty-content">
+          <common-installment-penalty-installment-card
+            [amount]="displayData()?.totalAmount || 0"
+            [itemCount]="displayData()?.itemCount || 0"
+            (paymentClick)="handlePayment()"
+            [mode]="installmentMode()"
+            [title]="widgetTitle()"
+            [penaltyCount]="penaltyCount() || 0"
+          ></common-installment-penalty-installment-card>
+        </div>
+      }
+    }
+  </div>
+}

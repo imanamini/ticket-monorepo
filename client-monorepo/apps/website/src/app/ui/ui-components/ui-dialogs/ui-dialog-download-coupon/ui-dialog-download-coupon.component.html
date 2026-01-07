@@ -1,0 +1,74 @@
+<app-ui-dialog-bottom-sheet [closeable]="true">
+  <div
+    body
+    class="modal-download-coupon"
+  >
+    <div class="icon">
+      <img
+        *ngIf="data.icon && data.icon.url"
+        [src]="data.icon.url"
+        alt=""
+      />
+    </div>
+    <div
+      *ngIf="data.title"
+      class="title"
+    >
+      {{ data.title }}
+    </div>
+    <div class="description">برای دریافت دیجی پی از {{ data.title }} هنگام خرید اشتراک می توانید از این کد تخفیف استفاره کنید</div>
+    <div class="coupon-box">
+      <span class="text">{{ data.coupons.text }}</span>
+      <span class="code">{{ data.coupons.code }}</span>
+      <span
+        (click)="copyToClipboard(data.coupons.code)"
+        class="icon-copy"
+      ></span>
+      <div
+        [ngClass]="isCopy ? 'show' : 'hide'"
+        class="is-copy"
+      >
+        <span>کد تخفیف کپی شد</span>
+      </div>
+    </div>
+    <div class="cta">
+      <app-ui-button
+        [link]="data.address"
+        class="w-100"
+        linkTarget="_blank"
+      >
+        دریافت دیجی پی از {{ data.title }}
+      </app-ui-button>
+    </div>
+  </div>
+</app-ui-dialog-bottom-sheet>
+<!--<div class="modal-download-coupon">-->
+<!--  <div (click)="closeDialog()" class="close desktop">-->
+<!--    <img src="assets/images/close.svg"/>-->
+<!--  </div>-->
+<!--  <div class="close mobile">-->
+<!--    <img src="assets/images/icons/icon-line.svg"/>-->
+<!--  </div>-->
+<!--&lt;!&ndash;  <div class="icon">&ndash;&gt;-->
+<!--&lt;!&ndash;    <img *ngIf="templateData.icon && templateData.icon.url" [src]="templateData.icon.url"/>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;  <div *ngIf="templateData.title" class="title">&ndash;&gt;-->
+<!--&lt;!&ndash;    {{ templateData.title }}&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;  <div class="description">&ndash;&gt;-->
+<!--&lt;!&ndash;    برای دریافت دیجی پی از {{ templateData.title }} هنگام خرید اشتراک می توانید از این کد تخفیف استفاره کنید&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;  <div class="coupon-box">&ndash;&gt;-->
+<!--&lt;!&ndash;    <span class="text">{{templateData.coupons.text}}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;    <span class="code">{{templateData.coupons.code}}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;    <span class="icon-copy" (click)="copyToClipboard(templateData.coupons.code)"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="is-copy" [ngClass]="isCopy ? 'show' : 'hide'">&ndash;&gt;-->
+<!--&lt;!&ndash;      <span>کد تخفیف کپی شد</span>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;  <div class="cta">&ndash;&gt;-->
+<!--&lt;!&ndash;    <app-ui-button class="w-100" [link]="templateData.address" linkTarget="_blank" >&ndash;&gt;-->
+<!--&lt;!&ndash;      دریافت دیجی پی از {{ templateData.title }}&ndash;&gt;-->
+<!--&lt;!&ndash;    </app-ui-button>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--</div>-->

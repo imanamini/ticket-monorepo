@@ -1,0 +1,92 @@
+.contract-details {
+  padding: 24px 16px;
+  direction: rtl;
+
+  .detail-section {
+    .detail-section-title {
+      font-size: 18px;
+      color: #191919;
+      line-height: 2;
+    }
+
+    .detail-section-content {
+      margin-bottom: 24px;
+    }
+  }
+}
+
+.contract-detail-item {
+  direction: rtl;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #11191919;
+  margin-top: 16px;
+
+  .contract-detail-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+
+    .contract-detail-item-content-col {
+      padding-right: 20px;
+      position: relative;
+
+      .indicator {
+        height: 100%;
+        width: 4px;
+        right: 0;
+        top: 0;
+        border-radius: 2px;
+        position: absolute;
+      }
+
+      .contract-detail-item-title {
+        font-size: 12px;
+        color: #666666;
+        line-height: 20px;
+      }
+
+      .contract-detail-item-value {
+        font-size: 18px;
+        color: #191919;
+        line-height: 32px;
+      }
+    }
+
+    .sub-item-drop-down-icon {
+      transform: rotate(0deg);
+      transition: all 0.3s;
+      width: 24px;
+      height: 24px;
+      display: block;
+      background-image: url("assets/credit_contract_arrow_down.svg");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+
+      &.rotate-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .contract-detail-item-body {
+    border-top: 1px solid #11191919;
+    padding: 0 16px;
+    overflow: hidden;
+
+    .contract-sub-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #666666;
+      font-size: 14px;
+      border-bottom: 1px solid #11191919;
+      min-height: 56px;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}

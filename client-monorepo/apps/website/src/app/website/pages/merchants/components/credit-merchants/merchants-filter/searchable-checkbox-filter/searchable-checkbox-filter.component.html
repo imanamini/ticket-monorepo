@@ -1,0 +1,58 @@
+<div
+  *ngIf="form"
+  [formGroup]="form"
+  class="searchable-checkbox-filters"
+>
+  <div class="filter-title">{{ FILTER_TITLE_TRANSLATOR[title] }}</div>
+  <div class="searchInput">
+    <ui-form-field
+      formControlName="brandSearch"
+      inputType="text"
+      label="جستجو"
+      type="input"
+    ></ui-form-field>
+    <span
+      class="icon"
+      icon="icon-search"
+      size="24"
+      appUiIcon
+    ></span>
+  </div>
+  <div
+    *ngIf="filteredOptions.length > 0"
+    class="merchants-title-list"
+  >
+    <div
+      *ngFor="let option of filteredOptions"
+      class="single-filter"
+      formGroupName="brandsList"
+    >
+      <div class="checkbox-container">
+        <div class="checkbox">
+          <input
+            [formControlName]="option.brandId"
+            type="checkbox"
+          />
+          <span class="checkmark"></span>
+        </div>
+      </div>
+      <img
+        [ngSrc]="environment.appUrl + '/mini-app/stores/' + option.imagePath"
+        height="18"
+        width="18"
+      />
+      <div
+        *ngIf="option.title"
+        class="single-filter-text"
+      >
+        {{ option.title }}
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="filteredOptions.length === 0"
+    class="no-merchant"
+  >
+    فروشگاهی یافت نشد.
+  </div>
+</div>

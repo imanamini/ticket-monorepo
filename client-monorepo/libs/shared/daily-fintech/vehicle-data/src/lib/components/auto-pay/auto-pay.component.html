@@ -1,0 +1,38 @@
+<div>
+  <div class="title">فعالسازی پرداخت خودکار</div>
+
+  <common-icon-dp-icon
+    class="d-flex justify-content-center mt-minus"
+    [icon]="'wallet-check'"
+    [iconSize]="'72'"
+    [iconType]="'bold'"
+    styles="color: #1159FC"
+  >
+  </common-icon-dp-icon>
+  <div class="message mt-medium">با فعالسازی پرداخت خودکار، با خیال راحت و بدون نگرانی از جریمه عوارضی رد شوید.</div>
+  <div class="description mt-small">
+    دیجی‌پی عوارض را خودکار از کیف پول‌تان پرداخت می‌کند و در صورت کمبود موجودی کیف پول، پیامی با موضوع نیاز به افزایش موجودی دریافت خواهید
+    کرد.
+  </div>
+  <div class="d-flex justify-content-center gap-medium mt-big">
+    <ngx-button
+      [mode]="'form'"
+      [size]="'large'"
+      [fullWidth]="true"
+      [style]="'tinted-on-elevated'"
+      (clickHandler)="submit(false)"
+    >
+      ادامه
+    </ngx-button>
+
+    <ngx-button
+      [mode]="'form'"
+      [size]="'large'"
+      [style]="'fill'"
+      [fullWidth]="true"
+      (clickHandler)="submit(true)"
+    >
+      فعالسازی
+    </ngx-button>
+  </div>
+</div>

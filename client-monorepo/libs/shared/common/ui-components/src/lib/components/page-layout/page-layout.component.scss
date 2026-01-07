@@ -1,0 +1,41 @@
+@import '@digipay/base-style/styleguide';
+
+:host {
+  @include flex-full-center;
+}
+
+.page-layout {
+  height: 100%;
+  max-height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex: 0 0 auto;
+    height: 56px;
+
+    &-action {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }
+
+  &-body {
+    flex: 1 1 auto;
+    width: 100%;
+    overflow: auto;
+    scroll-behavior: smooth;
+
+    &.sticky {
+      flex: 1 1 1px;
+    }
+  }
+}

@@ -1,0 +1,41 @@
+<div class="imei-information">
+  <div class="single-column">
+    <div class="img-style">
+      <img
+        alt="complete information"
+        src="insurance-assets/images/complete-information-renewal.svg"
+      />
+    </div>
+    <div class="title">شماره سریال دستگاه را وارد فرمایید!</div>
+    <div [formGroup]="form">
+      <ui-form-field
+        [error]="form.controls.imei.errors"
+        [showError]="'show'"
+        formControlName="imei"
+        label="شناسه سریال دستگاه (IMEI)"
+        type="input"
+      >
+      </ui-form-field>
+    </div>
+  </div>
+  <div>
+    <used-info-box
+      (footerClicked)="getImei()"
+      [bodyText]="'شما می‌توانید برای پیدا کردن شماره سریال دستگاه، از کد دستوری  #06#* استفاده نمایید.'"
+      [footerText]="'دریافت IMEI'"
+      [showFooter]="true"
+    >
+    </used-info-box>
+  </div>
+  <div class="buttons">
+    <journey-buttons
+      (nextClicked)="registerInfo()"
+      [disableNext]="form.invalid || (loading$ | async)"
+      [hideBackBtn]="true"
+      [idValue]="'used-imei-information'"
+      [isReversed]="false"
+      [nextText]="'تایید شناسه و ادامه'"
+    >
+    </journey-buttons>
+  </div>
+</div>

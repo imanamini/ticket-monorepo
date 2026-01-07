@@ -1,0 +1,5 @@
+registry=https://npm.mydigipay.info/repository/npm-group/
+@digipay:registry=https://repo.mydigipay.info/api/v4/projects/458/packages/npm/
+//repo.mydigipay.info/api/v4/projects/458/packages/npm/:_authToken=REPLACE_YOUR_TOKEN_HERE
+store-dir=.pnpm-store
+prefer-offline=true

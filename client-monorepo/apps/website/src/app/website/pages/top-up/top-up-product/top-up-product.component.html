@@ -1,0 +1,29 @@
+<section class="section-top-up-product">
+  <div class="container">
+    <div class="content">
+      <h1>
+        {{ data.title }}
+      </h1>
+      <div class="subtitle">
+        {{ data.subtitle }}
+      </div>
+    </div>
+  </div>
+  <div class="top-up">
+    <app-top-up-applet [templateData]="data.box"></app-top-up-applet>
+  </div>
+  <div class="providers">
+    <ng-container *ngFor="let provider of data.providers">
+      <img
+        (mouseenter)="provider.hover = true"
+        (mouseleave)="provider.hover = false"
+        *ngIf="provider.image && provider.image.url"
+        [alt]="provider.title"
+        [src]="!provider.hover ? provider.image.url : provider.imageHover.url"
+        [title]="provider.title"
+        height="28"
+        width="80"
+      />
+    </ng-container>
+  </div>
+</section>

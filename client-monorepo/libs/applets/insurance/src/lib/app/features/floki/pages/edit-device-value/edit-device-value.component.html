@@ -1,0 +1,46 @@
+<div class="px-plus py-minus d-flex flex-column gap-medium justify-content-space-between">
+  <p class="st-6">ویرایش ارزش گوشی</p>
+  <ngx-divider [color]="BorderColorsEnum.Tint"
+               orientation="horizontal"></ngx-divider>
+  <div class="edit-container">
+    <div>
+      <ui-form-field
+        [convertNonEnglishDigits]="true"
+        [formControl]="assetPrice"
+        [hasCleaner]="false"
+        [hasHintStar]="true"
+        [hasRialStickyText]="true"
+        [hasValidationMark]="false"
+        [hintStatus]="'info'"
+        [hint]="assetPrice?.value | rialToToman"
+        [label]="'ارزش گوشی'"
+        [placeholder]="'ارزش گوشی'"
+        [required]="true"
+        [type]="'amount'"
+        [maxSize]="17"
+      ></ui-form-field>
+    </div>
+  </div>
+  <div class="d-flex gap-small">
+    <div class="w-100">
+      <ngx-button
+        (click)="closeModal()"
+        [fullWidth]="true"
+        [size]="'large'"
+        [style]="'tinted-on-elevated'">
+        انصراف
+      </ngx-button>
+    </div>
+    <div class="w-100">
+      <ngx-button
+        (click)="updateValue()"
+        [disabled]="assetPrice.invalid || isSubmitting()"
+        [fullWidth]="true"
+        [size]="'large'"
+        [style]="'fill'"
+      >
+        تایید
+      </ngx-button>
+    </div>
+  </div>
+</div>

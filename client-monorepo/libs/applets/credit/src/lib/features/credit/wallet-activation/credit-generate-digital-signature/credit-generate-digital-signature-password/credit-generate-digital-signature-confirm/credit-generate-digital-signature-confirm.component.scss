@@ -1,0 +1,40 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+.signature-validation {
+  max-height: 80px;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+
+  .chevron {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    background: url("../../assets/chevron-down.svg") no-repeat center;
+    transform: rotate(-180deg);
+    background-size: 24px 24px;
+    transition: transform 0.3s ease-out;
+  }
+
+  ul {
+    padding-right: 20px;
+    list-style-type: disc;
+  }
+
+  &.open {
+    max-height: unset;
+
+    .chevron {
+      transform: rotate(0deg);
+    }
+  }
+}

@@ -1,0 +1,44 @@
+<div
+  id="tgsFooter"
+  class="footer d-flex flex-column p-plus gap-minus surface-glass-high-contrast"
+  [ngClass]="{ 'too-small-resolution': weAreInBadArrange }"
+>
+  <div
+    *ngIf="amount"
+    class="footer-description"
+  >
+    <div class="label-text bt-2 text-onback-high pb-small">
+      <span>{{ currencyText }}</span>
+    </div>
+
+    @if (footerLoading()) {
+      <lib-ngx-skeleton-loading
+        [width]="'50%'"
+        [height]="'50px'"
+      ></lib-ngx-skeleton-loading>
+    } @else {
+      <div
+        class="amount t-7 text-onback-medium"
+        *ngIf="amount"
+      >
+        {{ amount | thousands }} <span class="is-currency">ریال</span>
+      </div>
+    }
+  </div>
+
+  <div
+    [ngStyle]="!amount ? { width: '100%' } : null"
+    class="button-container"
+  >
+    <ngx-button
+      [isLoading]="submitLoading"
+      [mode]="'form'"
+      [brandButton]="true"
+      (clickHandler)="submittedButton.emit()"
+      [disabled]="disableButton"
+      [fullWidth]="true"
+    >
+      {{ submitText || 'ادامه' }}
+    </ngx-button>
+  </div>
+</div>

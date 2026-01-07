@@ -1,0 +1,94 @@
+<div class="search w-100 d-flex flex-column align-items-start justify-content-center">
+  <form
+    [formGroup]="formGroup"
+    class="w-100 d-flex flex-column align-items-start justify-content-center"
+  >
+    <div class="b-2 text-onback-medium">بازه‌ی زمانی مورد نظر خود را انتخاب کنید</div>
+    <div class="search-selector my-medium d-flex align-items-center justify-content-center p-tiny surface-back gap-atom w-100 radius-minus">
+      @for (range of dateRanges(); track $index) {
+        <div
+          (click)="changeRange(range.from, range.to, range.id)"
+          class="search-selector-item cursor-pointer radius-small d-flex py-tiny px-pony align-items-center justify-content-center c-2"
+          [ngClass]="{ 'surface-elevated text-onback-high': range.active, 'text-onback-low': !range.active }"
+        >
+          {{ range.tag }}
+        </div>
+      }
+    </div>
+    @if (activeDateRange()?.id === 4) {
+      <div
+        [formGroupName]="'exerciseDate'"
+        class="d-flex align-items-center justify-content-between gap-small flex-nowrap w-100"
+      >
+        <div class="w-50">
+          <ui-form-field
+            [datePickerMode]="'modal'"
+            [formControlName]="'min'"
+            [label]="'از تاریخ'"
+            [type]="'date'"
+            [initialCalendarView]="'days'"
+          ></ui-form-field>
+        </div>
+        <div class="w-50">
+          <ui-form-field
+            [datePickerMode]="'modal'"
+            [formControlName]="'max'"
+            [label]="'تا تاریخ'"
+            [type]="'date'"
+            [initialCalendarView]="'days'"
+          ></ui-form-field>
+        </div>
+      </div>
+    }
+
+    <div class="w-100 my-large divider surface-back"></div>
+    <div class="b-2 text-onback-medium">نوع تراکنش‌ خود را انتخاب کنید</div>
+    <div class="search-selector my-medium d-flex align-items-center justify-content-center p-tiny surface-back gap-atom w-100 radius-minus">
+      @for (side of transactionSides(); track $index) {
+        <div
+          class="search-selector-item cursor-pointer radius-small d-flex py-tiny px-pony align-items-center justify-content-center c-2"
+          (click)="changeSide(side.field)"
+          [ngClass]="{ 'surface-elevated text-onback-high': side.active, 'text-onback-low': !side.active }"
+        >
+          {{ side.tag }}
+        </div>
+      }
+    </div>
+    <div class="d-flex flex-column gap-tiny w-100 mb-small filters-box">
+      @for (filter of filtersToShow(); track $index) {
+        <div class="d-flex flex-row gap-pony py-low">
+          <ngx-checkbox
+            [checked]="isGroupChecked(filter)"
+            [size]="24"
+            (checkedChange)="toggleGroup($event, filter)"
+          ></ngx-checkbox>
+          <div [ngClass]="isGroupChecked(filter) ? 'b-t-2' : 'b-2'">{{ filter.name }}</div>
+        </div>
+      }
+    </div>
+  </form>
+  <div class="w-100 d-flex align-items-center justify-content-space-between gap-medium flex-no-wrap">
+    <div class="btn-frist">
+      <ngx-button
+        (clickHandler)="applyFilter(false)"
+        [fullWidth]="true"
+        [mode]="'form'"
+        [size]="'medium'"
+        [style]="'tinted-on-elevated'"
+      >
+        بستن
+      </ngx-button>
+    </div>
+    <div class="btn-second">
+      <ngx-button
+        (clickHandler)="applyFilter(true)"
+        [fullWidth]="true"
+        [mode]="'form'"
+        [size]="'medium'"
+        [style]="'fill'"
+      >
+        ثبت تغییرات
+      </ngx-button>
+    </div>
+  </div>
+</div>

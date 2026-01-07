@@ -1,0 +1,19 @@
+<div class="last-inquiry-report">
+  <div class="description">گزارش استعلام شما کلی و بدون جزییات بوده</div>
+  <app-ui-card-notice
+    [notices]="notices"
+    hasDots="true"
+    title="نکات مهم"
+  ></app-ui-card-notice>
+  <app-ui-vehicle-fine
+    (payRequest)="payVehicleFine()"
+    [hasPayOption]="true"
+    [trafficFine]="trafficFineDto"
+  ></app-ui-vehicle-fine>
+  <app-ui-button
+    (clicked)="newInquiry()"
+    class="cta"
+  >
+    استعلام جدید
+  </app-ui-button>
+</div>

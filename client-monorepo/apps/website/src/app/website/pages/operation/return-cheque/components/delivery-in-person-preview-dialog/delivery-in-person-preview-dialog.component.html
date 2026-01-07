@@ -1,0 +1,118 @@
+<div class="border-b-100 border-color-b-light fs-18 fw-medium px-big py-medium text-onback-low">دریافت چک</div>
+
+<div class="pt-medium p-big">
+  <p class="fs-14 lh-150">
+    {{ description.title }}
+  </p>
+
+  <p
+    *ngIf="description.subTitle"
+    class="fs-14 lh-150 fw-bold"
+  >
+    {{ description.subTitle }}
+  </p>
+
+  <div class="border-100 border-color-light my-medium radius-medium">
+    <div class="p-medium d-flex flex-column gap-minus">
+      <div class="d-flex justify-content-space-between">
+        <span class="fs-12 text-onback-low"> نام و نام خانوادگی </span>
+        <span class="fs-14 text-onback-high">
+          {{ data.customer.fullName }}
+        </span>
+      </div>
+      <div class="d-flex justify-content-space-between">
+        <span class="fs-12 text-onback-low"> شماره موبایل </span>
+        <span class="fs-14 text-onback-high">
+          {{ data.customer.mobileNumber }}
+        </span>
+      </div>
+      <div class="d-flex justify-content-space-between">
+        <span class="fs-12 text-onback-low"> تعداد چک </span>
+        <span class="fs-14 text-onback-high">
+          {{ data.collateralCount }}
+        </span>
+      </div>
+      <div class="d-flex justify-content-space-between">
+        <span class="fs-12 text-onback-low"> روش دریافت </span>
+        <span class="fs-14 text-onback-high"> شعب حضوری </span>
+      </div>
+      <div class="d-flex justify-content-space-between">
+        <span class="fs-12 text-onback-low"> تاریخ دریافت </span>
+        <span class="fs-14 text-onback-high">
+          {{ data.reserveDate | jalaliDate }}
+        </span>
+      </div>
+      <div class="d-flex justify-content-space-between">
+        <span class="fs-12 text-onback-low"> بازه زمانی دریافت </span>
+        <span class="fs-14 text-onback-high">
+          {{ data.timeSlot.toTime | slice: 0 : 2 }} -
+          {{ data.timeSlot.fromTime | slice: 0 : 2 }}
+        </span>
+      </div>
+      <div class="d-flex justify-content-space-between">
+        <span class="fs-12 text-onback-low"> شعبه </span>
+        <span class="fs-14 text-onback-high">
+          {{ data.deliveryProvider.deliveryProviderName || data.deliveryProvider.name }}
+        </span>
+      </div>
+      <div class="">
+        <div class="fs-12 text-onback-low mb-3">آدرس پستی</div>
+        <div class="fs-14 text-onback-high bt-2">
+          {{ address }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ngx-callout
+    class="mb-medium d-block"
+    title="توجه!"
+    [mode]="'multiple'"
+    [messages]="[
+      'برای دریافت چک حضور وام‌گیرنده الزامی است.',
+      'لطفا برای دریافت چک خود، در تاریخ و بازه انتخابی به شعبه تعیین شده مراجعه کنید.',
+    ]"
+  ></ngx-callout>
+
+  @if (data?.reserveStatus === ReserveStatus.Reserved) {
+    <ngx-button
+      (clickHandler)="edit()"
+      [mode]="'form'"
+      [style]="'tinted-on-elevated'"
+      [fullWidth]="true"
+      [size]="'large'"
+    >
+      ویرایش درخواست
+    </ngx-button>
+  }
+  @if (data?.reserveStatus === ReserveStatus.Pending) {
+    <div class="d-l-flex gap-l-low">
+      <div class="mb-low mb-l-atom">
+        <ngx-button
+          (clickHandler)="edit()"
+          [disabled]="loading()"
+          [mode]="'form'"
+          [style]="'link'"
+          [fullWidth]="true"
+          [size]="'large'"
+        >
+          ویرایش
+        </ngx-button>
+      </div>
+      <div class="w-100">
+        <ngx-button
+          (clickHandler)="submitReturnInperson()"
+          [isLoading]="loading()"
+          [disabled]="loading()"
+          [mode]="'form'"
+          [fullWidth]="true"
+          [style]="'fill'"
+          [brandButton]="true"
+          [size]="'large'"
+        >
+          تایید اطلاعات
+        </ngx-button>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,14 @@
+<div class="d-flex flex-column flex-grow">
+  <div class="flex-grow justify-content-center">
+    <ngx-status-result
+      (clicked)="retry()"
+      [buttons]="buttons"
+      [description]="description"
+      [title]="title"
+      [iconState]="'info'"
+      [type]="'Status'"
+      (closed)="back.emit()"
+    >
+    </ngx-status-result>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="scrollable">
+  <iframe
+    *ngIf="isLoaded()"
+    [srcdoc]="html()"
+    [ngClass]="{
+      'should-confirm': shouldConfirm,
+    }"
+  ></iframe>
+  <div
+    class="accept-button-wrapper"
+    *ngIf="shouldConfirm"
+  >
+    <ngx-button
+      [brandButton]="true"
+      (clickHandler)="accept()"
+      >قبول شرایط و ادامه</ngx-button>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+@for (carousel of nearByCarousels(); track $index) {
+  <stores-applet-okala-carousel
+    [carousel]="carousel"
+    [navigationLink]="'stores/external-promotion/okala/' + carousel.id"
+  ></stores-applet-okala-carousel>
+} @empty {
+  <stores-applet-okala-carousel [carousel]="undefined"></stores-applet-okala-carousel>
+}

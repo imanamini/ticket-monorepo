@@ -1,0 +1,10 @@
+@if (!hideTitleBar()) {
+  <ngx-app-bar
+    [class]="classes()"
+    [title]="hideTitleText() ? null : title()"
+    [rightButton]="hideTitleText() ? null : rightButton()"
+    [leftButton]="leftButton()"
+    (onRightButtonClick)="onRightButtonClick($event)"
+    (onLeftButtonClick)="onLeftButtonClick($event)"
+  ></ngx-app-bar>
+}

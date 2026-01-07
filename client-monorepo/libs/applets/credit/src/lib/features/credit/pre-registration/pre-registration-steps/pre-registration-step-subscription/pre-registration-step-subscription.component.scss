@@ -1,0 +1,73 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.flex-auto {
+  flex: 0 0 auto;
+}
+
+.main-section {
+  flex-grow: 1;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .subscription-info {
+    overflow: hidden;
+    height: 40px;
+
+    &.open {
+      height: unset;
+    }
+  }
+
+  .bottom-section {
+    flex-grow: 0;
+  }
+}
+
+.subscription-icon {
+  height: 45px;
+  width: 40px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  flex-shrink: 0;
+
+  &.platinium {
+    background-image: url("../../../assets/subscription-icons/platinum.svg");
+  }
+
+  &.gold {
+    background-image: url("../../../assets/subscription-icons/gold.svg");
+  }
+
+  &.bronze {
+    background-image: url("../../../assets/subscription-icons/bronze.svg");
+  }
+
+  &.silver {
+    background-image: url("../../../assets/subscription-icons/silver.svg");
+  }
+
+  &.brilliance {
+    background-image: url("../../../assets/subscription-icons/brilliance.svg");
+  }
+
+  &.titanium {
+    background-image: url("../../../assets/subscription-icons/titanium.svg");
+  }
+
+  &.diamond {
+    background-image: url("../../../assets/subscription-icons/diamond.svg");
+  }
+}
+

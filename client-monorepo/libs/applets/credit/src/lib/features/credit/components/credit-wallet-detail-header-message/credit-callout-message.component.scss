@@ -1,0 +1,24 @@
+@import "@digipay/base-style/swatch";
+
+.detail-header-message {
+  background-color: $swatch_steel_100;
+  color: $swatch_steel_900;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  padding: 16px;
+
+  .detail-title {
+    background: url("credit-detail-message-icon.svg") no-repeat right center;
+    background-size: 24px 24px;
+    padding-right: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  .detail-message {
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+}

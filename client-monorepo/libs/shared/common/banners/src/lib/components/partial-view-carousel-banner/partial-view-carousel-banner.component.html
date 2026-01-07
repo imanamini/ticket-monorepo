@@ -1,0 +1,23 @@
+@if (banner().slides?.length > 0) {
+  <common-ui-components-horizontal-scroll [classes]="'d-flex gap-medium align-items-center justify-content-start'">
+    @for (slide of banner()?.slides; track slide.uuid) {
+      @if (slide.extractedData?.image) {
+        <div
+          #trackerBanner
+          [attr.data-id]="banner().uuid + '|' + slide.uuid"
+        >
+          <ui-api-image
+            [classes]="'radius-plus' + ($index === 0 ? ' mr-medium' : '')"
+            [imageId]="slide.extractedData.image"
+            [width]="slideWidth() + 'px'"
+            [height]="'auto'"
+            [skeletonHeight]="'72px'"
+            (click)="handleClickItem(slide)"
+            [lazy]="true"
+            [lazyConfig]="{ root: '.dpx-main-layout-body' }"
+          ></ui-api-image>
+        </div>
+      }
+    }
+  </common-ui-components-horizontal-scroll>
+}

@@ -1,0 +1,126 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.serial-required {
+  border: 1px solid #dee3e7;
+  background: #ffffff;
+  width: 75%;
+  border-radius: 12px;
+  padding: 24px;
+  margin: auto;
+  display: flex;
+  gap: 15px;
+
+  .detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 4 1;
+
+    .device-info {
+      border-bottom: 1px solid #f2f5f8;
+
+      .detail-title {
+        line-height: 1.5;
+        color: #6e798d;
+        margin: 10px 0;
+
+        &.large {
+          font-size: 1.4rem;
+        }
+      }
+
+      .detail-text {
+        line-height: 1.5;
+        margin: 10px 0;
+        color: #424c5c;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+    }
+
+    .activate-serial {
+      .text {
+        color: #6e798d;
+        line-height: 4.5;
+      }
+
+      .buttons {
+        display: flex;
+
+        ui-form-field,
+        ui-button {
+          flex: 1 1 50%;
+          height: 55px;
+        }
+
+        ui-button {
+          padding-right: 10px;
+        }
+      }
+
+
+      .ltr {
+        direction: ltr !important;
+      }
+    }
+  }
+
+  .schema {
+
+    flex: 1 1;
+
+    .hint {
+      margin-bottom: 15px;
+    }
+
+    .device-image {
+      border: 1px solid #dee3e7;
+      border-radius: 12px;
+      padding: 15px;
+    }
+  }
+}
+
+::ng-deep {
+  .serial-required {
+    ui-button {
+      .button {
+        height: 55px;
+      }
+    }
+  }
+
+  .schema {
+    .device-image {
+      insurtech-collection-image-cdn {
+        img {
+          width: 75%;
+        }
+      }
+    }
+  }
+}
+
+@include mediaTablet {
+  .schema {
+    display: none;
+  }
+  .detail-title, .detail-text {
+    font-size: 1rem !important;
+    line-height: 1.9 !important;
+  }
+  .large {
+    font-size: 1.2rem;
+  }
+  .activate-serial {
+    .text {
+      line-height: 1.5 !important;
+      margin: 20px 0;
+    }
+
+    .buttons {
+      flex-direction: column;
+    }
+  }
+
+}

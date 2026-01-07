@@ -1,0 +1,40 @@
+<app-credit-app-bar
+  (onBackButtonClick)="close.emit()"
+  [backButton]="true"
+  [title]="'اعتبارسنجی'"
+></app-credit-app-bar>
+<div class="d-flex flex-column flex-grow justify-content-center py-huge px-plus rtl w-100">
+  <div class="d-flex flex-column flex-grow w-100 gap-medium mb-big">
+    <div
+      [ngStyle]="{ height: '233px' }"
+      class="pb-medium"
+    >
+      <ng-lottie [options]="{ animationData: animation, loop: false }"></ng-lottie>
+    </div>
+    <div class="d-flex flex-column align-items-center gap-low pt-pony pb-small w-100">
+      <span class="st-3 text-onback-high">اعتبار‌سنجی</span>
+      <span class="c-3 text-onback-medium text-align-center"
+        >در این مرحله، سوابق بانکی شما به‌صورت کلی بررسی می‌شود تا تصمیم‌گیری در مسیر تخصیص وام دقیق‌تر انجام شود.
+      </span>
+    </div>
+    <ngx-callout
+      [messagesDashed]="true"
+      [messages]="['سابقه بازپرداخت اقساط', ' وضعیت چک برگشتی در سوابق', 'برایند تراکنش‌های بانکی']"
+      [mode]="'multiple'"
+      [showTitleBlink]="false"
+      [showTitleIcon]="false"
+      [title]="'مواردی که در این بررسی در نظر گرفته می‌شود'"
+    />
+  </div>
+  <ngx-button
+    (clickHandler)="initScoring()"
+    [disabled]="loading()"
+    [fullWidth]="true"
+    [isLoading]="loading()"
+    [style]="'fill'"
+    ngxTrackableId
+    trackerId="smartScoringInitButtonClick"
+  >
+    شروع
+  </ngx-button>
+</div>

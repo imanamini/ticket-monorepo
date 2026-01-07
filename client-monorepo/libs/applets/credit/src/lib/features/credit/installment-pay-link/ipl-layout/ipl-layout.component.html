@@ -1,0 +1,4 @@
+@if (!iplService.isLoading()) {
+  <router-outlet />
+}
+<credit-page-loading [active]="iplService.isLoading()" />

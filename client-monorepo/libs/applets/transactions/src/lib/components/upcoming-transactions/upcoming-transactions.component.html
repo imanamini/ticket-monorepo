@@ -1,0 +1,22 @@
+@if (!isLoading()) {
+  @for (transaction of transactions(); track $index) {
+    <div class="mb-small">
+      <payment-transactions-transaction-card [config]="transaction"></payment-transactions-transaction-card>
+    </div>
+  } @empty {
+    <div class="w-100 d-flex align-items-center justify-content-center flex-column gap-medium">
+      <img
+        src="assets/no-transaction.png"
+        class="no-item-image"
+      />
+      <div class="c-2 text-onback-high">هیچ تراکنشی یافت نشد</div>
+    </div>
+  }
+} @else {
+  @for (item of rangeCreator(3); track $index) {
+    <lib-ngx-skeleton-loading
+      [height]="'74px'"
+      [classes]="'my-small px-medium radius-medium'"
+    ></lib-ngx-skeleton-loading>
+  }
+}

@@ -1,0 +1,84 @@
+.taxi-container {
+  padding: 24px 16px;
+  direction: rtl;
+  height: 100%;
+}
+
+.taxi-pay {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.taxi-info {
+  margin: 16px 0 32px 0;
+}
+
+.pay-info {
+  background: #F2F5F8FF;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 24px;
+  direction: rtl;
+  border-radius: 16px 16px 0 0;
+
+  .passengers {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #DEE3E7FF;
+    padding-bottom: 13px;
+
+    .passengers-title {
+      font-size: 14px;
+      line-height: 24px;
+      color: #6E798DFF;
+    }
+  }
+}
+
+.pay-desc {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .amount {
+    display: flex;
+    flex-direction: column;
+
+    .total-text {
+      font-size: 10px;
+      line-height: 16px;
+      font-weight: 500;
+      color: #6E798DFF;
+    }
+
+    .total-amount {
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 32px;
+      color: #45474A;
+    }
+  }
+}
+
+.deactivate-error-image {
+  width: 184px;
+  height: 68px;
+  background: url("images/deactive-error-image.svg");
+}
+
+.api-error-image {
+  width: 72px;
+  height: 112px;
+  background: url("images/api-error-image.svg");
+}
+
+.amount-input {
+  padding: 24px 0;
+  display: flex;
+  justify-content: center;
+  margin-top: 64px;
+}

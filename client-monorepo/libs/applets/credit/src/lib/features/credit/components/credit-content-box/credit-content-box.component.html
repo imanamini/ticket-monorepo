@@ -1,0 +1,46 @@
+<div
+  [class]="{ 'full-height-content': fullHeight() }"
+  class="content-box"
+>
+  @if (showHeader()) {
+    <div
+      [class]="{
+        'with-powered-by': showLogo(),
+        'gray-mode': grayMode(),
+        headerBorderBottom: headerBorderBottom(),
+      }"
+      class="box-header"
+    >
+      @if (showBackButton()) {
+        <span
+          (click)="backIconClick()"
+          class="back-icon"
+        ></span>
+      }
+      @if (showCloseButton()) {
+        <span
+          (click)="backIconClick()"
+          class="close-icon"
+        ></span>
+      }
+      <div class="title">
+        <div class="text">{{ contentBoxTitle() }}</div>
+      </div>
+    </div>
+  }
+
+  <div
+    [class]="{ 'no-padding': !bodyPadding() }"
+    class="box-body"
+  >
+    <ng-content></ng-content>
+  </div>
+
+  @if (footerItems.length > 0) {
+    <div class="box-footer">
+      @for (footerItem of footerItems; track footerItem) {
+        <ng-template [ngTemplateOutlet]="footerItem.template"></ng-template>
+      }
+    </div>
+  }
+</div>

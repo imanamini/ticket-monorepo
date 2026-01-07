@@ -1,0 +1,47 @@
+@keyframes fade {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.fade {
+  opacity: 1;
+  animation: fade 2s linear;
+}
+
+.carousel-title {
+  height: 73px;
+  background: transparent;
+  position: relative;
+
+  &::after {
+    background: linear-gradient(180deg, #f2f3f6 50%, rgb(248 249 251 / 0%) 90%);
+    position: absolute;
+    content: '';
+    top: 0;
+    width: 100%;
+    pointer-events: none;
+    display: block;
+    height: 125px;
+    z-index: 3;
+  }
+
+  .title-item {
+    flex: 1;
+    z-index: 21;
+  }
+}
+
+.cards-skeleton {
+  max-height: 373px;
+  overflow-y: hidden;
+}
+
+ngx-carousel {
+  margin-top: -50px;
+}

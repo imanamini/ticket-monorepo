@@ -1,0 +1,50 @@
+<div class="px-plus">
+  <common-ui-components-title-summary
+    [isLoading]="historyLoading()"
+    [title]="'جستجو‌های اخیر شما'"
+    [buttonTitle]="'حذف همه'"
+    [mustReturnAction]="true"
+    (onButtonClicked)="removeHistory()"
+  ></common-ui-components-title-summary>
+  <div class="d-flex flex-column align-items-start gap-minus">
+    @if (!historyLoading()) {
+      @for (service of searchHistory(); track service) {
+        <div
+          class="d-flex align-items-flex-end gap-small cursor-pointer w-100"
+          (click)="itemClickedHandle(service)"
+        >
+          <common-ui-components-framed-icon
+            ngxRouterLoading
+            [size]="40"
+            [iconColor]="'#4657C3'"
+            [showText]="false"
+            [type]="service.imageType"
+            [showBadge]="true"
+            [icon]="service.imageType === ServiceImagesType.SRC ? '/assets/services/' + service.icon : service.icon || ''"
+            [trackerIdPrefix]="service.icon || ''"
+            [iconType]="'due'"
+          ></common-ui-components-framed-icon>
+          <span
+            [ngClass]="!$last ? 'border-b-100 border-color-air' : ''"
+            class="c-2 text-onback-medium w-100 pb-small"
+            >{{ service?.title }}</span
+          >
+        </div>
+      }
+    } @else {
+      @for (skeleton of rangeCreator(5); track $index) {
+        <div class="d-flex align-items-center gap-small w-100">
+          <lib-ngx-skeleton-loading
+            [width]="'40px'"
+            [height]="'40px'"
+            [classes]="'radius-small'"
+          ></lib-ngx-skeleton-loading>
+          <lib-ngx-skeleton-loading
+            [width]="'49px'"
+            [height]="'20px'"
+          ></lib-ngx-skeleton-loading>
+        </div>
+      }
+    }
+  </div>
+</div>

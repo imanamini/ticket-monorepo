@@ -1,0 +1,156 @@
+@import "globals";
+
+.horizontal-post.extra-small {
+  height: 160px;
+}
+
+.horizontal-post.small {
+  height: 196px;
+}
+
+.horizontal-post.medium {
+  height: 232px;
+}
+
+.horizontal-post.large {
+  height: 266px;
+}
+
+.horizontal-post {
+  border: 1px solid $swatch_steel_200;
+  border-radius: 12px;
+  position: relative;
+
+  background-color: #ffffff;
+  width: 100%;
+  display: flex;
+
+  .image {
+    img {
+      border-radius: 0 14px 14px 0;
+      object-fit: cover;
+      width: 213px;
+    }
+
+    .extra-small-image {
+      height: 158px;
+    }
+
+    .small-image {
+      height: 194px;
+    }
+
+    .medium-image {
+      height: 230px;
+    }
+
+    .large-image {
+      height: 264px;
+    }
+  }
+
+  .play-layer {
+    background-color: $swatch_steel_500;
+    mix-blend-mode: multiply;
+    position: absolute;
+    width: 213px;
+    height: 100%;
+    top: 0;
+    border-radius: 0 14px 14px 0;
+  }
+
+  .play-icon {
+    width: 213px;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content {
+    width: 100%;
+    padding: 0 16px 0;
+
+    .details {
+      padding: 17px 0;
+      display: flex;
+      align-items: center;
+
+      .stats {
+        display: flex;
+        font-size: 11px;
+        font-weight: 400;
+        color: $swatch_steel_400;
+
+        .date {
+          display: flex;
+          align-items: center;
+
+          .icon {
+            margin-right: 4px;
+          }
+        }
+      }
+
+      .category {
+        margin-right: auto;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 200%;
+        color: $swatch_red_400;
+        border-radius: 18px;
+        border: 1px solid $swatch_red_400;
+        background: $swatch_red_100;
+        padding: 0 12px;
+        height: fit-content;
+        cursor: pointer;
+      }
+    }
+
+    .h-divider {
+      border-top: 1px solid $swatch_steel_200;
+    }
+
+    .information {
+      height: calc(100% - 60px);
+
+      .title {
+        display: block;
+        min-height: 50px;
+        margin-top: 16px;
+        font-size: 12px;
+        line-height: 200%;
+        font-weight: 400;
+        cursor: pointer;
+        color: $swatch_steel_700;
+      }
+
+      .description {
+        min-height: 50px;
+        margin-top: 8px;
+        color: $swatch_steel_500;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 200%;
+      }
+
+      .read-more {
+        position: absolute;
+        left: 16px;
+        bottom: 0;
+        display: flex;
+        justify-content: flex-end;
+        align-content: center;
+        align-items: center;
+        color: $swatch_blue_500;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 24px;
+        padding: 16px 0;
+      }
+    }
+  }
+}

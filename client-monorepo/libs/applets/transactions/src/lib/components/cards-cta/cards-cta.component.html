@@ -1,0 +1,32 @@
+<div class="d-flex flex-row gap-large justify-content-center surface-back px-big no-select">
+  @if (revisedCtaItems() && revisedCtaItems().actions) {
+    @if (revisedCtaItems().actions.length > 0) {
+      @for (cta of revisedCtaItems().actions; track $index) {
+        <div class="cta-item d-flex flex-column gap-small align-items-center justify-content-center">
+          <div
+            #menuContainer
+            commonUiComponentsStatusLight
+            [showStatusLight]="cta.hasNotification"
+            [statusSize]="cta.notification?.size"
+            [statusColor]="cta.notification?.color"
+            [statusBorderColor]="cta.notification?.border"
+            class="cta-icon d-flex flex-row justify-content-center align-items-center p-minus radius-medium cursor-pointer"
+            (click)="handleItemClick(cta, menuContainer)"
+            [ngClass]="cta.isHighlighted ? 'highlighted' : 'surface-elevated'"
+          >
+            <common-icon-dp-icon
+              class="icon"
+              [icon]="cta.icon.name"
+              [iconType]="cta.icon.type"
+              [secondaryColor]="cta.icon.secondColor ? cta.icon.secondColor : ''"
+              [classes]="cta.isHighlighted ? 'text-oninvert-high' : 'text-onback-high'"
+            ></common-icon-dp-icon>
+          </div>
+          <div class="cta-text d-flex flex-row justify-content-center bt-3">
+            {{ cta.name }}
+          </div>
+        </div>
+      }
+    }
+  }
+</div>

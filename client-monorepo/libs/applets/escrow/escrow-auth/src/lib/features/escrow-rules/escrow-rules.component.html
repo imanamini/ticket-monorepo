@@ -1,0 +1,23 @@
+<common-ui-components-page-layout
+  [showBorder]="true"
+  (onBackAction)="handelHeaderAction()"
+  [hasBackAction]="false"
+  [stickyHeader]="true"
+  [showBackIcon]="true"
+  [title]="'قوانین و مقررات'"
+>
+  <div
+    class="mt-big b-2"
+    [innerHTML]="content()"
+  ></div>
+  <div class="d-flex justify-content-center">
+    <ngx-button
+      [mode]="'section'"
+      [size]="'large'"
+      [style]="'tinted-on-elevated'"
+      [brandButton]="true"
+    >
+      مطالعه کردم!
+    </ngx-button>
+  </div>
+</common-ui-components-page-layout>

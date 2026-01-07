@@ -1,0 +1,37 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.selected-container {
+  background-color: #f2f5f8;
+  @include flex-row();
+  border-radius: 16px;
+  padding: 16px;
+  width: 100%;
+  gap: 8px;
+
+  .icon {
+    min-width: 20px;
+  }
+
+  .info-container {
+    @include flex-column();
+    gap: 4px;
+
+    .title {
+      @include flex-row();
+      align-items: center;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 24px;
+      gap: 8px;
+    }
+
+    .sub-title {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px;
+      text-align: right;
+      margin-top: 4px;
+    }
+  }
+
+}

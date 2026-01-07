@@ -1,0 +1,88 @@
+@import "globals";
+
+:host {
+  display: block;
+  margin-bottom: 40px;
+}
+
+.categories-section {
+  direction: ltr;
+  padding-bottom: 20px;
+  border-bottom: 1px solid $swatch_steel_200;
+
+  .title {
+    font-size: 16px;
+    color: #061962;
+    font-weight: 600;
+    padding-right: 24px;
+  }
+}
+
+.jobs {
+  min-height: 400px;
+
+  &.loading-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.jobs-grid {
+  direction: ltr;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 24px 0 0;
+}
+
+.category-slide {
+  white-space: nowrap;
+  margin-left: 16px;
+  min-height: 30px;
+  display: inline-flex !important;
+  align-items: center;
+
+  label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    input {
+      margin: 0;
+      margin-inline-end: 8px;
+    }
+
+    span {
+      position: relative;
+      top: 1px; // fixes a render issue
+    }
+  }
+}
+
+jobs-pagination {
+  display: block;
+  margin: 24px 0 0;
+}
+swiper-slide {
+  width: auto !important;
+  margin-right: auto;
+  direction: ltr;
+}
+.swiper-wrapper{
+  width: auto !important;
+}
+
+.categories-prev {
+  transform: rotate(180deg);
+}
+
+.swiper-button-disabled {
+  opacity: 0.15;
+}
+
+@media (max-width: 900px) {
+  .jobs-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

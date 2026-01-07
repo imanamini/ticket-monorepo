@@ -1,0 +1,65 @@
+<section>
+  <div class="container">
+    <div class="title">
+      {{ stepsSection?.title }}
+    </div>
+    <div class="subtitle">
+      {{ stepsSection?.subtitle }}
+    </div>
+    <img
+      class="non-mobile-image"
+      [src]="stepsSection?.desktopImage?.url"
+    />
+    <img
+      class="mobile-image"
+      [src]="stepsSection?.mobileImage?.url"
+    />
+    <div class="buttons">
+      <div class="first-cta">
+        <app-ui-button
+          [link]="stepsSection.firstCta.link"
+          linkTarget="_blank"
+          size="BIG"
+        >
+          {{ stepsSection.firstCta.title }}
+          <span
+            ui-icon
+            icon="icon-arrow-left-white"
+            size="24"
+          ></span>
+        </app-ui-button>
+      </div>
+      <div class="group-cta">
+        <div class="second-cta">
+          <app-ui-button
+            [link]="stepsSection.secondCta.link"
+            appearance="FLAT-BLUE"
+            linkTarget="_blank"
+            size="BIG"
+          >
+            {{ stepsSection.secondCta.title }}
+            <ngx-icon
+              [name]="'arrow-left'"
+              class="text-onback-brand"
+            ></ngx-icon>
+          </app-ui-button>
+        </div>
+
+        <div class="third-cta">
+          <app-ui-button
+            [link]="stepsSection.thirdCta.link"
+            appearance="FLAT-BLUE"
+            linkTarget="_blank"
+            size="BIG"
+          >
+            {{ stepsSection.thirdCta.title }}
+            <ngx-icon
+              [name]="'arrow-left'"
+              class="text-onback-brand"
+            ></ngx-icon>
+          </app-ui-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

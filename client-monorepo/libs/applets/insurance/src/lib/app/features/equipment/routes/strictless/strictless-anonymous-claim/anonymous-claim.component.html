@@ -1,0 +1,22 @@
+<ng-container [ngSwitch]="state">
+
+  <anonymous-claim-register
+          (registered)="registerAnonymousClaim($event)"
+          *ngSwitchCase="anonymousState.registerAnonymous"
+  ></anonymous-claim-register>
+
+  <anonymous-claim-login
+          (changeActionEvent)="changeActionToRegister()"
+          (loggedIn)="transferRequest()"
+          (resendSms)="resendOtpCode()"
+          *ngSwitchCase="anonymousState.login"
+          [phoneNumber]="formData.transferMobileNo"
+          [userId]="userId"
+  ></anonymous-claim-login>
+
+  <anonymous-claim-transfer-preview
+          *ngSwitchCase="anonymousState.transferPreview"
+          [transferData]="transferData"
+  ></anonymous-claim-transfer-preview>
+
+</ng-container>

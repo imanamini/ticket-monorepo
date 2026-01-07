@@ -1,0 +1,47 @@
+<div class="upload-documents-list">
+  <div class="content">
+    <div class="header">
+      @if (topDescription()) {
+        <div class="title">
+          {{ topDescription() }}
+        </div>
+      }
+      @if (plate()) {
+        <div class="plate">
+          <ngx-plate
+            type="car"
+            [size]="'small'"
+            [plate]="plate()"
+            [readonly]="true"
+          ></ngx-plate>
+        </div>
+      }
+    </div>
+    <div class="doc-header mt-big">
+      <div class="title text-onback-high">بارگزاری مدارک</div>
+      <ins-icon
+        class="icon"
+        [name]="IconEnum.GuideBlue"
+        [width]="24"
+        [height]="24"
+        (click)="openGuideBottomSheet()"
+      ></ins-icon>
+    </div>
+    @for (doc of uploadedImageFiles() | keyvalue; track $index) {
+      <div class="document vehicle-card-document">
+        <ui-upload-image
+          [imageTitle]="doc.value.title"
+          [maxImageSizeInKB]="maxFileSize()"
+          [supportedImageTypes]="supportedOnlyAllFileTypes()"
+          [(uploadedImage)]="doc.value.file"
+          (uploadNewImage)="uploadImage(applicationFormId(), $event, doc.value)"
+          (deleteImage)="deleteImage(doc.value, $event)"
+          (cancelUpload)="cancelImageUpload(doc.value.fileName)"
+          [mandatory]="mandatoryInputs[doc.value.fileName]"
+          [hasUploadError]="uploadErrors[doc.value.fileName]"
+          [file-type]="doc.value.fileType"
+        ></ui-upload-image>
+      </div>
+    }
+  </div>
+</div>

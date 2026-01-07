@@ -1,0 +1,120 @@
+<div class="w-100 d-flex flex-wrap pt-large">
+  <div class="w-100 d-flex align-items-center gap-small px-plus">
+    <img
+      src="./wealth-assets/svg/wallet-icon.svg"
+      alt="wallet"
+    />
+    <p class="text-onback-high vf">
+      {{ info().type === 'cashIn' ? 'بررسی اطلاعات واریز' : 'بررسی اطلاعات برداشت' }}
+    </p>
+  </div>
+
+  @if (info().type === 'cashIn') {
+    <div class="w-100 d-flex flex-wrap">
+      <div class="w-100 d-flex flex-wrap mt-plus align-items-center justify-content-space-between px-plus">
+        <span class="b-2 text-onback-disabled"> واریز به </span>
+        <span class="b-2 text-onback-disabled">
+          {{ info().walletTitle }}
+        </span>
+      </div>
+
+      <div class="w-100 d-flex flex-wrap mt-big surface-glass-onelevated p-plus">
+        <div class="w-100 d-flex align-items-center justify-content-space-between">
+          <span class="bt-2 text-onback-high"> مبلغ پرداخت </span>
+          <span class="t-7 text-onback-medium is-currency"> {{ info()?.amount | thousands }} ریال </span>
+        </div>
+
+        <div class="w-100 gap-small mt-minus buttons-container">
+          <ngx-button
+            [fullWidth]="true"
+            buttonId="EDIT_PRICE"
+            [style]="'tinted-on-elevated'"
+            size="large"
+            (clickHandler)="editPrice()"
+          >
+            ویرایش مبلغ
+          </ngx-button>
+
+          <ngx-button
+            [fullWidth]="true"
+            [buttonId]="'WALLET_' + info().walletId + '_CONFIRM_AND_PAY'"
+            [style]="'fill'"
+            size="large"
+            [brandButton]="true"
+            [isLoading]="btnLoading()"
+            [disabled]="btnLoading()"
+            (clickHandler)="continue()"
+          >
+            تایید و پرداخت
+          </ngx-button>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="w-100 d-flex flex-wrap">
+      <div class="w-100 d-flex flex-wrap mt-plus align-items-center justify-content-space-between px-plus">
+        <div class="w-100 d-flex justify-content-space-between">
+          <span class="b-2 text-onback-disabled"> برداشت از </span>
+          <span class="b-2 text-onback-disabled">
+            {{ info().walletTitle }}
+          </span>
+        </div>
+        <ngx-divider
+          class="my-pony"
+          [color]="BorderColorsEnum.Tint"
+          orientation="horizontal"
+        ></ngx-divider>
+        <div class="w-100 d-flex justify-content-space-between">
+          <span class="b-2 text-onback-disabled"> انتقال به </span>
+          <div class="d-flex align-items-center gap-tiny">
+            <span class="b-2 text-onback-disabled ltr"> {{ info().iban }} </span>
+            <img
+              src="wealth-assets/bank-icons/{{ bankName() }}.svg"
+              [alt]="bankName()"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="w-100 px-plus mt-medium">
+        <ngx-callout
+          [title]="'نکات مهم'"
+          [mode]="'single-with-title'"
+          [message]="'نهایی شدن برداشت از ' + info().walletTitle + '، حداکثر ۱ روز کاری زمان می‌برد.'"
+        />
+      </div>
+
+      <div class="w-100 d-flex flex-wrap mt-big surface-glass-onelevated p-plus">
+        <div class="w-100 d-flex align-items-center justify-content-space-between">
+          <span class="bt-2 text-onback-high"> مبلغ برداشت </span>
+          <span class="t-7 text-onback-medium is-currency"> {{ info()?.amount | thousands }} ریال </span>
+        </div>
+
+        <div class="w-100 gap-small mt-minus buttons-container">
+          <ngx-button
+            [fullWidth]="true"
+            buttonId="EDIT_PRICE"
+            [style]="'tinted-on-elevated'"
+            size="large"
+            (clickHandler)="editPrice()"
+          >
+            ویرایش مبلغ
+          </ngx-button>
+
+          <ngx-button
+            [fullWidth]="true"
+            buttonId="CONFIRM_AND_CASH_OUT"
+            [style]="'fill'"
+            size="large"
+            [brandButton]="true"
+            (clickHandler)="continue()"
+            [disabled]="btnLoading()"
+            [isLoading]="btnLoading()"
+          >
+            تایید و برداشت
+          </ngx-button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

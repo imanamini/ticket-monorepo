@@ -1,0 +1,70 @@
+<div class="w-100 d-flex flex-column">
+  <div class="w-100 position-relative">
+    <app-donut-chart
+      class="w-100 d-flex justify-content-center"
+      [data]="chartData()"
+      [chartWidth]="203"
+      [fullWidth]="false"
+      [preferredColors]="preferredColors()"
+    />
+    <div class="d-flex flex-column gap-tiny assets">
+      <span class="text-align-center text-onback-medium c-1">کل دارایی شما</span>
+      <div class="d-flex flex-column align-items-center gap-5 mt-tiny">
+        <span class="st-7 text-onback-high">
+          {{ assets()?.balance | number }}
+        </span>
+        <div class="text-onback-medium is-currency">ریال</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-medium d-flex flex-wrap">
+    @for (meter of meterData(); track $index; let last = $last) {
+      <div
+        class="w-100 d-flex align-items-center justify-content-space-between"
+        [ngClass]="{ 'pb-small': !last }"
+      >
+        <div class="d-flex gap-tiny">
+          <i
+            [style.backgroundColor]="meter.color"
+            [style.width]="'10px'"
+            [style.height]="'10px'"
+            [style.borderRadius]="'50%'"
+            [style.marginTop]="'6px'"
+          ></i>
+          <div class="d-flex flex-column">
+            <span class="text-onback-medium c-2"> {{ meter.title }}</span>
+            <span class="text-onback-low l-2 mt-micro"> {{ (meter.percent | number: '1.0-1') + ' %' }} </span>
+          </div>
+        </div>
+        <div
+          class="d-flex align-items-center gap-tiny cursor-pointer"
+          (click)="handleRedirect(meter)"
+        >
+          @if (meter.price > 0) {
+            <span class="c-1 text-onback-high">
+              {{ meter.price | thousands }}
+            </span>
+          } @else {
+            <span class="bt-3 text-onback-brand"> سرمایه‌گذاری </span>
+          }
+
+          <ngx-icon
+            [name]="'arrow-2-left'"
+            [iconSize]="'20px'"
+            [class]="meter.price <= 0 ? 'text-onback-brand' : ''"
+          >
+          </ngx-icon>
+        </div>
+      </div>
+
+      @if (!last) {
+        <ngx-divider
+          class="mb-small"
+          [color]="BorderColorsEnum.Air"
+          orientation="horizontal"
+        />
+      }
+    }
+  </div>
+</div>

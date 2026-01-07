@@ -1,0 +1,78 @@
+@if (!errorState()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="onBack()"
+    (onTextClick)="changeNoteTypeClicked.emit()"
+    [actionText]="switchTypePossible() ? 'تغییر نوع سفته' : null!"
+    [backButton]="true"
+    [title]="pageTitle()"
+    [actionImage]="switchTypePossible() ? 'edit-square' : null!"
+  ></app-credit-app-bar>
+  <div class="main-section flex-full-height">
+    <div class="top-section">
+      <app-credit-scrollable-view [fullHeightContent]="true">
+        <div class="page-content">
+          <div
+            [class]="{ 'form-info-collapse': focusField.iban }"
+            class="form-info"
+          >
+            @if (description()) {
+              <div
+                [innerText]="description()"
+                class="b-2 text-onback-medium"
+              ></div>
+            }
+          </div>
+          <div
+            [formGroup]="form"
+            class="mt-medium"
+          >
+            <ui-form-field
+              [errorMessageMapper]="{
+                required: 'شماره شبا بانکی را وارد کنید.',
+                pattern: 'شماره شبا بانکی نامعتبر است.',
+                invalidIban: 'شماره شبا بانکی نامعتبر است',
+                serverError: ibanServerErrorMessage,
+              }"
+              [error]="form.controls['iban'].errors"
+              [hasCleaner]="true"
+              [label]="'شماره شبا را وارد کنید'"
+              [type]="'iban'"
+              formControlName="iban"
+            ></ui-form-field>
+          </div>
+          <div class="footer-note-section">
+            <ngx-callout
+              [mode]="'single-with-title'"
+              [title]="hintMessage()?.title"
+              [message]="hintMessage()?.description"
+            />
+          </div>
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+    <div class="call-to-actions-section surface-glass-high-contrast border-color-air border-100">
+      <div>
+        <div class="b-1 text-onback-high">هزینه خرید سفته</div>
+        <div class="d-flex st-2">
+          {{ payAmount() | IRR: 'hideRial' }}
+          <div class="is-currency">ریال</div>
+        </div>
+      </div>
+      <div>
+        <ngx-button
+          (clickHandler)="notifyLimit()"
+          [isLoading]="submittingData()"
+          [disabled]="form.invalid || submittingData()"
+        >
+          تایید و ادامه
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+} @else {
+  <app-credit-enote-step-error
+    [state]="errorState()"
+    (goToSana)="goToSana.emit()"
+    (submitted)="retry()"
+  ></app-credit-enote-step-error>
+}

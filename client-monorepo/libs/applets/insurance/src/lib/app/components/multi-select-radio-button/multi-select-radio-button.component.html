@@ -1,0 +1,10 @@
+<div class="radio-group-container">
+  <ng-container *ngFor="let item of radioButtonGroup">
+    <ui-check-box
+            (clicked)="clickOnRadioButton(item)"
+            [checked]="item.checked"
+            [name]="item.value"
+            [title]="item.value"
+    ></ui-check-box>
+  </ng-container>
+</div>

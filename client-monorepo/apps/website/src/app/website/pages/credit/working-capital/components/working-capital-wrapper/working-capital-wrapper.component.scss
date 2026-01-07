@@ -1,0 +1,143 @@
+::ng-deep {
+  #layout {
+    background: #f6f8ff;
+  }
+
+  .full-height {
+    .mat-bottom-sheet-container {
+      max-height: unset;
+      border-radius: unset !important;
+      padding: 0 !important;
+    }
+  }
+}
+
+.section-working-capital-wrapper {
+  background-image: linear-gradient(
+      to bottom,
+      #0040ff 376px,
+      rgba(0, 0, 0, 0) 120px
+  );
+
+  .content {
+    text-align: center;
+    padding-top: 48px;
+    padding-bottom: 78px;
+
+    h1 {
+      display: inline-block;
+      position: relative;
+
+      &:before {
+        display: block;
+        content: '';
+        position: absolute;
+        background-image: url('/src/assets/images/marked-arrow.svg');
+        background-position: center center;
+        margin: 0;
+        height: 121px;
+        width: 100px;
+        right: -116px;
+        transform: rotate(60deg);
+      }
+    }
+
+    h1,
+    .subtitle {
+      color: #ffffff;
+    }
+  }
+
+  app-ui-button {
+    width: 100%;
+  }
+
+  .form {
+    max-width: 700px;
+    min-height: 200px;
+    margin: -85px auto 0;
+
+    .banner {
+      background-image: url('banner.svg');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-radius: 16px;
+      background-color: #0040FF;
+      margin-top: 10px;
+      margin-bottom: 50px;
+
+      h3 {
+        font-weight: 400;
+        color: #FFFFFF;
+      }
+
+      a {
+        background-color: #FFFFFF;
+        display: inline-block;
+        text-align: center;
+        padding: 20px 30px;
+        font-size: 22px;
+        color: #0040FF;
+        border-radius: 16px;
+      }
+    }
+
+
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .subtitle {
+      margin-top: 16px;
+      color: #424c5c;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .section-working-capital-wrapper {
+    .content {
+      padding-top: unset;
+
+      h1:before {
+        transform: rotate(45deg);
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .section-working-capital-wrapper {
+    .content h1:before {
+      content: unset;
+    }
+
+    .form {
+      margin: unset;
+      max-width: unset;
+
+      .banner {
+
+        a {
+          padding: 10px 12px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .section-working-capital-wrapper .content {
+    padding-bottom: 32px;
+  }
+}

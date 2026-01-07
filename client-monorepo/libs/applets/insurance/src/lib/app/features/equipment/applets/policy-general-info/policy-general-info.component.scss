@@ -1,0 +1,42 @@
+@import "../../../../style/once/global";
+
+.general-info {
+  padding: 15px 0;
+  @include flex-center-between;
+
+  .image {
+    @extend %radius-low;
+    @include flex-center;
+    padding: 10px;
+    width: 80px;
+    height: 80px;
+    margin-left: 10px;
+  }
+
+  .general-info-name {
+    margin-right: 8px;
+
+    .general-title {
+      margin-bottom: 20px;
+      font-size: .9rem;
+      color: #6e798d;
+    }
+
+    .general-value {
+      font-weight: 600;
+      color: #2c3544;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+  }
+}
+
+@include mediaMobile() {
+  .general-info {
+    justify-content: space-between;
+
+    .image {
+      order: 2;
+    }
+  }
+}

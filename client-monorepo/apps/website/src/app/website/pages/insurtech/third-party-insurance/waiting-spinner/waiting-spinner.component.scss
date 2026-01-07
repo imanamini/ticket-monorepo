@@ -1,0 +1,41 @@
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(16, 17, 19, 0.80);
+  z-index: 9999;
+  backdrop-filter: blur(7.5px);
+
+  .spinner-wrapper {
+    position: fixed;
+    top: 152px;
+    left: 0;
+    right: 0;
+  }
+
+  .error-icon {
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+}
+
+.spinner {
+  width: 100px;
+  height: 100px;
+  animation: spin 1.5s linear infinite;
+  background: url('../../../../../../assets/insurance/spinner.svg') no-repeat 0 0/100%;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

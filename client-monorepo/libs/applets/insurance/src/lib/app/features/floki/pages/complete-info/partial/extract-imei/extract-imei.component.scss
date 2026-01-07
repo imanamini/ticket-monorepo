@@ -1,0 +1,14 @@
+::ng-deep {
+  .extract-imei-container {
+    .dg-file-uploader-wrapper {
+      width: 100% !important;
+
+      .dg-file-uploader {
+        .dg-file-label,
+        .dg-file-desc {
+          max-width: 100% !important;
+        }
+      }
+    }
+  }
+}

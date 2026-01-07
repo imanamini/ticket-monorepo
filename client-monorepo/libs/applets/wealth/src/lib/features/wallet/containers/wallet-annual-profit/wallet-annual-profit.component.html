@@ -1,0 +1,37 @@
+<div class="w-100 d-flex flex-wrap align-content-start surface-elevated h-100">
+  <wealth-applet-app-bar-wrapper
+    class="w-100"
+    [title]="'جزییات سود کیف ثروت'"
+    (onBack)="onBackHandler()"
+  />
+
+  <div class="w-100 px-plus mt-medium">
+    <div class="w-100 d-flex align-items-center gap-small">
+      <img
+        width="28"
+        height="28"
+        src="./wealth-assets/svg/profit-icon.svg"
+        alt="profit"
+      />
+
+      <p class="c-2 text-onback-medium">سود سالانه {{ state()?.dailyPercentage || '30%' }} به صورت روز شمار</p>
+    </div>
+
+    <div class="w-100 d-flex align-items-center justify-content-space-between mt-big">
+      <p class="c-2 text-onback-medium">مجموع سود از ابتدا</p>
+
+      <p class="text-onback-medium">
+        <span class="st-5"> {{ annualProfit()?.totalProfit | thousands }} </span>
+        <span class="b-3 is-currency"> ریال </span>
+      </p>
+    </div>
+
+    <wealth-applet-annual-profit
+      class="w-100 mt-minus"
+      [skeletonCount]="4"
+      [skeletonRowCount]="2"
+      [skeleton]="skeleton()"
+      [detail]="annualProfit()"
+    />
+  </div>
+</div>

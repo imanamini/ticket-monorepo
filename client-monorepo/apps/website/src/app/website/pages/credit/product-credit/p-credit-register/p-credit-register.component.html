@@ -1,0 +1,31 @@
+<section class="credit__register">
+  <div class="container">
+    <div class="credit__bg-dark">
+      <div class="S-credit__register-contain">
+        <h2
+          *ngIf="templateData && templateData.sectionRegister"
+          class="text-white"
+        >
+          {{ templateData?.sectionRegister?.title }}
+        </h2>
+        <div
+          *ngIf="templateData && templateData.sectionRegister"
+          class="credit__register-desc"
+        >
+          {{ templateData?.sectionRegister?.description }}
+        </div>
+        <div class="credit__button-bg-green">
+          <a
+            *ngIf="templateData"
+            [attr.href]="templateData?.sectionRegister?.cta?.link"
+            [title]="templateData?.sectionRegister?.cta?.title"
+            class="credit-new-landing-cta"
+            target="_blank"
+          >
+            {{ templateData?.sectionRegister?.cta?.title }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

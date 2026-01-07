@@ -1,0 +1,30 @@
+<div class="flex-grow justify-content-center rtl">
+  <ngx-status-result
+    [type]="'Status'"
+    [iconState]="'error'"
+    [description]="description()"
+    [title]="title()"
+    [buttons]="buttons"
+    (clicked)="close()"
+  >
+    <div
+      html-content
+      class="d-flex flex-column flex-grow justify-content-flex-end"
+    >
+      @if (descriptionHtml()) {
+        <span
+          class="b-2 text-onback-medium mb-small text-align-center w-100 mb-big"
+          [innerHTML]="descriptionHtml()"
+        ></span>
+      }
+      @if (reasons().length) {
+        <ngx-callout
+          [mode]="'multiple'"
+          [showTitleBlink]="false"
+          [title]="'توجه داشته باشید که:'"
+          [messages]="reasons()"
+        ></ngx-callout>
+      }
+    </div>
+  </ngx-status-result>
+</div>

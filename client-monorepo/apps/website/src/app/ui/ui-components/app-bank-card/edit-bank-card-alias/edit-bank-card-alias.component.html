@@ -1,0 +1,19 @@
+<app-digipay-dialog
+  (emitClose)="dialogClose($event)"
+  confirmText="ذخیره تغییرات"
+  rejectText="انصراف"
+  title="ویرایش نام کارت"
+>
+  <div>
+    <app-bank-card [cardProfile]="cardProfile"></app-bank-card>
+
+    <app-ui-text-field
+      [maxLength]="25"
+      [parentForm]="form"
+      [value]="form.value.alias"
+      class="alias-field"
+      label="نام کارت"
+      name="alias"
+    ></app-ui-text-field>
+  </div>
+</app-digipay-dialog>

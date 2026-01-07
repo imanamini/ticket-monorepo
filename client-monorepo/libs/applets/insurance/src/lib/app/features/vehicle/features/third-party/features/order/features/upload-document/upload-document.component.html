@@ -1,0 +1,37 @@
+<div class="upload-document">
+  <third-party-stepper
+    [backgroundGray]="true"
+    [currentStep]="3"
+    [totalSteps]="3"
+    stepName="مرحله آخر"
+    title="تکمیل اطلاعات و مدارک"
+  ></third-party-stepper>
+  @defer (when this.storeService.getFormId()) {
+    <upload-documents-list
+      [ngStyle]="{ display: isLoaded() ? 'block' : 'none' }"
+      class="documents"
+      [application-form-id]="this.storeService.getFormId()"
+      (documentsInitialized)="onDocumentsListInitialized()"
+      [updateInputsValidationNotify]="updateDocumentsValidations"
+      (mandatoryInputsUploaded)="onMandatoryDocumentsUploaded($event)"
+      [topDescription]="
+        'جهت صدور بیمه‌نامه توسط کارشناسان دیجی‌پی، بارگذاری تصاویر زیر الزامی است. درصورت تکمیل نکردن\n' +
+        '        آن، بیمه‌نامه شما صادر نخواهد شد.'
+      "
+    ></upload-documents-list>
+  }
+  <action-buttons
+    (activeButtonClicked)="handleActiveButtonClicked()"
+    (deActiveButtonClicked)="handleDeActiveButtonClicked()"
+    activeButtonText="تایید و ادامه"
+    deActiveButtonText="بازگشت"
+    [ngStyle]="{ display: isLoaded() ? 'block' : 'none' }"
+  >
+  </action-buttons>
+  <div
+    class="loading"
+    [ngStyle]="{ display: isLoaded() ? 'none' : 'flex' }"
+  >
+    <ui-loading-spinner [size]="48"></ui-loading-spinner>
+  </div>
+</div>

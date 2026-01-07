@@ -1,0 +1,69 @@
+<div class="w-100 d-flex flex-column">
+  <div class="w-100">
+    <span class="c-1 text-onback-high"> توضیحات طرح </span>
+  </div>
+
+  <div
+    class="mt-medium text-align-justify position-relative description"
+    [ngClass]="{ 'overflow-visible': visibleText() }"
+  >
+    <span class="c-3 text-onback-medium">
+      {{ crowd().description }}
+    </span>
+
+    <div class="w-100 d-flex align-items-end justify-content-center load-more-container">
+      <ngx-button
+        [style]="'neutral-link'"
+        size="small"
+        [leftIcon]="{
+          name: visibleText() ? 'arrow-up' : 'arrow-down',
+          type: 'linear',
+        }"
+        (clickHandler)="visibleText.set(!visibleText())"
+      >
+        {{ visibleText() ? 'کمتر' : 'بیشتر' }}
+      </ngx-button>
+    </div>
+  </div>
+</div>
+
+<div class="mt-huge">
+  @for (item of crowd() | crowdIntroductionSegment; track item; let last = $last) {
+    <div class="w-100 d-flex align-items-center justify-content-space-between gap-tiny pb-medium mt-medium">
+      <div class="c-1 text-onback-high">
+        <span>
+          {{ item.key }}
+        </span>
+      </div>
+
+      <div class="c-3 text-onback-medium">
+        @if (item.value) {
+          @if (item.type === 'currency') {
+            <span>
+              {{ item.value | thousands }}
+              ریال
+            </span>
+          } @else {
+            <span>
+              {{ item.value }}
+            </span>
+          }
+        }
+      </div>
+    </div>
+
+    <ngx-divider
+      [color]="BorderColorsEnum.Air"
+      orientation="horizontal"
+    ></ngx-divider>
+  }
+</div>
+
+<div class="w-100 mt-plus d-flex flex-column gap-small mb-huge">
+  <span class="c-1 text-onback-high">
+    برای استعلام طرح در فرابورس نام
+    <span>«{{ crowd().faraBoursePersianSymbol }}»</span>
+    را در قسمت طرح برگزیده در سایت زیر جست‌و‌جو کنید.
+  </span>
+  <span class="c-3 text-onback-medium text-align-end"> https://cf.ifb.ir/home/viewproject </span>
+</div>

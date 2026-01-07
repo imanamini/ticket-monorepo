@@ -1,0 +1,208 @@
+@import "insurance/src/lib/app/style/once/global";
+
+.wrapper {
+  @include flex-center;
+  height: 100%;
+  padding: 0 30px;
+
+  .horizontal-tab {
+    display: none;
+    height: 45px;
+    border-bottom: 1px solid #dee3e7;
+    width: 100%;
+  }
+
+  .policy-info, .transfer {
+    margin: 0 10px;
+    width: 50%;
+    max-width: 530px;
+  }
+
+  .policy-info {
+    height: 600px;
+    background: #ffffff;
+    @extend %radius-norm;
+
+    .right-side {
+      padding: 15px 30px;
+
+
+      .detail-info {
+        .detail-info-item {
+          @include flex-center-between;
+          padding: 16px;
+          border-bottom: 1px solid #dee3e7;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          .title, .value {
+            font-size: .9rem;
+          }
+
+          .value {
+            font-weight: 500;
+            direction: ltr;
+          }
+
+          .title {
+            color: #6e798d;
+          }
+        }
+      }
+    }
+  }
+
+  .download-option {
+    display: flex;
+    flex-direction: column;
+
+    .download-item {
+      color: #6e798d;
+      font-size: .9rem;
+      @include flex-end-between;
+      padding: 10px 0;
+      border-bottom: solid 1px #dee3e7;
+
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 20px;
+        background-image: url("/insurance-assets/icons/icon-general-download.svg");
+      }
+    }
+
+  }
+
+  .transfer {
+    .body {
+      .image {
+        background: url("/insurance-assets/images/locked.svg");
+        width: 170px;
+        height: 142px;
+        margin: 24px auto;
+      }
+
+      .title, .description, {
+        text-align: center;
+        margin-bottom: 20px;
+        line-height: 1.71;
+      }
+
+      .title {
+        font-weight: 600;
+        color: #6e798d;
+        font-size: 1.1rem;
+      }
+
+      .description {
+        color: #2c3544;
+      }
+
+      ui-button {
+        max-width: 50%;
+        margin: auto;
+        display: block;;
+      }
+
+    }
+  }
+}
+
+app-card {
+  height: 600px;
+  display: block;
+}
+
+.buttons-action {
+  @include flex-center-between;
+
+  .delete, .download {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    padding: 15px;
+    background-position: center;
+    cursor: pointer;
+  }
+
+  .delete {
+    margin-right: 10px;
+    background-color: #ffeef3;
+    background-image: url("/insurance-assets/icons/icon-general-delete-red.svg");
+  }
+
+  .download {
+    background-color: #f0f5ff;
+    background-image: url("/insurance-assets/icons/icon-general-download-blue.svg");
+  }
+}
+
+@include mediaMobile() {
+  app-card {
+    display: unset;
+  }
+  .policy-info {
+    height: 100%;
+    padding: 10px;
+    background: #f2f5f8;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 0;
+
+    .header {
+      display: none;
+    }
+
+    .right-side {
+      padding: 15px;
+      border-radius: 12px;
+      background: white;
+      width: 100%;
+      overflow: auto;
+
+      .detail-info {
+        .detail-info-item {
+          padding: 10px;
+
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mediaTablet {
+  .wrapper {
+    padding: 0;
+    flex-wrap: wrap;
+    background: #ffffff;
+    align-items: unset;
+
+    .policy-info, .transfer {
+      width: 100%;
+      max-width: unset;
+
+      app-card {
+        width: 100%;
+      }
+    }
+
+    .horizontal-tab {
+      display: block;
+    }
+  }
+}

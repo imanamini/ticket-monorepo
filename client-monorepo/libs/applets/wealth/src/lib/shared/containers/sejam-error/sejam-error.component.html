@@ -1,0 +1,55 @@
+<ngx-app-bar
+  class="w-100"
+  [title]="'بررسی حساب سجام'"
+  [rightButton]="{
+    icon: 'arrow-right',
+    style: 'neutral-link',
+    mode: 'icon-only',
+    size: 'medium',
+  }"
+  (onRightButtonClick)="onBackHandler()"
+/>
+
+<div class="w-100 sejam-error-container">
+  <div class="sejam-error-content">
+    <img src="./wealth-assets/svg/sejam-error.svg" />
+    <p class="sejam-error-title">بررسی حساب سجام شما به یکی از دلایل زیر رد شد:</p>
+
+    <div class="error-reasons-container">
+      @for (reason of reasons; track $index) {
+        <div
+          class="reason"
+          [ngClass]="{ 'two-columns': reason.button }"
+        >
+          <div class="title">
+            <span>
+              {{ reason.title }}
+            </span>
+          </div>
+          @if (reason.button) {
+            <div class="d-flex justify-content-end">
+              <ngx-button
+                [style]="'link'"
+                [size]="'small'"
+                (clickHandler)="sejamIdentify(reason.button.id)"
+              >
+                {{ reason.button.title }}
+              </ngx-button>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+  <div class="sejam-error-buttons">
+    <ngx-button
+      buttonId="SEJAM_REGISTER"
+      [style]="'fill'"
+      size="medium"
+      [fullWidth]="true"
+      (clickHandler)="onBackHandler()"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

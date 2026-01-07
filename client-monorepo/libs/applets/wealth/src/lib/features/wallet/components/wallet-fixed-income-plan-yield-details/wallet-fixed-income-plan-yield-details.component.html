@@ -1,0 +1,59 @@
+<div class="w-100 d-flex flex-wrap">
+  <wealth-applet-inventory-profit
+    class="w-100"
+    [wallet]="wallet()"
+  />
+
+  @if (annualProfit()?.totalProfit) {
+    <div class="w-100 d-flex align-items-center justify-content-space-between mt-big">
+      <p class="c-2 text-onback-medium">مجموع سود از ابتدا</p>
+
+      <p class="text-onback-medium">
+        <span class="st-5"> {{ annualProfit()?.totalProfit | thousands }} </span>
+        <span class="b-3 is-currency"> ریال </span>
+      </p>
+    </div>
+  }
+
+  <div class="w-100 d-flex flex-wrap">
+    @switch (wallet().profit.status) {
+      @case (EPnlView.Profit) {
+        <wealth-applet-annual-profit
+          class="w-100"
+          [skeletonCount]="3"
+          [skeletonRowCount]="1"
+          [skeleton]="skeleton()"
+          [detail]="annualProfit()"
+        />
+      }
+      @case (EPnlView.NoProfitInFourMonth) {
+        <ngx-divider
+          class="mt-medium"
+          [color]="BorderColorsEnum.Air"
+          orientation="horizontal"
+        />
+        <div class="w-100 d-flex align-items-center justify-content-space-between pt-plus no-profit-container position-relative">
+          <span class="text-onback-low l-2"> در ۴ ماه گذشته هیچ سودی دریافت نکرده‌اید.</span>
+          <img
+            src="./wealth-assets/images/empty-profit.png"
+            alt="No profit"
+          />
+        </div>
+      }
+      @case (EPnlView.NoProfit) {
+        <ngx-divider
+          class="mt-medium"
+          [color]="BorderColorsEnum.Air"
+          orientation="horizontal"
+        />
+        <div class="w-100 d-flex align-items-center justify-content-space-between pt-plus no-profit-container position-relative">
+          <span class="w-100 text-align-center text-onback-low l-2">هنوز سود دریافت نکرده‌اید.</span>
+          <img
+            src="./wealth-assets/images/empty-profit.png"
+            alt="No profit"
+          />
+        </div>
+      }
+    }
+  </div>
+</div>

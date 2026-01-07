@@ -1,0 +1,10 @@
+.complete-info-container {
+  .container {
+    height: calc(100vh - 124px);
+    overflow-y: scroll;
+  }
+
+  .full-height {
+    overflow-y: scroll;
+  }
+}

@@ -1,0 +1,15 @@
+.icon-coin {
+  width: 24px;
+  height: 24px;
+  background: url('apps/dpx/src/assets/pay-club/coin-footer.svg') no-repeat center;
+}
+
+.description {
+  max-width: 229px;
+}
+
+.gradiant-bg {
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(220deg, #0f53ed 3.65%, #94bfff 95.95%);
+}

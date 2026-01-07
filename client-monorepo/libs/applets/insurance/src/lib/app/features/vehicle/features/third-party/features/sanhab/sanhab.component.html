@@ -1,0 +1,14 @@
+<div class="sanhab w-100 h-100 d-flex align-items-center justify-content-center pr-plus pl-plus">
+  <ngx-status-result
+          [title]="'در حال دریافت اطلاعات'"
+          [description]="'لطفاً منتظر نتیجه استعلام اطلاعات خودرو و بیمه‌نامه خود باشید.'"
+  >
+    <ng-container status-image>
+      <ngx-waiting-stepper
+              [isSelfProgress]="true"
+              [timerDeadline]="20"
+              [state]="waitingStepperState()"
+      ></ngx-waiting-stepper>
+    </ng-container>
+  </ngx-status-result>
+</div>

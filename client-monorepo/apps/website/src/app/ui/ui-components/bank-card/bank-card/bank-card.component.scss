@@ -1,0 +1,106 @@
+@import "globals";
+
+::ng-deep {
+  img {
+    max-width: 100%;
+  }
+}
+
+.bank-card {
+  .card {
+    position: relative;
+    overflow: hidden;
+    margin: auto;
+    border-radius: 16px;
+    direction: rtl;
+    width: 100%;
+    height: 80px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg1);
+    justify-content: space-between;
+
+    .top-section {
+      display: flex;
+      align-items: center;
+
+      .bank-icon {
+        width: 16px;
+        height: 16px;
+        z-index: 2;
+        margin-left: 4px;
+      }
+
+      .bank-name {
+        font-size: 12px;
+        color: $swatch_steel_100;
+        z-index: 2;
+      }
+    }
+
+    .bank-card-number {
+      white-space: nowrap;
+      margin-right: auto;
+      //text-align: center;
+      direction: ltr;
+      color: $swatch_steel_100;
+      z-index: 2;
+      font-size: 14px;
+    }
+
+    .owner-name {
+      text-align: right;
+      font-size: 12px;
+      color: $swatch_steel_100;
+      z-index: 2;
+    }
+
+    .back-ground {
+      position: absolute;
+      width: 164%;
+      height: 101%;
+      top: -26px;
+      transform: rotate(-12deg);
+      right: -37px;
+    }
+
+    &.small {
+      width: 156px;
+      justify-content: end;
+
+      .top-section {
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start !important;
+        height: 100%;
+
+        .bank-icon {
+          margin-bottom: 10px;
+        }
+      }
+
+      .bank-card-number {
+        font-size: 14px;
+        text-align: right;
+        padding: 5px 0;
+      }
+
+      .owner-name {
+        text-align: right;
+        font-size: 12px;
+        color: $swatch_white_700;
+        padding-top: 3px;
+      }
+
+      .back-ground {
+        position: absolute;
+        width: 229%;
+        height: 487%;
+        top: -18px;
+        transform: rotate(-12deg);
+        right: -120px;
+      }
+    }
+  }
+}

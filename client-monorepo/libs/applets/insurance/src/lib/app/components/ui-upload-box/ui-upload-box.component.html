@@ -1,0 +1,17 @@
+<div (click)="inputElement.click()" class="upload-box">
+  <ng-container [ngSwitch]="uploadType">
+    <div *ngSwitchCase="'uploading'" class="box downloading">
+      <circle-progress-bar [percent]="percent"></circle-progress-bar>
+    </div>
+    <div *ngSwitchCase="'initial'" class="box initial">
+      <div class="icon"></div>
+    </div>
+    <div *ngSwitchCase="'success'" class="box success"></div>
+    <div *ngSwitchCase="'failed'" class="box failed"></div>
+  </ng-container>
+</div>
+
+<input
+        #inputElement
+        (change)="fileSelected($event)"
+        type="file">

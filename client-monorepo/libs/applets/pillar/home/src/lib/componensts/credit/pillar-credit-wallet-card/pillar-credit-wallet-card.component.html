@@ -1,0 +1,65 @@
+<ngx-card
+  (click)="cardClicked()"
+  [amount]="wallet()?.balance"
+  [amountAlign]="'right'"
+  [cardBackground]="wallet()?.color"
+  [cardLabel]="wallet()?.topCardTitle"
+  [cardLogo]="wallet()?.icon"
+  [width]="'100%'"
+  [height]="'104px'"
+  [cardMode]="wallet()?.serviceType === SERVICE_TYPE.BNPL ? 'bnpl' : 'credit'"
+  [amountPrefix]="walletInProgressActive() ? 'تا' : ''"
+  [leftDetail]="leftDetailTemplate"
+  [rightDetail]="rightDetailTemplate"
+  [cardSize]="cardSize() === 'full' ? 'large' : 'medium'"
+></ngx-card>
+<ng-template #rightDetailTemplate>
+  <div>
+    @if (wallet()?.leftLabel) {
+      <span
+        class="fs-10 text-oninvert-high"
+        [class]="!!wallet()?.leftLabel?.backgroundColor ? ['radius-giant', 'p-tiny'] : []"
+        [style.background]="wallet()?.leftLabel?.backgroundColor ?? 'transparent'"
+      >
+        @if (wallet()?.leftLabel?.imageId) {
+          <credit-digipay-image
+            [imageId]="wallet()?.leftLabel?.imageId"
+            height="16px"
+            width="16px"
+          ></credit-digipay-image>
+        }
+        {{ wallet()?.leftLabel?.value }}
+      </span>
+    }
+  </div>
+</ng-template>
+<ng-template #leftDetailTemplate>
+  @if (walletInProgressActive()) {
+    <ngx-badge
+      [size]="'tiny'"
+      [mode]="'bold'"
+      [status]="'warning'"
+      [style]="'bold'"
+    >
+      ادامه فعال‌سازی
+    </ngx-badge>
+  } @else if (wallet()?.accountStatus === AccountStatus.BLOCK) {
+    <ngx-badge
+      [size]="'tiny'"
+      [status]="'error'"
+      [mode]="'bold'"
+      [classList]="'white-space-no-wrap'"
+    >
+      غیر قابل استفاده
+    </ngx-badge>
+  } @else {
+    <ngx-badge
+      [size]="'tiny'"
+      [mode]="'fill'"
+      [status]="'neutral'"
+      [style]="'bold'"
+    >
+      جزییات
+    </ngx-badge>
+  }
+</ng-template>

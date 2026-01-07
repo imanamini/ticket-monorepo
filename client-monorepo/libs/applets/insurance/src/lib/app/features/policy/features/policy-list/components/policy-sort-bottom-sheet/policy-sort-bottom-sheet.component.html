@@ -1,0 +1,12 @@
+<div class="policy-sort-bottom-sheet py-low px-medium">
+  @for (sortMethod of sortOptions(); track $index) {
+    <div class="d-flex gap-minus py-plus cursor-pointer" (click)="sortMethodChanged($index)">
+      <ngx-radio-button
+              [checked]="sortMethod.isChecked"
+      ></ngx-radio-button>
+      <div class="b-2 text-onback-medium">
+        {{ sortMethod.title }}
+      </div>
+    </div>
+  }
+</div>

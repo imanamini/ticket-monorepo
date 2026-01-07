@@ -1,0 +1,249 @@
+@import "globals";
+
+::part(container){
+  overflow: visible;
+}
+
+:host ::ng-deep {
+
+  .benefit-service-cards {
+    width: 100%;
+    margin-top: 32px;
+
+    .swiper {
+      overflow: visible;
+    }
+
+    .swiper-wrapper {
+      margin-bottom: 0;
+      padding-right: 0;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+    }
+
+    .swiper-slide-visible > .benefit-card {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .benefit-card {
+      perspective: 500px;
+      padding: 12px;
+      min-width: fit-content;
+      opacity: 0.5;
+
+      &.active .content {
+        transform: rotateY(180deg);
+        transition: transform 0.7s;
+        -webkit-transform: rotateY(180deg);
+        -webkit-transition: transform 0.7s;
+        background-color: unset !important;
+      }
+
+      > div {
+        opacity: 1;
+        -webkit-transition: 0.7s;
+        transition: 0.7s;
+        //max-width: 415px;
+        box-shadow: 0 1px 1px #828cb1;
+        position: relative;
+        background-color: #f6f8ff;
+        display: flex;
+        padding: 28px;
+        height: 179px;
+        //justify-content: center;
+        border-radius: 20px;
+
+        a {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          z-index: 3;
+        }
+      }
+
+      .content {
+        transition: transform 0.7s;
+        transform-style: preserve-3d;
+
+        .content-back {
+          display: flex;
+          align-items: center;
+          backface-visibility: hidden;
+        }
+
+        .content-front {
+          display: flex;
+          align-items: center;
+          text-align: center;
+          backface-visibility: hidden;
+
+          i:before {
+            transform: rotate(90deg);
+            //margin: auto;
+          }
+
+          .front-title {
+            margin-right: 8px;
+            text-align: right;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            position: relative;
+
+            > span {
+              font-size: 18px;
+              font-weight: 600;
+              line-height: 1.5;
+              color: $text-color;
+            }
+          }
+
+          .front-icon {
+            width: 48px;
+            min-width: 48px;
+            height: 48px;
+            position: relative;
+            margin-left: 14px;
+            //margin: auto;
+            //margin-bottom: 12px;
+
+            div {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              left: 50%;
+              top: 50%;
+              display: -webkit-box;
+              display: -ms-flexbox;
+              display: flex;
+              -webkit-box-pack: center;
+              -ms-flex-pack: center;
+              justify-content: center;
+              -webkit-box-align: center;
+              -ms-flex-align: center;
+              align-items: center;
+              -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+
+              img {
+                max-width: 100%;
+              }
+            }
+          }
+        }
+
+        .content-back {
+          transform: rotateY(180deg);
+          display: flex;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background-color: #0040ff;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          padding: 32px;
+          color: white;
+          align-items: center;
+          justify-content: center;
+          border-radius: 20px;
+
+          span {
+            color: #fff;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 25px;
+            text-align: center;
+            cursor: default;
+          }
+        }
+      }
+    }
+  }
+
+  .swiper-navigation > div > div {
+    cursor: pointer;
+    display: flex;
+  }
+
+  .swiper-navigation {
+    margin-bottom: 32px;
+  }
+
+  .swiper-navigation > div > div.swiper-button-disabled {
+    opacity: 0.15;
+  }
+
+  .value-card-button-next i,
+  .value-card-button-prev i {
+    font-family: 'icomoon';
+    font-size: 25px;
+    font-style: normal;
+    color: #828cb1 !important;
+    text-decoration: none;
+  }
+
+  .value-card-icon__arrow-left:before {
+    content: '\e900';
+    color: $text-color;
+  }
+
+  .value-card-icon__arrow-right:before {
+    content: '\e904';
+    color: $text-color;
+  }
+
+  .value-card-navigation {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 744px) {
+    .benefit-card {
+      margin: auto;
+    }
+    .swiper-navigation {
+      display: none;
+    }
+    .front-title {
+      width: 100%;
+    }
+
+    .benefit-service-cards .benefit-card > div {
+      height: 128px;
+    }
+  }
+}
+
+.horizontal-flow-button-next i,
+.horizontal-flow-button-prev i {
+  font-family: 'icomoon';
+  font-size: 25px;
+  font-style: normal;
+  color: #d0d9f5 !important;
+  text-decoration: none;
+}
+
+.horizontal-flow-icon__arrow-left:before {
+  content: '\e900';
+  color: #001a66;
+}
+
+.horizontal-flow-icon__arrow-right:before {
+  content: '\e904';
+  color: #001a66;
+}
+
+.horizontal-flow-navigation {
+  display: flex;
+  justify-content: space-between;
+}

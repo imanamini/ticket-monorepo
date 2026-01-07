@@ -1,0 +1,10 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  [showBorder]="false"
+  [showBackIcon]="true"
+  [title]="'افزودن کارت جدید'"
+  [hasBackAction]="false"
+  (onBackAction)="goBack()"
+>
+  <c2c-applet-enter-new-card (changeStep)="onChangeStep()"></c2c-applet-enter-new-card>
+</common-ui-components-page-layout>

@@ -1,0 +1,93 @@
+<div class="merchant-card">
+  <div class="store-preview">
+    <img
+      *ngIf="merchant.storeIcon && merchant.storeIcon.url"
+      [src]="merchant.storeIcon.url"
+      alt=""
+      class="store-icon"
+    />
+    <div
+      *ngIf="merchant.storeName"
+      class="store-name"
+    >
+      {{ merchant.storeName }}
+    </div>
+  </div>
+  <div
+    *ngIf="merchant.storeDescription"
+    class="store-description"
+  >
+    {{ merchant.storeDescription }}
+  </div>
+  <div class="services">
+    <ng-container *ngFor="let service of merchant.services">
+      <div
+        *ngIf="service.iconBackgroundColor"
+        [style.background-color]="service.iconBackgroundColor ? service.iconBackgroundColor : ''"
+        class="service"
+      >
+        <img
+          *ngIf="service.serviceIcon && service.serviceIcon.url"
+          [src]="service.serviceIcon.url"
+          alt=""
+        />
+      </div>
+    </ng-container>
+  </div>
+  <div class="providers">
+    <div
+      *ngIf="merchant.providers.title"
+      class="title"
+    >
+      {{ merchant.providers.title }}
+    </div>
+    <div
+      *ngIf="merchant.providers.items.length"
+      class="items"
+    >
+      <ng-container *ngFor="let provider of merchant.providers.items">
+        <a
+          *ngIf="provider.pageLink"
+          [href]="provider.pageLink"
+        >
+          <div class="provider">
+            <img
+              *ngIf="provider.icon && provider.icon.url"
+              [ngSrc]="provider.icon.url"
+              class="icon"
+              height="16"
+              width="16"
+            />
+            <div
+              *ngIf="provider.name"
+              class="name"
+            >
+              {{ provider.name }}
+            </div>
+          </div>
+        </a>
+      </ng-container>
+    </div>
+  </div>
+  <div
+    *ngIf="merchant.firstCta.title"
+    class="cta"
+  >
+    <app-ui-button
+      [disabled]="!merchant.firstCta.link"
+      [link]="merchant.firstCta.link ? merchant.firstCta.link : ''"
+      appearance="BLUE-TEXT"
+      class="button"
+    >
+      <div class="cta-text">
+        {{ merchant.firstCta.title }}
+      </div>
+      <img
+        *ngIf="merchant.firstCta.icon && merchant.firstCta.icon.url"
+        [src]="merchant.firstCta.icon.url"
+        alt=""
+        class="icon"
+      />
+    </app-ui-button>
+  </div>
+</div>

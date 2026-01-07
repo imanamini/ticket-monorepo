@@ -1,0 +1,38 @@
+<app-base-layout [loaded]="loaded">
+  <div class="container">
+    <div class="hero">
+      <div class="other-slogan">
+        هیچ‌کس
+        <span class="blue">بی‌اعتبار</span>
+        از دیجی‌پی نمی‌ره!
+      </div>
+      <img
+        class="gif"
+        src="/assets/marketing-campaigns/metro-140302/counter-556X80px.gif"
+        alt=""
+      />
+      <div class="subtitle">متناسب با نیازتان از طرح‌های زیر اعتبار بگیرید</div>
+    </div>
+    <app-metro-campaign-plans></app-metro-campaign-plans>
+    <app-metro-campaign-merchants></app-metro-campaign-merchants>
+    <app-ui-faq
+      *ngIf="
+        CampaignPageData?.templateData.faq &&
+        CampaignPageData?.templateData.faq.faqItems &&
+        CampaignPageData?.templateData.faq.faqItems.length > 0
+      "
+      [faqs]="CampaignPageData?.templateData.faq.faqItems"
+      [subtitle]="CampaignPageData?.templateData.faq.subtitle"
+      [title]="CampaignPageData?.templateData.faq.title"
+    ></app-ui-faq>
+    <!--    <div class="call-us">-->
+    <!--      <div class="text">اگر سوال دیگری دارید، پاسخگوی شما هستیم!</div>-->
+    <!--      <app-ui-button link="tel:+982161930000">-->
+    <!--        <span class="contact-us">تماس با ما-->
+    <!--        <span class="tell">(۶۱۹۳۰۰۰۰-۰۲۱)</span>-->
+    <!--        </span>-->
+    <!--        <span icon="icon-arrow-left-white" appUiIcon size="20"></span>-->
+    <!--      </app-ui-button>-->
+    <!--    </div>-->
+  </div>
+</app-base-layout>

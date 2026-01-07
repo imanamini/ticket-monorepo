@@ -1,0 +1,44 @@
+<app-base-layout
+  *ngIf="providersPageData && providersPageData.templateData"
+  [loaded]="loaded"
+>
+  <app-providers-calculator
+    (selectedAmountEmitter)="selectedAmountChange($event)"
+    (selectedCollateral)="changeCollateral($event)"
+    (selectedInstallmentEmitter)="selectedInstallmentChange($event)"
+    [fundProvider]="fundProvider"
+  ></app-providers-calculator>
+
+  <app-providers-segments
+    [collateralTabs]="providersPageData.templateData.collateralTabs"
+    [selectedCollateral]="selectedCollateral"
+  ></app-providers-segments>
+  <section
+    *ngIf="isContinueCtaDisplayed"
+    class="pt-atom"
+  >
+    <div class="container">
+      <div class="text-align-left">
+        <app-ui-button
+          [link]="buttonLink"
+          linkTarget="_blank"
+        >
+          ادامه
+        </app-ui-button>
+      </div>
+    </div>
+  </section>
+
+  <app-ui-seo
+    *ngIf="providersPageData.templateData.sectionSeoContent"
+    [seoContent]="providersPageData.templateData.sectionSeoContent"
+  >
+  </app-ui-seo>
+
+  <app-ui-faq
+    *ngIf="providersPageData.templateData.faq && faqItems && faqItems.length > 0"
+    [faqs]="faqItems"
+    [subtitle]="providersPageData.templateData.faq.subtitle"
+    [title]="providersPageData.templateData.faq.title"
+  ></app-ui-faq>
+</app-base-layout>

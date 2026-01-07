@@ -1,0 +1,43 @@
+<div class="benefits">
+  <h2 class="title">{{ registerBenefitsData?.title }}</h2>
+  <div class="subtitle text-align-center st-4 text-onback-low"> {{ registerBenefitsData?.subtitle }}</div>
+  <div class="benefits-list">
+    <ng-container *ngFor="let benefit of registerBenefitsData?.benefits">
+      <div class="benefit-item d-flex flex-column align-items-center"
+           [ngClass]="{'active': benefit.isActive }"
+           (mouseenter)="setActive(benefit , true)"
+           (mouseleave)="setActive(benefit , false)">
+
+        @if (benefit?.icon) {
+          <div class="icon">
+            @if (!benefit.isActive) {
+              <img src="{{benefit?.icon}}">
+
+            } @else {
+              <img src="{{benefit?.iconActive}}">
+
+            }
+          </div>
+        }
+
+        <div class="benefit-title d-flex flex-column align-items-center">
+          <span class="t-5"
+                [ngClass]="{
+          'text-oninvert-high': benefit?.isActive,
+          'text-onback-high': !benefit?.isActive
+          }">
+            {{ benefit?.shortText }}
+          </span>
+          <span class="st-6 mt-pony" [ngClass]="{
+          'text-oninvert-medium': benefit?.isActive,
+          'text-onback-medium': !benefit?.isActive
+          }"> {{ benefit?.text }}</span>
+          <span class="st-6" [ngClass]="{
+          'text-oninvert-medium': benefit?.isActive,
+          'text-onback-medium': !benefit?.isActive
+          }"> {{ benefit?.text2 }}</span>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

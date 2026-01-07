@@ -1,0 +1,149 @@
+<div id="section-credit-merchants"></div>
+<div class="credit-merchants">
+  <div class="container">
+    <div class="filters">
+      <div
+        *ngIf="selectedFilters && Object.keys(selectedFilters).length > 0"
+        class="filter-box"
+      >
+        <app-filter-chips-box
+          (deleteAll)="deleteAllFilters()"
+          (filtersChange)="filterChanged($event)"
+          [brandTitleMap]="brandTitleMap"
+          [selectedFilters]="selectedFilters"
+        ></app-filter-chips-box>
+      </div>
+      <div class="filter-box">
+        <app-multiple-checkbox-filters
+          (changeFilterEmitter)="filterChanged($event)"
+          [filters]="providerFilter"
+          [selectedFilters]="selectedFilters"
+          title="providers"
+        ></app-multiple-checkbox-filters>
+      </div>
+      <div class="filter-box">
+        <app-multiple-checkbox-filters
+          (changeFilterEmitter)="filterChanged($event)"
+          [filters]="typeFilter"
+          [selectedFilters]="selectedFilters"
+          title="type"
+        ></app-multiple-checkbox-filters>
+      </div>
+      <div class="filter-box">
+        <app-multiple-checkbox-filters
+          (changeFilterEmitter)="filterChanged($event)"
+          [filters]="categoryFilter"
+          [selectedFilters]="selectedFilters"
+          title="category"
+        ></app-multiple-checkbox-filters>
+      </div>
+      <div
+        *ngIf="brandFilter.filterOptions.length > 0"
+        class="filter-box"
+      >
+        <app-searchable-checkbox-filter
+          (changeFilterEmitter)="filterChanged($event)"
+          [filterOptions]="brandFilter.filterOptions"
+          [selectedFilters]="selectedFilters"
+          title="brand"
+        ></app-searchable-checkbox-filter>
+      </div>
+    </div>
+    <div class="merchants-list">
+      <div class="sorting">
+        <div class="desktop">
+          <div class="sorting-choices">
+            <div class="title">
+              <span
+                icon="icon-sort"
+                size="24"
+                appUiIcon
+              ></span>
+              مرتب سازی بر اساس:
+            </div>
+            <div [formGroup]="sortingForm">
+              <mat-radio-group formControlName="sort">
+                <mat-radio-button
+                  [value]="SortMerchants.MOST_POPULAR"
+                  class="sort-title"
+                  >محبوب ترین</mat-radio-button
+                >
+                <!--                <mat-radio-button [value]="SortMerchants.NEWEST" class="sort-title">جدیدترین</mat-radio-button>-->
+                <!--                <mat-radio-button [value]="SortMerchants.OLDEST" class="sort-title">قدیمی‌ترین</mat-radio-button>-->
+                <mat-radio-button
+                  [value]="SortMerchants.ALPHABETIC"
+                  class="sort-title"
+                  >به ترتیب حروف</mat-radio-button
+                >
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class="delimiter"></div>
+          <div class="num-of-merchants">
+            <div
+              *ngIf="filteredMerchants"
+              class="title"
+            >
+              تعداد فروشگاه‌ها:
+              {{ filteredMerchants.length }}
+            </div>
+          </div>
+        </div>
+        <div class="mobile">
+          <div class="top-bar">
+            <div
+              (click)="openFiltersDialog()"
+              class="title"
+            >
+              <img
+                height="32"
+                ngSrc="assets/stores-db/mobile-filter.svg"
+                width="32"
+                alt=""
+              />
+              <div
+                *ngIf="totalNumOfFilters > 0"
+                class="total-num-of-filters-badge"
+              >
+                {{ totalNumOfFilters }}
+              </div>
+              <div class="text">فیلتر ها</div>
+            </div>
+            <div
+              [formGroup]="sortingForm"
+              class="sort-options"
+            >
+              <ui-form-field
+                [options]="sortOptions"
+                formControlName="sort"
+                label="مرتب سازی"
+                type="select"
+              ></ui-form-field>
+            </div>
+          </div>
+          <div class="num-of-merchants">
+            <div
+              *ngIf="filteredMerchants"
+              class="title"
+            >
+              تعداد فروشگاه‌ها:
+              {{ filteredMerchants.length }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        *ngIf="filteredMerchants.length > 0; else noMerchants"
+        class="merchants-cards"
+      >
+        <app-single-merchant-card
+          *ngFor="let merchant of filteredMerchants"
+          [merchant]="merchant"
+        ></app-single-merchant-card>
+      </div>
+      <ng-template #noMerchants>
+        <app-not-found-merchants></app-not-found-merchants>
+      </ng-template>
+    </div>
+  </div>
+</div>

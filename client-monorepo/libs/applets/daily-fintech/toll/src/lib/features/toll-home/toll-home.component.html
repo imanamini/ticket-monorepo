@@ -1,0 +1,65 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  [title]="'عوارض جاده‌ای'"
+  [hasBackAction]="true"
+  [showBorder]="true"
+  [bodyClasses]="'surface-back'"
+  [headerClasses]="'surface-back'"
+>
+  @if (isStableData()) {
+    <daily-fintech-touch-point class="mt-small mr-medium ml-medium"></daily-fintech-touch-point>
+    @if (!plateListWithSchedule().length) {
+      <div class="p-huge d-flex flex-column flex-grow justify-content-center align-items-center">
+        <div class="b-1 text-onback-high text-align-center">خودرویی برای شما ثبت نشده است.</div>
+        <div class="b-2 text-onback-low text-align-center">برای مشاهده‌ بدهی خودرو، لطفا مشخصات خودرو خود را وارد کنید.</div>
+        <div class="pt-big text-align-center">
+          <ngx-button
+            [mode]="'section'"
+            [size]="'large'"
+            [style]="'fill'"
+            [rightIcon]="{
+              name: 'plus',
+            }"
+            (click)="addNewVehicle()"
+          >
+            افزودن خودرو
+          </ngx-button>
+        </div>
+      </div>
+    } @else {
+      <div class="pt-huge px-medium d-flex flex-column gap-medium">
+        @if (insufficientWalletBalance()) {
+          <toll-applet-insufficient-wallet-balance-message></toll-applet-insufficient-wallet-balance-message>
+        }
+        @for (plate of plateListWithSchedule(); track plate.plateNo + plate.title + plate.schedule?.uid) {
+          <toll-applet-toll-card
+            [plate]="plate"
+            [schedule]="schedulesMap()[plate.plateNo]"
+            [walletBalance]="walletBalance()"
+            (insufficientWalletBalance)="setInsufficientWalletBalance()"
+            (delete)="onDelete($event)"
+            (edit)="onEdit($event)"
+            (addSchedule)="addNewSchedule($event)"
+            (deleteSchedule)="deleteSchedule($event)"
+          ></toll-applet-toll-card>
+        }
+      </div>
+      <div class="add-vehicle-btn p-medium d-flex justify-content-end">
+        <ngx-fab
+          [icon]="{
+            name: 'plus',
+          }"
+          (click)="addNewVehicle()"
+        >
+          افزودن خودرو
+        </ngx-fab>
+      </div>
+    }
+  } @else {
+    <div class="pt-huge px-medium d-flex flex-column gap-medium">
+      <lib-ngx-skeleton-loading [height]="'150px'"></lib-ngx-skeleton-loading>
+      <lib-ngx-skeleton-loading [height]="'150px'"></lib-ngx-skeleton-loading>
+      <lib-ngx-skeleton-loading [height]="'150px'"></lib-ngx-skeleton-loading>
+    </div>
+  }
+</common-ui-components-page-layout>

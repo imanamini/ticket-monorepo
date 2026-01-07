@@ -1,0 +1,75 @@
+<div class="profile-menu-group">
+  <h6
+    class="profile-menu-group-title c-2 mb-minus text-onback-low"
+    *ngIf="groupTitle()"
+  >
+    {{ groupTitle() }}
+  </h6>
+  <div class="profile-menu-group-list surface-elevated radius-medium py-tiny">
+    @for (item of items(); track $index) {
+      <a
+        (click)="decideForClick(item)"
+        class="profile-menu-group-list-item"
+        [ngClass]="{ disabled: item.disabled }"
+      >
+        @if (item.icon) {
+          <div class="profile-menu-group-list-item-iconbox py-minus ml-small pr-medium">
+            <common-icon-dp-icon
+              [classes]="item.disabled ? 'text-onback-disabled' : 'text-onback-low'"
+              [iconType]="'linear'"
+              [icon]="item.icon"
+              [iconSize]="'24'"
+            ></common-icon-dp-icon>
+          </div>
+        }
+
+        <div
+          class="profile-menu-group-list-item-body py-minus border-color-t-air"
+          [ngClass]="{ 'border-t-300': $index !== 0 }"
+        >
+          <div class="profile-menu-group-list-item-body-data">
+            <div
+              class="profile-menu-group-list-item-body-data-title b-2"
+              [ngClass]="{
+                'text-onback-low': !item.disabled,
+                'text-onback-disabled': item.disabled,
+              }"
+            >
+              {{ item.title }}
+            </div>
+            <div
+              class="profile-menu-group-list-item-body-data-title-subtitle c-3 mt-tiny"
+              [ngClass]="{
+                'text-onback-low': !item.disabled,
+                'text-onback-disabled': item.disabled,
+              }"
+              *ngIf="item.subtitle"
+            >
+              {{ item.subtitle }}
+            </div>
+          </div>
+          <div
+            class="profile-menu-group-list-item-body-description c-3 text-onback-disabled"
+            *ngIf="item.description"
+          >
+            {{ item.description }}
+          </div>
+        </div>
+        <div
+          class="profile-menu-group-list-item-action pr-minus pl-medium border-color-t-air"
+          [ngClass]="{ 'border-t-300': $index !== 0 }"
+        >
+          @if (item.disabled) {
+            <span class="c-3 ml-small text-onback-disabled"> غیرفعال </span>
+          }
+          <common-icon-dp-icon
+            [iconSize]="'16'"
+            [classes]="item.disabled ? 'text-onback-disabled' : 'text-onback-low'"
+            [iconType]="'linear'"
+            [icon]="'Arrow-2-Left'"
+          ></common-icon-dp-icon>
+        </div>
+      </a>
+    }
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<section class="section-value">
+  <div class="container">
+    <div class="content-value">
+      <ng-container *ngIf="templateData.sectionValue && templateData.sectionValue.values">
+        <div
+          *ngFor="let item of templateData.sectionValue.values"
+          class="value-card"
+        >
+          <div class="icon">
+            <img
+              [src]="item.featureIcon.url"
+              alt=""
+            />
+          </div>
+          <div class="title">
+            {{ item.featureTitle }}
+          </div>
+          <div class="subtitle">
+            {{ item.featureText }}
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="cta">
+      <app-ui-button
+        *ngIf="templateData.sectionValue.firstCta && templateData.sectionValue.firstCta.title"
+        [id]="templateData.sectionValue.firstCta.id"
+        [link]="templateData.sectionValue.firstCta.link"
+        appearance="BORDER-SPACE"
+        >{{ templateData.sectionValue.firstCta.title }}
+      </app-ui-button>
+    </div>
+  </div>
+</section>

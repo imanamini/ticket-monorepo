@@ -1,0 +1,22 @@
+<div class="text-align-center">
+  <p class="st-6 mb-small">درخواست شما دریافت شد</p>
+  <p class="b-2 text-onback-medium">کارشناسان ما در سریع‌ترین زمان موضوع را پیگیری خواهند کرد.</p>
+  <div class="d-flex justify-content-space-between gap-small mt-plus">
+    <a
+      [href]="'tel:02153924000'"
+      class="text-onback-high w-100"
+    >
+      <p class="b-3">پشتیبانی</p>
+      021-53924000
+    </a>
+    <ngx-button
+      [mode]="'section'"
+      [size]="'large'"
+      [style]="'link'"
+      [fullWidth]="true"
+      (clickHandler)="closeBottomSheet()"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

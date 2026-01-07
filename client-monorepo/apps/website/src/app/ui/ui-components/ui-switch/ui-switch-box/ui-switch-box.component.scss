@@ -1,0 +1,26 @@
+@import "globals";
+
+.ui-switch-box {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  border: 1px solid #d3dbe1;
+  background: #f5f8fa;
+  border-radius: 16px;
+
+  .text {
+    flex-grow: 1;
+
+    .title {
+      color: #666666;
+      font-size: rem(14, 16);
+      line-height: em(14, 24);
+    }
+
+    p {
+      color: #b2b2b2;
+      font-size: rem(12, 16);
+      line-height: em(12, 20);
+    }
+  }
+}

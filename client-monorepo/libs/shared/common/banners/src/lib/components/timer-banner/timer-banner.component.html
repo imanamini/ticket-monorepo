@@ -1,0 +1,34 @@
+<div class="timer-banner-wrapper d-flex justify-content-end wi-100">
+  @if (imageId()) {
+    <ui-api-image
+      [imageId]="imageId()!"
+      [width]="'100%'"
+      [height]="'auto'"
+    ></ui-api-image>
+  } @else {
+    <img
+      src="assets/shared/banners/timer-banner-bg.png"
+      alt=""
+      class="w-100"
+    />
+  }
+
+  <div class="timer d-flex flex-row-reverse gap-low align-items-center">
+    @for (time of Object.values(time()); track $index) {
+      <div
+        class="d-flex justify-content-center align-items-center p-pony radius-rounded border-100 border-color-tint text-oninvert-high st-6 ltr"
+        [style.width]="'32px'"
+        [style.height]="'32px'"
+      >
+        {{ time }}
+      </div>
+      @if (!$last) {
+        <div class="d-flex flex-column gap-tiny">
+          <div class="dot radius-rounded surface-glass-onback"></div>
+          <div class="dot radius-rounded surface-glass-onback"></div>
+        </div>
+      }
+    }
+    <div class=""></div>
+  </div>
+</div>

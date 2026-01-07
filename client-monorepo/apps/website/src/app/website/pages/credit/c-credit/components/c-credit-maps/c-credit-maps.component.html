@@ -1,0 +1,62 @@
+<div class="maps">
+  <ng-container *ngFor="let map of data.addresses; let mapIndex = index">
+    <div class="item">
+      <div class="content">
+        <div class="title">
+          {{ map.title }}
+        </div>
+        <div class="address">
+          {{ map.address }}
+        </div>
+        <div class="open">
+          <span> ساعت کاری: </span>
+          {{ map.open }}
+        </div>
+        <div class="city">
+          <span
+            icon="location"
+            size="24"
+            appUiIcon
+          ></span>
+          {{ map.city }}
+          -
+          {{ map.district }}
+        </div>
+        <div class="phone">
+          <span
+            icon="mobile-device"
+            size="24"
+            appUiIcon
+          ></span>
+          {{ map.phone }}
+        </div>
+        <div class="text-align-left">
+          <app-ui-button
+            [link]="map.link"
+            appearance="BLUE-TEXT"
+            linkTarget="_blank"
+            size="SMALL"
+          >
+            مسیریابی
+            <ngx-icon
+              [name]="'arrow-left'"
+              class="text-onback-brand"
+            ></ngx-icon>
+          </app-ui-button>
+        </div>
+      </div>
+      <div
+        [id]="'map' + mapIndex"
+        class="map"
+      ></div>
+      <div
+        [id]="'popup' + mapIndex"
+        class="ol-popup"
+      >
+        <div [id]="'popup-content' + mapIndex">
+          {{ map.title }}
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

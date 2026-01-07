@@ -1,0 +1,28 @@
+<div class="w-100 d-flex flex-wrap">
+  <div class="w-100 d-flex align-items-center justify-content-center">
+    <img
+      src="./wealth-assets/svg/pre-register.svg"
+      alt="شما را از طریق پیامک باخبر خواهیم کرد"
+    />
+  </div>
+
+  <div class="w-100 mt-big">
+    <p class="w-100 text-align-center bt-2 text-onback-low">
+      در این فرآیند، شما درخواست زودهنگام مشارکت در عرضه اولیه {{ ipoName() }} را ثبت خواهید کرد. درخواست شما در روز عرضه اولیه به صورت
+      خودکار انجام خواهد شد.
+    </p>
+  </div>
+
+  <div class="w-100 surface-elevated mt-huge buttons-container">
+    <ngx-button
+      [style]="'fill'"
+      size="medium"
+      [fullWidth]="true"
+      (clickHandler)="action()"
+      [isLoading]="loading()"
+      [buttonId]="'IPO_PRE_REGISTER'"
+    >
+      ثبت درخواست
+    </ngx-button>
+  </div>
+</div>

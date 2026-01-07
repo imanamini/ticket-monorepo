@@ -1,0 +1,68 @@
+.swiper-container {
+  display: block;
+  position: relative;
+  padding: 10px 0;
+  overflow-x: hidden;
+}
+
+.single-plan-wrapper {
+  padding: 16px 16px 0;
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+  width: fit-content;
+}
+
+.plan-thumb {
+  padding: 6px 12px;
+  border-radius: 32px;
+  font-size: 12px;
+  font-weight: 400;
+  // TODO
+  //border: 1px solid $swatch_steel_300;
+  //color: $swatch_steel_500;
+  line-height: 20px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.plan-title {
+  display: block;
+  min-width: 48px;
+  text-align: center;
+}
+
+.plans-thumbs .swiper-slide-thumb-active {
+  color: #ffffff;
+  font-weight: 500;
+  // TODO
+  //border-color: $swatch_steel_700;
+  //background-color: $swatch_steel_700;
+}
+
+
+.next-arrow, .prev-arrow {
+  &:after {
+    display: none;
+  }
+
+  width: 32px;
+  height: 32px;
+  background-color: rgba(44, 53, 68, 0.80);
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.title-card{
+  white-space: nowrap;
+}

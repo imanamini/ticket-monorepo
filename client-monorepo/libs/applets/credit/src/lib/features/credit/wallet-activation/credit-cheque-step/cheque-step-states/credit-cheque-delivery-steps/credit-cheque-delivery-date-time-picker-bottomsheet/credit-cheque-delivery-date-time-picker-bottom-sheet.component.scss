@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+.flex-shrink-0{
+  flex-shrink: 0;
+}
+
+.date-item{
+  width:84px;
+  height:106px;
+  flex-shrink: 0;
+}
+.time-item{
+  flex: 1 1 auto;
+}
+
+.disabled-badge{
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}

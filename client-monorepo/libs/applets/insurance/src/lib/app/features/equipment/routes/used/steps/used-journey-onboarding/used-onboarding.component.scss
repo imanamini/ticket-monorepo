@@ -1,0 +1,126 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.onboarding-page {
+  @include flex-center;
+  background-color: #fff;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .paper {
+    @include flex-column;
+    background: #fff;
+    border-radius: 12px;
+    width: 400px;
+    max-width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 24px 0;
+
+    .close {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      vertical-align: middle;
+      background: url('/insurance-assets/images/used-onboading-close.svg') no-repeat 0 0/100%;
+    }
+
+    .paper-body {
+      @include flex-column;
+      text-align: right;
+      flex-grow: 1;
+      height: 100%;
+      justify-content: space-evenly;
+
+      ::ng-deep {
+        p {
+          text-align: right !important;
+        }
+
+        .nav-dots {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+.page-nav {
+  @include flex-row-reverse;
+  justify-content: space-between;
+  margin-top: 32px;
+  width: 100%;
+  direction: rtl;
+  z-index: 1;
+
+  ui-button {
+    width: auto;
+    min-width: 115px;
+  }
+}
+
+
+:host ::ng-deep {
+  .owl-carousel {
+    height: 100%;
+  }
+}
+
+.nav-dots {
+  width: 100%;
+  direction: rtl;
+  z-index: 1;
+
+  .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    transition: 0.2s all ease-in-out;
+    margin: 5px 3px;
+    background: #e5e5e5;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &.is-selected {
+      background: rgba(120, 134, 152);
+      width: 24px;
+    }
+  }
+}
+
+.slide-page-content {
+
+  .image-wrapper {
+    width: 296px;
+    max-width: 90%;
+    margin: 0 auto 32px;
+  }
+
+  .slide-title {
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .slide-content {
+    line-height: 1.6em;
+    font-size: 14px;
+
+    strong {
+      font-weight: 500 !important;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .slide-page-content {
+    .slide-content {
+      font-size: 12px;
+    }
+
+    .image-wrapper {
+      width: 168px;
+    }
+  }
+}

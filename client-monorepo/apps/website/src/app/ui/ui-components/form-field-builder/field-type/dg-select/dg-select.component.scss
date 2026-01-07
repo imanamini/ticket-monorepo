@@ -1,0 +1,191 @@
+@use 'sass:math';
+@import '../../style/from-field-builder';
+
+.ng-select.dg-select ::ng-deep {
+  padding-bottom: 0;
+
+  .ng-dropdown-panel {
+    border-radius: $base-border-radius;
+    border: $base-border-size solid $border-color-default;
+    box-shadow: none;
+    overflow: hidden;
+
+    &.ng-select-bottom {
+      top: 100%;
+    }
+
+    .ng-dropdown-panel-items {
+      .ng-option {
+        &.ng-option-marked {
+          background-color: $background-color-focus;
+        }
+
+        &.ng-option-selected {
+          background-color: $background-color-focus;
+          color: $color-focus;
+        }
+      }
+    }
+  }
+
+  .ng-select-container {
+    width: 100%;
+    border: $base-border-size solid $border-color-default;
+    background-color: $background-color-default;
+    border-radius: $base-border-radius;
+    position: relative;
+    align-items: flex-start;
+    overflow: hidden;
+    transition: $transition;
+    padding: $base-pt $base-pr $base-pb $base-pl;
+
+    &:after {
+      display: none;
+    }
+
+    .ng-arrow-wrapper,
+    .ng-clear-wrapper {
+      width: $placeholder-line-height;
+      height: $placeholder-line-height;
+      display: inline-block;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      //top: auto;
+      //bottom: auto;
+      left: auto;
+      right: auto;
+    }
+
+    .ng-arrow-wrapper {
+      background-image: url('../../assets/arrow-down.svg');
+
+      .ng-arrow {
+        display: none;
+      }
+    }
+
+    .ng-clear-wrapper {
+      background-image: url('../../assets/cleaner-icon.svg');
+
+      .ng-clear {
+        display: none;
+      }
+    }
+
+    .ng-value-container {
+      padding: 0;
+      border: none !important;
+
+      .ng-input {
+        width: auto;
+        height: $base-line-height;
+        line-height: $base-line-height;
+        top: $base-pt + 1px;
+        bottom: $base-pb + 1px;
+        left: $base-pl + 1px;
+        right: $base-pr + 1px;
+
+        > input {
+          padding: 0;
+        }
+      }
+
+      .ng-value {
+        font-size: $base-font-size;
+        line-height: $base-line-height;
+      }
+
+      .ng-placeholder {
+        top: $label-top;
+        right: $label-right;
+        font-size: $label-font-size;
+        line-height: $label-line-height;
+        color: $color-default;
+        background-color: $background-color-default;
+        transition: $transition;
+
+        &.float-top {
+          transform: none;
+          top: $label-active-top;
+          right: $label-active-right;
+          font-size: $label-active-font-size;
+          line-height: $label-active-line-height;
+        }
+      }
+    }
+
+    &.ng-has-value {
+      //border-color: $border-color-not-empty;
+      background-color: $background-color-not-empty;
+
+      .ng-value-container {
+        .ng-placeholder {
+          color: $color-not-empty;
+          background-color: $background-color-not-empty;
+          @extend .float-top;
+        }
+      }
+    }
+  }
+
+  .ng-clear-wrapper,
+  .ng-arrow-wrapper {
+    border-top: none !important;
+  }
+}
+
+.ng-select.dg-select.ng-select-focused ::ng-deep {
+  .ng-select-container {
+    border-color: $border-color-focus;
+    background-color: $background-color-focus;
+
+    .ng-value-container {
+      .ng-placeholder {
+        color: $color-focus;
+        background-color: $background-color-focus;
+        @extend .float-top;
+      }
+    }
+  }
+}
+
+.ng-select.dg-select.ng-select-opened ::ng-deep {
+  .ng-select-container {
+    border-color: $border-color-focus;
+    background-color: $background-color-focus;
+
+    .ng-value-container {
+      .ng-placeholder {
+        color: $color-focus;
+        background-color: $background-color-focus;
+        @extend .float-top;
+      }
+    }
+  }
+}
+
+.ng-select.dg-select.ng-select-multiple ::ng-deep {
+  .ng-select-container {
+    padding: $base-pt $base-pr $base-pb $base-pl;
+
+    .ng-value-container {
+      .ng-value {
+        padding: 0 5px;
+        margin: 0 0 2px 2px;
+        line-height: $base-line-height - 2px;
+        background-color: $swatch_steel_200;
+        color: $swatch_steel_700;
+        border-radius: math.div($base-border-radius, 2);
+
+        .ng-value-label,
+        .ng-value-icon {
+          display: inline-block;
+        }
+
+        .ng-value-icon {
+          color: $swatch_steel_500;
+        }
+      }
+    }
+  }
+}

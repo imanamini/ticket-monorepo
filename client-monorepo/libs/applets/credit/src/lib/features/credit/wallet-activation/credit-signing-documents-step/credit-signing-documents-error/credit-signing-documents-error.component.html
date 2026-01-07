@@ -1,0 +1,36 @@
+@if (showAppbar()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="close.emit()"
+    [backButton]="true"
+    [title]="data().pageTitle"
+  ></app-credit-app-bar>
+}
+<div class="d-flex flex-column flex-grow w-100">
+  <div class="flex-grow justify-content-center rtl w-100">
+    @if (data()) {
+      <ngx-status-result
+        [type]="data().type"
+        [iconState]="data().stateIcon"
+        [description]="data().message"
+        [title]="data().title"
+        [buttons]="data().buttons"
+        (clicked)="close.emit()"
+        (closed)="close.emit()"
+        [hasCloseIcon]="data().hasCloseIcon"
+      >
+        @if (showAlert()) {
+          <div
+            html-content
+            class="d-flex flex-column flex-grow justify-content-flex-end"
+          >
+            <ngx-alert
+              [color]="'yellow'"
+              [hasCloseIcon]="false"
+              [text]="'لطفاً ابتدا درخواست وام فعلی خود را لغو کنید و سپس برای دریافت وام دوباره اقدام نمایید.'"
+            />
+          </div>
+        }
+      </ngx-status-result>
+    }
+  </div>
+</div>

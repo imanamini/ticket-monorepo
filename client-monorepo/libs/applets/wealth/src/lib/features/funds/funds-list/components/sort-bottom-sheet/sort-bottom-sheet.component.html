@@ -1,0 +1,17 @@
+<div class="sort-container">
+  <div class="header">
+    <span>مرتب‌سازی بر اساس</span>
+  </div>
+
+  <div class="purchase-price-form">
+    <mat-radio-group
+      [value]="sortBy"
+      (change)="onSortChanged($event)"
+      color="primary"
+    >
+      @for (sort of sorts; track sort) {
+        <mat-radio-button [value]="sort.value"> {{ sort.title }} </mat-radio-button>
+      }
+    </mat-radio-group>
+  </div>
+</div>

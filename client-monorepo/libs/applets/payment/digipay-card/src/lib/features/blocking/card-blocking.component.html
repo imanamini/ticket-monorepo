@@ -1,0 +1,56 @@
+<common-ui-components-page-layout
+  [showBorder]="true"
+  bodyClasses="surface-back"
+  headerClasses="surface-back"
+  [title]="'مسدودسازی دیجی‌کارت'"
+>
+  <div class="h-100 p-plus d-flex flex-column pt-medium gap-big justify-content-space-between">
+    <div class="d-flex flex-column gap-minus">
+      <div class="st-8">اطلاعات کارت</div>
+      <form [formGroup]="form">
+        <ui-form-field
+          formControlName="password"
+          [isNumericKeyboard]="true"
+          [convertNonEnglishDigits]="true"
+          [error]="form.controls.password.errors"
+          [inputType]="'masked'"
+          [hasCleaner]="false"
+          [maxSize]="4"
+          [label]="'رمز اول'"
+          [type]="'input'"
+          [required]="true"
+          [errorMessageMapper]="{
+            minlength: 'رمز کارت باید 4  رقم باشد',
+            maxlength: 'رمز کارت باید 4  رقم باشد',
+            pattern: 'رمز کارت باید 4  رقم باشد'
+          }"
+        ></ui-form-field>
+      </form>
+    </div>
+    <div class="d-flex flex-column gap-big">
+      <ngx-callout
+        [backgroundMode]="'elevated'"
+        [mode]="'multiple'"
+        [showTitleBlink]="false"
+        [title]="''"
+        [messages]="[
+          'در صورت مسدوسازی این کارت، به طور موقت انجام عملیات با کارت مقدور نیست.',
+          'امکان فعال سازی مجدد این کارت در تنظیمات کارت وجود دارد.',
+          'در صورتی که اطلاعات را ۳ بار اشتباه وارد کنید، برای تلاش مجدد، باید ۳۰ دقیقه منتظر بمانید.'
+        ]"
+      ></ngx-callout>
+      <div class="footer">
+        <ngx-button
+          [disabled]="form.invalid"
+          [mode]="'form'"
+          [size]="'large'"
+          [style]="'fill'"
+          [fullWidth]="true"
+          (clickHandler)="onSubmitForm()"
+        >
+          مسدود سازی کارت
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+</common-ui-components-page-layout>

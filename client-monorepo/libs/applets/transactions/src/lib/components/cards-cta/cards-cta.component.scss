@@ -1,0 +1,19 @@
+@import "@digipay/base-style/styleguide";
+
+.cta-item {
+  width: 56px;
+
+  .cta-icon {
+    width: fit-content;
+
+    &.highlighted {
+      background: map-get($shade-colors, onback-shade-0);
+    }
+  }
+
+  .cta-text {
+    white-space: nowrap;
+    overflow-x: visible;
+  }
+
+}

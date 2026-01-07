@@ -1,0 +1,50 @@
+@if (!showLoading()) {
+  @switch (activeStep()) {
+    @case (chequeDeliverySteps.CHEQUE_DELIVERY_LOCATION) {
+      <app-credit-cheque-delivery-location
+        (back)="back.emit()"
+        (goToStep)="gotoStep($event)"
+      ></app-credit-cheque-delivery-location>
+    }
+    @case (chequeDeliverySteps.CHEQUE_DELIVERY_POST_INFO) {
+      <app-credit-cheque-delivery-post-info
+        [creditId]="creditId()"
+        (back)="goToFirstStep()"
+        (next)="goToReservedState()"
+        (chequeHandled)="setChequeStatusHandled()"
+      ></app-credit-cheque-delivery-post-info>
+    }
+    @case (chequeDeliverySteps.CHEQUE_DELIVERY_IN_PERSON_ADDRESSES) {
+      <app-credit-cheque-delivery-in-person-addresses
+        (back)="goToFirstStep()"
+        (next)="SetSelectedDeliveryDateTime()"
+        (goToCapacityError)="goToCapacityError()"
+      ></app-credit-cheque-delivery-in-person-addresses>
+    }
+    @case (chequeDeliverySteps.CHEQUE_DELIVERY_LOCATION_TIME_DETAILS) {
+      <app-credit-cheque-delivery-selected-address-detail
+        [creditId]="creditId()"
+        (goToLocation)="goToLocation()"
+        (next)="goToReservedState()"
+        (back)="goToFirstStep()"
+        (chequeHandled)="setChequeStatusHandled()"
+        (goToCapacityError)="goToCapacityError()"
+      ></app-credit-cheque-delivery-selected-address-detail>
+    }
+    @case (chequeDeliverySteps.CHEQUE_DELIVERY_RESERVED_INFO) {
+      <app-credit-cheque-delivery-reserved-info
+        [chequeStatus]="chequeStatus()"
+        [chequeDeliveryData]="chequeDeliveryData()"
+        (close)="close.emit()"
+        (backToFirstStep)="goToFirstStep()"
+      ></app-credit-cheque-delivery-reserved-info>
+    }
+    @case (chequeDeliverySteps.CHEQUE_DELIVERY_FULL_CAPACITY_ERROR) {
+      <app-credit-cheque-delivery-full-capacity-error
+        (goToFirstStep)="goToFirstStep()"
+        (back)="back.emit()"
+      ></app-credit-cheque-delivery-full-capacity-error>
+    }
+  }
+}
+<credit-page-loading [active]="showLoading()!"></credit-page-loading>

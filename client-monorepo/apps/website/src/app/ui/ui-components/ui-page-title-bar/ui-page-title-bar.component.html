@@ -1,0 +1,74 @@
+<div
+  [ngClass]="{
+    'invert-color': invertColor,
+    'right-aligned': alignment === 'RIGHT',
+    'hide-title-bar': !internalTitle && hideTitle && !infoButton && !actionText && !subtitle,
+    'hide-title-text': !internalTitle && hideTitle && (infoButton || actionText || subtitle),
+    'card-pattern': useCardPattern,
+    dark: patternMode === 'dark',
+    light: patternMode === 'light',
+  }"
+  [ngStyle]="getStyles()"
+  class="page-title-bar"
+>
+  <div class="left-action">
+    @if (actionSpinner) {
+      <ngx-spinner
+        size="md"
+        color="primary"
+      ></ngx-spinner>
+    }
+    <ng-container *ngIf="!actionSpinner">
+      <a
+        (click)="actionTextClick($event)"
+        *ngIf="actionText"
+        [ngClass]="{ 'has-image': !!actionImage }"
+      >
+        <div
+          *ngIf="!!actionImage"
+          [class]="'left-action-img ' + actionImage"
+        ></div>
+        {{ actionText }}
+      </a>
+    </ng-container>
+    <div
+      (click)="infoItemClicked($event)"
+      *ngIf="infoButton"
+      class="invertable info-img-area info-icon"
+    ></div>
+    <ng-content></ng-content>
+  </div>
+  <span class="title invert-text">
+    <span class="main-title">{{ title }}</span>
+    <span
+      *ngIf="subtitle"
+      class="subtitle"
+      >{{ subtitle }}</span
+    >
+  </span>
+  <div class="right-action cursor-pointer">
+    <div
+      (click)="closeButtonClick($event)"
+      *ngIf="closeButton"
+      class="invertable close-icon"
+    ></div>
+
+    <!-- back button with click callback  -->
+    <span class="right-title">
+      {{ rightTitle }}
+    </span>
+    <div
+      (click)="backButtonClick($event)"
+      *ngIf="backButton"
+      class="go-back invertable back-icon"
+    ></div>
+
+    <span
+      (click)="closeButtonClick($event)"
+      *ngIf="closeText"
+      class="close-text"
+    >
+      {{ closeText }}
+    </span>
+  </div>
+</div>

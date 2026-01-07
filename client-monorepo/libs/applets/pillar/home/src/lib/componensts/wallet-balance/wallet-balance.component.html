@@ -1,0 +1,35 @@
+@defer (when !isLoading()) {
+  <div
+    class="d-flex justify-content-space-between align-items-center radius-minus border-300 border-color-light p-medium"
+    [routerLink]="'/wallet-management'"
+    (click)="onWalletClick()"
+  >
+    <div class="d-flex align-items-center gap-small">
+      <ngx-icon
+        [name]="'wallet'"
+        [type]="'due'"
+        [iconSize]="'20px'"
+      />
+      <div class="d-flex align-items-center">
+        <span class="text-onback-medium b-3 fw-bold">کیف پول:</span>
+        <span class="st-4 mr-low fw-450 line-h-24">{{ balance() | thousands }}</span>
+        <span class="mr-tiny rial is-currency">ریال</span>
+      </div>
+    </div>
+
+    <ngx-button
+      [mode]="'icon-only'"
+      [size]="'tiny'"
+      [style]="'neutral-link'"
+      [leftIcon]="{
+        name: 'arrow-2-left',
+        type: 'linear',
+      }"
+    />
+  </div>
+} @placeholder {
+  <lib-ngx-skeleton-loading
+    [height]="'58px'"
+    [width]="'100%'"
+  />
+}

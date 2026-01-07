@@ -1,0 +1,38 @@
+<div
+  class="w-100 d-flex flex-wrap transaction-container"
+  #scrollContainer
+  [style]="containerStyle()"
+>
+  <div
+    #listContainer
+    class="w-100 d-flex flex-wrap"
+  >
+    @for (transaction of transactions(); track transaction.uniqueId) {
+      <div class="w-100 px-plus my-minus">
+        <app-transaction-card
+          class="w-100 d-flex"
+          [transaction]="transaction"
+          (onCardClicked)="onTransactionClicked($event)"
+          [clickable]="isCardClickable()"
+        ></app-transaction-card>
+      </div>
+    } @empty {
+      <div class="w-100 h-100 d-flex flex-wrap align-items-center justify-content-center empty-state">
+        <img
+          src="wealth-assets/svg/empty-transactions.svg"
+          alt=" شما تراکنشی ندارید."
+        />
+        <p class="w-100 text-align-center mt-big st-8 text-onback-high">شما تراکنشی ندارید.</p>
+      </div>
+    }
+  </div>
+
+  <div class="w-100 d-flex align-items-center justify-content-center my-minus">
+    @if (page() < lastPage() && transactions().length > 0) {
+      <ngx-spinner
+        size="md"
+        color="primary"
+      ></ngx-spinner>
+    }
+  </div>
+</div>

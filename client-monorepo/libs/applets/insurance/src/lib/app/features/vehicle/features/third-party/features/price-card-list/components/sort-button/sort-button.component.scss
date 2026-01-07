@@ -1,0 +1,23 @@
+@import "insurance/src/lib/app/style/once/global";
+
+.sort-button {
+  @include flex-center;
+  border-radius: 48px;
+  border: 1px solid #dee3e7;
+  width: fit-content;
+  padding: 4px 8px;
+  gap: 4px;
+  background-color: #fff;
+  color: #2c3544;
+
+  span {
+    font-size: 12px;
+    font-weight: 524;
+  }
+
+  &.selected {
+    border: 1px solid #0040ff;
+    background-color: #f0f5ff;
+    color: #0040ff;
+  }
+}

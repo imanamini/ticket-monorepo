@@ -1,0 +1,8 @@
+<escrow-merchant-existence-switch-role (roleChanged)="handleRoleChange($event)"></escrow-merchant-existence-switch-role>
+<div class="p-medium h-100vh">
+  @if (isSeller()) {
+    <escrow-home-applet-seller-home></escrow-home-applet-seller-home>
+  } @else {
+    <escrow-home-applet-buyer-home></escrow-home-applet-buyer-home>
+  }
+</div>

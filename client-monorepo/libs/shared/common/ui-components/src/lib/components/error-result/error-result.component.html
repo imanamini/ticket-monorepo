@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-center align-items-center flex-column h-100">
+  <div class="top-section">
+    <div class="status-image d-flex justify-content-center align-items-center flex-column mb-huge w-100 text-align-center">
+      <ng-content select="[status-image]"></ng-content>
+    </div>
+    <div class="message-title st-6 text-align-center text-oninvert-high">
+      {{ title() }}
+    </div>
+    @if (description()) {
+      <div class="message-description text-oninvert-medium b-2 text-align-center">
+        {{ description() }}
+      </div>
+    }
+    @if (subDescription()) {
+      <div class="message-subDescription text-onback-error c-3 text-align-center mt-medium p-medium border-t-100 border-color-tint">
+        {{ subDescription() }}
+      </div>
+    }
+    <ng-content select="[html-content]"></ng-content>
+  </div>
+  <div class="footer-section mt-mega d-flex align-items-center flex-column gap-big">
+    <ng-content select="[actions]"></ng-content>
+  </div>
+</div>

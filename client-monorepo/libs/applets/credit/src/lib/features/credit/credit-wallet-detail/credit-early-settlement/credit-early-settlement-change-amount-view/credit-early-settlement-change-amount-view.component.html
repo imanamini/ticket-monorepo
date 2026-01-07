@@ -1,0 +1,30 @@
+<!-- Header & Button edit -->
+<div class="d-flex flex-row justify-content-space-between align-items-center pb-small">
+  <span class="bt-2 text-onback-high">{{ amountPayableLabel }}</span>
+  <ngx-button
+    size="small"
+    [style]="'link'"
+    [mode]="'form'"
+    (clickHandler)="handleEditAmountClick()"
+  >
+    {{ editButtonLabel }}
+  </ngx-button>
+</div>
+<!-- End Header & Button edit -->
+
+<!-- Show amount -->
+<div class="t-7 text-onback-medium mb-minus">
+  {{ amountView() | thousands }}
+  <span class="is-currency">ریال</span>
+</div>
+<!-- End Show amount -->
+
+<!-- Accept & Pay button -->
+<ngx-button
+  [brandButton]="true"
+  [fullWidth]="true"
+  (clickHandler)="handleAcceptAndPayClick()"
+>
+  {{ acceptAndPayButtonLabel }}
+</ngx-button>
+<!-- End Accept & Pay button -->

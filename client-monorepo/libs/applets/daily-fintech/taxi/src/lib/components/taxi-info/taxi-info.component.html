@@ -1,0 +1,44 @@
+<div class="car-info-container">
+  <div class="car-model">
+    <div class="taxi-container-information">
+      <div class="driver-info">
+        <div class="driver-image">
+          <div
+            class="driver-default"
+            *ngIf="!taxiData?.driverInfo?.image"
+          ></div>
+          <ui-api-image
+            *ngIf="taxiData.driverInfo.image"
+            [imageId]="taxiData.driverInfo.image"
+            [width]="'16px'"
+            [height]="'16px'"
+          ></ui-api-image>
+        </div>
+        <div class="driver-desc">
+          <div class="driver-name">{{ taxiData?.driverInfo?.name }}</div>
+          <div class="driver-line">{{ taxiData?.driverInfo?.lineDescription }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="taxi-description">
+      <div class="taxi-icon">
+        <ui-api-image
+          class="car-icon"
+          [imageId]="taxiData.configs.paymentCard.icon"
+          [styles]="{ borderRadius: '50%' }"
+          [width]="'35px'"
+          [height]="'35px'"
+        ></ui-api-image>
+        <div class="model-name">{{ taxiData.configs.paymentCard.carTitle }}</div>
+      </div>
+      <div class="taxi-plate-container">
+        <ngx-plate
+          [readonly]="true"
+          [size]="'small'"
+          [plate]="taxiInfo.plateDetail.title"
+        ></ngx-plate>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+@if (isLoading()) {
+  <div class="mb-small pr-plus">
+    <lib-ngx-skeleton-loading
+      [height]="'40px'"
+      [width]="'130px'"
+    ></lib-ngx-skeleton-loading>
+  </div>
+  <common-ui-components-horizontal-scroll [classes]="'pr-plus gap-small'">
+    @for (item of rangeCreator(10); track $index) {
+      <div
+        [style.width]="'156px'"
+        [style.min-width]="'156px'"
+        [style.display]="'block'"
+      >
+        <common-stores-product-preview [isLoading]="true"></common-stores-product-preview>
+      </div>
+    }
+  </common-ui-components-horizontal-scroll>
+} @else {
+  <div class="promotion-carousel pb-big">
+    <div class="px-plus">
+      <common-ui-components-title-summary
+        [title]="carousel()?.title"
+        [isLoading]="isLoading()"
+        [buttonTitle]="'همه'"
+        [mode]="'SECTION_TITLE'"
+        [buttonIcon]="'arrow-2-left'"
+        [buttonIconReversed]="true"
+        [wrapperClasses]="'mb-small'"
+        [showButton]="!!navigationLink()"
+        [navigationLink]="navigationLink()"
+      ></common-ui-components-title-summary>
+    </div>
+    <common-ui-components-horizontal-scroll [classes]="'pr-plus gap-small'">
+      @for (item of products(); track $index) {
+        @if (item.title) {
+          <div class="promotion-carousel-item">
+            <common-stores-product-preview
+              [product]="item"
+              [position]="$index + 1"
+              (clicked)="goToProductPage(item.externalId)"
+            ></common-stores-product-preview>
+          </div>
+        }
+      }
+    </common-ui-components-horizontal-scroll>
+  </div>
+}

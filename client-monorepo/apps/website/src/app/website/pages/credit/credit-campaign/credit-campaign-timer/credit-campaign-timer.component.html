@@ -1,0 +1,97 @@
+<section class="section-counter">
+  <div class="container">
+    <div
+      class="content"
+      [ngClass]="{ 'content-custom': digijet, colorsBg: B20Mode }"
+    >
+      <div>
+        @if (templateData?.sectionCounter?.title) {
+          <div
+            [innerHTML]="transform(templateData?.sectionCounter?.title)"
+            class="title mb-small fs-16"
+          ></div>
+        }
+        @if (templateData?.sectionCounter?.subtitle) {
+          <div
+            [innerHTML]="transform(templateData?.sectionCounter?.subtitle)"
+            class="subtitle mb-plus text-oninvert-high"
+          ></div>
+        }
+        <div
+          *ngIf="templateData?.sectionCounter?.counter?.show === 'true'"
+          class="counter"
+        >
+          <div>
+            @if (templateData?.sectionCounter?.counter) {
+              <div class="big-prize__counter-title">
+                <div [innerHTML]="templateData?.sectionCounter?.counter?.title"></div>
+              </div>
+            }
+            <div class="big-prize__counter-contain">
+              <div id="as__big_prize__counter_contain">
+                <span *ngIf="timer.days < 0; else showTimer">پایان </span>
+                <ng-template #showTimer>
+                  <div>
+                    <span>{{ timer.days }}</span>
+                    <span>روز</span>
+                  </div>
+                  <div>
+                    <span>{{ timer.hours }}</span>
+                    <span>ساعت</span>
+                  </div>
+                  <div>
+                    <span>{{ timer.minutes }}</span>
+                    <span>دقیقه</span>
+                  </div>
+                  <div>
+                    <span>{{ timer.seconds }}</span>
+                    <span>ثانیه</span>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cta">
+          <app-ui-button
+            appearance="BORDER-SPACE"
+            [ngClass]="{
+              'button-white-blue': B20Mode,
+              'button-red': !B20Mode && !digijet,
+              'button-white w-100': digijet,
+            }"
+            [withoutHref]="templateData.sectionCounter?.firstCta?.link"
+            [link]="templateData.sectionCounter?.firstCta?.link"
+            (clicked)="emitClick()"
+            [size]="digijet ? 'BIG' : 'MEDIUM'"
+          >
+            {{ templateData.sectionCounter.firstCta.title }}
+          </app-ui-button>
+        </div>
+      </div>
+      <div class="artwork">
+        <img
+          [src]="templateData?.sectionCounter?.image?.url"
+          alt=""
+        />
+      </div>
+      <div
+        class="dent"
+        (click)="scrollToElement(scrollToElementId)"
+        *ngIf="showDent"
+      >
+        <img
+          alt=""
+          height="36"
+          ngSrc="/assets/credit-campaign/dent.svg"
+          width="208"
+        />
+        <div
+          icon="icon-charon-down-light-blue"
+          size="35"
+          appUiIcon
+        ></div>
+      </div>
+    </div>
+  </div>
+</section>

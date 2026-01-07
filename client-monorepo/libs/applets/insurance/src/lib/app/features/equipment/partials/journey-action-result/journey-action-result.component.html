@@ -1,0 +1,21 @@
+<div class="action-result d-flex align-items-center justify-content-center">
+  <div class="result-image">
+    <img [alt]="data?.imageAlt"
+         [src]="data?.imageSrc"/>
+  </div>
+  <div class="result-title">
+    {{ data?.title }}
+  </div>
+  <div class="result-content">
+    <ng-content></ng-content>
+  </div>
+  @if (data?.actionButtonTitle) {
+    <ins-button
+            [text]="data.actionButtonTitle"
+            [mode]="InsButtonModeEnum.Section"
+            [brandButton]="false"
+            [style]="InsButtonStyleEnum.Fill"
+            (click)="actionButtonClicked.emit()">
+    </ins-button>
+  }
+</div>

@@ -1,0 +1,134 @@
+$baseZIndex: 100;
+.search-container {
+  position: sticky;
+  z-index: $baseZIndex + 1;
+  padding-top: 16px;
+  top: 55px;
+  transition: background-color 0.3s ease-in-out,
+  box-shadow 0.3s ease-in-out,
+  transform 0.3s ease-in-out;
+
+  &.is-stuck {
+    background-color: var(--surface-back) !important;
+  }
+}
+
+.header-top-actions {
+  position: relative;
+  width: 100%;
+  z-index: $baseZIndex + 2;
+  pointer-events: none;
+  * {
+    pointer-events: all;
+  }
+}
+
+.right-mini-action-item {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.left-mini-action-item {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#store-assets {
+  height: 100px;
+  position: relative;
+  z-index: $baseZIndex + 1;
+}
+
+.app-header {
+  height: 166px;
+}
+
+.app-header-tail {
+  top: 177px;
+}
+
+.header-bg {
+  inset: 0;
+  height: 166px;
+  margin-bottom: -166px;
+}
+
+.header-bg-wrapper {
+  position: sticky;
+  top: -73px;
+  z-index: $baseZIndex;
+}
+
+::ng-deep .stores-tabs .segment-container {
+  padding: 10px 20px 16px 20px;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+}
+
+.header-container {
+  width: 100%;
+}
+
+.store-assets-mini {
+  z-index: $baseZIndex + 1;
+  position: sticky;
+  top: 16px;
+  opacity: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: -40px;
+}
+
+.promotion-content {
+  margin: -16px;
+  overflow: hidden;
+  position: relative;
+
+  .close-promotion {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+
+  .promotion-header {
+    height: 113px;
+    border-radius: 16px 16px 0 0;
+    background: linear-gradient(262deg, #FF7D08 -16.97%, #FFB800 52.62%, #FF7D08 117.23%);
+    background: linear-gradient(262deg, color(display-p3 0.9647 0.5216 0.2078) -16.97%, color(display-p3 0.9804 0.7333 0.2275) 52.62%, color(display-p3 0.9647 0.5216 0.2078) 117.23%);
+  }
+
+  b {
+    font-weight: 700;
+  }
+
+}
+
+#store-assets {
+  margin-top: -32px;
+}
+
+.hide-assets-mode {
+  .app-header {
+    height: 106px;
+  }
+  .app-header-tail {
+    top: 117px;
+  }
+  .header-bg {
+    height: 108px;
+    margin-bottom: -108px;
+  }
+
+  .header-bg-wrapper {
+    top: -10px;
+  }
+}

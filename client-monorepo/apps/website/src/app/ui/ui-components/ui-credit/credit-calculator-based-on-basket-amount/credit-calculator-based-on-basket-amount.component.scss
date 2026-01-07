@@ -1,0 +1,127 @@
+@import "globals";
+
+.section-credit-calculator-based-on-basket-amount {
+  background: $swatch_blue_100;
+  width: 100%;
+}
+
+.calculator-card {
+  margin-top: 24px;
+  border-radius: 24px;
+  background: #fff;
+  padding: 24px;
+  display: flex;
+  overflow: hidden;
+  gap: 16px;
+
+  .filters-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    padding: 24px;
+
+    .filters-description {
+      margin-bottom: 40px;
+    }
+
+    .slider-result {
+      padding: 0 16px;
+      height: 56px;
+      border: 1px solid $swatch_steel_200;
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 50px;
+      position: relative;
+
+      b {
+        margin: 0 8px;
+      }
+
+      .dash-separator {
+        margin: 0 12px;
+      }
+    }
+
+    .select-installment-count {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .select-installment-count-loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 24px;
+      min-height: 40px;
+    }
+  }
+
+  .result-loading {
+    width: 384px;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .result-column {
+    flex: 0 0 auto;
+    width: 444px;
+    border: 1px solid $swatch_steel_200;
+    border-radius: 24px;
+    padding: 24px;
+
+    .plan-amount {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    .result-title-value {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+    }
+
+    .result-title-value-description {
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    .call-to-action-section {
+      margin-top: 16px;
+
+      app-ui-button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .calculator-card {
+    flex-direction: column;
+
+    .filters-column {
+      width: 100%;
+      padding: 0;
+    }
+
+    .result-column {
+      width: 100%;
+    }
+  }
+
+  .calculator-card .result-column .plan-amount {
+    font-size: 18px;
+  }
+  .calculator-card .filters-column .select-installment-count {
+    flex-direction: column;
+    margin-top: 24px;
+    gap: 16px;
+  }
+}

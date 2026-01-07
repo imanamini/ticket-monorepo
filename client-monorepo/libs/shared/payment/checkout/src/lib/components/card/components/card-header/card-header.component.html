@@ -1,0 +1,20 @@
+<div
+  class="tgs-header"
+  [style.display]="isBottomSheet() ? 'none' : 'flex'"
+>
+  <div class="right-box">
+    <div
+      *ngIf="closeButton !== 'NONE'"
+      [ngClass]="closeButton === 'BACK' ? 'back-icon' : 'exit-icon'"
+      (click)="close()"
+      class="icon exit-icon"
+    ></div>
+    <div>
+      <span class="header-title">{{ title }}</span>
+    </div>
+  </div>
+
+  <div class="left-box">
+    <div class="header-logo"></div>
+  </div>
+</div>

@@ -1,0 +1,237 @@
+<div class="d-flex flex-column surface-high-contrast h-100svh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="isCrowd() ? 'سرمایه‌گذاری تامین مالی جمعی' : 'سرمایه‌گذاری'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+  @if (isLoading()) {
+    <app-spinner class="h-100"></app-spinner>
+  } @else {
+    @if (isCrowd()) {
+      <div class="w-100 h-100 d-flex flex-column">
+        <div class="w-100 px-plus">
+          <div class="w-100 d-flex d-flex flex-wrap surface-back radius-minus p-plus">
+            <div class="w-100 d-flex align-items-center gap-tiny justify-content-space-between">
+              <div class="d-flex align-items-center justify-content-center radius-rounded border-100 border-color-light logo-container">
+                <img
+                  src="./wealth-assets/svg/crowd-logo.svg"
+                  [alt]="crowd()?.title"
+                />
+              </div>
+              <span class="st-8">{{ crowd().title }}</span>
+            </div>
+
+            <div class="w-100 mt-medium d-flex align-items-center justify-content-space-between">
+              <span class="b-3 text-onback-medium"> حداقل مبلغ سرمایه‌گذاری </span>
+              <span class="b-3 text-onback-high is-currency">
+                <span class="st-7">
+                  {{ crowd().minimumAllowedPrice | thousands }}
+                </span>
+                ریال
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-1 w-100 d-flex flex-column justify-content-space-between px-plus pb-small">
+          <div
+            class="w-100 d-flex flex-wrap my-medium"
+            [formGroup]="form"
+          >
+            <span class="w-100 b-2 text-onback-high"> مبلغ مورد نظر خود را وارد کنید. </span>
+            <ui-form-field
+              class="w-100"
+              placeholder="ورود مبلغ (ریال)"
+              [hasRialStickyText]="true"
+              [isNumericKeyboard]="true"
+              [convertNonEnglishDigits]="true"
+              [formControlName]="'amount'"
+              type="amount"
+            ></ui-form-field>
+
+            @if (!isValid() && tomanValue()) {
+              <div class="d-flex radius-medium surface-error-tint py-tiny px-medium mb-medium mx-auto">
+                @if (form.value.amount > crowdData().maximumAllowedPrice) {
+                  <span class="text-onback-error"> حداکثر مبلغ سرمایه‌گذاری {{ crowdData().maximumAllowedPrice | number }} ریال است </span>
+                }
+                @if (form.value.amount && form.value.amount < crowdData().minimumAllowedPrice) {
+                  <span class="text-onback-error"> حداقل مبلغ سرمایه‌گذاری {{ crowdData().minimumAllowedPrice | number }} ریال است </span>
+                }
+              </div>
+            }
+
+            <div class="w-100 auto-fill-container">
+              @for (button of autoCompleteButtons(); track button) {
+                <div
+                  class="cursor-pointer surface-back radius-small py-tiny text-align-center d-flex align-items-center justify-content-center button"
+                  (click)="handleAutoFill(button)"
+                  [ngClass]="{ 'active-amount': button.selected }"
+                >
+                  <span
+                    class="l-2 text-onback-high"
+                    [ngClass]="{ 'text-oninvert-high': button.selected }"
+                  >
+                    <span class="st-8">
+                      {{ button.amount | thousands }}
+                    </span>
+                    ریال
+                  </span>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="w-100 d-flex flex-column surface-elevated px-plus py-medium sticky-action-group gap-small">
+          @if (showAgreementCheckbox()) {
+            <ngx-checkbox
+              (checkedChange)="onToggleAgreement($event)"
+              [checked]="agreementChecked()"
+              class="d-flex align-items-center"
+            >
+              <div class="d-flex gap-tiny">
+                <span>شرایط</span>
+                <span
+                  (click)="agreementView(pdfType.RISKSTATEMEBT)"
+                  class="text-onback-brand"
+                >
+                  بیانیه ریسک
+                </span>
+                <span>را می‌پذیرم.</span>
+              </div>
+            </ngx-checkbox>
+          }
+
+          <ngx-button
+            [buttonId]="'PURCHASE_BUY'"
+            [style]="'fill'"
+            size="medium"
+            [fullWidth]="true"
+            [isLoading]="buttonLoading()"
+            [disabled]="(showAgreementCheckbox() && !agreementChecked()) || !isValid()"
+            (clickHandler)="getVerifyResult()"
+          >
+            سرمایه‌گذاری
+          </ngx-button>
+        </div>
+      </div>
+    } @else {
+      <div class="w-100 h-100 d-flex flex-column">
+        <div class="w-100 d-flex align-items-center p-plus">
+          <app-price-unit
+            class="w-100 d-flex"
+            [props]="priceProps()"
+          />
+        </div>
+        <div class="w-100 d-flex flex-column h-100">
+          <div class="flex-1 w-100 d-flex flex-column justify-content-space-between px-plus pb-small">
+            <div
+              class="w-100 d-flex flex-wrap my-medium"
+              [formGroup]="form"
+            >
+              <span class="b-2">مبلغ مورد نظر برای سرمایه‌گذاری را وارد کنید.</span>
+
+              <ui-form-field
+                class="w-100"
+                placeholder="ورود مبلغ (ریال)"
+                [hasRialStickyText]="true"
+                [isNumericKeyboard]="true"
+                [convertNonEnglishDigits]="true"
+                [formControlName]="'amount'"
+                type="amount"
+                [hint]="
+                  unitCount()
+                    ? 'معادل ' + unitCount() + ' واحد'
+                    : fundProfile()?.investmentType === 'ETF' && !tomanValue()
+                      ? 'این صندوق سقف پرداخت ندارد'
+                      : ''
+                "
+              ></ui-form-field>
+
+              @if (tomanValue() && isValid()) {
+                <div class="d-flex radius-medium surface-back py-tiny px-medium my-medium mx-auto justify-content-center">
+                  <span>{{ tomanValue() }}</span>
+                  <span>تومان</span>
+                </div>
+              }
+              @if (!isValid() && tomanValue()) {
+                <div class="d-flex radius-medium surface-error-tint py-tiny px-medium my-medium mx-auto">
+                  <span class="text-onback-error">
+                    @if (fundProfile()?.maxBuyableAmount) {
+                      مبلغ باید بین {{ fundProfile()?.minBuyableAmount / 10 | number: '1.0-0' }} تومان تا
+                      {{ fundProfile()?.maxBuyableAmount / 10 | number: '1.0-0' }} تومان باشد
+                    } @else {
+                      حداقل مبلغ سرمایه‌گذاری {{ fundProfile()?.minBuyableAmount / 10 | number: '1.0-0' }} تومان است
+                    }
+                  </span>
+                </div>
+              }
+            </div>
+            <ngx-callout
+              class="w-100"
+              [mode]="'single-without-title'"
+              [message]="'نهایی شدن سرمایه‌گذاری در این صندوق ها حداکثر ۲ روز کاری زمان می‌برد.'"
+            />
+          </div>
+
+          <div class="w-100 d-flex flex-column gap-small surface-elevated px-plus py-medium sticky-action-group">
+            @if (showAgreementCheckbox()) {
+              <ngx-checkbox
+                class="w-100 d-flex align-items-center"
+                (checkedChange)="onToggleAgreement($event)"
+                [checked]="agreementChecked()"
+              >
+                <span class="d-flex gap-tiny">
+                  <span>شرایط</span>
+                  <span
+                    (click)="agreementView(pdfType.PROSPECTUS)"
+                    class="text-onback-brand"
+                    >امیدنامه</span
+                  >
+                  @if (fundProfile()?.investmentType === 'ETF') {
+                    ،
+                  } @else {
+                    <span>و</span>
+                  }
+                  <span
+                    (click)="agreementView(pdfType.STATUTE)"
+                    class="text-onback-brand"
+                    >اساسنامه</span
+                  >
+                  @if (fundProfile()?.investmentType === 'ETF') {
+                    <span>و</span>
+                    <span
+                      (click)="termsAndConditions()"
+                      class="text-onback-brand"
+                    >
+                      قوانین و مقررات
+                    </span>
+                  }
+                  <span>را می‌پذیرم.</span>
+                </span>
+              </ngx-checkbox>
+            }
+            <ngx-button
+              [buttonId]="'PURCHASE_BUY'"
+              [style]="'fill'"
+              [brandButton]="true"
+              size="medium"
+              [fullWidth]="true"
+              [isLoading]="buttonLoading()"
+              [disabled]="(showAgreementCheckbox() && !agreementChecked()) || !isValid() || buttonLoading()"
+              (clickHandler)="getVerifyResult()"
+            >
+              سرمایه‌گذاری
+            </ngx-button>
+          </div>
+        </div>
+      </div>
+    }
+  }
+</div>

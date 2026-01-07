@@ -1,0 +1,48 @@
+<div class="wrapper d-flex flex-column pt-minus justify-content-start align-items-center">
+  <common-rate-title
+    class="mb-medium"
+    [titleImage]="storeImage()"
+    [title]="title()"
+  ></common-rate-title>
+
+  @if (showDeliveryFeedback()) {
+    <common-rate-delivery-feedback
+      class="mb-mega section-animation"
+      (feedbackSubmitted)="handleDeliveryFeedbackSubmit($event)"
+    ></common-rate-delivery-feedback>
+  }
+
+  @if (showStarRating()) {
+    <common-rate-star-rating
+      class="mb-mega section-animation"
+      (starsSelected)="handleStarsSelected($event)"
+    ></common-rate-star-rating>
+  }
+
+  @if (showFeedbackInput()) {
+    <common-rate-feedback-input
+      [class]="showFeedbackInputComment() ? 'section-animation' : 'section-animation mb-giant'"
+      [title]="feedBackInputTitle()"
+      [chips]="feedBackInputChips()"
+      [showCommentInput]="showFeedbackInputComment()"
+      [chipsSelectionLimit]="feedbackInputSelectionLimit()"
+      (chipsSelected)="handleFeedbackChipSelected($event)"
+      (commentAdded)="handleFeedbackCommentAdded($event)"
+    ></common-rate-feedback-input>
+  }
+
+  @if (showRateBadges()) {
+    <common-rate-rate-badges
+      class="mb-giant section-animation"
+      [(badgesSelected)]="rateBadges"
+      (badgesSelectedChange)="handleBadgeSelect($event)"
+    ></common-rate-rate-badges>
+  }
+
+  <ngx-button
+    [fullWidth]="true"
+    [disabled]="submitDisabled()"
+    (clickHandler)="handleSubmitBtn()"
+    >ثبت
+  </ngx-button>
+</div>

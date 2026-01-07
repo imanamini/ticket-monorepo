@@ -1,0 +1,42 @@
+<div class="bottom-sheet-box d-flex flex-column">
+  @if (bottomSheetData?.title || dialogData?.title) {
+    @if (bottomSheetData?.fullPage || dialogData?.fullPage) {
+      <div
+              class="d-flex flex-row gap-small align-items-center px-medium py-pony border-b-300 border-color-tint surface-elevated">
+        <ngx-icon (click)="handleCloseClicked()"
+                  [type]="'linear'"
+                  [iconSize]="'24px'"
+                  [name]="IconEnum.Close"
+                  class="cursor-pointer"></ngx-icon>
+
+        <span [textContent]="bottomSheetData?.title||dialogData?.title"
+              class="header-title t-6 text-onback-medium"></span>
+      </div>
+    } @else {
+      <div class="d-flex flex-column justify-content-center align-items-center pt-small">
+        @if (bottomSheetData?.showHolderIcon) {
+          <div class="d-flex justify-content-center align-items-center pt-small w-100">
+            <div class="bottom-sheet-box-holder radius-giant surface-back"></div>
+          </div>
+        }
+        <div
+                class="d-flex flex-row align-items-center px-plus py-small border-b-300 border-color-light w-100 gap-pony">
+          <ngx-icon type="linear"
+                    name="close"
+                    classes="button-text-link cursor-pointer"
+                    iconSize="20px"
+                    (click)="handleCloseClicked()"></ngx-icon>
+          <span [textContent]="bottomSheetData?.title || dialogData?.title"
+                class="st-6 text-onback-high"></span>
+        </div>
+      </div>
+    }
+  }
+
+  <div class="bottom-sheet-box-content d-flex flex-column ">
+    @if (bottomSheetData?.component || dialogData?.component) {
+      <ng-container [ngComponentOutlet]="bottomSheetData?.component || dialogData?.component"></ng-container>
+    }
+  </div>
+
+</div>

@@ -1,0 +1,66 @@
+:host {
+  display: block;
+}
+
+:host * {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  position: relative;
+}
+
+/**
+  Action wrapper is meant for the iOS devices
+  to fix height issue
+*/
+.action-wrapper {
+  position: absolute;
+  left: 4px;
+  top: 0;
+  padding: 4px 0;
+  height: 56px;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 8px;
+  direction: rtl;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 400;
+  user-select: none;
+}
+
+.send-dynamic-pass {
+  background: #f0f5ff;
+  color: #0040ff;
+  cursor: pointer;
+
+  &.disabled {
+    background: #dee3e7;
+    color: #424c5c;
+    cursor: default;
+  }
+}
+
+.in-progress {
+  border: 1px solid #e5e5e5;
+  background: #fff;
+}
+
+.countdown {
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  color: #b2b2b2;
+}
+
+.countdown-text {
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 45px;
+  text-align: center;
+}

@@ -1,0 +1,42 @@
+<div
+  *ngIf="form"
+  [formGroup]="form"
+>
+  <ui-form-field
+    [errorMessageMapper]="{
+      required: 'کد ملی را وارد کنید.',
+      invalidNationalCode: 'کد ملی وارد شده نامعتبر است.',
+    }"
+    [error]="form.controls.nationalCode.errors"
+    [isNumericKeyboard]="true"
+    [maxSize]="10"
+    [required]="true"
+    formControlName="nationalCode"
+    label="کد ملی"
+    type="input"
+  >
+  </ui-form-field>
+
+  <ui-form-field
+    [customDateRange]="[minBirthDate, maxBirthDate]"
+    [errorMessageMapper]="{
+      required: 'تاریخ تولد را انتخاب کنید.',
+      invalidBirthDate: 'تاریخ تولد نامعتبر است.',
+    }"
+    [error]="form.controls.birthDate.errors"
+    [required]="true"
+    formControlName="birthDate"
+    label="تاریخ تولد"
+    type="date"
+  >
+  </ui-form-field>
+</div>
+<app-ui-button
+  *ngIf="form"
+  (click)="openConfirmDialog()"
+  [disabled]="!form.valid"
+  [id]="'check-merchant'"
+  size="BIG"
+>
+  بررسی صحت اطلاعات
+</app-ui-button>

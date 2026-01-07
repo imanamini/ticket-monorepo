@@ -1,0 +1,19 @@
+<div class="public-conditions">
+  @if (recoverableDamages().publicConditions.title) {
+    <p>
+      {{ recoverableDamages().publicConditions.title }}
+    </p>
+  }
+  @if (recoverableDamages().publicConditions.firstCta.title) {
+    <div class="cta">
+      <ngx-button
+        (clickHandler)="navigateToExternalLink(recoverableDamages().publicConditions.firstCta.link)"
+        [style]="'link'"
+        [leftIcon]="{ name: 'arrow-2-left' }"
+        [size]="'small'"
+      >
+        {{ recoverableDamages().publicConditions.firstCta.title }}
+      </ngx-button>
+    </div>
+  }
+</div>

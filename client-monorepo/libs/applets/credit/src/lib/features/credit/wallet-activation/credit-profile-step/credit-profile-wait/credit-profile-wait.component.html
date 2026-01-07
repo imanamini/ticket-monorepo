@@ -1,0 +1,24 @@
+<div class="flex-full-height">
+  <div
+    class="page-content"
+
+  >
+    <app-credit-step-status-message
+      [imageId]="profileStatusData()?.imageId"
+      [message]="profileStatusData()?.message"
+      [title]="profileStatusData()?.title"
+    ></app-credit-step-status-message>
+
+    <div class="warning-message">لطفا تا پایان شمارش از این صفحه خارج نشوید</div>
+
+    @if (profileStatusData()?.checkCountDown) {
+      <div class="check-countdown">
+        <ngx-count-down
+          (finished)="onReloadData()"
+          [timeInSeconds]="profileStatusData()?.checkCountDown!"
+          [type]="'mm:ss'"
+        ></ngx-count-down>
+      </div>
+    }
+  </div>
+</div>

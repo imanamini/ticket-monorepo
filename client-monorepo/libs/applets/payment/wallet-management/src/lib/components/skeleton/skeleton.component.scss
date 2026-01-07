@@ -1,0 +1,21 @@
+.group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.skeleton-cell {
+  width: 80px;
+  padding: 1em;
+  display: inline-block;
+  border-radius: 50px;
+  height: 20px;
+  background: #e6e6e6 no-repeat;
+  mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) left/350% 100%;
+  animation: shimmer 1s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    mask-position: right
+  }
+}

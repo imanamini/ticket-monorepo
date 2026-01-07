@@ -1,0 +1,80 @@
+<div class="h-100 pb-plus d-flex flex-column gap-medium surface-elevated">
+  <div class="card-container d-flex flex-column">
+    <ngx-app-bar
+      class="text-onback-high"
+      [title]="'درخواست دیجی‌کارت'"
+      (onRightIconClick)="goBack()"
+      [rightIcon]="'arrow-right'"
+    />
+    <div class="mt-giant d-flex flex-column align-items-center py-small px-plus">
+      <!-- <ngx-card
+        [cardMode]="'bank'"
+        [cardSize]="'default'"
+        [cardType]="'digipayCard'"
+        [width]="'260px'"
+        [leftDetail]="digipayCardLeft"
+        [rightDetail]="digipayCardRight"
+      ></ngx-card> -->
+      <!-- <img
+        class="digi-card"
+        src="assets/digipay-card/digi-card.png"
+      /> -->
+      <ng-lottie
+        [options]="{ path: animationPath }"
+        width="100%"
+       (animationCreated)="animationCreated($event)"
+      ></ng-lottie>
+      <ng-template #digipayCardLeft>
+        <img
+          alt="logo"
+          src="./assets/digipay-card/dpcard-sign.svg"
+        />
+      </ng-template>
+      <ng-template #digipayCardRight>
+        <img
+          alt="logo"
+          src="./assets/digipay-card/digi-card-bullet.svg"
+        />
+      </ng-template>
+
+      <div class="st-8 mt-minus text-align-center text-onback-medium plan-description">
+        دریافت دیجی‌کارت، نیازمند خرید <span class="st-7 text-onback-high">اشتراک </span>است.
+      </div>
+    </div>
+  </div>
+  <div class="py-small mt-auto justify-content-end gap-plus d-flex flex-column px-plus flex-grow">
+    @for (plan of requiredPlans(); track $index) {
+      <digipay-card-applet-subscription-card
+        [title]="plan.title"
+        [amount]="plan.amount"
+        [isActive]="selectedPlan()?.type == plan.type"
+        (onSelectPlan)="onSelectingPlan(plan)"
+        (onOpenDetail)="openDetailBottomSheet(plan)"
+        [plan]="plan"
+        [icon]="
+          '/assets/subscription/images/banners/plan-banners/icon-plan-type-' +
+          (subscriptionClassMapper[plan.type] | lowercase) +
+          (plan.type == plansTypeEnum.PAY_PRO ? '.svg' : '.png')
+        "
+      ></digipay-card-applet-subscription-card>
+    }
+    <div>
+      <digipay-card-applet-terms-box (onApproveTerms)="approveTerms($event)" />
+    </div>
+
+    <div class="d-flex flex-column">
+      <div class="footer">
+        <ngx-button
+          [disabled]="!termsAccepted()"
+          [mode]="'form'"
+          [size]="'large'"
+          [style]="'fill'"
+          [fullWidth]="true"
+          (clickHandler)="onNavigate()"
+        >
+          تایید و ادامه
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+</div>

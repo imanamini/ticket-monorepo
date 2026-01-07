@@ -1,0 +1,50 @@
+@import "globals";
+
+:host {
+  display: block;
+}
+
+.application-form {
+  background: linear-gradient(0deg, $swatch_blue_100, $swatch_blue_100),
+  linear-gradient(0deg, $swatch_steel_200, $swatch_steel_200);
+  border-radius: 12px;
+  padding: 24px;
+
+  .form-row {
+    display: flex;
+    column-gap: 16px;
+    margin-bottom: 24px;
+
+    > * {
+      flex: 1 1 50%;
+    }
+  }
+}
+
+.choose-attachment {
+  app-ui-button {
+    margin: 12px 0;
+    width: 100%;
+  }
+
+  .file-info {
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+  }
+}
+
+.file-desc {
+  font-size: 14px;
+}
+
+.submit-section {
+  text-align: left;
+  margin: 16px 0 0;
+}
+
+::ng-deep .dg-input-wrapper input,
+::ng-deep .dg-input-wrapper textarea {
+  background-color: #ffffff !important;
+}

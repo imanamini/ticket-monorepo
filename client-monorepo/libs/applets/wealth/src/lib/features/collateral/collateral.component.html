@@ -1,0 +1,56 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'توثیق دارایی'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="flex-1 d-flex flex-column align-items-center px-plus pb-plus">
+    <img
+      class="mt-big collateral-detail-image"
+      src="./wealth-assets/svg/collateral-detail.svg"
+      alt=""
+    />
+
+    <p class="st-5 text-onback-medium mt-big">توثیق دارایی چیست؟</p>
+
+    <div class="stepper">
+      @for (item of stepItems(); track $index) {
+        <div class="step">
+          <div class="circle"></div>
+          <span>
+            {{ item }}
+          </span>
+        </div>
+      }
+    </div>
+
+    <div class="w-100 mt-big">
+      <ngx-callout
+        [title]="'نکات مهم'"
+        [mode]="'multiple'"
+        [messages]="calloutMessages()"
+      />
+    </div>
+  </div>
+
+  <div class="w-100 surface-elevated px-plus py-medium sticky-action-group">
+    <ngx-button
+      [style]="'fill'"
+      [fullWidth]="true"
+      (clickHandler)="continue()"
+      [size]="'medium'"
+      [buttonId]="'COLLATERAL_REGISTER'"
+      [disabled]="isLoading()"
+      [isLoading]="isLoading()"
+    >
+      شروع!
+    </ngx-button>
+  </div>
+</div>

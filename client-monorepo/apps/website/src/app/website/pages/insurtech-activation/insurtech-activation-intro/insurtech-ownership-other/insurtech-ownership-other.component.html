@@ -1,0 +1,9 @@
+<div class="accordions">
+  <app-ui-complex-accordion
+    (setActiveAccordion)="setActiveAccordion($event)"
+    *ngIf="ownershipOther.accordions"
+    [accordionIndex]="0"
+    [activeAccordion]="activeAccordion"
+    [section]="ownershipOther.accordions"
+  ></app-ui-complex-accordion>
+</div>

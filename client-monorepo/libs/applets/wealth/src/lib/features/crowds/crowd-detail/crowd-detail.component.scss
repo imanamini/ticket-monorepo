@@ -1,0 +1,27 @@
+.project-info {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.user-investment-info-container {
+  grid-template-areas:
+    'title title'
+    'amount action';
+  grid-template-columns: 5fr 3fr;
+  grid-row-gap: 0.5rem;
+  background-image: linear-gradient(to right, #dfe1e5 55%, rgba(255, 255, 255, 0) 0%);
+  background-position: top;
+  background-size: 10px 2px;
+  background-repeat: repeat-x;
+
+  .title {
+    grid-area: title;
+  }
+
+  .amount {
+    grid-area: amount;
+  }
+
+  .action {
+    grid-area: action;
+  }
+}

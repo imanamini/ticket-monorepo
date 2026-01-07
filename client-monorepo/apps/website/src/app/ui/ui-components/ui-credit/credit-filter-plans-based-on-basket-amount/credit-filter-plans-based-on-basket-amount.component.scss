@@ -1,0 +1,138 @@
+@import "globals";
+
+.section-credit-filter-plans-based-on-basket-amount {
+  background: $swatch_blue_100;
+  width: 100%;
+}
+
+.title-no-plan {
+  font-size: 18px;
+  text-align: right;
+  color: #000d33;
+  margin-bottom: 12px;
+}
+
+.select-plan-card {
+  border-radius: 24px;
+  background: #fff;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 537px;
+  margin: 40px auto;
+
+  .select-installment-count {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+  }
+
+  .card-item-description {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #6e798d;
+    text-align: center;
+  }
+
+  .card-item-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .card-item-amount {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 24px;
+  }
+
+  .basket-amount-box {
+    padding: 12px 24px 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid $swatch_steel_200;
+    border-radius: 16px;
+    margin-bottom: 8px;
+    color: #6e798d;
+
+    .title {
+      font-size: 16px;
+    }
+
+    .value {
+      font-size: 18px;
+
+      span {
+        font-size: 16px;
+      }
+
+      &.no-plan {
+        color: #000d33;
+      }
+    }
+  }
+
+  .found-plan {
+    flex: 0 0 auto;
+    width: 100%;
+    border: 1px solid $swatch_steel_200;
+    border-radius: 24px;
+    padding: 20px 24px;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .plan-amount {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    .result-title-value {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+    }
+
+    .result-title-value-description {
+      font-size: 14px;
+      font-weight: 300;
+      color: #6e798d;
+    }
+  }
+
+  .call-to-action-section {
+    margin-top: 20px;
+
+    app-ui-button {
+      width: 100%;
+    }
+  }
+}
+
+.warning-box {
+  background: #fff5ee;
+  border: 1px solid #ff811a;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+
+  p {
+    font-size: 14px;
+    color: #000d33;
+  }
+}
+
+@media (max-width: 744px) {
+  .select-plan-card {
+    margin-top: 12px;
+  }
+}

@@ -1,0 +1,25 @@
+<div class="main-section flex-full-height">
+  <div class="page-content">
+    <ngx-status-result
+      (finished)="onFinish()"
+      [description]="subtitle()"
+      [timer]="timer()"
+      [title]="title()"
+    >
+      <ng-container status-image>
+        <div class="message-image"></div>
+      </ng-container>
+
+      <div
+        html-content
+        class="d-flex flex-column flex-grow justify-content-flex-end gap-medium"
+      >
+        <ngx-alert
+          [color]="'yellow'"
+          [hasCloseIcon]="false"
+          [text]="'در نظر داشته‌ باشید در صورت لغو فرایند دریافت وام این مبلغ دوباره آزاد می شود.'"
+        />
+      </div>
+    </ngx-status-result>
+  </div>
+</div>

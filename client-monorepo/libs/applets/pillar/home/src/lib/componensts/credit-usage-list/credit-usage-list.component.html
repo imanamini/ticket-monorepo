@@ -1,0 +1,56 @@
+<div class="d-flex flex-column pt-medium">
+  @if (loading()) {
+    <div class="d-flex flex-column gap-small">
+      <lib-ngx-skeleton-loading
+        height="16px"
+        width="120px"
+      ></lib-ngx-skeleton-loading>
+      <div class="d-flex gap-small w-100">
+        <lib-ngx-skeleton-loading
+          height="72px"
+          width="100%"
+          class="flex-grow"
+        ></lib-ngx-skeleton-loading>
+      </div>
+    </div>
+  } @else if (isAnyActiveWallet() === true) {
+    <div class="d-flex gap-small w-100 align-items-center">
+      <span class="c-1 text-onback-medium pt-low">استفاده اعتبار در</span>
+      <ngx-divider
+        style="width: 65px"
+        class="d-flex my-low pt-low"
+        [orientation]="'horizontal'"
+        [color]="BorderColorsEnum.Light"
+      />
+    </div>
+
+    <common-ui-components-horizontal-scroll>
+      <div class="d-flex gap-small py-medium">
+        @for (usage of usagesActivate(); track $index) {
+          <div
+            (click)="openLink(usage.link, usage.type, usage.title, usage.id)"
+            class="usage-item flex-grow radius-small surface-elevated py-medium px-low d-flex flex-column align-items-center justify-content-center"
+          >
+            <div [class]="'usage-item-icon mb-small size-32 icon-' + usage.icon"></div>
+            <span class="b-3 text-onback-high fw-500">{{ usage.title }}</span>
+          </div>
+        }
+      </div>
+    </common-ui-components-horizontal-scroll>
+  } @else {
+    <span class="st-7 text-onback-high">کاربردهای اعتبار</span>
+    <div class="d-flex flex-column gap-medium py-medium">
+      @for (usage of usages(); track $index) {
+        <div class="d-flex align-items-center gap-small">
+          <div class="radius-rounded surface-elevated size-44 d-flex align-items-center justify-content-center">
+            <div [class]="'usage-item-icon icon-' + usage.icon"></div>
+          </div>
+          <div class="d-flex flex-column gap-tiny">
+            <span class="b-3 fw-bold text-onback-high">{{ usage.title }}</span>
+            <span class="l-2 text-onback-low"> {{ usage.description }} </span>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

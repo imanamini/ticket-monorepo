@@ -1,0 +1,11 @@
+@if (imageId()) {
+  <credit-digipay-image
+    class="detail-image"
+    [imageId]="imageId()"
+    [styles]="{ maxWidth: '100%' }"
+  ></credit-digipay-image>
+}
+<div
+  [innerText]="description()"
+  class="detail-description"
+></div>

@@ -1,0 +1,13 @@
+@import "insurance/src/lib/app/style/once/global";
+
+.payment-methods {
+  .title-detail {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .discount-amount {
+    text-decoration: line-through;
+  }
+}

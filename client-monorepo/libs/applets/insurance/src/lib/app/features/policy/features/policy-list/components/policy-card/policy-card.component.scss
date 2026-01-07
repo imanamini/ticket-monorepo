@@ -1,0 +1,41 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.policy-card-list {
+  overflow: hidden;
+  position: relative;
+
+  .title, .subtitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .right-header {
+    overflow: hidden;
+
+    .titles {
+      width: calc(100% - 52px);
+    }
+  }
+
+  .badge-text {
+    white-space: nowrap;
+  }
+
+  &:is(.third-party-motor, .third-party) {
+    &::before {
+      background-image: radial-gradient(circle farthest-side at 30px 30px, #9377c8 0%, #7D4DCA 46%);
+    }
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  &:is(.body-vehicle, .house-incidents, .equipment) {
+    &::before {
+      background-image: radial-gradient(circle farthest-side at 30px 30px, #75cdcd 0%, #00B9BA 46%);
+    }
+  }
+}

@@ -1,0 +1,39 @@
+app-credit-wrapper-global {
+  @import "partials/reset";
+}
+
+@import "./common-styles/common-styles";
+
+.credit-global-style {
+  @import "partials/page-content";
+  @import "partials/form";
+  @import "partials/layout";
+  direction: ltr;
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .auth-container {
+    text-align: center;
+    padding: 0 16px;
+  }
+
+  .rtl {
+    direction: rtl;
+  }
+
+  .simtype-item {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.7);
+    padding: 4px 0;
+  }
+
+  .cdk-global-scrollblock {
+    position: static;
+    overflow: hidden !important;
+  }
+
+}

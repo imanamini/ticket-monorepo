@@ -1,0 +1,61 @@
+<ngx-app-bar
+  [title]="'جزییات آگهی'"
+  (onRightButtonClick)="goBack()"
+  [rightButton]="{ label: 'پرداخت', mode: 'form', size: 'tiny', style: 'link', icon: 'arrow-right' }"
+>
+</ngx-app-bar>
+@if (!isLoading()) {
+  <div class="px-plus">
+    <span class="mt-medium d-block mb-small">
+      <common-ui-components-title-summary
+        [title]="'عکس آگهی'"
+        [showButton]="false"
+      ></common-ui-components-title-summary>
+    </span>
+    <ngx-dp-carousel
+      [mainContainerClasses]="'divar-image-carousel'"
+      [mode]="'CARD'"
+      [isFixedWidth]="true"
+      [fixedWidth]="145"
+      [index]="0"
+      [centerMode]="false"
+      [showNavigation]="false"
+      [showButtons]="false"
+      [isFixedGap]="true"
+      [fixedGap]="8"
+      [changeStepThresholdPercentage]="20"
+      [swipeThreshold]="100"
+      [disableNavigationDots]="true"
+      [disableScaling]="true"
+      [enableAutoPlay]="false"
+    >
+      @for (image of advertiseItem()?.images; track $index) {
+        <ng-template ngxDpCarouselSlide>
+          <div
+            class="divar-image-container"
+            [style.backgroundImage]="'url(' + image + ')'"
+          ></div>
+        </ng-template>
+      }
+    </ngx-dp-carousel>
+    @if (advertiseItem()) {
+      <div class="mt-big mb-medium">
+        <common-ui-components-title-summary
+          [title]="advertiseItem()!.title"
+          [showButton]="false"
+        ></common-ui-components-title-summary>
+      </div>
+
+      <div class="d-flex justify-content-space-between">
+        <span class="b-2 text-onback-low">مبلغ آگهی</span>
+        <span class="b-2 text-onback-low">{{ advertiseItem()!.price }} ریال</span>
+      </div>
+      <div class="my-pony">
+        <ngx-divider [color]="BorderColorsEnum.Light"></ngx-divider>
+      </div>
+
+      <span class="b-2 text-onback-low mb-minus d-block">توضیحات</span>
+      <span class="b-2 text-onback-low">{{ advertiseItem()!.description }}</span>
+    }
+  </div>
+}

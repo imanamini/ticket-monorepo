@@ -1,0 +1,45 @@
+<app-credit-app-bar
+  (infoClick)="infoIconClicked()"
+  (onCloseButtonClick)="closeService()"
+  [closeButton]="true"
+  [infoButton]="true"
+  [title]="title()!"
+>
+</app-credit-app-bar>
+<app-credit-scrollable-view>
+  <div class="d-flex flex-column onelevated-shade-100 flex-grow">
+    @if (shouldAcceptTac() && tacData()) {
+      <app-credit-provision
+        (clicked)="infoIconClicked()"
+        [text]="tacData()?.description!"
+      ></app-credit-provision>
+    }
+    <app-credit-wallet-list
+      (cardClick)="cardClicked($event)"
+      [wallets]="wallets()?.concat(volunteers())"
+    ></app-credit-wallet-list>
+    <div class="dashboard-footer-backdrop onelevated-shade-100 w-100"></div>
+  </div>
+</app-credit-scrollable-view>
+@defer (when apiCallCompleted()) {
+  @if (displayPreRegisterButton()) {
+    <div class="dashboard-footer w-100">
+      <div class="new-credit-button-container">
+        <ngx-fab
+          (click)="goToPreRegister()"
+          class="bt-1"
+          [style]="'extended'"
+          [icon]="{ name: 'plus' }"
+          >دریافت {{ serviceTypeName() }} جدید
+        </ngx-fab>
+      </div>
+    </div>
+  }
+} @placeholder (minimum 2s) {
+  <lib-ngx-skeleton-loading
+    [height]="'56px'"
+    [width]="'200px'"
+    class="new-credit-button-container"
+    [classes]="'radius-giant'"
+  ></lib-ngx-skeleton-loading>
+}

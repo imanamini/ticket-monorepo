@@ -1,0 +1,75 @@
+<div class="brand-picker">
+  @if (( loading$ | async )) {
+    <ui-loading-spinner></ui-loading-spinner>
+  } @else {
+    @if (showSelectedBrand) {
+      @defer {
+        <used-selected-brand-model
+          [subTitle]="selectedBrand?.title"
+          [title]="'برند انتخاب ‌شده'">
+        </used-selected-brand-model>
+        <div class="divider"></div>
+      }
+    }
+
+    <div class="hint">
+      {{ showSelectedBrand ? 'می‌خواهید برند دیگری را انتخاب کنید؟' : 'برند دستگاه خود را انتخاب کنید:' }}
+      <div class="d-flex justify-content-center	align-items-center gap-tiny text-oninvert-brand"
+           (click)="handleButtonClick()">
+        <ngx-icon name="edit-square" class="text-oninvert-brand" [iconSize]="'18px'"></ngx-icon>
+        ثبت دستی
+      </div>
+    </div>
+
+    <div class="search">
+
+      <ng-container [formGroup]="form">
+        <ui-form-field
+          (blur)="scrollToTop()"
+          [error]="form.controls.phrase.errors"
+          [formControlName]="'phrase'"
+          [hasCleaner]="true"
+          [hint]="showNotFound ?' مدل مورد نظر یافت نشد.' : ''"
+          inputType="search"
+          label="جستجو در برند ها">
+        </ui-form-field>
+      </ng-container>
+
+
+    </div>
+
+    @if (showNotFound) {
+      <div class="not-found">
+        <used-brand-model-404
+          [isBrand]="true">
+        </used-brand-model-404>
+      </div>
+    } @else {
+      <div class="brands-list">
+        @if (isBrandsLoading) {
+          <ui-loading-spinner></ui-loading-spinner>
+        } @else {
+          @for (brand of brands; track brand.id) {
+            <used-product-brand-card
+              (clicked)="handleBrandSelect($event)"
+              [id]="brand.id"
+              [isActive]="brand.id === selectedBrand?.id"
+              [name]="brand.title">
+            </used-product-brand-card>
+          }
+        }
+      </div>
+    }
+  }
+  @if (!showNotFound) {
+    <journey-buttons
+      (nextClicked)="confirm()"
+      [disableNext]="!selectedBrand"
+      [hasBorder]="true"
+      [hideBackBtn]="true"
+      [idValue]="'used-brand-picker'"
+      [isReversed]="false"
+      [nextText]="'تایید برند'">
+    </journey-buttons>
+  }
+</div>

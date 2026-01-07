@@ -1,0 +1,40 @@
+<div class="title">
+  <div
+    class="cursor-pointer ml-medium"
+    (click)="goMain()"
+  >
+    <ngx-icon
+      name="'arrow-right'"
+      type="'linear'"
+    ></ngx-icon>
+  </div>
+  <div>لیست قراردادها</div>
+</div>
+
+@for (agreement of agreements(); track agreement) {
+  <div
+    class="row"
+    (click)="onAgreementHandler(agreement)"
+  >
+    <div class="icon"></div>
+    <div class="text">
+      <div class="top">
+        {{ CreditAgreementTypeMapper[agreement.agreementType!] }}
+      </div>
+      <div class="bottom">
+        <span>تاریخ: </span>
+        {{ agreement.modificationTime | jalaliDate: 'jYY/jM/jD' }}
+      </div>
+    </div>
+    <ngx-icon
+      name="arrow-2-left"
+      type="linear"
+      iconSize="20px"
+    >
+    </ngx-icon>
+  </div>
+}
+
+@if (agreements()?.length === 0) {
+  <div class="empty-agreements">هیچ قراردادی ثبت نشده است</div>
+}

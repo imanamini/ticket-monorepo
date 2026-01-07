@@ -1,0 +1,24 @@
+<ui-form-field
+  [label]="'تاریخ بنرها'"
+  [type]="'date'"
+  [(ngModel)]="date"
+>
+</ui-form-field>
+<ui-form-field
+  [label]="'ساعت بنرها'"
+  [inputType]="'time'"
+  [(ngModel)]="time"
+>
+</ui-form-field>
+<div class="d-flex gap-medium">
+  <ngx-button
+    [destructive]="true"
+    (clickHandler)="removeDateTime()"
+  >پاک کردن
+  </ngx-button>
+  <ngx-button
+    [fullWidth]="true"
+    (clickHandler)="updateDateTime()"
+  >ثبت
+  </ngx-button>
+</div>

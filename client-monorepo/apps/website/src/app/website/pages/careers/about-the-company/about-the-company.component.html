@@ -1,0 +1,13 @@
+<div class="content-box">
+  <div class="tabs">
+    <div
+      (click)="onTabChange(0)"
+      [ngClass]="{ 'is-selected': selectedTabIndex === 0 }"
+      class="tab"
+    >
+      مزایای کار در دیجی‌پی
+    </div>
+    <!--    <div class="tab" (click)="onTabChange(1)" [ngClass]="{'is-selected': selectedTabIndex === 1}">ارزش‌های دیجی‌پی</div>-->
+  </div>
+  <app-company-benefits *ngIf="selectedTabIndex === 0"></app-company-benefits>
+</div>

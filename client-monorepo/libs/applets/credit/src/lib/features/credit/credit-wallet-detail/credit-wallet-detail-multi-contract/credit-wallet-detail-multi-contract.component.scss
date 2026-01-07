@@ -1,0 +1,21 @@
+@import "@digipay/base-style/swatch";
+
+.contract-group {
+  margin-bottom: 24px;
+
+  .contract-group-title {
+    color: $swatch_steel_500;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 16px;
+  }
+
+  .contract-card-wrapper {
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

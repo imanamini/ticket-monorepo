@@ -1,0 +1,55 @@
+<location-trap
+  [canBack]="false"
+  [canExit]="false"
+></location-trap>
+<div class="issue-policy">
+  <img
+    alt="Succeed"
+    src="insurance-assets/images/renewal-success-image.svg"
+  />
+
+  <div class="content">
+    <div class="title">'بیمه‌ی شما، با موفقیت صادر شد!'</div>
+    <div class="text">شما می‌توانید بیمه‌نامه جدید خود را از طریق دکمه‌ی زیر دریافت کنید!</div>
+  </div>
+
+  <used-steps-list
+    class="w-100 d-block"
+    [wrapperStyle]="{ backgroundColor: '#F7F7F7' }"
+    [listItems]="listItems"
+  >
+  </used-steps-list>
+
+  <div class="buttons">
+    @if (isMobile) {
+      <ui-button
+        (click)="goToPolicies()"
+        appearance="DEFAULT"
+      >
+        مشاهده بیمه نامه
+      </ui-button>
+      <ui-button
+        (click)="downloadPolicy()"
+        appearance="OUTLINE-STEEL"
+        [background-color]="'#f7f7f7'"
+      >
+        <span
+          icon="download-without-border"
+          ui-icon
+        ></span>
+        <span class="gray-text"> دانلود سند بیمه نامه</span>
+      </ui-button>
+    } @else {
+      <journey-buttons
+        (backClicked)="handleBackClick()"
+        (nextClicked)="downloadPolicy()"
+        [backText]="showBackToAppBtn ? 'برگشت به اپ' : 'مشاهده بیمه نامه'"
+        [hideBackBtnIcon]="true"
+        [idValue]="'used-issue-policy'"
+        [isReversed]="false"
+        [nextText]="'دانلود بیمه نامه'"
+      >
+      </journey-buttons>
+    }
+  </div>
+</div>

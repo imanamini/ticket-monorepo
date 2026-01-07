@@ -1,0 +1,76 @@
+@import "@digipay/base-style/swatch";
+
+:host {
+  display: block;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.wallet-card {
+  background: $swatch_blue_500;
+  color: #fff;
+  font-weight: 400;
+  border-radius: 16px;
+  text-align: center;
+  padding: 16px;
+  direction: rtl;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  .title-bar {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 12px;
+      height: auto;
+      margin-left: 12px;
+    }
+
+    .title {
+      color: #fff;
+      font-size: 14px;
+    }
+  }
+
+  .balance {
+    text-align: center;
+    color: #fff;
+    padding: 26px 0;
+
+    .balance-value {
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  .retry {
+    font-size: 12px;
+    font-weight: 400;
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      vertical-align: middle;
+      background: url('img/wallet-retry-icon.svg') no-repeat 0 0/100%;
+    }
+  }
+
+  &.retry-state {
+    .title-bar, .balance-value, .owner {
+      opacity: 0.4;
+    }
+  }
+}

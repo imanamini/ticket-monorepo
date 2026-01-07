@@ -1,0 +1,154 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100dvh">
+  <wealth-applet-app-bar-wrapper
+    class="w-100"
+    [title]="''"
+    (onBack)="onBackHandler()"
+  />
+
+  <div class="d-flex px-plus">
+    <div class="w-100 d-flex flex-column align-items-center gap-small px-plus py-medium surface-glass-onelevated radius-medium">
+      <div class="w-100 d-flex gap-small mb-plus">
+        <ngx-icon
+          [name]="'bag-of-wealth'"
+          [type]="'bold'"
+        />
+        <p class="st-8 text-onback-high">بررسی اطلاعات خرید</p>
+      </div>
+
+      @for (item of metadata(); track $index; let last = $last) {
+        <div class="w-100 d-flex flex-wrap align-items-center justify-content-space-between">
+          <span class="c-3 text-onback-low"> {{ item.title }} </span>
+          <span class="c-1 text-onback-medium">
+            {{ item.type === 'amount' ? (item?.value | thousands) : item.value }}
+            @if (item.type === 'amount') {
+              <span class="is-currency">ریال</span>
+            }
+          </span>
+        </div>
+
+        @if (!last) {
+          <ngx-divider
+            class="my-pony"
+            [color]="BorderColorsEnum.Air"
+            orientation="horizontal"
+          />
+        }
+      }
+    </div>
+  </div>
+
+  <div class="flex-1 d-flex flex-column px-plus mt-big">
+    <p class="st-8 text-onback-high">روش پرداخت</p>
+
+    <div class="w-100 d-flex flex-column mt-minus">
+      @for (item of quickPaymentItems(); track $index; let last = $last) {
+        <div
+          class="w-100 d-flex align-items-center gap-minus"
+          [ngClass]="{ 'cursor-pointer': item.status === PaymentMethodStatus.Available }"
+          (click)="item.status === PaymentMethodStatus.Available ? selectedMethod.set(item.name) : $event.stopPropagation()"
+        >
+          <div
+            class="icon-container d-flex align-items-center justify-content-center radius-rounded"
+            [ngClass]="selectedMethodName() === item.name ? 'surface-brand-tint' : 'surface-glass-onelevated'"
+          >
+            <ngx-icon
+              [name]="item.iconName"
+              [type]="'bold'"
+              [iconSize]="'24px'"
+              [secondaryColor]="'#919294'"
+              [ngClass]="
+                item.status === PaymentMethodStatus.Available
+                  ? selectedMethodName() === item.name
+                    ? 'text-onback-brand'
+                    : 'text-onback-low'
+                  : 'text-onback-disabled'
+              "
+            />
+          </div>
+          <div class="d-flex flex-1 flex-column">
+            <p
+              class="c-1"
+              [ngClass]="item.status === PaymentMethodStatus.Available ? 'text-onback-high' : 'text-onback-disabled'"
+            >
+              {{ item.title }}
+            </p>
+            <p
+              class="l-3"
+              [ngClass]="item.status === PaymentMethodStatus.Available ? 'text-onback-low' : 'text-onback-disabled'"
+            >
+              @if (item.type === 'amount') {
+                <span> موجودی: </span>
+                <span
+                  class="c-2"
+                  [ngClass]="item.status === PaymentMethodStatus.Available ? 'text-onback-medium' : 'text-onback-disabled'"
+                >
+                  {{ item.balance | thousands }}
+                </span>
+                <span class="is-currancy">ریال</span>
+              } @else {
+                {{ item.description }}
+              }
+            </p>
+          </div>
+          @if (item.status === PaymentMethodStatus.Available) {
+            <ngx-radio-button
+              [checked]="selectedMethodName() === item.name"
+              [size]="20"
+              [disabled]="false"
+            >
+              {{ item.balance }}
+            </ngx-radio-button>
+          }
+          @if (item.status !== PaymentMethodStatus.Available && item.status !== PaymentMethodStatus.Inaccessible) {
+            <ngx-badge
+              size="sm"
+              [status]="item.status === PaymentMethodStatus.Disabled ? 'inactive' : 'info'"
+              [mode]="item.status === PaymentMethodStatus.Disabled ? 'bold' : 'fill'"
+              [hasIcon]="false"
+              type="text"
+            >
+              {{ item.status === PaymentMethodStatus.Disabled ? 'غیر فعال' : 'به‌زودی' }}
+            </ngx-badge>
+          }
+        </div>
+
+        @if (!last) {
+          <ngx-divider
+            class="my-minus"
+            [color]="BorderColorsEnum.Air"
+            orientation="horizontal"
+          />
+        }
+      }
+    </div>
+  </div>
+
+  <div class="w-100 mt-medium border-t-100 border-color-air surface-glass-onelevated">
+    <div class="w-100 p-plus d-flex flex-column">
+      @if (selectedMethodName() !== 'Icp') {
+        <div class="w-100 d-flex align-items-center justify-content-space-between">
+          <span class="b-3 text-onback-low"> کارمزد خرید اعتباری </span>
+          <span class="b-3 text-onback-low is-currency"> {{ calculatedCommission() | thousands }} ریال </span>
+        </div>
+      }
+      <div class="w-100 d-flex align-items-center justify-content-space-between">
+        <span class="bt-2 text-onback-high"> مبلغ پرداختی </span>
+        <span class="t-7 text-onback-medium is-currency"> {{ calculatedPayableAmount() | thousands }} ریال </span>
+      </div>
+
+      <ngx-button
+        class="mt-minus"
+        [fullWidth]="true"
+        buttonId="CONFIRM_AND_QUICK_PAYMENT"
+        [style]="'fill'"
+        size="large"
+        [brandButton]="state().payableAmount > 0"
+        (clickHandler)="continue()"
+        [disabled]="btnLoading() || !availableAnyMethod()"
+        [isLoading]="btnLoading()"
+      >
+        تایید و پرداخت
+      </ngx-button>
+    </div>
+  </div>
+</div>

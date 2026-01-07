@@ -1,0 +1,190 @@
+::ng-deep .mat-mdc-dialog-container {
+  padding: 40px 40px 31px 40px;
+  border-radius: 24px;
+  background: #ffffff;
+}
+
+.modal-download-coupon {
+  position: relative;
+  direction: rtl;
+
+  .close {
+    position: absolute;
+
+    &.desktop {
+      top: 0;
+      left: 0;
+      cursor: pointer;
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      background: #f2f5f8;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    &.mobile {
+      display: none;
+      top: 12px;
+      margin-bottom: 12px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .icon {
+    text-align: center;
+
+    img {
+      height: 68px;
+    }
+  }
+
+  .title {
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    margin: 16px 0;
+  }
+
+  .description {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 2;
+    margin-bottom: 20px;
+  }
+
+  .coupon-box {
+    height: 48px;
+    width: 100%;
+    background: #f2f5f8;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 16px 16px 16px 20px;
+    position: relative;
+    margin-bottom: 21px;
+
+    .icon-copy {
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      vertical-align: middle;
+      background: url('assets/icon-copy.svg') no-repeat 0 0/100%;
+      cursor: pointer;
+    }
+
+    .text {
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .code {
+      font-weight: 700;
+      font-size: 14px;
+      margin-right: auto;
+      line-height: 1.5;
+      margin-left: 8px;
+    }
+
+    .is-copy {
+      height: 100%;
+      background: rgba(110, 121, 141, 0.8);
+      backdrop-filter: blur(5.5px);
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      color: #fff;
+      position: absolute;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      -webkit-transition: width 0.5s ease-in-out;
+      -moz-transition: width 0.5s ease-in-out;
+      -o-transition: width 0.5s ease-in-out;
+      transition: width 0.5s ease-in-out;
+
+      span {
+        -webkit-transition: opacity 1s ease-in-out;
+        -moz-transition: opacity 1s ease-in-out;
+        -o-transition: opacity 1s ease-in-out;
+        transition: opacity 1s ease-in-out;
+      }
+
+      &.hide {
+        width: 0;
+
+        span {
+          opacity: 0;
+          -webkit-transition: opacity 0.1s ease-in-out;
+          -moz-transition: opacity 0.1s ease-in-out;
+          -o-transition: opacity 0.1s ease-in-out;
+          transition: opacity 0.1s ease-in-out;
+        }
+      }
+
+      &.show {
+        width: 143px;
+
+        span {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .cta {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .modal-download-coupon {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .close {
+      &.desktop {
+        display: none;
+      }
+
+      &.mobile {
+        display: block;
+      }
+    }
+
+    .cta {
+      flex-grow: 1;
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+
+  ::ng-deep {
+    .cdk-global-overlay-wrapper {
+      align-items: end !important;
+    }
+
+    .cdk-overlay-pane {
+      max-width: 100% !important;
+    }
+
+    .mat-mdc-dialog-container {
+      position: relative;
+      padding: 64px 16px 28px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      height: 509px;
+    }
+  }
+}

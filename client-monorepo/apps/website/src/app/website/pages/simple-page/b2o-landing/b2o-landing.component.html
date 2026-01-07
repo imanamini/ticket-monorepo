@@ -1,0 +1,46 @@
+<app-base-layout [loaded]="loaded">
+  @if (creditCampaignPage?.templateData?.sectionCounter?.title) {
+    <app-credit-campaign-timer
+      class="campaign-timer"
+      [block]="'start'"
+      [scrollAnchor]="'b2o-form'"
+      [scrollToElementId]="'digipay-services'"
+      [templateData]="creditCampaignPage.templateData"
+      [B20Mode]="true"
+      [withoutHref]="false"
+      (clickEmit)="scrollToAnchor('b2o-form')"
+    >
+    </app-credit-campaign-timer>
+  }
+  @if (creditCampaignPage?.templateData?.digipayServicesSection) {
+    <app-b20-services
+      [b2eServices]="creditCampaignPage.templateData.digipayServicesSection"
+      id="digipay-services"
+    >
+    </app-b20-services>
+  }
+
+  <app-b2o-form
+    *ngIf="creditCampaignPage?.templateData?.registrationForm?.title"
+    [b2oRegisterForm]="contactForm"
+    [registrationForm]="creditCampaignPage.templateData.registrationForm"
+    id="b2o-form"
+  >
+  </app-b2o-form>
+
+  <app-b2o-financial-services
+    *ngIf="creditCampaignPage?.templateData?.financialServicesSection?.title"
+    [services]="creditCampaignPage?.templateData?.financialServicesSection"
+  ></app-b2o-financial-services>
+
+  <div class="mb-huge d-felx justify-content-center text-align-center">
+    <app-ui-button
+      appearance="CUSTOM"
+      [size]="'BIG'"
+      class="submit-button mt-mega"
+      (clicked)="scrollToAnchor('b2o-form')"
+    >
+      {{ 'ثبت درخواست' }}
+    </app-ui-button>
+  </div>
+</app-base-layout>

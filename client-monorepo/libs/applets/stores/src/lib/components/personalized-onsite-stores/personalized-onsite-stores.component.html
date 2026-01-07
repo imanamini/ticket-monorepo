@@ -1,0 +1,55 @@
+<div class="px-plus">
+  <common-ui-components-title-summary
+    [title]="'خرید حضوری'"
+    [showButton]="true"
+    [buttonIconReversed]="true"
+    [buttonTitle]="'همه'"
+    [buttonIcon]="'arrow-2-left'"
+    [navigationLink]="'stores/all-stores'"
+    [navigationParams]="{
+      sort: 'priority',
+      types: '0',
+    }"
+  ></common-ui-components-title-summary>
+</div>
+
+<lib-store-categories-filter
+  [classes]="'mb-pony mt-low gap-low pr-plus'"
+  [selectedCategory]="selectedCategory()"
+  (selectedCategoryChange)="changeCategory($event)"
+></lib-store-categories-filter>
+
+<common-ui-components-horizontal-scroll
+  [classes]="'pr-plus'"
+  #scrollComponent
+>
+  @for (store of stores(); track $index) {
+    <div class="d-flex flex-column gap-pony">
+      <common-stores-store-preview
+        (click)="goToStorePage(store[0]!.trackingCode)"
+        [store]="store[0]"
+        [mode]="'with-details'"
+      ></common-stores-store-preview>
+      @if (store[1]) {
+        <common-stores-store-preview
+          (click)="goToStorePage(store[1]!.trackingCode)"
+          [store]="store[1]"
+          [mode]="'with-details'"
+        ></common-stores-store-preview>
+      }
+    </div>
+  } @empty {
+    <div class="d-flex flex-column gap-pony">
+      <common-stores-store-preview [mode]="'with-details'"></common-stores-store-preview>
+      <common-stores-store-preview [mode]="'with-details'"></common-stores-store-preview>
+    </div>
+    <div class="d-flex flex-column gap-pony">
+      <common-stores-store-preview [mode]="'with-details'"></common-stores-store-preview>
+      <common-stores-store-preview [mode]="'with-details'"></common-stores-store-preview>
+    </div>
+    <div class="d-flex flex-column gap-pony">
+      <common-stores-store-preview [mode]="'with-details'"></common-stores-store-preview>
+      <common-stores-store-preview [mode]="'with-details'"></common-stores-store-preview>
+    </div>
+  }
+</common-ui-components-horizontal-scroll>

@@ -1,0 +1,81 @@
+<div [@.disabled]="!policyDetail().license"
+     [@openClose]="policyDetail().license ? (!extended() ? 'close' : 'open'):'open'"
+     class="car-policy-detail p-plus surface-high-contrast radius-big">
+  <div class="policy-detail-wrapper h-100">
+    <div class="d-flex flex-row gap-minus">
+      <div class="insurer-logo d-flex align-items-center justify-content-center radius-minus p-small surface-back">
+        <ins-icon
+                [width]="24"
+                [height]="24"
+                [name]="policyDetail().vehicle.carBrandLogo ? 'car-' + policyDetail().vehicle.carBrandLogo : IconEnum.EmptyInsurance"
+        ></ins-icon>
+      </div>
+      <div class="vehicle-details-wrapper">
+        <div class="insurer-name text-onback-medium st-8">
+          {{ policyDetail().insurerParty.insurerPartyName }}
+        </div>
+        <div class="vehicle-detail mt-tiny bt-3">
+          {{ policyDetail().vehicle.carType + ' ' + policyDetail().vehicle.carBrand }}
+        </div>
+        <div class="d-flex mt-tiny gap-small flex-row align-items-center">
+          <div class="vehicle-detail l-2" tooltipType="hover" [ngxTooltip]="policyDetail().vehicle.carModel">
+            {{ policyDetail().vehicle.carModel }}
+          </div>
+          <div class="divider border-l-300 border-color-tint"></div>
+          <div class="vehicle-detail l-2" tooltipType="hover"
+               [ngxTooltip]="'مدل ' + policyDetail().vehicle.carBuildYear">
+            {{ 'مدل ' + policyDetail().vehicle.carBuildYear }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-center mt-plus">
+      @if (policyDetail().license) {
+        <ngx-plate
+                type="car"
+                [size]="'small'"
+                [plate]="policyDetail().license"
+                [readonly]="true"
+        ></ngx-plate>
+      }
+    </div>
+
+    <div class="extended-data" [ngClass]="{'extended': extended()}">
+      <div
+              class="d-flex align-items-center justify-content-center mt-plus radius-minus gap-tiny w-100 pt-small pb-small surface-brand-tint">
+        <div class="bt-3">سقف تعهد مالی:</div>
+        <div class="st-8">{{ policyDetail().coverageRate | priceTransformer }}</div>
+      </div>
+
+      <div class="d-flex flex-row policy gap-small mt-plus justify-content-space-between align-items-center">
+        <div class="row d-flex flex-1 flex-column gap-small">
+          <div class="title c-3 text-onback-low">مدت بیمه‌نامه</div>
+          <p class="st-7 text-onback-medium">{{ policyDetail().duration }}</p>
+        </div>
+        <div class="divider border-l-300 border-color-tint"></div>
+        <div class="row d-flex flex-column flex-1 gap-small">
+          <div class="title c-3 text-onback-low">تخفیف ثالث</div>
+          <p class="st-7 text-onback-medium">{{ !policyDetail().thirdPartyDiscount ? 'بدون تخفیف' : policyDetail().thirdPartyDiscount + '%' }}
+          </p>
+        </div>
+        <div class="divider border-l-300 border-color-tint"></div>
+        <div class="row d-flex flex-column flex-1 gap-small">
+          <div class="title c-3 text-onback-low">تخفیف حوادث راننده</div>
+          <p class="st-7 text-onback-medium">{{ ( !policyDetail().driverDiscount || policyDetail().driverDiscount == 'صفر کیلومتر' ) ? 'بدون تخفیف' : policyDetail().driverDiscount + '%' }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  @if (policyDetail().license) {
+    <ins-icon [name]="IconEnum.ArrowCircleGray"
+              [width]="24"
+              [height]="24"
+              (click)="handleClickedExtendedButton()"
+              [ngClass]="{'rotated': extended()}"
+              class="arrow-extend"></ins-icon>
+  }
+</div>
+

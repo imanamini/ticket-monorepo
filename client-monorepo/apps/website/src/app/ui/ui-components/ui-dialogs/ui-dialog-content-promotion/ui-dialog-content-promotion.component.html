@@ -1,0 +1,98 @@
+<div class="modal-content-promotion">
+  <div
+    (click)="closeDialog()"
+    class="close desktop"
+  >
+    <ngx-icon
+      class="cursor-pointer"
+      [name]="'close'"
+      [iconSize]="'24px'"
+    ></ngx-icon>
+  </div>
+  <div class="close mobile">
+    <img
+      alt=""
+      src="assets/images/icons/icon-line.svg"
+    />
+  </div>
+  <div class="content">
+    <div class="success-messages">
+      <div class="success-icon">
+        <i [ngClass]="titleIcon"></i>
+      </div>
+      <div
+        *ngIf="templateData && templateData.title"
+        class="title"
+        style=""
+      >
+        {{ templateData.title }}
+      </div>
+      <div
+        *ngIf="templateData && templateData.description"
+        [innerHTML]="templateData.description"
+        class="description"
+      ></div>
+    </div>
+
+    <div
+      *ngIf="promotionServices && promotionServices.title"
+      class="promotion-services"
+    >
+      <div
+        *ngIf="promotionServices.title"
+        class="title"
+      >
+        {{ promotionServices.title }}
+      </div>
+      <ul class="subitems-indices">
+        <li
+          *ngFor="let service of promotionServices.services"
+          class="subitems-index"
+        >
+          <a
+            [attr.href]="service.url"
+            target="_blank"
+          ></a>
+          <div
+            *ngIf="service.imagePath"
+            [ngStyle]="{ background: service.color }"
+            class="icon"
+          >
+            <img
+              [alt]="service.title"
+              [src]="service.imagePath.url"
+            />
+          </div>
+          <div style="min-width: fit-content">
+            <div class="title">{{ service.title }}</div>
+            <div class="description">{{ service.subtitle }}</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div
+      *ngIf="modalBannerDesktop"
+      class="banner desktop"
+    >
+      <a [href]="bannerLink ? bannerLink : ''"></a>
+      <img
+        *ngIf="modalBannerDesktop"
+        [alt]="modalBannerDesktop.altText"
+        [src]="modalBannerDesktop.url"
+        class="desktop"
+      />
+    </div>
+    <div
+      *ngIf="modalBannerMobile"
+      class="banner mobile"
+    >
+      <a [href]="bannerLink ? bannerLink : ''"></a>
+      <img
+        *ngIf="modalBannerMobile"
+        [alt]="modalBannerMobile.altText"
+        [src]="modalBannerMobile.url"
+        class="mobile"
+      />
+    </div>
+  </div>
+</div>

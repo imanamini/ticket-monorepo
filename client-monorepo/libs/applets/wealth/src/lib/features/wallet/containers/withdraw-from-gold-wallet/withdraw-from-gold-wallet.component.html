@@ -1,0 +1,165 @@
+<div class="d-flex flex-column surface-high-contrast h-100svh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'فروش'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+  @if (loading()) {
+    <app-spinner />
+  } @else {
+    <div class="flex-1 d-flex flex-column align-items-center py-big surface-elevated p-plus">
+      <wealth-applet-detail-withdrow
+        class="w-100 surface-glass-onelevated radius-minus px-plus py-medium"
+        [walletTitle]="state()?.walletTitle ?? ''"
+        [walletBalance]="goldPricePublisher()?.withdrawalBalance ?? 0"
+        [walletName]="'WALLET_GOLD'"
+        [goldPricePerGram]="goldPricePublisher()?.value"
+      />
+      <div class="w-100 d-flex flex-column mt-big">
+        <span class="b-2 mb-medium">مبلغ مورد نظر برای فروش را وارد کنید.</span>
+        <ui-form-field
+          [label]="'مبلغ مورد نظر'"
+          class="w-100"
+          [stepValue]="5000000"
+          [type]="'amount-chip'"
+          [maxSize]="16"
+          [formControl]="amountController"
+          [isNumericKeyboard]="true"
+          [convertNonEnglishDigits]="true"
+          [required]="true"
+          [hasCleaner]="true"
+          [error]="amountController.errors ?? {}"
+          [errorMessageMapper]="{
+            min: minAmountError(),
+            max: maxAmountError(),
+          }"
+        ></ui-form-field>
+      </div>
+
+      <div class="mt-small w-100 d-flex flex-column surface-glass-onelevated radius-medium p-plus">
+        <div class="w-100 d-flex align-items-start justify-content-space-between">
+          <p class="b-3 text-onback-high">مبلغ فروش</p>
+          <p class="d-flex justify-content-end text-onback-high d-flex flex-column gap-tiny">
+            <span class="b-3 d-flex justify-content-end gap-tiny">
+              {{ calculatedAmount() | thousands }}
+              <span class="is-currency"> ریال </span>
+            </span>
+            <span class="l-1 text-onback-medium d-flex align-items-center gap-tiny">
+              <ngx-button
+                [mode]="'icon-only'"
+                [style]="'link'"
+                [size]="'tiny'"
+                [ngxTooltip]="'مقدار طلا حداکثر با دقت سه رقم اعشار نمایش داده می‌شود.'"
+                [tooltipPosition]="'top-right'"
+                [closeTimeout]="3000"
+                [leftIcon]="{
+                  name: 'info-circle',
+                }"
+              >
+              </ngx-button>
+              (معادل {{ calculatedGram() }} گرم)
+            </span>
+          </p>
+        </div>
+        <div class="w-100 d-flex align-items-start justify-content-space-between mt-pony">
+          <p class="b-3 text-onback-high">کارمزد</p>
+          <p class="b-3 text-onback-high d-flex gap-small justify-content-end align-items-center">
+            @if (!state().hasCommission && amountController.value) {
+              <ngx-badge
+                size="sm"
+                mode="bold"
+                status="error"
+              >
+                رایگان
+              </ngx-badge>
+            }
+            @if (amountController.value) {
+              <span [ngClass]="{ strike: !state().hasCommission }">
+                {{ calculatedCommission() | thousands }}
+                <span class="is-currency">ریال</span>
+              </span>
+            } @else {
+              <span>
+                0
+                <span class="is-currency">ریال</span>
+              </span>
+            }
+          </p>
+        </div>
+        <div class="w-100 d-flex align-items-start justify-content-space-between mt-pony">
+          <p class="b-3 text-onback-high">مبلغ دریافتی</p>
+          <p class="d-flex justify-content-end st-7 text-onback-high d-flex gap-tiny">
+            {{ amountController.value || 0 | thousands }}
+            <span class="is-currency"> ریال </span>
+          </p>
+        </div>
+
+        <ngx-divider
+          class="my-minus"
+          [color]="BorderColorsEnum.Light"
+          orientation="horizontal"
+        ></ngx-divider>
+
+        <div class="w-100 d-flex gap-tiny">
+          <ngx-icon
+            class="text-onback-brand"
+            [name]="'error-circle'"
+            [type]="'bold'"
+          />
+
+          <p class="l-3 text-onback-medium">نهایی شدن فروش از کیف ثروت، حداکثر ۱ روز کاری زمان می‌برد.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-100 d-flex px-plus flex-column gap-small surface-elevated py-medium sticky-action-group">
+      @if (state().requireAgreement) {
+        <ngx-checkbox
+          class="d-flex align-items-center"
+          (checkedChange)="onToggleAgreement($event)"
+          [checked]="agreementChecked()"
+        >
+          <div class="d-flex gap-tiny check-box-text">
+            <span>شرایط</span>
+            <span
+              (click)="agreementView(pdfType.REGULATIONS)"
+              class="text-onback-brand"
+            >
+              قوانین و مقررات
+            </span>
+            <span>را می‌پذیرم.</span>
+          </div>
+        </ngx-checkbox>
+      }
+
+      <div class="w-100 d-grid gap-small">
+        <ngx-button
+          [style]="'tinted-on-elevated'"
+          [fullWidth]="true"
+          [mode]="'form'"
+          size="medium"
+          (clickHandler)="setMaximumAmount()"
+        >
+          فروش تمام موجودی
+        </ngx-button>
+        <ngx-button
+          [style]="'fill'"
+          [fullWidth]="true"
+          [mode]="'form'"
+          size="medium"
+          (clickHandler)="withdraw()"
+          [disabled]="(state().requireAgreement && !agreementChecked()) || amountController.invalid || btnLoading()"
+          [isLoading]="btnLoading()"
+        >
+          تایید و ادامه
+        </ngx-button>
+      </div>
+    </div>
+  }
+</div>

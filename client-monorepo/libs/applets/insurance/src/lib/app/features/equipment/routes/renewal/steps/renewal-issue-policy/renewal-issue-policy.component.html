@@ -1,0 +1,46 @@
+<div class="issue-policy">
+  <div class="wrapper-image">
+    <img
+      alt="Succeed"
+      src="insurance-assets/images/renewal-success-image.svg"
+    />
+  </div>
+
+  <div class="content">
+    <div class="title">
+      {{ journey === JourneyNamesModel.RENEWAL ? 'بیمه‌ی شما، با موفقیت تمدید شد!' : 'بیمه‌ی شما، با موفقیت صادر شد!' }}
+    </div>
+    <div class="text">شما می‌توانید بیمه‌نامه جدید خود را از طریق دکمه‌ی زیر دریافت کنید!</div>
+  </div>
+
+  <renewal-steps-list [listItems]="listItems"> </renewal-steps-list>
+
+  <div class="buttons">
+    <ng-container *ngIf="isMobile">
+      <ui-button
+        (click)="goToPolicies()"
+        appearance="DEFAULT"
+      >
+        مشاهده بیمه نامه ها
+      </ui-button>
+      <ui-button
+        (click)="downloadPolicy()"
+        appearance="GRAY-STYLE"
+      >
+        دانلود سند بیمه نامه
+      </ui-button>
+    </ng-container>
+    <ng-container *ngIf="!isMobile">
+      <journey-buttons
+        (backClicked)="downloadPolicy()"
+        (nextClicked)="goToPolicies()"
+        [backText]="'دانلود بیمه نامه'"
+        [hideBackBtnIcon]="true"
+        [idValue]="'renewal-issue-policy-14'"
+        [isReversed]="false"
+        [nextText]="'مشاهده بیمه نامه ها'"
+      >
+      </journey-buttons>
+    </ng-container>
+  </div>
+</div>

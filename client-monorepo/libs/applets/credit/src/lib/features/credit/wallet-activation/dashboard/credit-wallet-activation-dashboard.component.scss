@@ -1,0 +1,61 @@
+@import "@digipay/base-style/styleguide.scss";
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.score-tiles {
+  padding: 24px 16px;
+
+  .score-tiles-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 328px;
+    max-width: 100%;
+    margin: 0 auto;
+
+    .score-tile {
+      width: 160px;
+    }
+  }
+}
+
+.dashboard-footer-backdrop {
+  height: 64px;
+}
+
+.dashboard-footer {
+  position: relative;
+  height: 0;
+  flex: 0 0 0;
+  overflow: visible;
+
+  .new-credit-button-container {
+    position: absolute;
+    left: #{map-get($spacing-sizes, "medium")};
+    bottom: #{map-get($spacing-sizes, "medium")};
+    z-index: 4;
+  }
+}
+.new-credit-button-container {
+  position: absolute;
+  left: #{map-get($spacing-sizes, "medium")};
+  bottom: #{map-get($spacing-sizes, "medium")};
+  z-index: 4;
+}
+:host app-credit-wallet-list {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 320px) {
+  .score-tiles {
+    .score-tiles-wrapper {
+      .score-tile {
+        width: 140px;
+      }
+    }
+  }
+}

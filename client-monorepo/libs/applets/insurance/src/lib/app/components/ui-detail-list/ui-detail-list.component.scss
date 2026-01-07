@@ -1,0 +1,34 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.policy-detail-list {
+  .policy-detail-item {
+    line-height: 1.2;
+    padding: 16px;
+    border-bottom: 1px solid #dee3e7;
+    @include flex-start-between;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .item-title, .item-value {
+      font-size: .9rem;
+    }
+
+    .item-title {
+      color: #6e798d;
+    }
+
+    .item-value {
+      font-weight: 500;
+      direction: ltr;
+      text-align: left;
+
+      .policy-list-link:link {
+        color: #0040ff;
+        font-weight: 800;
+        font-size: 1rem;
+      }
+    }
+  }
+}

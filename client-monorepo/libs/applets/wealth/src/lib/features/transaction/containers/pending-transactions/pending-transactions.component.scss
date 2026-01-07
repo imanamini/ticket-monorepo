@@ -1,0 +1,9 @@
+.transactions-container {
+  overflow-y: auto;
+}
+
+.segment-content {
+  min-height: 15.5rem;
+  align-content: flex-start;
+  height: calc(100vh - 10rem);
+}

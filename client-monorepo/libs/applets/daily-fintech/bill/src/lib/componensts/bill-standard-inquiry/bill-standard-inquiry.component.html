@@ -1,0 +1,62 @@
+<div class="page-container mt-large">
+  <span class="header-text b-2">
+    با وارد کردن <span class="header-text-bold st-8">شناسه قبض</span> و <span class="header-text-bold">شناسه پرداخت</span> می‌توانید بدهی
+    قبض
+    {{ billTypeModel()?.title }}
+    را استعلام و پرداخت کنید.
+  </span>
+
+  <form [formGroup]="billInquiryForm">
+    <div class="form-group mt-minus">
+      <ui-form-field
+        [error]="billInquiryForm.controls['billId'].errors"
+        [hasCleaner]="true"
+        [isNumericKeyboard]="true"
+        formControlName="billId"
+        class="flex-grow"
+        inputType="tel"
+        label="شناسه قبض"
+        placeholder="مثال: ۱۲۳۴۵۶۷۸"
+        [hint]="'شناسه قبض باید بین ۶ تا ۱۳ رقم باشد.'"
+        [maxSize]="13"
+        type="input"
+      >
+      </ui-form-field>
+    </div>
+    <div class="form-group mt-minus">
+      <ui-form-field
+        [error]="billInquiryForm.controls['payId'].errors"
+        [hasCleaner]="true"
+        [isNumericKeyboard]="true"
+        formControlName="payId"
+        class="flex-grow"
+        placeholder="مثال: ۱۲۳۴۵۶۷۸"
+        [hint]="'شناسه پرداخت باید بین ۶ تا ۱۳ رقم باشد.'"
+        inputType="tel"
+        label="شناسه پرداخت"
+        [maxSize]="13"
+        type="input"
+      >
+      </ui-form-field>
+    </div>
+
+    <div class="button-container mt-huge">
+      <ngx-button
+        [mode]="'form'"
+        (clickHandler)="confirmNavigation()"
+        [size]="'large'"
+        [disabled]="
+          billInquiryForm.invalid ||
+          !this.billInquiryForm.controls['billId'].value ||
+          !this.billInquiryForm.controls['payId'].value ||
+          isSubmitting()
+        "
+        [isLoading]="isSubmitting()"
+        [style]="'fill'"
+        [fullWidth]="true"
+      >
+        ذخیره و استعلام
+      </ngx-button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,23 @@
+.selected {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid #c9cbcf;
+  background: #fff;
+}
+
+.active {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 6px solid #1159fc;
+}
+
+.deactive {
+  filter: grayscale(1);
+}
+
+.is-disabled {
+  opacity: 1;
+  cursor: default;
+}

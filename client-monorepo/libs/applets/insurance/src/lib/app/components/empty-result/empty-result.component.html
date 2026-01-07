@@ -1,0 +1,30 @@
+<div class="d-flex flex-column gap-massive align-items-center">
+  <div class="d-flex flex-column gap-huge align-items-center">
+    @if (this.icon()) {
+      <img alt="empty"
+           [src]="'./insurance-assets/icons/' + this.icon() + '.svg'" [width]="96" [height]="96"/>
+    }
+
+    <div class="d-flex flex-column align-items-center gap-micro">
+      <span [textContent]="title()"
+            class="st-3 text-onback-high"></span>
+      <p [textContent]="description()"
+         class="b-2 text-onback-low text-align-center"></p>
+    </div>
+  </div>
+
+
+  @if (actionButton()) {
+    <div class="px-big">
+      <ins-button
+              [style]="actionButtonStyle()"
+              [mode]="InsButtonModeEnum.Section"
+              [size]="InsButtonSizeEnum.Large"
+              [rightIcon]="actionButtonIcon() ? {name:actionButtonIcon(),type:'linear'}: null"
+              [text]="actionButtonText()"
+              [fullWidth]="true"
+              (clickHandler)="handleButtonClicked($event)">
+      </ins-button>
+    </div>
+  }
+</div>

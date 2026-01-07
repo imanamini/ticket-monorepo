@@ -1,0 +1,41 @@
+<div class="d-flex flex-column justify-content-center align-items-center p-plus">
+  <div class="t-5 mt-hulk">بازیابی رمز عبور</div>
+  <div class="b-1 mt-tiny mb-big">کد ملی خود را برای بازیابی رمز عبور وارد کنید.</div>
+  <form
+    [formGroup]="nationalIdForm"
+    class="w-100 d-flex flex-column"
+  >
+    <ui-form-field
+      formControlName="nationalId"
+      class="flex-grow w-100"
+      [inputType]="'text'"
+      [label]="'کد ملی'"
+      [type]="'input'"
+      [hasCleaner]="true"
+      [isNumericKeyboard]="true"
+      [convertNonEnglishDigits]="true"
+      [error]="nationalIdForm.controls['nationalId']?.errors"
+      [showError]="showError()"
+      [errorMessageMapper]="{
+        invalidNotionalCode: 'کد ملی واردشده نامعتبر است.',
+        required: 'وارد کردن کد ملی الزامیست',
+        serverError: 'کد ملی وارد شده با شماره موبایل تطابق ندارد',
+      }"
+      [maxSize]="10"
+    >
+    </ui-form-field>
+    <ngx-button
+      class="mt-hulk"
+      [mode]="'form'"
+      [fullWidth]="true"
+      [isLoading]="isSubmitting()"
+      [disabled]="!this.nationalIdForm.controls['nationalId'].value || isSubmitting()"
+      [size]="'large'"
+      [style]="'fill'"
+      (clickHandler)="submitClicked()"
+      [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+    >
+      تایید و ادامه
+    </ngx-button>
+  </form>
+</div>

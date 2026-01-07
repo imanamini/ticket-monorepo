@@ -1,0 +1,99 @@
+:host {
+  display: block;
+  overflow: hidden;
+}
+
+.promotion-carousel {
+  position: relative;
+
+  &.amazing:not(.is-loading) {
+    background-image: url('libs/shared/common/assets/src/lib/images/amazing-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    &.circular {
+      background-image: url('libs/shared/common/assets/src/lib/images/circular-wow.png');
+    }
+
+    &.simple::before {
+      content: '';
+      background-image: url('libs/shared/common/assets/src/lib/images/amazing-pattern.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position-x: left;
+      background-position-y: top;
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 120px;
+      width: 120px;
+      z-index: 0;
+    }
+  }
+
+  &-top-bar {
+    position: relative;
+    z-index: 1;
+
+    &-timer {
+      &-item {
+        height: 32px;
+        width: 32px;
+      }
+    }
+  }
+
+  &-item {
+    &-more {
+      &-img {
+        height: 120px;
+        width: 100%;
+        background-image: url('libs/shared/common/assets/src/lib/images/promotion-more.png');
+      }
+
+      &-body {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .circular-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 16px;
+    border: 0.495px solid var(--surface-brand-tint);
+    text-align: right;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 450;
+    line-height: 20.87px;
+
+    span {
+      height: 6px;
+      line-height: 8px;
+    }
+  }
+
+  ::ng-deep .all-promotions-circular {
+    position: absolute;
+    left: 20px;
+
+    button {
+      padding: 0 !important;
+      justify-content: flex-end !important;
+      color: white !important;
+    }
+  }
+}
+
+.promotion-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  row-gap: 8px;
+  column-gap: 12px;
+  overflow: hidden;
+}

@@ -1,0 +1,79 @@
+.catalog-container {
+  border-radius: 40px;
+  background: linear-gradient(263deg, #3479FF 10.38%, #0E4DDB 89.62%);
+  margin: auto;
+  height: 350px;
+  padding: 90px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+
+  .title {
+    color: #FFF;
+    font-weight: 1000;
+  }
+
+  .subtitle {
+    color: #FFF;
+    font-weight: 200;
+  }
+
+  .catalog-desc {
+    width: 500px;
+  }
+
+  .catalog-img {
+    top: -60px;
+    left: -12%;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.button {
+  background: #FFF !important;
+}
+
+@media screen and (max-width: 1280px) {
+
+  .catalog-container {
+    height: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .cta {
+      app-ui-button {
+        display: block !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 744px) {
+
+  .catalog-container {
+    max-width: 100%;
+    padding: 20px;
+
+    .title {
+      font-size: 24px !important;
+    }
+
+    .catalog-desc {
+      width: 100%;
+      align-items: center;
+
+      .cta {
+        width: 100%;
+      }
+    }
+  }
+}
+

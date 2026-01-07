@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.main-section {
+  direction: rtl;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  app-credit-alert-box {
+    margin-bottom: 24px;
+  }
+}
+
+.step-flow-item {
+  &:last-child {
+    border-bottom: none;
+  }
+}

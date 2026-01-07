@@ -1,0 +1,23 @@
+.border-dashed {
+  border-style: dashed;
+}
+
+.plan-total-row-content {
+  min-height: 48px;
+}
+
+.credit-card {
+  min-height: 365px;
+}
+
+
+@media (max-width: 1280px) {
+
+  .credit-card {
+    min-height: auto;
+  }
+
+  .subscription{
+    margin-bottom: 10px;
+  }
+}

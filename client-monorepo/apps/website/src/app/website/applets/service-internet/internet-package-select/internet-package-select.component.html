@@ -1,0 +1,134 @@
+<!--<ui-section [isPageBody]="true" [ngClass]="{loading: paymentInProgress}">-->
+<div class="package-select">
+  <app-ui-light-warning
+    [fontSize]="13"
+    [iconSize]="24"
+    class="warning"
+  >
+    در صورتی که ترابرد کرده‌اید اپراتور خود را تغییر دهید.
+  </app-ui-light-warning>
+
+  <!--  <div *ngIf="!isMobile" class="filters-row">-->
+
+  <!--    <ui-cell-number-field-->
+  <!--      (cellNumberChange)="onCellNumberChange($event)"-->
+  <!--      [cellNumber]="cellNumber"-->
+  <!--      [selectCarrier]="false"-->
+  <!--      [showMnpNotice]="false" class="cell-number-field"></ui-cell-number-field>-->
+
+  <!--    <app-form-field-->
+  <!--      type="select"-->
+  <!--      (changed)="onCarrierChange($event)" [options]="internetService.carriers"-->
+  <!--      [value]="carrier"-->
+  <!--      class="carrier-select"-->
+  <!--      name="carrier"></app-form-field>-->
+
+  <!--    <app-form-field-->
+  <!--      type="select"-->
+  <!--      (changed)="onSimTypeChange($event)" [options]="carrier ? internetService.simTypesGroups[carrier]: internetService.simTypes"-->
+  <!--      [value]="simType"-->
+  <!--      class="sim-type-select"-->
+  <!--      name="sim-type"></app-form-field>-->
+
+  <!--    <app-ui-button (clicked)="getPackages()" [disabled]="!cellNumber || !basicDataValidness.cellNumber" class="button">-->
+  <!--      جستجو-->
+  <!--    </app-ui-button>-->
+  <!--  </div>-->
+
+  <app-ui-form-hint
+    *ngIf="validationMessages.cellNumber"
+    appearance="error"
+    >{{ validationMessages.cellNumber }}
+  </app-ui-form-hint>
+
+  <ng-container *ngIf="gettingPackages">
+    <!--    <ui-hr-line *ngIf="!isMobile" class="hr"></ui-hr-line>-->
+
+    <app-ui-spinner [size]="64"></app-ui-spinner>
+  </ng-container>
+
+  <ng-container *ngIf="!gettingPackages && !needsReload">
+    <!--    <ui-hr-line *ngIf="!isMobile" class="hr"></ui-hr-line>-->
+
+    <!--    <ui-badge-slider-->
+    <!--      (itemSelected)="onDurationChange($event)"-->
+    <!--      *ngIf="durations.length > 0"-->
+    <!--      [badges]="durations"-->
+    <!--      [selectedItem]="selectedDuration" class="duration-slider"></ui-badge-slider>-->
+
+    <div class="tabs">
+      <swiper-container
+        appSwiper
+        #swiper
+        [config]="swiperConfig"
+        class="history-swiper"
+        (slidechange)="slideChange($event)"
+      >
+        <swiper-slide *ngFor="let tab of durations">
+          <div
+            (click)="onDurationChange(tab)"
+            [ngClass]="tab.value === selectedDuration ? 'active' : ''"
+            class="tab"
+          >
+            {{ tab.label }}
+          </div>
+        </swiper-slide>
+      </swiper-container>
+
+      <!--      <swiper [config]="swiperConfig">-->
+      <!--        <ng-container *ngFor="let tab of durations">-->
+      <!--          <ng-template swiperSlide>-->
+      <!--            <div-->
+      <!--              (click)="onDurationChange(tab)"-->
+      <!--              [ngClass]="tab.value === selectedDuration ? 'active' : ''"-->
+      <!--              class="tab"-->
+      <!--            >-->
+      <!--              {{ tab.label }}-->
+      <!--            </div>-->
+      <!--          </ng-template>-->
+      <!--        </ng-container>-->
+      <!--      </swiper>-->
+    </div>
+    <div
+      *ngIf="anyPackageToShow"
+      class="packages-area"
+    >
+      <div
+        *ngFor="let group of packages"
+        class="package-group"
+      >
+        <ng-container *ngIf="group.packages.length > 0">
+          <h4 class="group-title">{{ group.title }}</h4>
+          <!--          <ui-simple-masonry [columns]="gridColumns">-->
+
+          <div class="package-items">
+            <ng-container *ngFor="let item of group.packages">
+              <app-ui-internet-package
+                (clicked)="onPackageClick($event)"
+                [carrier]="carrier"
+                [package]="item"
+              ></app-ui-internet-package>
+            </ng-container>
+          </div>
+          <!--          *uiGridItem-->
+          <!--          </ui-simple-masonry>-->
+        </ng-container>
+      </div>
+    </div>
+
+    <app-ui-spinner
+      *ngIf="paymentInProgress"
+      [size]="64"
+      class="page-spinner"
+    ></app-ui-spinner>
+
+    <ng-container *ngIf="serviceMessage">
+      <app-ui-warning-message>{{ serviceMessage }}</app-ui-warning-message>
+    </ng-container>
+
+    <ng-container *ngIf="!anyPackageToShow && !serviceMessage">
+      <p>بسته‌ای مطابق با فیلترهای انتخابی وجود ندارد</p>
+    </ng-container>
+  </ng-container>
+  <!--</ui-section>-->
+</div>

@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="section-counter d-flex justify-content-center align-items-end" [style.backgroundImage]="'url(' + (templateData()?.imageDesktop?.url || '') + ')'" >
+
+    <div class="image">
+      <img [src]="templateData()?.imageMobile?.url" alt="">
+    </div>
+    <div class="counter d-flex flex-column align-items-center">
+      <div>
+        @if (+timer().days < 0) {
+          <span>پایان</span>
+        } @else {
+          <div class="d-flex flex-row-reverse align-items-center justify-content-center gap-medium">
+            <div class="d-flex flex-column gap-pony align-items-center ng-input">
+              <span class="text-onback-medium timer-item t-7">{{ timer().days }}</span>
+              <span class="text-onback-medium l-2">روز</span>
+            </div>
+            <div class="d-flex flex-column gap-pony align-items-center">
+              <span class="text-onback-medium t-7 timer-item">{{ timer().hours }}</span>
+              <span class="text-onback-medium l-2">ساعت</span>
+            </div>
+            <div class="d-flex flex-column gap-pony align-items-center">
+              <span class="text-onback-medium t-7 timer-item">{{ timer().minutes }}</span>
+              <span class="text-onback-medium l-2">دقیقه</span>
+            </div>
+            <div class="d-flex flex-column gap-pony align-items-center">
+              <span class="text-onback-medium t-7 timer-item">{{ timer().seconds }}</span>
+              <span class="text-onback-medium l-2">ثانیه</span>
+            </div>
+          </div>
+        }
+
+      </div>
+      <div class="mt-plus text-onback-medium t-6">{{timer().text}}</div>
+    </div>
+
+  </div>
+</div>

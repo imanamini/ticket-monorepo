@@ -1,0 +1,22 @@
+<section class="section-working-capital-wrapper">
+  <div class="container">
+    <div class="content">
+      <h1>دریافت وام برای فروشندگان</h1>
+      <div class="subtitle">با یک کلیک در وب سایت دیجی پی</div>
+    </div>
+  </div>
+  <div class="form">
+    <app-ui-section>
+      <div class="text-align-center title">
+        {{ dataMapper[state]?.title }}
+      </div>
+      <ng-container [ngSwitch]="state">
+        <app-working-capital-kyb-form
+          (state)="state = $event"
+          *ngSwitchCase="'FORM'"
+        ></app-working-capital-kyb-form>
+        <app-working-capital-kyb-in-progress *ngSwitchCase="'IN_PROGRESS'"></app-working-capital-kyb-in-progress>
+      </ng-container>
+    </app-ui-section>
+  </div>
+</section>

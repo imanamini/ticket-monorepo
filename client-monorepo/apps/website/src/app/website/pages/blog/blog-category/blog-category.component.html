@@ -1,0 +1,65 @@
+<app-base-layout [loaded]="loaded">
+  <app-base-layout [loaded]="loaded">
+    <div class="background">
+      <div class="container">
+        <div class="seo-title">
+          <h1>{{ category.seoTitle ?? category.title }}</h1>
+        </div>
+        <div
+          *ngIf="category && displayBreadCrumbs"
+          class="breadcrumbs desktop"
+        >
+          <a href="/mag/"><span>مجله اینترنتی دیجی‌پی</span></a>
+          <span *ngFor="let postCategory of postCategories; let index = index">
+            <span class="separator">/</span>
+            <a
+              *ngIf="index !== postCategories.length - 1; else noHref"
+              [href]="'/mag/' + postCategory.slug + '/'"
+            >
+              {{ postCategory.seoTitle ?? postCategory.title }}
+            </a>
+            <ng-template #noHref>
+              {{ postCategory.seoTitle ?? postCategory.title }}
+            </ng-template>
+          </span>
+        </div>
+      </div>
+      <app-ui-blog-top-posts
+        *ngIf="categoryLevel === 'parent' && topPosts && topPosts.length"
+        [posts]="topPosts"
+      >
+      </app-ui-blog-top-posts>
+      <div
+        *ngIf="categoryLevel === 'parent' && category?.children && category.children.length"
+        class="category-children"
+      >
+        <div class="container">
+          <div class="swiper-title">دسته‌بندی‌ها:</div>
+        </div>
+        <app-ui-blog-children-swiper [categories]="category.children"></app-ui-blog-children-swiper>
+      </div>
+      <div class="container">
+        <div class="posts-ads">
+          <div class="advertisements">
+            <div
+              *ngIf="restPosts && restPosts.length"
+              class="box"
+              appDownloadAppLink
+            ></div>
+          </div>
+          <app-category-rest-posts
+            *ngIf="restPosts && restPosts.length"
+            [category]="category"
+            [posts]="restPosts"
+          >
+          </app-category-rest-posts>
+        </div>
+      </div>
+      <app-category-recommended-posts
+        *ngIf="recommendedPosts && recommendedPosts.length"
+        [posts]="recommendedPosts"
+      >
+      </app-category-recommended-posts>
+    </div>
+  </app-base-layout>
+</app-base-layout>

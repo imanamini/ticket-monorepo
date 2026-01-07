@@ -1,0 +1,40 @@
+<div class="complete-information">
+  <img
+    alt="Complete Information"
+    src="insurance-assets/images/complete-information-renewal.svg"
+  />
+
+  <div class="content">
+    <div class="title">شماره سریال دستگاه (IMEI) را وارد فرمایید!</div>
+    <div class="text">لطفا برای فعال‌سازی و صدور بیمه‌نامه دستگاهتان، شماره سریال (IMEI) دستگاه خود را وارد فرمایید.</div>
+    <div class="field">
+      <ui-form-field
+        [(ngModel)]="serialNumber"
+        label="شماره سریال دستگاه / IMEI"
+      ></ui-form-field>
+    </div>
+    <div class="hint">
+      <ng-container *ngIf="productCategory === ProductCategoryModel.MOBILE">
+        شما می‌توانید برای پیدا کردن شماره سریال (IMEI) تلفن همراه، از کد دستوری
+        <span
+          class="ltr"
+          dir="ltr"
+          >*#06#</span
+        >
+        استفاده نمایید.
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <journey-buttons
+      (nextClicked)="goToNextStep()"
+      [disableNext]="isInvalid()"
+      [hideBackBtn]="true"
+      [idValue]="'renewal-complete-information-16'"
+      [isReversed]="false"
+      [nextText]="'ثبت سریال و ادامه'"
+    >
+    </journey-buttons>
+  </div>
+</div>

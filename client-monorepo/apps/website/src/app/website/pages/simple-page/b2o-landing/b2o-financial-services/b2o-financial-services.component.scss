@@ -1,0 +1,11 @@
+.title , .subtitle{
+  color: #000D33;
+}
+@media screen and (max-width: 744px) {
+  .content{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+}

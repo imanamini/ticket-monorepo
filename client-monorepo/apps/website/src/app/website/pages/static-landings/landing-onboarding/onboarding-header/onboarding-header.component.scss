@@ -1,0 +1,55 @@
+@import "@digipay/base-style/styleguide";
+
+
+.onboarding-header {
+  padding: map-get($spacing-sizes, 'massive') map-get($spacing-sizes, 'huge') 94px;
+  gap: 90px;
+
+  .title {
+    color: #1159FC;
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-size: 47px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 67px; /* 142.553% */
+  }
+
+  .subtitle {
+    color: #1E1E1E;
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 67px; /* 186.111% */
+  }
+}
+
+
+@media (max-width: 1280px) {
+  .onboarding-header {
+    flex-direction: column-reverse;
+    gap: 28px;
+    padding: 32px 0 40px;
+
+    .title{
+      font-size: 32px !important;
+      line-height: 46px !important;
+    }
+
+    .subtitle {
+      font-size: 24px !important;
+      line-height: 46px !important;
+    }
+
+    .description {
+      font-size: 12px !important;
+    }
+
+
+    .content {
+      text-align: center;
+    }
+  }
+}

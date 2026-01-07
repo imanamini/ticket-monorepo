@@ -1,0 +1,20 @@
+<div
+  class="walk-through  {{ config()?.background === 'lighter' ? 'lighter' : 'darker' }}"
+  [style.z-index]="config()?.baseZIndex"
+  [ngClass]="{ open: showWalkThrough() }"
+>
+  <ngx-button
+    class="close-btn"
+    [mode]="'icon-only'"
+    [size]="'small'"
+    [style]="'tinted-on-elevated'"
+    [leftIcon]="{ name: 'close', type: 'linear' }"
+    (click)="closeWalkThrough()"
+  >
+  </ngx-button>
+  @for (step of config()?.steps(); track $index) {
+    @if (step.isActive()) {
+      <common-walk-through-step [step]="step"></common-walk-through-step>
+    }
+  }
+</div>

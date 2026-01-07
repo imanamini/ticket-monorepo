@@ -1,0 +1,24 @@
+<app-credit-app-bar
+  (onCloseButtonClick)="backToMerchant()"
+  [closeButton]="true"
+  title="اعتبار اقساطی دیجی‌پی"
+></app-credit-app-bar>
+<div class="top-section">
+  <ngx-status-result
+    description="بعد از بررسی رفتار مالی شما،‌ در حال حاضر امکان اختصاص اعتبار اقساطی به شما وجود ندارد."
+    title="در حال حاضر امکان دریافت اعتبار اقساطی را ندارید."
+  >
+    <ng-container status-image>
+      <div class="score-gauge-image"></div>
+    </ng-container>
+  </ngx-status-result>
+  <div class="cta-wrapper">
+    <ngx-button
+      (clickHandler)="backToMerchant()"
+      (finished)="backToMerchant()"
+      [timer]="timer()"
+    >
+      بازگشت به فروشگاه در&nbsp;
+    </ngx-button>
+  </div>
+</div>

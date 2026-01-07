@@ -1,0 +1,47 @@
+<div id="walk-through-dpx"></div>
+<div id="hub-walk-through"></div>
+<div id="home-walk-through"></div>
+<div id="transaction-walk-through"></div>
+<div id="stores-walk-through"></div>
+<div id="profile-walk-through"></div>
+<div
+  id="main-layout"
+  #mainLayout
+  class="main-layout surface-back border-l-300 border-r-300 border-color-light"
+>
+  <common-network-error-page></common-network-error-page>
+  <div class="main-layout-header">
+    <!--    <button (click)="changeTheme()">Switch Theme</button>-->
+    <dpx-pillar-super-web-header></dpx-pillar-super-web-header>
+  </div>
+  <div
+    id="dpx-main-layout-body"
+    class="main-layout-body"
+    (scroll)="handleScroll($event)"
+    #layoutBody
+  >
+    <div
+      #containerBody
+      class="main-layout-body-container"
+      id="main-layout-body-container"
+      [ngStyle]="containerStyle()"
+    >
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div
+    class="main-layout-navigation"
+    [ngClass]="{ expanded: expanded() }"
+    #navigationArea
+  >
+    <ngx-bottom-sheet></ngx-bottom-sheet>
+    <common-pin-layout *ngIf="isVisiblePinLayout()"></common-pin-layout>
+    <common-ui-component-overlay-manager></common-ui-component-overlay-manager>
+    <ngx-bottom-navigation-wrapper
+      [leftPosition]="leftPosition()"
+      [rightPosition]="rightPosition()"
+      [mode]="bottomNavMode()"
+    ></ngx-bottom-navigation-wrapper>
+  </div>
+  <div #scriptWrapper></div>
+</div>

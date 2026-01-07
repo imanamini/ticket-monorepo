@@ -1,0 +1,135 @@
+@import "@digipay/base-style/swatch";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.main-section {
+  flex-grow: 1;
+
+  .top-section {
+    flex-grow: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    direction: rtl;
+
+    > .title {
+      font-size: 14px;
+      color: #2c3544;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      display: block;
+    }
+  }
+
+  .bottom-section {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 16px;
+    background: #f2f5f8;
+  }
+}
+
+
+
+.guides {
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px 40px;
+
+  .guide {
+    display: flex;
+    gap: 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid #dee3e7;
+
+    .number {
+      height: 20px;
+      flex: 0 0 20px;
+      font-size: 12px;
+      color: #0040ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid #0040ff;
+    }
+
+    .title {
+      color: #0040ff;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .value {
+      font-size: 12px;
+      color: #2c3544;
+    }
+
+    &:last-child {
+      border-bottom: unset;
+    }
+  }
+}
+
+.note-image {
+  width: 100%;
+  max-width: 312px;
+  height: 157px;
+  background: url("./credit-physical-note-with-number.webp")
+    no-repeat center center;
+  background-size: 100% auto;
+  margin: 0 auto;
+}
+
+@keyframes shakeX {
+  0%,
+  to {
+    transform: translateZ(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate3d(-3px, 0, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate3d(3px, 0, 0);
+  }
+}
+
+.confirm-checkbox {
+  margin-top: 16px;
+  margin-bottom: 16px;
+
+  &.warning-shack-x {
+    animation-name: shakeX;
+    animation-duration: 0.4s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+  }
+}
+
+.cta {
+  border-top: 1px solid #dee3e7;
+  padding: 0 24px 24px;
+}

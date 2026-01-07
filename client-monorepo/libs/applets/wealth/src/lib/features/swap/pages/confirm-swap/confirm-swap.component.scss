@@ -1,0 +1,22 @@
+.icon-container {
+  width: 40px;
+  height: 40px;
+  img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.swap-icon-container {
+  width: 40px;
+  height: 40px;
+  border: 4px solid white;
+  position: absolute;
+  bottom: -2.5rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  .swap-icon{
+      width: 30px;
+      height: 30px;
+  }
+}

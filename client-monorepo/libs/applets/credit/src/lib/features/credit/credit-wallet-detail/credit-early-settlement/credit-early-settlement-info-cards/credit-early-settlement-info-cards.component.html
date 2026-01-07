@@ -1,0 +1,31 @@
+<div class="info-card-list">
+  <div
+    (click)="goToPurchasePage()"
+    class="info-card-item"
+  >
+    <div class="info-card-icon purchase-icon"></div>
+    <div class="info-card-title">گزارش خرید</div>
+    <div class="action-title text-onback-brand d-flex align-items-center">
+      مشاهده
+      <ngx-icon
+        class="text-onback-brand"
+        [name]="'arrow-2-left'"
+      ></ngx-icon>
+    </div>
+  </div>
+
+  <div
+    (click)="openHelp()"
+    class="info-card-item"
+  >
+    <div class="info-card-icon help-icon"></div>
+    <div class="info-card-title">راهنمای اعتبار</div>
+    <div class="action-title text-onback-brand d-flex align-items-center">
+      مشاهده
+      <ngx-icon
+        class="text-onback-brand"
+        [name]="'arrow-2-left'"
+      ></ngx-icon>
+    </div>
+  </div>
+</div>

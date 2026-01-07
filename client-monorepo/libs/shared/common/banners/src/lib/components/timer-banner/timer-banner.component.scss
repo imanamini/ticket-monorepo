@@ -1,0 +1,17 @@
+.timer-banner-wrapper {
+  min-height: 64px !important;
+  position: relative;
+  overflow: hidden;
+
+  .timer {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    bottom: 16px;
+
+    .dot {
+      width: 4px;
+      height: 4px;
+    }
+  }
+}

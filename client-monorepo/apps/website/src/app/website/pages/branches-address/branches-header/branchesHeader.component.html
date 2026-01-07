@@ -1,0 +1,24 @@
+<div class="branches-header text-oninvert-high radius-big py-hulk">
+
+  <div class="st-1 text-align-center text-oninvert-high mb-giant">{{ data().title }}</div>
+
+  <div class="credit-onsite-registration-row d-flex justify-content-space-between">
+
+    @for (item of data().values; track $index) {
+      <div class="onsite-col">
+        @if (item?.image?.url) {
+          <img [ngSrc]="item?.image?.url" width="80" height="80" [alt]="item?.image?.altText">
+        }
+        @if (item.subtitle) {
+          <div class="onsite-col-title mt-medium st-5 text-oninvert-high">{{ item.subtitle }}</div>
+        }
+
+      </div>
+    }
+  </div>
+
+  <div class="bt-1 mt-large text-align-center text-oninvert-medium" [innerHTML]="sanitize(data().description)">
+  </div>
+
+</div>
+

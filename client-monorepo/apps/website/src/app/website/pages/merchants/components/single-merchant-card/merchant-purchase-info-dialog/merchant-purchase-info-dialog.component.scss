@@ -1,0 +1,176 @@
+@import "globals";
+
+
+
+::ng-deep {
+  .mat-mdc-dialog-container {
+    padding: 0;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+
+  .mat-bottom-sheet-container {
+    padding: 0 !important;
+    overflow: hidden;
+  }
+}
+
+.merchant-purchase-info-dialog {
+  direction: rtl;
+  padding: 48px;
+
+  .top-part {
+    display: none;
+  }
+
+  .onsite-info {
+    .title {
+      display: flex;
+      gap: 8px;
+      color: $swatch_steel_900;
+      font-size: 20px;
+      font-weight: 400;
+    }
+
+    .addresses-info {
+      margin-top: 24px;
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid $swatch_steel_200;
+      overflow: hidden;
+
+      .addresses-container {
+        overflow: auto;
+        direction: ltr;
+        max-height: 208px;
+
+        .scrollable {
+          direction: rtl;
+
+          .address {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 16px 0;
+            border-bottom: 1px solid $swatch_steel_200;
+
+            &:first-child {
+              padding-top: 0;
+            }
+
+            &:last-child {
+              border: none;
+              padding-bottom: 2px;
+            }
+
+            > div {
+              display: flex;
+              align-items: center;
+            }
+          }
+
+          .idx {
+            border: 1px solid $swatch_steel_200;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            color: $swatch_steel_500;
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: -0.6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .text {
+            margin-right: 8px;
+            max-width: 211px;
+            color: $swatch_steel_500;
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: -0.7px;
+          }
+
+          .cta {
+            cursor: pointer;
+            margin-right: 16px;
+
+            span {
+              font-size: 14px;
+              font-weight: 450;
+              color: $swatch_blue_500;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .online-info {
+    padding: 12px 16px 12px 0;
+    border-radius: 16px;
+    border: 1px solid $swatch_steel_200;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+      color: $swatch_steel_500;
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: -0.7px;
+    }
+  }
+
+  .close-cta {
+    margin-top: 24px;
+    display: block;
+    width: 100%;
+  }
+}
+
+@media (max-width: 744px) {
+  .merchant-purchase-info-dialog {
+    padding: 16px 16px 16px;
+
+    .top-part {
+      display: block;
+      height: 36px;
+      padding-bottom: 32px;
+      width: 100%;
+
+      div {
+        margin: auto;
+        width: 32px;
+        height: 4px;
+        border-radius: 100px;
+        background-color: $swatch_steel_500;
+      }
+    }
+
+    .onsite-info {
+      .title {
+        font-size: 14px;
+        font-weight: 300;
+      }
+    }
+
+    .addresses-info {
+      .addresses-container {
+        .scrollable {
+          .address {
+            .text {
+              max-width: 109px;
+            }
+          }
+        }
+      }
+    }
+
+    .close-cta {
+      margin-top: 16px;
+    }
+  }
+}

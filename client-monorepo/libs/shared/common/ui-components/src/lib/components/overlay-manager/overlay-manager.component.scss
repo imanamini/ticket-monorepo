@@ -1,0 +1,34 @@
+@import "@digipay/base-style/styleguide";
+
+.overlay-wrapper {
+  position: fixed;
+  height: 100%;
+  width: 0;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  transform: translateX(200%);
+  transition: all .7s ease-in-out;
+
+  &.visible {
+    width: 100%;
+    transform: translateX(0);
+    justify-content: center;
+  }
+}
+
+.overlay-container {
+  max-width: map-get($container-width, 'large');
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  overflow: hidden;
+  background-color: var(--surface-elevated);
+
+
+  &.error-type {
+    backdrop-filter: blur(7.5px);
+    background: var(--surface-dim-glass);
+  }
+}

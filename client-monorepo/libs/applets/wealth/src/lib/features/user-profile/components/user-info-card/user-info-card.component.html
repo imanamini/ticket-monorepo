@@ -1,0 +1,32 @@
+<div class="w-100 d-flex flex-wrap surface-elevated radius-medium px-big py-plus card">
+  <div class="w-100 d-flex align-items-center justify-content-space-between">
+    <div class="d-flex align-items-center gap-tiny">
+      <img
+        width="48px"
+        height="48px"
+        src="wealth-assets/svg/user.svg"
+        alt="{{ user().firstName }}"
+      />
+      <p class="st-8 text-onback-medium">{{ user().firstName }} {{ user().lastName }}</p>
+    </div>
+
+    <ngx-badge
+      size="sm"
+      status="info"
+      mode="fill"
+      type="text"
+    >
+      {{ sejamState() }}
+    </ngx-badge>
+  </div>
+
+  <div class="w-100 d-flex align-items-center justify-content-space-between mt-medium">
+    <p class="b-2 text-onback-medium">کد ملی:</p>
+    <p class="b-2">{{ user().nationalId }}</p>
+  </div>
+
+  <div class="w-100 d-flex align-items-center justify-content-space-between mt-medium">
+    <p class="b-2 text-onback-medium">شماره موبایل:</p>
+    <p class="b-2">{{ user().phoneNumber }}</p>
+  </div>
+</div>

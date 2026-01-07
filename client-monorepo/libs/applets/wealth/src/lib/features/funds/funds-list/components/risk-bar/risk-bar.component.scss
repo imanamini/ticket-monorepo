@@ -1,0 +1,79 @@
+.bar-title {
+  position: absolute;
+  top: -2.5rem;
+}
+
+.no-risk-title {
+  left: 0;
+}
+
+.low-risk-title {
+  left: 0;
+}
+
+.medium-risk-title {
+  left: 20%;
+  color: #ffbe00;
+}
+
+.medium-high-risk-title {
+  left: 41%;
+  color: #f9441f;
+}
+
+.high-risk-title {
+  left: 80%;
+  color: #ff2638;
+}
+
+.bar-value {
+  left: 0;
+  top: 50%;
+  height: 8px;
+  position: absolute;
+  border-radius: 4px;
+  transform: translate(0, -60%);
+}
+
+.no-risk {
+  background: #11c28d;
+  width: 1rem;
+}
+
+.low-risk {
+  background: #11c28d;
+  width: 20%;
+}
+
+.medium-risk {
+  width: 45%;
+  background: linear-gradient(
+      90deg,
+      rgba(17, 194, 141, 1) 0%,
+      rgba(17, 194, 141, 1) 60%,
+      rgba(255, 190, 0, 1) 90%,
+      rgba(255, 190, 0, 1) 100%
+  );
+}
+
+.medium-high-risk {
+  width: 70%;
+  background: linear-gradient(
+      90deg,
+      rgba(17, 194, 141, 1) 0%,
+      rgba(17, 194, 141, 1) 40%,
+      rgba(255, 190, 0, 1) 65%,
+      rgba(255, 190, 0, 1) 85%,
+      rgba(255, 38, 56, 1) 100%
+  );
+}
+
+.high-risk {
+  width: 100%;
+  background: linear-gradient(
+      90deg,
+      rgba(17, 194, 141, 1) 0%,
+      rgba(255, 190, 0, 1) 50%,
+      rgba(255, 38, 56, 1) 100%
+  );
+}

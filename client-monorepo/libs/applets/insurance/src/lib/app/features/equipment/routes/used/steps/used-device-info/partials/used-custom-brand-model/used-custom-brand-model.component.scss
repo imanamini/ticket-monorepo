@@ -1,0 +1,18 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.custom-brand-model {
+  @include flex-column;
+  padding: 24px;
+
+  .hint {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2c3544;
+    margin-bottom: 16px;
+  }
+
+  .form {
+    @include flex-column;
+    gap: 16px;
+  }
+}

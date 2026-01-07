@@ -1,0 +1,32 @@
+@use "insurance/src/lib/app/style/mixins/ios" as ios;
+
+:host {
+  .content .card-list {
+    @include ios.over-scroll-behavior-none-ios();
+  }
+}
+
+.policy-list {
+  overflow: auto;
+}
+
+
+.content {
+  flex: 1;
+  overflow: auto;
+
+  .card-list {
+    flex: 1;
+    overflow: auto;
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+
+    > :last-child {
+      padding-bottom: 80px;
+    }
+
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
+  }
+}

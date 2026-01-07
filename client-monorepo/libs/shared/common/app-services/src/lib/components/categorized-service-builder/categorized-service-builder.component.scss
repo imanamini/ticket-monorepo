@@ -1,0 +1,13 @@
+.categorize-max-width {
+  max-width: 64px;
+}
+
+.categorized-service-grid {
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+
+  &-slider {
+    grid-template-columns: repeat(6, 1fr);
+    justify-items: center;
+  }
+}

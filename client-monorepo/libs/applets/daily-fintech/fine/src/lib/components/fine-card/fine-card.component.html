@@ -1,0 +1,12 @@
+<daily-vehicle-card
+  [status]="status()"
+  [name]="plate().title || 'خودروی من'"
+  [plate]="plate().plateNo || ''"
+  [loading]="!plate()"
+  [paymentAmountAlternativeMessage]="plate().description"
+  [paymentAmountLabel]="plate().description"
+  [paymentAmount]="plate().totalDebtAmount || 0"
+  [showPaymentAmount]="!!plate().totalDebtAmount"
+  (edit)="onEdit()"
+  (ctaClick)="onCtaClick()"
+></daily-vehicle-card>

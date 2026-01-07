@@ -1,0 +1,29 @@
+<div class="d-grid operators-container">
+  @for (option of options(); let i = $index; track option) {
+    <div
+      class="d-flex justify-content-center align-items-center gap-tiny border-100 border-color-light radius-giant py-small w-100 cursor-pointer nowrap-text"
+      (click)="optionClick(i)"
+      [ngClass]="{
+        'text-onback-brand border-color-brand surface-brand-tint': selectedOption()?.value === option.value && enabled(),
+      }"
+    >
+      @if (option.icon) {
+        <common-icon-dp-icon
+          [icon]="'Edit-square'"
+          [iconType]="'linear'"
+          [iconSize]="'20'"
+          classes="text-onback-brand"
+        ></common-icon-dp-icon>
+      }
+      @if (option.imageId) {
+        <ui-api-image
+          [imageId]="option.imageId"
+          [styles]="{ width: '20px' }"
+        ></ui-api-image>
+      }
+      @if (option.title) {
+        <span class="bt-2">{{ option.title }}</span>
+      }
+    </div>
+  }
+</div>

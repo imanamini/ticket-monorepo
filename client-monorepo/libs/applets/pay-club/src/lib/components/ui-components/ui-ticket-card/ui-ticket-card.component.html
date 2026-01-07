@@ -1,0 +1,88 @@
+<div
+  class="ticket radius-minus px-medium py-medium"
+  [ngClass]="ticketClasses() === 'onback-shade-99' ? 'shade-99-color' : ticketClasses()"
+  [ngStyle]="{ width: width(), height: height() }"
+>
+  <h3 class="c-1">{{ voucher().info.title }}</h3>
+  <p class="l-3 text-onback-medium">
+    {{ voucher()?.info.briefDescription }}
+  </p>
+  <div class="middle-section pt-minus">
+    <div class="points-text">
+      <span class="points surface-brand-tint radius-small text-align-center c-1 py-micro pl-small pr-low"
+        ><span class="icon-coin"></span>{{ voucher()?.info.score }} سکه</span
+      >
+    </div>
+
+    <div class="capacity">
+      @if (voucher()?.info.capacity.remainingCount > 0) {
+        <ngx-badge
+          size="sm"
+          status="success"
+          mode="fill"
+          [hasIcon]="true"
+          type="text"
+        >
+          موجود
+          <ng-container badge-icon>
+            <common-icon-dp-icon
+              [iconType]="'linear'"
+              [icon]="'check-circle'"
+              [iconSize]="'16'"
+            ></common-icon-dp-icon>
+          </ng-container>
+        </ngx-badge>
+      } @else {
+        <ngx-badge
+          size="sm"
+          status="error"
+          mode="fill"
+          [hasIcon]="true"
+          type="text"
+        >
+          ناموجود
+          <ng-container badge-icon>
+            <common-icon-dp-icon
+              [iconType]="'linear'"
+              [icon]="'close-circle'"
+              [iconSize]="'16'"
+            ></common-icon-dp-icon>
+          </ng-container>
+        </ngx-badge>
+      }
+      <ng-template #capacity>
+        <ngx-badge
+          size="sm"
+          status="error"
+          mode="fill"
+          [hasIcon]="true"
+          type="text"
+        >
+          ناموجود
+          <ng-container badge-icon>
+            <common-icon-dp-icon
+              [iconType]="'linear'"
+              [icon]="'close-circle'"
+              [iconSize]="'16'"
+            ></common-icon-dp-icon>
+          </ng-container>
+        </ngx-badge>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="separator pt-plus pb-minus">
+    <span></span>
+  </div>
+
+  <div class="footer">
+    <div class="provider">
+      <img
+        class="logo"
+        [src]="IMAGES_PATH.logos[voucher()?.info.business.imageId]"
+      />
+      <h4 class="provider-name st-6">{{ voucher()?.info.business.name }}</h4>
+    </div>
+    <span class="bt-3 text-onback-brand">مشاهده</span>
+  </div>
+</div>

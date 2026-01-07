@@ -1,0 +1,103 @@
+@use "insurance/src/lib/app/style/mixins/ios" as ios;
+@import "insurance/src/lib/app/style/once/global";;
+
+@import "@digipay/base-style/styleguide";
+
+:host {
+  height: 100%;
+}
+
+.price-card-list {
+  overflow: auto;
+  background: #F2F5F8;
+
+  .business-value {
+    background-color: map-get($shade-colors, onelevated-shade-90);
+  }
+
+  &-content {
+    @include ios.over-scroll-behavior-none-ios();
+    overscroll-behavior: none;
+    flex: 1;
+    overflow: auto;
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
+  }
+}
+
+.edit-bar {
+
+  .car-info {
+    flex: 1;
+    max-width: calc(100% - 125px);
+
+    .title {
+      flex: 1;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+}
+
+.limit-and-duration-select {
+
+  .container {
+    .inputs {
+      @include flex-column;
+      margin-top: 16px;
+      position: relative;
+      height: 144px;
+
+      .insurance-period-input {
+        width: 100%;
+        position: absolute;
+        bottom: -6px;
+      }
+    }
+  }
+}
+
+.cards-container {
+  .filter-and-sort {
+    width: 100%;
+    @include flex-center-start;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .banner-carousel {
+    width: 100%;
+    margin: 24px 0;
+
+    .carousel {
+      margin: auto;
+      width: 328px;
+      display: block;
+    }
+  }
+}
+
+@media(max-width: 360px) {
+  .cards-container {
+    .banner-carousel {
+      .carousel {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media(min-width: 552px) {
+  .edit-bar {
+    .car-info {
+      .title {
+        width: 250px;
+      }
+    }
+  }
+}

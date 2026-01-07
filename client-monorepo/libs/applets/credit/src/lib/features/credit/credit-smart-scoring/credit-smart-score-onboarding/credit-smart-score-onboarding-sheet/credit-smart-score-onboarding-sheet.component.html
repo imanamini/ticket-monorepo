@@ -1,0 +1,36 @@
+@if (slides().length > 0) {
+  <ngx-dp-carousel
+    [mode]="'CARD'"
+    [changeStepThresholdPercentage]="10"
+    [index]="activeIndex()"
+    [visibleItemCount]="1"
+    [centerMode]="true"
+    [showNavigation]="true"
+    [isFixedGap]="true"
+    [fixedGap]="16"
+    [isFixedWidth]="false"
+    [navigationButtonNextText]="activeIndex() !== 2 ? 'ادامه' : 'متوجه شدم'"
+    [swipeThreshold]="60"
+    [disableScaling]="true"
+    [loopMode]="false"
+    (navigationBtnClicked)="onButtonClicked($event)"
+    (indexChange)="onIndexChange($event)"
+  >
+    @for (slide of slides(); track slide.id) {
+      <ng-template ngxDpCarouselSlide>
+        <div class="w-100 d-flex flex-column justify-content-center align-items-center">
+          <div
+            class="pb-medium"
+            [ngStyle]="{ height: '233px' }"
+          >
+            <ng-lottie [options]="{ animationData: onboardingAnimation(), loop: false }"></ng-lottie>
+          </div>
+          <div class="d-flex flex-column gap-low pt-big pb-small">
+            <p class="st-3 py-micro text-align-center">{{ slide.title }}</p>
+            <p class="c-3 pb-small text-onback-medium">{{ slide.description }}</p>
+          </div>
+        </div>
+      </ng-template>
+    }
+  </ngx-dp-carousel>
+}

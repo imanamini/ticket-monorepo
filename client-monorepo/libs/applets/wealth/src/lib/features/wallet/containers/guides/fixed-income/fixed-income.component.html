@@ -1,0 +1,49 @@
+<div class="w-100 d-flex flex-wrap align-content-start surface-elevated h-100 relative">
+  <div class="w-100 d-flex flex-wrap cover">
+    <img
+      class="w-100"
+      src="./wealth-assets/images/guids/fixed.png"
+      alt=""
+    />
+  </div>
+  <wealth-applet-app-bar-wrapper
+    class="w-100"
+    [title]="''"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'tinted-on-back',
+      mode: 'icon-only',
+      size: 'small',
+    }"
+    (onBack)="onBackHandler()"
+  />
+
+  <div class="w-100 d-flex flex-column px-plus relative z-10 content">
+    <p class="st-5 text-onback-high text-align-center px-huge">طرح درامد ثابت، راهی مطمئن برای مدیریت پول</p>
+
+    <div class="w-100 d-flex flex-wrap">
+      <div class="stepper">
+        @for (item of notes(); track item; let i = $index) {
+          <div class="step">
+            <div class="circle"></div>
+            <div class="c-2 text-onback-medium text-align-justify">
+              @for (part of item.parts; track part) {
+                @if (part.type === 'link') {
+                  <span
+                    class="text-onback-brand cursor-pointer"
+                    (click)="handleClick(part.link)"
+                    >{{ part.value }}</span
+                  >
+                } @else if (part.type === 'boldText') {
+                  <span class="c-1 text-onback-high">{{ part.value }}</span>
+                } @else {
+                  {{ part.value }}
+                }
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

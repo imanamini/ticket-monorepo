@@ -1,0 +1,20 @@
+:host {
+  width: 100%;
+}
+
+.title-value-content {
+  .title {
+    min-width: fit-content;
+  }
+
+  .value {
+    flex: 1 1 auto;
+    text-align: left;
+
+    &.ellipsis {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

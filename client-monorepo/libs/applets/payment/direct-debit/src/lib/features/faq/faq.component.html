@@ -1,0 +1,24 @@
+<div class="faq h-100 w-100 surface-elevated d-flex flex-column align-items-center justify-content-start">
+  <common-ui-components-page-layout
+    [title]="'پرداخت مستقیم'"
+    [showBorder]="true"
+    [hasBackAction]="false"
+    (onBackAction)="onBack()"
+  >
+    @if (categories().length > 0) {
+      <div class="main-container w-100 pt-small d-flex flex-column border-t-100 border-color-tint gap-small">
+        <div class="h-100 pt-big px-plus pb-huge d-flex flex-column">
+          <ngx-search-box
+            [(searchText)]="searchText"
+            (searchTextChange)="searchChangeEnd($event)"
+            placeHolder="جست‌وجو در سوالات متداول"
+            mode="section"
+          ></ngx-search-box>
+          <div class="items-list flex py-small p-medium">
+            <ngx-accordion [configs]="filteredItems()"></ngx-accordion>
+          </div>
+        </div>
+      </div>
+    }
+  </common-ui-components-page-layout>
+</div>

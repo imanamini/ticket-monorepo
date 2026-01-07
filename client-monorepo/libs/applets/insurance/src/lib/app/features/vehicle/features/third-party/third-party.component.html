@@ -1,0 +1,10 @@
+<div class="w-100 h-100 d-flex flex-column">
+  <insurance-header
+    title="بیمه شخص ثالث"
+    (closeIconClicked)="handleCloseClicked()"
+  ></insurance-header>
+  <section class="surface-high-contrast" style="flex: 1; overflow-y: auto; position: relative; overflow-x: hidden;">
+    <router-outlet></router-outlet>
+  </section>
+</div>
+

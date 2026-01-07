@@ -1,0 +1,212 @@
+<ng-template #info>
+  <div class="info">
+    <div class="dp-img">
+      <a href="https://www.digipay.ir"><img src="wealth-assets/svg/logo-type.svg" /></a>
+    </div>
+    <div class="address">
+      <img src="wealth-assets/icons/location.svg" />
+      <span>آدرس: تهران، بلوار نلسون ماندلا، بلوار صبا غربی، پلاک ۲، طبقه ۳</span>
+    </div>
+    <div class="phone">
+      <img src="wealth-assets/icons/telephone.svg" />
+      <span>شماره تماس: ۰۲۱۶۱۹۳۰۰۰۰</span>
+    </div>
+    <div class="social">
+      <div class="social-text">دیجی پی در شبکه های اجتماعی"</div>
+      <div class="social-list">
+        <div class="social-item">
+          <a href="https://www.linkedin.com/company/mydigipay/"><img src="wealth-assets/icons/linkedin.svg" /></a>
+        </div>
+        <div class="social-item">
+          <a href="https://twitter.com/digipay_team"><img src="wealth-assets/icons/twitter.svg" /></a>
+        </div>
+        <div class="social-item">
+          <a href="https://aparat.com/digipay"><img src="wealth-assets/icons/aparat.svg" /></a>
+        </div>
+        <div class="social-item">
+          <a href="https://www.instagram.com/mydigipay/?hl=en"><img src="wealth-assets/icons/instagram.svg" /></a>
+        </div>
+      </div>
+      <div class="social-copyright">کلیه حقوق این ‌سایت متعلق به شرکت نوآوران پرداخت مجازی ایرانیان (دیجی‌پی) است.</div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template
+  #about
+  let-data="isAboutUsExpanded"
+>
+  <div class="about">
+    <div class="list-header">
+      <span>درباره ما</span>
+      @if (!isDesktop) {
+        <img
+          (click)="toggleAboutUsExpand()"
+          src="wealth-assets/icons/{{ !isAboutUsExpanded ? 'plus' : 'minus' }}-blue.svg"
+        />
+      }
+    </div>
+    <div
+      class="list"
+      [style]="{ display: !isDesktop && !isAboutUsExpanded ? 'none' : 'flex' }"
+    >
+      <div class="list-item">
+        <a href="https://www.digipay.ir/about/"><span>درباره دیجی پی</span></a>
+        <img src="wealth-assets/icons/arrow-left-gray.svg" />
+      </div>
+      <div class="list-item">
+        <a href="https://www.digipay.ir/contactus/"><span>تماس با ما</span></a>
+        <img src="wealth-assets/icons/arrow-left-gray.svg" />
+      </div>
+      <div class="list-item">
+        <a href="https://www.digipay.ir/careers/"><span>فرصت های شغلی</span></a>
+        <img src="wealth-assets/icons/arrow-left-gray.svg" />
+      </div>
+      <div class="list-item">
+        <a href="https://www.digipay.ir/mag/"><span>مجله اینترنتی دیجی پی</span></a>
+        <img src="wealth-assets/icons/arrow-left-gray.svg" />
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template
+  #services
+  let-data="isServiceExpanded"
+>
+  <div class="services">
+    <div class="list-header">
+      <span>خدمات ما</span>
+      @if (!isDesktop) {
+        <img
+          (click)="toggleServiceExpand()"
+          src="wealth-assets/icons/{{ !isServiceExpanded ? 'plus' : 'minus' }}-blue.svg"
+        />
+      }
+    </div>
+    <div
+      class="list"
+      [style]="{ display: !isDesktop && !isServiceExpanded ? 'none' : 'flex' }"
+    >
+      <div class="list-item">
+        <a href="https://www.digipay.ir/top-up/">
+          <span>خرید شارژ</span>
+          <img src="wealth-assets/icons/arrow-left-gray.svg" />
+        </a>
+      </div>
+      <div class="list-item">
+        <a href="https://www.digipay.ir/internet/">
+          <span>خرید اینترنت</span>
+          <img src="wealth-assets/icons/arrow-left-gray.svg" />
+        </a>
+      </div>
+      <div class="list-item">
+        <a href="https://www.digipay.ir/credit/c-credit/">
+          <span>دریافت اعتبار</span>
+          <img src="wealth-assets/icons/arrow-left-gray.svg" />
+        </a>
+      </div>
+      <div class="list-item">
+        <a href="https://www.digipay.ir/services/mobile-bill/">
+          <span>پرداخت قبض</span>
+          <img src="wealth-assets/icons/arrow-left-gray.svg" />
+        </a>
+      </div>
+    </div>
+    <div class="separator"></div>
+  </div>
+</ng-template>
+
+<ng-template #licenses>
+  <div class="licenses-wrapper">
+    <div class="licenses">
+      <div class="license">
+        <img src="wealth-assets/icons/license1.svg" />
+      </div>
+      <div class="license">
+        <img src="wealth-assets/icons/license2.svg" />
+      </div>
+      <div class="license">
+        <img src="wealth-assets/icons/license3.svg" />
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #download>
+  <div class="quick-download">
+    <span>دانلود سریع</span>
+  </div>
+  <div class="downloaders">
+    <div
+      class="downloader"
+      (click)="handleLink('https://play.google.com/store/apps/details?id=com.mydigipay.app.android')"
+    >
+      <div><img src="wealth-assets/icons/google-play.svg" /></div>
+      <div class="downloader-info">
+        <div class="downloader-title">
+          <span>گوگل پلی</span>
+        </div>
+        <div class="downloader-device">
+          <span>برای کاربران اندروید</span>
+        </div>
+      </div>
+    </div>
+    <div class="separator"></div>
+    <div
+      class="downloader"
+      (click)="handleLink('https://cafebazaar.ir/app/com.mydigipay.app.android')"
+    >
+      <div><img src="wealth-assets/icons/bazar.svg" /></div>
+      <div class="downloader-info">
+        <div class="downloader-title">
+          <span>کافه بازار</span>
+        </div>
+        <div class="downloader-device">
+          <span>برای کاربران اندروید</span>
+        </div>
+      </div>
+    </div>
+    <div class="separator"></div>
+    <div
+      class="downloader"
+      (click)="handleLink('https://app.mydigipay.com/')"
+    >
+      <div><img src="wealth-assets/icons/web-app.svg" /></div>
+      <div class="downloader-info">
+        <div class="downloader-title">
+          <span>وب اپلیکیشن</span>
+        </div>
+        <div class="downloader-device">
+          <span>همه کاربران</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div
+  class="landing-footer-container"
+  [style]="{ marginBottom: isDesktop ? '16rem' : '0' }"
+>
+  @if (isDesktop) {
+    <div class="landing-footer-desktop">
+      <div *ngTemplateOutlet="info"></div>
+      <div *ngTemplateOutlet="about"></div>
+      <div *ngTemplateOutlet="services"></div>
+
+      <div class="quick-download-section">
+        <div *ngTemplateOutlet="download"></div>
+        <div *ngTemplateOutlet="licenses"></div>
+      </div>
+    </div>
+  } @else {
+    <div class="landing-footer-mobile">
+      <div *ngTemplateOutlet="services; context: isServiceExpanded"></div>
+      <div *ngTemplateOutlet="about; context: isAboutUsExpanded"></div>
+      <div *ngTemplateOutlet="download"></div>
+      <div *ngTemplateOutlet="info"></div>
+      <div *ngTemplateOutlet="licenses"></div>
+    </div>
+  }
+</div>

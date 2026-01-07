@@ -1,0 +1,23 @@
+<div class="w-100 d-flex flex-column p-plus flex-column align-items-center">
+  <div class="radius-rounded surface-glass-onelevated d-flex align-items-center justify-content-center icon-container">
+    <ngx-icon
+      [name]="'error-circle'"
+      [type]="'bold'"
+      [iconSize]="'48px'"
+      class="surfaces-status-warning"
+    />
+  </div>
+
+  <p class="st-3 text-onback-high mt-huge">مبلغ نهایی فروش</p>
+  <p class="b-2 text-onback-medium mt-low text-align-center">
+    با توجه به نوسانات قیمت طلا ۲۴ عیار، مبلغ نهایی فروش بعد از ثبت درخواست محاسبه خواهد شد.
+  </p>
+
+  <ngx-button
+    class="mt-giant"
+    (clickHandler)="handleAction()"
+    [fullWidth]="true"
+  >
+    تایید و ادامه
+  </ngx-button>
+</div>

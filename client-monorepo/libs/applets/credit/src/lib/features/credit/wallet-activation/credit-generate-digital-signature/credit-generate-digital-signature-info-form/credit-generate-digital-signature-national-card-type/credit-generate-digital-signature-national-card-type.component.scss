@@ -1,0 +1,16 @@
+
+.icon-container {
+  width: 36px;
+  height: 36px;
+}
+
+.check {
+  width: 20px;
+  height: 20px;
+  background: url("../../assets/credit-radio-disable.svg") center center no-repeat;
+  background-size: contain;
+
+  &.is-active {
+    background: url("../../assets/credit-radio-enable.svg") center center no-repeat;
+  }
+}

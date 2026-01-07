@@ -1,0 +1,40 @@
+<div [ngClass]="{'active': isActive()}"
+     class="manual-pricing-wrapper">
+  <!-- Title and Radio Btn -->
+  <div class="pricing-title">
+    <div class="title"> ارزش گوشی موبایل خود را وارد کنید. </div>
+<!--    <div-->
+<!--      class="radio"></div>-->
+  </div>
+  <!-- End Title and Radio Btn -->
+  <!-- Price Input -->
+  <form class="pricing-input-wrapper">
+    <ui-form-field
+      [convertNonEnglishDigits]="true"
+      [error]="isActive() && price.dirty && price.errors"
+      [isNumericKeyboard]="true"
+      [inputType]="'number'"
+      [maxSize]="11"
+      [readonly]="!isActive()"
+      [required]="true"
+      [showError]="price.errors?'show':'hidden'"
+      [type]="'amount'"
+      [unitCurrency]="'toman'"
+      [formControl]="price"
+      inputType="number"
+      label="ارزش گوشی">
+    </ui-form-field>
+    <insurance-premium-card
+      [loading]="isLoadingGetPricing()"
+      [wageAmount]="wageAmount"
+      [campaignDiscountAmount]="campaignDiscount"
+      [campaignWageAmount]="campaignWageAmount"
+    >
+    </insurance-premium-card>
+    <!-- End Insurance Percent -->
+  </form>
+  <!-- End Price Input -->
+</div>
+
+
+

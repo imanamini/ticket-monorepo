@@ -1,0 +1,13 @@
+<div class="w-100 d-flex flex-wrap">
+  <ngx-tabs class="w-100 mb-medium">
+    @for (tab of tabs; track tab) {
+      <ngx-tab
+        (stateChange)="selectTab(tab)"
+        [label]="tab.title"
+        [state]="tab.active ? 'selected' : tab.isDisabled ? 'disabled' : 'enabled'"
+      >
+      </ngx-tab>
+    }
+  </ngx-tabs>
+  <ng-content></ng-content>
+</div>

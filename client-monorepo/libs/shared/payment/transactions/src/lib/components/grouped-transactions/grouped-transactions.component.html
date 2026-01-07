@@ -1,0 +1,34 @@
+<div class="d-flex flex-column gap-plus">
+  @if (!transactions().length && !isLoading()) {
+    <div class="w-100 d-flex align-items-center justify-content-center flex-column gap-medium">
+      <img
+        src="assets/no-transaction.png"
+        class="no-item-image"
+      />
+      <div class="c-2 text-onback-high">هیچ تراکنشی یافت نشد</div>
+    </div>
+  }
+  <div
+    commonUtilitiesScrolledToEnd
+    (scrolledToEnd)="listEnded()"
+  >
+    @for (group of transactionGroups(); track $index) {
+      @if (group.items.length) {
+        <div class="grouped-transaction d-flex flex-column gap-tiny w-100">
+          <div class="grouped-transaction-titlebox align-items-center d-flex gap-small">
+            <div class="grouped-transaction-titlebox-title c-1 text-onback-medium">
+              {{ group.label }}
+            </div>
+            <div class="grouped-transaction-titlebox-hr w-25 surface-back"></div>
+          </div>
+          <div class="grouped-transaction-items d-flex flex-column gap-small">
+            @for (transaction of group.items; track $index) {
+              <payment-transactions-transaction-card [config]="transaction"></payment-transactions-transaction-card>
+            }
+          </div>
+        </div>
+        <div style="height: 1px; width: 1px"></div>
+      }
+    }
+  </div>
+</div>

@@ -1,0 +1,18 @@
+@if (payload && payload.rows) {
+  <div
+    class="row"
+    *ngFor="let row of payload.rows"
+  >
+    <ng-container *ngFor="let col of row.columns">
+      <div
+        class="col"
+        [ngStyle]="{ width: col.width ? col.width + '%' : 'auto' }"
+      >
+        <common-widget-loader
+          *ngFor="let widget of col.widgets"
+          [widget]="widget"
+        ></common-widget-loader>
+      </div>
+    </ng-container>
+  </div>
+}

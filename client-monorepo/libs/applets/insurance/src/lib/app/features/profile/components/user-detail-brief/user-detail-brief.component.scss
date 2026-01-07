@@ -1,0 +1,6 @@
+@import "@digipay/base-style/base/variables";
+
+.avatar {
+  width: map-get($spacing-sizes, 'giant');
+  height: map-get($spacing-sizes, 'giant');
+}

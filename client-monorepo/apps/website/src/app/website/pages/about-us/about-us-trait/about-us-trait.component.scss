@@ -1,0 +1,137 @@
+@import "../../../../style/globals";
+
+.trait-content {
+  border: 1px solid #d0d9f5;
+  padding: 100px 150px;
+  border-radius: 25px;
+
+  ul {
+    padding-right: 0;
+
+    li:nth-child(even) > div > .item-content {
+      margin-right: 60px;
+      margin-left: 0;
+    }
+
+    li:nth-child(even).trait-item > div {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+      flex-direction: row-reverse;
+    }
+
+    .trait-item {
+      margin-bottom: 70px;
+
+      > div {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+
+      .item-content {
+        margin-left: 60px;
+
+        span {
+          font-size: 32px;
+          line-height: 42px;
+          color: $text-color;
+        }
+
+        .item-title span {
+          font-weight: 900;
+        }
+
+        .item-description {
+          margin-top: 24px;
+
+          p {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 30px;
+            text-align: justify;
+            color: $text-color;
+          }
+        }
+      }
+
+      .item-image {
+        width: 340px;
+        -webkit-box-flex: 0;
+        -ms-flex: none;
+        flex: none;
+
+        .art {
+          max-width: 100%;
+
+          img {
+            max-width: 100%;
+            -o-object-fit: contain;
+            object-fit: contain;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .trait-content ul li:nth-child(even).trait-item > div {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+  }
+  .trait-content ul li:nth-child(even) > div > .item-content {
+    margin-right: 0;
+  }
+  .trait-content {
+    padding: 65px 100px 80px;
+
+    span {
+      text-align: center;
+      display: block;
+    }
+
+    ul .trait-item {
+      margin-bottom: 100px;
+
+      > div {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+        flex-direction: column-reverse;
+      }
+
+      .item-content {
+        margin-left: auto;
+        margin-top: 30px;
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .trait-content {
+    padding: 65px 20px;
+  }
+  .trait-item {
+    margin-bottom: 70px;
+
+    .item-content {
+      margin-top: 50px;
+    }
+
+    .item-image {
+      width: 65vw;
+      min-width: 230px;
+    }
+  }
+}

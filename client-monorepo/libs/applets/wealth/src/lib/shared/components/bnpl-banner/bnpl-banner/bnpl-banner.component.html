@@ -1,0 +1,63 @@
+<div class="w-100 d-flex flex-wrap radius-medium p-minus surface-back">
+  <div class="w-100 container">
+    <div class="surface-elevated p-small d-flex align-items-center justify-content-center radius-medium icon-container">
+      <img
+        src="./wealth-assets/svg/bnpl-icon.svg"
+        alt="اعتبار اقساطی"
+      />
+    </div>
+    <div class="w-100 d-flex flex-wrap align-items-center">
+      @if (bnplTitle()) {
+        <p
+          class="w-100"
+          [innerHTML]="bnplTitle()"
+        ></p>
+      }
+      @if (bnplDescription()) {
+        <div class="w-100 d-flex align-items-center gap-tiny justify-content-space-between">
+          <span [innerHTML]="bnplDescription()"></span>
+
+          @if (displayFee()) {
+            <ngx-badge
+              class="mb-tiny"
+              [size]="'tiny'"
+              [status]="'neutral'"
+              [mode]="'bold'"
+            >
+              کارمزد {{ fee() }}%
+            </ngx-badge>
+          }
+        </div>
+      }
+    </div>
+
+    @if (bnplHasAction()) {
+      <ngx-button
+        [mode]="'icon-only'"
+        [style]="'link'"
+        [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+        [size]="'small'"
+      >
+      </ngx-button>
+    }
+  </div>
+  @if (bnplWallet()) {
+    <div class="w-100 d-flex flex-wrap mt-medium">
+      <ngx-divider
+        class="w-100"
+        [orientation]="'horizontal'"
+        [color]="BorderColorsEnum.Light"
+      />
+
+      <div class="w-100 d-flex align-items-start gap-tiny mt-medium">
+        <ngx-icon
+          class="text-oninvert-warning"
+          [name]="'info-circle'"
+          [type]="'bold'"
+        />
+
+        <p class="b-3">اگر اعتبار فعال (غیر سازمانی) با مبلغ کمتر دارید، اعتبار جدید جایگزین اعتبار قبلی خواهد شد.</p>
+      </div>
+    </div>
+  }
+</div>

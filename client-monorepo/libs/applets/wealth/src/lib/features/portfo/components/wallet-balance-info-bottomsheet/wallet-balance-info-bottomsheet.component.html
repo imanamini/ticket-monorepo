@@ -1,0 +1,34 @@
+<div class="d-flex flex-column align-items-center gap-big">
+  <div class="wallet-balance-info-image">
+    @if (data().image) {
+      <img
+        width="100%"
+        height="100%"
+        [src]="data().image"
+        alt="balance"
+      />
+    }
+  </div>
+  <span class="text-align-center b-2">{{ data().title }}</span>
+
+  <div class="w-100 d-flex mt-big gap-medium">
+    <ngx-button
+      [fullWidth]="true"
+      mode="form"
+      [size]="'medium'"
+      (clickHandler)="close()"
+      [style]="'tinted-on-elevated'"
+    >
+      بستن
+    </ngx-button>
+    <ngx-button
+      [fullWidth]="true"
+      mode="form"
+      [size]="'medium'"
+      (clickHandler)="displayPortfolio()"
+      [classNames]="['p-0']"
+    >
+      مشاهده سبد دارایی
+    </ngx-button>
+  </div>
+</div>

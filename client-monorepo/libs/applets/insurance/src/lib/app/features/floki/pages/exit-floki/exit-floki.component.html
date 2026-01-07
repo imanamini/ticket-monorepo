@@ -1,0 +1,37 @@
+<div class="d-flex flex-column align-items-center	justify-content-center w-100 exit-floki-container p-plus surface-elevated">
+  <div class="d-flex flex-column icon-container w-100  align-items-center	justify-content-center">
+    <img alt="warning-icon" height="96" src="assets/floki/icons/warning-icon.svg" width="96">
+    <p class="st-3 text-onback-high">
+      در حال خروج از فرآیند خرید بیمه هستید.
+    </p>
+    <p class="b-2 py-minus">
+      برای صدور بیمه‌‌نامه لازم است مراحل بعدی را تکمیل کنید.
+    </p>
+  </div>
+  <div>
+    <ngx-alert
+      [color]="'yellow'"
+      [hasCloseIcon]="false"
+      text="در صورت عدم تکمیل اطلاعات و بارگذاری مدارک ظرف ۷۲ ساعت آینده، وجه پرداختی به کیف پول شما باز خواهد گشت."
+      title=""
+    ></ngx-alert>
+  </div>
+  <div class="d-flex w-100 gap-small mt-plus">
+    <ngx-button
+      (click)="onExit()"
+      [brandButton]="false"
+      [fullWidth]="true"
+      [mode]="'section'"
+      [size]="'large'"
+      [style]="'tinted-on-elevated'">خروج
+    </ngx-button>
+    <ngx-button
+      (click)="goToHealthCheck()"
+      [brandButton]="false"
+      [fullWidth]="true"
+      [mode]="'section'"
+      [size]="'large'"
+      [style]="'fill'">تکمیل مراحل
+    </ngx-button>
+  </div>
+</div>

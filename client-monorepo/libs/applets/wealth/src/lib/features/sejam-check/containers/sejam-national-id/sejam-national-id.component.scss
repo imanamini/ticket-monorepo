@@ -1,0 +1,51 @@
+@import '@digipay/base-style/swatch';
+:host{
+  background-color: $swatch_white_900;
+}
+
+.sejam-national-id-container {
+  height: 100dvh;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+
+  .national-id-content {
+    width: 100%;
+    padding: 2rem;
+    height: calc(100% - 9.5rem);
+    background-color: $swatch_white_900;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    .national-id-form {
+      .national-id-input {
+        ::ng-deep {
+          input {
+            border-radius: 1rem;
+          }
+        }
+        .error-message {
+          color: #f9441f;
+        }
+      }
+      .national-id-description {
+        margin-bottom: 2rem;
+        font-size: 1.16667rem;
+        color: $swatch_steel_900;
+      }
+
+      .national-id-error {
+        color: $swatch_red_500;
+        margin-top: -1.5rem;
+        margin-bottom: 2rem;
+        padding-right: 0.8rem;
+        font-size: 0.833rem;
+      }
+    }
+
+    .national-code-modal-button {
+      width: 100%;
+    }
+  }
+}

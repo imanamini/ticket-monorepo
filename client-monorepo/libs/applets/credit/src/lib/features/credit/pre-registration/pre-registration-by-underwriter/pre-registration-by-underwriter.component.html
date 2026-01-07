@@ -1,0 +1,92 @@
+@if (!gettingData() && !errorMode()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="back()"
+    [backButton]="true"
+    title="طرح‌های اعتباری"
+  ></app-credit-app-bar>
+  <div
+    [class]="{ 'base-collapsed': collapseHeader() }"
+    class="step-base-header p-medium"
+  >
+    <div class="bt-2 text-align-center mb-atom">مبلغ و تعداد اقساط را مشخص کنید</div>
+    <!-- amount -->
+    <div class="my-0 mx-big">
+      <app-credit-slider-select
+        (ngModelChange)="onSelectedAmountChange($event)"
+        [(ngModel)]="selectedAmount"
+        [options]="amountOptions()"
+        [version]="2"
+      ></app-credit-slider-select>
+    </div>
+    <ngx-divider
+      [color]="BorderColorsEnum.Air"
+      [orientation]="'horizontal'"
+      class="w-100"
+    ></ngx-divider>
+    <!-- installment count -->
+    <div class="my-big button-select">
+      <app-credit-button-select
+        (ngModelChange)="onSelectedInstallmentCountChange($event)"
+        [(ngModel)]="selectedInstallmentCount"
+        [collapsed]="collapseHeader()"
+        [options]="installmentCountOptions()"
+      ></app-credit-button-select>
+    </div>
+  </div>
+  <div class="result-cards-section flex-grow surface-elevated d-flex flex-column flex-grow">
+    <credit-page-loading [active]="loadingCards()"></credit-page-loading>
+    @if (!loadingCards()) {
+      <app-credit-scrollable-view
+        (scroll)="onScroll($event)"
+        [hasFade]="true"
+        fadeColor="gray"
+      >
+        <div class="fund-provider-selector-title bt-2 mt-medium mx-big">وام:</div>
+        <app-credit-fund-provider-groups-list
+          (selectFundProvider)="selectFundProvider($event)"
+          [planGroups]="filteredPlans()"
+        ></app-credit-fund-provider-groups-list>
+      </app-credit-scrollable-view>
+    }
+  </div>
+}
+<ng-template
+  #creditAmountSlideTemplate
+  let-amount="amount"
+>
+  <div class="amount-slide st-4">
+    {{ amount | creditNumberToString }}
+    <small class="bt-2 is-currency"> ریال</small>
+  </div>
+</ng-template>
+@if (!gettingData() && errorMode() === 'WRONG_CELL_NUMBER' && wrongCellNumber()) {
+  <app-credit-switch-cell-number
+    (cancelSwitch)="cancel()"
+    (switchCellNumber)="loginAgain()"
+    [fromCellNumber]="wrongCellNumber()?.userCellNumber"
+    [toCellNumber]="wrongCellNumber()?.cellNumberInRequest"
+    class="d-flex flex-column h-100 flex-grow"
+  ></app-credit-switch-cell-number>
+}
+
+@if (!gettingData() && errorMode() === 'NO_PLAN') {
+  <app-credit-registration-by-underwriter-error
+    (close)="closeFlow()"
+    type="NO_PLAN"
+  ></app-credit-registration-by-underwriter-error>
+}
+@if (!gettingData() && errorMode() === 'NOT_FOUND' && !isForm()) {
+  <app-credit-registration-by-underwriter-error
+    (close)="closeFlow()"
+    (fillForm)="showForm()"
+    type="NOT_FOUND"
+  ></app-credit-registration-by-underwriter-error>
+}
+
+@if (!gettingData() && errorMode() === 'NOT_FOUND' && isForm()) {
+  <app-credit-registration-by-underwriter-form
+    (close)="closeFlow()"
+    (submit)="updateUserDate($event)"
+  ></app-credit-registration-by-underwriter-form>
+}
+<credit-page-loading [active]="gettingData()!"></credit-page-loading>

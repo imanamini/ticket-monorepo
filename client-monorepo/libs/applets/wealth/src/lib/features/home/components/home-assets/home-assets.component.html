@@ -1,0 +1,81 @@
+<div class="w-100 position-relative container">
+  @if (isLoading()) {
+    <app-spinner class="h-100 position-absolute" />
+  }
+  <div class="w-100 d-flex gap-minus justify-content-space-between flex-wrap radius-plus surface-elevated px-plus py-big">
+    <div class="w-100 d-flex align-items-center justify-content-space-between gap-small">
+      <div class="d-flex align-items-center">
+        <span class="b-2 text-onback-medium">کل دارایی شما</span>
+        <ngx-button
+          [mode]="'icon-only'"
+          (clickHandler)="canSee.set(!canSee())"
+          [style]="'neutral-link'"
+          [size]="'small'"
+          [leftIcon]="{
+            name: canSee() ? 'hide' : 'eye',
+            type: canSee() ? 'bold' : 'linear',
+          }"
+        >
+        </ngx-button>
+      </div>
+
+      <ngx-button
+        [style]="'link'"
+        [size]="'small'"
+        [leftIcon]="{
+          name: 'arrow-2-left',
+        }"
+        (clickHandler)="goToPortfo()"
+      >
+        سبد دارایی
+      </ngx-button>
+    </div>
+    <div
+      (click)="hideDetail.set(!hideDetail())"
+      class="w-100 position-relative"
+    >
+      <div class="w-100">
+        @if (canSee()) {
+          <div class="d-flex align-items-center gap-tiny">
+            <span class="st-1 text-onback-medium">
+              {{ portfolio()?.balance | number }}
+            </span>
+            <div class="b-2 text-onback-medium is-currency">ریال</div>
+          </div>
+        } @else {
+          <span class="st-1 text-onback-medium">********</span>
+        }
+      </div>
+      @if (canSee()) {
+        <div class="w-100 d-flex align-items-center last-update">
+          <p class="l-3 text-onback-low ml-small d-flex align-items-center gap-tiny">
+            @if (!isUpdating()) {
+              آخرین به‌روز رسانی: {{ portfolio()?.persianLastUpdatedAt }}
+              <ngx-icon
+                class="cursor-pointer text-oninvert-brand"
+                [name]="'refresh'"
+                [type]="'bold'"
+                [iconSize]="'18px'"
+                (click)="updateData()"
+              />
+            } @else {
+              در حال به‌روز رسانی دارایی
+              <ngx-spinner
+                size="sm"
+                color="primary"
+              ></ngx-spinner>
+            }
+          </p>
+        </div>
+      }
+    </div>
+    @if (portfolio()?.orderInProgressCount > 0) {
+      <wealth-applet-pending-transaction-indicator
+        class="w-100"
+        [title]="'در حال سرمایه‌گذاری ...'"
+        [count]="portfolio().orderInProgressCount"
+        (pendingTransactions)="pendingTransactions()"
+      />
+    }
+  </div>
+</div>

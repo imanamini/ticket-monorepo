@@ -1,0 +1,26 @@
+<div class="w-100 d-flex flex-wrap">
+  <div class="w-100 d-flex justify-content-center">
+    <img
+      src="./wealth-assets/svg/wallet-increase-amount.svg"
+      alt="increase-amount"
+    />
+  </div>
+
+  <div class="w-100 d-flex flex-wrap px-small">
+    <p class="w-100 text-align-center st-7 text-onback-high mt-big">موجودی شما کم است</p>
+    <p class="w-100 text-align-center b-3 text-onback-medium mt-medium">
+      حداقل موجودی شما برای درخواست اعتبار باید {{ bottomSheet.data().requiredAmount | thousands }} تومان باشد. ابتدا موجودی خود را افزایش
+      دهید سپس برای دریافت اعتبار اقدام کنید.
+    </p>
+  </div>
+
+  <div class="w-100 mt-huge">
+    <ngx-button
+      [size]="'medium'"
+      [fullWidth]="true"
+      (clickHandler)="gotIt()"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

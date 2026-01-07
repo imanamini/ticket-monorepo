@@ -1,0 +1,75 @@
+<div class="d-flex flex-column gap-plus">
+  <div class="d-flex flex-column justify-content-center align-items-center px-plus gap-small">
+    <!-- Shopping Guide -->
+    <stores-applet-shopping-guide-promotion
+      class="w-100"
+      [text]="'در اینستاگرام چطور پرداخت کنم؟'"
+      [linkToGo]="'/stores/social/shopping-guide'"
+      [icons]="['shopping-bag', 'consulting']"
+    ></stores-applet-shopping-guide-promotion>
+    <!-- End Shopping Guide -->
+
+    <!-- Explore Exposure -->
+    <div
+      class="position-relative d-flex justify-content-center align-items-center cursor-pointer"
+      (click)="goToExplore()"
+    >
+      <img
+        class="w-100"
+        [style.aspectRatio]="2"
+        src="assets/stores/explore-exposure-bg.png"
+        alt="اینستاگرام"
+      />
+      <div class="absolute-btn">
+        <ngx-button
+          [mode]="'section'"
+          [size]="'medium'"
+          [style]="'fill'"
+          [rightIcon]="{ name: 'bag', type: 'bold' }"
+          >مشاهده محصولات</ngx-button
+        >
+      </div>
+    </div>
+    <!-- END Explore Exposure -->
+  </div>
+
+  <!-- Banner Social 1 -->
+  <common-app-banners-shared-common-banners
+    [bannersData]="bannersData()"
+    [gapClass]="'gap-plus'"
+    [categoryToShow]="BannerCategory.STORE_SOCIAL_1"
+  ></common-app-banners-shared-common-banners>
+  <!-- End Banner Social 1 -->
+
+  <!-- Banner Social 2 -->
+  <common-app-banners-shared-common-banners
+    [bannersData]="bannersData()"
+    [gapClass]="'gap-plus'"
+    [categoryToShow]="BannerCategory.STORE_SOCIAL_2"
+  ></common-app-banners-shared-common-banners>
+  <!-- End Banner Social 2 -->
+
+  <!-- Banner Social 3 -->
+  <common-app-banners-shared-common-banners
+    [bannersData]="bannersData()"
+    [gapClass]="'gap-plus'"
+    [categoryToShow]="BannerCategory.STORE_SOCIAL_3"
+  ></common-app-banners-shared-common-banners>
+  <!-- End Banner Social 3 -->
+
+  <!-- Banner Social 4 -->
+  <common-app-banners-shared-common-banners
+    [bannersData]="bannersData()"
+    [gapClass]="'gap-plus'"
+    [categoryToShow]="BannerCategory.STORE_SOCIAL_4"
+  ></common-app-banners-shared-common-banners>
+  <!-- End Banner Social 4 -->
+
+  <!-- Banner Social 5 -->
+  <common-app-banners-shared-common-banners
+    [bannersData]="bannersData()"
+    [gapClass]="'gap-plus'"
+    [categoryToShow]="BannerCategory.STORE_SOCIAL_5"
+  ></common-app-banners-shared-common-banners>
+  <!-- End Banner Social 5 -->
+</div>

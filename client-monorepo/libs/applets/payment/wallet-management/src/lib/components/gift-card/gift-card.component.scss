@@ -1,0 +1,72 @@
+@import "@digipay/base-style/swatch";
+
+.gift-card {
+  padding: 24px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .title-wrapper {
+      line-height: 32px;
+      color: $swatch_steel_900;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+    }
+  }
+
+  .voucher-list-wrapper {
+    margin-top: 32px;
+
+    .voucher-list {
+      &:not(:last-child) {
+        border-bottom: 1px solid #F2F5F8;
+      }
+    }
+  }
+
+}
+
+.gift-card-skeleton {
+  margin-top: 32px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.empty {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
+  .gift-img {
+    width: 72px;
+    height: 72px;
+    background-image: url("../../../../../../../../apps/dpx/src/assets/wallet-management/gift.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .empty-text {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+    color: #AFB9C5;
+  }
+}
+
+:host ui-button {
+  ::ng-deep .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

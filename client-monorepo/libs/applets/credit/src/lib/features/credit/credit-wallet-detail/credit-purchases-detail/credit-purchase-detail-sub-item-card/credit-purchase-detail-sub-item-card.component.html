@@ -1,0 +1,67 @@
+<div
+  [class]="{ expanded: expanded }"
+  class="purchase-sub-item-card border-100 border-color-air"
+>
+  <div
+    (click)="expanded = !expanded"
+    class="sub-item-header"
+  >
+    <div>
+      <div class="sub-item-main-info">
+        <credit-digipay-image
+          [imageId]="data().icon"
+          width="40px"
+        ></credit-digipay-image>
+        <div class="sub-item-title-box">
+          <div class="sub-item-title-text text-onback-medium">{{ data().title.text }}</div>
+          <div class="sub-item-title-value">{{ data().title.value }}</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <ngx-icon
+        [name]="!expanded ? 'arrow-2-down' : 'arrow-2-up'"
+        type="linear"
+        iconSize="24"
+      >
+      </ngx-icon>
+    </div>
+  </div>
+  @if (expanded) {
+    <div
+      [@subItems]="'in'"
+      class="sub-item-content"
+    >
+      <div class="sub-item-content-header border-color-air surface-back">
+        <div class="sub-item-header-value-right">
+          <div class="detail-text">{{ data().date.text }}</div>
+          <div class="detail-value">{{ data().date.value }}</div>
+        </div>
+        <div class="sub-item-header-value-left">
+          <div class="detail-text text-onback-medium">{{ data().orderId.text }}</div>
+          <div class="detail-value">{{ data().orderId.value }}</div>
+        </div>
+      </div>
+      @if (data()?.moreDetails && data()?.moreDetails?.length) {
+        <div class="sub-item-details border-color-air">
+          @for (item of data().moreDetails; track item) {
+            <div class="sub-item-detail-row border-color-air">
+              <div class="sub-item-detail-text text-onback-medium">{{ item.text }}</div>
+              <div class="sub-item-detail-value">{{ item.value }}</div>
+            </div>
+          }
+        </div>
+      }
+      <div class="sub-item-content-footer">
+        <ngx-button
+          (clickHandler)="showTransactionDetail()"
+          [style]="'link'"
+          [size]="'small'"
+          [leftIcon]="{ name: 'arrow-2-left' }"
+        >
+          مشاهده رسید تراکنش
+        </ngx-button>
+      </div>
+    </div>
+  }
+</div>

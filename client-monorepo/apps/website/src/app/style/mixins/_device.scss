@@ -1,0 +1,17 @@
+@mixin mediaMobile() {
+  @media (max-width: 744px) {
+    @content;
+  }
+}
+
+@mixin mediaDesktop() {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin mediaMaxWidth($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}

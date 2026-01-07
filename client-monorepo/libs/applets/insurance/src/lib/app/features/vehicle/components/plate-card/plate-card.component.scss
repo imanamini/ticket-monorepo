@@ -1,0 +1,41 @@
+@import "@digipay/base-style/styleguide-theme";
+
+.plate-card-wrapper {
+  padding: 12px 16px;
+  gap: 20px;
+
+  .plate-card-title {
+    .text {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 32px;
+      color: black;
+      padding: 4px 0;
+      word-break: break-word;
+    }
+  }
+
+  .content {
+    gap: 16px;
+
+    & > :first-child {
+      cursor: pointer;
+    }
+
+    .national-code-wrapper {
+      width: 100%;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 12px;
+      box-sizing: border-box;
+
+      .title {
+        font-weight: 400;
+      }
+
+      .value {
+        font-weight: 700;
+      }
+    }
+  }
+}

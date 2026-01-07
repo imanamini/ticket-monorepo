@@ -1,0 +1,157 @@
+<div class="container">
+  <div class="downloadApp__contain">
+    <div class="downloadApp__art">
+      <div>
+        <img
+          [src]="data?.downloadArtwork?.url"
+          alt="دانلود دیجی‌پی"
+        />
+      </div>
+    </div>
+    <div
+      *ngIf="data"
+      class="downloadApp__content"
+    >
+      <div class="section-title white">
+        <div>
+          <h2
+            *ngIf="data.downloadTitle"
+            class="text-align-center"
+          >
+            {{ data.downloadTitle }}
+          </h2>
+          <div
+            *ngIf="data.downloadSubtitle"
+            class="subtitle heading-w400 text-align-center"
+          >
+            {{ data.downloadSubtitle }}
+          </div>
+        </div>
+      </div>
+      <div class="downloadApp__market">
+        <div class="downloadApp__device">
+          <ul>
+            <li
+              (click)="changeTab('ANDROID')"
+              [ngClass]="{ active: selectedTab === 'ANDROID' }"
+              class="device_item device_type-1"
+            >
+              <div class="device_item-icon">
+                <i
+                  [ngClass]="{ 'icon-white-filter': selectedTab === 'ANDROID' }"
+                  class="icon-android"
+                ></i>
+              </div>
+              <div class="device_item-title">
+                <span>اندروید</span>
+              </div>
+            </li>
+            <li
+              (click)="changeTab('IOS')"
+              [ngClass]="{ active: selectedTab === 'IOS' }"
+              class="device_item device_type-2"
+            >
+              <div class="device_item-icon">
+                <i
+                  [ngClass]="{ 'icon-white-filter': selectedTab === 'IOS' }"
+                  class="icon-apple"
+                ></i>
+              </div>
+              <div class="device_item-title">
+                <span>آیفون</span>
+              </div>
+            </li>
+            <li
+              (click)="changeTab('WEB')"
+              [ngClass]="{ active: selectedTab === 'WEB' }"
+              class="device_item device_type-3"
+            >
+              <div class="device_item-icon">
+                <i
+                  [ngClass]="{ 'icon-white-filter': selectedTab === 'WEB' }"
+                  class="icon-web icon-white-filter"
+                ></i>
+              </div>
+              <div class="device_item-title">
+                <span>نسخه وب</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="downloadApp__marketplace border-left">
+          <ul
+            *ngIf="data.androidMarketplaces && data.androidMarketplaces.length > 0"
+            [ngClass]="{ active: selectedTab === 'ANDROID' }"
+          >
+            <li
+              *ngFor="let marketplace of data.androidMarketplaces"
+              class="marketplace_item"
+            >
+              <div class="button basic large white">
+                <a
+                  href="{{ marketplace.address }}"
+                  title="{{ marketplace.title }}"
+                  >{{ marketplace.title }}</a
+                >
+              </div>
+            </li>
+          </ul>
+          <ul
+            *ngIf="data.iosMarketplaces && data.iosMarketplaces.length > 0"
+            [ngClass]="{ active: selectedTab === 'IOS' }"
+          >
+            <li
+              *ngFor="let marketplace of data.iosMarketplaces"
+              class="marketplace_item"
+            >
+              <div class="button basic large white">
+                <a
+                  href="{{ marketplace.address }}"
+                  title="{{ marketplace.title }}"
+                  >{{ marketplace.title }}</a
+                >
+              </div>
+            </li>
+          </ul>
+          <ul
+            *ngIf="data.web"
+            [ngClass]="{ active: selectedTab === 'WEB' }"
+          >
+            <li class="marketplace_item">
+              <div class="button basic large white web">
+                <a
+                  href="{{ data.web.address }}"
+                  title="{{ data.web.title }}"
+                  >{{ data.web.title }}</a
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div
+          *ngIf="data.coupons && data.coupons.length > 0 && showCoupons"
+          class="download-app-notices"
+        >
+          <div
+            *ngFor="let item of data.coupons"
+            [ngClass]="{ active: selectedTab === item['couponType'] }"
+            class="download-app-notice coupon"
+          >
+            <div>
+              <span>{{ item['couponText'] }} : </span>
+              <div class="download-app-notice code">
+                <code class="myCode">{{ item['couponCode'] }}</code>
+                <button
+                  (click)="copyToClipboard(item)"
+                  class="copyMyCode"
+                >
+                  {{ item.copyText || 'کپی' }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

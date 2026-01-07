@@ -1,0 +1,95 @@
+.credit-payment-card {
+  background: #2a328c;
+  border-radius: 8px;
+  padding: 12px;
+  color: #fff;
+  direction: rtl;
+  font-size: 14px;
+  line-height: 1.7;
+
+  .card-header,
+  .identity-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card-header {
+    margin-bottom: 8px;
+
+    .card-header-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-image {
+      background: #fff;
+      border-radius: 22px 0 0 22px;
+      padding: 4px;
+      width: 44px;
+      flex-grow: 0;
+      margin: 0 -12px 0 16px;
+
+      ::ng-deep img {
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+
+  .identity-details {
+    margin-bottom: 12px;
+
+    .detail:last-child {
+      text-align: left;
+    }
+  }
+
+  .label {
+    font-weight: 200;
+    font-size: 10px;
+    margin-bottom: 6px;
+    color: rgba(#fff, 0.8);
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    .cost-details {
+      ul {
+        list-style-type: none;
+
+        li {
+          margin-bottom: 6px;
+
+          span:first-child {
+            margin-left: 4px;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    .left-detail {
+      text-align: left;
+
+      .left-detail-label {
+        font-weight: 200;
+        font-size: 10px;
+        margin-bottom: 6px;
+        color: rgba(#fff, 0.8);
+      }
+
+      .left-detail-value {
+      }
+    }
+  }
+}

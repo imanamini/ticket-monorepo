@@ -1,0 +1,76 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.list {
+  @include flex-column();
+  @include flex-center();
+  padding: 24px 32px;
+  border-radius: 12px;
+  border: 1px solid #dee3e7;
+  width: 100%;
+  gap: 8px;
+
+  &.mobile {
+    padding: 16px;
+  }
+
+  &.highlight-mode {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  &.hide-borders {
+    border: none !important;
+    padding: 0;
+  }
+
+  .list-item {
+    width: 100%;
+    @include flex-row();
+    @include flex-center-between();
+    padding: 4px 0;
+    gap: 8px;
+
+    &.discount-item {
+      div {
+        color: #eb2338 !important;
+      }
+    }
+
+    .item-name {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      color: #424c5c;
+      white-space: nowrap;
+    }
+
+    .item-value {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 450;
+      line-height: 24px;
+      color: #2c3544;
+      text-align: left;
+    }
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+      border: none;
+    }
+
+    &.hide-dividers {
+      border: none !important;
+    }
+  }
+
+  .divider {
+    border-bottom: 1px solid #dee3e7;
+    height: 5px;
+    width: 100%;
+  }
+}

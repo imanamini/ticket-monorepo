@@ -1,0 +1,10 @@
+@import "@digipay/base-style/swatch";
+
+.national-id-container {
+  height: 100dvh;
+  position: relative;
+}
+
+.national-id-form {
+  height: calc(100dvh - 14rem);
+}

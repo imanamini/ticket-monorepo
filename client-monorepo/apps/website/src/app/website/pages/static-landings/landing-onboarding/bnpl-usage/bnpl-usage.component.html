@@ -1,0 +1,96 @@
+<div class="bnpl-usage d-flex gap-giant justiflexfy-content-center align-items-center {{classes()}}">
+  <div class="usage-container d-flex flex-wrap container">
+    <div class="usage-list">
+      <div class="title mb-medium">
+        {{ bnplUsage()?.title }}
+      </div>
+      <div class="subtitle bt-2">
+        {{ bnplUsage()?.subtitle }}
+      </div>
+
+    </div>
+
+    @for (item of bnplUsage().categories; track $index) {
+      <div class="usage-item d-flex align-items-center gap-pony p-medium">
+        <div class="image"><img src="{{item?.image?.url}}" alt=""></div>
+        <div class="title st-2 text-onback-medium">{{ item?.title }}</div>
+        <div class="logos d-flex align-items-center justify-content-center gap-pony">
+          @for (logo of item.recappedMerchants; track $index) {
+            @if (logo.title && logo.logo) {
+              <div class="logo-item-wrapper d-flex flex-column align-items-center gap-low">
+                             <span class="logo-item">
+                      <span>
+                        @if (isPlatformBrowser(platformId)) {
+                          <ui-api-image
+                            [imageId]="logo?.logo"
+                            height="40px"
+                            width="40px"
+                          ></ui-api-image>
+                        }
+                      </span>
+                      </span>
+                <span class="l-1 text-onback-medium">{{ logo?.title }} </span>
+              </div>
+            }
+
+          }
+        </div>
+      </div>
+    }
+
+  </div>
+  <div class="usage-container-mobile">
+    <div class="usage-list">
+      <div class="title mb-medium">
+        {{ bnplUsage()?.title }}
+      </div>
+      <div class="subtitle bt-2">
+        {{ bnplUsage()?.subtitle }}
+      </div>
+    </div>
+    <swiper-container
+      appSwiper
+      #swiper="appSwiper"
+      class="swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-rtl"
+      [config]="config"
+    >
+      @for (group of getGroupedItems(); track $index) {
+        <swiper-slide class="swiper-slide">
+          <div class="d-flex flex-column gap-pony justify-content-between">
+            @for (item of group; track $index) {
+
+              <div class="usage-item d-flex align-items-center gap-pony p-medium">
+                <div class="image"><img [src]="item?.image?.url" alt=""></div>
+                <div class="title st-2 text-onback-medium">{{ item?.title }}</div>
+                <div class="logos d-flex align-items-center justify-content-center gap-small">
+                  @for (logo of item.recappedMerchants; track $index) {
+                    @if (logo.title && logo.logo) {
+                      <div class="logo-item-wrapper d-flex flex-column align-items-center gap-low">
+                      <span class="logo-item">
+                      <span>
+                        @if (isPlatformBrowser(platformId)) {
+                          <ui-api-image
+                            [imageId]="logo?.logo"
+                            height="40px"
+                            width="40px"
+                          ></ui-api-image>
+                        }
+                      </span>
+                      </span>
+                        <span class="l-1 text-onback-medium">{{ logo?.title }} </span>
+                      </div>
+                    }
+
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        </swiper-slide>
+      }
+    </swiper-container>
+
+  </div>
+</div>
+
+

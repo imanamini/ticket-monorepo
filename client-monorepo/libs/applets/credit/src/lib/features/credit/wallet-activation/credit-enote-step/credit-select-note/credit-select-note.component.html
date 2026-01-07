@@ -1,0 +1,62 @@
+@if (!gettingConfig()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="closeStep()"
+    [backButton]="true"
+    [title]="pageTitle()!"
+  ></app-credit-app-bar>
+  <div class="top-section">
+    <app-credit-scrollable-view
+      [fullHeightContent]="true"
+      [hasFade]="true"
+    >
+      <div class="page-content flex-grow d-flex flex-column">
+        <div class="page-content-top d-flex flex-column gap-minus">
+          @if (collateralOptions().length === 1) {
+            <div
+              class="pt-medium pb-small px-small radius-big border-100 border-color-light d-flex flex-column justify-content-center align-items-center"
+            >
+              <h1 class="st-5 px-big text-onback-medium w-100 text-align-right">
+                {{ collateralOptions()[0].title }}
+              </h1>
+              <app-pre-registration-step-collateral-info
+                (previewStepClicked)="previewSteps($event)"
+                [collateralOption]="collateralOptions()[0]"
+                [infoMapperItem]="infoMapper()[selectedCollateralType()!]"
+                [showHintMessage]="selectedCollateralType()! && selectedCollateralTypeRadio() === collateralOptions()[0].value"
+              >
+              </app-pre-registration-step-collateral-info>
+            </div>
+          }
+          @if (collateralOptions().length > 1) {
+            <p class="description text-onback-high">نوع ضمانت خود را انتخاب کنید.</p>
+            @for (collateralOption of collateralOptions(); track collateralOption) {
+              <common-ui-components-selection-box
+                (selectedOption)="onChangeCollateral(collateralOption.value)"
+                [config]="collateralOption.listOption"
+                [checkboxType]="true"
+              >
+                <app-pre-registration-step-collateral-info
+                  (previewStepClicked)="previewSteps($event)"
+                  [collateralOption]="collateralOption"
+                  [infoMapperItem]="infoMapper()[collateralOption?.type!]"
+                  [showHintMessage]="selectedCollateralType()! && selectedCollateralTypeRadio() === collateralOption.value"
+                >
+                </app-pre-registration-step-collateral-info>
+              </common-ui-components-selection-box>
+            }
+          }
+        </div>
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+  <div class="call-to-action-section">
+    <ngx-button
+      (clickHandler)="onSubmit()"
+      [disabled]="!selectedCollateralType()"
+      [fullWidth]="true"
+      >تایید و ادامه
+    </ngx-button>
+  </div>
+}
+
+<credit-page-loading [active]="gettingConfig()!"></credit-page-loading>

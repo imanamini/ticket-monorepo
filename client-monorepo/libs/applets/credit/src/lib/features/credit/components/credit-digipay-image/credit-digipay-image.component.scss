@@ -1,0 +1,12 @@
+:host {
+  user-select: none;
+  min-width: fit-content;
+  max-width: 100%;
+}
+
+img {
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  margin: auto;
+}

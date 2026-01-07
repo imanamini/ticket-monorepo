@@ -1,0 +1,81 @@
+@import "@digipay/base-style/swatch";
+
+:host {
+  background-color: $swatch_white_900;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sejam-error-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: $swatch_white_900;
+  height: calc(100dvh - 4.666rem);
+  padding: 0 1rem;
+  position: relative;
+
+  .sejam-error-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.16667rem;
+    color: $swatch_steel_900;
+
+    .sejam-error-title {
+      width: 100%;
+      text-align: center;
+      margin-top: 2.67rem;
+      font-weight: 700;
+    }
+
+    .error-reasons-container {
+      width: 100%;
+      margin-top: 1.666rem;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 1.666rem;
+      border-radius: 1.333rem;
+      border: 1px solid #DFE1E5;
+    }
+
+    .error-reasons-container {
+      .reason {
+        width: 100%;
+        border-bottom: 1px solid #DFE1E5;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        font-weight: 370;
+
+        .title{
+          line-height: 3rem;
+        }
+
+        &:last-child {
+          border-bottom: none;
+          margin-bottom: 0;
+          padding-bottom: 0;
+        }
+      }
+
+      .two-columns {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        align-items: center;
+      }
+    }
+
+  }
+
+  .sejam-error-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+  }
+}

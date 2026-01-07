@@ -1,0 +1,8 @@
+---
+.trigger-options:
+  changes:
+    - "apps/website/**/*"
+  dependent-projects:
+    - PROJECT_NAME: "website-angular"
+      DOCKERFILE_NAME: "Dockerfile-website"
+      FILE_PATH: "app/frontend/website-angular-values.yml"

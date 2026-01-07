@@ -1,0 +1,29 @@
+<section class="section-bills">
+  <div>
+    <h2
+      *ngIf="title"
+      class="text-align-center"
+    >
+      {{ title }}
+    </h2>
+    <div
+      *ngIf="subtitle"
+      class="subtitle text-align-center"
+    >
+      {{ subtitle }}
+    </div>
+    <div class="content">
+      <div class="container">
+        <ng-container *ngFor="let bill of bills">
+          <div>
+            <img
+              [attr.alt]="bill.title"
+              [src]="bill.icon.url"
+              [title]="bill.title"
+            />
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>

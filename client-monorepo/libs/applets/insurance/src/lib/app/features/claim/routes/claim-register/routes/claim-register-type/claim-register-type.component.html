@@ -1,0 +1,20 @@
+<div class="claim-register-type d-flex flex-column h-100">
+  <div class="claim-register-type-content p-medium">
+    <p class="st-8  pb-minus">
+      نوع بیمه خود را انتخاب کنید
+    </p>
+    <card [title]="'تجهیزات دیجیتال'"
+          [subTitle]="'ثبت درخواست جبران خسارت بر اساس پوشش بیمه‌نامه'"
+          [iconName]="'digital-device'"
+          [radioButtonPosition]="'left'"
+          (radioButtonClicked)="handleChecked($event)"
+          [isChecked]="isChecked"
+    ></card>
+  </div>
+  <div class="footer">
+    <action-buttons (activeButtonClicked)="handleActiveClicked()"
+                    backgroundMode="gray"
+                    [showDeActiveButton]="false"
+    ></action-buttons>
+  </div>
+</div>

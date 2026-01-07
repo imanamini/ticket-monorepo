@@ -1,0 +1,32 @@
+<div class="policy-sort-bottom-sheet py-low px-medium">
+  @for (filterItem of filterOptions(); track $index) {
+    <div class="d-flex gap-minus py-plus cursor-pointer" (click)="itemChecked($index)">
+      <ngx-checkbox
+              [checked]="filterItem.isChecked"
+      ></ngx-checkbox>
+      <div class="b-2 text-onback-medium">
+        {{ filterItem.title }}
+      </div>
+    </div>
+  }
+  <div class="action-buttons border-color-tint border-t-300 d-flex gap-small w-100 pt-medium pb-big">
+    <ins-button
+            [text]="hasAnyFilterOptionChecked() ? 'حذف فیلتر' : 'انصراف'"
+            class="secondary"
+            [fullWidth]="true"
+            [size]="InsButtonSizeEnum.Medium"
+            [mode]="InsButtonModeEnum.Form"
+            [style]="InsButtonStyleEnum.TintedOnElevated"
+            (clickHandler)="hasAnyFilterOptionChecked() ? deleteFilters() : close()"
+    ></ins-button>
+    <ins-button
+            text="تایید"
+            class="primary"
+            [fullWidth]="true"
+            [size]="InsButtonSizeEnum.Medium"
+            [mode]="InsButtonModeEnum.Form"
+            [style]="InsButtonStyleEnum.Fill"
+            (clickHandler)="confirm()"
+    ></ins-button>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+.title {
+  white-space: nowrap;
+  display: flex;
+}
+
+.half-section {
+  flex: 1;
+}
+
+.divider {
+  display: block;
+  height: 1px;
+  width: 40px;
+  position: absolute;
+  border: 4px;
+  left: -48px;
+  bottom: 10px;
+}

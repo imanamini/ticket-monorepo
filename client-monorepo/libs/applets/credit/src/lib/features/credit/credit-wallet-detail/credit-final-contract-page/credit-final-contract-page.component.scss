@@ -1,0 +1,39 @@
+@import "../../credit-styles/device-mixins";
+@import "@digipay/base-style/swatch";
+
+iframe {
+  width: 100%;
+  flex-grow: 1;
+}
+
+.iframe-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+@include mediaMobile() {
+  .iframe-container {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+  }
+}
+
+.error-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.7;
+  padding: 24px;
+  direction: rtl;
+  font-size: 14px;
+
+  .title {
+    color: $swatch_red_500;
+    margin-bottom: 8px;
+    font-size: 16px;
+  }
+}

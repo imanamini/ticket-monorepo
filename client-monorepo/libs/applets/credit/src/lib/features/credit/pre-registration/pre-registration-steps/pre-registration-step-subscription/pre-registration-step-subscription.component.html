@@ -1,0 +1,122 @@
+<app-credit-app-bar
+  (onBackButtonClick)="goBack()"
+  [backButton]="true"
+  title="جزییات وام"
+></app-credit-app-bar>
+<div class="flex-grow d-flex flex-column">
+  <div class="flex-grow d-flex flex-column">
+    <app-credit-scrollable-view [fullHeightContent]="true">
+      <div class="pt-plus px-plus d-flex flex-column flex-grow rtl">
+        <div class="surface-elevated mb-plus">
+          <div class="card-container mx-auto d-flex flex-column justify-content-center">
+            <ngx-card
+              [aspectRatio]="'3.9 / 1'"
+              [amountAlign]="'right'"
+              [cardBackground]="plan()!.fundProvider.color"
+              [width]="'100%'"
+              [cardMode]="'custom'"
+              [customBottomLeftDetail]="customBottomLeftDetail"
+              [customBottomRightDetail]="customBottomRightDetail"
+              [mainLabel]="''"
+              [customTopRightDetail]="customTopRightDetail"
+              [customTopLeftDetail]="customTopLeftDetail"
+              class="radius-plus"
+            ></ngx-card>
+
+            <ng-template #customTopRightDetail>
+              <div class="d-flex flex-row align-items-center gap-tiny">
+                <ui-api-image
+                  [height]="'24px'"
+                  [imageId]="fundProviderIconId()"
+                  [width]="'24px'"
+                ></ui-api-image>
+                <span class="c-3 text-oninvert-medium">{{ plan()?.fundProvider?.name }}</span>
+              </div>
+            </ng-template>
+            <ng-template #customTopLeftDetail>
+              <span class="b-2 text-oninvert-high"
+                >{{ plan()?.creditAmount | IRR: 'hideRial' }}
+                <span class="is-currency">ریال</span>
+              </span>
+            </ng-template>
+            <ng-template #customBottomRightDetail>
+              <span class="c-3 pt-medium text-oninvert-medium">{{
+                plan()?.interestPercentage === 0 ? 'بدون سود' : ' سود سالانه ' + plan()?.interestPercentage + '٪'
+              }}</span>
+            </ng-template>
+            <ng-template #customBottomLeftDetail>
+              <span class="c-3 pt-medium text-oninvert-medium">{{
+                plan()?.installmentCount ? plan()?.installmentCount + ' قسط' : ''
+              }}</span>
+            </ng-template>
+          </div>
+        </div>
+        <div class="surface-back pt-small p-medium radius-plus mb-medium">
+          <div class="d-flex flex-column gap-pony">
+            <div class="w-100 d-flex flex-row justify-content-space-between align-items-center px-tiny">
+              <div class="b-2 text-onback-high">مجموع اقساط</div>
+              <div class="st-7 text-onback-high">
+                {{ plan()?.sumInstallmentAmount | IRR: 'hideRial' }}
+                <span class="b-1 is-currency text-onback-high">ریال</span>
+              </div>
+            </div>
+            <div class="w-100 d-flex flex-row justify-content-space-between align-items-center px-tiny">
+              <div class="b-2 text-onback-medium">مبلغ هر قسط</div>
+              <div class="st-8 text-onback-high">
+                {{ plan()?.installmentAmount | IRR: 'hideRial' }}
+                <span class="b-1 is-currency text-onback-high">ریال</span>
+              </div>
+            </div>
+            <div class="w-100 d-flex flex-row justify-content-space-between align-items-center px-tiny">
+              <div class="b-2 text-onback-high">هزینه اشتراک</div>
+              <div class="st-7 text-onback-brand flex-auto">
+                {{ plan()?.subscriptionDetail?.amount | IRR: 'hideRial' }}
+                <span class="b-1 is-currency text-onback-brand">ریال</span>
+              </div>
+            </div>
+            <ngx-divider
+              [color]="BorderColorsEnum.Light"
+              class="w-100"
+              dividerStyle="dashed"
+              orientation="horizontal"
+            >
+            </ngx-divider>
+            <div class="w-100 d-flex flex-row justify-content-space-between align-items-center px-tiny">
+              <div class="st-7 text-onback-high">بازپرداخت نهایی</div>
+              <div class="st-5 text-onback-high flex-auto">
+                {{ plan()?.sumInstallmentAmount + plan()?.subscriptionDetail?.amount | IRR: 'hideRial' }}
+                <span class="b-1 is-currency text-onback-high">ریال</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ngx-alert
+          [color]="'yellow'"
+          [hasCloseIcon]="false"
+          [title]="'هزینه تمبر'"
+          [text]="'در مرحله پایانی دریافت وام، هزینه تمبر به‌صورت خودکار از وام شما کسر خواهد شد.'"
+        />
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+  <div class="bottom-section p-plus d-flex w-100 flex-column gap-plus">
+    @if (plan()?.subscriptionDetail?.type) {
+      <div class="d-flex flex-row align-items-center gap-medium w-100 p-medium border-100 border-color-light radius-medium">
+        <div [class]="'subscription-icon ' + plan()!.subscriptionDetail!.type.toLowerCase()"></div>
+        <span class="b-3 text-onback-medium">
+          در پایان فرآیند دریافت وام، هزینه اشتراک باید <span [innerHTML]="allocationPaymentMethodText()"></span> پرداخت شود.
+        </span>
+      </div>
+    }
+    <ngx-button
+      (clickHandler)="onSubmit()"
+      [disabled]="loading()"
+      [isLoading]="loading()"
+      [fullWidth]="true"
+      ngxTrackableId
+      trackerId="subscriptionConfirmButtonClick"
+    >
+      ادامه
+    </ngx-button>
+  </div>
+</div>

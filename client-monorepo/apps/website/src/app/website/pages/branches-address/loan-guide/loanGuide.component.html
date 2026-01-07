@@ -1,0 +1,11 @@
+<div class="accordions">
+  <div
+    *ngFor="let section of registering().inPersonRegister.helps; let i = index"
+    class="section-wrapper"
+  >
+    <app-ui-complex-accordion
+      [isDisabled]="true"
+      [section]="section"
+    ></app-ui-complex-accordion>
+  </div>
+</div>

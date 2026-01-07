@@ -1,0 +1,17 @@
+<div class="counter">
+  <ngx-button
+    [mode]="'icon-only'"
+    [size]="'small'"
+    [style]="'tinted-on-back'"
+    [leftIcon]="{ name: 'plus', type: 'linear' }"
+    (click)="increaseNumber()"
+  ></ngx-button>
+  <p class="count">{{ countNumber }} نفر</p>
+  <ngx-button
+    [mode]="'icon-only'"
+    [size]="'small'"
+    [style]="'tinted-on-back'"
+    [leftIcon]="{ name: 'minus', type: 'linear' }"
+    (click)="decreaseNumber()"
+  ></ngx-button>
+</div>

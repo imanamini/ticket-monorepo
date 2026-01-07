@@ -1,0 +1,183 @@
+@import "globals";
+
+section {
+  .container {
+    .banner {
+      height: 410px;
+      border-radius: 24px;
+      padding: 32px 40px;
+      width: 100%;
+      background-position: center;
+      background-size: cover;
+      position: relative;
+    }
+
+    .titles {
+      width: 46%;
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+
+      .title {
+        h1 {
+          color: #fff;
+          font-size: 32px;
+          font-weight: 875;
+          line-height: 56px;
+        }
+      }
+
+      .subtitle {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        span {
+          color: #fff;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 370;
+          line-height: 28px;
+        }
+      }
+
+      .desktop-ctas {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+        .first-cta-button {
+          width: 180px;
+        }
+
+        .second-cta-button {
+          width: 220px;
+        }
+      }
+    }
+
+    .bottom-cta {
+      cursor: pointer;
+      position: absolute;
+      left: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      bottom: -21px;
+      transform: translate(-50%, -50%);
+
+      div {
+        position: absolute;
+      }
+    }
+
+    .mobile-ctas {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  section {
+    .container {
+      .banner {
+        padding: 20px;
+        height: 240px;
+      }
+
+      .titles {
+        width: 51%;
+
+        .title {
+          h1 {
+            font-size: 24px;
+          }
+        }
+
+        .subtitle {
+          margin-top: 4px;
+
+          span {
+            font-size: 12px;
+            font-weight: 400;
+          }
+        }
+      }
+
+      .desktop-ctas {
+        margin-top: 12px;
+      }
+
+      .mobile-ctas {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  section {
+    padding-bottom: 0;
+
+    .container {
+      .banner {
+        height: auto;
+        aspect-ratio: 6 / 9;
+        background-image: none;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-bottom: 0;
+      }
+
+      .titles {
+        width: 100%;
+        margin-top: 0;
+        height: auto;
+
+        .titles-container {
+          width: 100%;
+
+          .title {
+            h1 {
+              text-align: center;
+              font-size: 16px;
+              font-weight: 725;
+              line-height: 32px;
+            }
+          }
+
+          .subtitle {
+            margin-top: 4px;
+            justify-content: center;
+
+            span {
+              font-size: 12px;
+              font-weight: 370;
+              line-height: 20px;
+              text-align: center;
+            }
+          }
+        }
+      }
+
+      .mobile-ctas {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 20px;
+
+        .second-cta-button {
+          width: calc((100% - 64px));
+        }
+      }
+
+      .desktop-ctas {
+        display: none !important;
+      }
+    }
+  }
+}

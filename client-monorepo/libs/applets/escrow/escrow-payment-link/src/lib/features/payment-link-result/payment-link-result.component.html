@@ -1,0 +1,27 @@
+<common-ui-components-page-layout
+  [hasBackAction]="false"
+  [showBorder]="true"
+  [showBackIcon]="false"
+>
+  <div class="d-flex justify-content-space-between flex-column gap-large p-medium h-100">
+    <div class="d-flex flex-column gap-medium">
+      <escrow-payment-link-status-header
+        [config]="config()"
+        [status]="status()"
+      ></escrow-payment-link-status-header>
+      <escrow-payment-link-ad-summery-detail [data]="paymentLinkData.requestInfo.saleAdInfo"></escrow-payment-link-ad-summery-detail>
+      <escrow-payment-link-summery [data]="paymentLinkData"></escrow-payment-link-summery>
+    </div>
+    <div class="footer">
+      <ngx-button
+        [mode]="'form'"
+        [size]="'large'"
+        [style]="'fill'"
+        [fullWidth]="true"
+        (clickHandler)="onNavigate()"
+      >
+        بازگشت به دیوار
+      </ngx-button>
+    </div>
+  </div>
+</common-ui-components-page-layout>

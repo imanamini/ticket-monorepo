@@ -1,0 +1,89 @@
+<app-base-layout [loaded]="loaded()">
+  @if (bpgPage()?.templateData) {
+    <app-ui-introduction-default
+      [heroImage]="bpgPage().templateData.sectionIntro.artwork"
+      [introductionType]="bpgPage().templateData.sectionIntro.type"
+    >
+      <div>
+        <h1>{{ bpgPage()?.templateData?.sectionIntro?.title }}</h1>
+        <div class="subtitle">{{ bpgPage()?.templateData?.sectionIntro?.subtitle }}</div>
+        <app-ui-button (clicked)="openLink(bpgPage().templateData.sectionIntro.firstCta.link)" >
+          <i></i>
+          <span>{{ bpgPage().templateData.sectionIntro.firstCta.title }}</span>
+        </app-ui-button>
+      </div>
+    </app-ui-introduction-default>
+
+    @if (bpgPage().templateData.sectionValue?.services) {
+      <app-ui-value-section
+        [config]="valueSectionConfig"
+        [data]="bpgPage().templateData.sectionValue.services || []"
+        [subtitle]="bpgPage().templateData.sectionValue.subtitle"
+        [title]="bpgPage().templateData.sectionValue.title"
+        class="bnpl-value-section"
+      ></app-ui-value-section>
+    }
+
+    @if (bpgPage().templateData.feeExplanation?.title) {
+      <app-ui-basic-segment
+        [content]="contentTemplateFeeExplanation"
+        [figure]="figureTemplateFeeExplanation"
+        [rtl]="false"
+        [title]="bpgPage()?.templateData?.feeExplanation?.title"
+        class="section-fee"
+      ></app-ui-basic-segment>
+    }
+    <ng-template #figureTemplateFeeExplanation>
+      <img
+        [alt]="bpgPage()?.templateData?.feeExplanation?.title"
+        [src]="bpgPage()?.templateData?.feeExplanation?.artwork?.url"
+      />
+    </ng-template>
+    <ng-template #contentTemplateFeeExplanation>
+      <div
+        [innerHTML]="bpgPage()?.templateData?.feeExplanation?.description"
+        class="fee-description"
+      ></div>
+      @if (bpgPage().templateData.feeExplanation?.firstCta?.title) {
+        <app-ui-button (clicked)="openLink(bpgPage().templateData.feeExplanation.firstCta.link)">
+          {{ bpgPage().templateData.feeExplanation.firstCta.title }}
+        </app-ui-button>
+      }
+    </ng-template>
+
+    @if (bpgPage().templateData.sectionFlow?.steps?.length > 0) {
+      <app-ui-horizontal-flow
+        [steps]="bpgPage().templateData.sectionFlow.steps"
+        [title]="bpgPage().templateData.sectionFlow.title"
+      ></app-ui-horizontal-flow>
+    }
+
+    <app-bpg-partners
+      [partners]="bpgPage()?.templateData?.sectionPartners?.partners"
+      [title]="bpgPage()?.templateData?.sectionPartners?.title"
+    ></app-bpg-partners>
+
+    @if (bpgPage().templateData?.sectionRequest.title) {
+      <app-bpg-form
+        [contactForm]="contactForm()"
+        [description]="bpgPage().templateData.sectionRequest.description"
+        [image]="bpgPage().templateData.sectionRequest.image"
+        [subtitle]="bpgPage().templateData.sectionRequest.subtitle"
+        [title]="bpgPage().templateData.sectionRequest.title"
+        id="bpgForm"
+      ></app-bpg-form>
+    }
+
+    @if (bpgPage().templateData.sectionSeoContent?.content || bpgPage().templateData.sectionSeoContent?.title) {
+      <app-ui-seo [seoContent]="bpgPage().templateData.sectionSeoContent"></app-ui-seo>
+    }
+
+    @if (bpgPage().templateData.faq?.faqItems?.length > 0) {
+      <app-ui-faq
+        [faqs]="bpgPage().templateData.faq.faqItems"
+        [subtitle]="bpgPage().templateData.faq.subtitle"
+        [title]="bpgPage().templateData.faq.title"
+      ></app-ui-faq>
+    }
+  }
+</app-base-layout>

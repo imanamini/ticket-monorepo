@@ -1,0 +1,17 @@
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  height: 0;
+  background: transparent;
+  scroll-behavior: smooth;
+}
+
+.swiper-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  scrollbar-width: none !important;
+}
+
+.swiper-list {
+  height: 100%;
+}

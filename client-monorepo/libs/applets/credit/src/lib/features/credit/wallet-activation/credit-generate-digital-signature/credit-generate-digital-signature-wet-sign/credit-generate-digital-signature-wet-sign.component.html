@@ -1,0 +1,56 @@
+<app-credit-app-bar
+  (onBackButtonClick)="returnToStepper()"
+  [backButton]="true"
+  title="ساخت امضای دیجیتال"
+>
+</app-credit-app-bar>
+<app-credit-stepper
+  [currentStep]="creditGenerateDigitalSignatureService.currentStep()"
+  [steps]="creditGenerateDigitalSignatureService.totalSteps"
+  title="ثبت امضا"
+>
+</app-credit-stepper>
+<app-credit-scrollable-view [fullHeightContent]="true">
+  <div class="sign-container d-flex flex-column flex-grow justify-content-center px-plus rtl">
+    <h3 class="st-4 text-onback-high mb-low w-100">{{ signTitle() }}</h3>
+    <p class="b-2 text-onback-medium w-100 mb-medium">{{ signSubtitle() }}</p>
+    <div class="w-100 d-flex flex-column justify-content-center align-items-center flex-grow rtl">
+      <div
+        [class]="{ signed: signed() }"
+        class="signature surface-back radius-big border-300 d-flex flex-column justify-content-center align-items-center"
+        [class.border-color-success]="signed()"
+        [class.border-dashed]="!signed()"
+        [class.border-color-brand]="!signed()"
+      >
+        <canvas
+          #canvas
+          height="310"
+          width="310"
+        ></canvas>
+      </div>
+    </div>
+  </div>
+</app-credit-scrollable-view>
+<div class="pt-pony px-plus pb-mega d-flex flex-row align-items-center gap-small rtl">
+  @if (signed()) {
+    <ngx-button
+      [disabled]="showLoading()"
+      (clickHandler)="reSign(true)"
+      [fullWidth]="true"
+      [style]="'tinted-on-elevated'"
+      ngxTrackableId
+      trackerId="digitalSignatureWetSignatureRetryButton"
+      >ثبت دوباره
+    </ngx-button>
+  }
+  <ngx-button
+    (clickHandler)="submit()"
+    ngxTrackableId
+    trackerId="digitalSignatureWetSignatureConfirmButton"
+    [disabled]="!signed() || showLoading()"
+    [fullWidth]="true"
+    [isLoading]="showLoading()"
+    [style]="'fill'"
+    >تایید و ادامه
+  </ngx-button>
+</div>

@@ -1,0 +1,122 @@
+<div
+  *ngIf="displayNotFound"
+  class="errors-main"
+>
+  <img
+    alt=""
+    class="errors-image"
+    height="1024"
+    ngSrc="/assets/images/errors/error-404.gif"
+    width="1024"
+  />
+  <div>
+    <span class="errors-text-number"> خطای ۴۰۴- </span>
+    <span class="errors-text">صفحه مورد نظر یافت نشد</span>
+  </div>
+  <div class="errors-subtitle">لطفابرای پیدا کردن صفحه درست به صفحه اصلی دیجی پی بروید</div>
+  <div class="suggested-services">
+    <div class="suggested-services-title">
+      <span>خدمات پیشنهادی ما</span>
+    </div>
+    <div class="suggested-services-items">
+      <a
+        class="suggested-services-item"
+        href="https://www.mydigipay.com/bnpl/c-bnpl/"
+      >
+        <div class="item-icon blue-background">
+          <img
+            alt=""
+            height="144"
+            ngSrc="/assets/images/errors/payingGateway.png"
+            width="144"
+          />
+        </div>
+        <div class="item-content">
+          <div class="content-title">
+            <span> درگاه پرداخت اعتباری </span>
+          </div>
+          <div class="content-subtitle">
+            <span> خرید اعتباری برای کسب و کارها </span>
+          </div>
+        </div>
+      </a>
+      <a
+        class="suggested-services-item"
+        href="https://www.mydigipay.com/credit/"
+      >
+        <div class="item-icon">
+          <img
+            alt=""
+            height="144"
+            ngSrc="/assets/images/errors/credit.png"
+            width="144"
+          />
+        </div>
+        <div class="item-content">
+          <div class="content-title">
+            <span>خرید اقساطی از دیجی کالا</span>
+          </div>
+          <div class="content-subtitle">
+            <span>پرداخت اعتباری ۱۲-۲۴ ماهه</span>
+          </div>
+        </div>
+      </a>
+      <a
+        class="suggested-services-item"
+        href="https://www.mydigipay.com/top-up/"
+      >
+        <div class="item-icon">
+          <img
+            alt=""
+            height="144"
+            ngSrc="/assets/images/errors/charge.png"
+            width="144"
+          />
+        </div>
+        <div class="item-content">
+          <div class="content-title">
+            <span>خرید شارژ</span>
+          </div>
+          <div class="content-subtitle">
+            <span>ایرانسل ,همراه اول و رایتل</span>
+          </div>
+        </div>
+      </a>
+      <a
+        class="suggested-services-item"
+        href="https://www.mydigipay.com/services/internet/"
+      >
+        <div class="item-icon">
+          <img
+            alt=""
+            height="144"
+            ngSrc="/assets/images/errors/net.png"
+            width="144"
+          />
+        </div>
+        <div class="item-content">
+          <div class="content-title">
+            <span>خرید بسته اینترنت</span>
+          </div>
+          <div class="content-subtitle">
+            <span>ایرانسل ,همراه اول و رایتل</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="errors-btn-wrapper">
+    <app-ui-button
+      [link]="'/'"
+      [useRouterLink]="false"
+      >بازگشت به صفحه اصلی</app-ui-button
+    >
+  </div>
+</div>
+
+<div
+  *ngIf="!displayNotFound"
+  class="errors-main loading-state"
+>
+  <app-ui-spinner></app-ui-spinner>
+</div>

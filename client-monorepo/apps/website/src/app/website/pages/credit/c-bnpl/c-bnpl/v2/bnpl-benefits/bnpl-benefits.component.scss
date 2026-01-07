@@ -1,0 +1,64 @@
+@import "@digipay/base-style/styleguide";
+
+.bnpl-benefits {
+  position: relative;
+
+  .title {
+    color: #000;
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 67px; /* 209.375% */
+  }
+
+  .benefits {
+    .benefit-card-wrapper {
+      width: 260px;
+      height: 234px;
+
+      .icon {
+        img {
+          width: 90px;
+          height: 90px;
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 1280px) {
+  .bnpl-benefits {
+
+    gap: map-get($spacing-sizes, 'plus') !important;
+
+    .title {
+      font-size: 18px;
+      line-height: 32px !important;
+    }
+
+    .benefits {
+      flex-direction: column;
+      gap: map-get($spacing-sizes, 'atom') !important;
+
+      .benefit-card-wrapper {
+        width: 260px;
+        height: 202px;
+        padding: map-get($spacing-sizes, 'medium') map-get($spacing-sizes, 'plus') !important;
+
+        .icon {
+          img {
+            width: 90px;
+            height: 90px;
+          }
+        }
+
+        .benefit-description {
+          font-size: 14px !important;
+        }
+      }
+    }
+  }
+}

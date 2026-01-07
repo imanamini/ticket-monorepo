@@ -1,0 +1,59 @@
+@import "@digipay/base-style/styleguide";
+
+.point {
+  min-width: 24px;
+  width: 24px;
+  height: 24px;
+  background-color: #{map-get($blue, "tint-90")};
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:before {
+    display: inline-block;
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: #{map-get($blue, "tint-50")};
+    border-radius: 50%;
+    margin: 6px;
+  }
+}
+
+.pan {
+  direction: ltr;
+}
+
+.footer {
+  margin: 0px -20px -30px -20px;
+}
+
+.discount-value {
+  text-decoration-color: #{map-get($steel, "shade-30")};
+  text-decoration: line-through;
+  font-size: 0.8rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #{map-get($blue, "tint-50")};
+  border-radius: 50%;
+}
+
+.note {
+  border-right: 2px dashed #{map-get($titanium, "shade-80")};
+
+  & > div {
+    margin: -5px;
+  }
+}
+.last {
+  position: relative;
+  top: 12px;
+}
+
+.message {
+  width: 90%;
+}

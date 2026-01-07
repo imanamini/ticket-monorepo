@@ -1,0 +1,60 @@
+<div class="wrapper">
+  <div class="horizontal-tab">
+    <horizontal-tab
+      (changeStep)="currentTab = $event"
+      [currentStepIndex]="0"
+      [steps]="tabs"
+    ></horizontal-tab>
+  </div>
+  <div *ngIf="screenSize === 'LG' || ((screenSize === 'SM' || screenSize === 'XS') && currentTab === 0)"
+       class="policy-info">
+    <app-card
+      [contentSpace]="0"
+      [hasHeader]="screenSize === 'LG'"
+      cardTitle="اطلاعات بیمه نامه"
+      headerIcon="no-icon">
+      <div card-body="" class="right-side">
+        <policy-general-info
+          [electronicEquipment]="transferData.policy.electronicEquipment"
+          [policyStatus]="transferData.policy.policyStatus.identifier"
+        ></policy-general-info>
+        <div class="detail-info">
+          <div class="detail-info-item">
+            <div class="title">وضعیت</div>
+            <div class="value">
+              <ui-status-chips
+                [backgroundColor]="policyStatusMapper[transferData?.policy?.policyStatus?.identifier].additionalData.backgroundColor"
+                [color]="policyStatusMapper[transferData?.policy?.policyStatus?.identifier].additionalData.color"
+                [colorized]="true">
+                {{ transferData?.policy?.policyStatus?.title }}
+              </ui-status-chips>
+            </div>
+          </div>
+
+          <ui-detail-list
+            [itemsList]="policyInformationList"
+          ></ui-detail-list>
+
+        </div>
+      </div>
+    </app-card>
+  </div>
+
+  <div *ngIf="screenSize === 'LG' || ((screenSize === 'SM' || screenSize === 'XS') && currentTab === 1)"
+       class="transfer">
+    <app-card [hasHeader]="screenSize=== 'LG'" [headerIcon]="'no-icon'" cardTitle="انتقال مالکیت بیمه‌نامه">
+      <div card-body class="body">
+        <div class="image"></div>
+        <div class="title">شما قادر به اعلام خسارت نیستید!</div>
+        <div class="description">
+          شما فقط زمانی می‌توانید اقدام به اعلام خسارت برای دستگاه کنید که مالک بیمه‌نامه (بیمه‌گزار) خودتان باشید. برای
+          انتقال بیمه‌نامه به خود از طریق دکمه‌ی زیر اقدام نمایید.
+        </div>
+      </div>
+      <ng-container card-footer>
+        <ui-button (click)="changeOwner()" appearance="BLUE-TEXT">انتقال مالکیت بیمه‌نامه</ui-button>
+      </ng-container>
+    </app-card>
+
+  </div>
+</div>

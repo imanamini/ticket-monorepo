@@ -1,0 +1,98 @@
+<div class="onboarding-container rtl">
+  <div class="d-flex align-items-flex-start mb-huge">
+    <ngx-button
+      class="close-button"
+      (click)="onClose()"
+      [leftIcon]="{ name: 'close' }"
+      [mode]="'icon-only'"
+      [style]="'link'"
+    >
+    </ngx-button>
+  </div>
+
+  <div class="main-section flex-full-height">
+    <div class="top-section">
+      <app-credit-scrollable-view>
+        <div class="page-content">
+          <!-- Header Section: Cards + Title -->
+          <div class="header-section">
+            <!-- Card Image -->
+            <div class="card-section">
+              <img
+                src="assets/bnpl/onboarding/bnpl-card.webp"
+                alt="کارت اعتبار"
+                class="card-image"
+              />
+            </div>
+
+            <!-- Title Section -->
+            <div class="title-section">
+              <div class="text-onback-high main-title">
+                <span class="st-4">تا</span>
+                <span class="t-10">۵۰۰</span>
+                <span class="st-4">میلیون ریال</span>
+              </div>
+              <div class="subtitle-wrapper">
+                <p class="subtitle text-onback-medium">الان بخر، بعدا پرداخت کن</p>
+                <div class="subtitle-details">
+                  <span class="text-onback-medium c-2">بدون ضامن و چک</span>
+                  <span class="divider"></span>
+                  <span class="text-onback-medium c-2">فعال‌سازی سریع</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Features Grid -->
+          <div class="features-grid">
+            @for (feature of features(); track feature.title) {
+              <div class="feature-card">
+                <div
+                  class="feature-icon"
+                  [style.background]="feature.iconGradient"
+                >
+                  <ngx-icon
+                    [name]="feature.icon"
+                    [iconSize]="'24px'"
+                  ></ngx-icon>
+                </div>
+                <div class="feature-content">
+                  <h3 class="feature-title text-onback-high st-7">{{ feature.title }}</h3>
+                  <p class="feature-description text-onback-medium c-2">{{ feature.description }}</p>
+                </div>
+              </div>
+            }
+          </div>
+
+          <!-- Stores Section -->
+          <div class="stores-section">
+            <h2 class="stores-title st-7 text-onback-high">خرید آنلاین و حضوری</h2>
+            <p class="stores-subtitle c-1 text-onback-medium">خرید اعتباری از ۱۵۰۰ فروشگاه منتخب</p>
+
+            <div class="stores-grid">
+              @for (store of stores(); track store.id) {
+                <div class="store-item">
+                  <ui-api-image
+                    [baseUrl]="'/'"
+                    [imageId]="store.logoImageId"
+                    height="26.4px"
+                    width="26.4px"
+                  ></ui-api-image>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+
+    <div class="bottom-section">
+      <ngx-button
+        [fullWidth]="true"
+        (clickHandler)="onStartActivation()"
+      >
+        شروع فعال‌سازی اعتبار
+      </ngx-button>
+    </div>
+  </div>
+</div>

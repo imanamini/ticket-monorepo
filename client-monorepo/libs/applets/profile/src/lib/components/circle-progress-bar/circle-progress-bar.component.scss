@@ -1,0 +1,29 @@
+.circle {
+  position: relative;
+
+  .extra-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+  }
+}
+
+.circle svg {
+  display: block;
+  margin: auto;
+}
+
+.circle .bg {
+  fill: none;
+  stroke-width: 2px;
+  stroke: #F6F6F6;
+}
+
+.circle .progress {
+  fill: none;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}

@@ -1,0 +1,21 @@
+<app-credit-app-bar
+  (onBackButtonClick)="close.emit()"
+  [backButton]="true"
+  title="سفته الکترونیک"
+></app-credit-app-bar>
+<div class="flex-grow">
+  <ngx-status-result
+    (finished)="finishCountDown()"
+    [timer]="time"
+    [title]="title"
+    [description]="description"
+  >
+    <ng-container status-image>
+      <ngx-waiting-stepper
+        [state]="WaitingStepperStateEnum.PROGRESS"
+        [isSelfProgress]="true"
+        [timerDeadline]="time.timeInSeconds"
+      ></ngx-waiting-stepper>
+    </ng-container>
+  </ngx-status-result>
+</div>

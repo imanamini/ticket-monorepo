@@ -1,0 +1,37 @@
+<div class="bnpl-benefits flex-column d-flex align-items-center justify-content-center gap-large">
+  @if (benefit().title) {
+    <div class="title">{{ benefit()?.title }}</div>
+  }
+  @if (benefit().benefits.length) {
+    <div class="benefits d-flex align-items-center justify-content-center gap-giant">
+      @for (item of benefit().benefits; track item) {
+        <div class="benefit-card-wrapper px-plus py-huge d-flex flex-column align-items-center gap-medium">
+          <div class="icon">
+            <img src="{{item?.image?.url}}" alt="">
+          </div>
+          <div class="benefit-description st-5 text-onback-high text-align-center">
+            {{ item?.description }}
+          </div>
+        </div>
+      }
+    </div>
+  }
+  @if (benefit()?.cta?.title && benefit()?.cta?.link) {
+    @if (!deviceDetector.isReady() && !deviceDetector.isMobile()) {
+      <div class="cta">
+        <ngx-button
+          [size]="'large'"
+          [style]="'fill'"
+          [mode]="'section'"
+          [leftIcon]="{ name: 'arrow-2-left', type: 'linear' }"
+          (click)="openLink(benefit().cta.link)"
+        >
+         {{benefit()?.cta?.title}}
+        </ngx-button>
+      </div>
+    }
+  }
+
+
+</div>
+

@@ -1,0 +1,68 @@
+<div class="profile surface-back p-plus pt-big w-100 h-100 d-flex flex-column align-items-center"
+     [class.justify-content-center]="!isLoggedIn()"
+     [class.justify-content-space-between]="isLoggedIn()"
+>
+  @if (isLoggedIn()) {
+    <div class="w-100">
+      @defer (when !!userDetail()) {
+        <user-detail-brief class="w-100" [userDetail]="userDetail()"></user-detail-brief>
+      } @placeholder {
+        <lib-ngx-skeleton-loading width="100%" height="88px"></lib-ngx-skeleton-loading>
+      }
+      <div class="w-100 py-atom px-atom d-flex flex-column mt-big radius-medium surface-high-contrast">
+        <ngx-list-item
+                (click)="navigateToFaq()"
+                class="cursor-pointer radius-medium py-small"
+                [showToggle]="false"
+                [leftIcon]="{name: 'arrow-2-left', classes: 'text-onback-high'}"
+                title="سوالات متداول">
+          <div right-content>
+            <ngx-icon name="question-mark-circle" classes="text-onback-high"></ngx-icon>
+          </div>
+        </ngx-list-item>
+        <ngx-divider [color]="BorderColorsEnum.Tint"></ngx-divider>
+        <ngx-list-item
+                (click)="navigateToTermsAndCondition()"
+                class="cursor-pointer radius-medium py-small"
+                [showToggle]="false"
+                [leftIcon]="{name: 'arrow-2-left', classes: 'text-onback-high'}"
+                title="شرایط و مقررات بیمه">
+          <div right-content>
+            <ngx-icon name="docuemnt-file" classes="text-onback-high"></ngx-icon>
+          </div>
+        </ngx-list-item>
+        <ngx-divider [color]="BorderColorsEnum.Tint"></ngx-divider>
+        <a href="tel:+982153924000" class="pt-small py-small">
+          <ngx-list-item
+                  class="cursor-pointer radius-medium"
+                  [showToggle]="false"
+                  [leftIcon]="{name: 'arrow-2-left', classes: 'text-onback-high'}"
+                  title="تماس با پشتیبانی">
+            <div right-content>
+              <ngx-icon name="headphone" classes="text-onback-high"></ngx-icon>
+            </div>
+          </ngx-list-item>
+        </a>
+      </div>
+    </div>
+    <div class="w-100">
+      <ins-button
+              (clickHandler)="exitAccount()"
+              [text]="'خروج از حساب کاربری'"
+              [style]="InsButtonStyleEnum.Fill"
+              [size]="InsButtonSizeEnum.Large"
+              [fullWidth]="true"
+              [destructive]="true">
+      </ins-button>
+    </div>
+  } @else {
+    <empty-result [actionButton]="true"
+                  (actionButtonClicked)="handleLoginClicked()"
+                  icon="not-login"
+                  title="ورود به حساب کاربری"
+                  description="برای مشاهده و مدیریت پروفایل کاربری، وارد حساب کاربری شوید."
+                  actionButtonText="ورود / ثبت‌نام"
+                  actionButtonIcon="login"></empty-result>
+  }
+</div>
+

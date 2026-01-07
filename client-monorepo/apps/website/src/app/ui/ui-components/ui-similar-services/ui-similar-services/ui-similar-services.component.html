@@ -1,0 +1,69 @@
+<section
+  [ngClass]="type.toLowerCase()"
+  class="similar-service"
+>
+  <div class="container">
+    <h2
+      *ngIf="data.title"
+      class="text-align-center"
+    >
+      {{ data.title }}
+    </h2>
+    <div
+      *ngIf="data.subtitle"
+      class="text-align-center subtitle"
+    >
+      {{ data.subtitle }}
+    </div>
+    <div class="similar-service-card swiper-container">
+      <swiper-container
+        appSwiper
+        #swiper="appSwiper"
+        [config]="config"
+        class="swiper"
+      >
+<!--        <div class="d-flex justify-content-center gap-large w-100 similar-service-wrapper">-->
+          <swiper-slide
+            *ngFor="let item of data.items; let itemIndex = index"
+            class="swiper-slide"
+          >
+            <div class="similar-service-card__item">
+              <div>
+                <a
+                  [href]="item.link"
+                  [id]="id ? 'dg-similar-' + id + itemIndex : 'dg-similar-' + itemIndex"
+                  target="_blank"
+                  title="{{ item.title }}"
+                ></a>
+                <div class="similar-service-card__item-content">
+                  <div
+                    [ngStyle]="item.backgroundColor && { background: item.backgroundColor }"
+                    class="services-swiper__icon"
+                  >
+                    <img
+                      *ngIf="item.icon && item.icon.url"
+                      [alt]="item.title"
+                      [ngSrc]="item.icon.url"
+                      height="24"
+                      width="24"
+                    />
+                  </div>
+                  <div class="content">
+                    <div class="similar-service-card__item-title">
+                      <span>{{ item.title }}</span>
+                    </div>
+                    <div class="similar-service-card__item-description">
+                      <span>
+                        {{ item.description }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </swiper-slide>
+<!--        </div>-->
+      </swiper-container>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,34 @@
+<section class="section-promotion">
+  <div class="container">
+    <div class="content">
+      <a
+        *ngIf="promotionBanner.link"
+        [href]="promotionBanner.link"
+        target="_blank"
+      ></a>
+      <picture>
+        <source
+          *ngIf="promotionBanner.desktopBanner && promotionBanner.desktopBanner.url"
+          [srcset]="promotionBanner.desktopBanner.url"
+          media="(min-width: 1280px)"
+        />
+        <source
+          *ngIf="promotionBanner.tabletBanner && promotionBanner.tabletBanner.url"
+          [srcset]="promotionBanner.tabletBanner.url"
+          media="(min-width: 744px)"
+        />
+        <img
+          *ngIf="promotionBanner.mobileBanner && promotionBanner.mobileBanner.url"
+          [src]="promotionBanner.mobileBanner.url"
+          alt=""
+        />
+      </picture>
+      <app-ui-button
+        *ngIf="promotionBanner && promotionBanner.firstCta && promotionBanner.firstCta.link && promotionBanner.firstCta.title"
+        [linkTarget]="'_blank'"
+        [link]="promotionBanner.firstCta.link"
+        >{{ promotionBanner.firstCta.title }}
+      </app-ui-button>
+    </div>
+  </div>
+</section>

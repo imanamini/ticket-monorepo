@@ -1,0 +1,13 @@
+<div class="general-info">
+  <div class="general-info-name">
+    <div class="general-title">مدل دستگاه</div>
+    <div class="general-value">{{ electronicEquipment.brand + ' ' + electronicEquipment.model }}</div>
+  </div>
+  <div class="image">
+    <insurtech-collection-image-cdn
+            [category]="'category'"
+            [status]="policyStatus || ''"
+            [subCategory]="electronicEquipment.category || ''"
+    ></insurtech-collection-image-cdn>
+  </div>
+</div>

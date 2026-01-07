@@ -1,0 +1,18 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.car-info {
+  @include flex-column();
+
+  .info {
+    &-hint {
+      @include flex-center-start();
+      gap: 8px;
+
+      .hint {
+        font-size: 12px;
+        font-weight: 524;
+        line-height: 20px;
+      }
+    }
+  }
+}

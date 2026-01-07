@@ -1,0 +1,29 @@
+<section>
+  <div class="container">
+    <div class="recoverable-damages">
+      @if (recoverableDamages().title) {
+        <div class="title">
+          <h2>{{ recoverableDamages().title }}</h2>
+        </div>
+      }
+      @if (recoverableDamages().items.length > 0) {
+        <div class="items">
+          @for (item of recoverableDamages().items; track item) {
+            @if (item.title) {
+              <div class="item">
+                @if (item.icon?.url) {
+                  <img
+                    [src]="item.icon.url"
+                    [alt]="item.title"
+                    class="icon"
+                  />
+                }
+                <p>{{ item.title }}</p>
+              </div>
+            }
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>

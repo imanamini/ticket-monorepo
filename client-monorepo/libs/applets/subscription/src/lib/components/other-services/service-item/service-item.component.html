@@ -1,0 +1,30 @@
+<div class="service">
+  <span
+    class="image"
+    [style.background-image]="'url(' + serviceConfig?.icon + ')'"
+  ></span>
+  <div class="service-data">
+    <div class="service-title">
+      <span>{{ serviceConfig?.title }}</span>
+      @if (serviceConfig?.hasDetail) {
+        <span
+          class="service-detail"
+          (click)="clickServiceDetail()"
+        ></span>
+      }
+    </div>
+    <div class="service-subtitle">
+      <span>{{ serviceConfig?.subtitle }}</span>
+      @if (serviceConfig?.hasStatus) {
+        <subscription-applet-ui-status
+          [status]="serviceConfig.status"
+          [serviceType]="serviceConfig.type"
+        ></subscription-applet-ui-status>
+      }
+    </div>
+    <ng-template
+      [ngTemplateOutlet]="template"
+      [ngTemplateOutletContext]="{ service: service }"
+    ></ng-template>
+  </div>
+</div>

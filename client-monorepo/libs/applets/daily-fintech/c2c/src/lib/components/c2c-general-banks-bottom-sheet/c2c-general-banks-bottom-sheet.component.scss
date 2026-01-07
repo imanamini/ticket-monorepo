@@ -1,0 +1,33 @@
+.container{
+  overflow-y: auto;
+  height: 100%;
+}
+.wrapper-banks {
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  row-gap: 20px;
+}
+
+.banks {
+  width: 56px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bank-name {
+  white-space: nowrap;
+}
+
+.badge {
+  padding: 4px 6px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-15%, -25%);
+}
+.bank-card{
+  width: 56px;
+  height: 56px;
+}

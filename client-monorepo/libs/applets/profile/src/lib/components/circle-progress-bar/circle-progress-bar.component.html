@@ -1,0 +1,29 @@
+<div
+  class="circle"
+  [ngStyle]="{ 'width.px': size, 'height.px': size }"
+>
+  <svg
+    [attr.width]="size"
+    [attr.height]="size"
+  >
+    <circle
+      class="bg"
+      [attr.cx]="cx"
+      [attr.cy]="cy"
+      [attr.r]="radius"
+    ></circle>
+    <circle
+      class="progress"
+      [style.stroke]="progressColor"
+      [attr.cx]="cx"
+      [attr.cy]="cy"
+      [attr.r]="radius"
+      [attr.stroke-dasharray]="strokeDasharray"
+      [attr.stroke-dashoffset]="strokeDashoffset"
+    ></circle>
+  </svg>
+
+  <div class="extra-content">
+    <ng-content></ng-content>
+  </div>
+</div>

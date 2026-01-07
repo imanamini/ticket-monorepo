@@ -1,0 +1,24 @@
+.footer {
+  background-color: #f2f5f8;
+  justify-content: space-between;
+  border-top: 1px solid #dee3e7;
+
+  .button-container {
+    min-width: 196px;
+  }
+
+  &.too-small-resolution {
+    flex-direction: column;
+    gap: 16px;
+
+    .footer-description {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .button-container {
+      width: 100%;
+    }
+  }
+}

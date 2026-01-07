@@ -1,0 +1,76 @@
+.promotion-carousel-wrapper {
+  position: relative;
+  overflow: hidden
+}
+
+.promotion-carousel {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  height: 72px;
+}
+
+.promotion-track {
+  animation: slide-up 7.5s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.promotion-card {
+  height: 72px;
+  flex-shrink: 0;
+}
+
+.promotion-image {
+  width: 40px;
+  height: 40px;
+}
+
+.fixed-button {
+  flex-shrink: 0;
+  align-self: center;
+}
+
+
+// Use "generateSlideAnimation" utils to generate new keyframe based on SlideAnimationConfig interface
+@keyframes slide-up {
+  /* === Card 1 === */
+  0% {
+    transform: translateY(0);
+    animation-timing-function: ease-in;
+  }
+  28.57% {
+    transform: translateY(0);
+    animation-timing-function: ease-in;
+  }
+
+  39.29% { // 28.57 + (50 * 0.4286 * 0.5)
+    transform: translateY(-79.2px);
+    animation-timing-function: ease-out;
+  }
+  50% {
+    transform: translateY(-72px);
+    animation-timing-function: ease-in;
+  }
+
+  /* === Card 2 === */
+  50% {
+    transform: translateY(-72px);
+    animation-timing-function: ease-in;
+  }
+  78.57% {
+    transform: translateY(-72px);
+    animation-timing-function: ease-in;
+  }
+
+  89.29% { // 78.57 + (50 * 0.4286 * 0.5)
+    transform: translateY(-151.2px);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: translateY(-144px);
+    animation-timing-function: ease-in;
+  }
+}
+
+

@@ -1,0 +1,333 @@
+@import "globals";
+
+//::ng-deep {
+/*
+Start
+Intro Index Services
+**************************************************************************/
+.services-swiper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  min-height: 324px;
+}
+
+.swiper-placeholder {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+}
+
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: -90px;
+}
+
+.services-swiper > div {
+  width: 100%;
+}
+
+.services-swiper__item {
+  z-index: 1;
+  width: 216px;
+  height: 216px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+
+  .services-swiper__item-contain {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    border: 2px solid #b1bfef;
+    border-radius: 30px;
+    background-color: #b1bfef;
+    padding: 32px;
+  }
+
+  .services-swiper__icon-2d,
+  .services-swiper__icon-3d {
+    img {
+      transition: 0.5s;
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  .services-swiper__icon-3d {
+    opacity: 0;
+  }
+
+  .services-swiper__titles {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 60px;
+
+    .services-swiper__title > span {
+      font-size: 18px;
+      font-weight: 800;
+      color: $text-color;
+    }
+
+    .services-swiper__subtitle {
+      display: none;
+    }
+  }
+
+  &.center {
+    width: 324px !important;
+    height: 324px !important;
+    box-shadow: 0 17.6327px 88.1635px -17.6327px rgba(6, 25, 98, 0.3);
+    z-index: 5;
+    border-color: #b1bfef;
+    border-radius: 40px;
+    transform: translate(17%, 0) !important;
+
+    .services-swiper__icon {
+      position: absolute;
+      top: -40px;
+    }
+
+    .services-swiper__icon-2d {
+      display: none;
+      opacity: 0;
+    }
+
+    .services-swiper__icon-3d {
+      opacity: 1;
+
+      img {
+        width: 286px;
+        height: 286px;
+      }
+    }
+
+    .services-swiper__titles {
+      & > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .services-swiper__title {
+        margin-bottom: 15px;
+
+        span {
+          font-size: 24px;
+          color: #183ff5;
+        }
+      }
+
+      .services-swiper__subtitle {
+        display: unset;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.swiper-slide.swiper-slide-active {
+  z-index: 2;
+}
+
+.services-swiper__item a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.services-swiper__item.active .services-swiper__item-contain > div {
+  opacity: 1;
+}
+
+.services-swiper__item .services-swiper__item-contain {
+  opacity: 0.1;
+}
+
+.services-swiper__item.active .services-swiper__item-contain {
+  opacity: 1;
+}
+
+@media (max-width: 1280px) {
+  .services-swiper__item {
+    width: 196px !important;
+    height: 196px !important;
+
+    .services-swiper__titles {
+      bottom: 38px;
+
+      & > div {
+        margin-top: 10px;
+      }
+
+      .services-swiper__title {
+        margin-bottom: 8px;
+      }
+
+      .services-swiper__title > span {
+        font-size: 14px;
+      }
+    }
+
+    .services-swiper__item-contain {
+      border-radius: 22px;
+    }
+
+    &.center {
+      width: 294px !important;
+      height: 294px !important;
+
+      .services-swiper__item-contain {
+        border-radius: 30px;
+      }
+
+      .services-swiper__icon {
+        top: 0;
+
+        .services-swiper__icon-2d img,
+        .services-swiper__icon-3d img {
+          width: 176px;
+          height: 176px;
+        }
+      }
+
+      .services-swiper__title {
+        & > span {
+          font-size: 22px;
+        }
+      }
+
+      .services-swiper__subtitle > span {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .index-intro {
+    padding-top: 140px !important;
+  }
+
+  .services-swiper__item {
+    width: 150px !important;
+    height: 150px !important;
+
+    .services-swiper__item-contain {
+      border-width: 3px;
+      border-radius: 20px;
+      font-size: 10px;
+    }
+
+    .services-swiper__titles * {
+      font-size: 0;
+      -webkit-transition: 0.2s font-size, 0.5s opacity;
+      transition: 0.2s font-size, 0.5s opacity;
+      opacity: 0;
+    }
+
+    .services-swiper__icon {
+      margin-top: 0;
+
+      .services-swiper__icon-2d img,
+      .services-swiper__icon-3d img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    &.center {
+      width: 200px !important;
+      height: 200px !important;
+
+      .services-swiper__icon {
+        top: -20px;
+      }
+
+      .services-swiper__titles {
+        bottom: 27px;
+
+        * {
+          font-size: 2.4vw;
+          opacity: 1;
+        }
+
+        .services-swiper__title {
+          margin: 0;
+
+          & > span {
+            font-size: 18px;
+          }
+        }
+
+        .services-swiper__subtitle {
+          margin: 0;
+
+          & > span {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+
+  .center.services-swiper__item .services-swiper__titles > div {
+    margin-top: 20px;
+
+    .services-swiper__subtitle {
+      padding: 0 10px;
+    }
+  }
+}
+
+@media (max-width: 440px) {
+  .services-swiper__item {
+    width: 130px !important;
+    height: 130px !important;
+
+    .services-swiper__icon {
+      margin-top: 0;
+
+      .services-swiper__icon-2d img,
+      .services-swiper__icon-3d img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    &.center {
+      width: 180px !important;
+      height: 180px !important;
+
+      .services-swiper__icon {
+        top: 0;
+
+        .services-swiper__icon-2d img,
+        .services-swiper__icon-3d img {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    }
+  }
+}

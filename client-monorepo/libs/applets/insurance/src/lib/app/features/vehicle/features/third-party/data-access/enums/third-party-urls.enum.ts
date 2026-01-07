@@ -1,0 +1,30 @@
+import { ThirdPartyRoutesEnum } from './third-party-routes.enum';
+
+export enum ThirdPartyUrlsEnum {
+  ThirdParty = '',
+  CarInfo = ThirdPartyRoutesEnum.CarInfo,
+  ExInsurer = ThirdPartyUrlsEnum.CarInfo + '/' + ThirdPartyRoutesEnum.ExInsurer,
+  ExInsurerDate = ThirdPartyUrlsEnum.ExInsurer + '/' + ThirdPartyRoutesEnum.Date,
+  ExInsurerInfo = ThirdPartyUrlsEnum.CarInfo + '/' + ThirdPartyRoutesEnum.ExInsurerInfo,
+  Sanhab = ThirdPartyRoutesEnum.Sanhab,
+  SanhabCarInfo = ThirdPartyUrlsEnum.Sanhab + '/' + ThirdPartyRoutesEnum.CarInfo,
+  OwnershipChange = ThirdPartyUrlsEnum.CarInfo + '/' + ThirdPartyRoutesEnum.ExInsurerInfo,
+  Discount = ThirdPartyUrlsEnum.CarInfo + '/' + ThirdPartyRoutesEnum.Discount,
+  DiscountDetail = ThirdPartyUrlsEnum.Discount + '/' + ThirdPartyRoutesEnum.Detail,
+  Claim = ThirdPartyUrlsEnum.CarInfo + '/' + ThirdPartyRoutesEnum.Claim,
+  ClaimDetail = ThirdPartyUrlsEnum.Claim + '/' + ThirdPartyRoutesEnum.Detail,
+  PriceCardList = ThirdPartyRoutesEnum.PriceCardList,
+  OrderCheckout = ThirdPartyRoutesEnum.Order + '/' + ThirdPartyRoutesEnum.Checkout,
+  PaymentResult = ThirdPartyRoutesEnum.Payment + '/' + ThirdPartyRoutesEnum.Result,
+  UserInfo = ThirdPartyRoutesEnum.Order + '/' + ThirdPartyRoutesEnum.UserInfo,
+  Address = ThirdPartyRoutesEnum.Order + '/' + ThirdPartyRoutesEnum.Address,
+  GetPolicyMethod = ThirdPartyRoutesEnum.Order + '/' + ThirdPartyRoutesEnum.GetPolicyMethod,
+  UploadDocument = ThirdPartyRoutesEnum.Order + '/' + ThirdPartyRoutesEnum.UploadDocument,
+  Complete = ThirdPartyRoutesEnum.Order + '/' + ThirdPartyRoutesEnum.Complete,
+  State = ThirdPartyRoutesEnum.Order + '/' + ThirdPartyRoutesEnum.State,
+  OrderComplete = ThirdPartyRoutesEnum.Order + '/' + ThirdPartyRoutesEnum.Complete,
+  GoToPayment = ThirdPartyRoutesEnum.Payment + '/' + ThirdPartyRoutesEnum.GoToPayment,
+  ResolveDocumentsConflict = ThirdPartyRoutesEnum.Order + '/' + ThirdPartyRoutesEnum.ResolveDocumentsConflict,
+  PLPCardSelect = ThirdPartyRoutesEnum.PriceCardList + '/' + ThirdPartyRoutesEnum.PLPCardSelect,
+  OrderVerifyPostalCode = ThirdPartyRoutesEnum.Order + '/' + ThirdPartyRoutesEnum.VerifyPostalCode
+}

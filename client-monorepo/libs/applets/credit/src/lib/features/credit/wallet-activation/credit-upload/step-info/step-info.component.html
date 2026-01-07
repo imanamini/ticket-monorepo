@@ -1,0 +1,15 @@
+<app-credit-app-bar
+  (onCloseButtonClick)="buttonClick()"
+  [closeButton]="true"
+  [title]="title()!"
+></app-credit-app-bar>
+<div class="flex-full-height">
+  <div class="page-section">
+    @if (_html() && !gettingContent()) {
+      <iframe [srcdoc]="_html()"></iframe>
+    }
+  </div>
+  <div class="button-section">
+    <ngx-button (clickHandler)="buttonClick()">{{ buttonText() }}</ngx-button>
+  </div>
+</div>

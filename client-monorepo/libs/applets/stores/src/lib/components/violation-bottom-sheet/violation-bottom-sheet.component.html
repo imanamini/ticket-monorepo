@@ -1,0 +1,19 @@
+<ngx-bottom-sheet-header
+  [title]="title()"
+  [hasBorder]="false"
+></ngx-bottom-sheet-header>
+<ngx-divider [color]="BorderColorsEnum.Light"></ngx-divider>
+@if (items().length) {
+  @for (item of items(); track item.id) {
+    <div class="py-medium">
+      <ngx-list-item
+        [title]="'از طریق ' + item.title"
+        [leftIcon]="icon"
+        (click)="handleItemClick(item)"
+      ></ngx-list-item>
+    </div>
+    @if (!$last) {
+      <ngx-divider [color]="BorderColorsEnum.Light"></ngx-divider>
+    }
+  }
+}

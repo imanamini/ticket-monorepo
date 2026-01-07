@@ -1,0 +1,64 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  [title]="'فعال سازی خرید اعتباری امن'"
+  [hasBackAction]="false"
+  [showBorder]="true"
+  [showBackIcon]="true"
+>
+  <div
+    class="d-flex flex-column justify-content-space-between h-100vh p-medium"
+    style="height: 100vh"
+  >
+    <div>
+      <p class="st-8 mb-pony">یکی از این گزینه‌ها را فعال کنید:</p>
+      @for (option of pluginActivationOptions(); track $index) {
+        <div
+          class="d-flex justify-content-space-between align-items-center p-pony radius-minus border-100 border-color-tint mb-pony"
+          (click)="handleCheckChange(option.id, option.id !== selectedOption().id)"
+        >
+          <div class="d-flex justify-content-start align-items-center gap-small b-2">
+            <img
+              class="radius-small"
+              [src]="option.img"
+              [alt]="option.name"
+              width="36"
+              height="36"
+            />
+            <p class="b-3">
+              {{ option.name }}
+            </p>
+          </div>
+          <ngx-radio-button
+            [size]="20"
+            [checked]="option.id === selectedOption().id"
+            (checkedChange)="handleCheckChange(option.id, $event)"
+          ></ngx-radio-button>
+        </div>
+      }
+      <div class="mt-big">
+        <div class="d-flex">
+          <p class="c-1">توضیحات</p>
+        </div>
+        <p class="b-2 text-onback-medium mt-small">
+          با فعال سازی این سرویس، خریداران می‌توانند به صورت قسطی محصول شما را خریداری کنند. پس از تحویل کالا مبلغ کل محصول به کیف پول شما
+          واریز خواهد شد.
+        </p>
+      </div>
+    </div>
+    <div class="d-flex justify-content-space-between gap-minus">
+      <a href="tel:02153924000"> پشتیبانی 53924000</a>
+
+      <ngx-button
+        [mode]="'form'"
+        [size]="'large'"
+        [style]="'fill'"
+        [fullWidth]="true"
+        (clickHandler)="activePlugin()"
+        [isLoading]="isLoading()"
+        [disabled]="!selectedOption().id"
+      >
+        فعال سازی رایگان
+      </ngx-button>
+    </div>
+  </div>
+</common-ui-components-page-layout>

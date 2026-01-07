@@ -1,0 +1,129 @@
+<app-base-layout [loaded]="!!jobPost">
+  <div
+    *ngIf="jobPost"
+    class="job-post"
+    dir="ltr"
+  >
+    <article [dir]="jobPost.language && jobPost.language === 'fa' ? 'rtl' : 'ltr'">
+      <header class="job-post-header">
+        <h1>{{ jobPost.title }}</h1>
+        <p>
+          {{ jobPost.jobCategory.englishName }} - {{ jobPost.workModel }} -
+          {{ jobPost.location }}
+        </p>
+        <!--        <p class="job-meta"></p>-->
+      </header>
+      <ul
+        class="breadcrumbs"
+        dir="ltr"
+      >
+        <li>
+          <a [routerLink]="'/careers'"> Careers </a>
+        </li>
+        <li
+          *ngIf="!displayingApplySection"
+          class="highlight"
+        >
+          {{ jobPost.title }}
+        </li>
+        <li *ngIf="displayingApplySection">
+          <a
+            [queryParams]="{ apply: null }"
+            [routerLink]="'/careers/job/' + jobPost.jobPostId"
+          >
+            {{ jobPost.title }}
+          </a>
+        </li>
+        <li
+          *ngIf="displayingApplySection"
+          class="highlight"
+        >
+          Apply
+        </li>
+      </ul>
+
+      <ng-container *ngIf="!displayingApplySection">
+        <section class="job-post-body">
+          <ng-container *ngIf="jobPost.description">
+            <h2>
+              {{ jobPost.language && jobPost.language === 'fa' ? 'شرح موقعیت شغلی' : 'Job Description' }}
+            </h2>
+            <div
+              [innerHtml]="jobPost.description"
+              class="body"
+            ></div>
+          </ng-container>
+          <ng-container *ngIf="jobPost.responsibilities">
+            <h2>
+              {{ jobPost.language && jobPost.language === 'fa' ? 'مسئولیت‌ها' : 'Responsibilities' }}
+            </h2>
+            <div
+              [innerHtml]="jobPost.responsibilities"
+              class="body"
+            ></div>
+          </ng-container>
+          <ng-container *ngIf="jobPost.requirements">
+            <h2>
+              {{ jobPost.language && jobPost.language === 'fa' ? 'نیازمندی‌ها' : 'Requirements' }}
+            </h2>
+            <div
+              [innerHtml]="jobPost.requirements"
+              class="body"
+            ></div>
+          </ng-container>
+          <ng-container *ngIf="jobPost.importantPoints">
+            <h2>
+              {{ jobPost.language && jobPost.language === 'fa' ? 'ملاحظات' : 'Notice' }}
+            </h2>
+            <div
+              [innerHtml]="jobPost.importantPoints"
+              class="body"
+            ></div>
+          </ng-container>
+          <div
+            *ngIf="jobPost.additionalDescription"
+            [innerHtml]="jobPost.additionalDescription"
+            class="body"
+          ></div>
+        </section>
+        <div class="apply-cta">
+          <app-ui-button
+            [link]="'/careers'"
+            [useRouterLink]="true"
+            appearance="OUTLINE-BLUE"
+            >{{ jobPost.language && jobPost.language === 'fa' ? 'بازگشت' : 'Back' }}
+          </app-ui-button>
+          <app-ui-button (clicked)="applyForThisJob()"
+            >{{ jobPost.language && jobPost.language === 'fa' ? 'ارسال رزومه' : 'Apply for this job' }}
+          </app-ui-button>
+        </div>
+      </ng-container>
+    </article>
+
+    <ng-container *ngIf="displayingApplySection">
+      <div
+        *ngIf="!successfulApplicationResponse"
+        class="content-box"
+      >
+        <app-application-form
+          (successfulApply)="onSuccessfulApply($event)"
+          [jobPostId]="jobPost.jobPostId"
+        ></app-application-form>
+      </div>
+
+      <div
+        *ngIf="successfulApplicationResponse"
+        class="successful-application"
+      >
+        <h3 class="title">{{ successfulApplicationResponse.message }}</h3>
+        <p class="desc">{{ successfulApplicationResponse.description }}</p>
+        <app-ui-button
+          [link]="'/careers'"
+          [useRouterLink]="true"
+          class="cta"
+          >بازگشت به فرصت‌های شغلی
+        </app-ui-button>
+      </div>
+    </ng-container>
+  </div>
+</app-base-layout>

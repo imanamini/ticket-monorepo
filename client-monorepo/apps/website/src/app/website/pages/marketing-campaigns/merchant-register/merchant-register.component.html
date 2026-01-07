@@ -1,0 +1,52 @@
+<app-base-layout
+  *ngIf="creditCampaignPage && creditCampaignPage.templateData"
+  [loaded]="loaded"
+>
+  <app-intro-section
+    *ngIf="creditCampaignPage?.templateData?.heroSection?.title"
+    [heroSection]="creditCampaignPage.templateData.heroSection"
+  ></app-intro-section>
+
+  <app-content-section
+    *ngIf="creditCampaignPage?.templateData?.contentSection.length"
+    [contentSection]="creditCampaignPage.templateData.contentSection"
+  ></app-content-section>
+
+  <app-digipay-services
+    *ngIf="creditCampaignPage?.templateData?.servicesSection.title"
+    [servicesSection]="creditCampaignPage.templateData.servicesSection"
+  ></app-digipay-services>
+
+  <app-home-customers
+    *ngIf="creditCampaignPage?.templateData?.merchantsSection"
+    [customers]="creditCampaignPage.templateData.merchantsSection"
+    [merchantRegister]="true"
+    [autoplay]="true"
+  ></app-home-customers>
+
+  <app-sells-steps
+    *ngIf="creditCampaignPage?.templateData?.stepsSection?.title"
+    [stepsSection]="creditCampaignPage.templateData.stepsSection"
+  ></app-sells-steps>
+  <app-merchant-register-form
+    id="merchant-form"
+    *ngIf="creditCampaignPage?.templateData?.registrationForm?.title"
+    [merchantRegisterForm]="contactForm"
+    [registrationForm]="creditCampaignPage.templateData.registrationForm"
+  ></app-merchant-register-form>
+  <app-digipay-catalog
+    *ngIf="creditCampaignPage?.templateData?.bannerSection?.title"
+    [bannerSection]="creditCampaignPage.templateData.bannerSection"
+  ></app-digipay-catalog>
+
+  <app-ui-faq
+    *ngIf="
+      creditCampaignPage.templateData.faq &&
+      creditCampaignPage.templateData.faq.faqItems &&
+      creditCampaignPage.templateData.faq.faqItems.length > 0
+    "
+    [faqs]="creditCampaignPage.templateData.faq.faqItems"
+    [subtitle]="creditCampaignPage.templateData.faq.subtitle"
+    [title]="creditCampaignPage.templateData.faq.title"
+  ></app-ui-faq>
+</app-base-layout>

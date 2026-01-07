@@ -1,0 +1,72 @@
+<common-ui-components-page-layout
+  [showBorder]="true"
+  [title]="'افزودن موجودی'"
+  (onBackAction)="onBack()"
+>
+  <div
+    *ngIf="isLoaded"
+    class="page-content flex-full-height wrapper"
+  >
+    <div class="flex-grow">
+      <div class="cash-in-wrapper">
+        <div class="content">
+          <cash-in-applet-amount-info [walletBalance]="cashInConfig.walletBalance"></cash-in-applet-amount-info>
+          <span class="form-primary-text">
+            مبلغ افزایش موجودی را وارد کنید.
+            <div
+              class="blue-info"
+              [ngxTooltip]="tooltipText"
+              [tooltipType]="'hover'"
+              (click)="onClickTooltip()"
+            ></div>
+          </span>
+          <ui-form-field
+            [type]="'large-amount'"
+            [minAmount]="cashInConfig.minAmount"
+            [maxAmount]="cashInConfig.maxAmount"
+            [ngModel]="cashInForm.value.amount"
+            (ngModelChange)="valueChanged($event)"
+            [autoFocus]="true"
+          >
+          </ui-form-field>
+          <cash-in-applet-amount-suggestions
+            (selected)="onSuggestionSelect($event)"
+            [selectedValue]="cashInForm.value?.amountInteger"
+            [suggestions]="cashInDefaults"
+            class="amount-suggestions"
+          >
+          </cash-in-applet-amount-suggestions>
+          <div
+            [class.hide-hint]="hintAlreadyRead()"
+            class="hint"
+            id="cash-in-hint"
+          >
+            <cash-in-applet-hint (hintWasRead)="hintAlreadyRead.set(true)"></cash-in-applet-hint>
+          </div>
+        </div>
+
+        <div class="action-button">
+          <ngx-button
+            size="medium"
+            [isLoading]="isSubmitting()"
+            [disabled]="isSubmitting()"
+            [fullWidth]="true"
+            (clickHandler)="onSubmit()"
+            [style]="'fill'"
+            [brandButton]="true"
+          >
+            ادامه
+          </ngx-button>
+          <ngx-button
+            [class.gift-button]="!hintAlreadyRead()"
+            size="medium"
+            [style]="'tinted-on-elevated'"
+            [fullWidth]="true"
+            (clickHandler)="displayVoucherCodeUi()"
+            >کد هدیه دارید؟
+          </ngx-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</common-ui-components-page-layout>

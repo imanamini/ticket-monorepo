@@ -1,0 +1,285 @@
+<div class="w-100 d-flex flex-wrap surface-elevated h-100">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'انتخاب مبلغ اعتبار'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  @if (false) {
+    <div class="w-100 d-flex flex-wrap align-items-center justify-content-center px-plus mt-big content">
+      <div class="w-100 d-flex align-items-center onback-shade-99 radius-medium px-minus py-pony">
+        <img
+          src="./wealth-assets/svg/bnpl-add.svg"
+          alt="request"
+        />
+
+        <p class="c-1 text-onback-high mr-low">چون خوش‌ حسابی، اعتبار بیشتری می‌گیری!</p>
+
+        <ngx-button
+          [mode]="'icon-only'"
+          [style]="'neutral-link'"
+          [size]="'small'"
+          [leftIcon]="{
+            name: 'question-mark-circle',
+          }"
+          (clickHandler)="openBottomsheet()"
+        />
+      </div>
+
+      <div class="w-100 d-flex flex-wrap mt-plus align-items-center justify-content-space-between">
+        <span class="b-3 text-onback-low">موجودی کیف ثروت: </span>
+        <span class="c-1 text-onback-low">
+          {{ state().walletWithdrawableBalance | thousands }}
+          <span class="c-2"> ریال </span>
+        </span>
+      </div>
+
+      <div class="w-100 d-flex flex-wrap mt-big">
+        <p class="w-100 st-8 text-onback-high">انتخاب مبلغ اعتبار</p>
+
+        <div class="w-100 mt-medium">
+          <div class="w-100 d-flex flex-wrap radius-medium border-color-light border-100 py-small px-minus">
+            <div
+              class="w-100 d-flex align-items-center justify-content-space-between cursor-pointer"
+              (click)="toggleCustomAmount()"
+            >
+              <ngx-button
+                [size]="'medium'"
+                [style]="'link'"
+              >
+                مبلغ دلخواه
+              </ngx-button>
+              <ngx-button
+                [size]="'tiny'"
+                [mode]="'icon-only'"
+                [style]="'link'"
+                [leftIcon]="{
+                  name: customAmount() ? 'arrow-2-up' : 'arrow-2-down',
+                }"
+              />
+            </div>
+
+            @if (customAmount()) {
+              <div class="w-100 my-small d-flex flex-wrap">
+                <div class="w-100 input-container border-100 border-color-tint radius-minus p-minus">
+                  <div class="d-flex justify-content-center">
+                    <ngx-button
+                      class="btn-input-actions radius-small mt-tiny"
+                      [style]="'neutral-link'"
+                      [mode]="'icon-only'"
+                      [rightIcon]="{
+                        name: 'plus',
+                      }"
+                      [size]="'small'"
+                      (clickHandler)="increaseAmount()"
+                    />
+                  </div>
+                  <ui-form-field
+                    [placeholder]="'ورود مبلغ (ریال)'"
+                    [hasRialStickyText]="true"
+                    [isNumericKeyboard]="true"
+                    [convertNonEnglishDigits]="true"
+                    [formControl]="amount"
+                    [autoFocus]="true"
+                    [type]="'amount'"
+                    [errorMessage]="errorMessage()"
+                    [minAmount]="state().minAmount"
+                    [maxAmount]="state().maxAmount"
+                  ></ui-form-field>
+                  <div class="d-flex justify-content-center">
+                    <ngx-button
+                      class="btn-input-actions radius-small mt-tiny"
+                      [style]="'neutral-link'"
+                      [mode]="'icon-only'"
+                      [rightIcon]="{
+                        name: 'minus',
+                      }"
+                      [size]="'small'"
+                      (clickHandler)="decreaseAmount()"
+                    />
+                  </div>
+                </div>
+
+                <ng-container
+                  [ngTemplateOutlet]="content"
+                  [ngTemplateOutletContext]="{ credit: unsecureAmount(), payableAmount: payableAmount() }"
+                >
+                </ng-container>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="w-100 d-flex flex-wrap mt-minus">
+        @for (amount of state().plans; track amount) {
+          <div
+            class="w-100 d-flex flex-wrap align-items-center justify-content-space-between border-color-light radius-medium border-100 p-plus pb-medium mb-minus"
+            [ngClass]="{ 'border-color-brand': amount.id === selectedOptionId() }"
+            (click)="handleSelectedAmount(amount)"
+          >
+            <div class="w-100 d-flex align-items-center justify-content-space-between">
+              <p class="st-7 text-onback-high">
+                مجموع اعتبار: {{ amount.credit | thousands }}
+                <span class="c-1"> ریال </span>
+              </p>
+              <ngx-radio-button
+                [checked]="amount.id === selectedOptionId()"
+                [size]="20"
+                [disabled]="false"
+              ></ngx-radio-button>
+            </div>
+
+            <ngx-divider
+              class="w-100 mt-small mb-minus"
+              [color]="BorderColorsEnum.Air"
+            ></ngx-divider>
+
+            <ng-container
+              [ngTemplateOutlet]="content"
+              [ngTemplateOutletContext]="{ credit: amount.unsecureAmount, payableAmount: amount.rechargeAmount }"
+            >
+            </ng-container>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <div class="w-100 d-flex flex-wrap align-items-center justify-content-center px-plus mt-big content">
+    <div
+      class="w-100 d-flex flex-wrap mt-medium"
+      [formGroup]="form"
+    >
+      <div class="w-100 d-flex align-items-center mb-medium">
+        <span class="b-2 text-onback-high"> مبلغ درخواستی اعتبار خود را انتخاب کنید. </span>
+      </div>
+
+      <ui-form-field
+        class="w-100"
+        [placeholder]="'ورود مبلغ (ریال)'"
+        [hasRialStickyText]="true"
+        [isNumericKeyboard]="true"
+        [convertNonEnglishDigits]="true"
+        formControlName="amount"
+        [autoFocus]="true"
+        [hasCleaner]="true"
+        [type]="'amount'"
+        [hint]="
+          form.controls['amount'].hasError('min')
+            ? minAmountMessage()
+            : form.controls['amount'].hasError('max')
+              ? maxAmountMessage()
+              : !form.controls['amount'].value
+                ? 'مبلغ باید ضریبی از ' + (state().roundDown | thousands) + ' ریال باشد.'
+                : ''
+        "
+        [error]="form.controls['amount'].errors ?? {}"
+        [errorMessageMapper]="{
+          min: minAmountMessage(),
+          max: maxAmountMessage(),
+        }"
+      ></ui-form-field>
+
+      <div class="w-100 auto-fill-container mt-small">
+        @for (button of autoCompleteButtons(); track button) {
+          <div
+            class="cursor-pointer surface-back radius-small py-tiny text-align-center d-flex align-items-center justify-content-center button"
+            (click)="handleAutoFill(button)"
+            [ngClass]="{ 'active-amount': selectedAutoCompleteButton() === button.id }"
+          >
+            <span
+              class="l-2 text-onback-high"
+              [ngClass]="{ 'text-oninvert-high': selectedAutoCompleteButton() === button.id }"
+            >
+              @if (button.id === 1 && state().walletWithdrawableBalance >= state().minBnplAmount) {
+                <span class="st-8">
+                  {{ button.amount }}
+                </span>
+              } @else {
+                <span class="st-8">
+                  {{ button.amount | thousands }}
+                </span>
+                ریال
+              }
+            </span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="w-100 mt-big d-flex flex-wrap surface-back radius-minus px-plus py-medium">
+      @for (info of walletInfo(); track info; let first = $first) {
+        <div
+          class="w-100 d-flex align-items-center justify-content-space-between"
+          [ngClass]="{ 'mb-medium': first }"
+        >
+          <span
+            class="b-3 text-onback-medium"
+            [ngClass]="{ 'c-2': !first }"
+            >{{ info.key }}</span
+          >
+          <span class="c-2 text-onback-medium">{{ info.value | thousands }} ریال </span>
+        </div>
+      }
+    </div>
+  </div>
+  <div class="w-100 surface-elevated py-big px-plus button-container">
+    <div class="w-100 d-flex">
+      @if (state().requireAgreement) {
+        <ngx-checkbox
+          class="align-items-center mt-small mb-medium"
+          (checkedChange)="onToggleAgreement($event)"
+          [checked]="agreementChecked()"
+        >
+          <div class="d-flex gap-tiny check-box-text">
+            <span>شرایط</span>
+            <span
+              (click)="agreementView(pdfType.REGULATIONS)"
+              class="text-onback-brand"
+            >
+              قوانین و مقررات
+            </span>
+            <span>را می‌پذیرم.</span>
+          </div>
+        </ngx-checkbox>
+      }
+    </div>
+
+    <ngx-button
+      [fullWidth]="true"
+      [isLoading]="btnLoading()"
+      [disabled]="state().requireAgreement && !agreementChecked()"
+      (clickHandler)="continue()"
+    >
+      تایید اعتبار و افزایش موجودی
+    </ngx-button>
+  </div>
+</div>
+
+<ng-template
+  #content
+  let-credit="credit"
+  let-payableAmount="payableAmount"
+>
+  <div class="w-100 d-flex flex-wrap align-items-center justify-content-space-between">
+    <span class="text-onback-low b-3"> اعتبار خوش حسابی: </span>
+    <span class="text-onback-low c-1"
+      >{{ credit | thousands }}
+      <span class="c-2"> ریال </span>
+    </span>
+  </div>
+  <div class="w-100 d-flex flex-wrap align-items-center justify-content-space-between mt-minus">
+    <span class="text-onback-low b-3"> نیاز به افزایش موجودی: </span>
+    <span class="text-onback-low c-1"
+      >{{ payableAmount | thousands }}
+      <span class="c-2"> ریال </span>
+    </span>
+  </div>
+</ng-template>

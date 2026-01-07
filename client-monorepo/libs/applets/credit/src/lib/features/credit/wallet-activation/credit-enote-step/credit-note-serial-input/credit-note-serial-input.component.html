@@ -1,0 +1,40 @@
+<div class="container">
+  <div
+    (click)="onInputHandler()"
+    [class]="{
+      input: true,
+      showError: touched() && error(),
+    }"
+  >
+    <div class="title">سری</div>
+    <div class="content">
+      <div class="values">
+        <div class="alphabet">
+          @if (alphabetPart()) {
+            {{ alphabetPart() }}
+          }
+          @if (!alphabetPart()) {
+            <div class="placeholder"></div>
+          }
+        </div>
+
+        <span>/</span>
+
+        <div class="number">
+          @if (numberPart()) {
+            {{ numberPart() }}
+          }
+          @if (!numberPart()) {
+            <div class="placeholder"></div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  @if (error() && touched()) {
+    <div class="error">
+      {{ errorMapper()![Object.keys(error()!)[0]] }}
+    </div>
+  }
+</div>

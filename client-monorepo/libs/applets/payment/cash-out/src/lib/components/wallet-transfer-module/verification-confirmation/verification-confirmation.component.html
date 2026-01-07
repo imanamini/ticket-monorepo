@@ -1,0 +1,45 @@
+<common-ui-components-page-layout
+  [showBorder]="true"
+  [title]="'احراز هویت'"
+>
+  <div class="verification-confirmation">
+    <div class="page-content">
+      <img
+        alt="digipay"
+        class="digipay-logo"
+        height="16"
+        src="/assets/cash-out/wallet-transfer/digipay-with-slogan.svg"
+        width="16"
+      />
+      @if (userCellNumberService.cellNumber() !== "") {
+        <h2 class="cell-number">{{ userCellNumberService.cellNumber() }}</h2>
+      } @else {
+        <div class="skeleton-cell-number">
+          <lib-ngx-skeleton-loading
+            [height]="'24px'"
+            [width]="'200px'"
+            [classes]="'radius-medium'"
+          ></lib-ngx-skeleton-loading>
+        </div>
+      }
+      <p class="description">به منظور احراز هویت شماره همراه شما، کد فعال‌سازی به شماره همراه بالا ارسال خواهد شد.</p>
+      <div class="button-container">
+        <ngx-button
+          (clickHandler)="accept()"
+          [brandButton]="true"
+          [disabled]="sendingSms"
+          [isLoading]="sendingSms"
+          [size]="'medium'"
+        >
+          قبول شرایط و ادامه
+        </ngx-button>
+
+        <a
+          (click)="openConditionsDialog()"
+          class="condition-link"
+          >شرایط استفاده از دیجی‌پی</a
+        >
+      </div>
+    </div>
+  </div>
+</common-ui-components-page-layout>

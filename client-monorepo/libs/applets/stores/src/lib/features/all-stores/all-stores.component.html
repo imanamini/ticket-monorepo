@@ -1,0 +1,138 @@
+<common-ui-components-page-layout
+  [title]="'فروشگاه‌ها'"
+  [showBorder]="false"
+  [hasBackAction]="true"
+  [actionText]="'راهنمای خرید'"
+  [infoButton]="true"
+  [actionSize]="'small'"
+  (onTextClick)="openGuideBottomSheet()"
+>
+  <!-- Page Content -->
+  <div class="d-flex flex-column pb-small">
+    <div class="d-flex flex-column gap-minus">
+      <!-- Search -->
+      <common-ui-components-search
+        class="px-plus"
+        [placeHolder]="'جست‌وجوی فروشگاه'"
+        (searchTextChange)="doSearch($event)"
+        [mode]="'section'"
+      >
+      </common-ui-components-search>
+      <!-- End Search -->
+
+      <!-- Filters -->
+      <common-ui-components-filter
+        class="pr-plus"
+        [isActive]="true"
+        [buttonIcon]="'filter'"
+        [size]="'MEDIUM'"
+        (toggleFilter)="handleFilterToggle()"
+      >
+        <div class="d-flex flex-row gap-low">
+          @if (activeFilterItems() && activeFilterItems().length > 0) {
+            <div class="d-flex flex-row gap-low">
+              @for (filter of activeFilterItems(); track 'active' + filter.value + filter.label) {
+                <ngx-chip
+                  [id]="filter.value + filter.label"
+                  [trailingIcon]="chipsTypeToIconMapper[filter.type]"
+                  [label]="filter.label"
+                  [disableAnimations]="true"
+                  [pressed]="filter.pressed"
+                  [size]="'MEDIUM'"
+                  [disableClick]="true"
+                  (click)="handleBaseFilterClick(filter)"
+                  (trailingIconClicked)="activeFilterTrailingIconClick(filter)"
+                ></ngx-chip>
+              }
+            </div>
+          }
+          @if (baseFilterItemsToShow() && baseFilterItemsToShow().length) {
+            <div class="d-flex flex-row gap-low">
+              @for (filter of baseFilterItemsToShow(); track 'base' + filter.value + filter.label) {
+                <ngx-chip
+                  [id]="filter.value + filter.label"
+                  [trailingIcon]="chipsTypeToIconMapper[filter.type]"
+                  [label]="filter.label"
+                  [disableAnimations]="true"
+                  [pressed]="filter.pressed"
+                  [size]="'MEDIUM'"
+                  [disableClick]="true"
+                  (click)="handleBaseFilterClick(filter)"
+                ></ngx-chip>
+              }
+            </div>
+          }
+        </div>
+      </common-ui-components-filter>
+      <!-- End Filters -->
+    </div>
+
+    <div class="d-flex flex-column gap-minus px-plus">
+      <!-- Total Items -->
+      @if (totalStoreItems() !== undefined) {
+        @if (totalStoreItems()) {
+          <div class="d-flex flex-row justify-items-start c-3 text-onback-high">{{ totalStoreItems() }} فروشگاه یافت شد</div>
+        }
+      } @else {
+        <lib-ngx-skeleton-loading
+          [height]="'20px'"
+          [width]="'100%'"
+          [classes]="'radius-minus'"
+        ></lib-ngx-skeleton-loading>
+      }
+      <!-- End Total Items -->
+
+      <!-- Stores List -->
+      @if (storesToShow() !== undefined) {
+        <div
+          class="d-flex flex-column gap-minus"
+          commonUtilitiesScrolledToEnd
+          (scrolledToEnd)="listEnded()"
+        >
+          @if (storesToShow()?.length) {
+            @for (store of storesToShow(); track $index + store.title) {
+              <common-ui-components-item-overview
+                [mixedBlendModeEnabled]="true"
+                [item]="store"
+                (click)="goToStoreShop(store)"
+              >
+              </common-ui-components-item-overview>
+            }
+          } @else {
+            @if (!storesLoading()) {
+              <common-ui-components-no-item
+                class="mt-large"
+                [description]="'فروشگاهی بر اساس فیلترهای شما پیدا نشد!'"
+                [buttonTitle]="'حذف فیلترها'"
+                (buttonClicked)="deleteAllFilters()"
+              >
+              </common-ui-components-no-item>
+            }
+          }
+        </div>
+
+        @if (storesLoading()) {
+          <div class="d-flex flex-column gap-minus">
+            @for (_ of rangeCreator(4); track $index) {
+              <lib-ngx-skeleton-loading
+                [height]="'72.84px'"
+                [width]="'100%'"
+                [classes]="'radius-minus'"
+              ></lib-ngx-skeleton-loading>
+            }
+          </div>
+        }
+      } @else {
+        @for (_ of rangeCreator(4); track $index) {
+          <lib-ngx-skeleton-loading
+            [height]="'72.84px'"
+            [width]="'100%'"
+            [classes]="'radius-minus'"
+          ></lib-ngx-skeleton-loading>
+        }
+      }
+      <!-- End Stores List -->
+    </div>
+  </div>
+  <!-- End Page Content -->
+</common-ui-components-page-layout>

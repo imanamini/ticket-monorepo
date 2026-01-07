@@ -1,0 +1,59 @@
+@import 'globals';
+
+.daily-post-container {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  align-items: center;
+  color: $text-color;
+  margin: 2rem auto;
+}
+
+.daily-post-container::after {
+  content: '';
+  background-color: #e7ecfd;
+  height: 2px;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.daily-post-image {
+  max-width: min(500px, 90%);
+}
+
+.daily-post-category {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.daily-post-date {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 0.2rem 1rem;
+  color: #fff;
+  margin: 1rem 0;
+  background: #828cb1;
+}
+
+.daily-post-title {
+  text-align: center;
+  margin: 1rem 0;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.daily-post-title > a {
+  color: $text-color;
+}
+
+.daily-post-abstract {
+  text-align: justify;
+  margin: 1rem 0;
+  line-height: 1.7em;
+}
+
+.daily-post-read-more {
+  font-weight: 400;
+  padding: 0.5rem 3rem;
+}

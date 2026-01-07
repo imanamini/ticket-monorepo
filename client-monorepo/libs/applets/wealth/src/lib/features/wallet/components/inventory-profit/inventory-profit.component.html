@@ -1,0 +1,41 @@
+<div class="w-100 d-flex flex-wrap">
+  <div class="w-100 d-flex align-items-center gap-small">
+    <img
+      width="28"
+      height="28"
+      src="./wealth-assets/svg/profit-icon.svg"
+      alt="profit"
+    />
+
+    <p class="c-2 text-onback-medium">سود سالانه {{ wallet()?.profit.dailyPercentage }} به صورت روز شمار</p>
+  </div>
+
+  @if (wallet().hasPendingTrade) {
+    <ngx-alert
+      [size]="'sm'"
+      class="w-100 mt-minus"
+      [color]="'yellow'"
+      [hasCloseIcon]="false"
+      [title]="alertTitle()"
+      [text]="alertText()"
+    />
+  }
+
+  <!-- @if (!wallet()?.hasTransactions) {
+    <div class="w-100 d-flex flex-wrap mt-small px-small">
+      <p class="w-100 st-7 text-onback-high">نه سود گرفتی نه اعتبار!</p>
+      <p class="w-100 b-3 text-onback-medium">برای شروع مبلغ دلخواهت رو واریز کن.</p>
+    </div>
+  } @else {
+    @if (wallet()?.profit.totalProfit) {
+      <div class="w-100 d-flex align-items-center justify-content-space-between mt-medium">
+        <p class="c-2 text-onback-medium">مجموع سود از ابتدا</p>
+
+        <p class="text-onback-medium">
+          <span class="st-5"> {{ wallet()?.profit.totalProfit | thousands }} </span>
+          <span class="b-3"> ریال </span>
+        </p>
+      </div>
+    }
+  } -->
+</div>

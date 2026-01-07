@@ -1,0 +1,33 @@
+<div class="popular-stores d-flex flex-column align-items-stretch justify-content-start gap-small">
+  <div class="px-plus">
+    <common-ui-components-title-summary
+      [isLoading]="isLoading()"
+      [title]="'فروشگاه‌های محبوب'"
+      [showButton]="false"
+    ></common-ui-components-title-summary>
+  </div>
+  <div class="px-atom">
+    <div class="d-flex flex-column gap px-plus pb-giant">
+      @if (isLoading()) {
+        @for (_ of rangeCreator(4); track $index) {
+          <lib-ngx-skeleton-loading
+            class="mb-small"
+            [height]="'72.84px'"
+            [width]="'100%'"
+            [classes]="'radius-minus'"
+          ></lib-ngx-skeleton-loading>
+        }
+      } @else {
+        @for (store of popularStores(); track $index) {
+          <common-ui-components-item-overview
+            [disableTopPadding]="$index === 0"
+            [mixedBlendModeEnabled]="true"
+            [item]="store"
+            (click)="handleItemClick(store)"
+          >
+          </common-ui-components-item-overview>
+        }
+      }
+    </div>
+  </div>
+</div>

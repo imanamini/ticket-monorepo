@@ -1,0 +1,33 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+:host {
+  display: block;
+  //height: 100vh;
+}
+
+.action-result {
+  @include flex-column();
+  align-items: center;
+  overflow-y: auto;
+  //height: 58%;
+  gap: 24px;
+  padding: 24px;
+
+  .result-title {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+    text-align: center;
+    color: #2c3544;
+  }
+
+  .result-content {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    color: #6e798d;
+  }
+}

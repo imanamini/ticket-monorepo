@@ -1,0 +1,74 @@
+@import "../../../../../../style/once/global";
+
+.motor-policy-detail {
+  @include flex-column();
+  position: relative;
+  @media (max-width: 360px) {
+    padding: {
+      left: 12px !important;
+      right: 12px !important;
+    }
+  }
+
+  .policy-detail-wrapper {
+    overflow: hidden;
+
+    .insurer-logo {
+      width: 48px;
+      height: 48px;
+    }
+
+    .vehicle-details-wrapper {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .vehicle-detail {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  .divider {
+    height: 10px;
+  }
+
+  .arrow-extend {
+    position: absolute;
+    bottom: -12px;
+    left: calc(50% - 12px);
+    cursor: pointer;
+    transition: all 300ms;
+  }
+
+  .policy {
+    @media (max-width: 360px) {
+      p {
+        font: {
+          size: 12px !important;
+
+        }
+      }
+    }
+
+    .divider {
+      height: 44px;
+    }
+
+    .row {
+      overflow: hidden;
+    }
+
+    .title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.arrow-extend.rotated {
+  transform: rotate(180deg);
+}
+

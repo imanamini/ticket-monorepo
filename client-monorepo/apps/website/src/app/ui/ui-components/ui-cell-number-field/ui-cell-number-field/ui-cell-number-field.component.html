@@ -1,0 +1,55 @@
+<div
+  [ngClass]="{ 'input-only': !selectCarrier, 'has-error': errorMessage }"
+  class="cell-number-field"
+>
+  <!--  <ui-light-warning *ngIf="showMnpNotice" class="warning">-->
+  <!--    در صورتی که ترابرد کرده‌اید اپراتور خود را تغییر دهید.-->
+  <!--  </ui-light-warning>-->
+  <div class="input-row">
+    <div class="input-wrapper">
+      <app-form-field
+        (ngModelChange)="cellNumberChanged($event)"
+        [maxSize]="11"
+        [ngModel]="cellNumber"
+        [tooltipText]="'در صورتی که ترابرد کرده اید اپراتور خود را تغییر دهید'"
+        inputType="tel"
+        label="شماره تلفن همراه"
+        type="input"
+      ></app-form-field>
+
+      <!--      <div class="position-relative">-->
+      <!--        <ui-form-field-->
+      <!--          type="input"-->
+      <!--          label="شماره تلفن همراه"-->
+      <!--          inputType="tel"-->
+      <!--          (ngModelChange)="cellNumberChanged($event)"-->
+      <!--          [ngModel]="cellNumber"-->
+      <!--          (focusin)="focusin()"-->
+      <!--          (focusout)="focusout()"-->
+      <!--          [maxSize]="11">-->
+      <!--        </ui-form-field>-->
+    </div>
+
+    <!--    <app-ui-form-hint *ngIf="errorMessage && mobileFriendly" appearance="error">{{errorMessage}}</app-ui-form-hint>-->
+
+    <!--    <app-ui-animated-switch-->
+    <!--      (changed)="onCarrierChange($event)"-->
+    <!--      [options]="switchOptions"-->
+    <!--      [selectedOption]="selectedSwitchOption"-->
+    <!--      class="carrier-switch"></app-ui-animated-switch>-->
+
+    <app-ui-carrier-select
+      (carrierSelect)="carrierSelectChanged($event)"
+      *ngIf="selectCarrier"
+      [carriers]="carrierOptions"
+      [mobileFriendly]="mobileFriendly"
+      [selected]="selectedCarrier"
+      class="carrier-select"
+    ></app-ui-carrier-select>
+  </div>
+</div>
+<app-ui-form-hint
+  *ngIf="errorMessage && !mobileFriendly"
+  appearance="error"
+  >{{ errorMessage }}</app-ui-form-hint
+>

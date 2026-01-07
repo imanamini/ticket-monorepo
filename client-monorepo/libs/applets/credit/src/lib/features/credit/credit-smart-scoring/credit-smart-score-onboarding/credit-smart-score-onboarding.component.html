@@ -1,0 +1,15 @@
+@if (!showLoading()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="onBack()"
+    [backButton]="true"
+  />
+
+  <app-credit-smart-score-bank-credit-limit
+    class="flex-full-height"
+    [maxCreditAmount]="amount()!"
+    [maxInstallmentCount]="installmentCount()!"
+    (onNextClick)="next.emit()"
+  />
+} @else {
+  <credit-page-loading [active]="true"></credit-page-loading>
+}

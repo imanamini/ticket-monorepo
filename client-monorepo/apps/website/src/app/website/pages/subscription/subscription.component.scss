@@ -1,0 +1,32 @@
+::ng-deep {
+  .basic-segment-verso .container {
+    background-color: #fafbff;
+    border-radius: 20px;
+    padding: 50px;
+  }
+
+  .basic-segment-recto .container {
+    padding: 50px;
+  }
+
+  .subscription-intro-section section {
+    background: -webkit-linear-gradient(
+      top,
+      #e7ecfd 0%,
+      rgba(231, 236, 253, 0) 100%
+    );
+    background: linear-gradient(
+      180deg,
+      #e7ecfd 0%,
+      rgba(231, 236, 253, 0) 100%
+    );
+    overflow: hidden;
+  }
+
+  .introduction-default > .container > div > h3 {
+    font-size: 1.25rem;
+    font-weight: 300;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+}

@@ -1,0 +1,44 @@
+<div class="d-flex flex-column ">
+  <div class="title d-flex align-items-center mb-plus">
+    <common-icon-dp-icon
+      [iconSize]="'30'"
+      icon="wallet"
+      iconType="bold"
+    ></common-icon-dp-icon>
+    <span class="st-6 mr-small">افزایش موجودی</span>
+  </div>
+  <div class="d-flex justify-content-space-between pb-pony border-b-300 border-color-air mb-pony">
+    <span class="b-2 text-onback-low">موجودی کیف‌پول</span>
+    <span class="b-2 text-onback-medium">۹۰۰،۰۰۰ ریال</span>
+  </div>
+  <div class="d-flex justify-content-space-between mb-medium">
+    <span class="b-2 text-onback-low">نیاز به افزایش موجودی</span>
+    <span class="b-2 text-onback-medium"> ۱،۲۰۰،۰۰۰ ریال</span>
+  </div>
+  <div class="d-flex p-minus surface-back cursor-pointer radius-medium gap-low">
+    <common-icon-dp-icon
+      [icon]="'info-circle'"
+      [iconSize]="'20'"
+      [iconType]="'bold'"
+      [class]="'text-onback-brand'"
+    ></common-icon-dp-icon>
+    <span class="b-3 text-onback-high"> کیف‌پول شما برای هزینه صدور و استعلامات باید حداقل ۲,۰۰۰,۰۰۰ ریال موجودی داشته باشد. </span>
+  </div>
+  <div class="separator mt-medium border-color-air"></div>
+
+  <div class="pt-plus pb-pony d-flex align-items-center">
+    <div class="payable-amount ml-plus">
+      <div class="b-1">مبلغ پرداختی</div>
+      <div class="st-2">۱٬۲۰۰٬۰۰۰ ریال</div>
+    </div>
+
+    <ngx-button
+      [fullWidth]="true"
+      [style]="'fill'"
+      [brandButton]="true"
+      (clickHandler)="approve()"
+    >
+      تایید و پرداخت
+    </ngx-button>
+  </div>
+</div>

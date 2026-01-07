@@ -1,0 +1,57 @@
+<div
+  class="card"
+  [ngClass]="{ 'no-card': noCard }"
+>
+  <!-- ? date -->
+  @for (log of logs; track log) {
+    <div class="log">
+      <div class="header">
+        <img
+          src="wealth-assets/svg/calender-blue.svg"
+          alt=""
+        />
+        <span>تاریخ</span>
+        <span class="mx-1">{{ log.date | jalaliDate }}</span>
+      </div>
+
+      <div class="detail">
+        @for (item of log.items; track item; let i = $index) {
+          <div class="info">
+            @for (keyValue of item | keyvalue: sortByIPAddressKey; track keyValue) {
+              @if (keyValue.key !== 'id' && keyValue.value) {
+                <div class="info-wrapper">
+                  <div class="title">
+                    @if (keyValue.key === 'lastActivityAt') {
+                      @if (keyValue.value | jalaliTime) {
+                        زمان خروج:
+                      }
+                    } @else {
+                      @switch (keyValue.key) {
+                        @case ('firstActivityAt') {
+                          زمان ورود:
+                        }
+                        @case ('lastActivityAt') {
+                          زمان خروج:
+                        }
+                        @case ('ipAddress') {
+                          IP:
+                        }
+                      }
+                    }
+                  </div>
+                  <div class="value">
+                    @if (keyValue.key === 'ipAddress') {
+                      {{ keyValue.value }}
+                    } @else {
+                      {{ keyValue.value | jalaliTime }}
+                    }
+                  </div>
+                </div>
+              }
+            }
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

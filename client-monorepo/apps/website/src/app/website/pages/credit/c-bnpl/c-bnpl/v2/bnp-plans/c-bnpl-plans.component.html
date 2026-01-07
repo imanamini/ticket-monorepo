@@ -1,0 +1,45 @@
+<div class="bnpl-plans d-flex flex-column gap-giant justify-content-center align-items-center">
+  <div class="title d-flex flex-column justify-content-center gap-medium">
+    @if (bnplPlans().thinTitle) {
+      <div class="thin-text">{{bnplPlans()?.thinTitle}}</div>
+    }
+    @if (bnplPlans().boldTitle) {
+      <div class="bold-text">{{bnplPlans()?.boldTitle}}</div>
+    }
+    @if (bnplPlans().subtitle) {
+      <div class="subtitle st-4 text-onback-high">
+        {{bnplPlans()?.subtitle}}
+      </div>
+    }
+  </div>
+  @if (bnplPlans().plans.length) {
+    <div class="plans d-flex align-content-center gap-big">
+      @for (plan of bnplPlans().plans; track plan) {
+        <div class="plan-card-wrapper"
+             [class.flipped]="plan.isFlipped"
+             (click)="toggleFlip(plan)">
+          @if (plan.frontSideContent) {
+            <div class="plan-card-front d-flex flex-column align-items-center justify-content-center py-hulk px-mega">
+              <div class="title">{{plan?.frontSideContent?.title}}</div>
+              <div class="subtitle st-4 text-onback-medium mb-huge">{{plan?.frontSideContent?.subtitle}}</div>
+              <div class="image mb-huge">
+                <img src="{{plan.frontSideContent?.planImage?.url}}" alt="">
+              </div>
+              <div class="description b-2 text-onback-high" [innerHTML]="sanitize(plan?.frontSideContent?.description)"> </div>
+            </div>
+          }
+
+          <div class="plan-card-back">
+            @if (deviceDetector.isMobileDevice()) {
+              <img src="{{plan.backSideImageMobile.url}}" alt="">
+            } @else {
+              <img src="{{plan.backSideImageDesktop.url}}" alt="">
+            }
+          </div>
+        </div>
+      }
+
+    </div>
+  }
+
+</div>

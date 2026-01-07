@@ -1,0 +1,20 @@
+[{
+
+  "relation": ["delegate_permission/common.handle_all_urls"],
+
+  "target": {
+
+    "namespace": "android_app",
+
+    "package_name": "com.mydigipay.app.android",
+
+    "sha256_cert_fingerprints":
+
+[
+        "74:34:BC:CB:44:E3:E6:CB:3B:39:84:96:E9:3B:4D:0E:8E:F7:EF:E4:3F:74:CE:F0:30:21:32:AB:C5:AB:05:FF",
+        "68:E2:71:9D:8A:83:62:99:71:AF:52:CE:F3:92:3A:34:8F:D9:11:9C:F2:50:21:F3:B4:21:8A:0D:16:C6:24:1E"
+      ]
+
+}
+
+}]

@@ -1,0 +1,49 @@
+<div
+  [ngClass]="{ 'retry-state': retryState }"
+  [style]="style"
+  class="wallet-card"
+>
+  <div class="title-bar">
+    <img
+      [draggable]="false"
+      alt="digipay"
+      height="16"
+      src="/assets/cash-out/wallet-transfer/digipay-white.svg"
+      width="16"
+    />
+    <h3 class="title">کیف پول دیجی‌پی</h3>
+  </div>
+  <div class="balance">
+    <span
+      *ngIf="balance"
+      class="balance-value"
+    >
+      {{ balance | thousands }}ریال
+    </span>
+    <span
+      *ngIf="value"
+      class="balance-value"
+      >{{ value }}</span
+    >
+  </div>
+  <div class="footer">
+    <h3
+      *ngIf="ownerName"
+      class="owner"
+    >
+      {{ ownerName }}
+    </h3>
+    <div
+      *ngIf="loadingState"
+      class="loading-state"
+    ></div>
+    <div
+      (click)="onRetryClick()"
+      *ngIf="retryState"
+      class="retry cursor-pointer"
+    >
+      <span class="icon"></span>
+      تلاش مجدد
+    </div>
+  </div>
+</div>

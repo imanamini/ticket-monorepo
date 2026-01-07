@@ -1,0 +1,26 @@
+<div
+  class="d-flex px-medium py-minus surface-elevated radius-minus cursor-pointer"
+  [routerLink]="linkToGo()"
+>
+  <div class="ml-low text-onback-brand">
+    <common-ui-components-animated-list
+      [animationDuration]="300"
+      [containerStyle]="{ width: '24px', height: '24px' }"
+    >
+      @for (icon of icons(); track $index) {
+        <ng-template AnimatedListDirective>
+          <ngx-icon
+            [name]="icon"
+            [type]="'bold'"
+            iconSize="24px"
+          ></ngx-icon>
+        </ng-template>
+      }
+    </common-ui-components-animated-list>
+  </div>
+
+  <span class="text-onback-high b-2">{{ text() }}</span>
+  <div class="mr-auto">
+    <ngx-icon [name]="'arrow-left'"></ngx-icon>
+  </div>
+</div>

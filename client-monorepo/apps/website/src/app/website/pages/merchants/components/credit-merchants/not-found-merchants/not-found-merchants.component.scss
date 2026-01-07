@@ -1,0 +1,39 @@
+@import "globals";
+
+
+
+.not-found-merchants {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  width: 792px;
+
+  .artwork {
+    //background: url('../../../../../../../assets/stores-db/no-merchant.svg') center center/cover no-repeat;
+    width: 300px;
+    height: 228px;
+  }
+
+  .title {
+    color: $swatch_steel_900;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: -0.6px;
+  }
+
+  .subtitle {
+    color: $swatch_steel_500;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+  }
+}
+
+@media (max-width: 1280px) {
+  .not-found-merchants {
+    width: 100%;
+  }
+}

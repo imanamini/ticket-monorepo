@@ -1,0 +1,27 @@
+<common-ui-components-page-layout
+  [title]="'پرداخت مستقیم'"
+  [showBorder]="true"
+  [hasBackAction]="false"
+  (onBackAction)="onBack()"
+  (infoClick)="navigateToFaq()"
+  [infoButton]="true"
+  [infoStyle]="'default'"
+>
+  <div class="h-100 surface-elevated">
+    @if (!loading()) {
+      @for (contract of data() || []; track $index) {
+        <direct-debit-contract-list-card
+          [data]="contract"
+          (statusUpdated)="getContracts()"
+        ></direct-debit-contract-list-card>
+      }
+    } @else {
+      <div class="radius-big p-medium m-plus">
+        <lib-ngx-skeleton-loading
+          [height]="'150px'"
+          [width]="'100%'"
+        ></lib-ngx-skeleton-loading>
+      </div>
+    }
+  </div>
+</common-ui-components-page-layout>

@@ -1,0 +1,31 @@
+<div class="filter-bottom-sheet d-flex flex-column h-100">
+  <div class="title">فیلتر نمایش شرکت‌های بیمه‌گر</div>
+  <div class="search-box" [formGroup]="searchForm">
+    <ui-form-field
+      formControlName="searchInput"
+      type="input"
+      label="جستجوی برند..."
+      class="brand-input">
+    </ui-form-field>
+  </div>
+  <div class="insurers-list" [class.justify-content-center]="searchMatchedCompanies().length === 0">
+    @if (searchMatchedCompanies().length > 0) {
+      @for (insuranceCompany of searchMatchedCompanies(); track insuranceCompany.id) {
+        <div class="single-insurer cursor-pointer" (click)="insuranceCompanyClicked(insuranceCompany.id)">
+          <ins-checkbox [isActive]="selectedCompaniesMap()[insuranceCompany.id]"></ins-checkbox>
+          <div class="company-name">{{ insuranceCompany.name }}</div>
+        </div>
+      }
+    } @else {
+      <not-found-insurance-company [background-color]="'gray'"></not-found-insurance-company>
+    }
+  </div>
+  <div class="cta">
+    <ins-button
+      [fullWidth]="true"
+      [brandButton]="true"
+      text="اعمال فیلتر"
+      (clickHandler)="submitSelectedFilters()"
+    ></ins-button>
+  </div>
+</div>

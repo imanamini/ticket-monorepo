@@ -1,0 +1,141 @@
+<div class="container">
+  <div class="grain"></div>
+  <div class="safe">
+    <app-makna-header
+      [title]="''"
+      (onBackButtonClicked)="onBackButtonClicked()"
+      width="3rem"
+      height="3rem"
+    />
+  </div>
+  <div class="content">
+    <!-- ? Form -->
+    <div class="form-container w-100">
+      <div class="title">
+        <span class="title-header"> ورود به مدیریت ثروت! </span>
+        <span class="title-hint"> کد ملی و رمز عبور خود را وارد کنید. </span>
+      </div>
+
+      <!-- ? Form -->
+      <div>
+        <!-- ? nationalId JUST For makna -->
+        <div class="input-container">
+          <div
+            class="password-wrapper"
+            [formGroup]="form"
+          >
+            <input
+              type="text"
+              placeholder="کدملی"
+              class="password-input"
+              formControlName="nationalId"
+              maxlength="10"
+              ngxTouchKeyboard
+              (ngModelChange)="checkNationalID()"
+              #touchKeyboard="ngxTouchKeyboard"
+              inputmode="numeric"
+            />
+
+            <div class="input-icons">
+              <div
+                class="keyboard"
+                (click)="touchKeyboard.togglePanel()"
+              >
+                <img
+                  class="grid-icon"
+                  src="wealth-assets/icons/keyboard.svg"
+                />
+              </div>
+            </div>
+          </div>
+
+          @if (showError === 'show' && errorMessage) {
+            <div class="national-id-error">
+              <span>{{ errorMessage }}</span>
+            </div>
+          }
+        </div>
+        <div class="password-container">
+          <app-password-input
+            [passwordInfo]="passwordInfo"
+            (onInputChanged)="onPasswordChange($event)"
+            [displayIndicator]="false"
+          ></app-password-input>
+        </div>
+      </div>
+
+      <!-- ? Forget password link -->
+      <div class="forget-password">
+        <span
+          class="forget-password-link"
+          (click)="onbuttonClick('FORGET_PASSWORD')"
+        >
+          فراموشی رمز عبور
+        </span>
+      </div>
+
+      @if (showRegister) {
+        <p class="has-account">
+          حساب کاربری ندارید؟
+          <span
+            class="register-link cursor-pointer"
+            (click)="onbuttonClick('GO_TO_LOGIN')"
+          >
+            ثبت نام
+          </span>
+        </p>
+      }
+
+      <!-- ? Security hints -->
+      <mat-accordion
+        class="security-hints-container"
+        #accordion
+      >
+        <mat-expansion-panel
+          [expanded]="true"
+          [disabled]="true"
+          (afterExpand)="expanedClass = true"
+          (afterCollapse)="expanedClass = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> نکات امنیتی </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          @for (hint of securityHints; track hint.id; let i = $index) {
+            <li>
+              @if (i === 0) {
+                {{ hint.text }}
+              } @else {
+                {{ hint.text }}
+              }
+            </li>
+          }
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>
+
+<!-- ? login action button -->
+<div
+  class="login-button-container"
+  [ngClass]="{ 'expanded-mt': expanedClass }"
+>
+  <ngx-button
+    [style]="'fill'"
+    [fullWidth]="true"
+    size="medium"
+    [disabled]="!timeIsOver || password?.length < 8 || showError === 'show' || form.invalid || loading"
+    (clickHandler)="onbuttonClick('LOGIN')"
+  >
+    @if (!timeIsOver) {
+      <ngx-count-down
+        [timeInSeconds]="otpSecounds"
+        [type]="'mm:ss'"
+        (finished)="timerFinish()"
+      ></ngx-count-down>
+    } @else {
+      ورود
+    }
+  </ngx-button>
+</div>

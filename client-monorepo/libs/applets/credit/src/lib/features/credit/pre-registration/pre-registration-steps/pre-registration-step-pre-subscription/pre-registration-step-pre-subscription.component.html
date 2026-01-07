@@ -1,0 +1,80 @@
+<div [class]="'d-flex flex-column bg-gradiant ' + plan()?.subscriptionDetail?.type.toLowerCase()">
+  <div class="dark surface-high-contrast">
+    <app-credit-app-bar
+      (onBackButtonClick)="goBack()"
+      [backButton]="true"
+    ></app-credit-app-bar>
+  </div>
+  <div class="px-plus dark d-flex flex-column surface-back align-items-center justify-content-center subscription-details">
+    <div class="subscription-image">
+      <span [class]="'icon ' + plan()?.subscriptionDetail?.type.toLowerCase()"></span>
+      <span [class]="'blur-bg ' + plan()?.subscriptionDetail?.type.toLowerCase()"></span>
+    </div>
+    <span class="st-7 text-onback-medium text-align-center mb-tiny">اشتراک {{ plan()?.subscriptionDetail?.title }}</span>
+    <span class="st-3 text-onback-high mb-medium text-align-center"
+      >برای دریافت این وام، خرید اشتراک {{ plan()?.subscriptionDetail?.title }} ضروری است.</span
+    >
+  </div>
+</div>
+<div class="flex-grow d-flex flex-column flex-grow dark">
+  <div class="d-flex flex-column flex-grow">
+    <app-credit-scrollable-view [fullHeightContent]="true">
+      <div class="rtl px-plus surface-back d-flex flex-column align-items-center justify-content-flex-start flex-grow">
+        <div
+          [class]="
+            'subscription-amount w-100 mb-huge d-flex flex-row justify-content-space-between align-items-center p-medium radius-medium border-300 ' +
+            plan()?.subscriptionDetail?.type.toLowerCase()
+          "
+        >
+          <span class="st-8 text-onback-medium">هزینه اشتراک</span>
+          <span class="st-3 text-onback-high"
+            >{{ plan()?.subscriptionDetail?.amount | IRR: 'hideRial' }}<span class="is-currency"> ریال</span></span
+          >
+        </div>
+        <div class="st-8 text-onback-high mb-small text-align-right w-100 pr-medium">
+          روش‌{{ EnabledTwoAllocationPayment() ? 'های' : '' }} خرید اشتراک
+        </div>
+        <div class="payment-methods w-100 p-plus radius-plus d-flex flex-column gap-minus mb-hulk">
+          @if (EnabledTwoAllocationPayment()) {
+            <div class="w-100 d-flex flex-row align-items-flex-start gap-minus">
+              <div class="subscription-payment-icon radius-minus from-loan"></div>
+              <div class="d-flex flex-column gap-tiny py-tiny">
+                <span class="st-7 text-onback-high text-align-right">پرداخت از وام</span>
+                <span class="c-2 text-onback-medium text-align-right"
+                  >هزینه اشتراک پس از تایید و اعطای وام به‌طور خودکار از مبلغ وام شما کسر خواهد شد.</span
+                >
+              </div>
+            </div>
+            <ngx-divider
+              [color]="BorderColorsEnum.Light"
+              class="w-100 pr-mega"
+              orientation="horizontal"
+            ></ngx-divider>
+          }
+          <div class="w-100 d-flex flex-row align-items-flex-start gap-minus">
+            <div class="subscription-payment-icon radius-minus cash"></div>
+            <div class="d-flex flex-column gap-tiny py-tiny">
+              <span class="st-7 text-onback-high text-align-right">پرداخت نقدی</span>
+              <span class="c-2 text-onback-medium text-align-right"
+                >در مرحله پایانی فرآیند وام، هزینه اشتراک را به صورت نقدی پرداخت می‌کنید.</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+  <div class="button-wrapper p-plus w-100">
+    <ngx-button
+      (clickHandler)="onSubmit()"
+      [disabled]="loading()"
+      [isLoading]="loading()"
+      [fullWidth]="true"
+      [mode]="'section'"
+      ngxTrackableId
+      trackerId="subscriptionConfirmButtonClick"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

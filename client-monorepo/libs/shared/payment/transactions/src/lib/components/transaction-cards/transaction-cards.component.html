@@ -1,0 +1,47 @@
+<div [id]="id()">
+  @if (mode() === "frequent") {
+    <div class="d-flex flex-column gap-small">
+      @if (isLoading()) {
+        @for (item of rangeCreator(3); track $index) {
+          <lib-ngx-skeleton-loading
+            [height]="'74px'"
+            [classes]="'py-tiny px-medium radius-medium'"
+          ></lib-ngx-skeleton-loading>
+        }
+      } @else {
+        @for (transaction of transactionCards(); track transaction) {
+          <div class="py-tiny px-medium surface-high-contrast radius-medium">
+            <payment-transactions-transaction-card
+              (clicked)="itemClick($event)"
+              [config]="transaction"
+            ></payment-transactions-transaction-card>
+          </div>
+        }
+      }
+    </div>
+  } @else {
+    @if (isLoading()) {
+      <lib-ngx-skeleton-loading
+        [height]="'208px'"
+        [classes]="'py-tiny px-medium radius-big'"
+      ></lib-ngx-skeleton-loading>
+    } @else {
+      <div class="radius-big transactions-cards">
+        <div
+          class="py-tiny px-medium surface-high-contrast radius-big transactions-cards-cards"
+          [ngStyle]="transactionsStyle()"
+        >
+          @for (transaction of transactionCards(); track transaction) {
+            <payment-transactions-transaction-card
+              (clicked)="itemClick($event)"
+              [config]="transaction"
+            ></payment-transactions-transaction-card>
+          }
+        </div>
+        @if (transactionCards().length > maxItems()) {
+          <div class="transactions-cards-overlay radius-big"></div>
+        }
+      </div>
+    }
+  }
+</div>

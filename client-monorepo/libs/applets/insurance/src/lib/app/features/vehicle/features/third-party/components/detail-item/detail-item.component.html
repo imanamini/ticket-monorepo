@@ -1,0 +1,16 @@
+<div class="detail-item">
+  <p class="item-title"
+     [textContent]="title()"></p>
+
+  @if (id() === 'model') {
+    <p class="item-value"
+       [textContent]="value()"
+       [ngxTooltip]="value()"
+       tooltipType="hover"
+       tooltipPosition="right"></p>
+  } @else {
+    <p class="item-value"
+       [textContent]="value()"></p>
+  }
+
+</div>

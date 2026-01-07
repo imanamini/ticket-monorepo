@@ -1,0 +1,16 @@
+section {
+  padding-top: 128px;
+}
+
+.blog-posts.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 680px;
+}
+
+.blog-daily-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+}

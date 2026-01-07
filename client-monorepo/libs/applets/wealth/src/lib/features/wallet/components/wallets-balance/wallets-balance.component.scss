@@ -1,0 +1,33 @@
+.bullet {
+  width: 8px;
+  height: 8px;
+  display: block;
+  border-radius: 50%;
+}
+
+.back-oninvert-warning {
+  background-color: #fec003 !important;
+}
+
+.grid-cols-2 {
+  max-width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.col-span-1 {
+  grid-column: span 1;
+}
+
+.btns-divider {
+  height: 32px !important;
+}
+
+.btns-container {
+  justify-content: center;
+  gap: 64px;
+  
+  @media screen and (max-width: 375px) {
+    justify-content: space-around;
+    gap:20px
+  }
+}

@@ -1,0 +1,63 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100dvh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'دریافت جایزه گنج'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+  <div class="flex-1 w-100 d-flex flex-column p-plus">
+    <img
+      src="wealth-assets/images/treasure-hunt-1.svg"
+      alt="treasure-hunt"
+      class="w-100"
+    />
+    <p class="w-100 text-align-center st-7 text-onback-high">{{ state()?.remainingDays }} روز کاری باقی مانده!</p>
+    <div class="w-100 mt-small d-flex flex-column">
+      <span class="bt-2 text-onback-medium text-align-center">درخواست شما برای دریافت جایزه گنج ثبت شد.</span>
+      <span class="bt-2 text-onback-medium text-align-center">
+        تا {{ state()?.remainingDays }} روز کاری آینده شما را از طریق پیامک باخبر می‌کنیم.
+      </span>
+      <span class="bt-2 text-onback-medium text-align-center">در این فرصت می‌توانید در دارایی‌های دیگر سرمایه‌گذاری کنید.</span>
+    </div>
+    <div class="w-100 d-flex flex-column gap-minus mt-huge">
+      @for (item of suggestionRoutes(); track $index) {
+        <div
+          class="w-100 d-flex align-items-center gap-small surface-back radius-medium px-plus py-medium"
+          (click)="onCardClick(item.type)"
+        >
+          <div class="icon-container surface-elevated radius-rounded d-flex align-items-center justify-content-center">
+            <ngx-icon
+              [name]="item.iconName"
+              [type]="'bold'"
+              [class]="item.type === 'Gold' ? 'text-onback-warning' : 'text-onback-brand'"
+            />
+          </div>
+          <div class="flex-1 campaign-registration-investment-text">
+            <span class="campaign-registration-investment-title">{{ item.title }}</span>
+          </div>
+          <ngx-icon
+            [name]="'arrow-left'"
+            class="text-onback-brand"
+          >
+          </ngx-icon>
+        </div>
+      }
+    </div>
+  </div>
+  <div class="w-100 surface-elevated px-plus py-medium sticky-action-group">
+    <ngx-button
+      [buttonId]="'CAMPAIGN_REGISTRATION_SUCCESS'"
+      size="medium"
+      [fullWidth]="true"
+      (clickHandler)="onBackHandler()"
+      mode="form"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

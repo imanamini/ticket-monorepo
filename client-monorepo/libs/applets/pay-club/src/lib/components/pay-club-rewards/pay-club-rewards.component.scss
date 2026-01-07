@@ -1,0 +1,12 @@
+:host {
+  position: relative;
+  display: block;
+}
+
+ui-spinner::ng-deep {
+  height: 228px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}

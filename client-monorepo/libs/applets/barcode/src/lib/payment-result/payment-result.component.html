@@ -1,0 +1,52 @@
+<div class="result-container d-flex flex-column justify-content-space-between">
+  <div class="content-container">
+    <div class="d-flex flex-column align-items-center gap-small mb-large">
+      <img
+        src="assets/scanner/barcode/checkmark.svg"
+        loading="lazy"
+      />
+      <p class="t-4">{{ data.amount | iranianRials }}</p>
+      <p class="text-onback-low mb-small">پرداخت اعتباری شما انجام شد</p>
+ 
+    </div>
+    <div class="payment-detail">
+      <ul>
+        @for (info of data.activityInfo | keyvalue; track info.key) {
+          <li class="border-b-100 border-color-light py-medium">
+            <p class="text-onback-low">{{ getKeyValue(info.value).key }}</p>
+            <div
+              [ngxTooltip]="getKeyValue(info.value).key === 'کد رهگیری' ? 'کپی شد' : ''"
+              tooltipPosition="top"
+              tooltipType="click"
+              class="d-flex align-items-center gap-small"
+              (click)="copyToClipboard(getKeyValue(info.value).value)"
+            >
+              @if (getKeyValue(info.value).key === 'کد رهگیری') {
+                <img
+                  src="assets/scanner/barcode/copy.svg"
+                  loading="lazy"
+                />
+              }
+              <p
+                class="b-2"
+                [class.text-onback-brand]="getKeyValue(info.value).key === 'کد رهگیری'"
+              >
+                {{ getKeyValue(info.value).value }}
+              </p>
+            </div>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="actions-container">
+    <div class="d-flex justify-content-space-between">
+      <ngx-button
+        (clickHandler)="closeBottomSheet()"
+        [style]="'fill'"
+        [fullWidth]="true"
+        >متوجه شدم</ngx-button
+      >
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  title="پرداخت جریمه"
+  (onBackAction)="goToPrevPage()"
+>
+  @if (!isLoadingPage()) {
+    <div class="page-content d-flex flex-column h-100">
+      <payment-checkout-main
+        [paymentCardData]="paymentCardData()"
+        [appPayFeatureBody]="appPayFeatureBody()"
+        [cachedTicket]="ticket()"
+        [hasCustomBack]="true"
+        (fallbackFunction)="goToPrevPage()"
+      ></payment-checkout-main>
+    </div>
+  }
+</common-ui-components-page-layout>

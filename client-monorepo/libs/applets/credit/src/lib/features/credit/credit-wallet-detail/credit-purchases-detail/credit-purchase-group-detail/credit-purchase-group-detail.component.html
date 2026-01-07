@@ -1,0 +1,45 @@
+<div class="purchase-group-detail-header">
+  <div>
+    <div class="merchant-info">
+      <div>
+        <credit-digipay-image
+          [imageId]="purchaseGroup().businessImageId"
+          width="24px"
+        ></credit-digipay-image>
+      </div>
+      <div class="merchant-name-box">
+        <div class="merchant-name-text">
+          {{ purchaseGroup().businessName.text }}
+        </div>
+        <div class="merchant-name-value">
+          {{ purchaseGroup().businessName.value }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="total-amount-box">
+      <div class="total-amount-text">{{ purchaseGroup()?.totalAmount?.text }}</div>
+      <div class="total-amount-value">
+        {{ purchaseGroup()?.totalAmount?.value }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="purchase-group-detail-body">
+  @for (item of purchaseGroup()?.transactionDetails; track item) {
+    <div>
+      <div class="purchase-item-title">{{ item.title }}</div>
+      <div class="purchase-item-body">
+        @for (itemDetail of item.transactionItems; track itemDetail) {
+          <div class="purchase-item-detail">
+            <app-credit-purchase-detail-sub-item-card
+              [data]="itemDetail"
+              [pageUrl]="pageUrl()!"
+            ></app-credit-purchase-detail-sub-item-card>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

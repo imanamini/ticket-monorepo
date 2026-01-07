@@ -1,0 +1,51 @@
+.payment-container {
+  width: 100%;
+
+  &.penalty-fixed {
+    position: relative;
+
+    .penalty-content {
+      position: fixed;
+      bottom: var(--bottom-offset, 0);
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      pointer-events: none;
+      display: flex;
+      justify-content: center;
+
+      // Default state - hidden
+      opacity: 0;
+      transform: translateY(100%);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+      > * {
+        pointer-events: auto;
+        width: 100%;
+        max-width: min(var(--container-width-large), var(--full-width));
+        padding: var(--toast-padding, 0 20px);
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  // Show animation when not loading
+  &.penalty-fixed:not(.loading) .penalty-content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  // Regular cards animation
+  &:not(.loading, .penalty-fixed) {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fade-in-up 0.3s ease-out forwards;
+  }
+}
+
+@keyframes fade-in-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

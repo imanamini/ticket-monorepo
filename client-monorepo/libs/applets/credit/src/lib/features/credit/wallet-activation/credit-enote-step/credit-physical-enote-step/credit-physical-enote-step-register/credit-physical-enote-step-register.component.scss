@@ -1,0 +1,29 @@
+.form-wrapper {
+  position: relative;
+
+  .cheque-id-label {
+    font-size: 14px;
+    color: #2c3544;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    display: block;
+  }
+}
+
+.cheque-image {
+  position: relative;
+  width: 100%;
+  max-width: 312px;
+  height: 195px;
+  background: url("./credit-enote-with-arrow.webp") no-repeat center center;
+  background-size: 100% auto;
+
+  &:before {
+    content: "شماره خزانه‌داری و سری مندرج روی سفته";
+    font-size: 12px;
+    line-height: 1.5;
+    color: #6e798d;
+    margin-top: 6px;
+    display: block;
+  }
+}

@@ -1,0 +1,26 @@
+:host {
+  background-color: var(--surface-elevated);
+  display: block;
+  height: 100%;
+}
+
+:host ::ng-deep .shopping-guide-callout ngx-callout div {
+  padding-right: 0 !important;
+  padding-top: 0 !important;
+}
+
+.position-sticky {
+  position: sticky;
+}
+
+.top-0 {
+  top: 0 !important;
+}
+
+.top-56 {
+  top: 56px;
+}
+
+.z-index-10 {
+  z-index: 10;
+}

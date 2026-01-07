@@ -1,0 +1,174 @@
+<app-base-layout [loaded]="loaded()">
+  @if (ipgPage()?.templateData) {
+    <!-- Section 1 -->
+    @if (ipgPage().templateData.introArt && ipgPage().templateData.introType) {
+      <app-ui-introduction-default
+        [heroImage]="ipgPage().templateData.introArt"
+        [introductionType]="ipgPage().templateData.introType"
+        class="ipg-intro-section"
+      >
+        <div>
+          <h1>{{ ipgPage()?.templateData?.introTitle }}</h1>
+          <h2>{{ ipgPage()?.templateData?.introSubtitle1 }}</h2>
+          <h3>{{ ipgPage()?.templateData?.introSubtitle2 }}</h3>
+          <app-ui-button
+            [appScrollToAnchor]="scrollAnchor()"
+            [behavior]="'smooth'"
+          >
+            <i></i>
+            <span>{{ ipgPage().templateData.introFirstCta.title }}</span>
+          </app-ui-button>
+        </div>
+      </app-ui-introduction-default>
+    }
+
+    <!-- Section 2 -->
+    @if (ipgPage().templateData.features) {
+      <app-ui-feature-cards [features]="ipgPage().templateData.features"></app-ui-feature-cards>
+    }
+
+    <!-- Section 3 -->
+    <app-ui-basic-segment
+      [content]="contentTemplateGatewayExplanation"
+      [figure]="figureTemplateGatewayExplanation"
+      [rtl]="true"
+      [title]="ipgPage()?.templateData?.gatewayExplanation?.title"
+    ></app-ui-basic-segment>
+    <ng-template #figureTemplateGatewayExplanation>
+      <img
+        [alt]="ipgPage()?.templateData?.gatewayExplanation?.title"
+        [src]="ipgPage()?.templateData?.gatewayExplanation?.artwork?.url"
+      />
+    </ng-template>
+    <ng-template #contentTemplateGatewayExplanation>
+      <span>{{ ipgPage()?.templateData?.gatewayExplanation?.description }}</span>
+      <div
+        class="notice"
+        id="ipg-gateway-notice"
+      >
+        {{ ipgPage()?.templateData?.gatewayExplanation?.notice }}
+      </div>
+    </ng-template>
+
+    <!-- Section 4 -->
+    @if (ipgPage().templateData.algorithmExplanation?.title) {
+      <app-ui-basic-segment
+        [content]="contentTemplateAlgorithmExplanation"
+        [figure]="figureTemplateAlgorithmExplanation"
+        [rtl]="false"
+        [title]="ipgPage()?.templateData?.algorithmExplanation?.title"
+        class="pdy"
+      ></app-ui-basic-segment>
+    }
+    <ng-template #figureTemplateAlgorithmExplanation>
+      <div class="algorithm-explanation_art">
+        <div class="algorithm-explanation_art_logo">
+          <img
+            alt=""
+            src="/assets/images/white-logo.svg"
+          />
+        </div>
+        <div class="algorithm-explanation_art_items">
+          @if (ipgPage()?.templateData?.algorithmFeatures) {
+            <ul>
+              @for (item of ipgPage().templateData.algorithmFeatures; track item; let j = $index) {
+                <li class="algorithm-explanation_art_item">
+                  <div>
+                    @if (item.featureIcon) {
+                      <div class="algorithm-explanation_art_item-icon">
+                        <img
+                          [src]="item.featureIcon.url"
+                          alt=""
+                        />
+                      </div>
+                    }
+                    @if (item.featureTitle) {
+                      <div class="algorithm-explanation_art_item-title">
+                        {{ item.featureTitle }}
+                      </div>
+                    }
+                  </div>
+                </li>
+              }
+            </ul>
+          }
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #contentTemplateAlgorithmExplanation>
+      <span>{{ ipgPage()?.templateData?.algorithmExplanation?.description }}</span>
+      <div class="notice">
+        {{ ipgPage()?.templateData?.algorithmExplanation?.notice }}
+      </div>
+    </ng-template>
+
+    <!-- Section 5 -->
+    <app-ipg-payment-service-providers [templateData]="ipgPage()?.templateData || null"></app-ipg-payment-service-providers>
+
+    <!-- Section 6 -->
+    @if (ipgPage().templateData.universalPaymentGateway) {
+      <app-ui-basic-segment
+        [content]="contentTemplateUniversalPaymentGateway"
+        [figure]="figureTemplateUniversalPaymentGateway"
+        [rtl]="false"
+        class="section-upg"
+      ></app-ui-basic-segment>
+    }
+    <ng-template #figureTemplateUniversalPaymentGateway>
+      @if (ipgPage()?.templateData?.universalPaymentGateway?.upgImage) {
+        <span
+          [style.background-image]="'url(' + ipgPage().templateData.universalPaymentGateway.upgImage.url + ')'"
+          class="UPG-image"
+        ></span>
+      }
+    </ng-template>
+    <ng-template #contentTemplateUniversalPaymentGateway>
+      @if (ipgPage()?.templateData?.universalPaymentGateway) {
+        <div class="universal-payment-gateway content-block">
+          <h2>{{ ipgPage().templateData.universalPaymentGateway.upgTitle }}</h2>
+          <span>{{ ipgPage().templateData.universalPaymentGateway.upgDesc }}</span>
+          <div class="upg-gateway-notice notice">
+            {{ ipgPage().templateData.universalPaymentGateway.upgNotice }}
+          </div>
+        </div>
+        <div class="universal-payment-gateway content-block">
+          <h2>{{ ipgPage().templateData.universalPaymentGateway.refundTitle }}</h2>
+          <span>{{ ipgPage().templateData.universalPaymentGateway.refundDesc }}</span>
+        </div>
+      }
+    </ng-template>
+
+    <!-- Section 7 -->
+    <app-ipg-our-customers [templateData]="ipgPage()?.templateData || null"></app-ipg-our-customers>
+
+    <!-- Section 8 -->
+    <app-ui-document
+      [email]="'merchant@mydigipay.com'"
+      [url]="'/developers/docs/upg/'"
+      id="document"
+    ></app-ui-document>
+
+    <!-- Section 9 -->
+    @if (ipgPage().templateData.sectionSeoContent) {
+      <app-ui-seo [seoContent]="ipgPage().templateData.sectionSeoContent"></app-ui-seo>
+    }
+
+    <!-- Section 10 -->
+    @if (ipgPage().templateData.faq?.faqItems?.length > 0) {
+      <app-ui-faq
+        [faqs]="ipgPage().templateData.faq.faqItems"
+        [subtitle]="ipgPage().templateData.faq.subtitle"
+        [title]="ipgPage().templateData.faq.title"
+      ></app-ui-faq>
+    }
+
+    <!-- Section 11 -->
+    @if (ipgPage().templateData.relatedPosts && posts().length > 0) {
+      <app-blog-cards
+        [blogPosts]="posts()"
+        [subtitle]="ipgPage().templateData.relatedPosts.subtitle"
+        [title]="ipgPage().templateData.relatedPosts.title"
+      ></app-blog-cards>
+    }
+  }
+</app-base-layout>

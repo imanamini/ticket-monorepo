@@ -1,0 +1,61 @@
+.submitted-nobitex {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  gap: 32px;
+  flex-wrap: wrap;
+
+  img {
+    width: 450px;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    .title {
+      color: var(--Steel-900, #2c3544);
+      text-align: right;
+      font-size: 31px;
+      font-style: normal;
+      font-weight: 1000;
+      line-height: 150%; /* 46.5px */
+    }
+
+    .subtitle {
+      color: var(--Steel-500, #6e798d);
+      text-align: right;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 200%; /* 32px */
+      letter-spacing: -0.48px;
+      margin-bottom: 32px;
+    }
+
+    .action-button {
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .submitted-nobitex {
+    margin-bottom: 30px;
+  }
+  .submitted-nobitex img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 450px) {
+  .submitted-nobitex .content .title {
+    font-size: 25px;
+  }
+
+  .submitted-nobitex .content .subtitle {
+    font-size: 14px;
+  }
+}

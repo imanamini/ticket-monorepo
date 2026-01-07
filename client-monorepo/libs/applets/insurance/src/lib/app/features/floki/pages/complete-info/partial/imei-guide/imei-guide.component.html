@@ -1,0 +1,49 @@
+<div class="imei-container d-flex flex-column ">
+  <div class="header d-flex align-items-center">
+    <floki-header
+      (iconClickHandler)="goToCompleteInfo()"
+      [hasIcon]="true"
+      [iconName]="'close'"
+      [title]="'راهنمای دریافت IMEI'"
+      class="icon-color"
+      titleTextAlign="center"
+    >
+    </floki-header>
+  </div>
+  <div class="flex-1">
+    <p class="px-plus st-8 text-onback-high">
+      مراحل تهیه و ثبت شماره سریال دستگاه (IMEI)
+    </p>
+    <callout-checked [messages]="messages()" [mode]="CalloutModeEnum.DIGIT" class="p-minus"></callout-checked>
+    <div class="d-flex align-items-center justify-content-center gap-medium">
+      <div class="d-flex flex-column align-items-center justify-content-center gap-minus">
+        <img [height]="270" alt="complete information"
+             src="assets/images/imei-1.png"/>
+        <div
+          class="d-flex text-onback-brand surface-brand-tint align-items-center radius-giant digit-container justify-content-center	">
+          1
+        </div>
+      </div>
+      <div class="d-flex flex-column align-items-center justify-content-center gap-minus">
+        <img [height]="270" alt="complete information"
+             src="assets/images/imei-2.png"/>
+        <div
+          class="d-flex text-onback-brand surface-brand-tint align-items-center radius-giant digit-container justify-content-center	">
+          2
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-plus">
+    <ngx-button
+      (click)="goToCompleteInfo()"
+      [fullWidth]="true"
+      [size]="'large'"
+      [style]="'fill'">
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>
+
+
+

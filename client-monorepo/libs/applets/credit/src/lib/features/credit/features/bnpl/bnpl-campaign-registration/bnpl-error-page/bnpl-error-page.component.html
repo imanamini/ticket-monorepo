@@ -1,0 +1,25 @@
+<app-credit-app-bar title="اعتبار اقساطی دیجی‌پی"></app-credit-app-bar>
+<div class="top-section">
+  <ngx-status-result
+    (clicked)="onCtaClick($event)"
+    [buttons]="buttons()!"
+    [description]="description()!"
+    [title]="title()!"
+  >
+    <ng-container status-image>
+      <div [class]="'message-image static-image-' + image()"></div>
+    </ng-container>
+  </ngx-status-result>
+  @if (hasTimer()) {
+    <div class="cta-wrapper">
+      <ngx-button
+        (clickHandler)="onCtaClick('return-to-merchant')"
+        (finished)="onCtaClick('return-to-merchant')"
+        [timer]="timer()"
+        [style]="'tinted-on-elevated'"
+      >
+        بازگشت به فروشگاه در&nbsp;
+      </ngx-button>
+    </div>
+  }
+</div>

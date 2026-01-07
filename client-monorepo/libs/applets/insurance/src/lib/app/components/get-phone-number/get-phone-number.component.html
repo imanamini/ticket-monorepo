@@ -1,0 +1,31 @@
+<div class="header">
+  <div class="header-content">ورود به حساب</div>
+  <div class="logo"></div>
+</div>
+<form
+        [formGroup]="form"
+        autocomplete="off"
+        class="content">
+  <div class="title">لطفا شماره موبایل خود را وارد کنید.</div>
+  <div class="form-field">
+    <ui-form-field
+            [error]="form.controls.phoneNumber.errors"
+            [hasCleaner]="true"
+            [maxSize]="11"
+            formControlName="phoneNumber"
+            label="شماره موبایل"
+            [type]="'input'"
+            [isNumericKeyboard]="true"
+            [inputType]="'tel'">
+    </ui-form-field>
+  </div>
+
+</form>
+<div class="footer">
+  <ui-button
+          (click)="sendOtpCode.emit()"
+          [disabled]="form.status === 'INVALID'"
+          [style]="{width: '160px'}">ادامه
+  </ui-button>
+</div>
+

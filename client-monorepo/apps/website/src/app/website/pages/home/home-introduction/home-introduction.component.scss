@@ -1,0 +1,43 @@
+@import "globals";
+
+#home-introduction {
+  align-items: center;
+  background-color: #e7ecfd;
+  overflow: hidden;
+}
+
+#home-introduction-title {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  color: $text-color;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+#home-introduction-subtitle {
+  font-size: 40px;
+  font-weight: 800;
+  color: $text-color;
+  text-align: center;
+}
+
+#home-introduction > .btn-downloadApp {
+  display: none;
+  max-width: 300px;
+}
+
+@media (max-width: 744px) {
+  #home-introduction-title {
+    font-size: 18px;
+  }
+  #home-introduction-subtitle {
+    font-size: 20px;
+  }
+  #home-introduction > .btn-downloadApp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+}

@@ -1,0 +1,45 @@
+<div class="daily-post-container">
+  <video
+    *ngIf="post.image && post.image.url && isFileVideo(post.image.url); else image"
+    controls
+    preload="metadata"
+    width="100%"
+  >
+    <source
+      [src]="post.image.url + '#t=0.5'"
+      type="video/mp4"
+    />
+  </video>
+  <ng-template #image>
+    <img
+      *ngIf="post.image"
+      [alt]="post.image.altText"
+      [src]="post.image.url"
+      class="daily-post-image"
+    />
+  </ng-template>
+  <span
+    *ngIf="post.category"
+    class="daily-post-category"
+    >{{ post.category?.title }}</span
+  >
+  <span class="daily-post-date">
+    {{ post.createdAt.formatted }}
+  </span>
+  <h1 class="daily-post-title">
+    <a [routerLink]="'/daily/' + post.slug + '/.'">
+      {{ post.title }}
+    </a>
+  </h1>
+  <div
+    [innerHtml]="showFull && post.content ? post.content : post.excerpt"
+    class="daily-post-abstract"
+  ></div>
+  <app-ui-button
+    *ngIf="!showFull"
+    [link]="'/daily/' + post.slug + '/.'"
+    [useRouterLink]="true"
+  >
+    خواندن پست
+  </app-ui-button>
+</div>

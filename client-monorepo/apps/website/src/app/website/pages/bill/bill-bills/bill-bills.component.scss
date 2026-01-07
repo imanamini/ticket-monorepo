@@ -1,0 +1,32 @@
+.section-bills {
+  .content {
+    padding: 100px 0;
+    background: linear-gradient(
+      268.92deg,
+      rgba(33, 81, 222, 0.2) 0%,
+      rgba(0, 204, 109, 0.05) 100%
+    );
+
+    > div {
+      justify-content: space-evenly;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+@media (max-width: 577px) {
+  .section-bills {
+    .content {
+      padding: 64px 0;
+
+      > div {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 10px;
+        grid-row-gap: 48px;
+        justify-items: center;
+      }
+    }
+  }
+}

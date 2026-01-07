@@ -1,0 +1,84 @@
+@import "../../credit-styles/device-mixins";
+
+::ng-deep app-credit-tac-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+// wrapper tag is used specially for the iOS devices
+// (fixes scroll and fixed button issue)
+.wrapper {
+  position: relative;
+  flex-grow: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+}
+
+.iframe-container {
+  flex-grow: 1;
+  position: relative;
+  z-index: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+}
+
+::ng-deep .html-content #page {
+  max-width: 100%;
+}
+
+.html-content {
+  width: 100%;
+  padding: 16px;
+  flex-grow: 1;
+
+  // Reset styles for rendered HTML
+  * {
+    max-width: 100%;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.confirm {
+  position: sticky;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 1) 70%,
+      rgba(255, 255, 255, 0.8) 100%
+  );
+  box-sizing: border-box;
+  backdrop-filter: blur(4px);
+}
+
+@include mediaMobile() {
+  .iframe-container {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+  }
+}
+
+/**
+  Default "ng-scroll-viewport" styles
+  causes the VirtualNumPad (or any fixed element)
+  to move off the page.
+  So, Reset this behaviour using these stylesheets.
+
+  related issue: https://github.com/MurhafSousli/ngx-scrollbar/issues/24
+ */
+:host ::ng-deep .ng-scroll-viewport {
+  contain: none !important;
+  transform: none !important;
+}

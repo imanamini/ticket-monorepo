@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.status-image {
+  width: 96px;
+  height: 96px;
+  background: url("../../../../assets/icons/public-icons/credit-waiting-icon.svg") no-repeat center center;
+  background-size: contain;
+}

@@ -1,0 +1,20 @@
+<div class="checkbox-box">
+  <input
+    (change)="handleChange($event)"
+    (click)="handleClick($event)"
+    [(ngModel)]="checked"
+    [disabled]="disabled()"
+    [id]="id()"
+    [class.disabled]="disabled()"
+    type="checkbox"
+  />
+  <label
+    [for]="id()"
+    [class]="['checkbox-label', type(), isLocked() ? 'locked' : '']"
+  >
+    <div class="mark-box">
+      <div class="mark"></div>
+    </div>
+    <ng-content></ng-content>
+  </label>
+</div>

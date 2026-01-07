@@ -1,0 +1,81 @@
+<div
+  [class]="{ 'version-2': version() === 2 }"
+  class="slider-select-card surface-elevated radius-minus w-100"
+>
+  <div
+    (click)="safePrev()"
+    [class]="{
+      disabled: !!prevBtnDisabled(),
+      'hide-nav': reverseOptions().length === 1,
+    }"
+    class="slider-nav-btn cursor-pointer d-flex align-items-center justify-content-flex-start slider-nav-next"
+    ngxTrackableId
+    trackerId="carouselNextButtonClick"
+  >
+    <div class="arrow-icon-wrapper d-flex justify-content-center align-items-center">
+      <ngx-button
+        [disabled]="!!prevBtnDisabled()"
+        [leftIcon]="{ name: 'arrow-2-right' }"
+        [mode]="'icon-only'"
+        [size]="'small'"
+        [style]="'tinted-on-elevated'"
+      ></ngx-button>
+    </div>
+  </div>
+  @if (!loading() && reverseOptions().length > 0) {
+    <ngx-dp-carousel
+      [mode]="'SINGLE'"
+      [visibleItemCount]="reverseOptions().length === 1 ? 1 : 2.2"
+      [index]="carouselIndex()"
+      [centerMode]="true"
+      [showNavigation]="false"
+      [showButtons]="false"
+      [isFixedGap]="true"
+      [fixedGap]="8"
+      [changeStepThresholdPercentage]="20"
+      [isFixedWidth]="false"
+      [swipeThreshold]="30"
+      [disableScaling]="false"
+      [loopMode]="false"
+      (indexChange)="onChanged($event)"
+    >
+      @for (option of reverseOptions(); track option; let i = $index) {
+        <ng-template ngxDpCarouselSlide>
+          <div class="slider-item d-flex justify-content-center align-items-center fs-14">
+            @if (option.template) {
+              <span>
+                <ng-container
+                  [ngTemplateOutletContext]="option.templateContext || {}"
+                  [ngTemplateOutlet]="option.template"
+                ></ng-container>
+              </span>
+            }
+            @if (!option.template) {
+              {{ option.label }}
+            }
+          </div>
+        </ng-template>
+      }
+    </ngx-dp-carousel>
+  }
+  <div
+    (click)="safeNext()"
+    [class]="{
+      disabled: !!nextBtnDisabled(),
+      'hide-nav': reverseOptions().length === 1,
+    }"
+    class="slider-nav-btn cursor-pointer d-flex align-items-center justify-content-flex-end slider-nav-prev"
+    ngxTrackableId
+    trackerId="carouselPrevButtonClick"
+  >
+    <div class="arrow-icon-wrapper d-flex justify-content-center align-items-center">
+      <ngx-button
+        [disabled]="!!nextBtnDisabled()"
+        [leftIcon]="{ name: 'arrow-2-left' }"
+        [mode]="'icon-only'"
+        [size]="'small'"
+        [style]="'tinted-on-elevated'"
+      ></ngx-button>
+    </div>
+  </div>
+</div>

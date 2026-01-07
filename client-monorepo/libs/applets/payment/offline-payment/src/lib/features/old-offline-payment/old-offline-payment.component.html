@@ -1,0 +1,54 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  title="فاکتور پرداخت"
+>
+  <div class="invoice">
+    <div class="invoice-info">
+      <ui-api-image
+        [width]="'48px'"
+        [height]="'48px'"
+        [imageId]="items.imageId"
+      >
+      </ui-api-image>
+      <div class="info-title">
+        <div class="title">{{ items.creditor.name }}</div>
+        <div class="time">
+          <span>زمان: {{ items.date }}</span> - <span>ساعت {{ items.time }} </span>
+        </div>
+      </div>
+    </div>
+    <div class="tracking-code">
+      <p>
+        <span>{{ items.trackingCode }}</span>
+      </p>
+    </div>
+    <div class="invoice-detail">
+      <p class="title">جزئیات فاکتور</p>
+      <div
+        class="detail"
+        *ngFor="let item of items.details"
+      >
+        <p class="detail-title">{{ item.key }}</p>
+        <p class="detail-info">{{ item.value }}</p>
+      </div>
+    </div>
+    <div class="invoice-price">
+      <p class="price-title">مبلغ قابل پرداخت</p>
+      <p class="price">{{ items.amount | thousands }} <span> ريال</span></p>
+    </div>
+    <div class="invoice-pay">
+      <ngx-button
+        (clickHandler)="pay()"
+        [mode]="'form'"
+        [size]="'large'"
+        [style]="'fill'"
+        [fullWidth]="true"
+      >
+        پرداخت فاکتور
+      </ngx-button>
+    </div>
+  </div>
+  <div class="logo">
+    <div class="logo-img"></div>
+  </div>
+</common-ui-components-page-layout>

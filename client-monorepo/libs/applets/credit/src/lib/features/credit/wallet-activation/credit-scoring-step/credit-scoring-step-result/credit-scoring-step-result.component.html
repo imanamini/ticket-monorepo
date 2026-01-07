@@ -1,0 +1,20 @@
+@if (!showReportPage()) {
+  <app-credit-scoring-result-page
+    (report)="showReport()"
+    [creditId]="creditId()!"
+    [fundProviderCode]="fundProviderCode()!"
+    [gettingData]="gettingData()!"
+    [status]="status()!"
+    [trackingCode]="trackingCode()!"
+    class="flex-full-height"
+  ></app-credit-scoring-result-page>
+}
+
+@if (showReportPage()) {
+  <app-credit-scoring-step-report-wrapper
+    class="flex-full-height"
+    [trackingCode]="trackingCode()"
+    [type]="'without-pay'"
+    (back)="showReportPage.set(false)"
+  ></app-credit-scoring-step-report-wrapper>
+}

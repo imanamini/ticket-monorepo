@@ -1,0 +1,69 @@
+<section class="section-statistic-steps">
+  <div class="container">
+    <div class="content-segment">
+      <div class="right-side">
+        <div>
+          <img
+            [alt]="title"
+            [src]="statisticsSide?.image?.url"
+          />
+        </div>
+        <div class="statistics">
+          <ng-container *ngFor="let item of statisticsSide.statistics">
+            <div class="statistic">
+              <div class="title">
+                {{ item.title }}
+              </div>
+              <div class="value">
+                {{ item.value }}
+                <span
+                  *ngIf="item.unit"
+                  class="unit"
+                >
+                  {{ item.unit }}
+                </span>
+              </div>
+            </div>
+            <div class="vertical"></div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="left-side">
+        <h2 class="text-align-right">{{ title }}</h2>
+        <div class="subtitle">{{ subtitle }}</div>
+        <ul
+          *ngIf="steps && steps.length > 0"
+          class="feature-cards"
+        >
+          <li
+            *ngFor="let item of steps"
+            class="feature-card"
+          >
+            <div class="feature-card-icon">
+              <img
+                *ngIf="item.icon"
+                [src]="item.icon.url"
+                alt="{{ item.title }}>"
+              />
+            </div>
+            <div class="feature-card-content">
+              <strong>{{ item.title }}</strong>
+              <div [innerHTML]="item.text"></div>
+            </div>
+          </li>
+        </ul>
+        <div class="cta">
+          <app-ui-button
+            [classes]="'anchor-button-default-icon icon-circle-download'"
+            [link]="cta.link"
+            size="BIG"
+          >
+            <span>
+              {{ cta.title }}
+            </span>
+          </app-ui-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

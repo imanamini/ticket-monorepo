@@ -1,0 +1,39 @@
+<!-- ? rist -->
+<div class="d-flex align-items-center">
+  <div class="position-relative w-100 radius-tiny border-t-200 border-color-light mt-big">
+    <div
+      class="c-1 bar-title"
+      [ngClass]="{
+        'no-risk-title text-onback-success': !risk(),
+        'low-risk-title text-onback-success': risk() === 'low',
+        'medium-risk-title text-warning': risk() === 'medium',
+        'medium-high-risk-title': risk() === 'mediumhigh',
+        'high-risk-title': risk() === 'high',
+      }"
+    >
+      <p>
+        {{
+          risk() === 'low'
+            ? 'ریسک پایین'
+            : risk() === 'medium'
+              ? 'ریسک متوسط'
+              : risk() === 'mediumhigh'
+                ? 'ریسک نسبتا زیاد'
+                : risk() === 'high'
+                  ? 'ریسک بالا'
+                  : 'بدون ریسک'
+        }}
+      </p>
+    </div>
+    <div
+      class="bar-value"
+      [ngClass]="{
+        'no-risk': !risk(),
+        'low-risk': risk() === 'low',
+        'high-risk': risk() === 'high',
+        'medium-high-risk': risk() === 'mediumhigh',
+        'medium-risk': risk() === 'medium',
+      }"
+    ></div>
+  </div>
+</div>

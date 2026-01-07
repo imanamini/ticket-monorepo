@@ -1,0 +1,47 @@
+<div class="body w-100 pt-medium rtl">
+  <div class="pt-small px-plus">
+    <c2c-applet-c2c-frequent-transaction-card
+      [mode]="'preview'"
+      [transaction]="frequentTransaction()"
+    ></c2c-applet-c2c-frequent-transaction-card>
+  </div>
+  <section class="options pt-small pb-plus">
+    <div
+      class="option d-flex b-2"
+      (click)="editClick()"
+    >
+      <span class="icon icon-edit">
+        <common-icon-dp-icon
+          [classes]="'text-onback-high'"
+          [iconSize]="'24'"
+          [icon]="'Edit-square'"
+          [iconType]="'linear'"
+        ></common-icon-dp-icon>
+      </span>
+      <span>ویرایش اطلاعات</span>
+      <div class="arrow-icon">
+        <common-icon-dp-icon
+          [icon]="'arrow-2-left'"
+          [classes]="'text-onback-high'"
+          [iconType]="'linear'"
+          [iconSize]="'20'"
+        ></common-icon-dp-icon>
+      </div>
+    </div>
+
+    <div
+      class="option d-flex text-onback-error b-2"
+      (click)="deleteClick()"
+    >
+      <span class="icon icon-delete">
+        <common-icon-dp-icon
+          [classes]="'text-onback-error'"
+          [iconSize]="'24'"
+          [icon]="'delete'"
+          [iconType]="'linear'"
+        ></common-icon-dp-icon>
+      </span>
+      <span>حذف میانبر</span>
+    </div>
+  </section>
+</div>

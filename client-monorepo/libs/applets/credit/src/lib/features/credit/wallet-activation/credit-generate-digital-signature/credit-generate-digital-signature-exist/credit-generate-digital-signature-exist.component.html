@@ -1,0 +1,36 @@
+@if (!loading()) {
+  <app-credit-app-bar
+    (onCloseButtonClick)="backToCreditStepper()"
+    [closeButton]="true"
+    [title]="'امضای دیجیتال'"
+  ></app-credit-app-bar>
+  <div class="top-section d-flex flex-column w-100 flex-grow rtl">
+    <div class="flex-grow d-flex justify-content-center rtl pb-plus">
+      <ngx-status-result
+        [type]="'Status'"
+        [iconState]="'info'"
+        [description]="description"
+        [title]="title"
+        [buttons]="buttons"
+        (clicked)="next.emit()"
+      >
+        <div
+          html-content
+          class="d-flex flex-column flex-grow justify-content-flex-end"
+        >
+          <ngx-callout
+            (ctaClick)="openForgetPasswordBottomSheet()"
+            [title]="'اگر رمز امضای خود را فراموش کرده‌اید:'"
+            [mode]="'multiple'"
+            [cta]="'فراموشی رمز'"
+            [messages]="[
+              'می‌توانید گزینه «فراموشی رمز» را انتخاب کنید. با این کار امضای فعلی شما حذف شده و می‌توانید یک امضای جدید بسازید.',
+            ]"
+          />
+        </div>
+      </ngx-status-result>
+    </div>
+  </div>
+} @else {
+  <credit-page-loading [active]="loading()"></credit-page-loading>
+}

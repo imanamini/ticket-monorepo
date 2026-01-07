@@ -1,0 +1,11 @@
+:host ::ng-deep {
+  .card-title {
+    position: relative;
+    z-index: 1;
+
+    > span {
+      position: relative;
+      z-index: 1;
+    }
+  }
+}

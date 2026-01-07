@@ -1,0 +1,13 @@
+<div class="switch">
+  <div class="d-flex align-items-center">
+    <span class="icon"></span>
+    <span class="label">نوع سیم‌کارت:</span>
+  </div>
+  <ng-container *ngIf="simCards">
+    <app-ui-animated-switch
+      (changed)="onChange($event)"
+      [options]="simCards"
+      [selectedOption]="selectedOption"
+    ></app-ui-animated-switch>
+  </ng-container>
+</div>

@@ -1,0 +1,21 @@
+.provision {
+  background-color: #41a6d9;
+  direction: rtl;
+  text-align: start;
+  cursor: pointer;
+
+  p {
+    font-weight: 200;
+    font-size: 12px;
+    color: #ffffff;
+    letter-spacing: 0;
+    line-height: 20px;
+    padding: 10px 22px;
+
+    span {
+      font-weight: 500;
+      color: white;
+      border-bottom: 1px solid;
+    }
+  }
+}

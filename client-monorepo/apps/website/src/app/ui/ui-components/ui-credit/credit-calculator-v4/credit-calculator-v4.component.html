@@ -1,0 +1,160 @@
+<div class="section-credit-calculator">
+  @if (gettingData()) {
+    full loading
+  } @else if (plans().length > 0) {
+    <div class="plans radius-big surface-elevated py-massive px-giant">
+      <div class="c-cal-row d-flex w-100 gap-giant">
+        <div class="c-cal-col right-side">
+          <div class="w-100 d-flex justify-content-space-between align-items-center funder mb-pony">
+            <div class="st-1 text-onback-high title">{{ title() }}</div>
+            <div>
+              <div class="merchant-logo-list">
+                @for (item of selectedMerchantLogos(); track $index) {
+                  <div
+                    class="merchant-logo-item"
+                    [style]="{ backgroundColor: item.color }"
+                  >
+                    @if (isPlatformBrowser(platformId)) {
+                      <ui-api-image
+                        [imageId]="item.logo"
+                        height="24px"
+                        width="24px"
+                      ></ui-api-image>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="plans-types-amounts">
+              @if (Object.keys(dataTree()).length > 1) {
+                <ngx-button
+                  class="credit-plans-next"
+                  [mode]="'icon-only'"
+                  [size]="'medium'"
+                  [style]="'tinted-on-elevated'"
+                  [leftIcon]="{
+                    name: 'arrow-2-left',
+                  }"
+                  (click)="mySwiper.slideNext()"
+                ></ngx-button>
+                <ngx-button
+                  class="credit-plans-prev"
+                  [mode]="'icon-only'"
+                  [size]="'medium'"
+                  [style]="'tinted-on-elevated'"
+                  [leftIcon]="{
+                    name: 'arrow-2-right',
+                  }"
+                  (click)="mySwiper.slidePrev()"
+                ></ngx-button>
+              }
+              <div class="plans-swiper">
+                <swiper-container
+                  appSwiper
+                  #mySwiper="appSwiper"
+                  [config]="swiperConfig"
+                  (slideChange)="onAmountChange()"
+                >
+                  @for (amount of Object.keys(this.dataTree()); track amount) {
+                    <swiper-slide>
+                      <div class="plan-amount fs-m-18">{{ +amount | creditNumberToString }} <span>ریال</span></div>
+                    </swiper-slide>
+                  }
+                </swiper-container>
+              </div>
+            </div>
+
+            <div class="plans-details">
+              <div class="d-flex gap-small justify-content-center">
+                @for (installment of Object.keys(this.dataTree()[selectedAmount()]); track installment) {
+                  <ngx-chip
+                    [id]="'ins-' + installment"
+                    [label]="installment + '  قسط'"
+                    [pressed]="selectedInstallmentCount() === +installment"
+                    (click)="changeInstallmentCount(+installment)"
+                    [size]="'LARGE'"
+                  ></ngx-chip>
+                }
+              </div>
+            </div>
+            @if (!deviceDetector.isMobileDevice()) {
+              <div class="mt-large">
+                <ngx-alert
+                  [color]="'yellow'"
+                  [icon]="'info-circle'"
+                  [title]="'توجه داشته باشید'"
+                  [text]="'دریافت وام به مبلغ مورد نظر، به نتیجه اعتبارسنجی شما بستگی دارد.'"
+                  [hasCloseIcon]="false"
+                >
+                </ngx-alert>
+              </div>
+              <div class="mt-plus">
+                <ngx-button
+                  (clickHandler)="onButtonClick('/service/credit/resolve?referrer=website')"
+                  [mode]="'section'"
+                  [leftIcon]="{
+                    name: 'arrow-2-left',
+                  }"
+                  [style]="'fill'"
+                  [size]="'large'"
+                  [fullWidth]="true"
+                  >دریافت وام
+                </ngx-button>
+              </div>
+            }
+          </div>
+        </div>
+        <div class="c-cal-col left-side">
+          <div
+            class="plan-details"
+            id="plan-details"
+          >
+            @if (loadingCards()) {
+              <ngx-spinner
+                size="md"
+                color="primary"
+              ></ngx-spinner>
+            }
+            @if (!loadingCards()) {
+              <app-credit-best-plan-card [plans]="dataTree()[selectedAmount()][selectedInstallmentCount()]"></app-credit-best-plan-card>
+            }
+          </div>
+        </div>
+
+        @if (deviceDetector.isMobileDevice()) {
+          <div class="">
+            <ngx-alert
+              [color]="'yellow'"
+              [icon]="'info-circle'"
+              [title]="'توجه داشته باشید'"
+              [text]="'دریافت وام به مبلغ مورد نظر، به نتیجه اعتبارسنجی شما بستگی دارد.'"
+              [hasCloseIcon]="false"
+            >
+            </ngx-alert>
+          </div>
+          <div class="">
+            <ngx-button
+              (clickHandler)="onButtonClick('/service/credit/resolve?referrer=website')"
+              [mode]="'section'"
+              [leftIcon]="{
+                name: 'arrow-2-left',
+              }"
+              [style]="'fill'"
+              [size]="'large'"
+              [fullWidth]="true"
+              >دریافت وام
+            </ngx-button>
+          </div>
+        }
+      </div>
+    </div>
+  } @else {
+    <div class="no-plan">
+      <div class="artwork"></div>
+      <div class="no-plan-title">تکمیل ظرفیت تخصیص اعتبار</div>
+      <div class="no-plan-subtitle">در حال حاضر هیچ بسته اعتباری فعالی وجود ندارد.</div>
+    </div>
+  }
+</div>

@@ -1,0 +1,15 @@
+.filter {
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 100%;
+  &-item {
+    white-space: nowrap;
+  }
+  &-box {
+    flex: 1;
+    overflow: hidden;
+  }
+}

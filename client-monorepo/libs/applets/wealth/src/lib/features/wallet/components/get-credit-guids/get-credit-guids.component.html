@@ -1,0 +1,21 @@
+<button
+  class="border-none radius-plus surface-elevated cursor-pointer d-flex align-items-center w-100 container py-medium pl-plus pr-minus"
+  [id]="buttonId()"
+  (click)="creditGuids()"
+>
+  <div class="d-flex align-items-center justify-content-center p-small">
+    <img
+      src="./wealth-assets/images/get-credit-guid.svg"
+      alt="get-credit-guid"
+    />
+  </div>
+
+  <div class="w-100 d-flex align-items-center justify-content-space-between mr-small">
+    <p class="st-7 text-onback-medium">مراحل دریافت سود و اعتبار</p>
+
+    <ngx-icon
+      [name]="'arrow-left'"
+      [type]="'linear'"
+    />
+  </div>
+</button>

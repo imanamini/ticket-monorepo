@@ -1,0 +1,51 @@
+<div
+        *ngIf="result?.paymentSuccess"
+        [class.expand]="drawerOpened"
+        class="drawer">
+  <div class="header">نمیدونی چجوری اعلام خسارت کنی ؟</div>
+  <div class="content">
+    <div class="content-header">
+      <div class="title">نحوه‌ی اعلام خسارت</div>
+      <div class="body">بیمه گذار موظف است در صورت بروز خسارت، حداکثر طی مدت 5 روز از زمان بروز حادثه و در رابطه با
+        خسارات سرقت یا شکست حداکثر 30 روز پس از بروز حادثه، به صورت مکتوب خسارت خود را از طریق مبادی که در پایینتر
+        بیان شده است، به شرکت دیجی پی اعلام تا این مستندات جهت رسیدگی به شرکت بیمه طرف قرارداد ارسال شده و پیگیری
+        شوند.
+      </div>
+    </div>
+    <div class="declare-claim">
+      <div class="declare-claim-content">
+        <div class="content-title">اعلام خسارت به دیجی‌پی</div>
+        <div class="description">
+          تماس با شماره 53924000 داخلی 2 و سپس داخلی 1؛
+        </div>
+      </div>
+      <div class="image"></div>
+    </div>
+    <div class="present-documents">
+      <div class="content">
+        <div class="header"> ارائه مستندات مورد نیاز توسط بیمه‌گذار</div>
+        <div class="documents-describe">- در رابطه با خسارات متداول:</div>
+        <ul class="list">
+          <li
+                  *ngFor="let listOne of presentDocumentListOne"
+                  class="list-item">
+            {{ listOne }}
+          </li>
+        </ul>
+        <div class="documents-describe">- در رابطه با خسارات سرقت:</div>
+        <ul class="list">
+          <li
+                  *ngFor="let listTwo of presentDocumentListTwo"
+                  class="list-item">
+            {{ listTwo }}
+          </li>
+        </ul>
+      </div>
+      <div class="image"></div>
+    </div>
+  </div>
+  <div (click)="drawerOpened = !drawerOpened" class="footer">
+    <div class="text">{{ drawerOpened ? 'بستن' : 'مشاهده نحوه اعلام خسارت' }}</div>
+    <div class="icon"></div>
+  </div>
+</div>

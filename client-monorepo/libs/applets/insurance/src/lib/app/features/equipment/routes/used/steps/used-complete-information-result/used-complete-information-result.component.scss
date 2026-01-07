@@ -1,0 +1,12 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.data-register-result {
+  height: 100%;
+  @include flex-column;
+  @include flex-center-between;
+
+  stepper-action-result {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+}

@@ -1,0 +1,38 @@
+<app-ui-dialog-base (rejected)="onDialogClose()">
+  <div class="lock-icon"></div>
+  <app-ui-pin-input
+    (pinChange)="onPinChange($event)"
+    [hasError]="pinError"
+    [value]="form.value.password"
+    description="لطفا رمز عبور کیف پول خود را وارد کنید:"
+  ></app-ui-pin-input>
+
+  <app-ui-form-hint
+    *ngIf="errorMessage"
+    appearance="error"
+    class="error-message"
+    >{{ errorMessage }}</app-ui-form-hint
+  >
+
+  <div class="actions">
+    <app-ui-button
+      appearance="BLUE-TEXT"
+      class="primary"
+      link="https://www.mydigipay.com/contactus/"
+      linkTarget="_blank"
+      >فراموشی رمز
+    </app-ui-button>
+    <app-ui-button
+      (click)="onPay()"
+      [disabled]="form.invalid || verifying"
+      appearance="DEFAULT"
+      class="primary"
+    >
+      <ng-container *ngIf="!verifying">پرداخت با کیف پول</ng-container>
+      <app-ui-spinner
+        *ngIf="verifying"
+        [size]="24"
+      ></app-ui-spinner>
+    </app-ui-button>
+  </div>
+</app-ui-dialog-base>

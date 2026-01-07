@@ -1,0 +1,30 @@
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "staging"
+      variables:
+        BRANCH: "staging"
+      when: always
+
+    - if: $CI_COMMIT_BRANCH == "master"
+      variables:
+        BRANCH: "master"
+      when: always
+    - when: never
+
+stages:
+  - trigger
+
+Trigger_dpx:
+  stage: trigger
+  trigger:
+    project: "frontend/monorepo/client-monorepo"
+    branch: "$BRANCH"
+    forward:
+      yaml_variables: true
+  rules:
+    - if: $CI_COMMIT_BRANCH == "staging"
+      when: always
+    - if: $CI_COMMIT_BRANCH == "master"
+      when: always
+  variables:
+    TRIGGER_CONTEXT: "wealth_only"

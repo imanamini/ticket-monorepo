@@ -1,0 +1,22 @@
+<div
+  [ngClass]="'border-' + borderStatus"
+  class="slider"
+>
+  <drag-scroll
+    #dragScrollComponent
+    (dsInitialized)="scrollInitializedEvent()"
+    (reachesLeftBound)="scrollReachedEnd()"
+    [style]="{ height: 'auto' }"
+  >
+    <div class="placeholder"></div>
+    <div
+      (click)="itemClick(item)"
+      *ngFor="let item of badges"
+      [ngClass]="{ 'is-selected': selectedItem === item.value }"
+      class="chip"
+      drag-scroll-item
+    >
+      {{ item.label }}
+    </div>
+  </drag-scroll>
+</div>

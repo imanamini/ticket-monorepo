@@ -1,0 +1,150 @@
+@import '@digipay/base-style/styleguide';
+
+.card-container {
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    right: -20px;
+    top: -20px;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0.01%, var(--surface-elevated) 99.87%), #89a2de;
+    z-index: 0;
+  }
+  .plan-description {
+    position: relative;
+  }
+}
+.sb-price {
+  padding: 16px;
+  border-radius: 16px;
+  border: solid 2px transparent;
+
+  background:
+    linear-gradient(var(--surface-back), var(--surface-back)) padding-box,
+    linear-gradient(90deg, rgba(172, 190, 226, 0.4), #5cadff) border-box;
+}
+.divider {
+  width: 100%;
+  height: 0;
+  border-bottom: 2px dashed #{map-get($shade-colors, onelevated-shade-90)};
+}
+
+.active-plan {
+  border: solid 1px transparent;
+  background: linear-gradient(170deg, rgba(238, 191, 156, 0.1) 6.2%, rgba(213, 152, 107, 0.1) 92.23%);
+  border: none;
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(262deg, #d27438 -1.08%, #df9e74 93.42%);
+
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .diamond-icon {
+    width: 16px;
+    height: 16px;
+    background-size: 100% 100%;
+  }
+  &.diamond-silver {
+    background: linear-gradient(3deg, rgba(206, 212, 229, 0.1) -24.58%, rgba(192, 195, 211, 0.1) 124.46%);
+
+    &::before {
+      background: linear-gradient(180deg, #ced4e51a 0%, #c0c3d31a 100%);
+    }
+    .diamond-icon {
+      background-image: url('/assets/subscription/images/banners/plan-banners/icon-plan-type-silver.svg');
+    }
+  }
+
+  &.diamond-gold {
+    background: linear-gradient(180deg, rgba(255, 211, 55, 0.1) 0%, rgba(255, 212, 55, 0.1) 43.43%, rgba(255, 200, 0, 0.1) 100%);
+    &::before {
+      background: linear-gradient(0deg, #e6855c 0%, #fac678 50%, #fae36b 100%);
+    }
+    .diamond-icon {
+      background-image: url('/assets/subscription/images/banners/plan-banners/icon-plan-type-gold.svg');
+    }
+  }
+
+  &.diamond-bronze {
+    background: linear-gradient(170deg, rgba(238, 191, 156, 0.1) 6.2%, rgba(213, 152, 107, 0.1) 92.23%);
+
+    &::before {
+      background: linear-gradient(262deg, #d27438 -1.08%, #df9e74 93.42%);
+    }
+    .diamond-icon {
+      background-image: url('/assets/subscription/images/banners/plan-banners/icon-plan-type-bronze.svg');
+    }
+  }
+
+  &.diamond-platinium {
+    background: rgba(0, 158, 220, 0.1);
+    &::before {
+      background: linear-gradient(0deg, #2e9ccf 0%, #89e0ed 100%);
+    }
+    .diamond-icon {
+      background-image: url('/assets/subscription/images/banners/plan-banners/icon-plan-type-platinum.svg');
+    }
+  }
+
+  &.diamond-brilliance {
+    background: rgba(198, 210, 231, 0.2);
+    &::before {
+      background: linear-gradient(262deg, #8ea4d1 -1.08%, #c7d2e7 93.42%);
+    }
+    .diamond-icon {
+      background-image: url('/assets/subscription/images/banners/plan-banners/icon-plan-type-brilliance.svg');
+    }
+  }
+
+  &.diamond-diamond {
+    background: rgba(43, 229, 204, 0.2);
+    &::before {
+      background: linear-gradient(262deg, #1be7cc -1.08%, #9ee8de 93.42%);
+    }
+    .diamond-icon {
+      background-image: url('/assets/subscription/images/banners/plan-banners/icon-plan-type-diamond.svg');
+    }
+  }
+
+  &.diamond-pay-pro {
+    background: linear-gradient(262deg, rgba(107, 177, 249, 0.1) -1.08%, rgba(172, 190, 226, 0.1) 93.42%);
+    &::before {
+      background: linear-gradient(262deg, #68b0fb -1.08%, #acbee2 93.42%);
+    }
+
+    .diamond-icon {
+      background-image: url('/assets/subscription/images/banners/plan-banners/icon-plan-type-pay-pro.svg');
+    }
+  }
+  &.diamond-pay-plus {
+    background: linear-gradient(180deg, rgba(165, 12, 37, 0.1) 0%, rgba(250, 120, 142, 0.12) 45%, rgba(250, 107, 130, 0.1) 100%);
+    &::before {
+      background: linear-gradient(0deg, #a50c25, #fa788e, #fa6b82);
+    }
+
+    .diamond-icon {
+      background-image: url('/assets/subscription/images/banners/plan-banners/icon-plan-type-pay-plus.png');
+    }
+  }
+}
+
+.digi-card {
+  width: 320px;
+  position: relative;
+}
+.manage-btn{
+  min-width: 170px;
+}

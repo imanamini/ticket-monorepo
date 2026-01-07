@@ -1,0 +1,130 @@
+<form [formGroup]="deliveryByCourierForm">
+  @if (currentStep() === 1) {
+    <div formGroupName="addressDetails">
+      <ui-form-field
+        formControlName="postalCode"
+        type="input"
+        [label]="'کد پستی'"
+        [required]="true"
+        [maxSize]="10"
+        [minlength]="10"
+        [isNumericKeyboard]="true"
+        [showError]="addressFormSubmitted ? 'show' : 'auto'"
+        [error]="addressDetails.controls.postalCode.errors || {}"
+      ></ui-form-field>
+      <div class="d-l-flex gap-big">
+        <div class="w-l-50 w-100">
+          <ui-form-field
+            formControlName="no"
+            type="input"
+            [label]="'پلاک'"
+            [required]="true"
+            [isNumericKeyboard]="true"
+            [showError]="addressFormSubmitted ? 'show' : 'auto'"
+            [error]="addressDetails.controls.no.errors || {}"
+          ></ui-form-field>
+        </div>
+        <div class="w-l-50 w-100">
+          <ui-form-field
+            formControlName="unit"
+            type="input"
+            [label]="'واحد'"
+            [required]="true"
+            [isNumericKeyboard]="true"
+            [showError]="addressFormSubmitted ? 'show' : 'auto'"
+            [error]="addressDetails.controls.unit.errors || {}"
+          ></ui-form-field>
+        </div>
+      </div>
+      <ui-form-field
+        formControlName="address"
+        type="input"
+        [multiLine]="true"
+        [label]="'آدرس'"
+        [required]="true"
+        [hasCleaner]="true"
+        [showError]="addressFormSubmitted ? 'show' : 'auto'"
+        [error]="addressDetails.controls.address.errors || {}"
+      ></ui-form-field>
+
+      <div class="d-l-flex gap-l-low flex-row-reverse">
+        <div class="w-100 mb-low mb-l-atom">
+          <ngx-button
+            [disabled]="addressDetails.invalid"
+            (clickHandler)="goToDeliveryStep()"
+            [fullWidth]="true"
+            [mode]="'form'"
+            [style]="'fill'"
+            [brandButton]="true"
+            [size]="'large'"
+          >
+            تایید و ادامه
+          </ngx-button>
+        </div>
+        <div class="">
+          <ngx-button
+            (clickHandler)="clearForm()"
+            [fullWidth]="true"
+            [mode]="'form'"
+            [style]="'link'"
+            [size]="'larg'"
+          >
+            پاک کردن
+          </ngx-button>
+        </div>
+      </div>
+    </div>
+  } @else if (currentStep() === 2) {
+    <div formGroupName="deliveryDetails">
+      <ui-form-field
+        formControlName="deliveryDate"
+        type="select"
+        [overflowToContainer]="true"
+        [label]="'انتخاب تاریخ دریافت'"
+        [placeholder]="''"
+        [multiSelect]="false"
+        [selectOpenType]="'dropDown'"
+        [isDividerOptions]="false"
+        [showRadioOptions]="false"
+        [dropdownPosition]="'bottom'"
+        [hasSelectAll]="false"
+        [selectBottomSheetCloseBtn]="false"
+        [required]="true"
+        [options]="deliveryDatesOption"
+        [showError]="deliveryFormSubmitted ? 'show' : 'auto'"
+        [error]="deliveryDetails.controls.deliveryDate.errors || {}"
+      ></ui-form-field>
+
+      <ui-form-field
+        formControlName="timeSlot"
+        type="select"
+        [overflowToContainer]="true"
+        [label]="'انتخاب بازه زمانی دریافت'"
+        [placeholder]="''"
+        [multiSelect]="false"
+        [selectOpenType]="'dropDown'"
+        [isDividerOptions]="false"
+        [showRadioOptions]="false"
+        [dropdownPosition]="'bottom'"
+        [hasSelectAll]="false"
+        [selectBottomSheetCloseBtn]="false"
+        [required]="true"
+        [options]="timeSlotsOption"
+        [showError]="deliveryFormSubmitted ? 'show' : 'auto'"
+        [error]="deliveryDetails.controls.timeSlot.errors || {}"
+      ></ui-form-field>
+
+      <ngx-button
+        [disabled]="deliveryByCourierForm.invalid"
+        (clickHandler)="onSubmit()"
+        [fullWidth]="true"
+        [mode]="'form'"
+        [style]="'fill'"
+        [brandButton]="true"
+        [size]="'large'"
+      >
+        ثبت درخواست
+      </ngx-button>
+    </div>
+  }
+</form>

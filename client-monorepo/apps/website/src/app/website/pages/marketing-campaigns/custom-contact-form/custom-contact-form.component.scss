@@ -1,0 +1,349 @@
+@import "globals";
+
+.nobitex-form {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.component-contact-form {
+  & .contact-form-row {
+    display: flex;
+  }
+
+  & h2 {
+    color: #061962 !important;
+    text-align: right;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 120%; /* 28.8px */
+  }
+
+  & .subtitle {
+    color: #061962;
+    text-align: right;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; /* 100% */
+    letter-spacing: -0.5px;
+    margin-bottom: 40px;
+  }
+}
+
+.single-note {
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+  border-radius: 12px;
+  background: var(--Surface-Surface-Tint, #f2f5f8);
+
+  span {
+    color: var(--Text-Text-High-Emphasis, #2c3544);
+    text-align: right;
+    font-feature-settings: 'liga' off, 'clig' off;
+    //font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 200% */
+  }
+
+  .attention {
+    opacity: 0.6232;
+    margin-right: 5px;
+  }
+}
+
+.form {
+  margin: 0 -15px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.input {
+  background: #e7ecfd;
+  height: 100%;
+  display: block;
+  border-radius: 12px;
+  padding: 0 20px;
+
+  span {
+    height: 100%;
+    display: block;
+  }
+}
+
+.segment-half {
+  min-width: 50%;
+  position: relative;
+  padding: 10px 20px;
+  flex: 1 1 auto;
+}
+
+.label-title {
+  color: $swatch_steel_400;
+  font-size: 14px;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 27px;
+  font-weight: 500;
+  pointer-events: none;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.label-mandatory {
+  color: #ff2638;
+  vertical-align: text-top;
+}
+
+li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+input[type='submit'] {
+  border-radius: 12px;
+  height: 50px;
+  background: blue;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  width: auto;
+  margin: 24px auto 0;
+  padding: 0 48px;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  height: 50px;
+  border-radius: 12px;
+  border: none;
+  font-size: 14px;
+  width: 100%;
+  padding: 10px 0;
+  outline: none;
+  background: none;
+  color: black;
+}
+
+.acceptanceRules input {
+  height: auto;
+  width: auto;
+}
+
+textarea {
+  height: auto;
+}
+
+.response-output {
+  background: $swatch_orange_100;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  color: #061962;
+  font-size: 14px;
+  gap: 12px;
+  line-height: 1.5;
+  align-items: center;
+  padding: 16px;
+  display: flex;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  margin: 20px 5px 10px;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+label.focus .label-title {
+  top: 5px;
+}
+
+.submit-button {
+  margin: 24px auto 0;
+  width: 180px;
+  display: block;
+}
+
+.form-errors {
+  color: #bc1a1a;
+  margin: 20px 0 0;
+}
+
+.shahkarError {
+  margin: 15px 0;
+}
+
+@media (max-width: 577px) {
+  .component-contact-form .contact-form-row {
+    flex-wrap: wrap;
+  }
+
+  .segment-half {
+    min-width: 100%;
+    padding: 16px 20px;
+  }
+  .submit-button {
+    width: 100%;
+  }
+}
+
+.switch-form {
+  text-align: center;
+  position: relative;
+  height: 45px;
+}
+
+.switch-form > span {
+  height: 100%;
+  display: block;
+}
+
+.form-control-wrap {
+  position: relative;
+}
+
+.switch-form .radio {
+  width: 50%;
+  border: 1px solid $swatch_steel_200;
+  background: #fff;
+  border-radius: 100px;
+  height: 40px;
+  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: auto;
+}
+
+.switch-form .radio > span {
+  width: 50%;
+  margin: 0;
+}
+
+.list-item {
+  display: inline-block;
+}
+
+.switch-form .radio span label {
+  line-height: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: block;
+}
+
+.switch-form .radio > span input {
+  display: none;
+}
+
+.list-item-label::before,
+.list-item-label::after {
+  content: ' ';
+}
+
+.switch-form .radio > span {
+  width: 50%;
+  margin: 0;
+}
+
+.switch-form .radio span label {
+  line-height: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: block;
+}
+
+.switch-form .radio span label input:checked + span {
+  height: 100%;
+  background-color: $swatch_blue_100;
+  width: 100%;
+  display: block;
+  color: $swatch_blue_500;
+  border-radius: 100px;
+}
+
+.switch-form .radio span label span {
+  font-size: 14px;
+  font-weight: 700;
+  color: $swatch_steel_400;
+}
+
+input[type='radio']:checked + span {
+  background: $swatch_blue_100;
+  border: 1px solid $swatch_blue_500;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: $swatch_blue_500;
+}
+
+::ng-deep .dg-input-wrapper input,
+::ng-deep .dg-input-wrapper textarea {
+  background-color: #ffffff !important;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+app-ui-button {
+  width: 100%;
+}
+
+.acceptanceRules {
+  margin: 0 0 45px;
+
+  a {
+    color: blue;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+.shahkar {
+  margin: 0 auto 45px !important;
+}
+
+.ctas {
+  display: flex;
+  justify-content: end;
+}
+
+@media (max-width: 744px) {
+  .component-contact-form h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .component-contact-form .subtitle {
+    font-size: 16px;
+  }
+  .form {
+    margin: unset;
+    max-width: unset;
+  }
+}

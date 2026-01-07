@@ -1,0 +1,59 @@
+<section class="c-credit-loan-roadmap">
+  <div class="container">
+    <div
+      *ngIf="CCreditLoanRoadmapData.artwork && CCreditLoanRoadmapData.artwork.url"
+      class="artwork"
+    >
+      <video
+        controls
+        preload="metadata"
+      >
+        <source
+          [src]="CCreditLoanRoadmapData.artwork.url + '#t=1'"
+          type="video/mp4"
+        />
+      </video>
+    </div>
+    <div class="content">
+      <h2
+        *ngIf="CCreditLoanRoadmapData.title"
+        class="title"
+      >
+        {{ CCreditLoanRoadmapData.title }}
+      </h2>
+      <div
+        *ngIf="CCreditLoanRoadmapData.subtitle"
+        class="subtitle"
+      >
+        {{ CCreditLoanRoadmapData.subtitle }}
+      </div>
+      <div
+        *ngIf="CCreditLoanRoadmapData.description"
+        class="description"
+      >
+        {{ CCreditLoanRoadmapData.description }}
+      </div>
+      <div
+        *ngIf="CCreditLoanRoadmapData.support.description"
+        class="support"
+      >
+        <div class="description">
+          {{ CCreditLoanRoadmapData.support.description }}
+        </div>
+        <app-ui-button
+          *ngIf="CCreditLoanRoadmapData.support.firstCta && CCreditLoanRoadmapData.support.firstCta.title"
+          [link]="CCreditLoanRoadmapData.support.firstCta.link ? CCreditLoanRoadmapData.support.firstCta.link : ''"
+          appearance="BLUE-TEXT"
+          class="cta"
+          >{{ CCreditLoanRoadmapData.support.firstCta.title }}
+          <img
+            *ngIf="CCreditLoanRoadmapData.support.firstCta.icon && CCreditLoanRoadmapData.support.firstCta.icon.url"
+            [height]="24"
+            [ngSrc]="CCreditLoanRoadmapData.support.firstCta.icon.url"
+            [width]="24"
+          />
+        </app-ui-button>
+      </div>
+    </div>
+  </div>
+</section>

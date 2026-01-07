@@ -1,0 +1,108 @@
+<div class="section-credit-calculator" [ngClass]="{'entekhab': isEntekhab}">
+  <ng-container *ngIf="Object.keys(dataTree).length > 0 || loadingCards">
+    <div
+      [ngClass]="{ 'with-plan-id': certainPlan }"
+      class="plans"
+    >
+      <div
+        *ngIf="!certainPlan && title"
+        class="title"
+      >
+        {{ title }}
+      </div>
+      <div class="plans-list">
+        <div
+          *ngIf="Object.keys(dataTree).length > 0 && !certainPlan"
+          class="plans-types-amounts"
+        >
+          <ng-container *ngIf="Object.keys(dataTree).length > 1">
+            <div
+              class="credit-plans-next"
+              (click)="mySwiper.slideNext()"
+            >
+              <ngx-icon
+                [iconSize]="'48'"
+                [name]="'arrow-2-left'"
+                class="text-onback-brand"
+              ></ngx-icon>
+            </div>
+            <div
+              class="credit-plans-prev"
+              (click)="mySwiper.slidePrev()"
+            >
+              <ngx-icon
+                [iconSize]="'48'"
+                [name]="'arrow-2-right'"
+                class="text-onback-brand"
+              ></ngx-icon>
+            </div>
+          </ng-container>
+          <div class="plans-swiper">
+            <swiper-container
+              appSwiper
+              #mySwiper="appSwiper"
+              [config]="swiperConfig"
+              (slideChange)="changeCreditPlan()"
+            >
+              <swiper-slide *ngFor="let plan of Object.keys(this.dataTree)">
+                <div class="plan-amount fs-m-16">{{ plan | IRR }} <span>ریال</span></div>
+              </swiper-slide>
+            </swiper-container>
+          </div>
+        </div>
+
+        <div class="plans-details">
+          <ng-container *ngIf="!certainPlan">
+            <div class="plan-payments">
+              <ng-container *ngFor="let installment of installmentCountOptions">
+                <div
+                  (click)="installment.disabled === false ? changeInstallmentAmount(installment.value) : ''"
+                  *ngIf="!installment.disabled"
+                  [ngClass]="selectedInstallmentCount === installment.value ? 'selected' : installment.disabled === false ? 'active' : ''"
+                  class="payment-duration"
+                >
+                  {{ installment.label }}
+                </div>
+              </ng-container>
+            </div>
+            <ng-container *ngIf="detailTitle">
+              <div
+                (click)="scrollToElement('plan-details')"
+                class="delimiter"
+              ></div>
+              <div class="detail-title">{{ detailTitle }}</div>
+            </ng-container>
+          </ng-container>
+          <div
+            [ngClass]="{
+              'working-capital': !showFundProviderIcon && !showInterestPercentage,
+            }"
+            class="plan-details"
+            id="plan-details"
+          >
+            <app-credit-plans-loading [active]="loadingCards"></app-credit-plans-loading>
+            <app-credit-fund-provider-groups-list
+              (selectCollateral)="changeCollateral($event)"
+              (selectFundProvider)="selectFundProvider($event)"
+              *ngIf="!loadingCards"
+              [certainFundProviderCode]="certainFundProviderCode"
+              [certainPlan]="certainPlan"
+              [isDetailPageCtaDisplayed]="isDetailPageCtaDisplayed"
+              [planGroups]="filteredPlans"
+              [showFundProviderIcon]="showFundProviderIcon"
+              [showInterestPercentage]="showInterestPercentage"
+              class="fund-provider-groups"
+            ></app-credit-fund-provider-groups-list>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="Object.keys(dataTree).length === 0 && !loadingCards">
+    <div class="no-plan">
+      <div class="artwork"></div>
+      <div class="no-plan-title">تکمیل ظرفیت تخصیص اعتبار</div>
+      <div class="no-plan-subtitle">در حال حاضر هیچ بسته اعتباری فعالی وجود ندارد.</div>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,31 @@
+<app-base-layout [loaded]="loaded">
+  <section>
+    <div class="blog-posts container">
+      <div class="blog-post">
+        <ng-container *ngFor="let post of posts">
+          <app-blog-post [post]="post"></app-blog-post>
+        </ng-container>
+      </div>
+
+      <div
+        *ngIf="totalPages > 1 && page < totalPages"
+        class="blog-daily-navigation"
+      >
+        <app-ui-button
+          [disabled]="page <= 1"
+          [link]="'/daily/.'"
+          [routerLinkQueryParams]="{ page: page - 1 }"
+          [useRouterLink]="true"
+          >صفحه قبل
+        </app-ui-button>
+        <app-ui-button
+          [disabled]="page === totalPages"
+          [link]="'/daily/.'"
+          [routerLinkQueryParams]="{ page: page + 1 }"
+          [useRouterLink]="true"
+          >صفحه بعد
+        </app-ui-button>
+      </div>
+    </div>
+  </section>
+</app-base-layout>

@@ -1,0 +1,80 @@
+<div
+  [ngClass]="{ open: isOpen() }"
+  class="on-screen-keypad"
+>
+  <div class="keypad">
+    <div class="row">
+      <div
+        (click)="buttonClick('1')"
+        class="key"
+      >
+        1
+      </div>
+      <div
+        (click)="buttonClick('2')"
+        class="key"
+      >
+        2
+      </div>
+      <div
+        (click)="buttonClick('3')"
+        class="key"
+      >
+        3
+      </div>
+    </div>
+    <div class="row">
+      <div
+        (click)="buttonClick('4')"
+        class="key"
+      >
+        4
+      </div>
+      <div
+        (click)="buttonClick('5')"
+        class="key"
+      >
+        5
+      </div>
+      <div
+        (click)="buttonClick('6')"
+        class="key"
+      >
+        6
+      </div>
+    </div>
+    <div class="row">
+      <div
+        (click)="buttonClick('7')"
+        class="key"
+      >
+        7
+      </div>
+      <div
+        (click)="buttonClick('8')"
+        class="key"
+      >
+        8
+      </div>
+      <div
+        (click)="buttonClick('9')"
+        class="key"
+      >
+        9
+      </div>
+    </div>
+    <div class="row">
+      <div class="key"></div>
+      <div
+        (click)="buttonClick('0')"
+        class="key"
+      >
+        0
+      </div>
+      <div
+        (click)="buttonClick('Backspace')"
+        class="key backspace"
+      ></div>
+    </div>
+  </div>
+</div>

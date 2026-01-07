@@ -1,0 +1,96 @@
+<label
+  [class]="{
+    'is-empty': step()?.statusText === 'INITIATE',
+    'is-editable': step()?.statusText === 'OPERATIONAL_REJECTION',
+    'is-success': step()?.statusText === 'COMPLETED',
+    'is-uploading': uploading(),
+    'is-error': uploadError(),
+    'is-disabled': step()?.disabled,
+  }"
+  class="upload-file-tile"
+>
+  <div class="description">
+    @if (step()?.image) {
+      <div class="icon">
+        <credit-digipay-image [imageId]="step()?.image"></credit-digipay-image>
+      </div>
+    }
+    <div class="text">
+      <h4 class="title">
+        {{ step()?.title }}
+        @if (step()?.moreInfo) {
+          <span
+            (click)="stepMoreInfoClick()"
+            class="more-info"
+            >{{ step()?.moreInfoText }}</span
+          >
+        }
+      </h4>
+      <p class="desc">{{ step()?.description }}</p>
+    </div>
+  </div>
+  <div class="image">
+    @if (step()?.stepResult || fileImageSrc()) {
+      <label class="image-data">
+        @if (!fileImageSrc()) {
+          <credit-digipay-image
+            [imageId]="step()?.stepResult"
+            apiEndpoint="CREDIT"
+            width="100%"
+          ></credit-digipay-image>
+        }
+        @if (fileImageSrc()) {
+          <img
+            [src]="fileImageSrc()"
+            alt="image"
+          />
+        }
+        <input
+          (change)="pickAgain($event)"
+          [disabled]="step()?.disabled"
+          type="file"
+        />
+      </label>
+    }
+
+    <label class="add-image">
+      <ngx-icon
+        [name]="'plus'"
+        [type]="'linear'"
+      ></ngx-icon>
+      <span class="icon"></span>
+      <input
+        (change)="fileChange($event)"
+        [disabled]="step()?.disabled"
+        type="file"
+      />
+    </label>
+
+    <div class="uploading centered-icon">
+      <ngx-spinner
+        size="md"
+        color="primary"
+      ></ngx-spinner>
+    </div>
+
+    <div class="check-icon centered-icon"></div>
+
+    <label class="edit centered">
+      <span class="edit-icon"></span>
+      <span class="warning-badge">ویرایش</span>
+      <input
+        (change)="fileChange($event)"
+        [disabled]="step()?.disabled"
+        type="file"
+      />
+    </label>
+
+    <div
+      (click)="retryUpload()"
+      class="warning centered"
+    >
+      <div class="warning-icon"></div>
+      <span class="warning-badge">تلاش مجدد</span>
+    </div>
+  </div>
+</label>

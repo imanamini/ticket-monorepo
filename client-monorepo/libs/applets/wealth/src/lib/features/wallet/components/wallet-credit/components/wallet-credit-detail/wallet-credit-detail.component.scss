@@ -1,0 +1,15 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  position: relative;
+}
+
+.onback-shade-95 {
+  background: var(--onback-shade-95);
+}
+
+.disabled{
+  filter: grayscale(1);
+  cursor: default;
+  opacity: 0.5;
+}

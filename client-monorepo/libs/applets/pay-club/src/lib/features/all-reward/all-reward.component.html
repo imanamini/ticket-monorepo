@@ -1,0 +1,24 @@
+<common-ui-components-page-layout
+  [stickyHeader]="false"
+  title="هدیه‌ها"
+  [headerClasses]="'surface-back'"
+>
+  <div class="px-plus py-plus surface-back h-100">
+    <common-ui-components-search
+      [mode]="'page'"
+      (searchTextChange)="doSearch($event)"
+      (searchEnd)="searchEnd($event)"
+      [placeHolder]="'جستجو'"
+      [(searchText)]="searchText"
+    ></common-ui-components-search>
+    <div class="d-flex flex-column align-items-center justify-content-center pt-medium gap-medium">
+      @for (voucher of vouchers(); track voucher) {
+        <pay-club-applet-ui-ticket-card
+          [voucher]="voucher"
+          [width]="'320px'"
+          (click)="selectTicket(voucher)"
+        ></pay-club-applet-ui-ticket-card>
+      }
+    </div>
+  </div>
+</common-ui-components-page-layout>

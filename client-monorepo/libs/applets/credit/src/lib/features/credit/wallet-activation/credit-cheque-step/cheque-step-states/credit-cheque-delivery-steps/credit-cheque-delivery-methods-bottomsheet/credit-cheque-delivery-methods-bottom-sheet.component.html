@@ -1,0 +1,47 @@
+<ngx-bottom-sheet-header
+  [showResizable]="false"
+  [title]="'انتخاب روش تحویل چک'"
+></ngx-bottom-sheet-header>
+<div class="d-flex flex-column w-100 gap-minus p-plus rtl">
+  @for (type of types(); track type.label) {
+    @if (type.enabled) {
+      <div
+        class="w-100 d-flex flex-row align-items-center px-plus py-minus gap-medium border-300 radius-medium cursor-pointer"
+        [class.border-color-brand]="type.isActive"
+        [class.border-color-light]="!type.isActive"
+        (click)="toggleItem(type.id)"
+      >
+        <div class="icon-container radius-rounded d-flex flex-column justify-content-center align-items-center">
+          <div class="radius-rounded surface-back p-low">
+            <ngx-icon
+              [name]="type.icon"
+              type="Bold"
+              [classes]="type.isActive ? 'text-onback-brand' : 'text-onback-medium'"
+              [iconSize]="'24px'"
+            ></ngx-icon>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-low">
+          <span
+            class="st-8"
+            [class.text-onback-medium]="!type.isActive"
+            [class.text-onback-brand]="type.isActive"
+            >{{ type.label }}
+          </span>
+          @if (type.badge) {
+            <ngx-badge
+              size="tiny"
+              [mode]="'fill'"
+            >
+              {{ type.badge }}
+            </ngx-badge>
+          }
+        </div>
+        <span
+          class="check mr-auto"
+          [class.is-active]="type.isActive"
+        ></span>
+      </div>
+    }
+  }
+</div>

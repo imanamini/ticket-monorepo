@@ -1,0 +1,191 @@
+{
+  "name": "website",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/website/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/apps/website",
+        "index": "apps/website/src/index.html",
+        "browser": "apps/website/src/main.ts",
+        "polyfills": [
+          "zone.js"
+        ],
+        "tsConfig": "apps/website/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/website/src/favicon.ico",
+          "apps/website/src/assets",
+          {
+            "glob": "**/*",
+            "input": "libs/shared/common/assets/src/lib/public-assets",
+            "output": "assets/shared"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/website/src/root-files",
+            "output": "./"
+          }
+        ],
+        "styles": [
+          "apps/website/src/styles.scss",
+          "libs/shared/common/assets/src/lib/styles/fonts.scss",
+          "./node_modules/@digipay/base-style/styleguide-theme.scss",
+          "./node_modules/leaflet/dist/leaflet.css",
+          "./node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
+          "./node_modules/leaflet.markercluster/dist/MarkerCluster.css"
+        ],
+        "scripts": ["./node_modules/leaflet/dist/leaflet.js", "./node_modules/leaflet.markercluster/dist/leaflet.markercluster.js"],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "./node_modules/@digipay",
+            "./libs/shared/common/assets/src/lib",
+            "apps/website/src/app/style"
+          ]
+        },
+        "server": "apps/website/src/main.server.ts",
+        "prerender": false,
+        "ssr": {
+          "entry": "apps/website/server.ts"
+        },
+        "externalDependencies": [
+          "canvas"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "1500kb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "30kb",
+              "maximumError": "200kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/website/src/environments/environment.ts",
+              "with": "apps/website/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "sourceMap": true,
+          "namedChunks": true,
+          "aot": true,
+          "extractLicenses": true
+        },
+        "development": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "1500kb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "30kb",
+              "maximumError": "200kb"
+            }
+          ],
+          "outputHashing": "all",
+          "sourceMap": true,
+          "namedChunks": true,
+          "aot": true,
+          "extractLicenses": true
+        },
+        "staging": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "1500kb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "30kb",
+              "maximumError": "200kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/website/src/environments/environment.ts",
+              "with": "apps/website/src/environments/environment.stg.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "sourceMap": true,
+          "namedChunks": true,
+          "aot": true,
+          "extractLicenses": true
+        },
+        "dev": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "1500kb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "30kb",
+              "maximumError": "200kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/website/src/environments/environment.ts",
+              "with": "apps/website/src/environments/environment.dev.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "sourceMap": true,
+          "namedChunks": true,
+          "aot": true,
+          "extractLicenses": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "website:build:production"
+        },
+        "development": {
+          "buildTarget": "website:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "website:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "apps/website/jest.config.ts"
+      }
+    }
+  }
+}

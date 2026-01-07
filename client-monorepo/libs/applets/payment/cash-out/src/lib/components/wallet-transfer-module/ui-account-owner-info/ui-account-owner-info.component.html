@@ -1,0 +1,35 @@
+<div
+  *ngIf="userDetail"
+  class="ui-account-owner-info"
+>
+  <div class="user-image">
+
+    @if (userDetail()?.imageId) {
+      <ui-api-image
+        [imageId]="userDetail()?.imageId!"
+        width="100%">
+      </ui-api-image>
+    } @else {
+      <img
+        ngSrc="/assets/cash-out/wallet-transfer/placeholder.svg"
+        width="24" height="24"
+      >
+    }
+  </div>
+  <h4 class="user-name">
+    <span *ngIf="userDetail()?.name || userDetail()?.surname">
+      {{ ( userDetail()?.name || "" ) + ( userDetail()?.surname ? " " + userDetail()?.surname : "" ) }}
+    </span>
+    <span
+      *ngIf="userDetail()?.name || userDetail()?.surname"
+      class="sep"
+    >|</span
+    >
+    <span
+      class="identity-account"
+      dir="ltr"
+    >
+      {{ userDetail()?.cellNumber | formattedCellNumber }}
+    </span>
+  </h4>
+</div>

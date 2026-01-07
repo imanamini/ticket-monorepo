@@ -1,0 +1,51 @@
+@import "globals";
+
+.digipay-dialog {
+  .mat-dialog-content,
+  .mat-dialog-title {
+    direction: rtl;
+    margin: 0;
+  }
+
+  .mat-dialog-content {
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.6em;
+    text-align: center;
+    color: $swatch_steel_900;
+  }
+
+  .mat-form-field {
+    direction: ltr !important;
+  }
+
+  .mat-dialog-title {
+    font-family: $primary-font;
+    color: $swatch_steel_500;
+    font-weight: 400;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    text-align: center;
+  }
+
+  .mat-dialog-actions {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0 5px;
+    margin: 0;
+  }
+
+  button.reject {
+    color: #666666;
+  }
+
+  button.resolve {
+    color: $swatch_blue_500;
+  }
+}
+
+.bold-notice {
+  color: #0040ff;
+  font-weight: 600;
+  font-size: 1.1em;
+  background-color: white;
+}

@@ -1,0 +1,23 @@
+<section class="bnpl-customers-section">
+  <div class="container">
+    <h2 class="text-align-center">{{ title }}</h2>
+    <div class="segment-content">
+      <ul *ngIf="customers && customers.length > 0">
+        <li
+          *ngFor="let customer of customers"
+          class="customer"
+        >
+          <img
+            [attr.alt]="customer.title"
+            [src]="customer.icon.url"
+          />
+        </li>
+        <li class="customer-invite">
+          <span>
+            {{ invite }}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

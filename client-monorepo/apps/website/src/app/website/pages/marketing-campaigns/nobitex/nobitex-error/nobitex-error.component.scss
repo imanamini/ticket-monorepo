@@ -1,0 +1,153 @@
+@import "globals";
+
+::ng-deep {
+  .cdk-overlay-pane {
+    max-width: 100% !important;
+  }
+}
+
+.modal-full-page {
+  direction: rtl;
+  padding: 40px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 1200px;
+  width: 100%;
+
+  .dialog-body {
+    background: #fff;
+    display: flex;
+    border-radius: 16px;
+    padding: 16px;
+    flex-grow: 1;
+
+    .not-response-link {
+      color: var(--Text-Text-Brand, #0040ff);
+      text-align: center;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px; /* 171.429% */
+      cursor: pointer;
+    }
+  }
+
+  .close {
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 744px) {
+  .modal-full-page {
+    padding: 0;
+
+    .close {
+      margin-bottom: unset;
+    }
+
+    .dialog-body {
+      padding: 0;
+    }
+
+    .dialog-header {
+      padding: 16px;
+      background: #f0f5ff;
+    }
+  }
+}
+
+:host {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row-reverse;
+}
+
+.right-side {
+  padding: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 60%;
+
+  .not-response {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .not-response-title {
+    color: #2c3544;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px; /* 175% */
+  }
+
+  .not-response-subtitle {
+    color: #6e798d;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 171.429% */
+  }
+
+  .not-response-link {
+    color: var(--Text-Text-Brand, #0040ff);
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 171.429% */
+  }
+}
+
+.left-side {
+  border-radius: 12px;
+  background: var(--Blue-B-900, #002fa3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+}
+
+.ctas {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  margin-top: 24px;
+
+  .w-40 {
+    width: 40%;
+  }
+}
+
+@media (max-width: 992px) {
+  :host {
+    flex-direction: column-reverse;
+  }
+  .right-side {
+    padding: 24px;
+  }
+  .left-side {
+    display: none;
+  }
+  .header-title {
+    margin-bottom: 32px;
+  }
+  .left-side,
+  .right-side {
+    width: 100%;
+    flex-grow: 1;
+  }
+}

@@ -1,0 +1,20 @@
+.scroll-container {
+  z-index: 50;
+  position: relative;
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding-left: 8px;
+  cursor: grab;
+
+  .just-for-padding {
+    min-width: 8px;
+    height: 8px;
+  }
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}

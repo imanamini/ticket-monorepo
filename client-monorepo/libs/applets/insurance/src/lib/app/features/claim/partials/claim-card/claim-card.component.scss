@@ -1,0 +1,19 @@
+.card-container {
+  width: 320px !important;
+
+  .list {
+    height: 40px;
+  }
+
+  .detail-container {
+    height: 100px;
+  }
+}
+
+.title-wrapper {
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  border: none !important;
+  width: 90% !important;
+}

@@ -1,0 +1,50 @@
+<div class="w-100 d-flex flex-column px-plus py-big">
+  <p>تبدیل {{ data().type === 'origin' ? 'از' : 'به' }}:</p>
+
+  <div class="w-100 d-flex flex-column mt-plus">
+    @for (wallet of data().wallets; track $index; let last = $last) {
+      <div
+        class="d-flex gap-tiny align-items-center surface-glass-onelevated radius-medium px-plus py-medium"
+        [ngClass]="{ 'mb-medium': !last, 'is-disabled': wallet.activationRequired }"
+        (click)="wallet.activationRequired ? $event.stopImmediatePropagation() : handleSelection(wallet)"
+      >
+        <img
+          [ngClass]="{ deactive: wallet.activationRequired }"
+          [src]="getImage(wallet.walletName)"
+          [alt]="wallet.walletName"
+        />
+
+        <div class="d-flex flex-1 flex-column gap-tiny">
+          <p
+            class="st-8 text-onback-high"
+            [ngClass]="{ 'text-onback-disabled': wallet.activationRequired }"
+          >
+            {{ wallet.walletTitle }}
+          </p>
+          <p class="b-3 text-onback-low">
+            @if (wallet.activationRequired) {
+              ابتدا طرح را فعال کنید.
+            } @else {
+              قابل تبدیل: {{ wallet.maxAmount | thousands }} <span class="is-currency">ریال</span>
+            }
+          </p>
+        </div>
+
+        @if (wallet.activationRequired) {
+          <ngx-button
+            [size]="'small'"
+            [mode]="'section'"
+            (clickHandler)="handleSelection(wallet)"
+          >
+            فعال‌سازی
+          </ngx-button>
+        } @else {
+          <div
+            class="selected"
+            [ngClass]="{ active: wallet.walletName === selectedWallet() }"
+          ></div>
+        }
+      </div>
+    }
+  </div>
+</div>

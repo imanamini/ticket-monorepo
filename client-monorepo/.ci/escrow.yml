@@ -1,0 +1,8 @@
+.trigger-options:
+  changes:
+    - "apps/escrow/**/*"
+    - "libs/applets/escrow/**/*"
+  dependent-projects:
+    - PROJECT_NAME: "escrow"
+      DOCKERFILE_NAME: "Dockerfile"
+      FILE_PATH: "app/frontend/escrow-values.yml"

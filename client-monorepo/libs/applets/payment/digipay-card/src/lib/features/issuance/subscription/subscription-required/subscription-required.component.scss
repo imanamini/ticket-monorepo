@@ -1,0 +1,40 @@
+@import '@digipay/base-style/styleguide';
+
+.card-container {
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    right: -20px;
+    top: -20px;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0.01%, var(--surface-elevated) 99.87%), #89a2de;
+    z-index: 0;
+  }
+  .plan-description {
+    position: relative;
+  }
+}
+.sb-price {
+  padding: 16px;
+  border-radius: 16px;
+  border: solid 2px transparent;
+
+  background:
+    linear-gradient(var(--surface-back), var(--surface-back)) padding-box,
+    linear-gradient(90deg, rgba(172, 190, 226, 0.4), #5cadff) border-box;
+}
+.divider {
+  width: 100%;
+  height: 0;
+  border-bottom: 2px dashed #{map-get($shade-colors, onelevated-shade-90)};
+}
+.terms-label {
+  text-decoration: underline;
+}
+.digi-card {
+  width: 320px;
+  position: relative;
+}

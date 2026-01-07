@@ -1,0 +1,41 @@
+.nobitex-container {
+  background-color: #f0f5ff;
+  padding: 0 0 64px;
+}
+.nobitex-plans {
+  text-align: center;
+  margin-top: 64px;
+
+  .nobitex-plans-title {
+    color: #000d33;
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 1000;
+    line-height: 32px; /* 100% */
+    display: inline-block;
+  }
+}
+
+.section-registering {
+  width: 100%;
+  //padding: 2px 5px 70px;
+}
+
+@media (max-width: 1280px) {
+  .nobitex-plans {
+    .nobitex-plans-title {
+      font-size: 25px;
+      margin-bottom: 24px;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .nobitex-plans {
+    .nobitex-plans-title {
+      font-size: 18px;
+    }
+  }
+}

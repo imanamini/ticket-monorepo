@@ -1,0 +1,27 @@
+<div class="d-flex flex-column">
+  <div class="title d-flex align-items-center mb-plus">
+    <common-icon-dp-icon
+      [iconSize]="'30'"
+      icon="wallet"
+      iconType="bold"
+    ></common-icon-dp-icon>
+    <span class="st-6 mr-small"> پرداخت هزینه استعلام</span>
+  </div>
+  <div class="d-flex justify-content-space-between pb-huge">
+    <span class="b-2 text-onback-disabled"> بابت</span>
+    <span class="b-2 text-onback-low">استعلام به مبلغ ۲00,000 ریال</span>
+  </div>
+
+  <div class="separator border-color-air"></div>
+
+  <div class="pt-plus">
+    <ngx-button
+      [fullWidth]="true"
+      [style]="'fill'"
+      [brandButton]="true"
+      (clickHandler)="approve()"
+    >
+      تایید و برداشت از کیف‌پول
+    </ngx-button>
+  </div>
+</div>

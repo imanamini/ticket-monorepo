@@ -1,0 +1,36 @@
+<div class="resolve-documents-conflict d-flex flex-column h-100">
+  <third-party-stepper
+    [backgroundGray]="true"
+    [currentStep]="3"
+    [totalSteps]="3"
+    stepName="مرحله آخر"
+    title="تکمیل اطلاعات و مدارک"
+  ></third-party-stepper>
+  @defer (when this.storeService.getFormId()) {
+    <upload-documents-list
+      [ngStyle]="{ display: isLoaded() ? 'block' : 'none' }"
+      class="documents"
+      [application-form-id]="storeService.getFormId()"
+      (documentsInitialized)="onDocumentsListInitialized()"
+      [updateInputsValidationNotify]="updateDocumentsValidations"
+      (mandatoryInputsUploaded)="onMandatoryDocumentsUploaded($event)"
+      [topDescription]="
+        'به دلیل مخدوش یا ناقص بودن مدارک، لطفاً مدارک خواسته شده را مجدداً بارگذاری یا تکمیل کنید؛ در غیر این صورت فرآیند صدور بیمه نامه لغو و مبلغ پرداختی به کیف پول دیجی پی شما بازگردانده می شود.'
+      "
+    ></upload-documents-list>
+  }
+  <action-buttons
+    (activeButtonClicked)="handleActiveButtonClicked()"
+    (deActiveButtonClicked)="handleDeActiveButtonClicked()"
+    activeButtonText="تایید و ادامه"
+    [showDeActiveButton]="false"
+    [ngStyle]="{ display: isLoaded() ? 'block' : 'none' }"
+  >
+  </action-buttons>
+  <div
+    class="loading h-100"
+    [ngStyle]="{ display: isLoaded() ? 'none' : 'flex' }"
+  >
+    <ui-loading-spinner [size]="48"></ui-loading-spinner>
+  </div>
+</div>

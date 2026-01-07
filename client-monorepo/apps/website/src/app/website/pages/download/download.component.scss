@@ -1,0 +1,11 @@
+:host ::ng-deep {
+  #layout {
+    background: #f6f8ff;
+  }
+}
+
+@media (max-width: 744px) {
+  ::ng-deep .download-section section {
+    padding-top: 60px;
+  }
+}

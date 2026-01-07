@@ -1,0 +1,6 @@
+export enum VerifyAllocationStateEnum {
+  BANNED,
+  READY_TO_REQUEST_VERIFICATION,
+  VERIFYING,
+  VERIFICATION_COMPLETED
+}

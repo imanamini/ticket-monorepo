@@ -1,0 +1,57 @@
+<div
+  class="user-preview surface-elevated radius-medium py-medium px-minus d-flex align-items-center justify-content-space-between"
+  [routerLink]="['/profile', 'user']"
+>
+  <div class="user-preview-data d-flex align-items-center justify-content-start gap-small">
+    <div class="user-preview-data-imgbox radius-rounded">
+      @if (!isLoading()) {
+        <ui-api-image
+          [styles]="{ height: '100%', width: '100%', borderRadius: '50%' }"
+          *ngIf="user()?.imageId"
+          [imageId]="user()?.imageId ?? ''"
+        ></ui-api-image>
+      } @else {
+        <lib-ngx-skeleton-loading
+          [height]="'48px'"
+          [width]="'48px'"
+          [classes]="'radius-rounded'"
+        ></lib-ngx-skeleton-loading>
+      }
+    </div>
+    <div class="user-preview-data-info d-flex flex-column align-items-start justify-content-center gap-tiny">
+      <div class="user-preview-data-info-name text-onback-medium st-8">
+        @if (!isLoading()) {
+          @if (user()?.name || user()?.surname) {
+            {{ user()?.name }} {{ user()?.surname }}
+          }
+        } @else {
+          <lib-ngx-skeleton-loading
+            [height]="'24px'"
+            [width]="'120px'"
+            [classes]="'radius-medium'"
+          ></lib-ngx-skeleton-loading>
+        }
+      </div>
+      <div class="user-preview-data-info-phone text-onback-low ltr b-2">
+        @if (!isLoading()) {
+          {{ user()?.cellNumber | formattedCellNumber }}
+        } @else {
+          <lib-ngx-skeleton-loading
+            [height]="'16px'"
+            [width]="'100px'"
+            [classes]="'radius-medium'"
+          ></lib-ngx-skeleton-loading>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="user-preview-action">
+    <ngx-button
+      [style]="'link'"
+      [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+      [size]="'small'"
+    >
+      ویرایش
+    </ngx-button>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="electronic-equipment-register">
+  <div class="title">
+    جهت انتقال مالکیت بیمه‌نامه، نیاز به ایجاد حساب کاربری برایتان هستیم، لطفا اطلاعات خواسته شده را کامل نمایید.
+  </div>
+
+  <form [formGroup]="form" class="form">
+    <ui-form-field [error]="form.controls.firstName.errors" class="half"
+                   formControlName="firstName"
+                   label="نام"
+    ></ui-form-field>
+    <ui-form-field [error]="form.controls.lastName.errors" class="half"
+                   formControlName="lastName"
+                   label="نام خانوادگی"
+    ></ui-form-field>
+
+    <ui-form-field [error]="form.controls.nationalCode.errors" class="half"
+                   formControlName="nationalCode"
+                   label="کد ملی"
+    ></ui-form-field>
+    <ui-form-field [error]="form.controls.postalCode.errors" class="half"
+                   formControlName="postalCode"
+                   label="کد پستی"
+    ></ui-form-field>
+    <ui-form-field [error]="form.controls.mobile.errors" class="full"
+                   formControlName="mobile"
+                   label="موبایل"
+    ></ui-form-field>
+    <ui-form-field [error]="form.controls.address.errors" [multiLine]="true"
+                   class="full"
+                   formControlName="address"
+                   label="آدرس"
+    ></ui-form-field>
+
+
+    <ui-button (click)="submitClick()" [disabled]="!form.valid">{{ buttonText }}</ui-button>
+
+  </form>
+
+
+</div>
+

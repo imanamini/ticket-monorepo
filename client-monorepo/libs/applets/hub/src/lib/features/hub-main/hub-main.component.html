@@ -1,0 +1,229 @@
+<div
+  class="hub-header-container"
+  id="hub-v2"
+  commonUtilitiesAppHeaderBackground
+  [limited]="headerLimited()"
+  ngxDpPullToRefresh
+  [spinnerSize]="'lg'"
+  [spinnerColor]="'white'"
+  [maxHeight]="50"
+  [threshold]="40"
+  [zIndex]="1"
+  [targetElement]="assetSectionElm()?.elementRef || undefined"
+  (refresh)="handleRefresh()"
+>
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-space-between pt-plus pb-medium px-plus">
+      <common-icon-dp-icon
+        [iconSize]="'24'"
+        [classes]="'text-oninvert-high cursor-pointer'"
+        [icon]="'scan'"
+        [iconType]="'linear'"
+        (click)="onScanClicked()"
+      ></common-icon-dp-icon>
+      <div
+        class="position-relative"
+        ngxRouterLoading
+      >
+        <common-icon-dp-icon
+          [iconSize]="'24'"
+          [classes]="'text-oninvert-high cursor-pointer'"
+          [icon]="'notification'"
+          [iconType]="'linear'"
+          (click)="onMessageClicked()"
+        ></common-icon-dp-icon>
+        @if (messageManagementService.hasNewMessage()) {
+          <ngx-status-light
+            [hasDefaultMargin]="false"
+            [isAbsolute]="true"
+            [statusSize]="StatusLightSizesEnum.EIGHT"
+            [statusColor]="StatusLightColorsEnum.RED"
+            [statusBorderColor]="StatusLightBordersEnum.NONE"
+            [showStatusLight]="true"
+          ></ngx-status-light>
+        }
+      </div>
+    </div>
+    <div id="hub-assets">
+      @if (!hideAssets()) {
+        <common-user-assets-asset-section #assetSection></common-user-assets-asset-section>
+      }
+    </div>
+    <div
+      class="d-flex flex-column gap-medium"
+      [ngStyle]="contentStyle()"
+    >
+      <common-installment-installment-widget
+        #installmentWidget
+        class="px-plus"
+        [bottomOffset]="100"
+      ></common-installment-installment-widget>
+      <common-app-services-premium-services class="px-plus hub-services"></common-app-services-premium-services>
+      <common-app-services-main-services-preview
+        class="px-plus hub-services"
+        [services]="services()"
+        [isLoading]="servicesLoading()"
+        (clickOnService)="onServiceClickAction($event)"
+      ></common-app-services-main-services-preview>
+      <common-app-banners-shared-common-banners
+        [gapClass]="'gap-medium'"
+        [bannersData]="bannersData()"
+        [categoryToShow]="BannerCategory.NEW_HUB_1"
+      >
+      </common-app-banners-shared-common-banners>
+      @defer (on viewport) {
+        <common-app-services-inside-service-component
+          class="px-plus"
+          [category]="appServicesCategoriesConst[InsideServiceData.WEALTH.category]"
+          [services]="services()"
+          [isLoading]="servicesLoading()"
+          [title]="InsideServiceData.WEALTH.title"
+          [subTitle]="InsideServiceData.WEALTH.description"
+          [itemsToShow]="4"
+          [iconSize]="56"
+          [hasAction]="InsideServiceData.WEALTH.hasAction"
+          (onActionClicked)="onInsideActionClicked(InsideServiceData.WEALTH.actionUrl)"
+          [iconColor]="InsideServiceData.WEALTH.iconColor"
+        ></common-app-services-inside-service-component>
+      } @placeholder (minimum 1000ms) {
+        <div class="px-plus">
+          <lib-ngx-skeleton-loading
+            [height]="'300px'"
+            [classes]="'radius-medium'"
+            [width]="'100%'"
+          ></lib-ngx-skeleton-loading>
+        </div>
+      }
+      @defer (on viewport) {
+        <common-app-banners-shared-common-banners
+          [gapClass]="'gap-medium'"
+          [bannersData]="bannersData()"
+          [categoryToShow]="BannerCategory.NEW_HUB_2"
+        >
+        </common-app-banners-shared-common-banners>
+        <common-app-services-inside-service-component
+          class="px-plus"
+          [category]="appServicesCategoriesConst[InsideServiceData.INSURANCE.category]"
+          [services]="services()"
+          [isLoading]="servicesLoading()"
+          [title]="InsideServiceData.INSURANCE.title"
+          [subTitle]="InsideServiceData.INSURANCE.description"
+          [itemsToShow]="4"
+          [iconSize]="56"
+          [hasAction]="InsideServiceData.INSURANCE.hasAction"
+          (onActionClicked)="onInsideActionClicked(InsideServiceData.INSURANCE.actionUrl)"
+          [iconColor]="InsideServiceData.INSURANCE.iconColor"
+        ></common-app-services-inside-service-component>
+      } @placeholder (minimum 1500ms) {
+        <div class="px-plus">
+          <lib-ngx-skeleton-loading
+            [height]="'300px'"
+            [classes]="'radius-medium'"
+            [width]="'100%'"
+          ></lib-ngx-skeleton-loading>
+        </div>
+      }
+      @defer (on viewport) {
+        <common-app-banners-shared-common-banners
+          [gapClass]="'gap-medium'"
+          [bannersData]="bannersData()"
+          [categoryToShow]="BannerCategory.NEW_HUB_3"
+        >
+        </common-app-banners-shared-common-banners>
+        <common-app-services-inside-service-component
+          class="px-plus"
+          [category]="appServicesCategoriesConst[InsideServiceData.BNPL_SERVICE.category]"
+          [services]="services()"
+          [isLoading]="servicesLoading()"
+          [title]="InsideServiceData.BNPL_SERVICE.title"
+          [subTitle]="InsideServiceData.BNPL_SERVICE.description"
+          [itemsToShow]="4"
+          [iconSize]="56"
+          [hasAction]="InsideServiceData.BNPL_SERVICE.hasAction"
+          (onActionClicked)="onInsideActionClicked(InsideServiceData.BNPL_SERVICE.actionUrl)"
+          [iconColor]="InsideServiceData.BNPL_SERVICE.iconColor"
+        ></common-app-services-inside-service-component>
+      } @placeholder (minimum 2000ms) {
+        <div class="px-plus">
+          <lib-ngx-skeleton-loading
+            [height]="'300px'"
+            [classes]="'radius-medium'"
+            [width]="'100%'"
+          ></lib-ngx-skeleton-loading>
+        </div>
+      }
+      @defer (on viewport) {
+        <common-app-banners-shared-common-banners
+          [gapClass]="'gap-medium'"
+          [bannersData]="bannersData()"
+          [categoryToShow]="BannerCategory.NEW_HUB_4"
+        >
+        </common-app-banners-shared-common-banners>
+        <common-app-services-inside-service-component
+          class="px-plus"
+          [category]="appServicesCategoriesConst[InsideServiceData.BILL.category]"
+          [bills]="recommendedBills()"
+          [isLoading]="billsLoading()"
+          [title]="InsideServiceData.BILL.title"
+          [subTitle]="InsideServiceData.BILL.description"
+          [iconSize]="56"
+          [hasAction]="InsideServiceData.BILL.hasAction"
+          (onActionClicked)="onInsideActionClicked(InsideServiceData.BILL.actionUrl)"
+          (onServiceClicked)="handleBill($event)"
+          [iconColor]="InsideServiceData.BILL.iconColor"
+          [doFilter]="false"
+          [serviceType]="'bill'"
+          [hasDefaultAction]="false"
+        >
+          <div class="pt-plus">
+            <hub-applet-upcoming-bill></hub-applet-upcoming-bill>
+          </div>
+        </common-app-services-inside-service-component>
+      } @placeholder (minimum 2500ms) {
+        <div class="px-plus">
+          <lib-ngx-skeleton-loading
+            [height]="'300px'"
+            [classes]="'radius-medium'"
+            [width]="'100%'"
+          ></lib-ngx-skeleton-loading>
+        </div>
+      }
+      @defer (on viewport) {
+        <common-app-banners-shared-common-banners
+          [gapClass]="'gap-medium'"
+          [bannersData]="bannersData()"
+          [categoryToShow]="BannerCategory.NEW_HUB_5"
+        >
+        </common-app-banners-shared-common-banners>
+        <common-app-banners-shared-common-banners
+          [gapClass]="'gap-medium'"
+          [bannersData]="bannersData()"
+          [categoryToShow]="BannerCategory.NEW_HUB_6"
+        >
+        </common-app-banners-shared-common-banners>
+        <common-app-banners-shared-common-banners
+          [gapClass]="'gap-medium'"
+          [bannersData]="bannersData()"
+          [categoryToShow]="BannerCategory.NEW_HUB_7"
+        >
+        </common-app-banners-shared-common-banners>
+      } @placeholder (minimum 3000ms) {
+        <div class="px-plus">
+          <lib-ngx-skeleton-loading
+            [height]="'300px'"
+            [classes]="'radius-medium'"
+            [width]="'100%'"
+          ></lib-ngx-skeleton-loading>
+        </div>
+      }
+    </div>
+  </div>
+  @if (alertMessage()) {
+    <common-message-management-main
+      [viewMode]="MessageViewEnum.POP_UP"
+      [message]="alertMessage()"
+    >
+      ></common-message-management-main
+    >
+  }
+</div>

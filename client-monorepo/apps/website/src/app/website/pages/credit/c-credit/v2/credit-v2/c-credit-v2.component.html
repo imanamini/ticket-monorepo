@@ -1,0 +1,48 @@
+<app-base-layout [loaded]="loaded">
+  @if (cCreditPageData() && cCreditPageData().templateData) {
+
+    <div class="d-flex flex-column gap-hulk credit-wrapper">
+      <app-credit-header-section
+        [data]="cCreditPageData().templateData.sectionIntro"
+      ></app-credit-header-section>
+
+      @if (!deviceService.isMobileDevice()) {
+        <app-credit-registration-section
+          [data]="cCreditPageData().templateData.sectionValueProposition"></app-credit-registration-section>
+        <app-credit-calculator-section></app-credit-calculator-section>
+      } @else {
+        <app-credit-calculator-section></app-credit-calculator-section>
+        <app-credit-registration-section [data]="cCreditPageData().templateData.sectionValueProposition"
+                                         id="credit-registration"></app-credit-registration-section>
+
+      }
+
+      @if (!deviceService.isMobileDevice()) {
+        <app-credit-usage-section [data]="cCreditPageData().templateData.bnplUsage"></app-credit-usage-section>
+        <app-credit-onsite-registration-section [data]="cCreditPageData().templateData.sectionRegistration"
+                                                id="onsite-registration"></app-credit-onsite-registration-section>
+      } @else {
+        <app-credit-onsite-registration-section [data]="cCreditPageData().templateData.sectionRegistration"
+                                                id="onsite-registration"></app-credit-onsite-registration-section>
+        <app-credit-usage-section [data]="cCreditPageData().templateData.bnplUsage"></app-credit-usage-section>
+      }
+
+
+    </div>
+    @if (cCreditPageData().templateData.sectionSeoContent) {
+      <app-ui-seo
+        [seoContent]="cCreditPageData().templateData.sectionSeoContent"
+      ></app-ui-seo>
+    }
+
+    @if (cCreditPageData().templateData.faq &&
+    cCreditPageData().templateData.faq.faqItems &&
+    cCreditPageData().templateData.faq.faqItems.length > 0) {
+      <app-ui-faq
+        [faqs]="cCreditPageData().templateData.faq.faqItems"
+        [subtitle]="cCreditPageData().templateData.faq.subtitle"
+        [title]="cCreditPageData().templateData.faq.title"
+      ></app-ui-faq>
+    }
+  }
+</app-base-layout>

@@ -1,0 +1,112 @@
+<div class="credit-smartest-installments">
+  <h2 class="centered-text">{{ smartestInstallmentData.title }}</h2>
+  <div class="smartest-installments-list">
+    <swiper-container
+      appSwiper
+      #swiper="appSwiper"
+      [config]="swiperConfig"
+      class="swiper"
+    >
+      <swiper-slide
+        *ngFor="let category of smartestInstallmentData.categories"
+        class="swiper-slide"
+      >
+        <div class="list-item">
+          <div
+            [ngStyle]="{ backgroundColor: category.bannerBackgroundColor }"
+            class="artwork"
+          >
+            <img
+              *ngIf="category.banner && category.banner.url"
+              [src]="category.banner.url"
+            />
+          </div>
+          <div
+            [ngStyle]="{ backgroundColor: category.contentBackgroundColor }"
+            class="content"
+          >
+            <div class="titles">
+              <div class="title">{{ category.title }}</div>
+              <div class="subtitle">{{ category.subtitle }}</div>
+            </div>
+            <div class="ctas">
+              <app-ui-button
+                *ngIf="category.firstCta.title && category.firstCta.link"
+                [backgroundColor]="category.contentBackgroundColor"
+                [link]="category.firstCta.link"
+                appearance="CUSTOM"
+                border="none"
+                class="cta"
+                classes="first-cta"
+                color="#fff"
+                >{{ category.firstCta.title }}
+              </app-ui-button>
+              <app-ui-button
+                *ngIf="category.secondCta.title && category.secondCta.link"
+                [color]="category.contentBackgroundColor"
+                [link]="category.secondCta.link"
+                appearance="CUSTOM"
+                backgroundColor="#fff"
+                border="none"
+                class="cta"
+                classes="second-cta"
+                >{{ category.secondCta.title }}
+              </app-ui-button>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+
+    <!--    <swiper [config]="swiperConfig">-->
+    <!--      <ng-container *ngFor="let category of smartestInstallmentData.categories">-->
+    <!--        <ng-template swiperSlide>-->
+    <!--          <div class="list-item">-->
+    <!--            <div-->
+    <!--              [ngStyle]="{ backgroundColor: category.bannerBackgroundColor }"-->
+    <!--              class="artwork"-->
+    <!--            >-->
+    <!--              <img-->
+    <!--                *ngIf="category.banner && category.banner.url"-->
+    <!--                [src]="category.banner.url"-->
+    <!--              />-->
+    <!--            </div>-->
+    <!--            <div-->
+    <!--              [ngStyle]="{ backgroundColor: category.contentBackgroundColor }"-->
+    <!--              class="content"-->
+    <!--            >-->
+    <!--              <div class="titles">-->
+    <!--                <div class="title">{{ category.title }}</div>-->
+    <!--                <div class="subtitle">{{ category.subtitle }}</div>-->
+    <!--              </div>-->
+    <!--              <div class="ctas">-->
+    <!--                <app-ui-button-->
+    <!--                  *ngIf="category.firstCta.title && category.firstCta.link"-->
+    <!--                  [backgroundColor]="category.contentBackgroundColor"-->
+    <!--                  [link]="category.firstCta.link"-->
+    <!--                  appearance="CUSTOM"-->
+    <!--                  border="none"-->
+    <!--                  class="cta"-->
+    <!--                  classes="first-cta"-->
+    <!--                  color="#fff"-->
+    <!--                  >{{ category.firstCta.title }}-->
+    <!--                </app-ui-button>-->
+    <!--                <app-ui-button-->
+    <!--                  *ngIf="category.secondCta.title && category.secondCta.link"-->
+    <!--                  [color]="category.contentBackgroundColor"-->
+    <!--                  [link]="category.secondCta.link"-->
+    <!--                  appearance="CUSTOM"-->
+    <!--                  backgroundColor="#fff"-->
+    <!--                  border="none"-->
+    <!--                  class="cta"-->
+    <!--                  classes="second-cta"-->
+    <!--                  >{{ category.secondCta.title }}-->
+    <!--                </app-ui-button>-->
+    <!--              </div>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--        </ng-template>-->
+    <!--      </ng-container>-->
+    <!--    </swiper>-->
+  </div>
+</div>

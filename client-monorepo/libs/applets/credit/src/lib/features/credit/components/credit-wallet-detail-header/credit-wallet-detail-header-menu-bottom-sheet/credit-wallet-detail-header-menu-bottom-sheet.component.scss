@@ -1,0 +1,26 @@
+@import "@digipay/base-style/swatch";
+
+.menu-bottom-sheet-header {
+  height: 16px;
+}
+
+.menu-item {
+  padding: 16px 24px;
+  border-bottom: 1px solid $swatch_steel_200;
+  font-size: 16px;
+  line-height: 24px;
+  direction: rtl;
+  cursor: pointer;
+
+  &:hover {
+    background: $swatch_steel_100;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.menu-bottom-sheet-footer {
+  height: 16px;
+}

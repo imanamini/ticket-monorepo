@@ -1,0 +1,43 @@
+<app-base-layout
+  [loaded]="loaded"
+  class="internet"
+>
+  <ng-container *ngIf="internetPageData && internetPageData.templateData">
+    <app-internet-product
+      *ngIf="internetPageData.templateData.sectionIntro"
+      [internetProductData]="internetPageData.templateData.sectionIntro"
+    ></app-internet-product>
+
+    <app-ui-basic-segment-explanation
+      *ngIf="internetPageData.templateData.internetExplanation"
+      [data]="internetPageData.templateData.internetExplanation"
+      [rtl]="true"
+    ></app-ui-basic-segment-explanation>
+
+    <app-ui-similar-services
+      *ngIf="
+        internetPageData.templateData.similar &&
+        internetPageData.templateData.similar.items &&
+        internetPageData.templateData.similar.items.length > 0
+      "
+      [data]="internetPageData.templateData.similar"
+    ></app-ui-similar-services>
+
+    <app-ui-seo
+      *ngIf="internetPageData.templateData.sectionSeoContent"
+      [seoContent]="internetPageData.templateData.sectionSeoContent"
+      backgroundColor="#F6F8FF"
+    ></app-ui-seo>
+
+    <app-ui-faq
+      *ngIf="
+        internetPageData.templateData.faq &&
+        internetPageData.templateData.faq.faqItems &&
+        internetPageData.templateData.faq.faqItems.length > 0
+      "
+      [faqs]="internetPageData.templateData.faq.faqItems"
+      [subtitle]="internetPageData.templateData.faq.subtitle"
+      [title]="internetPageData.templateData.faq.title"
+    ></app-ui-faq>
+  </ng-container>
+</app-base-layout>

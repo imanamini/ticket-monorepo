@@ -1,0 +1,49 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  title="ثبت تیکت"
+  [hasBackAction]="true"
+  [showBorder]="false"
+>
+  <div
+    class="d-flex flex-column px-plus h-100"
+    [formGroup]="form"
+  >
+    <p class="fs-14 fw-normal text-onback-low">هرگونه سوال، مشکل و یا درخواست خود درمورد دیجی‌پی را با ما مطرح کنید.</p>
+    <ui-form-field
+      [options]="services"
+      class="feedback-filed"
+      label="سرویس مورد نظر"
+      type="select"
+      [searchable]="false"
+      formControlName="categoryId"
+      [error]="form.controls['categoryId'].errors"
+    ></ui-form-field>
+    <div class="my-medium">
+      <ui-form-field
+        class="feedback-filed"
+        type="select"
+        [searchable]="false"
+        label="موضوع"
+        [options]="titles"
+        formControlName="subCategoryId"
+        [error]="form.controls['subCategoryId'].errors"
+      ></ui-form-field>
+    </div>
+    <ui-form-field
+      label="متن خود را وارد کنید."
+      [multiLine]="true"
+      formControlName="content"
+      [error]="form.controls['content'].errors"
+    ></ui-form-field>
+    <div class="mt-auto mb-big">
+      <ngx-button
+        [disabled]="form.invalid"
+        (clickHandler)="submitFeedback()"
+        [size]="'medium'"
+        [fullWidth]="true"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  </div>
+</common-ui-components-page-layout>

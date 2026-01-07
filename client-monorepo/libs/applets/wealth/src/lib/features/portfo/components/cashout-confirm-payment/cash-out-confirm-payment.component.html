@@ -1,0 +1,68 @@
+<div class="d-flex flex-column align-items-center gap-big">
+  <div class="w-100 gap-medium d-flex align-items-center cashout-confirm-payment-header py-big px-plus">
+    <img
+      src="wealth-assets/icons/wallet-black.svg"
+      alt="cash-out-wallet"
+    />
+    <div class="st-6">بررسی اطلاعات برداشت</div>
+  </div>
+  <div class="w-100 d-flex flex-column px-plus">
+    @for (info of cashOutInfo(); track info; let last = $last) {
+      <div class="d-flex align-items-center gap-medium justify-content-space-between">
+        <span class="b-2 text-onback-medium"> {{ info.key }} </span>
+        @if (info.imageUrl) {
+          <div class="d-flex align-items-center justify-content-end gap-small">
+            <span class="b-2 text-onback-medium"> {{ info.value }} </span>
+            <img
+              [src]="info.imageUrl"
+              [alt]="bankName()"
+            />
+          </div>
+        } @else {
+          <span class="b-2 text-onback-medium"> {{ info.value }} </span>
+        }
+      </div>
+      @if (!last) {
+        <ngx-divider
+          class="my-minus"
+          [color]="BorderColorsEnum.Air"
+          orientation="horizontal"
+        />
+      }
+    }
+  </div>
+  <ngx-callout
+    class="w-100 px-plus"
+    [mode]="'single-with-title'"
+    [title]="'نکات مهم'"
+    [message]="note()"
+  />
+</div>
+<div class="w-100 d-flex flex-wrap mt-medium surface-back p-plus">
+  <div class="w-100 d-flex align-items-center justify-content-space-between">
+    <span class="bt-2"> مبلغ پرداختی </span>
+    <span class="t-7 is-currency">{{ data().amount | number }} ریال</span>
+  </div>
+  <div class="w-100 d-flex gap-medium mt-medium">
+    <ngx-button
+      [fullWidth]="true"
+      mode="form"
+      [size]="'medium'"
+      (clickHandler)="close()"
+      [style]="'tinted-on-elevated'"
+    >
+      ویرایش مبلغ
+    </ngx-button>
+    <ngx-button
+      [style]="'fill'"
+      [brandButton]="true"
+      [fullWidth]="true"
+      mode="form"
+      [size]="'medium'"
+      (clickHandler)="confirm()"
+      [classNames]="['p-0']"
+    >
+      تایید و برداشت
+    </ngx-button>
+  </div>
+</div>

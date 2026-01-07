@@ -1,0 +1,76 @@
+<common-ui-components-page-layout
+  [showBorder]="true"
+  [title]="'لیست تخفیف ها'"
+>
+  <div class="d-flex flex-column gap-plus">
+    <!-- Search And Filters -->
+
+    <div class="d-flex flex-column gap-medium">
+      <!--  Search  -->
+      <div class="px-plus">
+        <common-ui-components-search
+          [placeHolder]="'جست‌وجو'"
+          (searchTextChange)="doSearch($event)"
+          [mode]="'section'"
+          #searchComponent
+        >
+        </common-ui-components-search>
+      </div>
+      <!--  End Search  -->
+      <!-- Filters -->
+      <lib-store-categories-filter
+        [classes]="'px-plus'"
+        [selectedCategory]="selectedCategory()"
+        (selectedCategoryChange)="changeCategory($event)"
+      ></lib-store-categories-filter>
+      <!-- End Filters -->
+    </div>
+
+    <!-- End Search And Filters -->
+
+    <!--  Vouchers List  -->
+    <div
+      class="d-flex gap-minus flex-wrap justify-content-center px-plus"
+      commonUtilitiesScrolledToEnd
+      (scrolledToEnd)="listEnded()"
+    >
+      @for (voucher of vouchers(); track voucher.voucherId) {
+        <common-vouchers-voucher-card
+          [bgMode]="'surface-back'"
+          [merchantLogo]="voucher.store?.logoImageId"
+          [merchantName]="voucher.store?.title"
+          [title]="voucher.title"
+          [subtitle]="voucher.description"
+          [expirationDate]="voucher.expirationDate"
+          [codeText]="voucher.code"
+          (click)="openVoucherBottomSheet(voucher)"
+          [type]="voucher.type"
+          [value]="voucher.value"
+        ></common-vouchers-voucher-card>
+      } @empty {
+        @if (!vouchersLoading()) {
+          <div class="d-flex w-100 justify-content-center">
+            <common-ui-components-no-item
+              class="mt-large"
+              [description]="'تخفیفی پیدا نشد!'"
+              [buttonTitle]="'بازگشت به فروشگاه ها'"
+              (buttonClicked)="goBack()"
+            >
+            </common-ui-components-no-item>
+          </div>
+        }
+      }
+
+      @if (vouchersLoading()) {
+        @for (_ of rangeCreator(4); track $index) {
+          <lib-ngx-skeleton-loading
+            [height]="'142px'"
+            [width]="'154px'"
+            [classes]="'radius-minus'"
+          ></lib-ngx-skeleton-loading>
+        }
+      }
+    </div>
+    <!--  End Vouchers List  -->
+  </div>
+</common-ui-components-page-layout>

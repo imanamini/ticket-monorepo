@@ -1,0 +1,19 @@
+.faq {
+  overflow: hidden;
+
+  .main-container {
+    height: calc(100% - 56px);
+  }
+
+  .categories {
+
+    .category {
+      white-space: nowrap;
+    }
+  }
+
+  .items-list {
+    max-height: 100%;
+    overflow: auto;
+  }
+}

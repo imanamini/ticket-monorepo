@@ -1,0 +1,87 @@
+@import "../../../../../../style/globals";
+
+
+
+.available-bnpl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+
+  .artwork {
+    background: url('../../../../../../../assets/images/c-bnpl-v2/available-bnpl.png') no-repeat center center/cover;
+    width: 600px;
+    height: 523px;
+  }
+
+  .content {
+    width: 400px;
+  }
+
+  .subtitle {
+    color: $swatch_steel_500;
+    font-size: 16px;
+    font-weight: 200;
+    line-height: 200%;
+    letter-spacing: -0.48px;
+  }
+
+  .counter {
+    font-size: 19px;
+    font-weight: 690;
+    line-height: 155%;
+    letter-spacing: -0.57px;
+
+    .counter-number {
+      display: inline-flex;
+      width: 13px;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .ctas {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+
+    .cta {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .available-bnpl {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 744px) {
+  .available-bnpl {
+    .artwork {
+      width: 320px;
+      height: 270px;
+    }
+
+    .header {
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      font-weight: 300;
+
+      .counter {
+        font-size: 17px;
+        font-weight: 620;
+      }
+    }
+
+    .content {
+      width: 100%;
+    }
+  }
+}

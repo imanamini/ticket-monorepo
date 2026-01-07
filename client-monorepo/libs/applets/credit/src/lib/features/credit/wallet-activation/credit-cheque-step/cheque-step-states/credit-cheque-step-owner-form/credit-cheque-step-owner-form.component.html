@@ -1,0 +1,125 @@
+@if (!loading()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="goBack()"
+    (onTextClick)="openGuideVideoDialog()"
+    [actionImage]="'play'"
+    [actionText]="'فیلم راهنما'"
+    [backButton]="true"
+    title="اطلاعات مالک چک"
+  ></app-credit-app-bar>
+  <div class="top-section">
+    <app-credit-scrollable-view
+      [hasFade]="true"
+      fadeColor="white">
+      <div
+        [formGroup]="form"
+        class="form-section"
+
+      >
+        @if (kycInfoList() && kycInfoList().length) {
+          <div class="kyc-data">
+            @for (item of kycInfoList(); track item) {
+              <div class="kyc-info-row">
+                <div class="info-title">{{ item.title }}</div>
+                <div class="info-value">{{ item.value }}</div>
+              </div>
+            }
+          </div>
+        }
+        <ui-form-field
+          [errorMessageMapper]="{
+            required: 'کدپستی را وارد کنید.',
+            minLength: 'کدپستی وارد شده معتبر نیست.',
+            maxLength: 'کدپستی وارد شده معتبر نیست.',
+            pattern: 'کدپستی وارد شده معتبر نیست.',
+          }"
+          [error]="form.controls['postalCode'].errors"
+          [hasCleaner]="true"
+          [isNumericKeyboard]="true"
+          [maxSize]="10"
+          formControlName="postalCode"
+          label="کدپستی محل سکونت"
+        ></ui-form-field>
+        <ui-form-field
+          [errorMessageMapper]="{
+            required: 'استان را انتخاب کنید.',
+          }"
+          [error]="form.controls['provinceUid'].errors"
+          [options]="provinceOptions()"
+          formControlName="provinceUid"
+          label="استان"
+          type="select"
+        ></ui-form-field>
+        <ui-form-field
+          [errorMessageMapper]="{
+            required: 'شهر را انتخاب کنید.',
+          }"
+          [error]="form.controls['cityUid'].errors"
+          [options]="cityOptions()"
+          formControlName="cityUid"
+          label="شهر"
+          type="select"
+        ></ui-form-field>
+        <ui-form-field
+          [errorMessageMapper]="{
+            required: 'آدرس را وارد کنید.',
+          }"
+          [error]="form.controls['address'].errors"
+          [maxSize]="200"
+          [multiLine]="true"
+          formControlName="address"
+          label="آدرس محل سکونت"
+        ></ui-form-field>
+        <div class="form-row">
+          <div class="col col-half">
+            <ui-form-field
+              [errorMessageMapper]="{
+                required: 'پلاک را وارد کنید.',
+              }"
+              [error]="form.controls['plaqueNo'].errors"
+              [maxSize]="10"
+              formControlName="plaqueNo"
+              label="پلاک"
+            ></ui-form-field>
+          </div>
+          <div class="col col-half">
+            <ui-form-field
+              [errorMessageMapper]="{
+                required: 'واحد را وارد کنید.',
+              }"
+              [error]="form.controls['unit'].errors"
+              [maxSize]="10"
+              formControlName="unit"
+              label="واحد"
+            ></ui-form-field>
+          </div>
+        </div>
+        <ui-form-field
+          [errorMessageMapper]="{
+            required: 'شماره ثابت را وارد کنید.',
+          }"
+          [error]="form.controls['phoneNumber'].errors"
+          [hasCleaner]="true"
+          [isNumericKeyboard]="true"
+          [maxSize]="11"
+          formControlName="phoneNumber"
+          hint=" شماره تلفن ثابت همراه با کد شهر، مثال: 02153924000"
+          label="شماره ثابت"
+        ></ui-form-field>
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+  <div class="call-to-actions-section">
+    <ngx-button
+      ngxTrackableId
+      trackerId="chequeOwnerFormSubmitButtonClick"
+      (clickHandler)="onSubmit()"
+      [fullWidth]="true"
+      [isLoading]="submitting()"
+      [disabled]="submitting() || form.invalid"
+    >
+      تایید و ادامه
+    </ngx-button>
+  </div>
+}
+<credit-page-loading [active]="loading()!"></credit-page-loading>

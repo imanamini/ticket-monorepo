@@ -1,0 +1,42 @@
+<div class="collateral-confirm-bottom-sheet pt-plus px-plus pb-huge">
+  <div class="w-100 d-flex flex-column gap-minus align-items-center mb-medium border-100 border-color-air p-big radius-plus">
+    @defer (on immediate) {
+      <div class="cheque-image w-100">
+        <div class="w-100 mt-atom mx-auto mb-minus cheque cheque-purple"></div>
+      </div>
+      <div class="cheque-image w-100">
+        <div class="w-100 mt-atom mx-auto mb-minus cheque cheque-not-acceptable"></div>
+      </div>
+    } @placeholder (minimum 1s) {
+      <lib-ngx-skeleton-loading
+        class="w-100 skeleton"
+        height="176px"
+        width="100%"
+      ></lib-ngx-skeleton-loading>
+      <lib-ngx-skeleton-loading
+        class="w-100 skeleton"
+        height="176px"
+        width="100%"
+      ></lib-ngx-skeleton-loading>
+    }
+  </div>
+
+  <div class="pt-pony mb-medium">
+    <ngx-checkbox [(checked)]="accepted">
+      <span class="b-2 mr-small d-block">
+        دارای
+        <strong class="st-8"> چک صیادی بنفش رنگ </strong>
+        مطابق نمونه مورد قبول به نام خودم هستم.
+      </span>
+    </ngx-checkbox>
+  </div>
+  <ngx-button
+    (clickHandler)="onSubmit()"
+    [disabled]="!accepted()"
+    [fullWidth]="true"
+    [ngxTooltip]="!accepted() ? 'ابتدا تایید کنید چک صیادی بنفش رنگ دارید.' : ''"
+    [style]="'fill'"
+    tooltipType="hover"
+    >تایید و ادامه
+  </ngx-button>
+</div>

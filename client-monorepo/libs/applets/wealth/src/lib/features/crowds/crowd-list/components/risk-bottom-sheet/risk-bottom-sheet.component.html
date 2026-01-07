@@ -1,0 +1,52 @@
+<div class="w-100 d-flex flex-column pt-plus position-relative">
+  <div class="w-100 px-plus">
+    <span class="st-8 text-onback-medium">{{ data().title }}</span>
+  </div>
+
+  <div class="w-100 my-plus px-plus">
+    <span class="c-2 text-onback-medium text-align-justify">{{ data().topDescription }}</span>
+  </div>
+
+  <div class="w-100 px-plus d-flex position-relative">
+    <div class="d-flex flex-wrap w-100 stepper">
+      @for (bullet of data().bullets; track $index) {
+        <div class="step">
+          <div class="circle"></div>
+          <div class="d-flex align-items-start gap-tiny position-relative">
+            <span class="c-2 text-align-justify">
+              {{ bullet }}
+            </span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="w-100 px-plus">
+    <span class="text-align-justify">{{ data().bottomDescription }}</span>
+  </div>
+
+  <div class="w-100 d-flex flex-column gap-small surface-elevated px-plus py-medium sticky-action-group">
+    <ngx-checkbox
+      class="d-flex align-items-center"
+      (checkedChange)="onToggleAgreement($event)"
+      [checked]="agreementChecked()"
+    >
+      <div
+        class="c-3 text-onback-high"
+        (click)="onToggleAgreement(!agreementChecked())"
+      >
+        <span>شرایط بیانیه ریسک را می‌پذیرم.</span>
+      </div>
+    </ngx-checkbox>
+    <ngx-button
+      [fullWidth]="true"
+      mode="form"
+      [size]="'medium'"
+      (clickHandler)="close()"
+      [disabled]="!agreementChecked()"
+    >
+      تایید و ادامه
+    </ngx-button>
+  </div>
+</div>

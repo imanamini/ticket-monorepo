@@ -1,0 +1,29 @@
+<app-credit-app-bar
+  (onCloseButtonClick)="close.emit()"
+  [closeButton]="true"
+  [title]="pageTitle()"
+></app-credit-app-bar>
+<div class="main-section flex-full-height">
+  <div class="top-section">
+    <app-credit-scrollable-view [fullHeightContent]="true">
+      <div class="page-content">
+        <ngx-status-result
+          (clicked)="onButtonClick($event)"
+          [buttons]="buttons()"
+          [description]="subtitle()!"
+          [title]="title()!"
+          [type]="'Status'"
+          [iconState]="errorType()"
+        >
+          <ng-container status-image>
+            <div [class]="'message-image image-' + errorType()"></div>
+          </ng-container>
+
+          <ng-container html-content>
+            <ng-content></ng-content>
+          </ng-container>
+        </ngx-status-result>
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+</div>

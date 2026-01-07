@@ -1,0 +1,40 @@
+@import "globals";
+
+:host ::ng-deep {
+  .card {
+    color: $swatch_steel_900 !important;
+    border: none !important;
+    box-shadow: 0 0 0 1px $swatch_steel_300 !important;
+    border-radius: 12px !important;
+    background: $swatch_steel_100;
+
+    &::before {
+      display: none !important;
+    }
+
+    .card-logo {
+      right: 8px !important;
+      background: none !important;
+    }
+
+    .detail-item {
+      .label {
+        font-size: rem(12, 12) !important;
+        color: $swatch_steel_500 !important;
+      }
+    }
+
+    .img-holder {
+      box-shadow: none !important;
+
+      img {
+        border: 4px solid #fff;
+        border-radius: 50%;
+      }
+    }
+
+    .amount .unit {
+      font-size: smaller !important;
+    }
+  }
+}

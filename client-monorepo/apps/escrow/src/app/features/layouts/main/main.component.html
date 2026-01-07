@@ -1,0 +1,15 @@
+<div id="main-layout" class="main-layout surface-back border-l-300 border-r-300 border-color-light">
+  <common-network-error-page></common-network-error-page>
+  <div class="main-layout-body" (scroll)="handleScroll($event)" #layoutBody>
+    <div #containerBody  class="main-layout-body-container"
+         id="main-layout-body-container"
+         [@routeAnimations]="prepareRoute(outlet)"
+         [ngStyle]="containerStyle()">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+  </div>
+  <div class="main-layout-navigation" [ngClass]="{expanded: expanded()}" #navigationArea>
+    <ngx-bottom-sheet></ngx-bottom-sheet>
+    <ngx-bottom-navigation-wrapper></ngx-bottom-navigation-wrapper>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<car-info-box class="ex-insurer-info"
+              text="اطلاعات تخفیف و خسارت را وارد کنید"
+              activeButtonText="مقایسه بیمه‌ها"
+              (activeButtonClicked)="handleActiveButtonClicked()"
+              (deActiveButtonClicked)="handleDeActiveButtonClicked()">
+  <div class="d-flex flex-column gap-medium">
+    <p class="st-8 text-onback-high">تعویض پلاک / تغییر مالکیت</p>
+    <div class="pb-medium">
+      <ownership-changed-form
+              [showError]="showError"
+              [ownershipChangedForm]="ownershipChangedForm"></ownership-changed-form>
+    </div>
+  </div>
+
+  @if (ownershipChangedForm.controls.ownershipChanged?.value) {
+    <div class="d-flex flex-column gap-medium">
+      <p class="st-8 text-onback-high">وضعیت تخفیفات عدم خسارت بیمه‌نامه قبلی</p>
+      <div class="pb-medium">
+        <discount-form
+                [showError]="showError"
+                [discountForm]="discountForm"></discount-form>
+      </div>
+    </div>
+  }
+
+  @if (discountForm?.controls.discount?.value || !ownershipChangedForm?.controls.ownershipChanged?.value) {
+    <div class="d-flex flex-column gap-medium">
+      <p class="st-8 text-onback-high">میزان تخفیفات همین پلاک</p>
+      <discount-detail-form class="discount-detail"
+                            [showError]="showError"
+                            [discountForm]="discountDetailForm">
+      </discount-detail-form>
+    </div>
+  }
+
+  <div class="d-flex flex-column gap-medium">
+    <p class="st-8 text-onback-high">خسارت بیمه‌نامه قبلی</p>
+    <div class="pb-medium">
+      <claim-form
+              [showError]="showError"
+              [claimForm]="claimForm"></claim-form>
+    </div>
+  </div>
+
+  @if (claimForm?.controls.claim?.value) {
+    <div class="d-flex flex-column gap-medium">
+      <p class="st-8 text-onback-high">تعداد دفعات دریافت هزینه خسارت</p>
+      <claim-detail-form class="claim-detail"
+                         [showError]="showError"
+                         [claimDetailForm]="claimDetailForm"></claim-detail-form>
+    </div>
+  }
+</car-info-box>

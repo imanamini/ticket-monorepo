@@ -1,0 +1,21 @@
+<payment-checkout-app-card
+  *ngIf="termsAndConditionHtmlText; else loading"
+  [submitText]="cardConfig.submitText || ''"
+  [submitLoading]="loadingSubmit()"
+  [disableSubmitButton]="termsAndConditionHtmlText === null || loadingSubmit()"
+  [headerTitle]="cardConfig.headerTitle || ''"
+  (clickedButton)="accept()"
+>
+  <div
+    body
+    class="terms-and-condition"
+  >
+    <iframe [srcdoc]="termsAndConditionHtmlText"></iframe>
+  </div>
+</payment-checkout-app-card>
+
+<ng-template #loading>
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+</ng-template>

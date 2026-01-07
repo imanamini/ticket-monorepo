@@ -1,0 +1,134 @@
+section.credit-product__type .title-section {
+  text-align: revert;
+}
+
+.title-section {
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.title-section h2 {
+  font-weight: 900;
+  color: #001a66;
+  font-size: inherit;
+}
+
+li.credit-product__type-item {
+  list-style: none;
+  margin-bottom: 40px;
+}
+
+li.credit-product__type-item > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.credit-product__type-img {
+  background-color: #f5f7ff;
+  border-radius: 25px;
+  width: 160px;
+  height: 160px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.credit-product__type-img img {
+  max-width: 60%;
+  max-height: 60%;
+}
+
+.credit-product__type-content {
+  width: calc(100% - 160px);
+  padding-right: 40px;
+  color: #001a66;
+  padding-top: 10px;
+}
+
+.credit-product__type-title {
+  font-size: 20px;
+  font-weight: 600;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.credit-product__type-title > span:first-child {
+  color: #fff;
+  background-color: #001a66;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-left: 5px;
+  align-items: center;
+  //line-height: 16px;
+}
+
+.credit-product__type-title h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+.credit-product__type-desc {
+  font-size: 15px;
+  line-height: 19px;
+}
+
+@media (max-width: 1400px) {
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 992px) {
+}
+
+@media (max-width: 768px) {
+  .title-section span {
+    font-size: 25px;
+  }
+  li.credit-product__type-item > div {
+    display: block;
+
+    .credit-product__type-img {
+      margin: auto;
+    }
+  }
+
+  .credit-product__type-content {
+    width: 100%;
+    padding-right: unset;
+  }
+  .title-section h2 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 577px) {
+  .title-section {
+    margin-bottom: 30px;
+  }
+}

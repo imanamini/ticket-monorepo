@@ -1,0 +1,13 @@
+<div class="switch">
+  <ul class="switch-options">
+    <li (click)="optionClick(i)" *ngFor="let option of options; let i = index;"
+        [ngClass]="{
+          'selected surface-elevated': selectedOption && selectedOption.id === option.id ,
+          'disabled-option' : disabled
+        }"
+        class="option"
+    >
+      {{ option.text }}
+    </li>
+  </ul>
+</div>

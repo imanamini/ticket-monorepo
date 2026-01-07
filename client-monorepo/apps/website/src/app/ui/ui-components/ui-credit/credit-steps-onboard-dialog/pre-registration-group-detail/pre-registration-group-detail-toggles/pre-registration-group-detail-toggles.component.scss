@@ -1,0 +1,80 @@
+@import "globals";
+
+.toggle {
+  width: 100%;
+  padding: 16px 0;
+  box-sizing: border-box;
+  background-color: $swatch_white_900;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  user-select: none;
+  border: 1px solid $swatch_steel_200;
+
+  .toggle-header {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+
+    .title {
+      flex: 1 1 auto;
+      color: #000d33;
+    }
+
+    .value {
+      flex: 0 1 auto;
+      color: #000d33;
+    }
+
+    .arrow {
+      flex: 0 0 auto;
+      width: 24px;
+      height: 24px;
+      background-image: url('asset/icon_general_arrow_down.svg');
+      transition: transform 0.3s;
+
+      &.rotated {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .toggle-content {
+    overflow: hidden;
+
+    .content-separator {
+      margin: 8px auto;
+      background-color: $swatch_steel_200;
+      height: 1px;
+      border: none;
+    }
+
+    .content-text {
+      padding: 0 16px;
+      font-size: 14px;
+      color: $swatch_steel_900;
+      font-weight: normal;
+      line-height: 24px;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .toggle {
+    .toggle-header {
+      .title {
+        font-size: 10px;
+      }
+
+      .value {
+        font-size: 12px;
+        margin-left: 4px;
+      }
+    }
+  }
+}

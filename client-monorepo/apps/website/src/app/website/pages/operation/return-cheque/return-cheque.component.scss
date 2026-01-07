@@ -1,0 +1,115 @@
+@import "@digipay/base-style/styleguide";
+
+
+:host {
+
+  .btn-back{
+    min-width: 100px;
+  }
+
+  .linear-stepper {
+    height: 6px;
+    position: relative;
+    border-radius: 3px;
+    background-color: var(--surface-dim-level-0);
+
+    &::after {
+      content: '';
+      height: 100%;
+      border-radius: 3px;
+      background-color: var(--surface-brand);
+      position: absolute;
+      right: 0;
+      width: 35%;
+    }
+  }
+
+  .header {
+    height: 100px;
+  }
+
+  .title {
+    text-align: center;
+  }
+
+  .circle-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .header-title-font-size {
+    font-size: 1.25rem; //20px
+  }
+
+  .header-subtitle-font-size {
+    font-size: .875rem; //14px
+  }
+
+  .radius-big {
+    border-radius: 0 !important;
+  }
+
+  .wrapper-container {
+    /* Safe-area insets for better UX on iOS devices */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    overflow-y: auto;
+  }
+
+  @include large_screen {
+
+    .radius-big {
+      border-radius: 24px !important;
+    }
+
+    .flex-lg-row {
+      flex-direction: row !important;
+    }
+
+    .main-content {
+      transform: translateY(-70px);
+      min-height: 660px;
+    }
+
+    .bg-path {
+      background-image: url("/assets/images/operation/path.png");
+      background-size: 80px 100px;
+      background-repeat: no-repeat;
+      background-position: right center;
+      padding-right: 90px;
+      padding-top: 3rem;
+      padding-bottom: 4rem;
+      margin-right: -40px;
+    }
+
+    .container {
+      max-width: 525px;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    .title {
+      height: 270px;
+      text-align: right;
+    }
+
+    .header-title-font-size {
+      font-size: 2rem; //32px
+    }
+
+    .header-subtitle-font-size {
+      font-size: 1.25rem; //20px
+    }
+
+  }
+
+}

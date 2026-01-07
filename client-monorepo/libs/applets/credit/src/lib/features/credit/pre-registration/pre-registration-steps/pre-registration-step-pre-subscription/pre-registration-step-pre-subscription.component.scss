@@ -1,0 +1,228 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-gradiant {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.3;
+  }
+
+  &.brilliance {
+    &::after {
+      opacity: 0.4;
+      background: linear-gradient(180deg, #8EA4D1 0%, rgba(142, 164, 209, 0.00) 100%);
+    }
+  }
+
+  &.titanium {
+    &::after {
+      opacity: 0.4;
+      background: linear-gradient(180deg, #C5BFB5 0%, rgba(197, 191, 181, 0.00) 100%);
+    }
+  }
+
+  &.platinium {
+    &::after {
+      opacity: 0.35;
+      background: linear-gradient(180deg, #53C1E9 0%, rgba(83, 193, 233, 0.00) 91.5%);
+    }
+  }
+
+  &.gold {
+    &::after {
+      opacity: 0.27;
+      background: linear-gradient(180deg, #FFC629 0%, rgba(255, 198, 41, 0.00) 91.5%);
+    }
+  }
+
+  &.bronze {
+    &::after {
+      background: linear-gradient(180deg, #D98B59 0%, rgba(217, 139, 89, 0.00) 91.5%);
+    }
+  }
+
+  &.silver {
+    &::after {
+      background: linear-gradient(180deg, #C0C0C0 0%, rgba(192, 192, 192, 0.00) 91.5%);
+    }
+  }
+
+  &.diamond {
+    &::after {
+      background: linear-gradient(180deg, #1BE7CC 0%, rgba(27, 231, 204, 0.00) 91.5%);
+    }
+  }
+
+  .subscription-details {
+    * {
+      z-index: 2;
+    }
+  }
+}
+
+.subscription-image {
+  position: relative;
+  width: 160px;
+  height: 160px;
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 104px;
+    height: 104px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 104px;
+
+    &.platinium {
+      background-image: url("../../../assets/icons/subscription/credit-diamond-platinum.webp");
+    }
+
+    &.gold {
+      background-image: url("../../../assets/icons/subscription/credit-diamond-gold.webp");
+    }
+
+    &.bronze {
+      background-image: url("../../../assets/icons/subscription/credit-diamond-bronze.webp");
+    }
+
+    &.silver {
+      background-image: url("../../../assets/icons/subscription/credit-diamond-silver.webp");
+    }
+
+    &.brilliance {
+      background-image: url("../../../assets/icons/subscription/credit-diamond-brilliance.webp");
+    }
+
+    &.diamond {
+      background-image: url("../../../assets/icons/subscription/credit-diamond-diamond.webp");
+    }
+
+    &.titanium {
+      background-image: url("../../../assets/icons/subscription/credit-diamond-titanium.webp");
+    }
+  }
+
+  .blur-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 102.715px;
+    height: 103.501px;
+    flex-shrink: 0;
+    opacity: 0.52;
+    border-radius: 103.501px;
+    filter: blur(36px);
+    z-index: 0 !important;
+
+    &.platinium {
+      background: #53C1E9;
+    }
+
+    &.gold {
+      background: #FFC629;
+    }
+
+    &.bronze {
+      background: #D98B59;
+    }
+
+    &.silver {
+      background: #C0C0C0;
+    }
+
+    &.brilliance {
+      background: #53C1E9;
+    }
+
+    &.diamond {
+      background: #1BE7CC;
+    }
+
+    &.titanium {
+      background: #C5BFB5;
+    }
+  }
+}
+
+.subscription-amount {
+  background-color: #141924;
+
+  &.platinium {
+    border-color: #53C1E9;
+  }
+
+  &.gold {
+    border-color: #FFC629;
+  }
+
+  &.bronze {
+    border-color: #D98B59;
+  }
+
+  &.silver {
+    border-color: #C0C0C0;
+  }
+
+  &.brilliance {
+    border-color: #53C1E9;
+  }
+
+  &.diamond {
+    border-color: #1BE7CC;
+  }
+
+  &.titanium {
+    border-color: #E2DFDA;
+  }
+}
+
+.payment-methods {
+  background-color: #0E131D;
+
+  .subscription-payment-icon {
+    width: 32px;
+    height: 32px;
+    background-color: #1C222D;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    flex-shrink: 0;
+
+    &.from-loan {
+      background-image: url("../../../assets/icons/subscription/credit-subsctiption-from-loan.svg");
+    }
+
+    &.cash {
+      background-image: url("../../../assets/icons/subscription/credit-subsctiption-cash.svg");
+    }
+  }
+}
+
+.button-wrapper {
+  bottom: 0;
+  position: absolute;
+}
+

@@ -1,0 +1,42 @@
+<div
+  [class]="'is-' + (icon() || '')"
+  class="score-circle"
+>
+  <circle-progress
+    [innerStrokeColor]="fillColor()!"
+    [outerStrokeColor]="color()!"
+    [percent]="percent()!"
+    [titleFontSize]="'32px'"
+    [radius]="44"
+    [animationDuration]="400"
+    [animation]="true"
+    [showUnits]="false"
+    [showTitle]="false"
+    [showSubtitle]="false"
+    [space]="-6"
+    [outerStrokeWidth]="6"
+    [innerStrokeWidth]="6"
+  >
+  </circle-progress>
+  <div class="circle-content">
+    <span
+      [style.color]="color()"
+      class="score"
+      >{{ score() }}</span
+    >
+    @if (subtitle()) {
+      <span class="subtitle">{{ subtitle() }}</span>
+    }
+  </div>
+  @if (imageId() && !icon()) {
+    <span class="icon"></span>
+  }
+  <span class="icon">
+    @if (imageId()) {
+      <credit-digipay-image
+        [imageId]="imageId()"
+        width="100%"
+      ></credit-digipay-image>
+    }
+  </span>
+</div>

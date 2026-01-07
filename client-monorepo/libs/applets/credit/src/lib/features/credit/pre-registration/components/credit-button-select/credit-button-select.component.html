@@ -1,0 +1,25 @@
+<div
+  [class]="{
+    'credit-button-select-collapsed': collapsed(),
+    'justify-content-right': options().length > 3,
+  }"
+  class="credit-button-select d-flex justify-content-center gap-small"
+>
+  @for (opt of options(); track opt) {
+    <ngx-chip
+      [class]="selectedValue() === opt.value ? 'prevent-selection' : ''"
+      [ngxTooltip]="opt.tooltip!"
+      tooltipPosition="top"
+      [tooltipType]="opt.tooltipType ?? 'close'"
+      [id]="opt.label"
+      [disabled]="opt.disabled"
+      [size]="'LARGE'"
+      [label]="opt.label"
+      [pressed]="selectedValue() === opt.value"
+      ngxTrackableId
+      [trackerId]="'optionChipClick' + opt.value"
+      (click)="opt.disabled ? toggleTooltip(opt) : onClick(opt)"
+    >
+    </ngx-chip>
+  }
+</div>

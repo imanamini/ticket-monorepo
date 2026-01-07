@@ -1,0 +1,71 @@
+@import "@digipay/base-style/swatch";
+
+$base-border-radius: 8px;
+$base-border-size: 1px;
+$border-color-default: $swatch_steel_300;
+
+.container {
+  height: 72px;
+
+  .input {
+    height: 52px;
+    padding: 7px;
+    border-radius: $base-border-radius;
+    border: $base-border-size solid $border-color-default;
+    box-shadow: none;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+
+    &.showError {
+      border-color: $swatch_red_900;
+      background-color: $swatch_red_100;
+
+      .title {
+        color: $swatch_red_900;
+        background-color: #fff;
+      }
+    }
+
+    .title {
+      background-color: $swatch_steel_100;
+      color: $swatch_steel_400;
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    .content {
+      flex-grow: 1;
+      text-align: center;
+
+      .values {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+
+        .placeholder {
+          width: 100%;
+          height: 2px;
+          background-color: $swatch_steel_300;
+        }
+
+        .alphabet {
+          width: 24px;
+        }
+
+        .number {
+          width: 24px;
+        }
+      }
+    }
+  }
+
+  .error {
+    font-size: 10px;
+    color: $swatch_red_900;
+    margin: 0 0 4px 0;
+    line-height: 20px;
+    min-height: 20px;
+  }
+}

@@ -1,0 +1,69 @@
+<div class="modal-full-page">
+  <div class="dialog-header">
+    <div
+      (click)="closeDialog()"
+      class="close"
+    >
+      <ngx-icon
+        [name]="'close'"
+        classes="text-onback-high cursor-pointer"
+      ></ngx-icon>
+    </div>
+  </div>
+
+  <section class="dialog-body">
+    <div class="right-side">
+      <app-nobitex-final-plan-view
+        [crediAmount]="finalAmount"
+        [installmentCount]="installmentCount"
+      >
+      </app-nobitex-final-plan-view>
+    </div>
+    <div class="left-side">
+      <app-ui-scrollable-view>
+        <app-nobitex-rules [ruleSections]="ruleSections"></app-nobitex-rules>
+      </app-ui-scrollable-view>
+      <div>
+        <div
+          [formGroup]="form"
+          class="container acceptanceRules"
+        >
+          <label>
+            <input
+              formControlName="isAccepted"
+              type="checkbox"
+              value="1"
+            />
+          </label>
+          <span> مطالعه کردم و می‌پذیرم.</span>
+        </div>
+        <div class="ctas">
+          <app-ui-button
+            appearance="FLAT-BLUE"
+            (clicked)="closeDialog()"
+          >
+            <ngx-icon
+              [iconSize]="'24'"
+              [name]="'arrow-2-right'"
+              class="text-onback-brand"
+            ></ngx-icon>
+            قبلی
+          </app-ui-button>
+
+          <app-ui-button
+            class="w-40"
+            [disabled]="disableBtn"
+            (clicked)="submitCredit()"
+          >
+            تایید و ادامه
+            <span
+              icon="icon-charon-left-white"
+              size="24"
+              appUiIcon
+            ></span>
+          </app-ui-button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

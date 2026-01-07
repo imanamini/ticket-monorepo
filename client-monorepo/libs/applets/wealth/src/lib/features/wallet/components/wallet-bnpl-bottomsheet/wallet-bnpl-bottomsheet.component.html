@@ -1,0 +1,37 @@
+<div class="w-100 d-flex flex-wrap">
+  <p class="w-100 text-align-center st-7 text-onback-high">اعتبار متناسب با موجودی شما:</p>
+
+  <p class="w-100 text-align-center b-3 text-onback-medium mt-medium">
+    با دریافت این اعتبار، موجودی {{ data()?.walletTitle }} شما به اندازه اعتبار دریافتی مسدود شده و تا پایان پرداخت کل اقساط امکان برداشت آن
+    وجود ندارد.
+  </p>
+
+  <div class="w-100 mt-medium">
+    <wealth-applet-bnpl-banner
+      class="d-flex"
+      [bnplWallet]="true"
+      [bnplTitle]="data()?.amount + 'ریال اعتبار 4 قسطه'"
+      [bnplDescription]="'بازپرداخت هر قسط: ' + data()?.repaymentDate"
+    />
+  </div>
+
+  <div class="w-100 mt-giant d-grid gap-medium buttons-conteiner">
+    <ngx-button
+      [fullWidth]="true"
+      [style]="'tinted-on-elevated'"
+      (clickHandler)="close()"
+      [size]="'medium'"
+    >
+      بستن
+    </ngx-button>
+    <ngx-button
+      [buttonId]="'WALLET_BNPL_CONFIRM'"
+      [fullWidth]="true"
+      [isLoading]="loading()"
+      (clickHandler)="getBnpl()"
+      [size]="'medium'"
+    >
+      تایید و دریافت اعتبار
+    </ngx-button>
+  </div>
+</div>

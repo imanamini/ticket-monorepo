@@ -1,0 +1,33 @@
+<common-ui-components-page-layout>
+  <div class="login">
+    <div class="login__content surface-elevated radius-huge py-big px-medium d-flex flex-column mt-100">
+      @switch (state()) {
+        @case (loginState.PHONENUMBER) {
+          <escrow-auth-applet-enter-phone-number
+            (okReturned)="prepareStatesForOtp()"
+            [zone]="userZone()"
+          ></escrow-auth-applet-enter-phone-number>
+        }
+        @case (loginState.CHANGEPHONENUMBER) {
+          <escrow-auth-applet-change-phone-number (okReturned)="prepareStatesForOtp()"></escrow-auth-applet-change-phone-number>
+        }
+        @case (loginState.OTP) {
+          <common-otp-fill-otp
+            [editButton]="true"
+            [phoneNumber]="phoneNumber"
+            (okReturned)="otpFilled($event)"
+            [zone]="userZone()"
+          ></common-otp-fill-otp>
+        }
+        @case (loginState.PIN) {
+          <common-pin-user-pin
+            (callbackFunction)="pinCompleted()"
+            [pinConfig]="{
+              type: true,
+            }"
+          ></common-pin-user-pin>
+        }
+      }
+    </div>
+  </div>
+</common-ui-components-page-layout>

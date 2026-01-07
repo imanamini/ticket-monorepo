@@ -1,0 +1,76 @@
+@if (!gettingData()) {
+  <app-credit-app-bar
+    (onCloseButtonClick)="backToCreditStepper()"
+    [closeButton]="true"
+    title="امضای دیجیتال"
+  >
+  </app-credit-app-bar>
+
+  <div class="main-section d-flex flex-column flex-grow rtl px-plus">
+    <div class="top-section d-flex flex-column flex-grow">
+      <app-credit-scrollable-view [fullHeightContent]="true">
+        <div class="d-flex flex-column align-items-center justify-content-center flex-grow">
+          @if (data()?.guideFilmLink) {
+            <div class="video-container d-flex align-items-center flex-grow w-100 radius-medium">
+              <video
+                #videoElement
+                controls
+                preload="metadata"
+                width="100%"
+                class="radius-medium"
+              >
+                <source
+                  [src]="data()?.guideFilmLink"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          } @else {
+            <div class="on-boarding-image">
+              <credit-digipay-image
+                [imageId]="data()?.imageId"
+                [styles]="{ maxWidth: '100%' }"
+              ></credit-digipay-image>
+            </div>
+          }
+        </div>
+      </app-credit-scrollable-view>
+      @if (!isPlaying()) {
+        <div class="banner radius-medium"></div>
+        <div
+          class="pause"
+          (click)="play()"
+        ></div>
+      }
+    </div>
+
+    <div class="bottom-section pb-plus pt-big">
+      <div class="on-boarding-message w-100 text-align-right mb-medium">
+        @if (data()?.title) {
+          <div
+            [innerHTML]="data()?.title"
+            class="st-3 text-onback-high"
+          ></div>
+        }
+        @if (data()?.message) {
+          <div
+            [innerText]="data()?.message"
+            class="b-2 text-onback-medium"
+          ></div>
+        }
+      </div>
+      <ngx-button
+        ngxTrackableId
+        trackerId="digitalSignatureOnboardingConfirmButton"
+        (clickHandler)="onCtaClick()"
+        [fullWidth]="true"
+        [style]="'fill'"
+        [mode]="'form'"
+      >
+        {{ data()?.buttonLabel }}
+      </ngx-button>
+    </div>
+  </div>
+}
+
+<credit-page-loading [active]="gettingData()"></credit-page-loading>

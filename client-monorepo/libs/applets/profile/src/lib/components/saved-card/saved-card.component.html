@@ -1,0 +1,54 @@
+<ngx-swipe-able-card
+  (onTap)="onTap.emit()"
+  [classes]="classes() + ' radius-plus'"
+>
+  <div
+    class="h-100"
+    rightContent
+  >
+    <div class="saved-card-actions h-100 pl-medium surface-brand text-oninvert-high">
+      <div
+        (click)="onPin()"
+        class="saved-card-actions-item gap-tiny d-flex flex-column align-items-center justify-content-center h-100 p-minus radius-tr-medium radius-br-medium"
+      >
+        @if (!config()?.isPinned) {
+          <div class="saved-card-actions-item-icon">
+            <common-icon-dp-icon
+              [icon]="'unPin'"
+              [iconType]="'linear'"
+            ></common-icon-dp-icon>
+          </div>
+          <div class="saved-card-actions-item-title b-2">پین کردن</div>
+        } @else {
+          <div class="saved-card-actions-item-icon">
+            <common-icon-dp-icon
+              [icon]="'unPin'"
+              [iconType]="'bold'"
+            ></common-icon-dp-icon>
+          </div>
+          <div class="saved-card-actions-item-title b-2">آنپین کردن</div>
+        }
+      </div>
+    </div>
+  </div>
+  <daily-bank-card-preview [config]="config()"></daily-bank-card-preview>
+  <div
+    class="h-100"
+    leftContent
+  >
+    <div class="saved-card-actions h-100 pr-medium surface-error text-oninvert-high">
+      <div
+        (click)="onDelete()"
+        class="saved-card-actions-item gap-tiny d-flex flex-column align-items-center justify-content-center h-100 p-minus radius-tr-medium radius-br-medium"
+      >
+        <div class="saved-card-actions-item-icon">
+          <common-icon-dp-icon
+            [icon]="'delete'"
+            [iconType]="'linear'"
+          ></common-icon-dp-icon>
+        </div>
+        <div class="saved-card-actions-item-title b-2">حذف کردن</div>
+      </div>
+    </div>
+  </div>
+</ngx-swipe-able-card>

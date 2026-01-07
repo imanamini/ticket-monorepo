@@ -1,0 +1,68 @@
+.on-screen-keypad {
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  direction: ltr;
+  left: 0;
+  width: 100%;
+  background: #f2f2f2;
+  bottom: -200px;
+  z-index: 5;
+  padding: 10px 0 0;
+  box-sizing: border-box;
+  transition: 0.2s bottom;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  // iOS Not triggering click in some cases
+  // more info:
+  // https://stackoverflow.com/questions/21786375/ios-7-hover-click-issue-no-click-triggered-in-some-cases
+  -webkit-overflow-scrolling: touch;
+
+  .keypad {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+      margin-bottom: 10px;
+
+      .key {
+        flex: 30% 0 0;
+        background: #fff;
+        text-align: center;
+        //border: 1px solid #dfdfdf;
+        box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.3);
+        font-size: 24px;
+        padding: 5px 0;
+        border-radius: 8px;
+        cursor: pointer;
+        user-select: none;
+
+        &:empty:not(.backspace) {
+          visibility: hidden;
+        }
+
+        /*&:hover {
+          background: #e1e1e1;
+        }*/
+      }
+
+      .key.backspace {
+        background: #fff url('images/backspace.svg') no-repeat center
+          center/24px;
+      }
+    }
+  }
+
+  &.open {
+    visibility: visible;
+    bottom: 0;
+  }
+}

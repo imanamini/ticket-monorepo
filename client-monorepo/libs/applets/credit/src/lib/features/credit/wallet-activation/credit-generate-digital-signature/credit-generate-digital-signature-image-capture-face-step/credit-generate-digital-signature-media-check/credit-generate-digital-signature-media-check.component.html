@@ -1,0 +1,21 @@
+<app-credit-app-bar
+  (onBackButtonClick)="onBack()"
+  [backButton]="true"
+  [title]="'امضای دیجیتال'"
+></app-credit-app-bar>
+<div class="d-flex flex-column justify-content-center px-big align-items-center flex-grow rtl">
+  <ngx-status-result
+    (finished)="onBack()"
+    [description]="description()"
+    [timer]="{}"
+    [title]="title()"
+  >
+    <ng-container status-image>
+      <ngx-waiting-stepper
+        [isSelfProgress]="true"
+        [timerDeadline]="60"
+        [state]="WaitingStepperStateEnum.PROGRESS"
+      ></ngx-waiting-stepper>
+    </ng-container>
+  </ngx-status-result>
+</div>

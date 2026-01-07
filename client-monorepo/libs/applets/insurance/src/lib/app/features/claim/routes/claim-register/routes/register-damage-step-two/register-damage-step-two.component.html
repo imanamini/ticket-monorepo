@@ -1,0 +1,25 @@
+<div class="step-two d-flex flex-column h-100">
+  <div class="header p-medium">تاریخ و توضیحات حادثه را به دقت وارد کنید.</div>
+  <div class="step-two-content pr-medium pl-medium d-flex flex-column h-100">
+    <form [formGroup]="form">
+      <ui-form-field
+        dateRange="past"
+        formControlName="accidentAt"
+        label="تاریخ"
+        type="date-end">
+      </ui-form-field>
+      <ui-form-field
+        [multiLine]="true"
+        formControlName="story"
+        label="توضیحات حادثه"
+        type="input">
+      </ui-form-field>
+    </form>
+  </div>
+  <action-buttons (activeButtonClicked)="onSave()"
+                  (deActiveButtonClicked)="handleDeActiveButtonClicked()"
+                  [backgroundMode]="'gray'"
+                  activeButtonText="تایید و ادامه"
+                  deActiveButtonText="بازگشت"
+  ></action-buttons>
+</div>

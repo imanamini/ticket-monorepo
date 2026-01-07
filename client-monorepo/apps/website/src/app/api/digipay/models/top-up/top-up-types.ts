@@ -1,0 +1,4 @@
+export enum TOP_UP_CHARGE_TYPES {
+  REGULAR = 2,
+  FASCINATING = 1,
+}

@@ -1,0 +1,40 @@
+<div class="d-flex flex-column flex-grow">
+  @if (reportUnreadyType() === 'EXIT' || reportUnreadyType() === 'COUNTDOWN') {
+    <app-credit-app-bar
+      (onBackButtonClick)="exit()"
+      [backButton]="true"
+      [title]="'امکان‌سنجی دریافت وام'"
+    />
+  }
+  <div class="d-flex flex-column flex-grow">
+    <app-credit-scrollable-view [fullHeightContent]="true">
+      <div class="d-flex flex-column flex-grow justify-content-center align-items-center rtl">
+        @if (reportUnreadyType() === 'EXIT') {
+          <ngx-status-result
+            [title]="reportUnreadyDataMap[reportUnreadyType()!].title"
+            [description]="reportUnreadyDataMap[reportUnreadyType()!].message"
+            [iconState]="'waiting'"
+            [type]="'Empty'"
+            [buttons]="reportUnreadyDataMap[reportUnreadyType()!].buttons"
+            (clicked)="close.emit()"
+          ></ngx-status-result>
+        } @else {
+          <ngx-status-result
+            (finished)="reload.emit()"
+            [description]="reportUnreadyDataMap[reportUnreadyType()!].message"
+            [timer]="timer"
+            [title]="reportUnreadyDataMap[reportUnreadyType()!].title"
+          >
+            <ng-container status-image>
+              <ngx-waiting-stepper
+                [isSelfProgress]="true"
+                [timerDeadline]="timer.timeInSeconds!"
+                [state]="WaitingStepperStateEnum.PROGRESS"
+              ></ngx-waiting-stepper>
+            </ng-container>
+          </ngx-status-result>
+        }
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+</div>

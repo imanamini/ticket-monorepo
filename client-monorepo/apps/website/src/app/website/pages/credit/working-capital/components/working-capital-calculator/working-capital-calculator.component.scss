@@ -1,0 +1,52 @@
+@import "../../../../../../style/globals";
+
+::ng-deep .section-credit-calculator .plans {
+  margin-top: 0 !important;
+  padding: 0 !important;
+}
+
+::ng-deep .section-credit-calculator .plans .plans-swiper {
+  width: 100% !important;
+}
+
+::ng-deep {
+  .section-credit-calculator .plans {
+    border-radius: unset !important;
+  }
+
+  .section-credit-calculator li {
+    list-style: none !important;
+  }
+
+  li::marker {
+    padding-right: 5px !important;
+  }
+
+  .le-text-card .le-description {
+    padding-right: 20px !important;
+
+    li:last-child {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  .section-credit-calculator .plans .plan-payments {
+    justify-content: right !important;
+  }
+
+  @media (max-width: 1280px) {
+    .section-credit-calculator .plans ::ng-deep .swiper .swiper-slide {
+      width: 300px !important;
+    }
+  }
+}
+
+.help-section {
+  border-radius: 16px;
+  border: 2px solid $swatch_steel_100;
+  margin: 24px 0;
+}
+
+app-ui-button {
+  width: 100%;
+}

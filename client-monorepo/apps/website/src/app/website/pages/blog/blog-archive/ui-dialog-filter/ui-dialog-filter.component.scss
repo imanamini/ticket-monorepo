@@ -1,0 +1,72 @@
+@import "globals";
+
+::ng-deep {
+  .mat-bottom-sheet-container {
+    padding: 0 !important;
+    width: 100%;
+    max-width: unset;
+  }
+
+  .cdk-global-overlay-wrapper {
+    width: 100vw;
+  }
+
+  .cdk-overlay-pane {
+    width: 100%;
+  }
+}
+
+.box {
+  height: max-content;
+  z-index: 2;
+  transition: height 100ms ease-in;
+
+  &.extra-open {
+    height: max-content;
+  }
+
+  .top-part {
+    height: 36px;
+    padding: 16px 0;
+
+    div {
+      margin: auto;
+      width: 32px;
+      height: 4px;
+      border-radius: 100px;
+      background-color: $swatch_steel_500;
+    }
+  }
+
+  .filters {
+    padding: 40px 24px 16px 24px;
+  }
+
+  .swipe-btn {
+    width: 100%;
+  }
+
+  .submit {
+    height: 142px;
+    width: 100%;
+    padding: 47px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: $swatch_steel_200;
+  }
+}
+
+@media (max-width: 744px) {
+  .box {
+    .submit {
+      padding: 16px;
+      height: 80px;
+
+      .cta {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}

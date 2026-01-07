@@ -1,0 +1,16 @@
+<div class="black-friday-prize container">
+  <div class="d-flex flex-column align-items-center justify-content-center gap-medium">
+  </div>
+  @if (prize().desktopImage && !mobileMode()) {
+    <div class="desktop-image">
+      <img src="{{ prize().desktopImage?.url }}" alt="">
+    </div>
+  }
+
+  @if (prize().mobileImage && mobileMode()) {
+    <div class="mobile-image">
+      <img src="{{prize().mobileImage?.url}}" alt="">
+    </div>
+  }
+
+</div>

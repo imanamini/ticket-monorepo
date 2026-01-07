@@ -1,0 +1,77 @@
+<section class="section-banks">
+  <div class="container">
+    <div class="card-segment">
+      <div class="titles">
+        <h1 class="text-align-center">
+          {{ sectionBanks.title }}
+        </h1>
+        <div class="subtitle text-align-center">
+          {{ sectionBanks.subtitle }}
+        </div>
+      </div>
+      <div class="w-100 text-align-center">
+        <div class="card-section">
+          <div class="content">
+            <div>
+              <img
+                *ngIf="sectionBanks.banks[activeBank] && sectionBanks.banks[activeBank].logo"
+                [src]="sectionBanks.banks[activeBank].logo.url"
+                alt=""
+              />
+            </div>
+            <div>
+              <div
+                *ngIf="sectionBanks.banks[activeBank] && sectionBanks.banks[activeBank].nameFa"
+                class="name-fa"
+              >
+                {{ sectionBanks.banks[activeBank].nameFa }}
+              </div>
+              <div
+                *ngIf="sectionBanks.banks[activeBank] && sectionBanks.banks[activeBank].nameEn"
+                class="name-en"
+              >
+                {{ sectionBanks.banks[activeBank].nameEn }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <swiper-container
+      appSwiper
+      #swiperRef
+      class="swiper-nobitex swiper swiper-initialized swiper-wrapper"
+      [config]="config"
+    >
+      <swiper-slide
+        *ngFor="let bank of sectionBanks.banks; let stepIndex = index"
+        class="swiper-slide">
+        <div class="bank-item">
+          <img *ngIf="bank.logo.url" [alt]="bank.nameFa" [src]="bank.logo.url" class="logo">
+          <img *ngIf="bank.logoGray.url" [alt]="bank.nameFa" [src]="bank.logoGray.url" class="logo-gray">
+          <div *ngIf="bank.nameFa" class="bank-name">
+            {{ bank.nameFa }}
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+    <div class="ctas">
+      <app-ui-button
+        [link]="sectionBanks.secondCta.link"
+        appearance="OUTLINE-BLUE"
+        linkTarget="_blank"
+        size="BIG"
+      >
+        {{ sectionBanks.secondCta.title }}
+      </app-ui-button>
+
+      <app-ui-button
+        [link]="sectionBanks.firstCta.link"
+        linkTarget="_blank"
+        size="BIG"
+      >
+        {{ sectionBanks.firstCta.title }}
+      </app-ui-button>
+    </div>
+  </div>
+</section>

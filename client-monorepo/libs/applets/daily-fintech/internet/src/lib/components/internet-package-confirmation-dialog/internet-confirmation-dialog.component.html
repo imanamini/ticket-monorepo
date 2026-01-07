@@ -1,0 +1,35 @@
+<div class="dialog-container">
+  <div class="card-title">تایید بسته اینترنت</div>
+  <common-icon-dp-icon
+    class="sim-icon"
+    [iconSize]="'100'"
+    styles="color: #1159FC"
+    [icon]="'simcard'"
+  ></common-icon-dp-icon>
+
+  <div
+    class="hint-message"
+    [innerHTML]="sheetData()?.package?.approvalMessage"
+  ></div>
+  <div class="check-eligibility">
+    در صورتی که واجد شرایط استفاده نباشید، این بسته برای شما فعال نخواهد شد. آیا انتخاب خود را تائید می‌کنید؟
+  </div>
+
+  <div class="button-container">
+    <ngx-button
+      (clickHandler)="cancelClicked()"
+      [style]="'tinted-on-elevated'"
+      [fullWidth]="true"
+    >
+      فعلا نه
+    </ngx-button>
+
+    <ngx-button
+      (clickHandler)="continueClicked()"
+      [style]="'fill'"
+      [fullWidth]="true"
+    >
+      تایید و ادامه
+    </ngx-button>
+  </div>
+</div>

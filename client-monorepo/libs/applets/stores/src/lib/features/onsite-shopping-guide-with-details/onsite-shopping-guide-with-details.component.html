@@ -1,0 +1,69 @@
+<div class="position-sticky top-0 surface-elevated">
+  <ngx-app-bar
+    [title]="'راهنمای پرداخت حضوری'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="goBack()"
+  ></ngx-app-bar>
+</div>
+<div class="px-plus">
+  <div class="position-sticky top-56 z-index-10 surface-elevated pb-small">
+    <ngx-segmented-control
+      [options]="options"
+      [mode]="'SECTION_SEGMENT'"
+      [selectedOption]="selectedMethod()"
+      (change)="changeSelectedMode($event)"
+    ></ngx-segmented-control>
+  </div>
+  <div class="mt-minus mb-big">
+    @if (config().videoUrl) {
+      <common-ui-components-video-player
+        [videoUrl]="config().videoUrl || ''"
+        [autoplay]="true"
+        [muted]="true"
+        [styles]="videoStyles"
+        [poster]="config().imageUrl"
+      ></common-ui-components-video-player>
+    } @else {
+      <img
+        class="w-100"
+        [src]="config().imageUrl"
+        [alt]="config().buttonText"
+      />
+    }
+  </div>
+  <common-ui-components-title-summary
+    [title]="config().calloutTitle"
+    [showButton]="false"
+    [rightIcon]="{ name: config().icon, iconSize: '24px' }"
+  ></common-ui-components-title-summary>
+  <div class="shopping-guide-callout mt-low">
+    <ngx-callout
+      [mode]="'multiple'"
+      [messages]="config().calloutMessages"
+      [showTitleBlink]="false"
+      [showTitleIcon]="false"
+      [title]="''"
+      [backgroundMode]="'elevated'"
+    ></ngx-callout>
+  </div>
+
+  <div
+    [style.marginTop]="config().buttonMarginTop"
+    class="d-flex justify-content-end mb-medium"
+  >
+    <ngx-button
+      [size]="'medium'"
+      [mode]="'section'"
+      [rightIcon]="{ name: config().icon }"
+      [brandButton]="true"
+      [routerLink]="config().buttonLink"
+    >
+      {{ config().buttonText }}
+    </ngx-button>
+  </div>
+</div>

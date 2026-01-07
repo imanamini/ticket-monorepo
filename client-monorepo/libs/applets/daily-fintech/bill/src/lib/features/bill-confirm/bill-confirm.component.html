@@ -1,0 +1,15 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  title="پرداخت قبض"
+>
+  @if (!isLoadingPage()) {
+    <div class="page-content d-flex flex-column h-100">
+      <payment-checkout-main
+        [paymentCardData]="paymentCardData()"
+        [appPayFeatureBody]="appPayFeatureBody()"
+        [cachedTicket]="ticket()"
+        [payMode]="payMode()"
+      ></payment-checkout-main>
+    </div>
+  }
+</common-ui-components-page-layout>

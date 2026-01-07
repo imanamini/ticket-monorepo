@@ -1,0 +1,58 @@
+@if (slicedItems().length > 0) {
+  <ngx-dp-carousel
+    [mode]="'CARD'"
+    [visibleItemCount]="1"
+    [centerMode]="true"
+    [showNavigation]="true"
+    [isFixedGap]="true"
+    [mainContainerClasses]="'h-100'"
+    [fixedGap]="20"
+    [disableScaling]="true"
+    [showButtons]="false"
+    [navigationDotsContainerClasses]="'surface-elevated'"
+    [changeStepThresholdPercentage]="20"
+    (isSwiping)="handleCarouselSwiping($event)"
+    (indexChange)="changeIndex($event)"
+  >
+    @for (arrayItems of slicedItems(); track $index) {
+      <ng-template ngxDpCarouselSlide>
+        <div class="slider-grid pt-plus">
+          @for (item of arrayItems; track $index) {
+            @if (!item.isFake) {
+              <div class="mb-minus no-select">
+                <common-ui-components-framed-icon
+                  class="framed-icon"
+                  [size]="'SMALL'"
+                  [showText]="true"
+                  [type]="imageType() === 'logo' ? ServiceImagesType.IMAGE_ID : ServiceImagesType.SRC"
+                  [text]="item.title!"
+                  [maxTextLength]="12"
+                  [showBadge]="false"
+                  [icon]="item.image!"
+                  (click)="navigateToPage(item)"
+                  [enableMixedBlendMode]="true"
+                  [trackerIdPrefix]="item.image!"
+                ></common-ui-components-framed-icon>
+              </div>
+            }
+          }
+        </div>
+      </ng-template>
+    }
+  </ngx-dp-carousel>
+} @else {
+  <div class="d-flex flex-wrap mt-minus">
+    @for (i of rangeCreator(itemPerSlide()); track i) {
+      <div class="d-flex flex-column gap-low w-25 align-items-center mb-minus">
+        <lib-ngx-skeleton-loading
+          height="48px"
+          width="48px"
+        ></lib-ngx-skeleton-loading>
+        <lib-ngx-skeleton-loading
+          height="10px"
+          width="48px"
+        ></lib-ngx-skeleton-loading>
+      </div>
+    }
+  </div>
+}

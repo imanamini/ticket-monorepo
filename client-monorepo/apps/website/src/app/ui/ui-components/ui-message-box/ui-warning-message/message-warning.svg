@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg height="20px" version="1.1" viewBox="0 0 20 20" width="20px" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>6CCE057F-55F9-4825-81D9-325B17F3355C</title>
+  <defs>
+    <rect height="20" id="path-1" width="20" x="0" y="0"></rect>
+    <rect height="20" id="path-3" width="20" x="0" y="0"></rect>
+    <path
+      d="M8.55089288,3.33976844 C9.16768332,2.26006616 10.6905028,2.22150537 11.3720096,3.22408605 L11.4441816,3.33976844 L18.1088787,15.0064351 C18.7224449,16.0804932 17.9934337,17.4081368 16.7885405,17.495453 L16.6622343,17.5 L3.3328402,17.5 C2.09615805,17.5 1.30547196,16.2081583 1.82747714,15.1183879 L1.88619582,15.0064351 L8.55089288,3.33976844 Z M9.99753725,4.16666667 L3.3328402,15.8333333 L16.6622343,15.8333333 L9.99753725,4.16666667 Z M10,13.3333333 C10.4602373,13.3333333 10.8333333,13.7064294 10.8333333,14.1666667 C10.8333333,14.626904 10.4602373,15 10,15 C9.53976271,15 9.16666667,14.626904 9.16666667,14.1666667 C9.16666667,13.7064294 9.53976271,13.3333333 10,13.3333333 Z M10,7.5 C10.4602373,7.5 10.8333333,7.87309604 10.8333333,8.33333333 L10.8333333,11.6666667 C10.8333333,12.126904 10.4602373,12.5 10,12.5 C9.53976271,12.5 9.16666667,12.126904 9.16666667,11.6666667 L9.16666667,8.33333333 C9.16666667,7.87309604 9.53976271,7.5 10,7.5 Z"
+      id="path-5"></path>
+  </defs>
+  <g fill="none" fill-rule="evenodd" id="Charge" stroke="none" stroke-width="1">
+    <g id="Charge---First-Purchase---Operator-Error-@Small" transform="translate(-308.000000, -361.000000)">
+      <g id="icon/general/warning" transform="translate(308.000000, 361.000000)">
+        <g id="Shape/Sharp">
+          <mask fill="white" id="mask-2">
+            <use xlink:href="#path-1"></use>
+          </mask>
+          <g id="Mask"></g>
+          <mask fill="white" id="mask-4">
+            <use xlink:href="#path-3"></use>
+          </mask>
+          <g id="Border"></g>
+        </g>
+        <mask fill="white" id="mask-6">
+          <use xlink:href="#path-5"></use>
+        </mask>
+        <g fill-rule="nonzero" id="Mask"></g>
+        <g fill="#FF811A" id="Color/Brand/Orange-•-500" mask="url(#mask-6)">
+          <rect height="20" id="Surface" width="20" x="0" y="0"></rect>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

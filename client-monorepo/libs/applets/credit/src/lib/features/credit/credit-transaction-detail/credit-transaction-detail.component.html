@@ -1,0 +1,13 @@
+@if (receipt() && !isLoading()) {
+  <app-credit-scrollable-view [fullHeightContent]="true">
+    <ui-ngx-payment-result
+      class="flex-full-height"
+      [showBackIcon]="true"
+      [trackingCode]="trackingCode()!"
+      (onBackIconClick)="backButtonClick()"
+      [paymentResult]="receipt()!"
+    >
+    </ui-ngx-payment-result>
+  </app-credit-scrollable-view>
+}
+<credit-page-loading [active]="isLoading()"></credit-page-loading>

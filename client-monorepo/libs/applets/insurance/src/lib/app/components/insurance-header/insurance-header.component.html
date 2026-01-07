@@ -1,0 +1,48 @@
+<div [ngClass]="{'justify-content-center':titlePosition()===HeaderTitlePositionEnum.Center}"
+     class="d-flex flex-row gap-small align-items-center px-medium py-pony border-b-300 border-color-tint surface-elevated">
+  @if (showCloseIcon()) {
+    <ngx-icon (click)="handleCloseClicked($event)"
+              [type]="'linear'"
+              [iconSize]="'24px'"
+              [name]="closeIconName()"
+              class="cursor-pointer"></ngx-icon>
+  }
+
+  @for (icon of rightIcons(); track icon.name) {
+    @defer () {
+      <ngx-icon [name]="icon.name"
+                [type]="'linear'"
+                [iconSize]="'24px'"
+                (click)="icon.clickHandler($event)"
+                [class]="'cursor-pointer ' + icon.class"></ngx-icon>
+    } @placeholder () {
+      <lib-ngx-skeleton-loading width="24px"
+                                height="24px"></lib-ngx-skeleton-loading>
+    }
+  }
+
+  <span class="header-title t-6 text-onback-medium"
+        [ngClass]="{'text-align-center pr-huge': titlePosition() === HeaderTitlePositionEnum.Center }">{{ title() }}</span>
+
+  @if (showSupport()) {
+    <ngx-icon [name]="IconEnum.Support"
+              [type]="'linear'"
+              [iconSize]="'24px'"
+              (click)="handleFAQClicked()"
+              class="cursor-pointer text-onback-high"></ngx-icon>
+  }
+
+  @for (icon of leftIcons(); track icon.name) {
+    @defer () {
+      <ngx-icon [name]="icon.name"
+                [type]="'linear'"
+                [iconSize]="'24px'"
+                (click)="icon.clickHandler($event)"
+                [class]="'cursor-pointer text-onback-high '+ icon.class"></ngx-icon>
+    } @placeholder () {
+      <lib-ngx-skeleton-loading width="24px"
+                                height="24px"></lib-ngx-skeleton-loading>
+    }
+  }
+</div>
+

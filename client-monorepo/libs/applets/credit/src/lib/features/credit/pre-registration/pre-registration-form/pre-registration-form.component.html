@@ -1,0 +1,21 @@
+<app-credit-app-bar
+  (onBackButtonClick)="onBack()"
+  [backButton]="true"
+  [title]="'اطلاعات پایه'"
+></app-credit-app-bar>
+@if (!showLoading()) {
+  <app-credit-register-form
+    (submit)="submitForm($event)"
+    [cellNumber]="cellNumber()"
+    [ctaLoading]="ctaLoading()"
+    [editable]="{
+      birthDate: volunteerFields()?.birthDate?.editable,
+      nationalCode: volunteerFields()?.nationalCode?.editable,
+    }"
+    [errors]="serverValidationError()"
+    [values]="values()!"
+    [serviceType]="serviceType()"
+    class="flex-full-height"
+  ></app-credit-register-form>
+}
+<credit-page-loading [active]="showLoading()"></credit-page-loading>

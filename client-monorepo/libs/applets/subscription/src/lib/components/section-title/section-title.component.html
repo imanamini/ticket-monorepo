@@ -1,0 +1,27 @@
+@if (config) {
+  <div class="title-section-container">
+    <div class="title-container">
+      <div class="title-section">
+        <span
+          class="icon"
+          [style.background-image]="'url(' + config.icon + ')'"
+          [ngClass]="hasStaticIcon ? '' : ICON_MAPPER[status]"
+        ></span>
+        <p class="title">{{ config?.title }}</p>
+      </div>
+      @if (hasAction) {
+        <div
+          class="action-section"
+          (click)="onNextActionClicked()"
+        >
+          <ng-content></ng-content>
+        </div>
+      }
+    </div>
+    @if (hasDescription) {
+      <div class="description-section">
+        <p class="description-text">{{ config?.description ? config?.description : description }}</p>
+      </div>
+    }
+  </div>
+}

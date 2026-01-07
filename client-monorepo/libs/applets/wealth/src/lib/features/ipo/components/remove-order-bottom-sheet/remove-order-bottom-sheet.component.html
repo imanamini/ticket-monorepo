@@ -1,0 +1,35 @@
+<div class="w-100 d-flex align-items-center flex-column">
+  <img
+    src="./wealth-assets/svg/remove-order.svg"
+    alt="Remove order"
+  />
+
+  <div
+    class="w-100 mt-big text-align-center"
+    [ngClass]="{ 'mb-huge': selectedPaymentMethod() !== EIpoPaymentMethodAgreement.ByCharge }"
+  >
+    <span class="st-7 text-onback-high"> از حذف درخواست خود مطمئن هستید؟ </span>
+  </div>
+
+  @if (selectedPaymentMethod() === EIpoPaymentMethodAgreement.ByCharge) {
+    <div class="w-100 mt-small mb-huge text-align-center">
+      <span class="bt-2 text-onback-low"> در صورت حذف درخواست، مبلغ پرداختی در کیف پول ETF شما در سبد دارایی باقی خواهد ‌ماند. </span>
+    </div>
+  }
+
+  <div class="w-100 d-grid gap-medium align-items-center">
+    @for (button of buttons(); track button) {
+      <ngx-button
+        [classNames]="button.style === 'fill' ? ['buy-button'] : []"
+        [style]="button.style === 'fill' ? 'fill' : 'tinted-on-elevated'"
+        size="medium"
+        [mode]="'form'"
+        [fullWidth]="true"
+        (clickHandler)="close(button.label !== 'CANCEL_REMOVE_ORDER')"
+        [buttonId]="'IPO_' + button.label"
+      >
+        {{ button.label }}
+      </ngx-button>
+    }
+  </div>
+</div>

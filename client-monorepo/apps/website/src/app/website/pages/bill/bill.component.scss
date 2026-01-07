@@ -1,0 +1,91 @@
+@import "globals";
+
+:host ::ng-deep {
+  section {
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    overflow: hidden;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  .similar-service {
+    background-color: #fff;
+  }
+
+  #layout {
+    background: #f2f5f8;
+  }
+
+  .introduction-booklet .container .subtitle {
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+
+  .introduction-booklet .anchor-button-default-icon {
+    display: inline-flex;
+  }
+
+  .introduction-booklet > .container > div {
+    max-width: 50%;
+  }
+
+  .introduction-booklet > .container {
+    > div {
+      order: 2;
+    }
+
+    .image {
+      order: 1;
+    }
+  }
+
+  .introduction-booklet .container > div {
+    &:last-child {
+      padding-left: 32px;
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .introduction-booklet > .container {
+      flex-direction: column !important;
+    }
+    .introduction-booklet .container > div {
+      &:first-child {
+        max-width: 100%;
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      &:last-child {
+        padding-left: unset;
+        max-width: 100%;
+      }
+    }
+    .introduction-booklet > .container > div img {
+      max-height: 450px !important;
+    }
+  }
+
+  @media (max-width: 744px) {
+    .introduction-booklet > .container > div ::ng-deep app-ui-button {
+      width: 100%;
+    }
+    .introduction-booklet .container > div {
+      &:first-child {
+        text-align: right;
+      }
+
+      &:last-child {
+        max-width: 100%;
+      }
+    }
+    .introduction-booklet > .container > div img {
+      max-height: 400px !important;
+    }
+  }
+}

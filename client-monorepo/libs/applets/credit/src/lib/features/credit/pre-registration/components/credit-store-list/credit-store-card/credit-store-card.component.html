@@ -1,0 +1,12 @@
+<div [class.inActive]="!storeInfo().isActive">
+  <div class="d-flex flex-column align-items-center">
+    <div class="surface-back radius-medium p-minus mb-low d-flex flex-column justify-content-center align-items-center">
+      <ui-api-image
+        [imageId]="imageId()"
+        height="32px"
+        width="32px"
+      ></ui-api-image>
+    </div>
+    <span class="store-title-text text-onback-medium text-align-center l-2 w-100">{{ storeInfo().title }}</span>
+  </div>
+</div>

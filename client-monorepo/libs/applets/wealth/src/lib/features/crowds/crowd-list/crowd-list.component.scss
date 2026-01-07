@@ -1,0 +1,13 @@
+.empty-state {
+  height: calc(100dvh - 13rem);
+  max-height: calc(100dvh - 13rem);
+
+  @media screen and (max-width: 360px) {
+    height: calc(100dvh - 20rem);
+  }
+}
+
+.notify-button {
+  position: absolute;
+  bottom: 2rem;
+}

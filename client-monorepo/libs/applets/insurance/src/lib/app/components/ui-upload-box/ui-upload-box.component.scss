@@ -1,0 +1,38 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+::ng-deep {
+  .canvas-wrap {
+    border: 1px solid #3c6dff;
+    width: 66px !important;
+    height: 66px !important;
+    @extend %radius-low;
+  }
+}
+
+.upload-box {
+  .box {
+    width: 64px;
+    height: 64px;
+    cursor: pointer;
+
+    &.failed {
+      background-image: url("assets/images/fail-upload.svg");
+    }
+
+    &.success {
+      background-image: url("assets/images/success-upload.svg");
+    }
+
+    &.downloading {
+      padding: 0 !important;
+    }
+
+    &.initial {
+      background-image: url("assets/images/ready-to-upload.svg");
+    }
+  }
+}
+
+input {
+  display: none;
+}

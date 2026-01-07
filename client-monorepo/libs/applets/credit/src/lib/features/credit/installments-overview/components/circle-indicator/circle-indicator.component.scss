@@ -1,0 +1,9 @@
+:host {
+  display: inline-block;
+}
+
+.circle-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg); // To start from top
+}

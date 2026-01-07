@@ -1,0 +1,46 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.status-badge {
+  white-space: nowrap;
+  padding: 6px 8px;
+  font-size: 12px;
+  border-radius: 54px;
+  line-height: 20px;
+  font-weight: 700;
+  display: inline-block;
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &.status-success {
+    color: #02b75d;
+    background-color: #eefff6;
+  }
+
+  &.status-danger {
+    color: #eb2338;
+    background-color: #ffeef3;
+  }
+
+  &.status-warning {
+    color: #fa631d;
+    background-color: #fff5ee;
+  }
+
+  &.status-info {
+    color: #0037d1;
+    background-color: #f0f5ff;
+  }
+
+  &.status-active {
+    color: #7d4dca;
+    background-color: #f5eeff;
+  }
+
+  &.status-default {
+    color: #424c5c;
+    background-color: #f2f5f8;
+  }
+}

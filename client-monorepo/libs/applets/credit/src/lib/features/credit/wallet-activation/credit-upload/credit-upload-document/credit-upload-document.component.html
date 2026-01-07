@@ -1,0 +1,64 @@
+<app-credit-app-bar
+  (onCloseButtonClick)="goBack(false)"
+  [closeButton]="true"
+  title="بارگذاری مدارک"
+>
+</app-credit-app-bar>
+@if (!isLoading() && !selectedStepFlow()) {
+  <div class="choose-section">
+    <div class="choose-section__title text-onback-high">
+      <p>{{ stepFlowsDescription() }}</p>
+    </div>
+    @for (stepFlow of stepFlows(); track stepFlow) {
+      <div>
+        <app-credit-navigation-card-v2
+          (click)="selectStepFlow(stepFlow)"
+          [text]="stepFlow.title"
+        ></app-credit-navigation-card-v2>
+      </div>
+    }
+  </div>
+}
+@if (!isLoading() && selectedStepFlow()) {
+  <div class="main-section flex-full-height">
+    <div class="top-section">
+      <app-credit-scrollable-view
+        [hasFade]="true"
+        fadeColor="white"
+      >
+        <div class="page-content">
+          <div
+            class="help-text text-onback-medium"
+            dir="rtl"
+          >
+            لطفاً مدارک
+            <u>مالک خط</u>
+            <span class="cell-number">{{ cellNumber() | formattedCellNumber }}</span>
+            را بارگذاری کنید.
+          </div>
+          <app-credit-upload-file-list
+            (uploadSuccess)="getData()"
+            [maxUploadSize]="config()?.maxUploadSize!"
+            [step]="selectedStepFlow()?.step"
+            [wallet]="wallet()!"
+          ></app-credit-upload-file-list>
+          <div class="footer-backdrop"></div>
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+    <div class="call-to-actions-section">
+      <div class="confirm-button">
+        <ngx-button
+          (clickHandler)="goBack(true)"
+          [fullWidth]="true"
+          [isLoading]="btnLoading()"
+          [disabled]="!readyToUpload()"
+        >
+          تایید و ارسال
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+}
+
+<credit-page-loading [active]="isLoading()!"></credit-page-loading>

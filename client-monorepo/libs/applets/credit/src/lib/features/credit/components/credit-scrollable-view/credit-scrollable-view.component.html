@@ -1,0 +1,13 @@
+<div
+  [class]="{ 'has-fade': hasFade(), 'gray-fade': fadeColor() === 'gray' }"
+  class="rtl flex-full-height scrollable-container"
+>
+  <div
+    [class]="{
+      'with-padding': withPadding(),
+      'flex-full-height': fullHeightContent(),
+    }"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>

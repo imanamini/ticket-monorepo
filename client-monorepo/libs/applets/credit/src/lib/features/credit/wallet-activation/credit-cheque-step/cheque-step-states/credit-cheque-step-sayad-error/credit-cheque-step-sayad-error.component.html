@@ -1,0 +1,30 @@
+<app-credit-app-bar
+  (onBackButtonClick)="close.emit()"
+  [backButton]="true"
+  title="ثبت چک در سامانه صیاد"
+></app-credit-app-bar>
+<div class="d-flex flex-column flex-grow">
+  <div class="flex-grow justify-content-center pb-plus">
+    <ngx-status-result
+      (clicked)="close.emit()"
+      [buttons]="buttons"
+      [description]="description()"
+      [title]="'عدم تطابق اطلاعات چک'"
+      [type]="'Status'"
+      [iconState]="'error'"
+    >
+      @if (alertMessage()) {
+        <div
+          html-content
+          class="d-flex flex-column flex-grow justify-content-flex-end"
+        >
+          <ngx-alert
+            [color]="'yellow'"
+            [hasCloseIcon]="false"
+            [text]="alertMessage()"
+          />
+        </div>
+      }
+    </ngx-status-result>
+  </div>
+</div>

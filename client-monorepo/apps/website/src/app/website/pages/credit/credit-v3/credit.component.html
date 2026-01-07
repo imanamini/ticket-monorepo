@@ -1,0 +1,42 @@
+<app-base-layout [loaded]="loaded">
+  <ng-container *ngIf="creditPage && creditPage.templateData">
+    <!--  section 1-->
+    <app-credit-intro
+      *ngIf="creditPage.templateData.sectionIntro"
+      [data]="creditPage.templateData.sectionIntro"
+      scrollToSecondElementId="credit-plans"
+      [firstCta]="creditIntroCta.firstCta"
+      [secondCta]="creditIntroCta.secondCta"
+    ></app-credit-intro>
+
+    <!--  section 2-->
+    <app-credit-plans-types
+      *ngIf="
+        creditPage.templateData.sectionInsurancePlansTypes && creditPage.templateData.sectionInsurancePlansTypes.insurancePlans.length > 0
+      "
+      [creditInsurancePlansTypesData]="creditPage.templateData.sectionInsurancePlansTypes"
+      id="credit-plans"
+    ></app-credit-plans-types>
+
+    <!--    &lt;!&ndash;    section 3&ndash;&gt;-->
+    <!--    <app-credit-stores-->
+    <!--      *ngIf="creditPage.templateData.sectionStores"-->
+    <!--      [creditStores]="creditPage.templateData.sectionStores"-->
+    <!--    ></app-credit-stores>-->
+
+    <!--    section 4-->
+    <app-ui-seo
+      *ngIf="creditPage.templateData.sectionSeoContent && creditPage.templateData.sectionSeoContent.title"
+      [seoContent]="creditPage.templateData.sectionSeoContent"
+    ></app-ui-seo>
+
+    <!--    section 5-->
+    <app-ui-faq
+      *ngIf="creditPage.templateData.faq && faqItems && faqItems.length > 0"
+      [faqs]="faqItems"
+      [subtitle]="creditPage.templateData.faq.subtitle"
+      [title]="creditPage.templateData.faq.title"
+    >
+    </app-ui-faq>
+  </ng-container>
+</app-base-layout>

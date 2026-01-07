@@ -1,0 +1,55 @@
+<div
+  *ngIf="data && data.length > 0"
+  class="benefit-service-cards"
+>
+  <div class="swiper-navigation">
+    <div class="horizontal-flow-navigation">
+      <div
+        class="horizontal-flow-button-prev"
+        (click)="swiper.slidePrev()"
+      >
+        <i class="horizontal-flow-icon__arrow-right"></i>
+      </div>
+      <div
+        class="horizontal-flow-button-next"
+        (click)="swiper.slideNext()"
+      >
+        <i class="horizontal-flow-icon__arrow-left"></i>
+      </div>
+    </div>
+  </div>
+  <swiper-container
+    appSwiper
+    #swiper="appSwiper"
+    [config]="config"
+  >
+    <swiper-slide *ngFor="let item of data; let itemIndex = index">
+      <div
+        (mouseout)="activeIndex = -1"
+        (mouseover)="activeIndex = itemIndex"
+        [ngClass]="activeIndex === itemIndex ? 'active' : ''"
+        class="benefit-card"
+      >
+        <div class="content">
+          <div class="content-front">
+            <div class="front-icon">
+              <div>
+                <img
+                  [alt]="item.title"
+                  [src]="item?.icon?.url"
+                />
+              </div>
+            </div>
+            <i class="icon-arrow-down-yellow"></i>
+            <div class="front-title">
+              <span>{{ item.title }}</span>
+            </div>
+          </div>
+          <div class="content-back">
+            <span>{{ item.description }}</span>
+          </div>
+        </div>
+      </div>
+    </swiper-slide>
+  </swiper-container>
+</div>

@@ -1,0 +1,52 @@
+
+.ui-account-owner-info {
+  text-align: center;
+  background: #152566;
+  color: #fff;
+  border-radius: 16px;
+  padding: 12px;
+
+  .user-image {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #fff;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .user-name {
+    display: flex;
+    margin: 3px 0;
+    direction: rtl;
+    justify-content: center;
+    font-size: 14px;
+    span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .sep {
+      margin: 0 0.7em;
+    }
+    .separator {
+      margin: 0 4px;
+    }
+  }
+
+  .url {
+    margin: 8px 0 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: .8em;
+    word-break: break-all;
+    .id-part {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+  .identity-account {
+    font-weight: 500;
+    font-size: 1.1em;
+  }
+}

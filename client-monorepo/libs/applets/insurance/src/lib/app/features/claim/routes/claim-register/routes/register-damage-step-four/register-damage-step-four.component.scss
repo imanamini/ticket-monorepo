@@ -1,0 +1,27 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.step-four {
+  padding: 40px;
+
+  .illustration {
+    background-image: url("//insurance-assets/images/letter-illustration.svg");
+    width: 150px;
+    height: 150px;
+    background-repeat: no-repeat;
+    margin: 70px auto 20px auto;
+  }
+
+  .title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #2c3544;
+    margin-bottom: 25px;
+  }
+
+  .description {
+    text-align: center;
+    color: #6e798d;
+    line-height: 1.71;
+  }
+}

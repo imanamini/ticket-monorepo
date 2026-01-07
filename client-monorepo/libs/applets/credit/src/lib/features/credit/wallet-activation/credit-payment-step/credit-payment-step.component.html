@@ -1,0 +1,76 @@
+<app-credit-app-bar
+  (onBackButtonClick)="goBack()"
+  [backButton]="true"
+  [title]="title()"
+>
+</app-credit-app-bar>
+
+@if (initialized()) {
+  @if (!paymentFailed()) {
+    <div class="main-section flex-full-height">
+      <div class="top-section">
+        <app-credit-scrollable-view [fullHeightContent]="true">
+          <div class="page-content flex-grow d-flex">
+            <div class="w-100 d-flex flex-column align-items-center flex-grow pt-massive">
+              <div class="surface-back radius-giant align-items-center justify-content-center p-big mb-big">
+                <ngx-icon
+                  [iconSize]="'48px'"
+                  [name]="'info-circle'"
+                  [type]="'bold'"
+                  class="text-onback-brand"
+                ></ngx-icon>
+              </div>
+
+              <p class="text-onback-high st-3">{{ config()?.title }}</p>
+              <p class="text-onback-medium b-2 text-align-center">{{ config()?.hintMessage }}</p>
+            </div>
+          </div>
+        </app-credit-scrollable-view>
+      </div>
+      <div class="bottom-section p-plus">
+        <div>
+          <ngx-callout
+            [title]="'شرایط بازگشت هزینه ثبت‌نام'"
+            [mode]="'multiple'"
+            [messages]="['در صورت بروز هرگونه خطا، به کیف پول دیجی‌پی شما بازگشت داده می شود.']"
+          ></ngx-callout>
+          <div class="d-flex mt-huge align-items-center">
+            <div class="w-75">
+              <div class="b-1 text-onback-medium">مبلغ پرداختی</div>
+              <div class="d-flex st-2 text-onback-high mb-minus">
+                {{ +config()?.amount | IRR: 'hideRial' }}
+                <div class="is-currency">ریال</div>
+              </div>
+            </div>
+            <ngx-button
+              (clickHandler)="initPayment()"
+              [brandButton]="true"
+              [fullWidth]="true"
+              [isLoading]="paying()"
+              [disabled]="paying()"
+            >
+              تایید و پرداخت
+            </ngx-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="d-flex flex-column flex-grow rtl">
+      <div class="d-flex flex-column w-100 flex-grow justify-content-center pb-plus">
+        <div class="flex-grow">
+          <ngx-status-result
+            (clicked)="paymentFailed.set(false)"
+            [buttons]="buttons"
+            [description]="'لطفا دوباره اقدام کنید.'"
+            [title]="'پرداخت هزینه ثبت‌نام انجام نشد'"
+            [type]="'Status'"
+            [iconState]="'warning'"
+          >
+          </ngx-status-result>
+        </div>
+      </div>
+    </div>
+  }
+}
+<credit-page-loading [active]="!initialized()"></credit-page-loading>

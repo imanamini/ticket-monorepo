@@ -1,0 +1,32 @@
+@import "../../../../../../style/globals";
+
+.image {
+  width: 100%;
+  height: 90px;
+  background-size: auto 100%;
+  margin-bottom: 18px;
+  background: url('assets/error.svg') no-repeat center center;
+}
+
+.subtitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: $text-color;
+  margin-bottom: 4px;
+}
+
+.description {
+  color: $swatch_steel_500;
+  font-size: 14px;
+  font-weight: 400;
+
+  a {
+    display: inline-flex;
+    direction: ltr;
+  }
+}
+
+app-ui-button {
+  margin-top: 18px;
+  width: 100%;
+}

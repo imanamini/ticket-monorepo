@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+}
+
+.container {
+
+  .title {
+    span {
+      color: #45474A;
+      font-weight: 370;
+      font-size: 14px;
+    }
+  }
+
+  .filters {
+    margin-top: 1rem;
+  }
+
+  .buttons-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+}

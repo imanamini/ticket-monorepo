@@ -1,0 +1,26 @@
+<div class="content-box">
+  <h2 class="text-align-center title">فرصت شغلی مورد نظر شما در لیست نبود؟</h2>
+
+  <div
+    (click)="toggleFormVisibility()"
+    [ngClass]="{ 'is-open': isVisible }"
+    class="accordion-title"
+  >
+    اگر فرصت شغلی مورد نظرتان را نمی‌یابید، فرم زیر را پر کنید
+  </div>
+
+  <ng-container *ngIf="isVisible">
+    <app-application-form
+      (successfulApply)="onSuccessfulApply($event)"
+      [clearFormSignal]="clearSignal"
+      [departmentOptions]="departments"
+    ></app-application-form>
+
+    <app-ui-form-notice
+      [visible]="successMessage !== ''"
+      appearance="hint"
+    >
+      {{ successMessage }}
+    </app-ui-form-notice>
+  </ng-container>
+</div>

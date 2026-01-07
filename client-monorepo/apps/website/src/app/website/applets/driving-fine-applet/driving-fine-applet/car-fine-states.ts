@@ -1,0 +1,15 @@
+export enum NewPlateFineStates {
+  'CAR_INFO_ENTERING',
+  'INQUIRY_METHOD_SELECT',
+  'INQUIRY_COST_PAYMENT',
+  'FINE_PAYMENT',
+  'FINE_PAYMENT_RESULT',
+}
+
+export enum SelectPlateFineStates {
+  'VEHICLE_INFO_ENTERING',
+  'SAVED_PLATES_LIST',
+  'LAST_REPORT',
+  'FINE_PAYMENT',
+  'FINE_PAYMENT_RESULT',
+}

@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  direction: rtl;
+}
+
+.size-7 {
+  width: 7px;
+  height: 7px;
+}

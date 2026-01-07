@@ -1,0 +1,22 @@
+<div class="d-flex align-items-center toast-container py-medium px-medium radius-big surface-glass-onelevated">
+  <div class="d-flex align-items-center gap-small">
+    <ui-api-image
+      [imageId]="'digipay'"
+      borderRadius="10px"
+      width="32px"
+      height="32px"
+    ></ui-api-image>
+    <div class="d-flex flex-column">
+      <p class="l-1 text-onback-high">{{ title() }}</p>
+      <p class="l-4 text-onback-low">{{ description() }}</p>
+    </div>
+  </div>
+  <ngx-button
+    [mode]="'section'"
+    [style]="'fill'"
+    [size]="'small'"
+    (clickHandler)="onClicked()"
+  >
+    {{ ctaText() }}
+  </ngx-button>
+</div>

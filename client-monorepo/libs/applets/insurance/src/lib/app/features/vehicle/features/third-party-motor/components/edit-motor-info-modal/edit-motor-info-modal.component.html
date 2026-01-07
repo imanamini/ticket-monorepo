@@ -1,0 +1,99 @@
+<div class="plp-edit-information d-flex flex-column">
+  <insurance-tabs [tabs]="tabs"
+                  [activeTab]="activeTab()"
+                  (activeTabChange)="handleChangeTab(+$event)"></insurance-tabs>
+
+  <div class="box-center d-flex flex-column">
+    <p class="center-text text-onback-medium bt-2">
+      {{ activeTab() === 1 ? 'مشخصات خودرو را بررسی و یا ویرایش کنید:' : 'اطلاعات بیمه نامه قبلی را بررسی و یا ویرایش کنید:' }}
+    </p>
+
+    <div class="center-content">
+      <motor-info-form
+              [style.display]="activeTab() === 1 ? 'block': 'none !important'"
+              [form]="modelMotorCycleForm()"
+              [modelMotorcycleTypes]="motorcycleTypes()"
+              [yearList]="yearList()"
+      ></motor-info-form>
+      <div [style.display]="activeTab() === 2 ? 'block': 'none !important'"
+           class="information-ex-insurer d-flex flex-column">
+        <div class="ex-insurer-section d-flex flex-column">
+          <p class="section-title bt-2 text-onback-medium">اطلاعات بیمه‌نامه قبلی</p>
+          <div class="section-form d-flex flex-column">
+            <ex-insurer-motor-form class="ex-insurer"
+                                   [exInsurerMotorForm]="exInsurerForm()"
+                                   [showError]="showError"></ex-insurer-motor-form>
+            @if (exInsurerForm()?.controls.name.value !== ExtraInsurerForm.NewCar && exInsurerForm()?.controls.name.value !== ExtraInsurerForm.NoInsurance) {
+              <ex-insurer-motor-date-form class="ex-insurer-date"
+                                          [showError]="showError"
+                                          [exInsurerMotorDateForm]="exInsurerDateForm()">
+              </ex-insurer-motor-date-form>
+            }
+          </div>
+        </div>
+        @if (showExInsurerForms()) {
+          <div class="ex-insurer-section">
+            <p class="section-title bt-2 text-onback-medium">در مدت بیمه‌نامه‌ قبلی تعویض پلاک (تغییر مالکیت) داشته‌
+              است؟</p>
+            <div class="section-form radio-button mt-pony">
+              <ownership-changed-form
+                      [showError]="showError"
+                      [ownershipChangedForm]="ownershipChangedForm()"></ownership-changed-form>
+            </div>
+          </div>
+
+          @if (showDiscountForm()) {
+            <div class="ex-insurer-section">
+              <p class="section-title bt-2 text-onback-medium">وضعیت تخفیفات عدم خسارت روی پلاک را مشخص کنید: </p>
+              <div class="section-form radio-button mt-pony">
+                <discount-form
+                        [showError]="showError"
+                        class="discount-form" [discountForm]="discountForm()"></discount-form>
+              </div>
+            </div>
+          }
+
+          @if (showDiscountDetailForm()) {
+            <div class="ex-insurer-section">
+              <p class="section-title bt-2 text-onback-medium">تخفیفات عدم خسارت خود را مطابق با بیمه‌نامه قبلی وارد
+                کنید:</p>
+              <div class="section-form mt-pony">
+                <discount-detail-form class="discount-detail"
+                                      [showError]="showError"
+                                      [discountForm]="discountDetailForm()">
+                </discount-detail-form>
+              </div>
+            </div>
+          }
+
+          <div class="ex-insurer-section">
+            <p class="section-title bt-2 text-onback-medium">آیا از بیمه‌نامه قبلی خود خسارت گرفته‌اید؟</p>
+            <div class="section-form radio-button mt-pony">
+              <claim-form
+                      [showError]="showError"
+                      [claimForm]="claimForm()"></claim-form>
+            </div>
+          </div>
+
+          @if (claimForm()?.controls.claim?.value) {
+            <div class="ex-insurer-section">
+              <p class="section-title bt-2 text-onback-medium">دفعات دریافت هزینه بابت خسارت را وارد کنید:</p>
+              <div class="section-form mt-pony">
+                <claim-detail-form class="claim-detail"
+                                   [showError]="showError"
+                                   [claimDetailForm]="claimDetailForm()"></claim-detail-form>
+              </div>
+            </div>
+          }
+        }
+      </div>
+    </div>
+  </div>
+  <action-buttons (deActiveButtonClicked)="handleDeActiveButtonClicked()"
+                  (activeButtonClicked)="handleActiveButtonClicked()"
+                  backgroundMode="gray"
+                  activeButtonText="اعمال تغییرات"
+                  deActiveButtonText="انصراف"></action-buttons>
+
+</div>
+

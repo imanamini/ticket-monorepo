@@ -1,0 +1,27 @@
+<ngx-app-bar
+  class="w-100"
+  [title]="'سرمایه‌گذاری'"
+  [rightButton]="{
+    icon: 'arrow-right',
+    style: 'neutral-link',
+    mode: 'icon-only',
+    size: 'medium',
+  }"
+  (onRightButtonClick)="onBackHandler()"
+/>
+
+<div class="pna-container">
+  <div class="pna-content">
+    <img src="wealth-assets/svg/disconnected.svg" />
+    <p class="pna-description">در حال حاضر دسترسی به این صندوق وجود ندارد. لطفا دقایقی دیگر دوباره تلاش کنید.</p>
+  </div>
+  <div class="pna-buttons">
+    <ngx-button
+      [brandButton]="true"
+      [fullWidth]="true"
+      (clickHandler)="onBackHandler()"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

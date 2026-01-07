@@ -1,0 +1,47 @@
+<div class="my-plates-wrapper d-flex flex-column align-items-center justify-content-center">
+  @if (!showPlatesListLoading()) {
+    @if (platesList().length > 0) {
+      <div class="has-plates d-flex flex-column">
+        <!-- Plate cards -->
+        <div class="plates-cards d-flex flex-column">
+          @for (plateData of platesList(); track plateData) {
+            <plate-card
+                    [plateInfo]="plateData"
+                    (click)="handlePlateClick(plateData)"
+                    [simple]="simple()"
+            >
+            </plate-card>
+          }
+        </div>
+        <!-- End Plate cards -->
+      </div>
+    } @else {
+      <div class="no-plates d-flex flex-column align-items-center justify-content-center">
+        <div class="car-icon">
+          @defer {
+            <ins-icon
+                    [height]="122"
+                    [width]="160"
+                    [name]="IconEnum.NoPlate"
+            ></ins-icon>
+          }
+        </div>
+        <div class="no-plates-txt text-onback-medium">در حال حاضر پلاک ثبت شده‌ای وجود ندارد.</div>
+      </div>
+    }
+
+  } @else {
+    <div class="skeletons d-flex flex-column">
+      @defer {
+        <lib-ngx-skeleton-loading
+                width="100%"
+                height="143px"
+        ></lib-ngx-skeleton-loading>
+        <lib-ngx-skeleton-loading
+                width="100%"
+                height="143px"
+        ></lib-ngx-skeleton-loading>
+      }
+    </div>
+  }
+</div>

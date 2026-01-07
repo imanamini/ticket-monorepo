@@ -1,0 +1,25 @@
+<div class="cheque-condition-bottom-sheet">
+  <ngx-bottom-sheet-header
+    [showResizable]="true"
+    [title]="title()"
+  ></ngx-bottom-sheet-header>
+  <div class="w-100 d-flex flex-column gap-medium align-items-center py-plus px-big">
+    <div class="cheque-image radius-medium mx-auto purple-cheque"></div>
+    <ngx-callout
+      class="w-100"
+      [title]="''"
+      [showTitleBlink]="false"
+      [mode]="'multiple'"
+      [messages]="messages()"
+      [messagesDashed]="false"
+    />
+    <ngx-button
+      (clickHandler)="onSubmit()"
+      [fullWidth]="true"
+      [style]="'fill'"
+      ngxTrackableId
+      trackerId="chequeConditionConfirmButtonClick"
+      >متوجه شدم
+    </ngx-button>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+@if (!gettingData()) {
+  @if (activeDocIndex() < 0) {
+    <app-credit-signing-documents-list
+      (back)="onBack()"
+      (downloadAllDocs)="downloadAllDocs($event)"
+      (startSigning)="goToFirstUnsignedDocument()"
+      [description]="description()!"
+      [documents]="documents()!"
+      class="d-flex flex-column flex-grow"
+    ></app-credit-signing-documents-list>
+  }
+  @if (activeDocIndex() >= 0) {
+    <app-credit-signing-documents-single
+      (back)="onBack()"
+      (finish)="nextDocument()"
+      [creditId]="creditId()"
+      [document]="documents()![activeDocIndex()]"
+      [fullName]="fullName()!"
+      [fundProviderIcon]="fundProviderIcon()!"
+      [needPassword]="needPassword()"
+      [progressInfo]="{
+        index: activeDocIndex() + 1,
+        total: documents()?.length!,
+      }"
+      class="d-flex flex-column flex-grow"
+    ></app-credit-signing-documents-single>
+  }
+}
+<credit-page-loading [active]="gettingData()!"></credit-page-loading>

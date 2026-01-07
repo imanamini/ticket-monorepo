@@ -1,0 +1,33 @@
+<div class="wrapper">
+  <app-ui-text-field
+    (changed)="getCardNumber($event)"
+    (cleared)="onClear()"
+    [autofocus]="true"
+    [clearable]="true"
+    [errorState]="errorState"
+    [label]="label"
+    [maxLength]="19"
+    [name]="name"
+    [parentForm]="parentForm"
+    [value]="value"
+    dataType="CARD_PAN"
+  ></app-ui-text-field>
+
+  <ui-api-image
+    *ngIf="bankLogoId"
+    [imageId]="bankLogoId"
+    class="logo"
+    width="24px"
+  ></ui-api-image>
+
+  <!--  <img [src]="imageBank" alt="bank" class="logo" *ngIf="!bankLogoId">-->
+  <div
+    *ngIf="!bankLogoId"
+    class="general-logo"
+  ></div>
+
+  <app-ui-spinner
+    *ngIf="showSpinner"
+    class="spinner"
+  ></app-ui-spinner>
+</div>

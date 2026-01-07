@@ -1,0 +1,114 @@
+<div class="p-plus surface-elevated">
+  @if (store()) {
+    <div
+      class="store-summary radius-minus d-flex flex-column gap-medium p-plus pt-medium"
+      [ngClass]="{ blurred: isBlurred(), 'surface-glass-high-contrast': isBlurred(), 'surface-high-contrast': !isBlurred() }"
+    >
+      <div class="d-flex gap-pony">
+        <div class="p-small d-flex justify-content-center align-items-center surface-elevated radius-minus h-fit-content">
+          <ui-api-image
+            [imageId]="store()!.logoImageId"
+            [width]="'32px'"
+            [height]="'32px'"
+          ></ui-api-image>
+        </div>
+        <div class="d-flex flex-column w-100">
+          <div class="d-flex gap-pony mb-tiny justify-content-space-between w-100">
+            <div class="d-flex gap-pony">
+              <span class="st-8 text-onback-high">{{ store()?.title }}</span>
+              @for (badge of store()?.badges; track badge.content) {
+                <ngx-badge
+                  [mode]="badge.mode"
+                  [status]="badge.status"
+                  >{{ badge.content }}
+                </ngx-badge>
+              }
+            </div>
+            <ngx-button
+              [mode]="'form'"
+              [size]="'tiny'"
+              [style]="'link'"
+              [rightIcon]="{ name: 'info-circle' }"
+              (clickHandler)="goToViolationReport()"
+              >گزارش تخلف</ngx-button
+            >
+          </div>
+          <span class="c-3 mb-low">{{ store()?.subtitle }}</span>
+          <div class="d-flex gap-small align-items-center flex-wrap">
+            @for (badge of paymentMethodBadges(); track badge) {
+              <span class="l-1 text-onback-low">
+                {{ badge }}
+              </span>
+              @if (!$last) {
+                <div class="h-divider"></div>
+              }
+            }
+          </div>
+        </div>
+      </div>
+      @if (this.isDisabled()) {
+        <div class="d-flex justify-content-center">
+          <ngx-badge
+            [mode]="'bold'"
+            [status]="'error'"
+            >این فروشگاه در دیجی‌پی غیرفعال شده است!
+          </ngx-badge>
+        </div>
+      } @else {
+        @if (!(!hasShop() && !hasWebsite())) {
+          <div class="d-flex gap-small">
+            @if (hasShop()) {
+              <div class="flex-grow">
+                <ngx-button
+                  [mode]="'section'"
+                  [style]="hasWebsite() ? 'tinted-on-elevated' : 'fill'"
+                  [size]="'small'"
+                  [fullWidth]="true"
+                  (clickHandler)="goToBranches()"
+                >
+                  <span class="bt-2">آدرس شعبه ها</span>
+                </ngx-button>
+              </div>
+            }
+            @if (hasWebsite()) {
+              <div class="flex-grow">
+                <ngx-button
+                  [mode]="'section'"
+                  [style]="'fill'"
+                  [size]="'small'"
+                  [fullWidth]="true"
+                  (clickHandler)="goToWebsite()"
+                >
+                  <span>خرید آنلاین</span>
+                </ngx-button>
+              </div>
+            }
+          </div>
+        }
+      }
+    </div>
+  } @else {
+    <div class="store-summary radius-medium d-flex flex-column gap-medium p-plus pt-medium surface-high-contrast">
+      <div class="d-flex gap-pony">
+        <lib-ngx-skeleton-loading
+          [width]="'40px'"
+          [height]="'40px'"
+        ></lib-ngx-skeleton-loading>
+        <div class="d-flex flex-column gap-pony">
+          <lib-ngx-skeleton-loading
+            [width]="'100px'"
+            [height]="'20px'"
+          ></lib-ngx-skeleton-loading>
+          <lib-ngx-skeleton-loading
+            [width]="'200px'"
+            [height]="'20px'"
+          ></lib-ngx-skeleton-loading>
+          <lib-ngx-skeleton-loading
+            [width]="'100px'"
+            [height]="'20px'"
+          ></lib-ngx-skeleton-loading>
+        </div>
+      </div>
+    </div>
+  }
+</div>

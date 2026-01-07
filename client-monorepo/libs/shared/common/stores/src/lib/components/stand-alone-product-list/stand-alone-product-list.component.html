@@ -1,0 +1,26 @@
+<div class="px-plus">
+  <common-ui-components-title-summary
+    [title]="title()"
+    [showButton]="false"
+  ></common-ui-components-title-summary>
+  <div class="d-flex flex-wrap mt-small justify-content-space-around">
+    @for (product of products(); track product.documentId) {
+      <common-stores-product-preview
+        (clicked)="goToProductPage($event)"
+        [product]="product"
+        [classes]="'mb-pony'"
+        [position]="$index + 1"
+        [backgroundMode]="'elevated'"
+        [shouldCautiousAboutPerformance]="true"
+      ></common-stores-product-preview>
+    }
+    @if (loadingNewProducts()) {
+      @for (_ of rangeCreator(6); track $index) {
+        <common-stores-product-preview
+          [isLoading]="true"
+          [classes]="'mb-pony'"
+        ></common-stores-product-preview>
+      }
+    }
+  </div>
+</div>

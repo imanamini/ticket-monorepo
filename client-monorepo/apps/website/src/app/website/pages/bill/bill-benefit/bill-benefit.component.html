@@ -1,0 +1,48 @@
+<section class="section-benefits">
+  <div>
+    <h2
+      *ngIf="title"
+      class="text-align-center"
+    >
+      {{ title }}
+    </h2>
+    <div
+      *ngIf="subtitle"
+      class="subtitle text-align-center"
+    >
+      {{ subtitle }}
+    </div>
+    <div class="content">
+      <ng-container *ngFor="let benefit of benefits; let benefitIndex = index">
+        <app-ui-basic-segment
+          [content]="content"
+          [figure]="figure"
+          [ngClass]="benefit.type === 'blue' ? 'blue' : ''"
+          [rtl]="benefitIndex % 2 != 0"
+        ></app-ui-basic-segment>
+        <ng-template #figure>
+          <img
+            [alt]="benefit.title"
+            [src]="benefit.image.url"
+          />
+        </ng-template>
+        <ng-template #content>
+          <h3>
+            {{ benefit.title }}
+            {{ benefit.subtitle }}
+          </h3>
+          <div class="text">
+            {{ benefit.text }}
+          </div>
+          <app-ui-button
+            *ngIf="benefit.cta && benefit.cta.link"
+            [linkTarget]="'_blank'"
+            [link]="benefit.cta.link"
+          >
+            {{ benefit.cta.title }}
+          </app-ui-button>
+        </ng-template>
+      </ng-container>
+    </div>
+  </div>
+</section>

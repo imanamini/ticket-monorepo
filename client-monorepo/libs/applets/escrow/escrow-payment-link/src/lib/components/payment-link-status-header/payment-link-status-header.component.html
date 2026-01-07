@@ -1,0 +1,23 @@
+<div class="d-flex flex-column gap-huge">
+  <div class="d-flex justify-content-center">
+    <span class="icon-shadow">
+      <ngx-icon
+        [ngClass]="{
+          'error': hasError() || hasWarning(),
+          'text-onback-success': isSucceed()
+        }"
+        type="bold"
+        [name]="icon()"
+        iconSize="48px"
+      ></ngx-icon>
+    </span>
+  </div>
+  <div class="d-flex flex-column text-align-center">
+    <span class="fs-18 fw-extra-bold">
+      {{ config()?.title ?? ' - ' }}
+    </span>
+    <span class="fs-14 text-onback-medium">
+      {{ config()?.description(cellNumber()) }}
+    </span>
+  </div>
+</div>

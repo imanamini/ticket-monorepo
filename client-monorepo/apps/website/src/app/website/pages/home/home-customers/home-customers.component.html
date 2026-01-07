@@ -1,0 +1,39 @@
+<ng-container *ngIf="customers">
+  <section id="home-customers">
+    <div class="business-customers">
+      <h2 class="text-align-center">
+        {{ customers.title || 'بزرگ‌ترین مشتریان خدمات کسب و کار ما' }}
+      </h2>
+      <div class="customer-logos">
+        <div class="container">
+          <app-ui-carousel
+            [carouselConfig]="config"
+            [slidesData]="customers.logos"
+          >
+            <ng-template
+              let-item="slide"
+              let-isActive="isActive"
+            >
+              <div
+                class="customer-logos-item"
+                [ngClass]="{ active: isActive }"
+              >
+                <div *ngIf="item">
+                  <a
+                    [attr.href]="item.address"
+                    target="_blank"
+                  >
+                    <img
+                      [alt]="item.name"
+                      [src]="item.logoImg.url"
+                    />
+                  </a>
+                </div>
+              </div>
+            </ng-template>
+          </app-ui-carousel>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-container>

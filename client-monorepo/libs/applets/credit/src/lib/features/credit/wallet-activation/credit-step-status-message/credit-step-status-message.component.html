@@ -1,0 +1,25 @@
+<div class="credit-message-wrapper">
+  @if (imageId()) {
+    <div class="message-image">
+      <credit-digipay-image
+        [imageId]="imageId()"
+        [styles]="{ maxWidth: '100px' }"
+        heightSkeleton="100px"
+      ></credit-digipay-image>
+    </div>
+  }
+  @if (staticImage()) {
+    <div [class]="'d-flex flex-column align-items-center justify-content-center mb-atom message-image static-image-' + staticImage()"></div>
+  }
+  <div class="message-title">
+    {{ title() }}
+  </div>
+  <ng-container [ngTemplateOutlet]="errors()!"></ng-container>
+
+  @if (message()) {
+    <div
+      [innerText]="message()"
+      class="message-content text-onback-low"
+    ></div>
+  }
+</div>

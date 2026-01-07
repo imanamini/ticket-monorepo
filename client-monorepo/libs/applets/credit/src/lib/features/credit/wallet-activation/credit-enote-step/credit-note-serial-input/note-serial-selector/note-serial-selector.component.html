@@ -1,0 +1,28 @@
+<div class="header">سری</div>
+
+<div class="main">
+  <ui-form-field
+    [(ngModel)]="alphabetPart"
+    [options]="alphabetOptions"
+    class="item"
+    type="wheel-select"
+  >
+  </ui-form-field>
+
+  <ui-form-field
+    [(ngModel)]="numberPart"
+    [options]="numberOptions"
+    class="item"
+    type="wheel-select"
+  >
+  </ui-form-field>
+</div>
+
+<div class="action">
+  <ngx-button
+    (clickHandler)="onSubmit()"
+    [fullWidth]="true"
+  >
+    تایید
+  </ngx-button>
+</div>

@@ -1,0 +1,54 @@
+<div class="black-friday-merchants d-flex flex-column">
+  @if (merchants().title) {
+    <div class="title container">{{ merchants()?.title }}</div>
+  }
+  @if (merchants().categories.length) {
+
+  }
+  <div class="categories-product d-flex flex-column" >
+    @for (categoryProduct of merchants().categories; track categoryProduct; let index = $index) {
+      <div class="cat-section">
+        <div class="category-header d-flex align-items-center justify-content-space-between container">
+          <div class="category-title">{{ categoryProduct?.title }}</div>
+          @if (!mobileMode()) {
+            <div class="nav d-flex align-items-center gap-minus desktop">
+              <div
+                class="navigation" [ngClass]="{'disabled': swiper?.swiper?.isBeginning}"
+                (click)="swiper.slidePrev()"
+              >
+                <ngx-icon [name]="'arrow-2-right'"
+                          [classes]="swiper?.swiper?.isBeginning ? 'text-onback-disabled' : 'text-oninvert-high'"
+                          [iconSize]="20"></ngx-icon>
+              </div>
+              <div
+                class="navigation" [ngClass]="{'disabled': swiper?.swiper?.isEnd}"
+                (click)="swiper.slideNext()"
+              >
+                <ngx-icon [name]="'arrow-2-left'"
+                          [classes]="swiper?.swiper?.isEnd ? 'text-onback-disabled' : 'text-oninvert-high'"
+                          [iconSize]="20"></ngx-icon>
+              </div>
+            </div>
+          }
+        </div>
+        <div class="products" [ngClass]="{'container' : !mobileMode() , 'mr-plus' : mobileMode()}">
+          <swiper-container
+            appSwiper
+            #swiper="appSwiper"
+            class="swiper"
+            [config]="config"
+            (initialized)="onSwiperReady()"
+          >
+            @for (item of categoryProduct.products; track item) {
+              <swiper-slide class="swiper-slide">
+                <div class="product-item" (click)="openLink(item?.link)">
+                  <img [src]="item.image?.url" alt="">
+                </div>
+              </swiper-slide>
+            }
+          </swiper-container>
+        </div>
+      </div>
+    }
+  </div>
+</div>

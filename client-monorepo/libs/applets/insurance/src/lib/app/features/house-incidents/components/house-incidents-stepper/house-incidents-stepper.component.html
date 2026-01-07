@@ -1,0 +1,13 @@
+<div class="house-incidents-stepper">
+  <div class="d-flex flex-row gap-tiny align-items-center justify-content-space-between">
+    @for (step of steps(); track $index) {
+      <div class="d-flex flex-column gap-small align-items-start justify-content-space-between w-100">
+        <div class="c-3"
+             [class]="$index <= selectedStepIndex() ? 'text-onback-medium' : 'text-onback-disabled'">{{ step.title }}
+        </div>
+        <div class="bottom-line w-100 radius-huge onback-shade-80"
+             [class]="$index <= selectedStepIndex() ? 'surface-brand' : ''"></div>
+      </div>
+    }
+  </div>
+</div>

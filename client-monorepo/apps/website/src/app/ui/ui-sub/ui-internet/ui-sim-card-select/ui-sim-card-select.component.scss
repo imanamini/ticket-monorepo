@@ -1,0 +1,26 @@
+@import "globals";
+
+:host {
+  display: block;
+  margin: 24px 0;
+}
+
+.cards {
+  display: flex;
+
+  .sim-card {
+    width: 25%;
+    text-align: center;
+  }
+
+  ui-sim-card {
+    width: 96px;
+    display: block;
+  }
+}
+
+.text {
+  color: $swatch_steel_500;
+  font-size: rem(12, 16);
+  margin-bottom: em(12, 16);
+}

@@ -1,0 +1,77 @@
+
+.container {
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100%;
+
+  &.success {
+    background-image: url("apps/dpx/src/assets/subscription/icons/refund/success-bg.png")
+  }
+
+  &.failed {
+    background-image: url("apps/dpx/src/assets/subscription/icons/refund/failure-bg.png")
+  }
+
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 24px;
+  height: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  text-align: center;
+  // TODO
+  //color: $swatch_steel_900;
+}
+
+.close-icon {
+  background: url("apps/dpx/src/assets/subscription/icons/close-black.svg") no-repeat center;
+  position: absolute;
+  padding: 16px 24px;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  box-sizing: content-box;
+
+}
+
+.image {
+  margin-bottom: 48px;
+  width: 210px;
+  height: 160px;
+
+  &.success {
+    background: url("apps/dpx/src/assets/subscription/icons/refund/success-refund.svg") no-repeat center;
+  }
+
+  &.failed {
+    background: url("apps/dpx/src/assets/subscription/icons/refund/failed-refund.svg") no-repeat center;
+  }
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  margin-bottom: 12px;
+}
+
+.description {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  width: 240px;
+  white-space: pre-line;
+  margin-bottom: 16px;
+
+}
+
+.confirm-button {
+  margin-top: 32px;
+}

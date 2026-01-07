@@ -1,0 +1,80 @@
+<app-base-layout
+  *ngIf="walletsPage && walletsPage.templateData"
+  [loaded]="loaded"
+>
+  <app-ui-introduction-default
+    *ngIf="walletsPage?.templateData?.sectionIntro && walletsPage?.templateData?.sectionIntro?.title"
+    [features]="walletsPage.templateData.sectionValue"
+    [heroImage]="walletsPage.templateData.sectionIntro.artwork"
+    [introductionType]="walletsPage.templateData.sectionIntro.type"
+    [titleTemplate]="titleTemplate"
+  >
+  </app-ui-introduction-default>
+  <ng-template #titleTemplate>
+    <ng-container *ngIf="walletsPage?.templateData?.sectionIntro">
+      <h1 *ngIf="walletsPage?.templateData?.sectionIntro?.title">
+        {{ walletsPage?.templateData?.sectionIntro?.title }}
+      </h1>
+      <div
+        *ngIf="walletsPage?.templateData?.sectionIntro?.subtitle"
+        class="subtitle"
+      >
+        {{ walletsPage?.templateData?.sectionIntro?.subtitle }}
+      </div>
+    </ng-container>
+  </ng-template>
+
+  <!--  section 2-->
+  <app-ui-basic-segment-explanation
+    (cta)="scrollToAnchor('walletForm')"
+    [data]="walletsPage?.templateData?.activationExplanation"
+    [rtl]="true"
+  ></app-ui-basic-segment-explanation>
+
+  <!--  section 3-->
+  <app-ui-basic-segment-explanation
+    [data]="walletsPage?.templateData?.securityExplanation"
+    [rtl]="false"
+  ></app-ui-basic-segment-explanation>
+
+  <!--  section 4-->
+  <app-ui-basic-segment-explanation
+    [data]="walletsPage?.templateData?.bankCardExplanation"
+    [rtl]="true"
+  ></app-ui-basic-segment-explanation>
+
+  <!--  section 5-->
+  <app-ui-basic-segment-explanation
+    [data]="walletsPage?.templateData?.transferExplanation"
+    [rtl]="false"
+  ></app-ui-basic-segment-explanation>
+
+  <!--  section 6-->
+  <app-ui-basic-segment-explanation
+    [data]="walletsPage?.templateData?.optionExplanation"
+    [rtl]="true"
+  ></app-ui-basic-segment-explanation>
+
+  <!--  section 7-->
+  <app-ui-basic-segment-explanation
+    [data]="walletsPage?.templateData?.businessExplanation"
+    [rtl]="false"
+  ></app-ui-basic-segment-explanation>
+
+  <!--  section 8-->
+  <app-ui-contact-section
+    *ngIf="walletsPage?.templateData?.mainForm && contactForm"
+    [contactForm]="contactForm"
+    [description]="walletsPage.templateData.mainForm.description"
+    [title]="walletsPage.templateData.mainForm.title"
+    id="walletForm"
+  ></app-ui-contact-section>
+
+  <app-ui-faq
+    *ngIf="walletsPage?.templateData?.faq && walletsPage.templateData.faq.faqItems && walletsPage.templateData.faq.faqItems.length > 0"
+    [faqs]="walletsPage.templateData.faq.faqItems"
+    [subtitle]="walletsPage.templateData.faq.subtitle"
+    [title]="walletsPage.templateData.faq.title"
+  >
+  </app-ui-faq>
+</app-base-layout>

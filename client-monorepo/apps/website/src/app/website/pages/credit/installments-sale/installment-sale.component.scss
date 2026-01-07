@@ -1,0 +1,170 @@
+:host ::ng-deep {
+  #layout {
+    overflow: hidden;
+  }
+
+  ui-basic-segment {
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    overflow: hidden;
+    visibility: hidden;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .fee-description {
+    margin-bottom: 32px;
+
+    ul {
+      list-style: inside;
+
+      li {
+        font-size: 16px;
+        line-height: 2;
+      }
+    }
+  }
+
+  ui-faq ol,
+  ui-faq ul {
+    list-style: unset;
+  }
+}
+
+.image-50 {
+  ::ng-deep {
+    .basic-segment-verso
+      > .container
+      > .basic-segment-figure:not(:where(.pdy *)) {
+      width: 50% !important;
+    }
+
+    .basic-segment-recto > .container > .basic-segment-figure {
+      width: 50% !important;
+    }
+  }
+}
+
+.right-square-circle {
+  display: flex;
+  direction: ltr;
+
+  img {
+    z-index: 2;
+  }
+
+  &:before {
+    content: '';
+    width: 175px;
+    height: 300px;
+    background-color: #0040ff;
+    border-radius: 0 50px 50px 0;
+    left: 175px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-0%, -50%);
+  }
+
+  &:after {
+    content: '';
+    width: 175px;
+    height: 300px;
+    background-color: #0040ff;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-0%, -50%);
+  }
+}
+
+.left-square-circle {
+  display: flex;
+
+  img {
+    z-index: 2;
+  }
+
+  &:before {
+    content: '';
+    width: 175px;
+    height: 300px;
+    background-color: #0040ff;
+    right: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-0%, -50%);
+  }
+
+  &:after {
+    content: '';
+    width: 175px;
+    height: 300px;
+    background-color: #0040ff;
+    position: absolute;
+    right: 175px;
+    top: 50%;
+    transform: translate(-0%, -50%);
+    border-radius: 50px 0 0 50px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .right-square-circle:before,
+  .right-square-circle:after {
+    height: 221px;
+  }
+
+  .left-square-circle:before,
+  .left-square-circle:after {
+    height: 221px;
+  }
+
+  ::ng-deep .basic-segment-recto .container .basic-segment-figure img {
+    max-height: 350px !important;
+  }
+
+  ::ng-deep .basic-segment-verso .container .basic-segment-figure img {
+    max-height: 350px !important;
+  }
+
+  ::ng-deep .basic-segment-recto > .container .basic-segment-content {
+    order: unset !important;
+  }
+
+  ::ng-deep .basic-segment-verso > .container .basic-segment-content {
+    order: unset !important;
+  }
+}
+
+ui-basic-segment.active.fade-left ::ng-deep section {
+  animation: fade-left 1s ease-in;
+}
+
+ui-basic-segment.active.fade-right ::ng-deep section {
+  animation: fade-right 1s ease-in;
+}
+
+@keyframes fade-right {
+  0% {
+    transform: translateX(300px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-left {
+  0% {
+    transform: translateX(-300px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

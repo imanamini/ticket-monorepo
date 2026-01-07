@@ -1,0 +1,467 @@
+@import "globals";
+
+.downloadApp__contain {
+  display: flex;
+  align-items: center;
+}
+
+.downloadApp__art {
+  width: 50%;
+  height: 100%;
+}
+
+.downloadApp__art > div {
+  padding-left: 100px;
+  margin: -50px;
+}
+
+.downloadApp__art img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+section.have-bg > div {
+  padding-top: 90px;
+  padding-bottom: 100px;
+}
+
+.downloadApp__content {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.downloadApp__market {
+  display: inline-block;
+  width: 100%;
+  max-width: 650px;
+  margin: auto;
+}
+
+.downloadApp__device {
+  width: 100%;
+}
+
+.downloadApp__device > ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.device_item {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  cursor: pointer;
+  border-radius: 25px;
+  border: 1px solid #061962;
+  position: relative;
+  margin: 0 8px 25px 8px;
+  user-select: none;
+  //transition: all 1s;
+}
+
+.device_item.active {
+  background: #183ff5;
+  border: unset;
+}
+
+.device_item.active:after {
+  content: '';
+  border: 2px solid #183ff5;
+  width: 50%;
+  position: absolute;
+  transform: translateY(-50%);
+  bottom: -30px;
+  //transition: 0.3s;
+  //-webkit-transition: 0.3s;
+  //transition-delay: 0.1s;
+  //-webkit-transition-delay: 0.1s;
+}
+
+.device_item > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  //transition: 0.3s;
+  //-webkit-transition: 0.3s;
+}
+
+.device_item > div:before {
+  content: '';
+  width: 100%;
+  height: 0;
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  background: rgb(19 56 216);
+  //-webkit-transition: 0.3s;
+  //transition: 0.3s;
+  left: 0;
+  //-webkit-transition-delay: 0.1s;
+  //transition-delay: 0.1s;
+  border-radius: 2em 2em 0 0;
+}
+
+.device_item-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -0.3em;
+}
+
+.device_item-icon > i {
+  font-size: 2.2em;
+  color: var(--white);
+}
+
+.device_item-title {
+  margin-right: 1em;
+}
+
+.device_item-title > span {
+  font-size: 16px;
+  line-height: 25px;
+  font-weight: 500;
+  color: $text-color;
+}
+
+.downloadApp__marketplace {
+  background: #d0d9f5;
+  padding: 32px 0;
+  border-radius: 25px;
+  width: 100%;
+  //-webkit-transition: 0.5s;
+  //transition: 0.5s;
+}
+
+.downloadApp__marketplace > ul {
+  display: none;
+  //transition: 0.5s;
+  //-webkit-transition: 0.5s;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-right: 0;
+}
+
+.marketplace_item:nth-child(1) {
+  //-webkit-transition-delay: 0s;
+  //transition-delay: 0s;
+}
+
+.marketplace_item > div {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.marketplace_item {
+  cursor: pointer;
+  opacity: 0;
+  //-webkit-transition: 0.3s;
+  //transition: 0.3s;
+}
+
+.marketplace_item > div > a {
+  display: block !important;
+  text-align: center;
+  overflow: hidden;
+}
+
+.button {
+  display: flex;
+}
+
+.button.basic.white > a {
+  background-color: white;
+  color: #183ff5;
+}
+
+.downloadApp__marketplace .button > a {
+  height: 50px;
+  display: block;
+  padding: 0 24px;
+}
+
+.button.large > a {
+  border-radius: 12px;
+  height: 50px;
+  display: flex;
+}
+
+.button > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.button.basic.white span {
+  color: blue;
+}
+
+.downloadApp__marketplace > ul.active {
+  display: flex;
+}
+
+.downloadApp__art img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+.button.large span {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+.button.basic span {
+  color: white;
+}
+
+.button > a span {
+  display: flex;
+  white-space: nowrap;
+}
+
+.marketplace_item a {
+  color: #183ff5;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 50px;
+}
+
+.downloadApp__marketplace > ul.active li {
+  opacity: 1;
+}
+
+.device_item.active .device_item-title > span {
+  color: white;
+}
+
+.download-app-notices {
+  margin-top: 40px;
+}
+
+.download-app-notice.coupon.active:nth-child(1) {
+  //-webkit-transition-delay: .8s;
+  //transition-delay: .8s;
+}
+
+.download-app-notice.coupon.active {
+  max-height: 1000px;
+  border: 1px dashed #1233c3;
+  //-webkit-transition-delay: 1s;
+  //transition-delay: 1s;
+}
+
+.download-app-notice.coupon {
+  background-color: #d0d9f5;
+  border-radius: 10px;
+  color: $text-color;
+  margin-bottom: 10px;
+  border: 0 dashed #1233c3;
+  position: relative;
+  max-height: 0;
+  overflow: hidden;
+  //-webkit-transition: 0.5s;
+  //transition: 0.5s;
+  //-webkit-transition-delay: 0s;
+  //transition-delay: 0s;
+}
+
+.download-app-notice.coupon > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 10px 20px 10px 80px;
+}
+
+.download-app-notice.coupon span {
+  font-size: 14px;
+}
+
+.download-app-notice.code code.myCode {
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+
+.download-app-notice.code button.copyMyCode {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border: none;
+  outline: none;
+  background-color: #f2f5fe;
+  padding: 0 15px;
+  font-size: 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #173ff5;
+  cursor: pointer;
+}
+
+::ng-deep {
+  .mat-snack-bar-container {
+    text-align: center;
+  }
+
+  .mat-simple-snackbar {
+    display: inline-block !important;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .downloadApp__device {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1400px) {
+  .downloadApp__art {
+    width: 45%;
+  }
+  .downloadApp__content {
+    width: 55%;
+  }
+}
+
+@media (max-width: 1200px) {
+  section.downloadApp .section-title {
+    text-align: center;
+  }
+  .downloadApp__content {
+    width: 100%;
+  }
+  .downloadApp__contain {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .downloadApp__art {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+  }
+  .downloadApp__art > div {
+    padding-left: 0;
+  }
+  .downloadApp__art > div {
+    max-width: 550px;
+  }
+}
+
+@media (max-width: 992px) {
+  .section-title__title.bold span {
+    font-size: 28px;
+  }
+  .section-title__subtitle span {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .downloadApp__device {
+    width: 100%;
+  }
+}
+
+@media (max-width: 577px) {
+  .device_item {
+    padding: 0.75rem 1.67rem !important;
+  }
+  .downloadApp__marketplace.border-middle {
+    border-radius: 20px;
+  }
+  .device_item > div {
+    position: relative;
+  }
+  .device_item-icon {
+    font-size: 12px;
+    margin-left: 0.5rem;
+  }
+  .device_item-title {
+    margin-right: 0;
+  }
+  .downloadApp__market {
+    width: 100%;
+  }
+  .section-title__subtitle span {
+    font-size: 18px;
+  }
+  section.have-bg > div {
+    padding-top: 80px;
+  }
+  .section-title {
+    margin-bottom: 50px;
+  }
+  .section-title__title.bold span {
+    font-size: 24px;
+  }
+  .device_item-title > span {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 500px) {
+  .device_item-title > span {
+    font-size: 12px;
+    font-weight: 400;
+  }
+  .device_item-icon > *[class^='icon'] {
+    transform: scale(0.9) !important;
+  }
+  .download-app-notice.coupon > div {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 450px) {
+  .device_item-title > span {
+    font-weight: 500;
+  }
+  .downloadApp__art {
+    width: 60%;
+    //padding-top: 6em;
+  }
+  .downloadApp__device > ul {
+    flex-wrap: wrap;
+  }
+  .device_item {
+    min-width: 60%;
+  }
+  .device_item-title > span {
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .device_item-icon > *[class^='icon'] {
+    transform: scale(1) !important;
+  }
+  .device_item.active:after {
+    content: none !important;
+  }
+  .downloadApp__marketplace .marketplace_item {
+    flex-basis: 100%;
+  }
+  .marketplace_item a {
+    min-width: calc(100% - 24px);
+  }
+}

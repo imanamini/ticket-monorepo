@@ -1,0 +1,32 @@
+<div class="d-flex flex-column gap-small">
+  <common-ui-components-title-summary
+    [title]="'فروشنده‌ها'"
+    [isLoading]="searching()"
+    [showButton]="false"
+  ></common-ui-components-title-summary>
+
+  <!-- Merchants List -->
+  <div class="d-flex flex-column w-100">
+    @for (merchant of merchantsToShow(); track merchant.id) {
+      <common-ui-components-item-overview
+        [item]="merchant"
+        [mixedBlendModeEnabled]="true"
+        [disableTopPadding]="$index === 0"
+        (click)="handleMerchantClick(merchant.id!)"
+      ></common-ui-components-item-overview>
+    }
+    @if (showMoreBtn()) {
+      <div class="d-flex justify-content-end w-100 mt-small">
+        <ngx-button
+          (clickHandler)="handleStoreNextPage()"
+          [style]="'link'"
+          [size]="'small'"
+          [leftIcon]="buttonIcon"
+        >
+          نمایش بیشتر
+        </ngx-button>
+      </div>
+    }
+  </div>
+  <!-- End Merchants List -->
+</div>

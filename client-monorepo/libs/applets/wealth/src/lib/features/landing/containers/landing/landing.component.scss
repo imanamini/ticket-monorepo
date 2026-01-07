@@ -1,0 +1,800 @@
+@import "@digipay/base-style/swatch";
+
+body {
+  max-width: 100dvw !important;
+  margin: 0;
+  background-color: $swatch_white_900;
+}
+
+
+.landing-container {
+  display: flex;
+  flex-direction: column;
+
+  a {
+    text-decoration: none;
+    color: $swatch_steel_900;
+  }
+
+  ///////// Header
+  .landing-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 8.16667rem;
+    gap: 2rem;
+    // padding: 2rem;
+
+    .header-item {
+      color: #061962;
+      font-size: 1.33333rem;
+      user-select: none;
+      cursor: pointer;
+    }
+  }
+
+  ///////// Banner
+  .banner {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    .outer-buttons {
+      display: none;
+    }
+
+    .banner-desktop {
+      background: url('../../../../assets/images/landing-banner.png');
+      height: 34rem;
+      background-size: contain;
+      background-repeat: no-repeat;
+      position: relative;
+      width: 100rem;
+      max-width: 100rem;
+      margin: 0 2rem;
+
+      .bottom-cta {
+        position: absolute;
+        left: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        bottom: -1.75rem;
+        transform: translate(-50%, -50%);
+
+        .icon-charon-down-light-blue {
+          position: absolute;
+          cursor: pointer;
+        }
+      }
+
+      .titles-container {
+        display: flex;
+        flex-direction: column;
+        padding: 3.33rem;
+        height: 100%;
+        justify-content: center;
+        box-sizing: border-box;
+        gap: 1.33rem;
+        width: 50rem;
+
+        .title {
+          color: $swatch_white_900;
+          font-size: 2.3rem;
+          font-weight: 1000;
+          line-height: 4.25rem;
+          letter-spacing: -0.05rem;
+        }
+
+        .description {
+          font-size: 1.66667rem;
+          line-height: 2.83333rem;
+          letter-spacing: -0.05rem;
+          color: $swatch_white_900;
+          width: 43rem;
+        }
+
+        .buttons {
+          display: grid;
+          gap: 1rem;
+          grid-template-columns: 1fr auto;
+        }
+
+
+      }
+    }
+  }
+
+
+  /////////// Steps
+  .steps-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10.67rem;
+
+    .step-header {
+      font-size: 2.25rem;
+      font-weight: 950;
+      color: $swatch_steel_900;
+    }
+
+    .steps {
+      display: flex;
+      gap: 2rem;
+      width: 100rem;
+      justify-content: space-between;
+      padding: 0 1rem;
+      box-sizing: border-box;
+
+      .step {
+        margin-top: 2.67rem;
+        gap: 0.67rem;
+        display: flex;
+        flex-direction: column;
+
+        .step-img {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: $swatch_green_500;
+          border-radius: 5rem;
+          width: 2.33333rem;
+          height: 2.33333rem;
+        }
+
+        .step-title {
+          font-size: 1.33333rem;
+          font-weight: 600;
+        }
+
+        .separator {
+          border-top: 4px dotted $swatch_steel_200;
+        }
+
+        .step-description {
+          padding-top: 0.67rem;
+          color: $swatch_steel_400;
+          letter-spacing: -0.05rem;
+        }
+      }
+    }
+  }
+
+  ////////// Investment
+  .investment-method {
+
+    background: url('../../../../assets/images/landing-background.png');
+    display: flex;
+    flex-direction: column;
+    margin-top: 10.67rem;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: 80% 85%;
+
+    .method-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 2rem;
+      width: 54rem;
+
+      .method-title {
+        font-size: 2.25rem;
+        font-weight: 950;
+        color: $swatch_steel_900;
+      }
+
+      .method-description {
+        color: $swatch_steel_500;
+        font-size: 1.66667rem;
+        font-weight: 400;
+        text-align: center;
+      }
+    }
+
+    .effective-cases {
+      margin-top: 2.67rem;
+      padding: 2rem;
+      display: flex;
+      width: 70rem;
+      flex-direction: column;
+      gap: 1.66667rem;
+      background-color: #dee3e766;
+      backdrop-filter: blur(20px);
+      border-radius: 1.33333rem;
+
+      .effective-cases-title {
+        display: flex;
+        align-items: center;
+        gap: 0.67rem;
+
+        .image-wrapper {
+          border-radius: 0.66667rem;
+          width: 2.33rem;
+          height: 2.33rem;
+          background-color: $swatch_white_900;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+
+        }
+
+        span {
+          color: #061962;
+          font-size: 1.33333rem;
+          font-weight: 450;
+        }
+      }
+
+      .effective-cases-description {
+        display: flex;
+        align-items: center;
+        gap: 0.67rem;
+
+        img {
+          padding-right: 0.2rem;
+        }
+      }
+
+      .effective-cases-items {
+        display: flex;
+        flex-direction: column;
+        gap: 1.66rem;
+
+        .effective-cases-item {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 1.33rem;
+          border-radius: 1rem;
+          background: $swatch_white_900;
+        }
+      }
+    }
+
+    .sejam-register {
+      display: flex;
+      width: 74rem;
+      padding: 3.33333rem 5.33333rem;
+      border-radius: 3.33333rem;
+      background-color: #dee3e766;
+      margin-top: 10.67rem;
+      backdrop-filter: blur(20px);
+      box-sizing: border-box;
+      gap: 2rem;
+      // height: 26.6rem;
+      align-items: center;
+
+
+      .chart-image {
+        flex: 4;
+
+        img {
+          width: 20rem;
+          height: 13.3rem;
+        }
+      }
+
+
+      .register-section {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        height: 20rem;
+        flex: 7;
+
+        .register {
+          display: flex;
+          flex-direction: column;
+          gap: 1.33rem;
+
+          .register-title {
+            font-size: 1.66667rem;
+            font-weight: 400;
+          }
+
+          .register-description {
+            font-size: 1.16667rem;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 0.67rem;
+            color: #6F6C90;
+
+            .check-img {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              background: $swatch_green_500;
+              border-radius: 5rem;
+              width: 2.33333rem;
+              height: 2.33333rem;
+            }
+          }
+
+          .register-button {
+          }
+        }
+
+
+      }
+
+
+    }
+  }
+
+  ///////// App Download
+  .download-app-section {
+    padding: 0 3.6rem;
+    box-sizing: border-box;
+    height: 43.5rem;
+    justify-content: center;
+    display: flex;
+
+    .content {
+      background: url('../../../../assets/svg/mobile-app.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-top: 10.67rem;
+      width: 100rem;
+      height: 33rem;
+
+
+      .download-app {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 23rem;
+        padding-right: 22rem;
+        padding-top: 8rem;
+
+        .digipay-app {
+          margin-bottom: 6rem;
+          font-size: 2.5rem;
+          font-weight: 875;
+        }
+
+        .download-now {
+          color: $swatch_white_900;
+          font-weight: 450;
+          font-size: 1.66667rem;
+
+        }
+
+        .download-button {
+          margin: 1.6rem 0;
+        }
+
+        .all-devices {
+          color: $swatch_white_900;
+          font-size: 0.6rem;
+          font-weight: 250;
+        }
+      }
+    }
+  }
+
+  ///////// Background Wrapper
+  .background-wrapper {
+    background: url('../../../../assets/images/landing-background.png');
+    background-repeat: no-repeat;
+    background-position: 2rem 30rem;
+
+    .faq {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 5.33rem;
+
+
+      .faq-header {
+        font-size: 2.66667rem;
+        font-weight: 1000;
+        margin-bottom: 2.7rem;
+      }
+
+      .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.33rem;
+        width: 100rem;
+
+
+        .faq-item {
+          display: flex;
+          flex-direction: column;
+          background: $swatch_steel_100;
+          padding: 2.66667rem;
+          border-radius: 2rem;
+          gap: 1.33rem;
+          cursor: pointer;
+
+          .item-header {
+            font-size: 1.16667rem;
+            font-weight: 400;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+          }
+
+          .item-description {
+            font-size: 1.16667rem;
+            font-weight: 300;
+            color: $swatch_steel_500;
+            line-height: 2.33rem;
+            letter-spacing: -0.05833rem;
+          }
+        }
+
+      }
+    }
+
+  }
+
+
+}
+
+@media (max-width: 1280px) {
+  .landing-container {
+
+    //////// Banner
+    .banner {
+      flex-direction: column;
+      gap: 3rem;
+
+      .banner-desktop {
+        width: 54rem;
+        height: 19rem;
+
+        .titles-container {
+          width: 27.5rem;
+
+          .title {
+            font-size: 1.5rem;
+            line-height: normal;
+          }
+
+          .description {
+            font-size: 1rem;
+            width: 100%;
+            line-height: normal;
+          }
+
+          .buttons {
+            display: none;
+          }
+        }
+
+        .bottom-cta {
+          bottom: -1.16rem;
+        }
+      }
+
+      .outer-buttons {
+        width: 100%;
+        display: flex;
+        gap: 1.5rem;
+      }
+    }
+
+    /////////steps
+    .steps-container {
+
+      .step-header {
+        font-size: 2rem;
+        font-weight: 900;
+        color: $swatch_steel_900;
+      }
+
+      .steps {
+        width: 54rem;
+
+        .step-title {
+          height: 4.5rem;
+        }
+      }
+    }
+
+    ////////// Investment
+    .investment-method {
+      .method-header {
+        .method-title {
+          font-size: 2rem;
+          font-weight: 900;
+          color: $swatch_steel_900;
+        }
+
+        .method-description {
+          font-size: 1.66rem;
+        }
+      }
+
+      .effective-cases {
+        width: 48rem;
+
+        .effective-cases-title {
+        }
+
+        .effective-cases-description {
+        }
+
+        .effective-cases-items {
+          .effective-cases-item {
+          }
+        }
+      }
+
+      .sejam-register {
+        width: 52rem;
+        padding: 2rem;
+
+        .chart-image {
+        }
+
+        .register-section {
+          .register {
+            .register-title {
+            }
+
+            .register-description {
+              .check-img {
+                padding: 0 0.2rem;
+              }
+            }
+
+            .register-button {
+            }
+          }
+
+        }
+      }
+    }
+
+    ///////// App Download
+    .download-app-section {
+      height: 33rem;
+
+      .content {
+        width: 54rem;
+        height: 19rem;
+
+        .download-app {
+          padding-right: 6rem;
+          width: 18rem;
+          padding-top: 0;
+
+          .digipay-app {
+            margin-bottom: 2rem;
+            padding-top: 3.5rem;
+            font-size: 2rem;
+          }
+
+          .download-now {
+            font-size: 1rem;
+          }
+
+          .download-button {
+            margin: 1rem 0;
+          }
+        }
+      }
+    }
+
+    ///////// Background Wrapper
+    .background-wrapper {
+
+      .faq {
+        .faq-header {
+          font-size: 2rem;
+        }
+
+        .faq-list {
+          width: 54rem;
+        }
+      }
+
+    }
+
+  }
+
+}
+
+@media (max-width: 680px) {
+  .landing-container {
+
+    ////////// Header
+    .landing-header {
+      display: none;
+    }
+
+    ////////// Banner
+    .banner {
+      box-sizing: border-box;
+      padding: 2rem;
+
+      .banner-desktop {
+        width: 100%;
+        height: 32.83rem;
+        background: url('../../../../assets/images/banner-mobile.png');
+        background-size: cover;
+
+        .titles-container {
+          width: 100%;
+          align-items: center;
+          justify-content: flex-end;
+          padding: 2rem;
+
+          .title {
+            font-size: 2.3rem;
+          }
+
+          .description {
+            font-size: 1.33rem;
+            text-align: right;
+            font-weight: 370;
+          }
+        }
+
+        .bottom-cta {
+          display: none;
+        }
+      }
+
+      .outer-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+
+    ////////// Steps
+    .steps-container {
+      box-sizing: border-box;
+      padding: 2rem;
+      margin-top: 3.33rem;
+
+      .step-header {
+        font-size: 1.41667rem;
+      }
+
+      .steps {
+        flex-direction: column;
+        width: 100%;
+
+        .step {
+          margin-top: 1.33rem;
+          width: 100%;
+
+          .step-img {
+          }
+
+          .step-title {
+            height: auto;
+          }
+
+          .step-description {
+          }
+        }
+      }
+    }
+
+    ////////// Investment
+    .investment-method {
+      box-sizing: border-box;
+      padding: 2rem;
+      margin-top: 3.33rem;
+      background: none;
+
+      .method-header {
+        gap: 0.67rem;
+        width: 100%;
+
+        .method-title {
+          font-size: 1.41667rem;
+        }
+
+        .method-description {
+          font-size: 1.16667rem;
+        }
+      }
+
+      .effective-cases {
+        width: 100%;
+        box-sizing: border-box;
+
+        .effective-cases-title {
+        }
+
+        .effective-cases-description {
+        }
+
+        .effective-cases-items {
+          .effective-cases-item {
+          }
+        }
+      }
+
+      .sejam-register {
+        flex-direction: column;
+        border-radius: 0;
+        width: 100%;
+
+        .chart-image {
+        }
+
+        .register-section {
+          .register {
+            .register-title {
+            }
+
+            .register-description {
+              .check-img {
+                padding: 0;
+              }
+            }
+
+
+          }
+
+          .register-button {
+            margin-top: 1.33rem;
+          }
+        }
+      }
+    }
+
+    ///////// App Download
+    .download-app-section {
+      padding: 0 2rem;
+      height: 21rem;
+
+      .content {
+        background: url('../../../../assets/svg/mobile-app-mobile-size.svg');
+        background-repeat: no-repeat;
+        width: 25rem;
+        height: auto;
+        background-size: contain;
+        margin-top: 0;
+
+        .download-app {
+          padding-top: 3rem;
+          padding-right: 0;
+
+          .digipay-app {
+            margin-bottom: 2rem;
+            font-size: 1rem;
+
+          }
+
+          .download-now {
+            font-size: 0.67rem;
+          }
+
+          .download-button {
+          }
+        }
+
+      }
+    }
+
+    ///////// Background Wrapper
+    .background-wrapper {
+      background: none;
+
+      .faq {
+        .faq-list {
+          width: 100%;
+          padding: 0 2rem;
+          box-sizing: border-box;
+        }
+      }
+
+    }
+  }
+
+}

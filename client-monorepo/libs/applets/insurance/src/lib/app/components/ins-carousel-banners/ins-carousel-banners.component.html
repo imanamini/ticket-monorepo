@@ -1,0 +1,41 @@
+<ins-carousel [mode]="'CARD'"
+              [visibleItemCount]="1"
+              [centerMode]="true"
+              [showNavigation]="true"
+              [showButtons]="false"
+              [isFixedGap]="true"
+              [fixedGap]="16"
+              [enableAutoPlay]="true"
+              [index]="0"
+              [changeStepThresholdPercentage]="20"
+              [swipeThreshold]="100"
+              [disableNavigationDots]="true"
+              [disableScaling]="true">
+  @for (banner of banners(); track banner.id) {
+    <div commonUiCarouselSlide class="d-flex flex-row">
+      @defer (on viewport) {
+        @if (banner.width && banner.height) {
+          <img [ngSrc]="banner.src"
+               [alt]="banner.alt"
+               [width]="banner.width"
+               [height]="banner.height"
+               [draggable]="false"
+               [priority]="true"
+               (click)="handleBannerClicked(banner.actionUrl)"
+               class="cursor-pointer w-100"
+          >
+        } @else {
+          <img [src]="banner.src"
+               [alt]="banner.alt"
+               [draggable]="false"
+               (click)="handleBannerClicked(banner.actionUrl)"
+               class="cursor-pointer w-100"
+          >
+        }
+      } @placeholder (minimum 1000ms) {
+        <lib-ngx-skeleton-loading borderRadius="24px" width="320px" height="136px"
+                                  [loadingEffect]="true"></lib-ngx-skeleton-loading>
+      }
+    </div>
+  }
+</ins-carousel>

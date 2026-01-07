@@ -1,0 +1,95 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100svh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'افزایش موجودی'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="flex-1 w-100 d-flex flex-column px-plus mt-medium">
+    <div class="w-100">
+      <p class="b-2 text-onback-high">
+        موجودی شما برای این مبلغ اعتبار کافی نیست. یکی از طرح‌های زیر را برای افزایش موجودی انتخاب کنید:
+        <ngx-button
+          [ngxTooltip]="'به دلیل کمتر بودن میزان اعتبار دریافتی از طریق موجودی طرح طلا، مبلغ افزایش موجودی در این طرح بیشتر است.'"
+          class="d-inline-block"
+          [style]="'link'"
+          [mode]="'icon-only'"
+          [leftIcon]="{
+            name: 'info-circle',
+          }"
+          [size]="'tiny'"
+        >
+        </ngx-button>
+      </p>
+    </div>
+    <div class="w-100 mt-medium d-flex flex-column gap-minus">
+      @for (wallet of wallets(); track wallet) {
+        <div
+          class="w-100 d-flex flex-wrap align-items-center justify-content-space-between border-color-light radius-medium border-100 p-plus pb-medium"
+          [ngClass]="{ 'border-color-brand': wallet.walletName === selectedOption() }"
+          (click)="selectedOption.set(wallet.walletName)"
+        >
+          <div class="w-100 d-flex flex-column">
+            <div class="w-100 d-flex align-items-center gap-tiny">
+              <ngx-radio-button
+                [checked]="wallet.walletName === selectedOption()"
+                [size]="20"
+                [disabled]="false"
+              ></ngx-radio-button>
+              <div class="d-flex flex-1 flex-wrap align-items-center justify-content-space-between">
+                <p class="c-3 text-onback-low">نیاز به افزایش موجودی</p>
+
+                <p class="c-1 text-onback-high">
+                  {{ wallet.rechargeAmount | thousands }}
+                  <span class="is-currency"> ریال </span>
+                </p>
+                <p class="w-100 c-3 text-onback-low">
+                  {{ wallet.walletTitle }}
+                </p>
+              </div>
+            </div>
+            @if (wallet.hasCommission || wallet.commission) {
+              <div class="w-100 d-flex align-items-start justify-content-space-between mt-pony">
+                <p class="b-3 text-onback-high">کارمزد</p>
+                <p class="b-3 text-onback-high d-flex gap-small justify-content-end align-items-center">
+                  @if (!wallet.hasCommission) {
+                    <ngx-badge
+                      size="sm"
+                      mode="bold"
+                      status="error"
+                    >
+                      رایگان
+                    </ngx-badge>
+                  }
+                  <span [ngClass]="{ strike: !wallet.hasCommission }">
+                    {{ wallet.commission | thousands }}
+                    <span class="is-currency">ریال</span>
+                  </span>
+                </p>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="w-100 my-medium px-plus">
+    <wealth-applet-gold-price-notifire class="w-100 d-flex my-small" />
+    <ngx-button
+      [size]="'medium'"
+      [fullWidth]="true"
+      [disabled]="btnLoading()"
+      [isLoading]="btnLoading()"
+      (clickHandler)="onContinue()"
+    >
+      تایید و افزایش موجودی
+    </ngx-button>
+  </div>
+</div>

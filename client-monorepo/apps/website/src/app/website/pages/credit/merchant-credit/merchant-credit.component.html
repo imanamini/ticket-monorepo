@@ -1,0 +1,42 @@
+<app-base-layout [loaded]="loaded()">
+  @if (merchantCreditPage()?.templateData) {
+    @if (merchantCreditPage().templateData.sectionIntro) {
+      <app-ui-introduction-section
+        [data]="merchantCreditPage().templateData.sectionIntro"
+        [scrollToFirstElementId]="'calculator'"
+      ></app-ui-introduction-section>
+    }
+
+    @if (merchantCreditPage().templateData.sectionBenefits) {
+      <app-merchant-credit-early-checkout-benefits
+        [earlyCheckoutBenefits]="merchantCreditPage().templateData.sectionBenefits"
+      ></app-merchant-credit-early-checkout-benefits>
+    }
+
+    @if (merchantCreditPage().templateData.sectionCalculator?.title) {
+      <app-merchant-credit-early-checkout-calculator
+        [calculator]="merchantCreditPage().templateData.sectionCalculator"
+        id="calculator"
+      ></app-merchant-credit-early-checkout-calculator>
+    }
+
+    @if (merchantCreditPage().templateData.sectionEarlyCheckout) {
+      <app-merchant-credit-early-checkout-activation
+        [MerchantCreditEarlyCheckoutActivationData]="merchantCreditPage().templateData.sectionEarlyCheckout"
+        id="section-early-checkout"
+      ></app-merchant-credit-early-checkout-activation>
+    }
+
+    @if (merchantCreditPage().templateData.sectionSeoContent) {
+      <app-ui-seo [seoContent]="merchantCreditPage().templateData.sectionSeoContent"></app-ui-seo>
+    }
+
+    @if (merchantCreditPage().templateData.faq?.faqItems?.length > 0) {
+      <app-ui-faq
+        [faqs]="merchantCreditPage().templateData.faq.faqItems"
+        [subtitle]="merchantCreditPage().templateData.faq.subtitle"
+        [title]="merchantCreditPage().templateData.faq.title"
+      ></app-ui-faq>
+    }
+  }
+</app-base-layout>

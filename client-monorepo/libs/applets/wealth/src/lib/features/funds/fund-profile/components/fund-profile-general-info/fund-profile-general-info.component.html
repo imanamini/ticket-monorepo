@@ -1,0 +1,37 @@
+<div class="w-100 d-flex flex-column">
+  @for (item of info(); track $index; let last = $last) {
+    <div
+      class="w-100 d-flex align-items-center justify-content-space-between"
+      [ngClass]="{ 'pb-medium': !last }"
+    >
+      <span class="c-1 text-onback-high">{{ item.title }}</span>
+      <div class="d-flex align-items-center">
+        <span class="c-1 text-onback-medium">{{ item.value }}</span>
+        @if (item.key === 'statisticNav') {
+          <ngx-button
+            [classNames]="['w-fit-content']"
+            [mode]="'icon-only'"
+            [style]="'link'"
+            [size]="'small'"
+            [rightIcon]="{
+              name: 'question-mark-circle',
+            }"
+            [ngxTooltip]="'ارزش خالص تعدیل نشده هر واحد'"
+            [tooltipPosition]="'top-right'"
+            [disableArrow]="true"
+            [tooltipType]="'click'"
+            [closeTimeout]="3000"
+          />
+        }
+      </div>
+    </div>
+
+    @if (!last) {
+      <ngx-divider
+        class="w-100 mb-medium"
+        [color]="BorderColorsEnum.Light"
+        orientation="horizontal"
+      />
+    }
+  }
+</div>

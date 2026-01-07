@@ -1,0 +1,12 @@
+<section class="section-value">
+  <div class="container">
+    <h2
+      *ngIf="title"
+      class="text-align-center"
+    >
+      {{ title }}
+    </h2>
+    <div class="text-align-center subtitle">{{ subtitle }}</div>
+    <app-ui-value-simple [features]="features"></app-ui-value-simple>
+  </div>
+</section>

@@ -1,0 +1,10 @@
+@if (ready()) {
+  <ui-ngx-payment-result
+    class="flex-full-height"
+    [paymentResult]="result()!"
+    [trackingCode]="result()?.trackingCode!"
+    [showBackIcon]="true"
+    (onBackIconClick)="onBackButtonClick()"
+    (onSubmit)="onNextButtonClick()"
+  ></ui-ngx-payment-result>
+}

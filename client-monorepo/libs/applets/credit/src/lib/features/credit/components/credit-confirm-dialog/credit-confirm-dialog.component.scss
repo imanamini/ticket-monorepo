@@ -1,0 +1,56 @@
+@import "@digipay/base-style/swatch";
+
+:host {
+  direction: rtl;
+}
+
+.body {
+  padding: 32px 32px 16px;
+
+  .image {
+    background: url("../../assets/icons/public-icons/credit-warning.svg");
+    width: 160px;
+    height: 122px;
+    margin: auto;
+  }
+
+  .title {
+    margin-top: 22px;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .description {
+    margin-top: 12px;
+    text-align: center;
+    line-height: 24px;
+    color: $swatch_steel_500;
+  }
+}
+
+.actions {
+  direction: rtl;
+  padding: 32px;
+  display: flex;
+  align-self: center;
+  gap: 32px;
+
+  &.isDesktop {
+    padding: 24px;
+  }
+
+  .confirm {
+    flex-grow: 1;
+  }
+}
+
+@media screen and (max-width: 614px) {
+  .body {
+    padding: 16px 16px 16px;
+  }
+  .actions {
+    padding: 16px;
+    gap: 16px;
+  }
+}

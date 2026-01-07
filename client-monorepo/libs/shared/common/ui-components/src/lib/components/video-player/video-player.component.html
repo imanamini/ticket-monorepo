@@ -1,0 +1,21 @@
+<div class="video-wrapper">
+  <video
+    #videoElement
+    [controls]="controls()"
+    [autoplay]="autoplay()"
+    [muted]="muted()"
+    [preload]="preload()"
+    [width]="width()"
+    [height]="height()"
+    [ngStyle]="styles()"
+    [poster]="poster()"
+    playsinline
+    webkit-playsinline
+  >
+    <source
+      [src]="videoUrl()"
+      [type]="videoType()"
+    />
+    Your browser does not support the video tag.
+  </video>
+</div>

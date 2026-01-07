@@ -1,0 +1,31 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100dvh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'بررسی حساب سجام'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="d-flex flex-column flex-1 align-items-center justify-content-center w-100 error-container p-plus">
+    <img src="wealth-assets/svg/national-id-error.svg" />
+    <p class="text-align-center bt-2 mt-big">
+      کد ملی موجود در حساب کاربری شما متعلق به مالک شماره <span class="st-8">{{ state().phoneNumber }}</span> نیست.
+    </p>
+  </div>
+
+  <div class="w-100 surface-elevated px-plus py-medium sticky-action-group">
+    <ngx-button
+      [buttonId]="'CAMPAIGN_NATIONAL_ID'"
+      [style]="'fill'"
+      [fullWidth]="true"
+      (clickHandler)="onBackHandler()"
+    >
+      تغییر کد ملی
+    </ngx-button>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.bullet {
+  @include flex-center();
+  border-radius: 50%;
+  background-color: #b4c7ff;
+
+  .bullet-center {
+    border-radius: 50%;
+    background-color: #789aff;
+  }
+}

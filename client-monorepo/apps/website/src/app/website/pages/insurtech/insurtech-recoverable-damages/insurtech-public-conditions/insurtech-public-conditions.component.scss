@@ -1,0 +1,49 @@
+:host {
+  width: 100%;
+}
+
+.public-conditions {
+  margin-top: 26px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px;
+  background: #fff;
+  border-radius: 16px;
+
+  p {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  i {
+    filter: invert(15%) sepia(100%) saturate(3983%) hue-rotate(228deg)
+      brightness(102%) contrast(117%);
+  }
+}
+
+@media (max-width: 744px) {
+  .public-conditions {
+    align-items: center;
+    margin-top: 16px;
+
+    .cta {
+      align-self: center;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .public-conditions {
+    flex-direction: column;
+
+    p {
+      align-self: flex-start;
+    }
+
+    .cta {
+      align-self: flex-end;
+    }
+  }
+}

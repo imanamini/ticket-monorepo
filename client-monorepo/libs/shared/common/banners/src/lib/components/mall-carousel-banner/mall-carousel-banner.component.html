@@ -1,0 +1,34 @@
+<div class="d-flex flex-column gap-micro pr-plus">
+  <common-ui-components-title-summary
+    [title]="banner().title"
+    [showButton]="false"
+  ></common-ui-components-title-summary>
+  <common-ui-components-horizontal-scroll>
+    @for (slide of slides(); track slide.uuid) {
+      @if (slide.extractedData.image) {
+        <div
+          [attr.data-id]="banner().uuid + '|' + slide.uuid"
+          (click)="handleSlideClicked(slide, banner())"
+          class="d-flex flex-column gap-pony radius-minus p-tiny pb-small surface-elevated"
+        >
+          <ui-api-image
+            [classes]="'radius-minus'"
+            [imageId]="slide.extractedData?.image ?? ''"
+            [width]="banner().extractedConfig?.width ? banner().extractedConfig?.width + 'px' : '136px'"
+            [height]="banner().extractedConfig?.width ? banner().extractedConfig?.height + 'px' : '97px'"
+            [skeletonHeight]="banner().extractedConfig?.width ? banner().extractedConfig.height + 'px' : '97px'"
+            [showLoading]="loadingEffect()"
+            [lazy]="true"
+            [lazyConfig]="{ root: '.dpx-main-layout-body' }"
+          ></ui-api-image>
+          <div class="d-flex flex-column gap-micro px-low">
+            <span class="st-8 text-onback-medium">{{ slide.extractedData?.title }}</span>
+            @if (slide.extractedData?.subTitle) {
+              <span class="c-3 text-onback-low">+{{ slide.extractedData?.subTitle }} فروشگاه </span>
+            }
+          </div>
+        </div>
+      }
+    }
+  </common-ui-components-horizontal-scroll>
+</div>

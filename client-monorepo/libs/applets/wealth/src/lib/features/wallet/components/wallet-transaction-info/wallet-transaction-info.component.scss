@@ -1,0 +1,9 @@
+:host {
+  display: flex;
+  width: 100%;
+}
+
+.buttons-container {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+}

@@ -1,0 +1,12 @@
+<div class="recommendation-list">
+  <h3 class="list-title">{{ title }}</h3>
+  <div class="list">
+    <cash-out-applet-recommendation-list-item
+      (itemClick)="itemClickHandler($event)"
+      [showMore]="showMoreIcon"
+      [clickable]="itemClick.observers.length > 0"
+      *ngFor="let item of items()"
+      [item]="item"
+    ></cash-out-applet-recommendation-list-item>
+  </div>
+</div>

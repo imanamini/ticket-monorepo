@@ -1,0 +1,11 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Money/wallet-withdrawal-arrow-left">
+<g id="Group">
+<path id="Path" fill-rule="evenodd" clip-rule="evenodd" d="M18.5 9.5H20C20.5523 9.5 21 9.94772 21 10.5V13.5C21 14.0523 20.5523 14.5 20 14.5H18.5C17.1193 14.5 16 13.3807 16 12V12C16 10.6193 17.1193 9.5 18.5 9.5V9.5Z" stroke="#3C6DFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_2" d="M20 9.5V6.5C20 5.11929 18.8807 4 17.5 4H5.5C4.83692 4 4.20099 4.26343 3.73214 4.73232C3.2633 5.20122 2.99993 5.83717 3 6.50025L3.00005 7.5" stroke="#3C6DFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_3" d="M8 12L3 12" stroke="#3C6DFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_4" d="M5 14L3 12L5 10" stroke="#3C6DFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_5" d="M20 14.5V17.5C20 18.8807 18.8807 20 17.5 20H5.5C4.83692 20 4.20099 19.7366 3.73214 19.2677C3.2633 18.7988 2.99993 18.1628 3 17.4997L3.00005 16.5" stroke="#3C6DFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</svg>

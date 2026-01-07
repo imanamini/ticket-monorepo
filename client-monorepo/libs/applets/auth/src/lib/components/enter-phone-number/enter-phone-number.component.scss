@@ -1,0 +1,23 @@
+:host {
+  height: 100%;
+}
+
+.h-80 {
+  height: 80px;
+}
+
+@media (max-height: 730px) {
+  .phone-number-content {
+    padding: 0 !important;
+  }
+
+  .action-container {
+    margin-top: unset !important;
+  }
+}
+
+@media (max-width: 330px) {
+  .links-container {
+   justify-content: center !important;
+  }
+}

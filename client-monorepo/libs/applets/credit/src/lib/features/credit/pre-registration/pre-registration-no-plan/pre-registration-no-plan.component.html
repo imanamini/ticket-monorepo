@@ -1,0 +1,32 @@
+<app-credit-app-bar
+  (onBackButtonClick)="close()"
+  [backButton]="true"
+  [title]="pageTitle()"
+></app-credit-app-bar>
+<div class="d-flex flex-column flex-grow">
+  <div class="d-flex justify-content-center pb-plus flex-grow">
+    <ngx-status-result
+      (clicked)="close()"
+      [buttons]="buttons()"
+      [description]="dataMapper[errorType()].description"
+      [title]="dataMapper[errorType()].title"
+      [type]="'Status'"
+      [iconState]="iconState()"
+    >
+      <div
+        html-content
+        class="d-flex flex-column flex-grow justify-content-flex-end gap-medium"
+      >
+        @if (dataMapper[errorType()].calloutMessage && dataMapper[errorType()].calloutMessage?.title) {
+          <ngx-callout
+            [mode]="'multiple'"
+            [showTitleBlink]="true"
+            [messagesDashed]="false"
+            [title]="dataMapper[errorType()].calloutMessage?.title"
+            [messages]="dataMapper[errorType()].calloutMessage?.description"
+          />
+        }
+      </div>
+    </ngx-status-result>
+  </div>
+</div>

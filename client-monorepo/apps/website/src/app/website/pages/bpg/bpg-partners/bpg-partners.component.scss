@@ -1,0 +1,116 @@
+::part(wrapper) {
+  justify-content: center;
+}
+
+:host {
+  .partner-section {
+
+    overflow: hidden;
+
+    .segment-content {
+      margin-top: 64px;
+
+      ul {
+        //display: flex;
+        //gap: 16px;
+        //flex-wrap: wrap;
+        //justify-content: center;
+
+        ::ng-deep .swiper {
+          overflow: visible;
+        }
+
+        ::ng-deep {
+          .swiper-slide {
+            opacity: 0.1;
+          }
+
+          .swiper-wrapper {
+            justify-content: center;
+          }
+
+          .swiper-slide.swiper-slide-visible {
+            opacity: 1;
+          }
+        }
+
+        li,
+        ::ng-deep .swiper-slide {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 145px;
+          max-width: 145px;
+          height: 145px;
+          background-color: #fff;
+          border-radius: 12px;
+          //padding: 56px 20px;
+
+          img {
+            max-width: 75%;
+          }
+
+          .link {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+          }
+
+          ::ng-deep .cta a {
+            margin-top: 40px;
+            background: #b4c7ff;
+            border-radius: 12px;
+            color: #0040ff;
+            border: unset;
+            font-weight: 600;
+            min-width: max-content;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .partner-section {
+      .segment-content {
+        margin-top: 32px;
+      }
+    }
+  }
+
+  @media (max-width: 744px) {
+    .partner-section {
+      .segment-content {
+        margin-top: 16px;
+
+        ul {
+          //display: block;
+
+          li {
+            width: 130px;
+            height: 130px;
+
+            ::ng-deep a {
+              margin-top: 16px;
+              width: 130px;
+              padding: unset;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  :host .partner-section {
+    .segment-content {
+      ul ::ng-deep .swiper-wrapper {
+        justify-content: unset;
+      }
+    }
+  }
+}

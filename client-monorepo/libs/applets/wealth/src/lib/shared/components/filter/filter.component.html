@@ -1,0 +1,7 @@
+<div class="container">
+  @for (filter of filters(); track filter.id; let i = $index) {
+    <app-filter-badge [filter]="filter" [icon]="filter.id === 'FILTER' ? 'filter' : null"
+    (filterSelected)="selectFilter($event)"
+    />
+  }
+</div>

@@ -1,0 +1,45 @@
+:host {
+  width: 100%;
+}
+
+
+.section-detail-card {
+  position: relative;
+
+
+  .header {
+    width: calc(100% - 52px);
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .right-header {
+    overflow: hidden;
+  }
+
+  .title, .subtitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .badge-text {
+    white-space: nowrap;
+  }
+
+  .expandable-icon-box {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    bottom: -12px;
+    left: calc(50% - 12px);
+  }
+
+
+  .card-details {
+    overflow: hidden;
+  }
+}

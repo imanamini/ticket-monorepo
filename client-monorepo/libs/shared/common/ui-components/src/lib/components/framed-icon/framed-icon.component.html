@@ -1,0 +1,87 @@
+<div
+  ngxTrackableId
+  [trackerId]="trackerIdPrefix()"
+  [isSharedComponent]="true"
+  [class]="'framed-icon-wrapper d-flex flex-column align-items-center ' + generatedStyles().wrapperClasses"
+  commonUiComponentsStatusLight
+  [showStatusLight]="showStatusLight() && size() !== 'LARGE'"
+  [statusBorderColor]="statusLightBorderColor()"
+  [statusColor]="statusLightColor()"
+  [statusSize]="statusLightSize()"
+>
+  <!-- Icon or Logo -->
+  <div
+    [class]="bg() + ' d-flex flex-row justify-content-center align-items-center ' + generatedStyles().iconWrapperClasses"
+    [ngClass]="border() || ''"
+    [style.width]="generatedStyles().iconSize"
+    [style.height]="generatedStyles().iconSize"
+  >
+    @if (icon()) {
+      @if (type() === ServiceImagesType.ICON) {
+        <div
+          [ngStyle]="innerBoxStyle()"
+          [ngClass]="{ 'icon-box-inner gradient-text': enableGradient() }"
+          [style.color]="iconColor()"
+        >
+          <common-icon-dp-icon
+            [icon]="icon()"
+            [iconSize]="generatedStyles().iconSize"
+            [styles]="iconStyle()"
+            [iconType]="iconType()"
+          ></common-icon-dp-icon>
+        </div>
+      } @else if (type() === ServiceImagesType.IMAGE_ID && icon()) {
+        <ui-api-image
+          [imageId]="icon()"
+          [width]="generatedStyles().iconSize + 'px'"
+          [height]="generatedStyles().iconSize + 'px'"
+          [fallbackImage]="'assets/fallback/digipay-logo-24x24-fallback.svg'"
+          style="{{ enableMixedBlendMode() ? 'mix-blend-mode: multiply' : '' }}"
+          [lazy]="true"
+        ></ui-api-image>
+      } @else if (type() === ServiceImagesType.SRC && icon()) {
+        <img
+          [ngSrc]="icon()"
+          [width]="generatedStyles().iconSize"
+          [height]="generatedStyles().iconSize"
+          [ngClass]="enableMixedBlendMode() ? 'mixed-blend-mode-multiply' : ''"
+          alt=""
+        />
+      }
+    }
+  </div>
+  <!-- End Icon or Logo -->
+
+  <!-- Text -->
+  @if (showText()) {
+    <div
+      [ngClass]="[
+        'd-flex',
+        'flex-row',
+        'justify-content-center',
+        'align-items-center',
+        'text-onback-medium',
+        !serviceMode() ? 'text-no-wrap' : 'text-align-center',
+        generatedStyles().textClasses,
+      ]"
+    >
+      @if (!maxTextLength()) {
+        {{ text() }}
+      } @else {
+        {{ text() | summarize: maxTextLength() }}
+      }
+    </div>
+  }
+  <!-- End Text -->
+
+  @if (showBadge() && badge()) {
+    <div class="badge">
+      <ngx-badge
+        [status]="SERVICE_BADGE_STATUS_MAPPER[badge()?.status ?? 'info']"
+        [size]="'tiny'"
+        [mode]="SERVICE_BADGE_MODE_MAPPER[badge()?.mode ?? 'fill']"
+        >{{ badge()?.content }}
+      </ngx-badge>
+    </div>
+  }
+</div>

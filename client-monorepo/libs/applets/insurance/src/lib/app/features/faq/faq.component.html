@@ -1,0 +1,36 @@
+<div class="faq h-100 w-100 surface-elevated d-flex flex-column align-items-center justify-content-start">
+  <insurance-header title="سوالات متداول"
+                    [showSupport]="false"
+                    (closeIconClicked)="backButtonClick()"></insurance-header>
+  @if (categories().length > 0) {
+    <div class="main-container w-100 pt-small d-flex flex-column">
+      <div class="categories pb-minus d-flex flex-row align-items-center justify-content-start gap-small py-small px-plus border-b-100 border-color-tint">
+        @for (category of categories(); track $index) {
+          <div
+                  class="category c-2 px-minus py-tiny text-onback-high d-flex align-items-center justify-content-center radius-giant border-color-light border-300"
+                  [ngClass]="{
+                  'border-color-brand surface-brand-tint text-onback-brand': selectedCategory() == category.type
+                    }"
+                  (click)="selectCategory(category.type)"
+          >
+            {{ category.title }}
+          </div>
+        }
+      </div>
+      <div class="h-100 pt-big px-plus pb-huge d-flex flex-column">
+        <ngx-search-box
+                [(searchText)]="searchText"
+                (searchTextChange)="searchChangeEnd($event)"
+                placeHolder="جست‌وجو در سوالات متداول"
+                mode="section"></ngx-search-box>
+        <div class="items-list flex py-small">
+          @if (filteredItems() && filteredItems().length > 0) {
+            <accordion [accordionItems]="filteredItems()"></accordion>
+          } @else {
+            <span>موردی یافت نشد.</span>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</div>

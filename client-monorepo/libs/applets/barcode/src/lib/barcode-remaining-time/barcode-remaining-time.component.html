@@ -1,0 +1,20 @@
+<div class="d-flex justify-content-center align-items-center header-remaining">
+  @if (hasDescription()) {
+    <span class="fs-12">زمان اعتبار&nbsp;&nbsp;</span>
+  }
+
+  @if (formattedMinutes() && formattedSeconds()) {
+    <div class="d-flex justify-content-center gap-small">
+      <span class="fs-12"> {{ formattedMinutes() }}:{{ formattedSeconds() }}</span>
+      @if (hasCircleTimer()) {
+        <app-circle-timer
+          [totalTime]="time()"
+          [timeLeft]="remainingTime()"
+          [size]="15"
+          [fillColor]="loadingFillColor()"
+          trackColor="#F2F3F6"
+        ></app-circle-timer>
+      }
+    </div>
+  }
+</div>

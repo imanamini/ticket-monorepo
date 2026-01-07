@@ -1,0 +1,16 @@
+:host {
+  width: 100%;
+  display: inline-block;
+}
+.progressbar {
+  height: 8px;
+  width: 100%;
+  position: relative;
+  &-progress {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}

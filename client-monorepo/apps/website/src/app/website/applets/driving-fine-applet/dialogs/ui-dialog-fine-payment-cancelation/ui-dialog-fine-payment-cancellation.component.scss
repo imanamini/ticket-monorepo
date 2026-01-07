@@ -1,0 +1,106 @@
+@import "globals";
+::ng-deep {
+  .mat-mdc-dialog-container {
+    padding: 0;
+    border-radius: 24px;
+  }
+}
+
+.ui-dialog-fine-payment-cancellation {
+  direction: rtl;
+
+  .top-bar {
+    padding: 24px;
+    border-bottom: 1px solid $swatch_steel_200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    .title {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .close {
+      position: absolute;
+      left: 24px;
+      top: 24px;
+      cursor: pointer;
+    }
+  }
+
+  .body {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
+
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-direction: column;
+
+      .title {
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .description {
+        text-align: center;
+        font-size: 13px;
+        font-weight: 300;
+      }
+    }
+
+    .ctas {
+      flex-direction: row;
+      gap: 16px;
+
+      .first-cta {
+        width: 181px;
+      }
+
+      .second-cta {
+        width: 261px;
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  ::ng-deep {
+    .mat-bottom-sheet-container {
+      padding: 0 !important;
+    }
+  }
+
+  .ui-dialog-fine-payment-cancellation {
+    .top-bar {
+      padding: 16px;
+
+      .close {
+        display: none;
+      }
+    }
+
+    .body {
+      padding: 16px;
+
+      .ctas {
+        margin-top: 56px;
+        flex-direction: column-reverse;
+        width: 100%;
+
+        .first-cta,
+        .second-cta {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

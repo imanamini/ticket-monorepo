@@ -1,0 +1,19 @@
+<div class="container d-flex flex-column gap-plus">
+  <div class="d-flex justify-content-center">
+    <div class="st-1 text-onback-high registration-title">{{data().title}}</div>
+  </div>
+  <div class="d-flex justify-content-center gap-plus registration-section">
+    @for (item of data().values; track $index) {
+    <div class="c-registration-row">
+     <div class="wrapper">
+       <div class="d-flex justify-content-center align-items-center">
+         <img [src]="item?.image?.url" [alt]="item?.image?.altText" width="320" height="auto">
+       </div>
+       <div class="st-5 text-align-center mt-medium">{{item.title}}</div>
+       <div class="c-3 text-onback-medium mt-small" [innerText]="item.description">
+     </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

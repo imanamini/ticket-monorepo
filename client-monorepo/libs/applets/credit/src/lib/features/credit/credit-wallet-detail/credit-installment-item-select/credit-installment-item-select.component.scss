@@ -1,0 +1,17 @@
+$space: 16px;
+
+.wrapper-card {
+  direction: rtl;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+
+  .wrapper-installment {
+    flex-grow: 1;
+  }
+}

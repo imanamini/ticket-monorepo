@@ -1,0 +1,22 @@
+<div class="upload-document">
+  @defer (when this.storeService.getFormId()) {
+    <motor-upload-documents-list
+            [ngStyle]="{display: isLoaded() ? 'block' : 'none'}"
+            class="documents"
+            [application-form-id]="this.storeService.getFormId()"
+            (documentsInitialized)="onDocumentsListInitialized()"
+            [updateInputsValidationNotify]="updateDocumentsValidations"
+            (mandatoryInputsUploaded)="onMandatoryDocumentsUploaded($event)"
+    ></motor-upload-documents-list>
+  }
+  <action-buttons (activeButtonClicked)="handleActiveButtonClicked()"
+                  (deActiveButtonClicked)="handleDeActiveButtonClicked()"
+                  activeButtonText="تایید و ادامه"
+                  deActiveButtonText="بازگشت"
+                  [ngStyle]="{display: isLoaded() ? 'block' : 'none'}">
+  </action-buttons>
+  <div class="loading"
+       [ngStyle]="{display: isLoaded() ? 'none': 'flex'}">
+    <ui-loading-spinner [size]="48"></ui-loading-spinner>
+  </div>
+</div>

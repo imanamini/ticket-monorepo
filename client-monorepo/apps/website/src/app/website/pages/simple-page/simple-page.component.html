@@ -1,0 +1,24 @@
+<app-base-layout [loaded]="loaded">
+  <section class="blog__single">
+    <div class="container">
+      <div id="blog__single__main">
+        <div class="blog__single_title">
+          <div class="blog__single_title_info">
+            <h1>{{ page?.templateData?.title }}</h1>
+          </div>
+        </div>
+        <div class="blog__single_content">
+          <h2 class="text-align-center">{{ page?.templateData?.subtitle }}</h2>
+          <div [innerHTML]="transform(page?.templateData?.description || '')"></div>
+        </div>
+      </div>
+    </div>
+    <app-ui-contact-section
+      *ngIf="page && page.templateData && page.templateData.mainForm && contactForm"
+      [contactForm]="contactForm"
+      [description]="page.templateData.mainForm.description"
+      [notice]="page.templateData.mainForm.notice"
+      [title]="page.templateData.mainForm.title"
+    ></app-ui-contact-section>
+  </section>
+</app-base-layout>

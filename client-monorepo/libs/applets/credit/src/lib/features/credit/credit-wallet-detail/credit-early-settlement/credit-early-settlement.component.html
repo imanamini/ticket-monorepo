@@ -1,0 +1,90 @@
+<div class="early-settlement-section">
+  <app-credit-early-settlement-info-cards
+    [bnplType]="bnplType()"
+    [creditId]="creditId()"
+    [customerType]="customerType()"
+    class="mb-medium"
+  ></app-credit-early-settlement-info-cards>
+
+  @if (!gettingData() && data() && data()?.maxAmount) {
+    <div class="early-settlement-pay-card">
+      <div class="es-header">
+        <div class="es-header-icon"></div>
+        <div>{{ earlySettleTitle() }}</div>
+      </div>
+      <div class="es-cta">
+        <div class="es-cta-info">
+          <div class="es-cta-info-title">{{ data()?.label }}</div>
+          <div class="es-cta-info-value">
+            {{ data()?.maxAmount | IRR: 'hideRial' }}
+            <span class="currency is-currency">ریال</span>
+          </div>
+        </div>
+        <div class="es-cta-button">
+          <ngx-button
+            (clickHandler)="onSettle()"
+            [disabled]="redirecting()"
+          >
+            تسویه زودهنگام
+          </ngx-button>
+        </div>
+      </div>
+
+      @if (installmentsFormatted() && installmentsFormatted().length > 0) {
+        <div class="divider"></div>
+
+        <div
+          class="installments-toggle"
+          (click)="toggle()"
+        >
+          <div>زمان‌بندی بازپرداخت</div>
+
+          <ngx-icon
+            [class]="['icon', installmentsDetailIsOpen() ? 'isOpen' : 'isClose']"
+            iconSize="20px"
+            name="arrow-2-down"
+            type="linear"
+          >
+          </ngx-icon>
+        </div>
+
+        <div
+          #detail
+          [class]="['installments-detail', installmentsDetailIsOpen() ? 'isOpen' : 'isClose']"
+          [style.height.%]="detailElementHeight()"
+        >
+          <div class="detail-wrapper">
+            <ngx-callout
+              [title]="installmentsPreviewHint()"
+              [cta]="'مشاهده لیست اقساط'"
+              (ctaClick)="goInstallmentsOverview()"
+            >
+            </ngx-callout>
+            <div class="installments-wrapper">
+              @for (installment of installmentsFormatted(); track installment.order) {
+                <div class="item">
+                  <div>
+                    <div class="item-title">{{ installment.date }}</div>
+                    <div class="item-amount">{{ installment.amountTitle }}</div>
+                  </div>
+
+                  <div class="item-order">
+                    {{ installment.order }}
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    @if (data()?.earlySettlementSideNotes) {
+      <ngx-callout
+        [mode]="'multiple'"
+        [messages]="data()?.earlySettlementSideNotes?.notes"
+        [title]="data()?.earlySettlementSideNotes?.title || 'چرا تسویه زودتر از موعد؟'"
+      >
+      </ngx-callout>
+    }
+  }
+</div>

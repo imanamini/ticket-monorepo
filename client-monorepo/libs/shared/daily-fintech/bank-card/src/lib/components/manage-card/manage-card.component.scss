@@ -1,0 +1,11 @@
+.add-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &-dates {
+    &-item {
+      flex-grow: 1;
+    }
+  }
+}

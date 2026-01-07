@@ -1,0 +1,159 @@
+<div [class]="'d-flex flex-column header-container' + (hideAssets() ? ' hide-assets-mode' : '')">
+  <div class="header-bg-wrapper">
+    <div
+      class="header-bg"
+      commonUtilitiesAppHeaderBackground
+      [limited]="hideAssets() || headerLimited()"
+      [page]="'stores'"
+      [finisherScript]="activeCampaign()?.assetScript"
+    ></div>
+  </div>
+  <div class="header-top-actions d-flex align-items-center justify-content-space-between pt-plus pb-medium px-plus">
+    <common-icon-dp-icon
+      [iconSize]="'24'"
+      [classes]="'text-oninvert-high cursor-pointer header-top-action-item'"
+      [icon]="'scan'"
+      [iconType]="'linear'"
+      (click)="onScanClick()"
+    ></common-icon-dp-icon>
+    <div
+      class="position-relative"
+      ngxRouterLoading
+    >
+      <common-icon-dp-icon
+        [iconSize]="'24'"
+        [classes]="'text-oninvert-high cursor-pointer'"
+        [icon]="'notification'"
+        [iconType]="'linear'"
+        (click)="onMessageClicked()"
+      ></common-icon-dp-icon>
+      @if (messageManagementService.hasNewMessage()) {
+        <ngx-status-light
+          [hasDefaultMargin]="false"
+          [isAbsolute]="true"
+          [statusSize]="StatusLightSizesEnum.EIGHT"
+          [statusColor]="StatusLightColorsEnum.RED"
+          [statusBorderColor]="StatusLightBordersEnum.NONE"
+          [showStatusLight]="true"
+        ></ngx-status-light>
+      }
+    </div>
+  </div>
+  @if (!hideAssets()) {
+    <div
+      id="store-assets"
+      class="px-atom container store-assets"
+    >
+      <common-user-assets-asset-section
+        [desiredCategories]="[AssetCategoriesEnum.TOTAL_BALANCE]"
+        [mode]="'SUMMARY'"
+      ></common-user-assets-asset-section>
+    </div>
+  }
+
+  <div class="store-assets-mini px-plus w-100 d-flex justify-content-center">
+    <div class="right-mini-action-item">
+      <common-icon-dp-icon
+        [iconSize]="'24'"
+        [classes]="'text-oninvert-high cursor-pointer header-top-action-item'"
+        [icon]="'scan'"
+        [iconType]="'linear'"
+        (click)="onScanClick()"
+      ></common-icon-dp-icon>
+    </div>
+    @if (!hideAssets()) {
+      <common-user-assets-asset-preview-mini
+        [desiredCategories]="AssetCategoriesEnum.TOTAL_BALANCE"
+      ></common-user-assets-asset-preview-mini>
+    }
+  </div>
+  <div class="px-plus search-container">
+    <div
+      class="d-flex surface-elevated px-medium py-small justify-content-start align-items-center radius-giant cursor-pointer"
+      (click)="goToSearch()"
+    >
+      <common-ui-components-animated-list
+        [animationDuration]="300"
+        [changeInterval]="2000"
+        [containerStyle]="{ width: '100%', height: '24px' }"
+        [classes]="'d-flex justify-content-start'"
+      >
+        @for (item of searchBarAnimatedList; track $index) {
+          <ng-template AnimatedListDirective>
+            <div class="d-flex align-items-center justify-content-start gap-small">
+              <ngx-icon
+                [name]="item.icon"
+                [iconSize]="item.iconSize"
+                [classes]="item.iconClass"
+                [type]="item.iconType"
+              ></ngx-icon>
+              <div class="b-2 text-onback-low text-no-wrap white-space-no-wrap">
+                {{ item.title }}
+              </div>
+            </div>
+          </ng-template>
+        }
+      </common-ui-components-animated-list>
+    </div>
+  </div>
+
+  <div class="stores-tabs">
+    <ngx-segmented-control
+      [options]="tabOptions"
+      [selectedOption]="selectedTab()"
+      (change)="changeStoresMode($event)"
+    >
+    </ngx-segmented-control>
+
+    @if (mode() === 'online') {
+      <div class="pt-pony">
+        <stores-applet-online-stores [bannersData]="bannersData()"></stores-applet-online-stores>
+      </div>
+    } @else if (mode() === 'onsite') {
+      @defer (when canLoadOnSiteStores()) {
+        <div class="pt-low">
+          <stores-applet-onsite-stores [bannersData]="bannersData()"></stores-applet-onsite-stores>
+        </div>
+      }
+    } @else if (mode() === 'social') {
+      <stores-applet-social-stores></stores-applet-social-stores>
+    }
+  </div>
+</div>
+
+<ng-template #promotionNoticeContent>
+  <div class="promotion-content radius-big">
+    <ngx-button
+      class="close-promotion"
+      [mode]="'icon-only'"
+      [size]="'tiny'"
+      [style]="'tinted-on-back'"
+      [leftIcon]="{
+        name: 'close',
+        type: 'linear',
+      }"
+      (clickHandler)="closePromotion()"
+    ></ngx-button>
+    <div class="d-flex justify-content-center align-items-center promotion-header">
+      <img
+        src="assets/stores/filimo.png"
+        alt=""
+      />
+    </div>
+    <div class="d-flex flex-column p-medium gap-medium">
+      <div class="b-2 text-align-center">
+        <b>۴۰٪ تخفیف</b>
+        خرید اشتراک قسطی،
+        <br />
+        ویژه‌ی”قـ‌سـ‌طـ‌یـ‌‌ حراج”
+        <b>فقط امروز</b>
+      </div>
+      <ngx-button
+        [mode]="'section'"
+        [fullWidth]="true"
+        (clickHandler)="onPromotionCta()"
+        >خرید اشتراک فیلیمو
+      </ngx-button>
+    </div>
+  </div>
+</ng-template>

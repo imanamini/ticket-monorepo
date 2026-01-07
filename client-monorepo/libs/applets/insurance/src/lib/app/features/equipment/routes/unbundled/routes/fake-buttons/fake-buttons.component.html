@@ -1,0 +1,46 @@
+<div class="buttons">
+  <form
+          [action]="redirectUrl"
+          method="post">
+    <input
+            [value]="trackingCode"
+            name="trackingCode"
+            type="hidden">
+    <input
+            [value]="amount"
+            name="amount"
+            type="hidden">
+    <input
+            [value]="providerId"
+            name="providerId"
+            type="hidden">
+    <input
+            name="result"
+            type="hidden"
+            value="0">
+    <button>success</button>
+
+  </form>
+
+  <form
+          [action]="redirectUrl"
+          method="post">
+    <input
+            [value]="trackingCode"
+            name="trackingCode"
+            type="hidden">
+    <input
+            [value]="amount"
+            name="amount"
+            type="hidden">
+    <input
+            [value]="providerId"
+            name="providerId"
+            type="hidden">
+    <input
+            name="result"
+            type="hidden"
+            value="5">
+    <button>failed</button>
+  </form>
+</div>

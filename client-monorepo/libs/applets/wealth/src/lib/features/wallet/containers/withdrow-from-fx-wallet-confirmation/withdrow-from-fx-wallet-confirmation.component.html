@@ -1,0 +1,80 @@
+<div class="d-flex flex-column surface-elevated container">
+  <ngx-app-bar
+    class="w-100"
+    [title]="''"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="flex-1 w-100 d-flex px-plus align-items-start">
+    <div class="w-100 d-flex flex-wrap p-plus detail-container radius-medium">
+      <div class="w-100 d-flex align-items-center gap-small mb-medium">
+        <ngx-icon
+          [name]="'bag-of-wealth'"
+          [type]="'bold'"
+          [iconSize]="'28px'"
+        />
+
+        <p class="st-8 text-onback-high">بررسی اطلاعات فروش</p>
+      </div>
+
+      @for (data of withdrawMetadata(); track $index; let last = $last) {
+        <div class="w-100 d-flex justify-content-space-between">
+          <span class="c-3 text-onback-low"> {{ data?.title }} </span>
+          <span
+            class="c-1 text-onback-medium"
+            [ngClass]="{ strike: !state().hasCommission && data.type === 'commission' }"
+          >
+            {{ data.type === 'amount' || data.type === 'commission' ? (data?.value | thousands) : data.value }}
+            @if (data.type === 'amount' || data.type === 'commission') {
+              <span class="is-currency">ریال</span>
+            }
+          </span>
+        </div>
+        @if (!last) {
+          <ngx-divider
+            class="my-pony"
+            [color]="BorderColorsEnum.Air"
+            orientation="horizontal"
+          ></ngx-divider>
+        }
+      }
+    </div>
+  </div>
+
+  <div class="w-100 d-flex flex-wrap mt-big">
+    <div class="w-100 px-plus">
+      <ngx-callout
+        class="w-100"
+        [title]="'نکات مهم'"
+        [mode]="'single-with-title'"
+        [message]="'نهایی شدن فروش ، حداکثر ۱ روز کاری زمان می‌برد.'"
+      />
+    </div>
+
+    <div class="w-100 mt-medium border-t-100 border-color-air">
+      <div class="w-100 p-plus d-flex flex-column">
+        <span class="bt-2 text-onback-high"> مبلغ دریافتی </span>
+        <span class="t-7 text-onback-medium is-currency"> {{ state()?.amount | thousands }} ریال </span>
+
+        <ngx-button
+          [fullWidth]="true"
+          buttonId="CONFIRM_AND_CASH_OUT"
+          [style]="'fill'"
+          size="large"
+          [brandButton]="true"
+          (clickHandler)="continue()"
+          [disabled]="btnLoading()"
+          [isLoading]="btnLoading()"
+        >
+          تایید فروش
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+</div>

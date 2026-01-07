@@ -1,0 +1,50 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100dvh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'برداشت از کیف ثروت'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  @if (isLoading()) {
+    <app-spinner />
+  } @else {
+    <div
+      class="flex-1 d-flex flex-column w-100 px-plus mt-big"
+      [formGroup]="form"
+    >
+      <p class="b-2 text-onback-high">یک شماره شبا متعلق به کد ملی {{ state().nationalId }} را وارد کنید.</p>
+      <ui-form-field
+        class="w-100 mt-medium h-100 pl-4"
+        [errorMessageMapper]="{
+          pattern: 'شماره شبا نادرست است',
+          invalidIban: 'شماره شبا نادرست است',
+          serverError: parentErrors()['iban'],
+        }"
+        [error]="form.controls['iban'].errors ?? {}"
+        [type]="'iban'"
+        [placeholder]="'شبا'"
+        formControlName="iban"
+      ></ui-form-field>
+    </div>
+
+    <div class="w-100 surface-elevated px-plus py-medium sticky-action-group">
+      <ngx-button
+        buttonId="WALLET_CONFIRM_IBAN"
+        [style]="'fill'"
+        size="medium"
+        [fullWidth]="true"
+        (clickHandler)="submitIban()"
+        [disabled]="form.invalid || checkSejamLoading()"
+        [isLoading]="checkSejamLoading()"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  }
+</div>

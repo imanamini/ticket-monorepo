@@ -1,0 +1,90 @@
+.banner {
+  > div {
+    border-radius: 1em;
+    overflow: hidden;
+  }
+
+  a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.banner.banner__top {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+
+  > div {
+    border-radius: 0;
+    height: 80px;
+    position: relative;
+  }
+
+  img {
+    position: absolute;
+    height: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    width: auto;
+  }
+}
+
+::ng-deep {
+  body.banner-top__active {
+    padding-top: 80px;
+  }
+
+  nav.fixed-mode .banner.banner__top {
+    margin-top: -80px;
+  }
+}
+
+.banner-xs {
+  display: none;
+}
+
+@media (max-width: 840px) {
+  .banner.banner__top > div {
+    height: 70px;
+  }
+}
+
+@media (max-width: 744px) {
+  .banner.banner__top > div {
+    height: 48px;
+  }
+  ::ng-deep {
+    body.banner-top__active {
+      padding-top: 48px;
+    }
+
+    nav.fixed-mode .banner.banner__top {
+      margin-top: -48px !important;
+    }
+  }
+  .navbar .container {
+    border-bottom: 0;
+  }
+
+  .banner-xs {
+    display: block;
+  }
+  .banner-lg {
+    display: none;
+  }
+}
+
+@media (max-width: 375px) {
+  .banner.banner__top > div {
+    height: 40px;
+  }
+}

@@ -1,0 +1,99 @@
+<div
+        [ngClass]="{
+        'third-party': data().type === PolicyTypeEnum.THIRD_PARTY,
+        'third-party-motor': data().type === PolicyTypeEnum.THIRD_PARTY_MOTOR,
+        'equipment':data().type === PolicyTypeEnum.DIGITAL_EQUIPMENT,
+        'house-incidents':data().type === PolicyTypeEnum.HOUSE_INCIDENT,
+        'body-vehicle':data().type === PolicyTypeEnum.CAR_BODY,
+        }"
+        class="policy-card-list surface-elevated d-flex radius-big flex-column gap-medium py-medium px-minus">
+
+  <div class="d-flex flex-row align-items-center justify-content-space-between gap-minus">
+    <div class="right-header d-flex align-items-center justify-content-start gap-low">
+      <div class="card-icon d-flex align-items-center justify-content-center p-low surface-back radius-medium">
+        @if (data().cardIcon) {
+          <img alt="card-icon"
+               [ngSrc]="data().cardIcon"
+               [height]="32"
+               [width]="32"
+               [loading]="'lazy'"
+               class="ins-icon">
+        } @else {
+          <ngx-icon [name]="defaultCardIcon()[data().type]"
+                    [iconSize]="'32px'"
+                    type="linear"></ngx-icon>
+        }
+      </div>
+      <div class="titles d-flex flex-column gap-tiny">
+        <div class="title st-8">{{ data().productName }}</div>
+        <div class="subtitle c-3">{{ data().subtitle }}</div>
+      </div>
+    </div>
+
+    <span [textContent]="title()"
+          class="title bt-2 text-oninvert-high"></span>
+
+    @if (data().topBadge) {
+      <ngx-badge [status]="data().topBadge.status"
+                 size="md"
+                 type="text"
+                 mode="fill">
+        <div class="badge-text">
+          {{ data().topBadge.text }}
+        </div>
+      </ngx-badge>
+    }
+
+  </div>
+
+  <div class="d-flex flex-column gap-medium p-minus radius-minus surface-back">
+    @for (item of data().detail; track item.title) {
+      <title-value-content [data]="item"></title-value-content>
+    }
+  </div>
+  @if (data().bottomBadge) {
+    <div class="w-100 d-flex p-minus radius-medium gap-low align-items-center justify-content-start surface-warning-tint">
+      <ngx-icon
+              [classes]="+data().bottomBadge.text > 3*60*60  ?
+              'text-onback-warning' : 'text-onback-error'"
+              name="error-circle"
+              type="linear"
+              iconSize="20px"
+      ></ngx-icon>
+      <div class="b-3 text-onback-medium">
+        <ngx-count-down
+                [timeInSeconds]="+data().bottomBadge.text"
+                [type]="'hh:mm:ss'"
+        ></ngx-count-down>
+        باقی مانده تا لغو سفارش
+      </div>
+    </div>
+  }
+  <div [ngClass]="{'justify-content-space-between':data().bottomBadge}"
+       class="d-flex flex-row align-items-center justify-content-flex-end">
+    <div class="w-100 d-flex gap-small">
+      @if (showDetailButton()) {
+        <ins-button [text]="detailButtonText()"
+                    [size]="InsButtonSizeEnum.Small"
+                    [mode]="InsButtonModeEnum.Section"
+                    [style]="InsButtonStyleEnum.TintedOnElevated"
+                    [brandButton]="brandButton()"
+                    (click)="handleDetailButtonClicked()"
+                    [fullWidth]="true"
+        ></ins-button>
+      }
+      @if (showActionButton()) {
+        <ins-button [text]="buttonText()"
+                    [size]="InsButtonSizeEnum.Small"
+                    [mode]="InsButtonModeEnum.Section"
+                    [style]="InsButtonStyleEnum.Fill"
+                    [rightIcon]="buttonRightIcon()"
+                    [brandButton]="brandButton()"
+                    (click)="handleButtonClicked()"
+                    [isLoading]="isLoadingButton()"
+                    [fullWidth]="true"
+        ></ins-button>
+      }
+    </div>
+  </div>
+</div>

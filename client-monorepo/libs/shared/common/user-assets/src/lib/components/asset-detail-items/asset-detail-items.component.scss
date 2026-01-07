@@ -1,0 +1,12 @@
+.subtitle {
+  height: 32px;
+}
+
+.cta-asset-detail {
+  ::ng-deep ngx-button {
+    button {
+      padding-left: 0 !important; // to align texts of cta
+      min-width: unset !important; // to align texts of cta
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@if (hasWinner()) {
+  <div class="wrapper my-medium px-medium surface-back w-100">
+    <div class="header d-flex justify-content-space-between align-items-center mb-pony">
+      <h3 class="header-title st-6 text-onback-high">برندگان قرعه‌کشی‌ها</h3>
+      <span class="text-onback-high b-3">۱ سال اخیر</span>
+    </div>
+    <div class="radius-big winners-list">
+      <div class="py-tiny px-plus surface-high-contrast radius-big winners-list-content">
+        @for (winner of winners(); let i = $index; track winner) {
+          <div
+            class="winner d-flex justify-content-space-between align-items-center py-medium"
+            [ngClass]="i < winners().length - 1 ? 'border-b-100 border-color-light' : ''"
+          >
+            <div class="lottery-info d-flex flex-column gap-micro">
+              <span class="winner-prize bt-3">{{ winner.clubPrizeName }}</span>
+              <span class="l-3">{{ winner.clubPrizeDate | relativeDate }}</span>
+            </div>
+            <span class="winner-cellNumber ltr b-3">{{ winner.maskedCellNumber }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}

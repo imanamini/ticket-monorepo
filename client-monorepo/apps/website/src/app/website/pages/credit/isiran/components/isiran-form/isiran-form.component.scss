@@ -1,0 +1,107 @@
+::ng-deep {
+  #layout {
+    background: #f6f8ff;
+  }
+
+  .full-height {
+    .mat-bottom-sheet-container {
+      max-height: unset;
+      border-radius: unset !important;
+      padding: 0 !important;
+    }
+  }
+}
+
+.section-isiran-form {
+  background-image: linear-gradient(
+      to bottom,
+      #0040ff 376px,
+      rgba(0, 0, 0, 0) 120px
+  );
+
+  .content {
+    text-align: center;
+    padding-top: 48px;
+    padding-bottom: 128px;
+
+    h1 {
+      display: inline-block;
+      position: relative;
+
+      &:before {
+        display: block;
+        content: '';
+        position: absolute;
+        background-image: url('/apps/website/src/assets/images/marked-arrow.svg');
+        background-position: center center;
+        margin: 0;
+        height: 121px;
+        width: 100px;
+        right: -116px;
+        transform: rotate(60deg);
+      }
+    }
+
+    h1,
+    .subtitle {
+      color: #ffffff;
+    }
+  }
+
+  app-ui-button {
+    width: 100%;
+  }
+
+  .form {
+    max-width: 526px;
+    margin: -85px auto 0;
+
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      margin-top: 16px;
+      color: #424c5c;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+  }
+
+  .providers {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .section-isiran-form {
+    .content {
+      padding-top: unset;
+
+      h1:before {
+        transform: rotate(45deg);
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .section-isiran-form {
+    .content h1:before {
+      content: unset;
+    }
+
+    .form {
+      margin: unset;
+      max-width: unset;
+    }
+  }
+
+  .section-isiran-form .content {
+    padding-bottom: 32px;
+  }
+}

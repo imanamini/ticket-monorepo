@@ -1,0 +1,25 @@
+.loader-container {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.upg-protection {
+  padding: 30px;
+}
+
+.protection-container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.verified-message {
+  padding: 20px;
+  background-color: #f0f5ff;
+  margin: 0 30px 30px;
+  border-radius: 8px;
+  line-height: 2;
+  text-align: center;
+}

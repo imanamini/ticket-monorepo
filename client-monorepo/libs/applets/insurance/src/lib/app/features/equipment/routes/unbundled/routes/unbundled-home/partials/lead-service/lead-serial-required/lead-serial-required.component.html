@@ -1,0 +1,45 @@
+<div class="serial-required">
+  <div class="detail">
+    <div class="device-info">
+      <div class="detail-title large"> محصول شما :</div>
+      <div class="detail-text">
+        {{ leadInfo.productCategory }} {{ leadInfo.productName }}
+      </div>
+      <div class="detail-title">ارزش مالی خرید شما :
+        <span class="detail-text">
+          {{ leadInfo.productPrice  | thousands }}تومان
+        </span>
+      </div>
+    </div>
+    <div class="activate-serial">
+      <div class="text">برای تکمیل فرآیند صدور بیمه‌نامه لازم است شماره سریال (IMEI) گوشی را وارد کنید.</div>
+      <div class="text"> برای پیدا کردن شماره سریال (IMEI) دستگاه, از کد دستوری
+        <span class="ltr"
+              dir="ltr">*#06#</span>
+        استفاده کنید
+      </div>
+      <div class="buttons">
+        <ui-form-field
+                [(ngModel)]="serial"
+                label="شماره سریال (IMEI) گوشی را وارد کنید">
+        </ui-form-field>
+        <ui-button
+                (click)="submitted()">
+          تایید و ادامه
+        </ui-button>
+      </div>
+    </div>
+  </div>
+  <div class="schema">
+    <div class="hint">
+      <hint [hintOptions]="hintOptions"></hint>
+    </div>
+    <div class="device-image">
+      <insurtech-collection-image-cdn
+              [category]="'category'"
+              [status]="'pending'"
+              [subCategory]="leadInfo.productCategory"
+      ></insurtech-collection-image-cdn>
+    </div>
+  </div>
+</div>

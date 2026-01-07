@@ -1,0 +1,29 @@
+<app-credit-app-bar
+  (onCloseButtonClick)="closeButton()"
+  [closeButton]="true"
+  [internalTitle]="true"
+  [title]="title()!"
+></app-credit-app-bar>
+<div class="iframe-container">
+  @if (htmlContent() && !gettingContent()) {
+    <iframe
+      (load)="iframeLoading.set(false)"
+      [srcdoc]="htmlContent()"
+    ></iframe>
+  }
+  @if (absoluteUrl() && !gettingContent()) {
+    <iframe
+      (load)="iframeLoading.set(false)"
+      [src]="safeAbsoluteUrl()"
+    ></iframe>
+  }
+  <credit-page-loading
+    [active]="iframeLoading()"
+    class="iframe-loading"
+  ></credit-page-loading>
+</div>
+@if (confirmButton()) {
+  <div class="call-to-action-section">
+    <ngx-button (clickHandler)="onConfirm()">{{ confirmButton() }}</ngx-button>
+  </div>
+}

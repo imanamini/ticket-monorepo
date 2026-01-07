@@ -1,0 +1,124 @@
+<div class="w-100 rtl pt-medium">
+  <div class="header d-flex justify-content-space-between align-items-center border-b-100 border-color-light px-plus py-small">
+    <span class="header-title st-6">گزینه‌ها</span>
+    <div class="d-flex align-items-center flex-row-reverse">
+      <div class="p-low">
+        <ui-api-image
+          [height]="'24px'"
+          [imageId]="card()?.bankLogoImageId || ''"
+          [width]="'24px'"
+        ></ui-api-image>
+      </div>
+      <div class="card-info ltr d-flex flex-column">
+        <span class="l-1 text-onback-low">بانک {{ card().bankName }}</span>
+        <span class="c-2 text-onback-medium">{{ card().pan | maskCardNumber: true : ' - ' }}</span>
+      </div>
+    </div>
+  </div>
+  <section class="options pt-small pb-plus">
+    @if (shouldShowEdit()) {
+      <div
+        (click)="selectAction(CardActionEnum.EDIT)"
+        class="option d-flex align-items-center b-2"
+      >
+        <span class="icon icon-edit">
+          <common-icon-dp-icon
+            [iconSize]="'24'"
+            [iconType]="'linear'"
+            [icon]="'Edit-square'"
+          ></common-icon-dp-icon>
+        </span>
+        <span>ویرایش کارت</span>
+        <div class="arrow-icon">
+          <common-icon-dp-icon
+            [classes]="'text-onback-high'"
+            [iconSize]="'20'"
+            [iconType]="'linear'"
+            [icon]="'arrow-2-left'"
+          ></common-icon-dp-icon>
+        </div>
+      </div>
+    }
+    <div
+      (click)="selectAction(CardActionEnum.SHARE)"
+      class="option d-flex align-items-center b-2"
+    >
+      <span class="icon icon-share">
+        <common-icon-dp-icon
+          [iconSize]="'24'"
+          [iconType]="'linear'"
+          [icon]="'share'"
+        ></common-icon-dp-icon>
+      </span>
+      <span>اشتراک‌‌گذاری کارت</span>
+      <div class="arrow-icon">
+        <common-icon-dp-icon
+          [classes]="'text-onback-high'"
+          [iconSize]="'20'"
+          [iconType]="'linear'"
+          [icon]="'arrow-2-left'"
+        ></common-icon-dp-icon>
+      </div>
+    </div>
+    @if (shouldShowPin()) {
+      <div
+        (click)="selectAction(CardActionEnum.PIN)"
+        class="option b-2"
+      >
+        <span class="icon icon-pin">
+          <common-icon-dp-icon
+            [iconSize]="'24'"
+            [iconType]="'linear'"
+            [icon]="'pin'"
+          ></common-icon-dp-icon>
+        </span>
+        <span>تنظیم به عنوان کارت پیش‌فرض</span>
+      </div>
+    }
+    @if (shouldShowUnpin()) {
+      <div
+        (click)="selectAction(CardActionEnum.UNPIN)"
+        class="option b-2"
+      >
+        <span class="icon icon-unpin">
+          <common-icon-dp-icon
+            [iconSize]="'24'"
+            [iconType]="'bold'"
+            [icon]="'pin'"
+          ></common-icon-dp-icon>
+        </span>
+        <span>حذف از کارت‌های پیش‌فرض</span>
+      </div>
+    }
+    @if (shouldShowShapark()) {
+      <div
+        (click)="selectAction(CardActionEnum.REGISTER)"
+        class="option b-2"
+      >
+        <span class="icon">
+          <common-icon-dp-icon
+            [iconSize]="'24'"
+            [iconType]="'linear'"
+            [icon]="'bank-card-check'"
+          ></common-icon-dp-icon>
+        </span>
+        <span>ثبت کارت در سیستم شاپرک</span>
+      </div>
+    }
+
+    <div
+      (click)="selectAction(CardActionEnum.DELETE)"
+      class="option text-onback-error b-2"
+    >
+      <span class="icon icon-delete">
+        <common-icon-dp-icon
+          [classes]="'text-onback-error'"
+          [iconSize]="'24'"
+          [iconType]="'linear'"
+          [icon]="'delete'"
+        ></common-icon-dp-icon>
+      </span>
+      <span>حذف کارت</span>
+    </div>
+  </section>
+</div>

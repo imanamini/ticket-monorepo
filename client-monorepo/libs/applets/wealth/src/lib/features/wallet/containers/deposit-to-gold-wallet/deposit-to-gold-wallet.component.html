@@ -1,0 +1,164 @@
+<div class="d-flex flex-column surface-elevated h-100svh pb-big position-relative">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'خرید'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="flex-1 d-flex flex-column align-items-center mt-big px-plus">
+    <wealth-applet-detail-deposit
+      class="w-100 surface-glass-onelevated radius-minus px-plus py-medium"
+      [walletTitle]="state().walletTitle"
+      [walletBalance]="goldPricePublisher()?.balance"
+      [walletName]="'WALLET_GOLD'"
+      [goldPricePerGram]="goldPricePublisher()?.value"
+    />
+
+    <div class="w-100 d-flex flex-column mt-big">
+      <div class="w-100 d-flex align-items-center gap-tiny mb-medium">
+        <span class="b-2">مبلغ یا مقدار مورد نظر را وارد کنید. </span>
+        <ngx-button
+          [style]="'tinted-on-back'"
+          class="text-onback-brand"
+          [mode]="'icon-only'"
+          [leftIcon]="{
+            name: 'info-circle',
+          }"
+          [size]="'tiny'"
+          [ngxTooltip]="tooltipMessage()"
+          [tooltipPosition]="'top'"
+        />
+      </div>
+
+      <ui-form-field
+        [label]="'مبلغ مورد نظر'"
+        class="w-100"
+        [autoFocus]="true"
+        [stepValue]="5000000"
+        [type]="'amount-chip'"
+        [maxSize]="16"
+        [formControl]="amountController"
+        [isNumericKeyboard]="true"
+        [convertNonEnglishDigits]="true"
+        [required]="true"
+        [hasCleaner]="true"
+        [error]="amountController.errors ?? {}"
+        [errorMessageMapper]="{
+          min: minAmountError(),
+          max: maxAmountError(),
+        }"
+      ></ui-form-field>
+
+      <ui-form-field
+        [unitCurrency]="'gr'"
+        [label]="'0 گرم'"
+        class="w-100"
+        [stepValue]="0.1"
+        [type]="'amount-chip'"
+        [maxSize]="16"
+        [formControl]="gramController"
+        [isNumericKeyboard]="true"
+        [convertNonEnglishDigits]="true"
+        [required]="true"
+        [hasCleaner]="true"
+      ></ui-form-field>
+    </div>
+
+    <div class="w-100 d-flex flex-column radius-medium p-plus surface-glass-onelevated">
+      <div class="w-100 d-flex align-items-center justify-content-space-between">
+        <p class="b-3 text-onback-high">کارمزد</p>
+        <p class="b-3 text-onback-high d-flex gap-small justify-content-end align-items-center">
+          @if (!state().hasCommission && amountController.value) {
+            <ngx-badge
+              size="sm"
+              mode="bold"
+              status="error"
+            >
+              رایگان
+            </ngx-badge>
+          }
+          @if (amountController.value) {
+            <span [ngClass]="{ strike: !state().hasCommission }">
+              {{ calculatedCommerssion() | thousands }}
+              <span class="is-currency">ریال</span>
+            </span>
+          } @else {
+            <span>
+              0
+              <span class="is-currency">ریال</span>
+            </span>
+          }
+        </p>
+      </div>
+      <div class="w-100 mt-medium d-flex align-items-center justify-content-space-between">
+        <p class="b-3 text-onback-high">مبلغ نهایی طرح طلا</p>
+        <p class="st-7 text-onback-high">
+          @if (state().hasCommission) {
+            {{ +amountController.value + calculatedCommerssion() | thousands }}
+          } @else {
+            {{ +amountController.value | thousands }}
+          }
+          <span class="is-currency">ریال</span>
+        </p>
+      </div>
+      <ngx-divider
+        class="mt-minus"
+        [color]="BorderColorsEnum.Light"
+        orientation="horizontal"
+      />
+      <div class="w-100 mt-medium d-flex flex-column gap-pony">
+        @for (hint of hints(); track $index) {
+          <div class="w-100 d-flex align-items-center gap-small">
+            <ngx-icon
+              class="text-onback-brand"
+              [name]="'error-circle'"
+              [type]="'bold'"
+            />
+            <p class="l-3 text-onback-medium">{{ hint }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="w-100 mt-medium px-plus d-flex flex-column gap-small surface-elevated py-medium sticky-action-group">
+    @if (state().requireAgreement) {
+      <ngx-checkbox
+        class="d-flex align-items-center"
+        (checkedChange)="onToggleAgreement($event)"
+        [checked]="agreementChecked()"
+      >
+        <div class="d-flex gap-tiny check-box-text">
+          <span>شرایط</span>
+          <span
+            (click)="agreementView(pdfType.REGULATIONS)"
+            class="text-onback-brand"
+          >
+            قوانین و مقررات
+          </span>
+          <span>را می‌پذیرم.</span>
+        </div>
+      </ngx-checkbox>
+    }
+
+    <ngx-button
+      [buttonId]="state().walletName + '_CASH_IN'"
+      class="mt-medium"
+      [style]="'fill'"
+      [fullWidth]="true"
+      [mode]="'form'"
+      size="medium"
+      [disabled]="(state().requireAgreement && !agreementChecked()) || amountController.invalid || gramController.invalid || btnLoading()"
+      (clickHandler)="cashin()"
+      [isLoading]="btnLoading()"
+    >
+      تایید و ادامه
+    </ngx-button>
+  </div>
+</div>

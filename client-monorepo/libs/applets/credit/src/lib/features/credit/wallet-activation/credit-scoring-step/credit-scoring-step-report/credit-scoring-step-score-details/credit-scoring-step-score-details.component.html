@@ -1,0 +1,45 @@
+<ngx-bottom-sheet-header
+  [showResizable]="true"
+  [title]="'جزییات امتیاز اعتباری'"
+></ngx-bottom-sheet-header>
+<div
+  class="d-flex flex-column flex-grow rtl p-plus w-100"
+  dir="rtl"
+>
+  <div class="scoring-guide w-100 d-flex flex-column gap-plus">
+    @for (spectrum of summary()?.spectrum; track spectrum) {
+      <div
+        class="d-flex flex-row gap-pony align-items-center px-plus"
+        [class]="
+          spectrum?.min! <= summary()?.score! && spectrum?.max! > summary()?.score! ? ['py-minus', 'radius-medium', 'surface-back'] : []
+        "
+      >
+        <div
+          class="color radius-rounded"
+          [style]="{
+            backgroundColor: spectrum.color | rgbColor,
+          }"
+        ></div>
+        <span class="bt-2 text-onback-high"> {{ spectrum.scoreDesc }} ({{ spectrum.min + ' تا ' + spectrum.max }}) </span>
+        @if (spectrum?.min! <= summary()?.score! && spectrum?.max! >= summary()?.score!) {
+          <span class="st-6 text-onback-high">
+            <span>امتیاز شما: </span>
+            <span>{{ summary()?.score }}</span>
+          </span>
+        }
+      </div>
+    }
+  </div>
+</div>
+<div class="px-plus pb-plus pt-pony">
+  <ngx-button
+    ngxTrackableId
+    trackerId="storeReportDetailsConfirmButtonClick"
+    (clickHandler)="backButtonClick()"
+    [fullWidth]="true"
+    [mode]="'form'"
+    [style]="'fill'"
+  >
+    متوجه شدم
+  </ngx-button>
+</div>

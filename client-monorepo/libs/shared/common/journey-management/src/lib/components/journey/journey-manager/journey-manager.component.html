@@ -1,0 +1,59 @@
+@if (!isLoading()) {
+  <div class="journey-manager radius-big surface-elevated p-plus w-100">
+    @if (config().data?.backgroundImage) {
+      <div class="journey-manager-bg">
+        <ui-api-image
+          [height]="'100%'"
+          [width]="'100%'"
+          [imageId]="config().data.backgroundImage"
+          [showLoading]="false"
+        ></ui-api-image>
+      </div>
+    }
+    <div class="journey-manager-content d-flex flex-column align-items-stretch justify-content-space-between">
+      <div
+        class="w-100 d-flex flex-column"
+        (click)="primaryClicked.emit()"
+      >
+        <common-journey-management-journey-top-section [config]="config()"></common-journey-management-journey-top-section>
+        <div class="d-flex align-items-center justify-content-start mt-minus gap-medium flex-no-wrap">
+          <div class="d-flex flex-column align-items-stretch justify-content-space-between gap-small flex-grow">
+            <div class="journey-manager-title text-align-right w-100 text-onback-high st-1">
+              {{ config().data.title }}
+            </div>
+            @if (config().data.description) {
+              <div class="w-100 b-2 text-onback-low">{{ config().data.description }}</div>
+            }
+          </div>
+          <common-journey-management-journey-image [imageId]="config().data?.image"></common-journey-management-journey-image>
+        </div>
+        @if (config().data.stepper) {
+          <common-journey-management-journey-progress [config]="config()"></common-journey-management-journey-progress>
+        }
+      </div>
+      <div class="w-100">
+        <common-journey-management-journey-actions
+          (primaryClick)="primaryClicked.emit()"
+          (secondaryClick)="secondaryClicked.emit()"
+          [config]="config()"
+        ></common-journey-management-journey-actions>
+      </div>
+    </div>
+    @if (config().data?.foregroundImage) {
+      <div class="journey-manager-fg">
+        <ui-api-image
+          [height]="'100%'"
+          [width]="'100%'"
+          [imageId]="config().data.foregroundImage"
+          [showLoading]="false"
+        ></ui-api-image>
+      </div>
+    }
+  </div>
+} @else {
+  <lib-ngx-skeleton-loading
+    [classes]="'radius-big'"
+    [height]="'100%'"
+    [width]="'100%'"
+  ></lib-ngx-skeleton-loading>
+}

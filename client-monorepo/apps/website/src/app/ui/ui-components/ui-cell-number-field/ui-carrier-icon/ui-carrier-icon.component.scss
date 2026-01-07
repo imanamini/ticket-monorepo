@@ -1,0 +1,36 @@
+@import "globals";
+
+:host {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+
+  span {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 1px solid $swatch_steel_200;
+    background-size: 70%;
+    background: no-repeat center;
+
+    &.is-mtn {
+      background-image: url('./icons/mtn.svg');
+      background-color: #ffcb08;
+    }
+
+    &.is-rightel {
+      background-image: url('./icons/rightel.svg');
+    }
+
+    &.is-mci {
+      background-image: url('./icons/mci.svg');
+    }
+  }
+}

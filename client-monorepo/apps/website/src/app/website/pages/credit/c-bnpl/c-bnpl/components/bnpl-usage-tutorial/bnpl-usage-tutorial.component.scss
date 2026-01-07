@@ -1,0 +1,56 @@
+@import "globals";
+
+.bnpl-usage-tutorial {
+  .title {
+    text-align: center;
+  }
+
+  .steps {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 45px;
+    margin-top: 32px;
+
+    .step {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      position: relative;
+
+      .step-title {
+        position: absolute;
+        bottom: 11px;
+        color: $swatch_steel_700;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 200%;
+        letter-spacing: -0.7px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .bnpl-usage-tutorial {
+    padding: 64px 0;
+
+    .steps {
+      gap: 40px;
+      flex-direction: column;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .bnpl-usage-tutorial {
+    padding: 32px 0;
+
+    .steps {
+      margin-top: 16px;
+    }
+  }
+}

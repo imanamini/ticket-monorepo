@@ -1,0 +1,49 @@
+<div
+  [ngClass]="{ invert: invertColors() }"
+  class="ui-dialog"
+>
+  <div
+    [ngClass]="{ 'is-centered': alignCenterTitle() }"
+    class="dialog-title-bar"
+  >
+    @if (!invertColors()) {
+      <span
+        (click)="onReject($event)"
+        class="close-icon"
+      ></span>
+    } @else {
+      <span
+        (click)="onReject($event)"
+        class="close-icon is-white"
+      ></span>
+    }
+    @if (dialogTitle()) {
+      <h3 class="dialog-title">
+        {{ dialogTitle() }}
+      </h3>
+    }
+  </div>
+  <div class="body">
+    <ng-content></ng-content>
+  </div>
+  @if (rejectText() || confirmText()) {
+    <div class="actions">
+      @if (confirmText()) {
+        <app-ui-button
+          (clicked)="onConfirm($event)"
+          appearance="DEFAULT"
+          class="primary"
+          >{{ confirmText() }}</app-ui-button
+        >
+      }
+      @if (rejectText()) {
+        <app-ui-button
+          (clicked)="onReject($event)"
+          appearance="BLUE-TEXT"
+          class="reject"
+          >{{ rejectText() }}</app-ui-button
+        >
+      }
+    </div>
+  }
+</div>

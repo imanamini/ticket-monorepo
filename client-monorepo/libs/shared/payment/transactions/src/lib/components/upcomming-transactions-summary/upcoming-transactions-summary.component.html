@@ -1,0 +1,27 @@
+@if (isLoading()) {
+  <common-ui-components-title-summary
+    [title]="title()"
+    [isLoading]="true"
+    [wrapperClasses]="'mb-small'"
+  ></common-ui-components-title-summary>
+  <payment-transactions-transaction-cards
+    [isLoading]="true"
+    [id]="'upcoming-transaction'"
+    [transactionCards]="[]"
+    mode="upcoming"
+  ></payment-transactions-transaction-cards>
+} @else {
+  @if (transactionCards().length > 0) {
+    <common-ui-components-title-summary
+      [title]="title()"
+      navigationLink="/transactions/report/upcoming"
+      [showButton]="!hideAllButton()"
+      [wrapperClasses]="'mb-small'"
+    ></common-ui-components-title-summary>
+    <payment-transactions-transaction-cards
+      [id]="'upcoming-transactions'"
+      [transactionCards]="transactionCards()"
+      mode="upcoming"
+    ></payment-transactions-transaction-cards>
+  }
+}

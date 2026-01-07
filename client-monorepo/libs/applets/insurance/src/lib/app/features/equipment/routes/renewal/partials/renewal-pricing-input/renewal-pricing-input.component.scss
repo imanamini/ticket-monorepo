@@ -1,0 +1,122 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.pricing-input {
+  @include flex-column();
+  @include flex-center();
+  margin-bottom: 8px;
+  gap: 32px;
+
+  .input {
+    @include flex-row();
+    @include flex-center();
+    gap: 8px;
+
+    input {
+      box-sizing: content-box;
+      width: 1ch;
+      max-width: 300px;
+      font-size: 48px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 84px;
+      color: #6e798d;
+      border: none;
+      display: block;
+      background-color: transparent;
+      direction: rtl;
+      font-family: inherit;
+      text-align: center;
+      caret-color: #0040ff;
+
+      &:focus-visible {
+        border: none;
+        outline: none;
+      }
+
+      &.no-spinners {
+        /* For Firefox */
+        -moz-appearance: textfield;
+        /* For Chrome, Safari, and Opera */
+        -webkit-appearance: none;
+        appearance: none;
+        /* Remove spinner arrows */
+        -moz-appearance: textfield;
+
+        &::-webkit-inner-spin-button,
+        ::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+    }
+
+    .currency {
+      color: black;
+      font-size: 1.7rem;
+      line-height: normal;
+    }
+
+    &.mobile {
+      @include flex-column();
+    }
+  }
+
+  .input-description {
+    color: #6e798d;
+    padding: 6px 12px;
+    border: 1px solid #f2f5f8;
+    border-radius: 12px;
+  }
+
+  &.dg-ltr-placeholder {
+    input {
+      direction: rtl;
+      text-align: right;
+
+      &::placeholder,
+      &:placeholder-shown {
+        direction: rtl;
+        text-align: center;
+      }
+    }
+  }
+
+  &.dg-ltr-input {
+    input {
+      direction: rtl;
+      text-align: center;
+    }
+  }
+
+  &.dg-not-empty {
+    border-color: #afb9c5;
+    background-color: white;
+  }
+
+  &.dg-focused {
+    border-color: #0040ff;
+    background-color: #f0f5ff;
+
+    input {
+      &::placeholder, &:placeholder-shown {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.dg-error {
+    border-color: #ff2638;
+    background-color: #ffeef3;
+  }
+
+  .pricing-suggestions {
+    @include flex-row();
+    @include flex-center();
+    flex-wrap: wrap;
+    gap: 16px;
+
+    &.mobile {
+      @include flex-column();
+    }
+  }
+}

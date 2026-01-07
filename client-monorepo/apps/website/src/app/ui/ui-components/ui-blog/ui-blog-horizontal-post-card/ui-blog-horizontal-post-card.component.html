@@ -1,0 +1,117 @@
+<div
+  [ngClass]="handleHeight().toString()"
+  class="horizontal-post"
+>
+  <div class="image">
+    <img
+      *ngIf="post.image && post.image.url && post.image.url.search('.mp4') === -1; else noImage"
+      [height]="handleHeight(true)"
+      [ngClass]="handleHeight() + '-image'"
+      [ngSrc]="post.image.url"
+      width="213"
+    />
+    <ng-template #noImage>
+      <img
+        [ngClass]="handleHeight() + '-image'"
+        src="/assets/blog/default-post-cover.svg"
+      />
+    </ng-template>
+  </div>
+  <div
+    *ngIf="type === 'VIDEO'"
+    class="play-layer"
+  ></div>
+  <div
+    *ngIf="type === 'VIDEO'"
+    class="play-icon"
+  >
+    <img
+      height="32"
+      src="/assets/blog/circular-play.svg"
+      width="32"
+    />
+  </div>
+  <div class="content">
+    <div class="details">
+      <div class="stats">
+        <div
+          *ngIf="post.commentCount"
+          [ngClass]="post.updatedAt ? 'margin-left' : ''"
+          class="comment"
+        >
+          <img
+            alt=""
+            class="icon"
+            height="24"
+            ngSrc="/assets/blog/eye.svg"
+            width="24"
+          />
+          {{ post.commentCount }}
+        </div>
+        <div
+          *ngIf="post.viewCount"
+          [ngClass]="post.updatedAt ? 'margin-left' : ''"
+          class="view"
+        >
+          <img
+            alt=""
+            class="icon"
+            height="24"
+            ngSrc="/assets/blog/eye.svg"
+            width="24"
+          />
+          {{ post.viewCount }}
+        </div>
+        <div
+          *ngIf="post.updatedAt"
+          class="date"
+        >
+          {{ post.updatedAt.formatted }}
+          <img
+            alt=""
+            class="icon"
+            height="24"
+            ngSrc="/assets/blog/clock.svg"
+            width="24"
+          />
+        </div>
+      </div>
+      <div
+        (click)="goToCategory(post.category)"
+        class="category"
+      >
+        {{ post.category.title }}
+      </div>
+    </div>
+    <div class="h-divider"></div>
+    <div class="information">
+      <a
+        [href]="'/mag/' + post.category.slug + '/' + post.slug + '/'"
+        class="title"
+        target="_blank"
+      >
+        {{ post.title | postCardShortener: 'title' }}
+      </a>
+      <div
+        *ngIf="showDescription"
+        class="description"
+      >
+        {{ post.description | postCardShortener: 'description' }}
+      </div>
+
+      <div
+        (click)="goToBlogPost(post)"
+        *ngIf="showCta"
+        class="read-more"
+      >
+        <span>مطالعه</span>
+        <img
+          alt=""
+          height="19"
+          ngSrc="assets/blog/blue-arrow.svg"
+          width="19"
+        />
+      </div>
+    </div>
+  </div>
+</div>

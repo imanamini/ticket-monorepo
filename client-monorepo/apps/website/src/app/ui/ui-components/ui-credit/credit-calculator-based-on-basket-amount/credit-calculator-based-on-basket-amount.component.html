@@ -1,0 +1,118 @@
+<section class="section-credit-calculator-based-on-basket-amount">
+  <div class="container">
+    <h2
+      *ngIf="title"
+      class="text-align-center"
+    >
+      {{ title }}
+    </h2>
+    <div
+      *ngIf="subtitle"
+      class="subtitle text-align-center"
+    >
+      {{ subtitle }}
+    </div>
+    <div class="calculator-card">
+      <div class="filters-column">
+        <div class="filters-description">
+          محدوده
+          <b>مبلغ کالاهای</b>
+          مورد نظرت رو انتخاب کن.
+        </div>
+        <div class="slider-result">
+          از
+          <b> {{ sliderOptions[sliderValue]?.basketRange[0] | thousands }} </b>
+          ریال
+          <ng-container *ngIf="!sliderOptions[sliderValue]?.basketRange[1]"> به بالا </ng-container>
+
+          <ng-container *ngIf="sliderOptions[sliderValue]?.basketRange[1]">
+            <span class="dash-separator"> - </span>
+            تا
+            <b> {{ sliderOptions[sliderValue]?.basketRange[1] | thousands }} </b>
+            ریال
+          </ng-container>
+        </div>
+
+        <ngx-slider-selector
+          sliderType="Slider"
+          type="default"
+          [value]="sliderValue"
+          [minValue]="0"
+          [maxValue]="sliderOptions.length - 1"
+          unitName="ریال"
+          (selectValue)="onChangeSlider($event)"
+        >
+        </ngx-slider-selector>
+        <div
+          *ngIf="!gettingData"
+          class="select-installment-count"
+        >
+          <div>دوره بازپرداخت</div>
+          <app-ui-animated-switch-rounded
+            (changed)="onInstallmentChange($event)"
+            [height]="65"
+            [options]="installmentOptions"
+            [selectedOption]="selectedInstallmentOptions"
+            [style]="{
+              width: installmentOptions.length * 125 + 'px',
+              display: 'block',
+            }"
+          ></app-ui-animated-switch-rounded>
+        </div>
+        <div
+          *ngIf="gettingData"
+          class="select-installment-count-loading"
+        >
+          <app-ui-loading-dots [color]="'#dee3e7'"></app-ui-loading-dots>
+        </div>
+      </div>
+      <div
+        *ngIf="!gettingData && selectedPlan"
+        class="result-column"
+      >
+        <div class="plan-amount">
+          <b>{{ selectedPlan?.creditAmount | thousands }} </b> ریال
+        </div>
+        <div class="result-title-value">
+          <div class="title">نحوه پرداخت اقساط</div>
+          <div class="value">
+            {{ selectedPlan.installmentChequeCount }}
+            فقره چک صیادی
+          </div>
+        </div>
+        <div class="result-title-value">
+          <div class="title">مبلغ هر چک</div>
+          <div class="value">
+            <b>{{ selectedPlan.installmentChequeAmount | thousands }}</b> ریال
+          </div>
+        </div>
+        <div class="result-title-value">
+          <div class="title">ما‌به‌التفاوت نقد و نسیه</div>
+          <div class="value">
+            <b>{{ selectedPlan.allocationPrepaymentAmount | thousands }}</b>
+            ریال
+          </div>
+        </div>
+        <div class="result-title-value-description">
+          در هنگام خرید {{ selectedPlan.allocationPrepaymentPercentage }}٪ مبلغ طرح را، باید به صورت نقدی پرداخت کنید.
+        </div>
+        <div class="result-title-value">
+          <div class="title">بازپرداخت نهایی</div>
+          <div class="value">
+            <b>{{ selectedPlan.totalAmount | thousands }}</b> ریال
+          </div>
+        </div>
+
+        <div class="call-to-action-section">
+          <app-ui-button [link]="'https://www.digikala.com/cheque/'">مشاهده کالا و دریافت طرح مناسب</app-ui-button>
+        </div>
+      </div>
+      <div
+        *ngIf="gettingData"
+        class="result-loading"
+      >
+        <app-ui-loading-dots [color]="'#dee3e7'"></app-ui-loading-dots>
+      </div>
+    </div>
+  </div>
+</section>

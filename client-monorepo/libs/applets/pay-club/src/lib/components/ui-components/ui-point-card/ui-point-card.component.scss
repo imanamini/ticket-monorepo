@@ -1,0 +1,30 @@
+.point-card {
+  height: 170px;
+}
+
+.title {
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0 0 0.5em;
+}
+
+.desc {
+  font-size: 10px;
+  margin: unset;
+}
+
+.icon-coin {
+  width: 16px;
+  height: 16px;
+  background: url('apps/dpx/src/assets/pay-club/coin-small.svg') no-repeat center;
+}
+
+.coin-text {
+  color: #2746c5;
+}
+
+.linear-bg {
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(220deg, #0e0c7c 3.65%, #89a7ec 95.95%);
+}

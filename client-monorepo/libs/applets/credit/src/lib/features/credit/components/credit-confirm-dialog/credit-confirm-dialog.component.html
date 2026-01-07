@@ -1,0 +1,25 @@
+<div class="body">
+  <div class="image"></div>
+  <div class="title">{{ creditConfirmDialogData.title }}</div>
+  <div
+    [innerHTML]="creditConfirmDialogData.description"
+    class="description"
+  ></div>
+</div>
+
+<div [class]="['actions', isDesktop() ? 'isDesktop' : '']">
+  <ngx-button
+    (clickHandler)="reject()"
+    [style]="'tinted-on-elevated'"
+    [fullWidth]="true"
+  >
+    {{ creditConfirmDialogData.rejectButtonTitle }}
+  </ngx-button>
+
+  <ngx-button
+    (clickHandler)="confirm()"
+    [fullWidth]="true"
+  >
+    {{ creditConfirmDialogData.confirmButtonTitle }}
+  </ngx-button>
+</div>

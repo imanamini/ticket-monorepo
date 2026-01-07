@@ -1,0 +1,22 @@
+@import "@digipay/base-style/styleguide";
+
+
+.circle-background {
+    fill: none;
+    stroke: #{map-get($blue, 'tint-90')}; 
+  }
+  
+  .circle-progress {
+    fill: none;
+    stroke:  #{map-get($blue, 'tint-50')}; 
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 0.3s ease-in-out;
+  }
+  
+  .circle-text {
+    fill: #{map-get($text-colors, 'onback-low')}; 
+  }
+  
+  

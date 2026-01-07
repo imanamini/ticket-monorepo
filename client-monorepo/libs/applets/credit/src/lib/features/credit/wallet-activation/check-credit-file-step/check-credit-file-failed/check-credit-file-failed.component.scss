@@ -1,0 +1,13 @@
+.main-section {
+  box-sizing: border-box;
+  direction: rtl;
+
+  * {
+    box-sizing: border-box;
+    direction: rtl;
+  }
+
+  .page-content {
+    direction: rtl;
+  }
+}

@@ -1,0 +1,36 @@
+<div class="d-flex gap-minus py-tiny mb-small">
+  <img
+    [src]="image() ? image() : 'assets/images/product-default.png'"
+    [alt]="announcementTitle()"
+    width="48"
+    height="48"
+    class="radius-rounded"
+  />
+  <div class="d-flex w-100 justify-content-space-between align-items-center">
+    <div class="mb-small">
+      <p class="st-8">{{ announcementTitle() }}</p>
+      <div class="d-flex c-3">
+        <p class="text-onback-medium is-currency">
+          {{ priceTitle() ? priceTitle() + ':' : '' }}
+          {{ (price() | thousands) + 'ریال' }}
+        </p>
+        @if (deliveryType()) {
+          <p class="text-onback-low">
+            {{ deliveryType() === '0' ? ' . توسط پست' : ' . توسط پیک' }}
+          </p>
+        }
+      </div>
+    </div>
+    @if (linkText()) {
+      <ngx-button
+        [mode]="'section'"
+        [size]="'tiny'"
+        [style]="'link'"
+        [leftIcon]="{ name: 'arrow-2-left', type: 'linear' }"
+        (clickHandler)="emitLinkAction($event)"
+      >
+        {{ linkText() }}
+      </ngx-button>
+    }
+  </div>
+</div>

@@ -1,0 +1,33 @@
+@if (location() === 'transactions' || (location() === 'home' && transactionCards().length > 0)) {
+  <common-ui-components-title-summary
+    [title]="location() === 'transactions' ? 'پرداخت‌های سریع من' : 'پرداخت‌هایی که بیشتر انجام می‌دهید'"
+    [showButton]="false"
+    navigationLink="/transactions"
+    [wrapperClasses]="'mb-small'"
+    [wrapperId]="'frequent-transactions-summary-title'"
+  ></common-ui-components-title-summary>
+  @if (isLoading()) {
+    <payment-transactions-transaction-cards
+      [transactionCards]="[]"
+      [isLoading]="true"
+      [id]="'frequent-transactions'"
+      mode="frequent"
+    ></payment-transactions-transaction-cards>
+  } @else {
+    @if (transactionCards().length > 0) {
+      <payment-transactions-transaction-cards
+        [id]="'frequent-transactions-summary'"
+        [transactionCards]="transactionCards()"
+        mode="frequent"
+      ></payment-transactions-transaction-cards>
+    } @else {
+      <div class="d-flex flex-column align-items-center">
+        <img
+          src="assets/no-transaction.png"
+          class="no-transaction-img"
+        />
+        <span class="c-2 mb-small mt-medium">هنوز پرداخت سریعی ثبت‌ نشده</span>
+      </div>
+    }
+  }
+}

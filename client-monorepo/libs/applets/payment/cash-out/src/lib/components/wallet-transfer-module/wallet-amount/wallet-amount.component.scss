@@ -1,0 +1,114 @@
+@import "@digipay/base-style/swatch";
+
+.wallet-amount-wrapper {
+  padding: 24px;
+}
+
+.user-info-container {
+  min-height: 136px;
+  background: url('apps/dpx/src/assets/cash-out/user-info-bg.svg') repeat-x;
+  width: 100%;
+  border-radius: 0;
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+.user-image {
+  border-radius: 50%;
+  width: 72px;
+  margin: 8px auto 0 auto;
+  height: 72px;
+  background-color: #ffffff;
+  vertical-align: middle;
+  color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-image {
+  width: 64px;
+  height: 64px;
+}
+
+.wallet-content {
+  padding: 16px;
+}
+
+.amount-input {
+  width: 100%;
+  max-width: 328px;
+}
+
+
+::ng-deep .mat-form-field-underline {
+  height: 2px;
+}
+
+.form-primary-text {
+  margin-bottom: 32px;
+}
+
+.transferable-amount-hint {
+  direction: ltr;
+  display: flex;
+  border: 2px solid $swatch_green_500;
+  border-radius: 8px;
+  padding: 12px;
+  background-color: #e6fff3;
+  justify-content: space-between;
+  align-items: center;
+  color: $swatch_green_500;
+  font-size: 0.9em;
+  margin-top: 16px;
+
+  .transferable-amount-content {
+    display: flex;
+    flex-direction: row-reverse;
+
+    &_currency {
+      padding-right: 5px;
+      align-items: center;
+      display: flex;
+    }
+
+    &_amount {
+      direction: rtl;
+      font-weight: 500;
+      font-size: 1.3em;
+    }
+  }
+}
+
+.transferable-amount-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px 0;
+  min-height: 105px;
+}
+
+.amount-input-area {
+  margin-top: 20px;
+  min-height: 100px;
+}
+
+.wallet-continue {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.wallet-info {
+  display: flex;
+  align-items: center;
+
+  img {
+    padding-right: 5px;
+  }
+}
+
+span.action-behaviour {
+  cursor: pointer;
+}
+

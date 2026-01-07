@@ -1,0 +1,135 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100svh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'تبدیل دارایی'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="flex-1 w-100 mt-big d-flex flex-column px-plus pb-plus">
+    <p class="st-8 text-onback-medium">نوع دارایی و مبلغ تبدیل را مشخص کنید.</p>
+
+    <div class="w-100 d-flex flex-column radius-medium surface-glass-onelevated p-medium mt-minus">
+      <wealth-applet-investment-swap
+        (click)="swapBottomsheet('origin')"
+        (maximunSwap)="maximumSwap($event)"
+        (activeWallet)="activeWallet($event)"
+        class="w-100 surface-elevated radius-minus p-minus"
+        [swapData]="swapOriginData()"
+        [isOrigin]="true"
+      />
+
+      @if (!swapOriginData().activationRequired) {
+        <div class="w-100 position-relative mt-small">
+          <ui-form-field
+            [label]="'مبلغ مورد نظر را وارد کنید'"
+            class="w-100"
+            [type]="'amount'"
+            [maxSize]="16"
+            [hasRialStickyText]="false"
+            [formControl]="amountController"
+            [isNumericKeyboard]="true"
+            [convertNonEnglishDigits]="true"
+            [unitCurrency]="'gr'"
+            [error]="amountController.errors ?? {}"
+            [errorMessageMapper]="{
+              required: 'وارد کردن مبلغ الزامی است',
+              min: minAmountError(),
+              max: maxAmountError(),
+            }"
+          />
+          <ngx-button
+            [style]="'link'"
+            class="max-amount"
+            [size]="'small'"
+            (clickHandler)="setMaximunValue()"
+          >
+            حداکثر مبلغ
+          </ngx-button>
+        </div>
+      }
+    </div>
+
+    <div class="w-100 d-flex justify-content-center position-relative">
+      <div class="d-flex align-items-center justify-content-center surface-elevated radius-rounded swap-destination-icon">
+        <ngx-icon
+          [name]="'arrow-down'"
+          [iconSize]="'20px'"
+        />
+      </div>
+    </div>
+
+    <div class="w-100 d-flex flex-column radius-medium surface-glass-onelevated p-medium mt-small">
+      <wealth-applet-investment-swap
+        (click)="swapBottomsheet('destination')"
+        (activeWallet)="activeWallet($event)"
+        class="w-100 surface-elevated radius-minus p-minus"
+        [swapData]="swapDestinationData()"
+        [isOrigin]="false"
+      />
+    </div>
+
+    <div class="w-100 d-flex flex-column mt-big gap-minus">
+      <p class="st-8 text-onback-high">جزییات تبدیل</p>
+
+      <div class="w-100 d-flex flex-column radius-medium surface-glass-onelevated p-medium mt-small">
+        @for (detail of swapDetails(); track $index; let last = $last) {
+          <div [class]="(!last ? 'mb-plus' : '') + ' w-100 d-flex align-items-center justify-content-space-between'">
+            <span class="b-3 text-onback-high">
+              {{ detail.title }}
+            </span>
+            @if (detail.isCommision) {
+              <p class="d-flex gap-small justify-content-end align-items-center">
+                @if (!detail?.hasCommision && amountController.value) {
+                  <ngx-badge
+                    size="sm"
+                    mode="bold"
+                    status="error"
+                  >
+                    رایگان
+                  </ngx-badge>
+                }
+                @if (amountController.value) {
+                  <span [class]="!detail?.hasCommision ? 'strike' : ''">
+                    {{ calculatedCommerssion() | thousands }}
+                    <span class="is-currency">ریال</span>
+                  </span>
+                } @else {
+                  <span>
+                    0
+                    <span class="is-currency">ریال</span>
+                  </span>
+                }
+              </p>
+            } @else {
+              <span class="b-3 text-onback-high">
+                {{ detail.amount | thousands }}
+                <span class="is-currency"> ریال </span>
+              </span>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="w-100 px-plus d-flex flex-column gap-small surface-elevated py-medium sticky-action-group">
+    <ngx-button
+      class="mt-medium"
+      [style]="'fill'"
+      [fullWidth]="true"
+      [mode]="'form'"
+      size="medium"
+      [isLoading]="btnLoading()"
+      [disabled]="amountController.invalid || btnLoading()"
+      (clickHandler)="continuSwap()"
+    >
+      تایید و ادامه
+    </ngx-button>
+  </div>
+</div>

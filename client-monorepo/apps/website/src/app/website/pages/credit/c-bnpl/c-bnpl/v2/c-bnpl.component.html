@@ -1,0 +1,60 @@
+@if (CBnplPageData()) {
+  <app-base-layout [loaded]="loaded">
+    <div class="bnpl-wrapper">
+      <div class="bg-wrapper">
+        <img class="vision-bg" src="/assets/images/about/about-us-history-bg.svg" alt=""/>
+      </div>
+      @if (CBnplPageData()?.templateData?.sectionIntro) {
+        <div class="intro mt-hulk container container">
+          <app-bnpl-intro [introSection]="CBnplPageData()?.templateData?.sectionIntro"></app-bnpl-intro>
+        </div>
+      }
+      @if (CBnplPageData()?.templateData?.plans) {
+        <div class="mt-giant-mobile mt-hulk container" id="bnpl-plans">
+          <app-c-bnpl-plans [bnplPlans]="CBnplPageData()?.templateData?.plans"></app-c-bnpl-plans>
+        </div>
+      }
+      @if (CBnplPageData()?.templateData?.benefitSection) {
+        <div class="mt-giant-mobile mt-hulk">
+          <app-bnpl-benefits [benefit]="CBnplPageData()?.templateData?.benefitSection"></app-bnpl-benefits>
+        </div>
+      }
+      @if (CBnplPageData()?.templateData?.installmentBnplSection) {
+        <div class="mt-giant-mobile mt-hulk container">
+          <app-bnpl-installment-info
+            [installmentBnpl]="CBnplPageData()?.templateData?.installmentBnplSection"></app-bnpl-installment-info>
+        </div>
+      }
+      @if (CBnplPageData()?.templateData?.bnplUsage) {
+        <div class="mt-giant-mobile mt-hulk" id="bnpl-usage">
+          <app-bnpl-usage [classes]="['py-atom credit']"
+                          [bnplUsage]="CBnplPageData()?.templateData?.bnplUsage"></app-bnpl-usage>
+        </div>
+      }
+      @if (CBnplPageData()?.templateData?.installmentRepayment) {
+        <div class="mt-giant-mobile mt-hulk container">
+          <app-bnpl-installment-info [flexDirection]="'flex-row-reverse'"
+                                     [installmentBnpl]="CBnplPageData()?.templateData?.installmentRepayment"></app-bnpl-installment-info>
+        </div>
+      }
+      @if (CBnplPageData()?.templateData?.purchaseSteps) {
+        <div class="mt-giant-mobile container">
+          <app-bnpl-steps [bnplMode]="true" [purchaseStep]="CBnplPageData()?.templateData?.purchaseSteps"></app-bnpl-steps>
+        </div>
+      }
+      @if (CBnplPageData()?.templateData?.sectionSeoContent && CBnplPageData()?.templateData?.sectionSeoContent?.title) {
+        <app-ui-seo
+          [seoContent]="CBnplPageData()?.templateData?.sectionSeoContent"
+        ></app-ui-seo>
+      }
+      @if (CBnplPageData()?.templateData?.faq && CBnplPageData()?.templateData?.faq?.faqItems && CBnplPageData()?.templateData?.faq?.faqItems?.length > 0) {
+        <app-ui-faq
+          [faqs]="CBnplPageData()?.templateData?.faq?.faqItems"
+          [subtitle]="CBnplPageData()?.templateData?.faq?.subtitle"
+          [title]="CBnplPageData()?.templateData?.faq?.title"
+        ></app-ui-faq>
+      }
+    </div>
+  </app-base-layout>
+}
+

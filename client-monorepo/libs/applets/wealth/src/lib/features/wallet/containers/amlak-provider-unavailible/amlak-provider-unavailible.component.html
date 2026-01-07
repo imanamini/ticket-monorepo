@@ -1,0 +1,33 @@
+<div class="w-100 d-flex flex-wrap align-content-start surface-elevated">
+  <wealth-applet-app-bar-wrapper
+    class="w-100"
+    [title]="'بررسی اطلاعات'"
+    (onBack)="onBackHandler()"
+  />
+
+  <div class="w-100 d-flex flex-column justify-content-space-between align-items-center pt-massive px-plus content">
+    <div class="w-100 d-flex align-items-center flex-column">
+      <img
+        class="icon-container"
+        src="./wealth-assets/images/doc-not-found-warning.png"
+        alt="doc not found warning"
+      />
+
+      <p class="st-3 text-onback-high text-align-center mt-huge">سرویس‌دهنده در دسترس نیست</p>
+      <p class="b-2 text-onback-medium text-align-center mt-tiny">
+        {{ description() }}
+      </p>
+    </div>
+
+    <div class="footer pb-plus">
+      <div class="w-100 mt-medium d-flex flex-wrap">
+        <ngx-button
+          [fullWidth]="true"
+          (clickHandler)="onContinue()"
+        >
+          تلاش دوباره
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="benefits">
+  <div
+    *ngFor="let item of benefits"
+    class="benefit-item"
+  >
+    <div
+      [ngClass]="item.icon"
+      class="item-icon"
+    ></div>
+    <h5 class="item-title">{{ item.title }}</h5>
+  </div>
+</div>

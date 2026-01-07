@@ -1,0 +1,102 @@
+<div class="d-flex flex-column h-100">
+  @if (notHaveActiveBnpl()) {
+    <div class="h-100 p-plus not-found">
+      <app-installments-overview-not-found
+        [title]="'اعتبار فعال ندارید'"
+        [description]="'با دریافت این اعتبار، خرید خود را از هزاران فروشگاه حضوری و آنلاین بصورت اقساطی انجام دهید.'"
+        [ctaTitle]="'درخواست اعتبار'"
+        (ctaClicked)="bnplNotFoundActionHandler()"
+      />
+    </div>
+  } @else {
+    @if (emptyInstallments()) {
+      <div class="h-100 p-plus not-found">
+        <app-installments-overview-not-found
+          [title]="'قسطی برای پرداخت ندارید'"
+          [description]="'بعد از خرید اعتباری بدهی شما به صورت اقساط ماهانه در این بخش قابل پرداخت خواهد بود.'"
+          [ctaTitle]="isPillar ? null : 'مشاهده فروشگاه‌ها'"
+          (ctaClicked)="emptyInstallmentsActionHandler()"
+        />
+      </div>
+    } @else {
+      <div class="flex-grow px-plus pt-plus pb-medium overflow-required">
+        <!--        <div class="d-flex gap-small">-->
+        <!--          <ngx-chip-->
+        <!--            id="all"-->
+        <!--            label="همه"-->
+        <!--            [trailingIcon]="'close'"-->
+        <!--            [pressed]="dateFilters().all"-->
+        <!--            (pressedChange)="onDateFiltersChange($event, 'all')"-->
+        <!--            [disableClick]="dateFilters().all"-->
+        <!--          />-->
+        <!--          <ngx-chip-->
+        <!--            id="currentMonth"-->
+        <!--            label="این ماه"-->
+        <!--            [trailingIcon]="'close'"-->
+        <!--            [pressed]="dateFilters().currentMonth"-->
+        <!--            (pressedChange)="onDateFiltersChange($event, 'currentMonth')"-->
+        <!--            [disableClick]="dateFilters().currentMonth"-->
+        <!--          />-->
+        <!--          <ngx-chip-->
+        <!--            id="future"-->
+        <!--            label="آینده"-->
+        <!--            [trailingIcon]="'close'"-->
+        <!--            [pressed]="dateFilters().future"-->
+        <!--            (pressedChange)="onDateFiltersChange($event, 'future')"-->
+        <!--            [disableClick]="dateFilters().future"-->
+        <!--          />-->
+        <!--        </div>-->
+        <div
+          class="d-flex px-medium py-minus border-300 border-color-light justify-content-space-between align-items-center cursor-pointer"
+          [class]="isPillar ? 'radius-small' : 'radius-medium'"
+          (click)="checkAllClickHandler()"
+        >
+          <span class="st-8">انتخاب همه</span>
+          <ngx-checkbox
+            class="pointer-events-none"
+            [(checked)]="checkAll"
+            [isIndeterminate]="true"
+            [size]="20"
+          />
+        </div>
+        @for (categorizedInstallment of filteredCategorizedInstallments(); track categorizedInstallment.dueDate) {
+          <div class="mt-medium d-flex align-items-center gap-small">
+            <span class="c-2 text-onback-low shrink-0">تاریخ سررسید</span>
+            <ngx-divider [dividerStyle]="'dashed'" />
+            <span class="c-2 text-onback-low shrink-0">
+              {{ categorizedInstallment.dueDate | creditPersianDate: 'day' }}
+              {{ categorizedInstallment.dueDate | creditPersianDate: 'month' }}
+            </span>
+          </div>
+          @for (installment of categorizedInstallment.installments; track installment.contractTrackingCode) {
+            <div class="mt-medium">
+              <app-installment-overview-card
+                [(checked)]="installment.checked"
+                (checkedChange)="onCheckChange($event, installment.contractTrackingCode, installment.order)"
+                [type]="'Bnpl'"
+                [installmentsCount]="installment.contractTotalInstallmentsCount"
+                [order]="installment.order"
+                [title]="installment.title"
+                [amount]="installment.amount - installment.penalty + installment.penaltyWaiverAmount"
+                [penaltyAmount]="installment.penalty"
+                [penaltyWaiverAmount]="installment.penaltyWaiverAmount"
+                [merchantBusinessIds]="installment.merchantBusinessIds"
+                (merchantsClicked)="showPurchaseDetails(installment.contractTrackingCode, installment.billingCycleInfo)"
+              />
+            </div>
+          }
+        }
+      </div>
+
+      <app-credit-installment-payment-footer
+        [finalAmount]="selectedAmounts().payable"
+        [rows]="paymentFooterRows()"
+        [detailIsOpen]="!isPillar"
+        [ctaLabel]="'تایید و ادامه'"
+        [ctaIsBrand]="false"
+        (cta)="onFooterPaymentClick()"
+        [ctaLoading]="creditInstallmentPaymentService.gettingTicket()"
+      />
+    }
+  }
+</div>

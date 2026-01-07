@@ -1,0 +1,69 @@
+<div [formGroup]="form">
+  <ui-form-field
+    [errorMessageMapper]="{
+      required: 'کد ملی را وارد کنید.',
+      invalidNationalCode: 'کد ملی وارد شده نامعتبر است.',
+    }"
+    [error]="form.controls.nationalCode.errors"
+    [isNumericKeyboard]="true"
+    [maxSize]="10"
+    [required]="true"
+    formControlName="nationalCode"
+    label="کد ملی"
+    type="input"
+  >
+  </ui-form-field>
+
+  <ui-form-field
+    [errorMessageMapper]="{
+      required: 'شماره همراه را وارد کنید.',
+      invalidCellNumber: 'شماره همراه وارد شده معتبر نیست.',
+    }"
+    [error]="form.controls.cellNumber.errors"
+    [formControlName]="'cellNumber'"
+    [hint]="'شماره موبایل باید متعلق به صاحب کدملی باشد.'"
+    [isNumericKeyboard]="true"
+    [maxSize]="11"
+    [required]="true"
+    label="شماره موبایل"
+    showError="auto"
+  ></ui-form-field>
+
+  <ui-form-field
+    [errorMessageMapper]="{
+      required: 'شماره شبا بانکی را وارد کنید.',
+      pattern: 'شماره شبا بانکی نامعتبر است.',
+      invalidIban: 'شماره شبا بانکی نامعتبر است',
+      serverError: ibanServerErrorMessage,
+    }"
+    [error]="form.controls.iban.errors"
+    [hasCleaner]="true"
+    [hint]="'مبلغ وام به این حساب واریز خواهد شد.'"
+    [label]="'شماره شبا را وارد کنید'"
+    [required]="true"
+    [type]="'iban'"
+    formControlName="iban"
+  ></ui-form-field>
+
+  <ui-form-field
+    [customDateRange]="[minBirthDate, maxBirthDate]"
+    [errorMessageMapper]="{
+      required: 'تاریخ تولد را انتخاب کنید.',
+      invalidBirthDate: 'تاریخ تولد نامعتبر است.',
+    }"
+    [error]="form.controls.birthDate.errors"
+    [hint]="'تاریخ تولد برای تطابق شماره شبا و کدملی استفاده می‌شود.'"
+    [required]="true"
+    formControlName="birthDate"
+    label="تاریخ تولد"
+    type="date"
+  >
+  </ui-form-field>
+</div>
+<ngx-button
+  (click)="submit()"
+  [disabled]="!form.valid"
+  [fullWidth]="true"
+>
+  بررسی صحت اطلاعات
+</ngx-button>

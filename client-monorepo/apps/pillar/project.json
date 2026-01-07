@@ -1,0 +1,185 @@
+{
+  "name": "pillar",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/pillar/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/pillar",
+        "index": "apps/pillar/src/index.html",
+        "browser": "apps/pillar/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/pillar/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/pillar/src/favicon.ico",
+          "apps/pillar/src/assets",
+          "apps/pillar/src/manifest.stg.webmanifest",
+          "apps/pillar/src/manifest.webmanifest",
+          "apps/pillar/src/.well-known",
+          "apps/pillar/src/resolver.html",
+          {
+            "input": "libs/applets/credit/src/lib/features/credit/assets/",
+            "output": "credit-assets",
+            "glob": "**/*"
+          },
+          {
+            "input": "apps/dpx/src/assets/",
+            "output": "assets",
+            "glob": "**/*"
+          }
+        ],
+        "styles": [
+          "apps/pillar/src/styles.scss",
+          "./node_modules/@digipay/base-style/styleguide-theme.scss",
+          "libs/shared/common/assets/src/lib/styles/globals.scss",
+          "apps/pillar/src/assets/font/IRANYekan3/Farsi_numerals/WebFonts/css/fontiran.css"
+        ],
+        "scripts": [],
+        "stylePreprocessorOptions": {
+          "includePaths": ["./node_modules/@digipay", "libs/shared/common/assets/src/lib","libs/applets"]
+        }
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "sourceMap": {
+            "scripts": true,
+            "styles": false
+          },
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "1mb",
+              "maximumError": "8mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "20kb",
+              "maximumError": "200kb"
+            }
+          ],
+          "outputHashing": "all",
+          "fileReplacements": [
+            {
+              "replace": "apps/pillar/src/environments/environment.ts",
+              "with": "apps/pillar/src/environments/environment.prod.ts"
+            }
+          ],
+          "index": {
+            "input": "apps/pillar/src/index.prod.html",
+            "output": "index.html"
+          },
+          "define": {
+            "process.env.name": "'production'",
+            "process.env.base_url": "'https://api.mydigipay.com/digipay/api'",
+            "ngDevMode": "false",
+            "ngJitMode": "false"
+          },
+          "serviceWorker": "apps/pillar/ngsw-config.json"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": {
+            "scripts": true,
+            "styles": false
+          },
+          "define": {
+            "process.env.name": "'development'",
+            "process.env.base_url": "'https://uat.mydigipay.info/digipay/api'"
+          },
+          "fileReplacements": [
+            {
+              "replace": "apps/pillar/src/environments/environment.ts",
+              "with": "apps/pillar/src/environments/environment.dev.ts"
+            }
+          ],
+          "index": {
+            "input": "apps/pillar/src/index.dev.html",
+            "output": "index.html"
+          }
+        },
+        "staging": {
+          "optimization": true,
+          "extractLicenses": false,
+          "sourceMap": {
+            "scripts": true,
+            "styles": false
+          },
+          "define": {
+            "process.env.name": "'staging'",
+            "process.env.base_url": "'https://uat.mydigipay.info/digipay/api'",
+            "ngDevMode": "false",
+            "ngJitMode": "false"
+          },
+          "fileReplacements": [
+            {
+              "replace": "apps/pillar/src/environments/environment.ts",
+              "with": "apps/pillar/src/environments/environment.stg.ts"
+            }
+          ],
+          "index": {
+            "input": "apps/pillar/src/index.stg.html",
+            "output": "index.html"
+          },
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "1mb",
+              "maximumError": "8mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "20kb",
+              "maximumError": "200kb"
+            }
+          ],
+          "outputHashing": "all",
+          "serviceWorker": "apps/pillar/ngsw-config.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "pillar:build:production"
+        },
+        "development": {
+          "buildTarget": "pillar:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "proxy.conf.json"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "pillar:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["apps/pillar/src/**/*.ts"]
+      },
+      "eslintConfig": ".eslintrc.json"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/pillar/jest.config.ts"
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+// introduction-blue
+::ng-deep {
+  .introduction-blue > .container > div ::ng-deep app-ui-button {
+    margin: 10px;
+  }
+
+  .icon-green-down i {
+    -webkit-animation: arrowToDown 1s infinite linear;
+    animation: arrowToDown 1s infinite linear;
+    bottom: 0.5em;
+    display: inline-flex;
+    vertical-align: middle;
+    margin-left: 0.7em;
+    margin-right: -0.5em;
+    position: relative;
+  }
+
+  .second-cta-icon {
+    width: 24px !important;
+    margin-left: 4px;
+    height: 24px;
+  }
+
+  @-webkit-keyframes arrowToDown {
+    to {
+      bottom: -0.2em;
+    }
+  }
+
+  @keyframes arrowToDown {
+    to {
+      bottom: -0.2em;
+    }
+  }
+}

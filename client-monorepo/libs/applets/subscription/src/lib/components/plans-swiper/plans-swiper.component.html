@@ -1,0 +1,45 @@
+@if (plans() && plans()?.length > 1) {
+  <common-ui-components-horizontal-scroll classes="p-pony">
+    @for (plan of plans(); track $index) {
+      <div
+        id="plan-title-{{ $index }}"
+        class="px-minus py-low border-100 border-color-light radius-plus cursor-pointer text-onback-low title-card"
+        (click)="selectedTitle(plan, $index)"
+        [ngClass]="{
+          'surface-dim-glass text-oninvert-high': this.selectedPlanIndex() === $index,
+        }"
+      >
+        <span class="c-2">{{ plan.title }}</span>
+      </div>
+    }
+  </common-ui-components-horizontal-scroll>
+  <ngx-dp-carousel
+    [mode]="'CARD'"
+    [changeStepThresholdPercentage]="20"
+    [index]="selectedPlanIndex()"
+    [visibleItemCount]="1.25"
+    [centerMode]="false"
+    [showNavigation]="false"
+    [showButtons]="false"
+    [isFixedGap]="true"
+    [fixedGap]="16"
+    [isFixedWidth]="false"
+    [swipeThreshold]="60"
+    [disableScaling]="true"
+    (indexChange)="checkActivePlan($event)"
+  >
+    @for (plan of plans(); track plan) {
+      <ng-template ngxDpCarouselSlide>
+        <subscription-applet-plan-card
+          class="swiper-slide w-100 no-select"
+          [plan]="plan"
+        >
+        </subscription-applet-plan-card>
+      </ng-template>
+    }
+  </ngx-dp-carousel>
+} @else if (plans()?.length === 1) {
+  <div class="single-plan-wrapper">
+    <subscription-applet-plan-card [plan]="plans()[0]"></subscription-applet-plan-card>
+  </div>
+}

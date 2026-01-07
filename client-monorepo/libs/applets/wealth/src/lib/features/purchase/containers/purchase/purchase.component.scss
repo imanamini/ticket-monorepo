@@ -1,0 +1,18 @@
+.logo-container {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.auto-fill-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+
+  .button {
+    height: 32px;
+  }
+}
+
+.active-amount {
+  background-color: var(--onback-shade-30) !important;
+}

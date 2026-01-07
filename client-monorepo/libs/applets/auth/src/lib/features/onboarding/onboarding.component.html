@@ -1,0 +1,47 @@
+@if (slides().length > 0) {
+  <div class="onboarding-wrapper surface-elevated">
+    <ngx-dp-carousel
+      [mode]="'CARD'"
+      [visibleItemCount]="1"
+      [index]="activeIndex()"
+      [centerMode]="true"
+      [showNavigation]="true"
+      [isFixedGap]="true"
+      [mainContainerClasses]="'h-100 pt-big'"
+      [fixedGap]="80"
+      [isFixedWidth]="true"
+      [fixedWidth]="280"
+      [disableScaling]="true"
+      [navigationButtonNextText]="'ادامه'"
+      [navigationContainerClasses]="'p-mega'"
+      (navigationBtnClicked)="handleCarouselNavBtnClick($event)"
+    >
+      @for (slide of slides(); let i = $index; track slide.id + slide.title) {
+        <ng-template ngxDpCarouselSlide>
+          <!-- Items -->
+          <div class="onboarding-item d-flex flex-column justify-content-center align-items-center">
+            <!-- Picture -->
+            <div
+              class="picture-bg d-flex radius-huge justify-content-center align-items-center"
+              [ngStyle]="{ background: getGradientBackGround(i) }"
+            >
+              <img
+                [src]="slide.imageUrl"
+                [alt]="slide.title"
+              />
+            </div>
+            <!-- End Picture -->
+
+            <!-- Text -->
+            <div class="item-text-wrapper d-flex flex-column gap-minus justify-content-center align-items-center">
+              <div class="title-wrapper d-flex text-onback-high st-3 justify-content-start w-100">{{ slide.title }}</div>
+              <div class="text d-flex text-onback-medium b-1 pl-medium">{{ slide.text }}</div>
+            </div>
+            <!-- End Text -->
+          </div>
+          <!-- End Items -->
+        </ng-template>
+      }
+    </ngx-dp-carousel>
+  </div>
+}

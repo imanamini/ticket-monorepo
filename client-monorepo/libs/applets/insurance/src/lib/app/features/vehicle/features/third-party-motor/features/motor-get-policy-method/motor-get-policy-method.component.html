@@ -1,0 +1,94 @@
+<div class="container-get-policy-method">
+  <div class="container-get-policy-method-content container">
+    <p class="content-text">
+      نحوه دریافت بیمه‌نامه خود را مشخص کنید.
+    </p>
+    <div class="content-plate">
+      <ngx-plate
+        type="motorcycle"
+        [size]="'small'"
+        [plate]="plate()"
+        [readonly]="true"
+      ></ngx-plate>
+    </div>
+    <div id="wrapper-description-policy">
+      <p>
+        <ins-icon
+                [height]="24"
+                [name]="IconEnum.HintBlue"
+                [width]="24"
+        ></ins-icon>
+        <span>نحوه دریافت بیمه‌نامه</span>
+      </p>
+      <div>
+        <div>
+          <ins-icon
+                  [height]="24"
+                  [name]="IconEnum.Avatar"
+                  [width]="24"
+          ></ins-icon>
+          <div>
+            <b>دریافت مستقیم از «بیمه‌های من»:</b>
+            <p>بعد از صدور بیمه‌نامه از طریق حساب کاربری خود وارد«بیمه‌های من» شوید و نسخه الکترونیکی بیمه‌نامه را
+              مشاهده
+              و دانلود کنید.</p>
+          </div>
+        </div>
+        <div>
+          <ins-icon
+                  [height]="24"
+                  [name]="IconEnum.Comment"
+                  [width]="24"
+          ></ins-icon>
+          <div>
+            <b>از طریق پیامک دیجی‌پی:</b>
+            <p>بعد از صدور بیمه‌نامه از طریق پیامک ارسالی دیجی‌پی بیمه‌نامه را مشاهده و دانلود کنید.</p>
+          </div>
+        </div>
+        <ins-alert [hasIcon]="true"
+                   [size]="AlertSizeEnum.Small"
+                   text="با دانلود سریع نسخه الکترونیکی، می‌توانید تمام امور مربوط به بیمه شخص ثالث را به صورت قانونی انجام دهید.">
+        </ins-alert>
+      </div>
+    </div>
+<!--    @if (form()) {-->
+<!--      <ng-container [formGroup]="form()">-->
+<!--        <div id="wrapper-email-box">-->
+<!--          <div>-->
+<!--            <ins-icon-->
+<!--                    [height]="24"-->
+<!--                    [name]="IconEnum.EmailBlue"-->
+<!--                    [width]="24"-->
+<!--            ></ins-icon>-->
+<!--            <p>دریافت از طریق پست الکترونیکی </p>-->
+<!--            <div>-->
+<!--              <ui-form-field-->
+<!--                formControlName="isActiveEmail"-->
+<!--                type="slide-toggle"-->
+<!--              ></ui-form-field>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          @if (form().get('isActiveEmail')?.value!) {-->
+<!--            <p #emailInput>-->
+<!--              <ui-form-field-->
+<!--                      [label]="'آدرس پست الکترونیک خود را وارد کنید'"-->
+<!--                      [error]="form().controls.email.errors"-->
+<!--                      [errorMessageMapper]="errorMessages()"-->
+<!--                      inputType="email"-->
+<!--                      type="input"-->
+<!--                      formControlName="email"-->
+<!--                      class="email-input"-->
+<!--                      [showError]="showError() ? 'show':'auto'"-->
+<!--              ></ui-form-field>-->
+<!--            </p>-->
+<!--          }-->
+<!--        </div>-->
+<!--      </ng-container>-->
+<!--    }-->
+  </div>
+  <action-buttons (activeButtonClicked)="onSave()"
+                  (deActiveButtonClicked)="handleDeActiveButtonClicked()"
+                  [backgroundMode]="'gray'"
+                  activeButtonText="تایید و ادامه"
+                  deActiveButtonText="بازگشت"></action-buttons>
+</div>

@@ -1,0 +1,6 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.ex-insurer-form {
+  @include flex-column();
+  gap: 16px;
+}

@@ -1,0 +1,56 @@
+<section class="credit-stores">
+  <div class="container">
+    <h2
+      *ngIf="creditStores.title"
+      class="title"
+    >
+      {{ creditStores.title }}
+    </h2>
+    <div class="stores">
+      <div
+        class="credit-stores-next"
+        (click)="swiper.slideNext()"
+      >
+        <ngx-icon
+          [iconSize]="'24'"
+          [name]="'arrow-2-left'"
+          class="text-onback-brand"
+        ></ngx-icon>
+      </div>
+      <div
+        class="credit-stores-prev"
+        (click)="swiper.slidePrev()"
+      >
+        <span
+          [size]="24"
+          icon="icon-charon-right"
+          appUiIcon
+        ></span>
+      </div>
+      <swiper-container
+        appSwiper
+        #swiper="appSwiper"
+        [config]="config"
+        class="button-group"
+      >
+        <swiper-slide *ngFor="let store of creditStores.stores">
+          <div class="merchant-card-wrapper">
+            <app-ui-merchant-card [merchant]="store"></app-ui-merchant-card>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+    <app-ui-button
+      [link]="'/credit/merchants/'"
+      appearance="BLUE-TEXT"
+      class="bottom-btn"
+      size="BIG"
+    >
+      مشاهده تامین‌کننده‌ها
+      <ngx-icon
+        [name]="'arrow-left'"
+        class="text-onback-brand"
+      ></ngx-icon>
+    </app-ui-button>
+  </div>
+</section>

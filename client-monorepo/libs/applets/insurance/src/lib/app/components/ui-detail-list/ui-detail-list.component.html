@@ -1,0 +1,8 @@
+<div class="policy-detail-list">
+
+  <div *ngFor="let item of itemsList" class="policy-detail-item">
+    <div class="item-title">{{ item.title }}</div>
+    <div class="item-value">{{ item.value || '--' }}</div>
+  </div>
+
+</div>

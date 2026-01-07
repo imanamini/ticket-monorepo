@@ -1,0 +1,23 @@
+<svg width={size ?? 24} height={size ?? 24} viewBox="0 0 24 24" {...rest}>
+      <defs>
+        <path id="eo5oxpc1ka" d="M0 0h24v24H0z" />
+        <path id="9zc7o1grlb" d="M0 0h24v24H0z" />
+        <path
+          d="M18 3a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4h12zM8.126 13H4v4a2 2 0 0 0 1.85 1.995L6 19h12a2 2 0 0 0 1.995-1.85L20 17v-4h-4.126a4.002 4.002 0 0 1-7.748 0zM20 9H4v2h5a1 1 0 0 1 .993.883L10 12a2 2 0 0 0 3.995.15L14 12a1 1 0 0 1 .883-.993L15 11h5V9zm-2-4H6a2 2 0 0 0-1.995 1.85L4 7h16a2 2 0 0 0-1.85-1.995L18 5z"
+          id="24dm2jbdmc"
+        />
+      </defs>
+      <g fill="none" fillRule="evenodd">
+        <mask id="nswaq5h8kd" fill={color ?? '#0040FF'}>
+          <use xlinkHref="#24dm2jbdmc" />
+        </mask>
+        <use
+          fill={color ?? '#0040FF'}
+          fillRule="nonzero"
+          xlinkHref="#24dm2jbdmc"
+        />
+        <g mask="url(#nswaq5h8kd)" fill={color ?? '#0040FF'}>
+          <path d="M0 0h24v24H0z" />
+        </g>
+      </g>
+</svg>

@@ -1,0 +1,59 @@
+<common-ui-components-page-layout
+  [hasBackAction]="false"
+  [showBorder]="true"
+  [showBackIcon]="false"
+>
+  @if (!loading()) {
+    <div class="d-flex justify-content-space-between flex-column gap-medium p-medium h-100">
+      <div class="d-flex flex-column gap-minus">
+        <ngx-app-bar [title]="'لینک پرداخت'"></ngx-app-bar>
+        <escrow-payment-link-ad-summery-detail
+          [linkId]="data()!.linkId"
+          [data]="data()!.saleAdInfo"
+        ></escrow-payment-link-ad-summery-detail>
+        <div class="d-flex flex-column justify-content-space-between">
+          <div class="d-flex flex-column h-100 p-plus border-100 radius-plus border-color-light">
+            <div class="d-flex justify-content-space-between border-b-300 border-color-air py-minus">
+              <span class="b-2 text-onback-medium">مبلغ توافق شده</span>
+              <span class="st-7 text-onback-high">{{ data()?.amount | number }} ریال</span>
+            </div>
+            <div class="d-flex justify-content-space-between border-b-300 border-color-air py-minus">
+              <span class="b-2 text-onback-medium">کسب وکار</span>
+              <span class="st-7 text-onback-high">{{ data()?.merchantName }}</span>
+            </div>
+            @if (data()?.description) {
+              <div class="d-flex flex-column py-minus">
+                <span class="text-onback-medium b-2">توضیحات</span>
+                <span class="text-onback-medium b-3">{{ data()?.description }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-column gap-medium">
+        <ngx-callout
+          [title]="'توجه داشته باشید'"
+          [mode]="'single-with-title'"
+          [message]="'در صورت پرداخت، امکان بازگشت وجه وجود ندارد.'"
+        >
+        </ngx-callout>
+        <ngx-button
+          [mode]="'form'"
+          [size]="'large'"
+          [style]="'fill'"
+          [fullWidth]="true"
+          (clickHandler)="gotToUPG()"
+        >
+          تایید و ادامه
+        </ngx-button>
+      </div>
+    </div>
+  } @else {
+    <div class="d-flex h-100 w-100 justify-content-center align-items-center">
+      <ngx-spinner
+        size="lg"
+        color="primary"
+      ></ngx-spinner>
+    </div>
+  }
+</common-ui-components-page-layout>

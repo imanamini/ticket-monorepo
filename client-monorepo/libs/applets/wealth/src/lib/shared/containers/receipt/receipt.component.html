@@ -1,0 +1,16 @@
+<div class="d-flex w-100 pb-medium">
+  @if (isLoading()) {
+    <app-spinner class="h-100" />
+  } @else {
+    <div class="w-100 pb-medium">
+      <ui-ngx-payment-result
+        [showActionButton]="false"
+        [showBackIcon]="true"
+        (onBackIconClick)="onBackClicked()"
+        [trackingCode]="info()?.receiptNumber || '0'"
+        [paymentResult]="paymentResult()"
+      >
+      </ui-ngx-payment-result>
+    </div>
+  }
+</div>

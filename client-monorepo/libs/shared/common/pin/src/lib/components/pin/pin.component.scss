@@ -1,0 +1,64 @@
+:host {
+  height: 100%;
+  overflow: hidden;
+}
+
+.pin-container {
+  width: 176px;
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .hidden-input {
+    letter-spacing: 32px;
+    text-align: left;
+    padding: 0;
+    opacity: 0;
+    outline: none;
+  }
+}
+
+.pin-divs {
+  display: flex;
+  width: 100%;
+  cursor: none;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  align-items: center;
+}
+
+.circle {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .no-content {
+    color: var(--surface-dim-level-0);
+  }
+}
+
+.background {
+  position: relative;
+
+  .pin-background {
+    width: 179px;
+    height: 179px;
+    background: url('apps/dpx/src/assets/pin/pin-background.svg') no-repeat center;
+  }
+
+  .animation {
+    position: absolute;
+    top: 0;
+  }
+}
+
+.biometric-icon {
+  width: 40px;
+  height: 40px;
+  background: url('apps/dpx/src/assets/pin/biometric.svg') no-repeat center;
+}

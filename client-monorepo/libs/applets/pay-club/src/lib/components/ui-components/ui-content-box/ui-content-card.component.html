@@ -1,0 +1,22 @@
+<div>
+  <div class="d-flex align-items-center justify-content-space-between py-medium px-plus">
+    @if (cardTitle()) {
+      <h2 class="card-title st-6 text-align-right">{{ cardTitle() }}</h2>
+    }
+    @if (hasCardAction()) {
+      <div
+        class="d-flex align-items-center cursor-pointer gap-tiny"
+        (click)="onCardActionClicked()"
+      >
+        <p class="bt-2 text-onback-brand">{{ cardActionText() }}</p>
+        <common-icon-dp-icon
+          [iconSize]="'20'"
+          [class]="'text-onback-brand'"
+          [icon]="'Arrow-2-Left'"
+          [iconType]="'linear'"
+        ></common-icon-dp-icon>
+      </div>
+    }
+  </div>
+  <ng-content></ng-content>
+</div>

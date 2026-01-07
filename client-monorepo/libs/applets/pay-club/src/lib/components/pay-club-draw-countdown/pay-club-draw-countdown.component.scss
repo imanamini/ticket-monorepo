@@ -1,0 +1,35 @@
+.container {
+  height: 115px;
+  cursor: pointer;
+  background: url('apps/dpx/src/assets/pay-club/mask-bg.svg') repeat center/100%;
+  border-radius: 16px;
+}
+
+.countdown-wrapper {
+  width: 184px;
+}
+
+.heading {
+  text-align: center;
+  position: relative;
+  width: fit-content;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+
+  span {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+  }
+
+  &::after {
+    content: ' ';
+    z-index: 0;
+    display: block;
+    position: absolute;
+    bottom: 34%;
+    height: 4px;
+    width: 100%;
+    background: #ff9393;
+  }
+}

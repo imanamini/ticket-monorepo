@@ -1,0 +1,32 @@
+<app-base-layout
+  *ngIf="workingCapitalPage && workingCapitalPage.templateData"
+  [loaded]="true"
+>
+  <app-working-capital-wrapper
+    (errorType)="setErrorType($event)"
+    [class.d-none]="errorType === 'NOT_EXIST'"
+  ></app-working-capital-wrapper>
+  <app-working-capital-benefits
+    *ngIf="false"
+    [benefits]="workingCapitalPage.templateData.sectionBenefits"
+  ></app-working-capital-benefits>
+  <app-working-capital-request-form
+    *ngIf="errorType === 'NOT_EXIST' && workingCapitalPage.templateData.mainForm"
+    [contactForm]="contactForm"
+    [description]="workingCapitalPage.templateData.mainForm.description"
+    [title]="workingCapitalPage.templateData.mainForm.title"
+    id="form"
+  ></app-working-capital-request-form>
+  <!--  <app-ui-faq-->
+  <!--    *ngIf="-->
+  <!--      false &&-->
+  <!--      workingCapitalPage.templateData.faq &&-->
+  <!--      workingCapitalPage.templateData.faq.faqItems &&-->
+  <!--      workingCapitalPage.templateData.faq.faqItems.length > 0-->
+  <!--    "-->
+  <!--    [faqs]="workingCapitalPage.templateData.faq.faqItems"-->
+  <!--    [subtitle]="workingCapitalPage.templateData.faq.subtitle"-->
+  <!--    [title]="workingCapitalPage.templateData.faq.title"-->
+  <!--  >-->
+  <!--  </app-ui-faq>-->
+</app-base-layout>

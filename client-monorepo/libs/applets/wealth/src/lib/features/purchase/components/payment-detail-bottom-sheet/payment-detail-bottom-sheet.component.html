@@ -1,0 +1,154 @@
+<p
+  class="mt-big w-100 text-align-center st-6"
+  (click)="payment(false)"
+>
+  آیا اطلاعات زیر را تایید می کنید؟
+</p>
+
+<div class="w-100 d-flex flex-wrap px-plus pt-plus">
+  <div class="w-100 d-flex align-items-center gap-small">
+    <img
+      src="wealth-assets/svg/investment.svg"
+      [alt]="data()?.instrumentName || 'تامین مالی جمعی'"
+    />
+    <p class="st-6 text-onback-high">سرمایه‌گذاری</p>
+  </div>
+  <div class="w-100 mt-minus">
+    <div class="d-grid gap-small align-items-center justify-content-space-between py-minus row">
+      <div class="b-2 text-onback-disabled text-align-start">
+        @if (data().isIPO) {
+          نوع سرمایه‌گذاری
+        } @else {
+          <span>
+            @if (data()?.investmentType === 'CrowdFund') {
+              نوع سرمایه‌گذاری
+            } @else {
+              نام صندوق
+            }
+          </span>
+        }
+      </div>
+      <div class="b-2 text-onback-low text-align-end">
+        @if (data().isIPO) {
+          <span> عرضه اولیه </span>
+        } @else {
+          <span>
+            @if (data().investmentType === 'CrowdFund') {
+              تامین مالی جمعی
+            } @else {
+              {{ data()?.instrumentName }}
+            }
+          </span>
+        }
+      </div>
+    </div>
+
+    <ngx-divider
+      [color]="BorderColorsEnum.Air"
+      orientation="horizontal"
+    ></ngx-divider>
+
+    <div class="d-grid gap-small align-items-center justify-content-space-between py-minus row">
+      <div class="b-2 text-onback-disabled text-align-start">
+        @if (data().isIPO) {
+          <span> نام نماد </span>
+        } @else {
+          <span>
+            @if (data()?.investmentType === 'CrowdFund') {
+              نام طرح
+            } @else {
+              مقدار
+            }
+          </span>
+        }
+      </div>
+      <div class="b-2 text-onback-low text-align-end">
+        @if (data().isIPO) {
+          <span>
+            {{ data().instrumentName }}
+          </span>
+        } @else {
+          <span>
+            @if (data()?.investmentType === 'CrowdFund') {
+              {{ data().instrumentName }}
+            } @else {
+              {{ data()?.instrumentUnit }} واحد
+            }
+          </span>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- ? Payment info for one unit -->
+  @if (
+    (data()?.investmentType === 'CrowdFund' && data().amountRounded) ||
+    (data()?.investmentType !== 'CrowdFund' && data()?.instrumentUnit === 1) ||
+    (data().isIPO && data().ipoPaymentMethod !== 'ByCredit')
+  ) {
+    <ngx-callout
+      class="w-100 mb-minus"
+      [mode]="'single-with-title'"
+      [message]="oneUnitHintText()"
+    />
+  }
+</div>
+
+<ngx-divider
+  [color]="BorderColorsEnum.Air"
+  orientation="horizontal"
+></ngx-divider>
+
+<div class="surface-back w-100 d-flex flex-wrap px-plus pb-plus">
+  @if (!data().isIPO || !data().ipoPaymentMethod) {
+    @for (
+      item of data()?.amountBreakdown | paymentAmounts: data()?.investmentType === 'CrowdFund' : data().isIPO;
+      track item;
+      let last = $last
+    ) {
+      <div class="w-100 d-flex align-items-center justify-content-space-between my-small row">
+        <p class="b-2 text-onback-disabled text-align-start">{{ item.key }}</p>
+        <p class="b-1 text-onback-low">
+          @if (item.key === 'کارمزد') {
+            @if (item.value) {
+              {{ item.value | number }} ریال
+            } @else {
+              بدون کارمزد
+            }
+          } @else {
+            {{ item.value | number }} ریال
+          }
+        </p>
+      </div>
+
+      @if (!last) {
+        <ngx-divider
+          [color]="BorderColorsEnum.Light"
+          orientation="horizontal"
+        ></ngx-divider>
+      }
+    }
+  }
+
+  <div class="w-100 d-flex align-items-center justify-content-space-between my-medium">
+    <div class="bt-2 text-onback-high">
+      {{ data().isIPO && data().ipoPaymentMethod === 'ByCredit' ? 'مبلغ تقریبی اعتبار' : 'مبلغ پرداختی' }}
+    </div>
+    <div class="t-7 text-onback-medium">
+      {{ (data()?.amountBreakdown?.ipgPayableAmount | number) || 0 }}
+      ریال
+    </div>
+  </div>
+
+  <ngx-button
+    buttonId="PURCHASE_CONFIRM_AND_PAY"
+    [style]="'fill'"
+    [brandButton]="true"
+    size="large"
+    [fullWidth]="true"
+    [isLoading]="loading()"
+    (clickHandler)="payment()"
+  >
+    {{ data().isIPO && data().ipoPaymentMethod === 'ByCredit' ? 'تایید' : 'تایید و پرداخت' }}
+  </ngx-button>
+</div>

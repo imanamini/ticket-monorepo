@@ -1,0 +1,69 @@
+@use 'sass:map';
+@import '@digipay/base-style/styleguide';
+
+::ng-deep {
+  .bottom-sheet-content {
+    padding: 0 !important;
+
+    .py-small {
+      padding: 0 !important;
+    }
+  }
+}
+
+.barcode-container {
+  width: 100%;
+  height: calc(100% - 90px);
+  position: relative;
+  background: map.get($surface-colors, 'back');
+
+  .barcode-content {
+    background: #fff;
+    height: 100%;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 16px;
+  }
+}
+
+.ticket {
+  position: relative;
+
+  &-header {
+    display: flex;
+    justify-content: center;
+    padding-block: 15px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 16px 16px 0 0;
+    background-color: #{map.get($blue, 'tint-50')};
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &-barcode {
+    border-top: 2px dashed ;
+    margin-top: 2px;
+  }
+}
+
+.circle {
+  border-radius: 100%;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 70px;
+  background: #fff;
+
+  &-left {
+    left: -10px;
+  }
+
+  &-right {
+    right: -10px;
+  }
+}
+
+.expired-barcode {
+  filter: blur(3px);
+}

@@ -1,0 +1,19 @@
+<div class="coverage d-flex flex-column h-100">
+  <div class="sub-header pt-medium pb-medium">
+    باتوجه به نوع خسارتی که به دستگاه شما وارد شده است نوع پوشش بیمه خود را انتخاب کنید:
+  </div>
+  <div class="coverage-content d-flex flex-column pr-medium pl-medium">
+    <coverage-multi-selection
+            (coverageSelectedList)="coverageSelectedListEvent($event)"
+            [policyDraftNo]="policyId()"
+    ></coverage-multi-selection>
+  </div>
+  <action-buttons (activeButtonClicked)="onSave()"
+                  (deActiveButtonClicked)="handleDeActiveButtonClicked()"
+                  [backgroundMode]="'gray'"
+                  activeButtonText="تایید و ادامه"
+                  deActiveButtonText="بازگشت"
+  ></action-buttons>
+</div>
+
+

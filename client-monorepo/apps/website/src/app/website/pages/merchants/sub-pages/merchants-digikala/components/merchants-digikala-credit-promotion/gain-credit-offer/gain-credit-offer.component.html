@@ -1,0 +1,36 @@
+<div class="gain-credit-offer">
+  <div class="content">
+    <div class="icon">
+      <img
+        *ngIf="gainCreditOfferData.icon && gainCreditOfferData.icon.url"
+        [ngSrc]="gainCreditOfferData.icon.url"
+        height="64"
+        width="64"
+      />
+    </div>
+    <div class="titles">
+      <div class="title">
+        {{ gainCreditOfferData.title }}
+      </div>
+      <div
+        [innerHTML]="gainCreditOfferData.subtitle"
+        class="subtitle"
+      ></div>
+    </div>
+    <div class="arrow"></div>
+  </div>
+  <app-ui-button
+    *ngIf="gainCreditOfferData.firstCta && gainCreditOfferData.firstCta.title"
+    [link]="gainCreditOfferData.firstCta.link"
+    class="cta"
+    size="BIG"
+  >
+    {{ gainCreditOfferData.firstCta.title }}
+    <img
+      *ngIf="gainCreditOfferData.firstCta.icon && gainCreditOfferData.firstCta.icon.url"
+      [ngSrc]="gainCreditOfferData.firstCta.icon.url"
+      height="24"
+      width="24"
+    />
+  </app-ui-button>
+</div>

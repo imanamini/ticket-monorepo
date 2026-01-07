@@ -1,0 +1,87 @@
+<div
+  [ngClass]="{
+    'dg-not-empty': !!this.form.controls[formControlName].value,
+    'dg-focused': !!isFocused,
+    'dg-error': form.touched && form.invalid,
+    'dg-cleanable': hasCleaner,
+    'dg-ltr-input': ltrInput,
+    'dg-ltr-placeholder': ltrPlaceholder,
+  }"
+  class="dg-input-wrapper"
+>
+  <label [htmlFor]="id">
+    <span
+      *ngIf="mandatory"
+      class="label-mandatory"
+      >*</span
+    >
+    {{ label }}
+  </label>
+  <ng-container
+    *ngIf="!multiLine"
+    [formGroup]="form"
+  >
+    <div
+      [ngxTooltip]="tooltipText"
+      [tooltipPosition]="'bottom'"
+      class="w-100"
+    ></div>
+    <input
+      (focusin)="focusin()"
+      (focusout)="focusout()"
+      *ngIf="inputType === 'tel' || inputType === 'number'; else notNumeric"
+      [autocomplete]="'off'"
+      [formControlName]="formControlName"
+      [id]="id"
+      [maxLength]="maxSize"
+      [placeholder]="placeholder || ''"
+      [readonly]="readonly"
+      [type]="inputType"
+      numpad
+    />
+    <ng-template #notNumeric>
+      <input
+        (focusin)="isFocused = true"
+        (focusout)="isFocused = false"
+        [autocomplete]="inputType === 'password' ? 'new-password' : 'off'"
+        [formControlName]="formControlName"
+        [id]="id"
+        [maxLength]="maxSize"
+        [placeholder]="placeholder || ''"
+        [readonly]="readonly"
+        [type]="inputType"
+      />
+    </ng-template>
+  </ng-container>
+  <ng-container
+    *ngIf="multiLine"
+    [formGroup]="form"
+  >
+    <textarea
+      (focusin)="isFocused = true"
+      (focusout)="isFocused = false"
+      [formControlName]="formControlName"
+      [id]="id"
+      [maxLength]="maxSize"
+      [placeholder]="placeholder || ''"
+      [readonly]="readonly"
+      [rows]="6"
+    ></textarea>
+  </ng-container>
+  <div
+    (click)="clean($event)"
+    class="dg-clean-icon"
+  ></div>
+</div>
+<div
+  *ngIf="!(form.touched && form.invalid && errorMessage) && hint"
+  class="dg-hint-message"
+>
+  {{ hint }}
+</div>
+<div
+  *ngIf="form.touched && form.invalid && errorMessage"
+  class="dg-error-message"
+>
+  {{ errorMessage }}
+</div>

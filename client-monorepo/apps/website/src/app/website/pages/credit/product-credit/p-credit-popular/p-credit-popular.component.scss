@@ -1,0 +1,91 @@
+@import "../../../../../style/globals";
+
+.credit-product__popular-laptops {
+  overflow: hidden;
+}
+
+::ng-deep {
+  .owl-carousel .owl-stage-outer {
+    overflow: visible;
+  }
+}
+
+.title-section {
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.title-section span {
+  font-size: 35px;
+}
+
+.carousel-item {
+  > div {
+    border: 1px solid $swatch_steel_400;
+    border-radius: 2em;
+    padding-top: 65%;
+    position: relative;
+    transition: 0.3s;
+  }
+
+  img {
+    font-size: 18px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    transition: 0.3s all;
+    max-width: 50%;
+    max-height: 50%;
+  }
+
+  .item-title {
+    opacity: 0;
+    max-width: 100%;
+    width: 100%;
+    padding: 0 10px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .item-title,
+  img {
+    font-size: 18px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    transition: 0.3s all;
+    max-width: 50%;
+    //max-height: 50%;
+  }
+
+  &:hover {
+    background: #f7f9ff;
+    border-color: #f7f9ff;
+
+    img {
+      opacity: 0.05;
+      transform: translate(-50%, -50%) scale(1.3);
+    }
+
+    .item-title {
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .title-section span {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 577px) {
+  .title-section {
+    margin-bottom: 30px;
+  }
+}

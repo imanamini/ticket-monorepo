@@ -1,0 +1,102 @@
+<common-ui-components-page-layout
+  [title]="'جست‌و‌جو'"
+  [showBorder]="false"
+>
+  <div class="surface-high-contrast hub-search d-flex flex-column align-items-stretch justify-content-start w-100 stores-search">
+    <div class="px-plus stores-search-box surface-high-contrast pb-small">
+      <ngx-search-box
+        [mode]="'section'"
+        (searchTextChange)="doSearch($event)"
+        (searchEnd)="handleSearchState($event)"
+        [placeHolder]="'جست‌وجوی کالا یا فروشگاه'"
+        [(searchText)]="searchText"
+        (submitted)="handleSearchWithEnterKey()"
+        #searchComponent
+      ></ngx-search-box>
+    </div>
+    @if (sectionToShow() === 'SUGGESTIONS') {
+      <div class="px-plus pb-plus d-flex flex-column align-items-stretch pt-pony justify-content-start gap-minus flex-grow">
+        @if (searching()) {
+          @for (_ of rangeCreator(3); track $index) {
+            <common-stores-store-preview
+              [mode]="'horizontal'"
+              [isLoading]="true"
+            ></common-stores-store-preview>
+          }
+        } @else {
+          @if (suggestions().length) {
+            @for (suggestion of suggestions(); track $index) {
+              <div
+                class="d-flex align-items-center justify-content-start gap-minus cursor-pointer"
+                (click)="suggestionClick(suggestion)"
+              >
+                <div class="d-flex align-items-center justify-content-center surface-back radius-rounded p-small">
+                  <common-icon-dp-icon
+                    [icon]="'search'"
+                    [iconType]="'linear'"
+                    [iconSize]="'20'"
+                  ></common-icon-dp-icon>
+                </div>
+                <div class="c-2 text-onback-medium">{{ suggestion }}</div>
+              </div>
+            }
+          } @else {
+            <div
+              class="d-flex align-items-center justify-content-start gap-minus cursor-pointer"
+              (click)="suggestionClick(searchText())"
+            >
+              <div class="d-flex align-items-center justify-content-center surface-back radius-rounded p-small">
+                <common-icon-dp-icon
+                  [icon]="'search'"
+                  [iconType]="'linear'"
+                  [iconSize]="'20'"
+                ></common-icon-dp-icon>
+              </div>
+              <div class="c-2 text-onback-medium">{{ ctaSearchText() }}</div>
+            </div>
+          }
+        }
+      </div>
+    } @else if (sectionToShow() === 'SEARCH_RESULT') {
+      <div class="d-flex pb-plus flex-column align-items-start justify-content-start gap-plus flex-grow w-100">
+        @if (showStoresResult()) {
+          <stores-applet-search-result-stores
+            class="w-100 pt-pony"
+            [searchText]="searchText()"
+            (onEmpty)="handleEmptyStores()"
+          ></stores-applet-search-result-stores>
+        }
+        @if (showProductsResult()) {
+          <stores-applet-search-result-products
+            class="w-100"
+            [searchText]="searchText()"
+            (onEmpty)="handleEmptyProducts()"
+          ></stores-applet-search-result-products>
+        }
+        @if (!showProductsResult() && !showStoresResult()) {
+          <div class="d-flex justify-content-center w-100">
+            <common-ui-components-no-item [description]="'جست‌و‌جوی شما نتیجه ای نداشت!'"></common-ui-components-no-item>
+          </div>
+        }
+      </div>
+    } @else if (sectionToShow() === 'MAIN') {
+      <div class="d-flex flex-column gap-plus pt-pony">
+        <common-app-banners-shared-common-banners
+          [bannersData]="bannersData()"
+          [categoryToShow]="BannerCategory.STORE_SEARCH_RESULT_1"
+        ></common-app-banners-shared-common-banners>
+        @if (hasHistory()) {
+          <stores-applet-search-history
+            (hasHistory)="handleHasHistory($event)"
+            (itemClicked)="suggestionClick($event)"
+          ></stores-applet-search-history>
+        }
+        <stores-applet-suggested-searches (itemClicked)="suggestionClick($event)"></stores-applet-suggested-searches>
+        <common-app-banners-shared-common-banners
+          [bannersData]="bannersData()"
+          [categoryToShow]="BannerCategory.STORE_SEARCH_RESULT_2"
+        ></common-app-banners-shared-common-banners>
+      </div>
+    }
+  </div>
+</common-ui-components-page-layout>

@@ -1,0 +1,37 @@
+@import "insurance/src/lib/app/style/once/global";
+$main-color: #1159FC;
+:host {
+  display: flex;
+  height: 100%;
+}
+
+::ng-deep {
+  .device-value-container floki-header .icon-container {
+    top: 0;
+  }
+}
+
+::ng-deep ngx-alert {
+  button.ngx-button .button-label {
+    @include flex-center;
+
+    &::after {
+      content: ' ';
+      display: inline-block;
+      border-top: 2px solid #{$main-color};
+      border-left: 2px solid #{$main-color};
+      height: 10px;
+      width: 10px;
+      transform: rotate(-45deg);
+      margin-right: 8px;
+    }
+  }
+}
+
+.device-value-container {
+  .device-value-header {
+    .icon-color {
+      color: #{$main-color};
+    }
+  }
+}

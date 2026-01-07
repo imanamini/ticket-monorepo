@@ -1,0 +1,28 @@
+@import "../../style/once/global";
+
+:host {
+  width: 100%;
+}
+
+.container {
+  position: relative;
+
+  .body-container {
+    overflow: hidden;
+    will-change: auto;
+  }
+
+  .chevron-icon-container {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    bottom: -21px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    border: 1px solid #f2f5f8;
+    background: #ffffff;
+    @include flex-center;
+    cursor: pointer;
+  }
+}

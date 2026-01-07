@@ -1,0 +1,176 @@
+@if (!gettingData()) {
+  @if (isSuspended()) {
+    <app-credit-account-suspend>
+      <app-credit-app-bar
+        ngxTrackableId
+        trackerId="creditPageTitleBarSuspend'"
+        (onTextClick)="onCancelActivationClick()"
+        [buttonLink]="backButtonLink()!"
+        [closeButton]="true"
+        [actionTextMode]="'error'"
+        actionText="لغو فرایند"
+        [title]="'صف دریافت ' + serviceTypeName()"
+      >
+      </app-credit-app-bar>
+    </app-credit-account-suspend>
+  }
+
+  @if (!isSuspended()) {
+    @if (wallet()) {
+      <app-credit-app-bar
+        ngxTrackableId
+        trackerId="creditPageTitleBar"
+        (onCloseButtonClick)="closeService()"
+        (onTextClick)="onCancelActivationClick()"
+        [backButton]="!checkCloseButton()"
+        [buttonLink]="backButtonLink()!"
+        [closeButton]="checkCloseButton()!"
+        [title]="wallet()?.title"
+        actionText="لغو فرایند"
+        [actionTextMode]="'error'"
+      >
+      </app-credit-app-bar>
+    }
+    <div
+      class="flex-full-height"
+      ngxDpPullToRefresh
+      [spinnerColor]="'primary'"
+      [spinnerSize]="'xl'"
+      (refresh)="getActivationStepsData(false)"
+    >
+      <div class="top-section">
+        <app-credit-scrollable-view
+          [fadeColor]="'gray'"
+          [fullHeightContent]="true"
+          [hasFade]="true"
+          class="flex-full-height"
+        >
+          <div class="p-plus flex-full-height surface-elevated">
+            <div class="container">
+              <div class="steps-section">
+                @if (activation()) {
+                  @for (step of activation()?.steps; track step; let i = $index) {
+                    @if (step.kind !== 'WALLET_ACTIVATION') {
+                      <app-credit-step
+                        ngxTrackableId
+                        [trackerId]="'stepActionClicked' + i"
+                        (click)="stepActionClicked(step, i)"
+                        (headerClick)="stepHeaderClick(i)"
+                        [editButton]="step.statusText === 'OPERATIONAL_REJECTION' && !step.stepResult"
+                        [id]="'step' + i"
+                        [open]="step.open && (!isReadyToArchive() || !isExpired())"
+                        [progressValue]="step.stepResult ? step.stepResult : null!"
+                        [step]="step"
+                      >
+                        @if (activation()?.description) {
+                          <p
+                            class="pb-pony b-3 text-onback-high"
+                            [innerHTML]="activation()?.description"
+                          ></p>
+                        }
+                        <div class="step-cta-wrapper">
+                          @if (!isExpired() && step.actionText && step.statusText !== 'COMPLETED' && step.active) {
+                            <ngx-button
+                              size="medium"
+                              mode="section"
+                              [disabled]="!acceptedAllRequirements()"
+                              >{{ step.actionText }}
+                            </ngx-button>
+                          }
+                        </div>
+                      </app-credit-step>
+                    }
+                  }
+                  @if (activation()?.stepRequirements) {
+                    <div class="rtl">
+                      @for (requirements of activation()?.stepRequirements; track requirements; let i = $index) {
+                        @if (requirements.type === 'CHECK_BOX') {
+                          <ngx-checkbox
+                            ngxTrackableId
+                            trackerId="changeStepRequirementsAcceptance"
+                            (checkedChange)="changeStepRequirementsAcceptance(i, $event)"
+                            [checked]="acceptedStepRequirements()[i]"
+                          >
+                            {{ requirements.description.prefix }}
+                            @if (requirements.description.linkLabel) {
+                              <span
+                                ngxTrackableId
+                                trackerId="openRequirementDialog"
+                                (click)="openRequirementDialog($event, requirements.additionalLink, requirements.description.linkLabel)"
+                                class="text-onback-brand cursor-pointer"
+                              >
+                                {{ requirements.description.linkLabel }}
+                              </span>
+                            }
+                            {{ requirements.description.postfix }}
+                          </ngx-checkbox>
+                        }
+                      }
+                    </div>
+                  }
+                }
+              </div>
+            </div>
+          </div>
+          <div class="fixed-bottom-section">
+            @if (isReadyToArchive() || (!isReadyToArchive() && isExpired())) {
+              <div class="blur-background"></div>
+            }
+            @if (isReadyToArchive()) {
+              <div class="info-section surface-elevated radius-medium p-medium">
+                <app-credit-info-card [title]="'در انتظار لغو فرایند …'">
+                  <div class="c-2 text-onback-medium border-b-100 border-color-tint pb-medium">
+                    اگر از درخواست لغو منصرف شده‌اید می‌توانید ثبت‌نام خود را ادامه دهید.
+                  </div>
+                  <div class="d-flex justify-content-end mt-small">
+                    <div
+                      class="text-onback-brand bt-2 d-flex align-items-center cursor-pointer {{ revertingCancel() && 'disable' }}"
+                      (click)="revertCancelRequest()"
+                      ngxTrackableId
+                      trackerId="revertCancelRequest"
+                    >
+                      <div class="pt-micro">ادامه فرایند</div>
+                      <ngx-icon
+                        classes="text-onback-brand"
+                        name="arrow-2-left"
+                        type="linear"
+                      ></ngx-icon>
+                    </div>
+                  </div>
+                </app-credit-info-card>
+              </div>
+            }
+            @if (!isReadyToArchive() && isExpired()) {
+              <div class="info-section p-medium surface-elevated radius-medium">
+                <app-credit-info-card [title]="'مهلت ثبت‌نام شما به پایان رسید'">
+                  <div class="c-2 text-onback-medium">
+                    - برای ادامه فرایند ثبت‌نام با پشتیبانی دیجی‌پی به شماره
+                    <a href="tel:+982153924000">02153924000</a>
+                    تماس بگیرید.
+                    <br />
+                    - برای دریافت {{ serviceTypeName() }} جدید ابتدا این فرایند را لغو کنید.
+                  </div>
+                </app-credit-info-card>
+              </div>
+            }
+            @if (activationStep()) {
+              <div class="button-section p-medium surface-elevated radius-medium">
+                <ngx-button
+                  ngxTrackableId
+                  trackerId="activateWalletButtonClick"
+                  (click)="activateWalletButtonClick()"
+                  [disabled]="!acceptedAllRequirements() || activatingWallet()"
+                  [fullWidth]="true"
+                  [isLoading]="activatingWallet()"
+                >
+                  {{ activationStep()?.title }}
+                </ngx-button>
+              </div>
+            }
+          </div>
+        </app-credit-scrollable-view>
+      </div>
+    </div>
+  }
+}
+<credit-page-loading [active]="gettingData()"></credit-page-loading>

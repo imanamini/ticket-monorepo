@@ -1,0 +1,11 @@
+@import "@digipay/base-style/styleguide.scss";
+
+
+
+
+.action {
+  background: var(--Surface-Surface-Tint, #f2f5f8);
+  > span {
+    color: var(--Steel-500, #6e798d);
+  }
+}

@@ -1,0 +1,18 @@
+<app-credit-app-bar
+  (onBackButtonClick)="back.emit()"
+  [backButton]="true"
+  title="چک ضمانت"
+></app-credit-app-bar>
+<div class="d-flex flex-column flex-grow">
+  <div class="flex-grow justify-content-center pb-plus">
+    <ngx-status-result
+      (clicked)="goToFirstStep.emit()"
+      [buttons]="buttons"
+      [title]="title"
+      [description]="description"
+      [type]="'Status'"
+      [iconState]="'error'"
+    >
+    </ngx-status-result>
+  </div>
+</div>

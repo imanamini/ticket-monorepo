@@ -1,0 +1,8 @@
+export enum BadgeStatusEnum {
+  Info = 'info',
+  Success = 'success',
+  Warning = 'warning',
+  Error = 'error',
+  Inactive = 'inactive',
+  Neutral = 'neutral',
+}

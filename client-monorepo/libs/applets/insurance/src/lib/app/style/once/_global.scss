@@ -1,0 +1,18 @@
+// This file contains shared imports for component-level SCSS files
+// Only includes mixins and variables (no global selectors)
+// Global styles and library imports are in insurance.component.scss
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import "@ng-select/ng-select/themes/material.theme.css";
+@import "../once/variables";
+@import "tools";
+@import "../mixins/device";
+@import "../mixins/flex";
+@import "../mixins/ios";
+@import "@digipay/base-style/swatch";
+@import "../once/mat-bottom-sheet";
+@import "../once/mat-dialog";
+@import "../once/ins-button";
+@import "../once/ng-select";
+@import "../once/custom-material";
+@import "../once/reset";

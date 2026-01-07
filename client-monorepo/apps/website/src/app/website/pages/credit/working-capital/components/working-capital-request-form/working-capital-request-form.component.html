@@ -1,0 +1,30 @@
+<section class="form-section">
+  <div class="container">
+    <div class="segment-content">
+      <h2
+        *ngIf="title"
+        class="text-align-center"
+      >
+        {{ title }}
+      </h2>
+      <div
+        *ngIf="description"
+        class="subtitle text-align-center"
+      >
+        {{ description }}
+      </div>
+      <div
+        class="form"
+        role="form"
+      >
+        <app-contact-form
+          (closeDialogButton)="closeDialogButton($event)"
+          *ngIf="contactForm"
+          [contactFormDefinition]="contactForm"
+          [modalType]="'working-capital'"
+          submitBtn="ارسال اطلاعات"
+        ></app-contact-form>
+      </div>
+    </div>
+  </div>
+</section>

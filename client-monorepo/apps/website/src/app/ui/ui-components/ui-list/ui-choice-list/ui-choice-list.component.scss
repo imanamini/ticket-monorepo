@@ -1,0 +1,32 @@
+@import "globals";
+
+.text {
+  color: $swatch_steel_500;
+  font-size: rem(14, 16);
+  margin-bottom: em(14, 16);
+}
+
+.options {
+  .option {
+    font-size: rem(14, 16);
+    font-weight: 500;
+    padding: 12px 0;
+    border-bottom: 1px solid $swatch_steel_200;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
+    &::after {
+      content: ' ';
+      display: inline-block;
+      height: 24px;
+      width: 24px;
+      background: url('./icons/choice-chevron.svg') no-repeat 0 0/100%;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

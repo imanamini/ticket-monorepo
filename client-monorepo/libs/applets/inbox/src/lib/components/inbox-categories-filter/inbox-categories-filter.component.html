@@ -1,0 +1,49 @@
+<div
+  class="d-flex flex-column align-items-flex-start w-100 pt-minus pb-medium"
+  xmlns="http://www.w3.org/1999/html"
+>
+  <div class="border-b-100 border-color-light w-100 d-flex align-items-center gap-micro py-small pr-medium">
+    <ngx-button
+      [mode]="'icon-only'"
+      [style]="'link'"
+      [size]="'small'"
+      (click)="closeBottomSheet()"
+      [rightIcon]="{ name: 'close' }"
+    ></ngx-button>
+    <span class="st-6"> فیلترها </span>
+  </div>
+  <div class="pt-low w-100">
+    @for (item of checkBoxList(); track item; let last = $last) {
+      <div
+        class="d-flex flex-row justify-content-start align-items-center py-medium pr-medium"
+        [ngClass]="!last ? 'border-b-100 border-color-light' : ''"
+      >
+        <ngx-checkbox
+          class="align-items-flex-start gap-minus"
+          [checked]="item.checked"
+          (checkedChange)="handleCheckChange(item.id, $event)"
+        ></ngx-checkbox>
+        <span class="b-2 text-onback-medium pr-small">{{ item.title }}</span>
+      </div>
+    }
+  </div>
+  <div class="d-flex align-items-center justify-content-center w-100 gap-small text-onback-medium px-medium pt-low">
+    <ngx-button
+      [size]="'medium'"
+      [style]="'tinted-on-elevated'"
+      (clickHandler)="closeBottomSheet()"
+    >
+      انصراف
+    </ngx-button>
+
+    <ngx-button
+      [mode]="'form'"
+      [size]="'medium'"
+      [fullWidth]="true"
+      [style]="'fill'"
+      (clickHandler)="submitFilter()"
+    >
+      ثبت تغییرات
+    </ngx-button>
+  </div>
+</div>

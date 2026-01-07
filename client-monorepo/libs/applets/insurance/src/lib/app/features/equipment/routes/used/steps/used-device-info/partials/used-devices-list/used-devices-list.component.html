@@ -1,0 +1,59 @@
+@if (loading$ | async) {
+  <ui-loading-spinner></ui-loading-spinner>
+} @else {
+  <div class="devices-list">
+    <div class="hint">
+      دستگاهی که قصد خرید بیمه برای آن را دارید انتخاب کنید.
+    </div>
+    @if (showThisDeviceInfo) {
+      <div class="list-title">
+        دستگاه فعلی شما
+      </div>
+      @defer {
+        <used-device-details-card
+          (clicked)="handleSelfDeviceClick()"
+          [id]="'0'"
+          [isActive]="(selectedPurchase?.productModel === thisDeviceInfo.deviceModel || (!selectedPurchase && storedDeviceInfo.modelTitle === thisDeviceInfo.deviceModel))"
+          [mode]="'SINGLE-DATA'"
+          [model]="thisDeviceInfo.deviceModel"
+          [title]="thisDeviceInfo.brand">
+        </used-device-details-card>
+      }
+    }
+
+    @if (purchaseList?.length > 0) {
+      <div class="list-title">
+        دستگاه های خریداری شده شما
+      </div>
+      @defer {
+        @for (purchase of purchaseList; let i = $index; track purchase.id){
+          <used-device-details-card
+            (clicked)="handleDeviceClick($event)"
+            [buyDate]="purchase.buyDate"
+            [id]="purchase.id"
+            [isActive]="(selectedPurchase?.serialNumber === purchase.serialNumber || (!selectedPurchase && storedDeviceInfo.serialNumber === purchase.serialNumber))"
+            [mode]="'MULTI-DATA'"
+            [model]="purchase.productModel"
+            [title]="purchase.title">
+          </used-device-details-card>
+        }
+      }
+    }
+
+    <div (click)="handleOtherDevice()"
+         class="other-device">
+      میخواهم دستگاه دیگری را بیمه کنم
+    </div>
+
+    <div class="buttons">
+      <journey-buttons
+        (nextClicked)="goToNextStep()"
+        [disableNext]="!selectedPurchase || !selectedPurchase.productBrand"
+        [hideBackBtn]="true"
+        [idValue]="'used-devices-list'"
+        [isReversed]="false"
+        nextText="ثبت درخواست">
+      </journey-buttons>
+    </div>
+  </div>
+}

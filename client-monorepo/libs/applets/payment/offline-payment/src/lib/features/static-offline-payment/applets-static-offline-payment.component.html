@@ -1,0 +1,46 @@
+@if (!gettingData()) {
+  <common-ui-components-page-layout
+    [stickyHeader]="true"
+    title="فاکتور پرداخت"
+  >
+    <div class="invoice">
+      <div class="invoice-info">
+        <div class="info-title">
+          <div class="text-onback d-flex gap-small align-items-center">
+            <common-icon-dp-icon
+              [icon]="'receipt-bill'"
+              [iconSize]="'24'"
+            ></common-icon-dp-icon>
+            <div class="st-6">{{ items.merchantName }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="tracking-code">
+        <p>
+          <span>{{ items.merchantUniqueId }}</span>
+        </p>
+      </div>
+
+      <ui-form-field
+        label="مبلغ"
+        [type]="'large-amount'"
+        [(ngModel)]="amount"
+      ></ui-form-field>
+
+      <div class="mt-medium">
+        <ngx-button
+          (clickHandler)="pay()"
+          [mode]="'form'"
+          [size]="'large'"
+          [style]="'fill'"
+          [fullWidth]="true"
+        >
+          پرداخت فاکتور
+        </ngx-button>
+      </div>
+    </div>
+    <div class="logo">
+      <div class="logo-img"></div>
+    </div>
+  </common-ui-components-page-layout>
+}

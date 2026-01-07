@@ -1,0 +1,72 @@
+<div class="w-100 d-flex flex-wrap">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'تامین مالی جمعی'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <app-filter
+    class="my-plus"
+    [filters]="filters()"
+    (filterSelected)="selectFilter($event)"
+  />
+  @if (loading()) {
+    <app-spinner class="h-100"></app-spinner>
+  } @else {
+    <div class="w-100 px-medium d-flex flex-wrap">
+      @if (crowdList()?.length > 0 && notifyOption()) {
+        <app-notify-me
+          class="w-100 mb-medium"
+          (notifyMeClicked)="notifyMe()"
+        />
+      }
+
+      @if (crowdList()?.length > 0) {
+        @for (crowd of crowdList(); track crowd) {
+          <app-crowd-list-item
+            class="w-100 d-flex flex-wrap surface-elevated radius-big p-plus mb-medium"
+            [crowd]="crowd"
+            (goDetail)="crowdDetail(crowd)"
+          />
+        }
+      } @else {
+        <div class="w-100 d-flex flex-wrap align-items-center justify-content-center align-content-center position-relative empty-state">
+          <img
+            src="./wealth-assets/svg/crowd-empty-state.svg"
+            alt="empty"
+          />
+
+          <span class="w-100 st-8 text-onback-high text-align-center"> در حال حاضر طرحی وجود ندارد </span>
+          <span class="w-100 bt-2 text-onback-medium text-align-center">
+            {{
+              notifyOption()
+                ? 'می‌توانید با لمس دکمه «خبرم کن» از فرصت‌های سرمایه‌گذاری جدید با خبر شوید. '
+                : 'به محض ایجاد فرصت جدید سرمایه‌گذاری شما را با خبر می‌کنیم.'
+            }}
+          </span>
+
+          <div class="w-100 d-flex justify-content-center notify-button">
+            <ngx-button
+              [style]="'fill'"
+              (clickHandler)="notifyMe()"
+              size="medium"
+              [disabled]="!notifyOption()"
+              [fullWidth]="true"
+              [isLoading]="loading()"
+              [buttonId]="'CROWD_NOTIFY_ME'"
+              [rightIcon]="notifyOption() ? { name: 'notification', type: 'linear' } : null"
+            >
+              {{ notifyOption() ? 'خبرم کن!' : 'خبرتان میکنیم' }}
+            </ngx-button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

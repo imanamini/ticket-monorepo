@@ -1,0 +1,179 @@
+@import "@digipay/base-style/styleguide";
+
+
+.credit-header-section {
+
+  .header-big-title {
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 67px;
+  }
+
+  .card {
+    position: relative;
+    width: 445px;
+
+    .card-info {
+      width: 100%;
+      position: absolute;
+      top: 38px;
+      padding: 32px 40px 32px 32px;
+
+      .amount {
+        font-size: 50px;
+        font-weight: 600;
+        color: #fff;
+        height: 58px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .logo {
+        img {
+          width: 44px;
+          height: 44px;
+        }
+      }
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .merchant-logos-wrapper {
+    overflow: hidden;
+    position: relative;
+
+    &:before {
+      content: '';
+      background: linear-gradient(90deg, #F2F3F6 28.65%, rgba(242, 243, 246, 0.00) 100%);
+      width: 89px;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+    }
+
+    .merchant-logos {
+      animation: moveLeft 8s linear infinite;
+
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+
+  .credit-header-section {
+    justify-content: space-between;
+
+    .credit-header-content-col {
+      max-width: 637px;
+    }
+  }
+}
+
+
+@keyframes moveLeft {
+  from {
+    transform: translatex(0);
+  }
+  to {
+    transform: translatex(100%);
+  }
+}
+
+
+@media (max-width: 1280px) {
+  .credit-header-section {
+    margin-top: map-get($spacing-sizes, 'plus') !important;
+    flex-direction: column;
+    gap: 40px !important;
+
+    .card {
+      width: 335px;
+
+      .card-info {
+        top: 27px;
+        padding: 24px 32px 24px 24px;
+
+        .title-container {
+          margin-bottom: 12px !important;
+        }
+
+        .title {
+          font-size: 18px !important;
+          line-height: 32px !important;
+          margin-bottom: 10px;
+        }
+
+        .logo {
+          img {
+            width: 32px;
+            height: 32px;
+          }
+        }
+
+        .limition-title {
+          font-size: 12px !important;
+        }
+
+        .amount {
+          font-size: 38px !important;
+          height: 41px;
+          margin-bottom: 17px !important;
+        }
+
+        .subtitle {
+          font-size: 12px !important;
+        }
+      }
+
+    }
+
+    .merchant-logos-wrapper {
+      &:after, &:before {
+        display: none;
+      }
+    }
+
+    .credit-header-content-col {
+      order: 2;
+      text-align: center;
+      margin-top: 0 !important;
+
+      .header-big-title, .header-small-title {
+        font-size: 14px !important;
+        display: inline-block;
+      }
+      .header-big-title{
+        font-weight: 800 !important;
+        line-height: 16px;
+      }
+
+      .header-subtitle {
+        display: none;
+      }
+
+      .actions {
+        justify-content: center;
+        flex-direction: row-reverse;
+        margin-top: 40px !important;
+      }
+
+    }
+
+    .credit-header-card-col {
+      order: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

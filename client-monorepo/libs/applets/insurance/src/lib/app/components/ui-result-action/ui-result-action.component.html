@@ -1,0 +1,29 @@
+<app-card [hasHeader]="false">
+  <div card-body class="result-container">
+    <div class="result-content">
+      <div
+              [class.failed]="status =='FAILED'"
+              [class.success]="status =='SUCCESS'"
+              class="illustration"
+      ></div>
+      <ng-content></ng-content>
+      <p class="title">{{ title }}</p>
+      <p class="description">{{ description }}</p>
+    </div>
+  </div>
+  <div
+          [class.gap]="outlineButtonText"
+          card-footer
+          class="bottom-box">
+    <ui-button
+            (click)="primaryButtonOnClick.emit()">
+      {{ primaryButtonText }}
+    </ui-button>
+    <ui-button
+            (click)="outlineButtonOnClick.emit()"
+            *ngIf="outlineButtonText"
+            [appearance]="'OUTLINE-STEEL'">
+      {{ outlineButtonText }}
+    </ui-button>
+  </div>
+</app-card>

@@ -1,0 +1,79 @@
+@import "globals";
+
+::ng-deep {
+  .mat-mdc-dialog-container {
+    padding: 24px;
+    border-radius: 24px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .mat-bottom-sheet-container {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .modal-simple {
+    direction: rtl;
+
+    .dialog-body {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 24px;
+
+      .details-box {
+        .top-part {
+          display: flex;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 300;
+          line-height: 200%;
+          letter-spacing: -0.7px;
+
+          .icon {
+            padding-left: 8px;
+          }
+        }
+
+        .subtitle {
+          display: flex;
+          padding: 0 6px;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 300;
+          line-height: 200%;
+          letter-spacing: -0.6px;
+
+          .icon {
+            padding-left: 8px;
+          }
+        }
+
+        .items {
+          display: flex;
+          flex-direction: column;
+          margin: 12px 0;
+          gap: 8px;
+
+          .item {
+            display: flex;
+            padding: 16px;
+            background-color: $swatch_steel_100;
+            border-radius: 12px;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 200%;
+            letter-spacing: -0.6px;
+
+            img {
+              margin-left: 6px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

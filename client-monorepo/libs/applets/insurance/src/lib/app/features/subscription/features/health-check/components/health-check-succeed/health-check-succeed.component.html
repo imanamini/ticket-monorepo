@@ -1,0 +1,14 @@
+<ng-container>
+  <div class="health-check-succeed d-flex flex-column align-items-center justify-content-center text-onback-medium">
+    <div class="succeed-title text-onback-success">
+      تست موفق بود
+    </div>
+    <div class="succeed-text text-onback-medium" id="used-health-check-success">
+      تست صفحه لمسی دستگاه شما با موفقیت انجام شد. می‌توانید برای صدور بیمه نامه خود اقدام کنید.
+    </div>
+    <ui-button
+            (clicked)="closeDialog(true)">
+      <span>صدور بیمه نامه</span>
+    </ui-button>
+  </div>
+</ng-container>

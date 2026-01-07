@@ -1,0 +1,180 @@
+<ng-container>
+  @switch (message()?.template) {
+    @case (MessageTemplateEnum.SIMPLE) {
+      <ng-template #SIMPLE_POPUP_TEMPLATE>
+        <div>
+          <div class="d-flex justify-content-space-between align-items-center">
+            @if (message()?.title) {
+              <span class="st-5">{{ message()?.title }}</span>
+            }
+            @if (message()?.parseBadge) {
+              <ngx-badge
+                [status]="message()?.parseBadge?.status ?? 'info'"
+                [size]="'tiny'"
+                [mode]="message()?.parseBadge?.mode ?? 'fill'"
+              >
+                {{ message()?.parseBadge?.text }}
+              </ngx-badge>
+            }
+          </div>
+          @if (message()?.safeContent) {
+            <div
+              class="b-3 text-onback-medium app-message-html-content"
+              [innerHTML]="message()?.safeContent"
+            ></div>
+          }
+        </div>
+        <div class="d-flex justify-content-center align-items-center gap-small">
+          @if (message()?.parseCta) {
+            <ngx-button
+              [size]="'medium'"
+              [mode]="'form'"
+              [style]="'tinted-on-elevated'"
+              (clickHandler)="closeModal()"
+            >
+              بستن
+            </ngx-button>
+            <ngx-button
+              [size]="'medium'"
+              [mode]="'form'"
+              [style]="'fill'"
+              (clickHandler)="onCtaClicked()"
+            >
+              {{ message()?.parseCta?.text }}
+            </ngx-button>
+          } @else {
+            <ngx-button
+              [size]="'medium'"
+              [mode]="'form'"
+              [fullWidth]="true"
+              [style]="'tinted-on-elevated'"
+              (clickHandler)="closeModal()"
+            >
+              بستن
+            </ngx-button>
+          }
+        </div>
+      </ng-template>
+    }
+    @case (MessageTemplateEnum.AVATAR) {
+      <ng-template #AVATAR_POPUP_TEMPLATE>
+        <div class="d-flex flex-column align-items-center justify-content-center gap-minus">
+          @if (message()?.parseAvatar) {
+            <ngx-avatar
+              [config]="{
+                size: 'xxl',
+                type: 'logo_fill',
+                src: message()?.parseAvatar?.imageId ?? '',
+                colorBadge: message()?.parseAvatar?.badgeType,
+                iconBadgeName: message()?.parseAvatar?.badgeIcon,
+                showTopBadge: !!message()?.parseAvatar?.badgeIcon,
+              }"
+            ></ngx-avatar>
+          }
+          @if (message()?.title) {
+            <span class="st-5">{{ message()?.title }}</span>
+          }
+          @if (message()?.safeContent) {
+            <div
+              class="b-3 text-onback-medium app-message-html-content"
+              [innerHTML]="message()?.safeContent"
+            ></div>
+          }
+          <div class="d-flex justify-content-center align-items-center gap-small">
+            @if (message()?.parseCta) {
+              <ngx-button
+                [size]="'medium'"
+                [mode]="'form'"
+                [style]="'tinted-on-elevated'"
+                (clickHandler)="closeModal()"
+              >
+                بستن
+              </ngx-button>
+              <ngx-button
+                [size]="'medium'"
+                [mode]="'form'"
+                [style]="'fill'"
+                (clickHandler)="onCtaClicked()"
+              >
+                {{ message()?.parseCta?.text }}
+              </ngx-button>
+            } @else {
+              <ngx-button
+                [size]="'medium'"
+                [mode]="'form'"
+                [fullWidth]="true"
+                [style]="'tinted-on-elevated'"
+                (clickHandler)="closeModal()"
+              >
+                بستن
+              </ngx-button>
+            }
+          </div>
+        </div>
+      </ng-template>
+    }
+    @case (MessageTemplateEnum.BANNER) {
+      <ng-template #BANNER_POPUP_TEMPLATE>
+        <div class="d-flex flex-column align-items-center justify-content-center gap-minus">
+          <ui-api-image
+            [imageId]="message()?.bannerImageId ?? ''"
+            [width]="'100%'"
+            [styles]="{
+              'aspect-ratio': '3.33',
+            }"
+          ></ui-api-image>
+          <div class="d-flex justify-content-space-between w-100 align-items-center">
+            @if (message()?.title) {
+              <span class="st-5">{{ message()?.title }}</span>
+            }
+            @if (message()?.parseBadge) {
+              <ngx-badge
+                [status]="message()?.parseBadge?.status ?? 'info'"
+                [size]="'tiny'"
+                [mode]="message()?.parseBadge?.mode ?? 'fill'"
+              >
+                {{ message()?.parseBadge?.text }}
+              </ngx-badge>
+            }
+          </div>
+          @if (message()?.safeContent) {
+            <div
+              class="b-3 text-onback-medium app-message-html-content"
+              [innerHTML]="message()?.safeContent"
+            ></div>
+          }
+          <div class="d-flex justify-content-center align-items-center gap-small w-100">
+            @if (message()?.parseCta) {
+              <ngx-button
+                [size]="'medium'"
+                [mode]="'form'"
+                [style]="'tinted-on-elevated'"
+                (clickHandler)="closeModal()"
+              >
+                بستن
+              </ngx-button>
+              <ngx-button
+                [size]="'medium'"
+                [mode]="'form'"
+                [style]="'fill'"
+                (clickHandler)="onCtaClicked()"
+              >
+                {{ message()?.parseCta?.text }}
+              </ngx-button>
+            } @else {
+              <ngx-button
+                [size]="'medium'"
+                [mode]="'form'"
+                [fullWidth]="true"
+                [style]="'tinted-on-elevated'"
+                (clickHandler)="closeModal()"
+              >
+                بستن
+              </ngx-button>
+            }
+          </div>
+        </div>
+      </ng-template>
+    }
+  }
+</ng-container>

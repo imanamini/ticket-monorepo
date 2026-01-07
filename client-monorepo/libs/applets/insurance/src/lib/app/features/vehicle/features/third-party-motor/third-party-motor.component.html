@@ -1,0 +1,22 @@
+<div class="w-100 h-100 d-flex flex-column"
+     [style.backgroundColor]="stepperConfig.backgroundGray ? '#f2f5f8' : '#ffffff'">
+  @if (stepperConfig.isShowHeader) {
+    <insurance-header
+      title="بیمه موتور سیکلت"
+      (closeIconClicked)="onClose()"
+    ></insurance-header>
+  }
+  @if (stepperConfig.isShowStepper) {
+    <third-party-stepper [backgroundGray]="stepperConfig.backgroundGray"
+                         [currentStep]="stepperConfig.currentStep"
+                         [totalSteps]="stepperConfig.totalSteps"
+                         [stepName]="stepperConfig.stepName"
+                         [title]="stepperConfig.title"
+    ></third-party-stepper>
+  }
+  <section class="container"
+           [style.height.%]="(stepperConfig.isShowHeader && stepperConfig.isShowStepper) ? 90 : 100"
+  >
+    <router-outlet></router-outlet>
+  </section>
+</div>

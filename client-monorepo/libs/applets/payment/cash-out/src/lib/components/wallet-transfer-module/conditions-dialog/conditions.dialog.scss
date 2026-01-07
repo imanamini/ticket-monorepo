@@ -1,0 +1,68 @@
+@import "@digipay/base-style/mixins/responsive";
+@import "@digipay/base-style/swatch";
+
+:host {
+  display: flex;
+  height: 100%;
+  direction: rtl;
+}
+
+/**
+  .scrollable & overflow: scroll property are necessary
+  in order to make it work on iOS devices
+ */
+.scrollable {
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.conditions-dialog-wrapper conditions-dialog {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+:host ::ng-deep iframe {
+  width: 100%;
+  flex-grow: 1;
+  overflow: scroll;
+  direction: rtl;
+}
+
+.conditions-dialog-wrapper {
+
+  iframe.should-confirm {
+    padding-bottom: 60px;
+  }
+
+  .accept-button-wrapper {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 56%, rgba(255, 255, 255, 0) 100%);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 38px 16px 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@include small_screen() {
+  .conditions-dialog-wrapper {
+    width: 100%;
+    height: 100%;
+    max-width: 100% !important;
+    .mat-mdc-dialog-container {
+      border-radius: 0;
+    }
+  }
+}
+
+@include small_screen() {
+  .conditions-dialog-wrapper {
+    width: 600px;
+    height: 90%;
+    max-width: 90% !important;
+  }
+}

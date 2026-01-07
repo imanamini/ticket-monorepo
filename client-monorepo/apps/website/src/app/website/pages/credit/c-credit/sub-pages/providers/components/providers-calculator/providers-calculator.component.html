@@ -1,0 +1,26 @@
+<section [ngClass]="certainPlan() ? 'bg-white' : ''">
+  <div class="container">
+    <div class="text-align-left">
+      <app-ui-button
+        (click)="back()"
+        appearance="BLUE-TEXT"
+        size="SMALL"
+      >
+        بازگشت
+        <ngx-icon
+          [name]="'arrow-left'"
+          class="text-onback-brand"
+        ></ngx-icon>
+      </app-ui-button>
+    </div>
+    <app-credit-calculator-v3
+      (selectedAmountChangeEmitter)="onSelectedAmountChange($event)"
+      (selectedCollateral)="changeCollateral($event)"
+      (selectedInstallmentChangeEmitter)="onSelectedInstallmentChange($event)"
+      [certainFundProviderCode]="fundProvider()?.fundProviderCode"
+      [certainPlan]="certainPlan()"
+      [title]="'طرح‌های اعتباری ' + (fundProvider()?.fundProviderNameFa || '')"
+      class="calculator"
+    ></app-credit-calculator-v3>
+  </div>
+</section>

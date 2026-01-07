@@ -1,0 +1,148 @@
+@import "reset";
+@import "@ng-select/ng-select/themes/material.theme.css";
+@import "@digipay/base-style/styleguide";
+@import "base/variables";
+@import "fonts";
+@import "app-header-styles";
+@import '@angular/cdk/overlay-prebuilt.css';
+
+* {
+  box-sizing: border-box;
+  font-family: $font-family !important;
+  font-feature-settings: $base-font-feature-settings !important;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+}
+
+:root {
+  scroll-behavior: auto;
+
+  --full-height: 100vh;
+  @supports (height: 100dvh) {
+    --full-height: 100dvh;
+  }
+
+  --full-width: 100vw;
+  @supports (width: 100svw) {
+    --full-width: 100svw;
+  }
+
+  --mat-bottom-sheet-container-background-color: #fff;
+}
+
+html {
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--onback-shade-80);
+  transition: $transition-base;
+  border-radius: 24px;
+
+  &:hover {
+    background: var(--btn-text-neutral-link);
+  }
+}
+
+@include medium_screen {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+body {
+  margin: 0 !important;
+}
+
+.feedback-filed .ng-dropdown-panel .scroll-host {
+  background: #fff;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.walk-through-prev-btn button {
+  background-color: map-get($shade-colors, onback-shade-20) !important;
+}
+
+#hub-scanner-btn button {
+  background-color: #000436 !important;
+}
+
+.text-no-wrap {
+  text-wrap: nowrap;
+}
+.white-space-no-wrap {
+  white-space: nowrap;
+}
+
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.group-list-item .dg-hint-message {
+  display: none;
+}
+
+.page-layout-header-action-icon {
+  .icon-close-linear::before {
+    content: url('data:image/svg+xml; utf8, <svg width="24px" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6L18 18" stroke="black" style="stroke:black;stroke-opacity:1;" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M18 6L6 18" stroke="black" style="stroke:black;stroke-opacity:1;" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>') !important;
+  }
+}
+
+.surface-transparent {
+  background: transparent;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.text-wrap {
+  text-wrap: wrap;
+}
+
+.text-nowrap {
+  text-wrap: nowrap;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+}
+
+.title-summary-btn {
+  position: absolute;
+  left: 0;
+
+  button {
+    padding: 0 !important;
+    justify-content: flex-end !important;
+  }
+}
+
+@media screen and (min-width: 550px) {
+  .all-width-container {
+    background: #424c5c99;
+
+    .bottom-sheet-container {
+      background: transparent !important;
+    }
+  }
+}
+
+.low-performance *:not(ui-ngx-payment-result):not(ui-ngx-payment-result *) {
+  animation-timing-function: step-end !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+}

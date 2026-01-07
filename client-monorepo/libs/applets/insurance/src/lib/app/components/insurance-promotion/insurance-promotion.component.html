@@ -1,0 +1,25 @@
+<div class="pb-plus insurance-promotion" id="gradient-background">
+  <div class="d-flex flex-column gap-small align-items-center justify-content-center">
+    <div class="st-1 text-align-center text-onback-low">{{ title() }}</div>
+    <div class="st-2 text-align-center text-onback-high">{{ firstSubtitle() }}</div>
+    <div class="st-5 text-align-center text-onback-medium" (click)="onSecondSubtitleClick()">{{ secondSubtitle() }}</div>
+  </div>
+  <div class="promotions mt-huge d-flex flex-column align-items-center justify-content-center gap-medium">
+    @for (promotion of promotions(); track $index) {
+      <div class="w-100 promotion d-flex flex-row gap-minus align-items-start justify-content-start">
+        <div class="icon d-flex align-items-center justify-content-center radius-rounded surface-high-contrast">
+          <img [ngSrc]="promotion.icon"
+               [alt]="promotion.title"
+               [width]="40"
+               [height]="40"
+               [loading]="'lazy'">
+        </div>
+        <div>
+          <div class="title c-1 text-onback-medium">{{ promotion.title }}</div>
+          <div class="description c-2 text-onback-low">{{ promotion.description }}</div>
+        </div>
+      </div>
+    }
+  </div>
+  <div class="pb-plus"></div>
+</div>

@@ -1,0 +1,57 @@
+<div class="header st-6 border-b-100 border-color-light py-small px-plus mt-medium">ویرایش اطلاعات</div>
+<section class="my-plus">
+  <div
+    class="form px-plus"
+    [formGroup]="form"
+  >
+    <ui-form-field
+      formControlName="alias"
+      [label]="'نام میانبر'"
+      [inputType]="'text'"
+      [maxSize]="15"
+      [hasCleaner]="true"
+      class="alias-field"
+    ></ui-form-field>
+  </div>
+
+  <div class="icons pr-plus d-flex gap-minus">
+    <common-ui-components-horizontal-scroll>
+      @for (icon of iconsList(); track icon) {
+        <div
+          class="surface-back p-small cursor-pointer radius-medium"
+          [ngClass]="{ 'selected-icon surface-brand-tint': icon === selectedIcon() }"
+          (click)="onSelectIcon(icon)"
+        >
+          <common-icon-dp-icon
+            [iconSize]="'32'"
+            [icon]="C2C_FREQUENT_TRANSACTION_ICON_NAME_MAPPING[icon]"
+            [iconType]="'bold'"
+            [classes]="icon === selectedIcon() ? 'text-onback-brand' : 'text-onback-disabled'"
+          ></common-icon-dp-icon>
+        </div>
+      }
+    </common-ui-components-horizontal-scroll>
+  </div>
+  <div>
+    <div class="actions d-flex px-plus justify-content-space-between gap-medium mt-mega">
+      <ngx-button
+        class="cancel"
+        [style]="'tinted-on-elevated'"
+        (clickHandler)="close()"
+        [size]="'medium'"
+      >
+        انصراف
+      </ngx-button>
+      <ngx-button
+        class="save"
+        [disabled]="form.invalid || spinner()"
+        [fullWidth]="true"
+        (clickHandler)="save()"
+        [isLoading]="spinner()"
+        [size]="'medium'"
+      >
+        ذخیره تغییرات
+      </ngx-button>
+    </div>
+  </div>
+</section>

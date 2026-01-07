@@ -1,0 +1,32 @@
+<div
+  class="prize-card"
+  (click)="selectPrize()"
+>
+  <div class="information-wrapper">
+    <ui-api-image
+      class="logo"
+      [imageId]="prize.info.business.imageId"
+      width="28px"
+    ></ui-api-image>
+    <div class="information">
+      <p class="prize-title">{{ prize.info?.title }}</p>
+      <p class="prize-description">{{ prize.info?.briefDescription }}</p>
+      <div class="status">
+        <span class="text score">{{ prize.info?.score }}-</span>
+        @if (!prize.acquisitionResult.code) {
+          <span class="text state">
+            {{ DRAW_STATUS_TRANSLATION[prize.acquisitionResult.status] }}
+          </span>
+        }
+      </div>
+    </div>
+  </div>
+  <span class="icon icon-arrow-left">
+    <common-icon-dp-icon
+      [icon]="'arrow-2-left'"
+      [iconType]="'linear'"
+      [iconSize]="'24'"
+      [classes]="'text-onback-brand'"
+    ></common-icon-dp-icon>
+  </span>
+</div>

@@ -1,0 +1,54 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+:host {
+  display: block;
+  width: 100%;
+
+  .card-container {
+    &.selected {
+      border-color: $primary-blue !important;
+    }
+  }
+
+  .selection {
+    input[type=checkbox] {
+      cursor: pointer;
+      position: relative;
+      appearance: none;
+      font-size: inherit;
+      width: 16px;
+      margin: 0;
+      color: inherit;
+      outline: none;
+      font-family: 'Font Awesome 6 Free';
+
+      &::before {
+        font-family: 'Font Awesome 6 Free';
+        content: '\f111';
+        display: inline-block;
+        text-align: center;
+        font-size: 16px;
+        color: #424c5c;
+      }
+
+      &:checked::before {
+        font-weight: 900;
+      }
+
+      &:checked {
+        + span {
+          color: #0037d1;
+        }
+      }
+    }
+
+    input[type=checkbox]:checked::before {
+      font-family: 'Font Awesome 6 Free';
+      content: '\f058';
+      font-size: 16px;
+      color: #0037d1;
+      cursor: pointer;
+    }
+  }
+}
+

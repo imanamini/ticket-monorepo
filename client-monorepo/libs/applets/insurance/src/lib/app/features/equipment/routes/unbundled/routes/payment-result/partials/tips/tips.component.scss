@@ -1,0 +1,181 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.drawer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  @extend %radius-norm;
+  width: 740px;
+  height: 120px;
+  margin: 48px auto;
+  background: #f2f5f8;
+  transition: .2s ease-in-out all;
+
+  &.expand {
+    height: 1050px;
+    padding: 50px;
+
+    .content {
+      opacity: 1;
+      visibility: visible;
+      height: 100%;
+      cursor: default;
+    }
+
+    .footer {
+      .icon {
+        transform: rotateZ(90deg);
+      }
+    }
+  }
+
+  .header {
+    color: #002fa3;
+    text-align: center;
+  }
+
+  .content {
+    visibility: hidden;
+    opacity: 0;
+    transition: .2s ease-in-out all;
+    height: 0;
+
+    .content-header {
+      padding: 40px 0;
+
+      .title {
+        font-size: 1.2rem;
+        color: #002fa3;
+      }
+
+      .body {
+        margin: 20px 0;
+        font-size: .9rem;
+        color: #6e798d;
+        line-height: 1.7;
+      }
+    }
+
+    .declare-claim {
+      @include flex-start-between;
+
+      .declare-claim-content {
+        .content-title {
+          margin-top: 60px;
+          font-size: 1.2rem;
+          color: #002fa3;
+          margin-bottom: 15px;
+        }
+
+        .description {
+          font-size: .9rem;
+          color: #6e798d;
+          line-height: 2.5;
+        }
+      }
+
+      .image {
+        background: url("/insurance-assets/images/umbrella.png") no-repeat;
+        background-size: contain;
+        width: 250px;
+        height: 250px;
+      }
+    }
+
+    .present-documents {
+      .content {
+        .header {
+          text-align: right;
+          font-size: 1.2rem;
+          color: #002fa3;
+        }
+
+        .documents-describe {
+          text-align: right;
+          font-size: .9rem;
+          color: #424c5c;
+          margin: 20px 0;
+        }
+
+        .list {
+          list-style: disc;
+
+          .list-item {
+            margin-right: 20px;
+            padding: 5px 0;
+
+            &::marker {
+              color: #ff8800;
+              font-size: 24px;
+            }
+          }
+        }
+      }
+    }
+
+
+  }
+
+  .footer {
+    cursor: pointer;
+    @include flex-center;
+    color: $primary-blue;
+
+    .icon {
+      transition: .2s ease-in-out all;
+      transform: rotateZ(270deg);
+      width: 24px;
+      height: 24px;
+      background: url("/insurance-assets/icons/icon-general-arrow-left.svg");
+    }
+  }
+}
+
+@include mediaTablet() {
+  .drawer {
+    margin: 40px auto;
+    min-width: 350px;
+    width: 100%;
+
+    &.expand {
+      padding: 10px;
+      justify-content: start;
+      height: 1230px;
+
+      .header {
+        margin-top: 60px;
+      }
+    }
+
+    .content {
+      width: 100%;
+
+      .list {
+        .list-item {
+          line-height: 1.9;
+        }
+      }
+
+      .declare-claim {
+
+        .declare-claim-content {
+          .content-title {
+            margin-top: 0
+          }
+
+        }
+
+        .image {
+          display: none;
+        }
+      }
+    }
+
+    .header {
+      transition: 1s ease all;
+      line-height: 1.9;
+    }
+  }
+}

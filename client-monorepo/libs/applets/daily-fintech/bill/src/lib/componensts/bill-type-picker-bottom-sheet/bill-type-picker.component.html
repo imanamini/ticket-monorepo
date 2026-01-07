@@ -1,0 +1,66 @@
+<div class="page-content">
+  <div>انتخاب دوره پرداخت</div>
+  <!-- MidTerm -->
+  <div
+    class="d-flex surface-back radius-medium p-minus pr-medium gap-minus align-items-center mt-minus"
+    [ngClass]="'cursor-pointer'"
+    (click)="clickedBillItemType(sheetData().data.midTerm)"
+  >
+    <div class="img-background">
+      <ui-api-image
+        [styles]="{ borderRadius: '50%' }"
+        [imageId]="sheetData().data.midTerm.imageId"
+        [width]="'24px'"
+        [height]="'24px'"
+      ></ui-api-image>
+    </div>
+
+    <div class="d-flex flex-column flex-basis-1">
+      <span class="c-2 text-onback-medium">میان دوره</span>
+      <div class="d-flex gap-tiny">
+        <span class="text-onback-low l-3">برای شماره {{ sheetData().number }}</span>
+      </div>
+    </div>
+
+    <ngx-button
+      [mode]="'section'"
+      [size]="'small'"
+      [style]="'link'"
+      [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+    >
+      {{ sheetData().data.midTerm.amount | thousands }} ریال
+    </ngx-button>
+  </div>
+
+  <!-- FinalTerm-->
+  <div
+    class="d-flex surface-back radius-medium p-minus pr-medium gap-minus align-items-center mt-minus"
+    [ngClass]="'cursor-pointer'"
+    (click)="clickedBillItemType(sheetData().data.finalTerm)"
+  >
+    <div class="img-background">
+      <ui-api-image
+        [styles]="{ borderRadius: '50%' }"
+        [imageId]="sheetData().data.finalTerm.imageId"
+        [width]="'24px'"
+        [height]="'24px'"
+      ></ui-api-image>
+    </div>
+
+    <div class="d-flex flex-column flex-basis-1">
+      <span class="c-2 text-onback-medium">پایان دوره</span>
+      <div class="d-flex gap-tiny">
+        <span class="text-onback-low l-3">برای شماره {{ sheetData().number }}</span>
+      </div>
+    </div>
+
+    <ngx-button
+      [mode]="'section'"
+      [size]="'small'"
+      [style]="'link'"
+      [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+    >
+      {{ sheetData().data.finalTerm.amount | thousands }} ریال
+    </ngx-button>
+  </div>
+</div>

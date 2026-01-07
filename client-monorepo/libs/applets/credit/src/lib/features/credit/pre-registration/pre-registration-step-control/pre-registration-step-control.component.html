@@ -1,0 +1,31 @@
+@if (initiated()) {
+  @if (!errorType()) {
+    @switch (activeStep()?.type) {
+      @case (stepType().BASE) {
+        <app-pre-registration-step-base class="d-flex flex-column flex-grow"></app-pre-registration-step-base>
+      }
+      @case (stepType().CONDITIONS) {
+        <app-pre-registration-step-conditions-plan class="d-flex flex-column flex-grow"></app-pre-registration-step-conditions-plan>
+      }
+      @case (stepType().COLLATERAL) {
+        <app-pre-registration-step-collateral class="d-flex flex-column flex-grow"></app-pre-registration-step-collateral>
+      }
+      @case (stepType().PRE_SUBSCRIPTION) {
+        <app-pre-registration-step-pre-subscription class="d-flex flex-column flex-grow"></app-pre-registration-step-pre-subscription>
+      }
+      @case (stepType().SUBSCRIPTION) {
+        <app-pre-registration-step-subscription class="d-flex flex-column flex-grow"></app-pre-registration-step-subscription>
+      }
+      @case (stepType().CONFIRM_PLAN) {
+        <app-pre-registration-step-confirm-plan class="d-flex flex-column flex-grow"></app-pre-registration-step-confirm-plan>
+      }
+    }
+  } @else {
+    <app-pre-registration-no-plan
+      class="d-flex flex-column flex-grow"
+      [errorType]="errorType()"
+    ></app-pre-registration-no-plan>
+  }
+} @else {
+  <credit-page-loading [active]="true"></credit-page-loading>
+}

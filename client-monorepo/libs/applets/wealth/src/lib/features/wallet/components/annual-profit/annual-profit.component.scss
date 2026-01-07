@@ -1,0 +1,25 @@
+.title {
+  position: absolute;
+  left: 0;
+  top: 11px;
+}
+
+.month-title {
+  width: 52px;
+  max-width: 52px;
+}
+
+.bar-container {
+  flex: 1;
+}
+
+.bar {
+  height: 20px;
+  background-color: #00c888;
+}
+
+.profit-text {
+  display: flex;
+  flex: 1;
+  max-width: fit-content;
+}

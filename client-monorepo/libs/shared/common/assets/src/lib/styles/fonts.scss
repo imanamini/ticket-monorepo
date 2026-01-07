@@ -1,0 +1,26 @@
+@import "@digipay/base-style/styleguide";
+@import "base/variables";
+$i: 100;
+$weights: [];
+@while $i <= 1000 {
+  $weights: append($weights, $i);
+  $i: $i + 5;
+}
+@include font-face(
+    'iranyekan',
+    $weights,
+    'libs/shared/common/assets/src/lib/fonts/',
+    normal,
+    woff2,
+    '',
+    swap,
+    true);
+@include font-face(
+    'yekan-bakh',
+    $weights,
+    'libs/shared/common/assets/src/lib/fonts/',
+    normal,
+    woff woff2,
+    '',
+    swap,
+    true);

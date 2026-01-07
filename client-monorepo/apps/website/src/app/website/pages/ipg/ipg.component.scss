@@ -1,0 +1,303 @@
+::ng-deep {
+  .ipg-intro-section section {
+    overflow: hidden;
+  }
+
+  .basic-segment-verso .container .section-upg .basic-segment-content,
+  .section-upg .basic-segment-figure {
+    width: 50% !important;
+  }
+}
+
+.algorithm-explanation_art {
+  font-size: 12px;
+}
+
+.algorithm-explanation_art_logo img {
+  max-width: 30% !important;
+}
+
+.algorithm-explanation_art_logo {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  background-color: #4a76fa;
+  border-radius: 25px;
+  box-shadow: 0 15px 30px -5px rgb(96 129 226 / 0.6);
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 40px;
+}
+
+.algorithm-explanation_art_logo:before {
+  content: '';
+  width: 100%;
+  position: absolute;
+  border-top: 2px dashed #e5e9f5;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: -60px;
+  z-index: -2;
+}
+
+.algorithm-explanation_art_logo:after {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  content: '';
+  background-color: #4a76fa;
+  border-radius: 25px;
+  z-index: -1;
+}
+
+.algorithm-explanation_art_items {
+  width: 100%;
+  padding-right: 260px;
+}
+
+li.algorithm-explanation_art_item:last-child {
+  margin-bottom: 0;
+}
+
+.algorithm-explanation_art_items > ul:before {
+  content: '';
+  width: 40%;
+  height: calc(100% - 60px);
+  position: absolute;
+  border-radius: 0 20px 20px 0;
+  border: 2px dashed #e5e9f5;
+  border-left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: -60px;
+  z-index: 0;
+}
+
+.algorithm-explanation_art_items > ul {
+  position: relative;
+}
+
+li.algorithm-explanation_art_item:before {
+  /* content: ""; */
+  width: 40%;
+  position: absolute;
+  border-radius: 0 20px 20px 0;
+  border-top: 2px dashed #e5e9f5;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: -60px;
+  z-index: 0;
+}
+
+li.algorithm-explanation_art_item:last-child:before,
+li.algorithm-explanation_art_item:first-child:before {
+  border: none;
+}
+
+.algorithm-explanation_art_logo:before {
+  content: '';
+  width: 100%;
+  position: absolute;
+  border-top: 2px dashed #e5e9f5;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: -60px;
+  z-index: -2;
+}
+
+.algorithm-explanation_art_logo:after {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  content: '';
+  background-color: #4a76fa;
+  border-radius: 2.5em;
+  z-index: -1;
+}
+
+li.algorithm-explanation_art_item {
+  list-style: none;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+li.algorithm-explanation_art_item > div {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px -10px #e8edfb;
+  padding: 18px 25px;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  z-index: 1;
+  position: relative;
+}
+
+.algorithm-explanation_art_item-icon {
+  margin-left: 20px;
+  display: flex;
+  max-height: 30px;
+}
+
+.algorithm-explanation_art_item-title {
+  font-size: 12px;
+  line-height: normal;
+  font-weight: 400;
+}
+
+@media (max-width: 1000px) {
+  .algorithm-explanation_art_items {
+    padding-right: 0;
+  }
+
+  .algorithm-explanation_art_logo {
+    right: auto;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    top: 50px;
+    z-index: 1;
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+  }
+
+  .algorithm-explanation_art_logo:before {
+    border-top: 0;
+    border-right: 2px dashed #e5e9f5;
+    width: auto;
+    height: 100%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    left: 50%;
+    display: none;
+  }
+
+  .algorithm-explanation_art {
+    padding: 180px 50px 60px 50px;
+  }
+
+  .algorithm-explanation_art_items > ul:before {
+    border-radius: 0;
+    border: 0;
+    border-right: 3px dashed #e5e9f5;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: auto;
+    height: calc(100% + 70px);
+    right: auto;
+    top: auto;
+    bottom: 0;
+  }
+
+  li.algorithm-explanation_art_item:before {
+    display: none;
+  }
+
+  li.algorithm-explanation_art_item {
+    max-width: 450px;
+    margin: auto auto 30px;
+    text-align: center;
+  }
+
+  li.algorithm-explanation_art_item:after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #fafbff;
+    bottom: -22px;
+    border-radius: 100px;
+    border: 2px solid rgb(204 212 236 / 0.5);
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+
+  li.algorithm-explanation_art_item:last-child:after {
+    display: none;
+  }
+}
+
+.universal-payment-gateway.content-block {
+  margin-bottom: 2rem;
+}
+
+.upg-gateway-notice.notice {
+  background-color: #7381ab;
+  border-radius: 20px;
+  color: #fff;
+  border: unset !important;
+  padding: 12px 15px;
+  font-weight: 600;
+  text-align: justify;
+  margin-top: 10px;
+}
+
+#ipg-gateway-notice {
+  border: 2px solid #ccd4ec;
+  border-radius: 24px;
+  padding: 12px;
+  margin-top: 20px;
+  font-weight: 600;
+  text-align: justify;
+}
+
+.UPG-image {
+  position: relative;
+  width: 390px;
+  height: 560px;
+  float: left;
+  border-radius: 25px;
+  box-shadow: 0 0 70px -40px #7381ab;
+  background-size: cover;
+}
+
+.UPG-image:before,
+.UPG-image:after {
+  content: '';
+  position: absolute;
+  width: 125%;
+  background-color: #f2f4f9;
+  z-index: -1;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 100em;
+  padding-top: 125%;
+}
+
+.UPG-image:after {
+  background: none;
+  border: 4px dotted #f2f4f9;
+  width: 145%;
+  padding-top: 145%;
+}
+
+@media (max-width: 992px) {
+  .basic-segment-recto > .container {
+    flex-direction: column-reverse;
+  }
+  .UPG-image {
+    float: none;
+    display: block;
+    margin: 50px auto 80px;
+  }
+}
+
+@media (max-width: 500px) {
+  .UPG-image {
+    width: 70vw;
+    height: 100vw;
+  }
+}

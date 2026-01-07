@@ -1,0 +1,39 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.brand-picker {
+  @include flex-column;
+  @include flex-center;
+  gap: 16px;
+  width: 100%;
+  padding-bottom: 90px;
+
+  .divider {
+    width: 100%;
+    border-top: 1px solid #f2f5f8;
+  }
+
+  .hint {
+    @include flex-row;
+    @include flex-center-between;
+    width: 100%;
+    color: #2c3544 !important;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .brands-list {
+    @include flex-row;
+    @include flex-center;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    product-brand-card {
+      flex: 1;
+    }
+  }
+}

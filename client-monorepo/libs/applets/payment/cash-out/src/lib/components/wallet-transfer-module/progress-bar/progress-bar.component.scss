@@ -1,0 +1,12 @@
+.context-bar {
+  display: flex;
+  border-radius: 10px;
+  height: 10px;
+  flex-direction: row-reverse;
+  width: 100%;
+  .progress-bar {
+    border-radius: 10px;
+    height: 10px;
+    margin: 0;
+  }
+}

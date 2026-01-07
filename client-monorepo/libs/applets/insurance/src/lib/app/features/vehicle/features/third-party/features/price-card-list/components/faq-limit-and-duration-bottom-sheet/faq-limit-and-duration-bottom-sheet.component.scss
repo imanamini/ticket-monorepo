@@ -1,0 +1,20 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+:host {
+  height: 92%;
+}
+
+.faq-limit-and-duration {
+  overflow: auto;
+
+  .faq-list {
+    flex: 1;
+    overflow: auto;
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
+  }
+}

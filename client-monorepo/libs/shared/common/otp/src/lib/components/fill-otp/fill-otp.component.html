@@ -1,0 +1,96 @@
+<div class="d-flex flex-column align-items-center mt-45">
+  <div class="d-flex align-items-center">
+    <span class="text-onback-medium st-2 ml-minus h-24">{{ phoneNumber() }}</span>
+    @if (editButton()) {
+      <common-icon-dp-icon
+        [icon]="'Edit-square'"
+        [iconType]="'linear'"
+        [iconSize]="'24'"
+        classes="text-onback-brand"
+        (click)="goBackToPhoneNumberState()"
+      ></common-icon-dp-icon>
+    }
+  </div>
+  <p class="text-onback-medium b-1 mb-big">
+    {{ title() }}
+  </p>
+  <ng-template
+    #otpInput
+    let-id="id"
+  >
+    <input
+      id="otp-{{ id }}"
+      class="digit"
+      type="tel"
+      maxlength="1"
+      [disabled]="otp[otpLength() - 1] !== '' || isAutoFill()"
+      (keydown)="otpChange($event, id)"
+      (keyup)="removeControlKeyPressed()"
+      [(ngModel)]="otp[id]"
+      (paste)="handlePaste()"
+      (ngModelChange)="pasteFromClipboard()"
+      autocomplete="one-time-code"
+    />
+  </ng-template>
+  <div
+    class="otp w-100"
+    [ngClass]="{ 'otp-err': (hint() && !this.loginStateService.isRetry()) || externalErrorMessage() !== '' }"
+  >
+    @for (i of rangeCreator(otpLength()); track $index) {
+      <ng-container
+        [ngTemplateOutlet]="otpInput"
+        [ngTemplateOutletContext]="{ id: $index }"
+      ></ng-container>
+    }
+    <span
+      class="l-3 w-100 rtl text-align-center mh-25"
+      [ngClass]="this.loginStateService.isRetry() ? 'text-onback-brand' : 'text-onback-error'"
+      >{{ hint() || externalErrorMessage() }}</span
+    >
+  </div>
+
+  @if (isTwiceButton()) {
+    <div class="d-flex gap-medium mt-big w-100">
+      <ngx-button
+        class="flex-grow"
+        [style]="'tinted-on-elevated'"
+        [size]="'large'"
+        [fullWidth]="true"
+        (clickHandler)="sendOtpAgain()"
+      >
+        {{ isTimerFinished ? 'ارسال دوباره' : timer() }}
+      </ngx-button>
+      <ngx-button
+        class="flex-grow"
+        [disabled]="otp[otpLength() - 1] === '' || isLoading() || isAutoFill()"
+        [isLoading]="isLoading()"
+        (clickHandler)="checkOrResendOTP()"
+        [size]="'large'"
+        [fullWidth]="true"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  } @else if (isSubmitButton()) {
+    <ngx-button
+      class="flex-grow"
+      [disabled]="otp[otpLength() - 1] === '' || isLoading()"
+      [isLoading]="isLoading()"
+      (clickHandler)="checkOrResendOTP()"
+      [size]="'large'"
+      [fullWidth]="true"
+    >
+      تایید و ادامه
+    </ngx-button>
+  } @else {
+    <ngx-button
+      class="flex-grow mt-medium"
+      [style]="'tinted-on-elevated'"
+      [size]="'large'"
+      [fullWidth]="true"
+      (clickHandler)="sendOtpAgain()"
+    >
+      {{ isTimerFinished ? 'ارسال دوباره' : timer() }}
+    </ngx-button>
+  }
+</div>

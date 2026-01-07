@@ -1,0 +1,18 @@
+<section class="dialog">
+  <div
+    class="close"
+    (click)="close()"
+  ></div>
+  <header>بانک خارج از دسترس است!</header>
+  <div class="description">
+    {{ description }}
+  </div>
+  <ngx-button
+    (clickHandler)="close()"
+    [style]="'tinted-on-elevated'"
+    [fullWidth]="true"
+    [size]="'medium'"
+  >
+    متوجه شدم
+  </ngx-button>
+</section>

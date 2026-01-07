@@ -1,0 +1,22 @@
+.lock-icon {
+  background: url('./icon/lock-icon.svg') no-repeat center/56px;
+  width: 100%;
+  height: 56px;
+  margin-bottom: 20px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin: 48px 0 0;
+
+  .primary {
+    width: 55%;
+    max-width: 200px;
+  }
+}
+
+.error-message {
+  text-align: center;
+  margin: 24px 0;
+}

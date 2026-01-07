@@ -1,0 +1,49 @@
+@import "@digipay/base-style/swatch";
+
+:host{
+  background-color: $swatch_white_900;
+}
+
+.offtime-error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $swatch_white_900;
+  height: calc(100dvh - 5.5rem);
+  flex-direction: column;
+  padding: 0 1rem;
+
+  .offtime-error-content {
+    display: flex;
+    width: 26rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.16667rem;
+    color: $swatch_steel_900;
+    flex: 1;
+
+    .offtime-error-title {
+      font-weight: 700;
+      margin-top: 2.67rem;
+      margin-bottom: 0;
+      font-size: 1.16667rem;
+      text-align: center;
+    }
+
+    .offtime-error-description {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+
+  }
+
+  .offtime-error-buttons {
+    display: flex;
+    margin-top: 1rem;
+    gap: 1.33rem;
+    padding: 2rem;
+  }
+}

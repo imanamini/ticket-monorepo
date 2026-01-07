@@ -1,0 +1,49 @@
+.asset {
+  min-width: 155px;
+  height: 72px;
+  position: relative;
+  overflow-y: hidden;
+
+  &-iconbox {
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &-bg {
+    height: 90px;
+    width: 90px;
+    position: absolute;
+    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+
+    &.pattern-blue {
+      background-image: url('libs/shared/common/assets/src/lib/images/blue-pattern.svg');
+    }
+
+    &.pattern-gold {
+      background-image: url('libs/shared/common/assets/src/lib/images/gold-pattern.svg');
+    }
+
+    &.pattern-silver {
+      background-image: url('libs/shared/common/assets/src/lib/images/silver-pattern.svg');
+    }
+
+    &.pattern-bronze {
+      background-image: url('libs/shared/common/assets/src/lib/images/bronze-pattern.svg');
+    }
+
+    &.pattern-purple {
+      background-image: url('libs/shared/common/assets/src/lib/images/purple-pattern.svg');
+    }
+
+    &.pattern-diamond {
+      background-image: url('libs/shared/common/assets/src/lib/images/diamond-pattern.svg');
+    }
+
+    &.pattern-brilliance {
+      background-image: url('libs/shared/common/assets/src/lib/images/brilliance-pattern.svg');
+    }
+  }
+}

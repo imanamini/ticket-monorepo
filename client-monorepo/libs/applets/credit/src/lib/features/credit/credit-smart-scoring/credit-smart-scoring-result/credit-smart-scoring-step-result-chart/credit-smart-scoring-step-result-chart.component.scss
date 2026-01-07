@@ -1,0 +1,34 @@
+@import "@digipay/base-style/styleguide";
+
+:host {
+  display: block;
+}
+
+* {
+  direction: rtl;
+}
+
+svg {
+  display: block;
+  margin: 0 auto;
+
+  #track {
+    stroke: #{map-get($surface-colors, "back")};;
+  }
+
+  #progress {
+    stroke: #{map-get($text-colors, "onback-brand")};;
+  }
+
+  #amount {
+    fill: #{map-get($text-colors, "onback-high")};
+  }
+
+  #letter {
+    fill: #{map-get($text-colors, "onback-medium")};
+  }
+
+  .label {
+    fill: #{map-get($text-colors, "onback-low")};
+  }
+}

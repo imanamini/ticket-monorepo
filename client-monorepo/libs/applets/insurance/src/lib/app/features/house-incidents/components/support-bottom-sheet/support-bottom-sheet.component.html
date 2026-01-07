@@ -1,0 +1,37 @@
+<div>
+  <div class="w-100 py-atom px-atom d-flex flex-column radius-medium surface-high-contrast">
+    <ngx-list-item
+            (click)="navigateToFaq()"
+            class="cursor-pointer radius-medium py-small"
+            [showToggle]="false"
+            [leftIcon]="{name: 'arrow-2-left', classes: 'text-onback-high'}"
+            title="سوالات متداول">
+      <div right-content>
+        <ngx-icon name="question-mark-circle" classes="text-onback-high"></ngx-icon>
+      </div>
+    </ngx-list-item>
+    <ngx-divider [color]="BorderColorsEnum.Tint"></ngx-divider>
+    <ngx-list-item
+            (click)="navigateToTermsAndCondition()"
+            class="cursor-pointer radius-medium py-small"
+            [showToggle]="false"
+            [leftIcon]="{name: 'arrow-2-left', classes: 'text-onback-high'}"
+            title="شرایط و مقررات بیمه">
+      <div right-content>
+        <ngx-icon name="docuemnt-file" classes="text-onback-high"></ngx-icon>
+      </div>
+    </ngx-list-item>
+    <ngx-divider [color]="BorderColorsEnum.Tint"></ngx-divider>
+    <a [href]="phoneNumber()" class="pt-small py-small">
+      <ngx-list-item
+              class="cursor-pointer radius-medium"
+              [showToggle]="false"
+              [leftIcon]="{name: 'arrow-2-left', classes: 'text-onback-high'}"
+              title="تماس با پشتیبانی">
+        <div right-content>
+          <ngx-icon name="headphone" classes="text-onback-high"></ngx-icon>
+        </div>
+      </ngx-list-item>
+    </a>
+  </div>
+</div>

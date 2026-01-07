@@ -1,0 +1,25 @@
+<app-ui-landing-element-alert-box
+  *ngIf="convertToInt(element.type) === BNPL_HELP_ELEMENT_TYPE.ALERT_BOX"
+  [payload]="element.payload"
+></app-ui-landing-element-alert-box>
+<!--<ui-landing-element-icon-card-steps *ngIf="element.type === BNPL_HELP_ELEMENT_TYPE.ICON_CARD_STEPS" [payload]="element.payload" ></ui-landing-element-icon-card-steps>-->
+<!--<ui-landing-element-image *ngIf="element.type === BNPL_HELP_ELEMENT_TYPE.IMAGE" [payload]="element.payload" ></ui-landing-element-image>-->
+<!--<ui-landing-element-link-card *ngIf="element.type === BNPL_HELP_ELEMENT_TYPE.LINK_CARD" [payload]="element.payload" ></ui-landing-element-link-card>-->
+<!--<ui-landing-element-small-text *ngIf="element.type === BNPL_HELP_ELEMENT_TYPE.SMALL_TEXT" [payload]="element.payload" ></ui-landing-element-small-text>-->
+<app-ui-landing-element-text-card
+  *ngIf="convertToInt(element.type) === BNPL_HELP_ELEMENT_TYPE.TEXT_CARD"
+  [payload]="element.payload"
+></app-ui-landing-element-text-card>
+<app-ui-landing-element-text-card-steps
+  *ngIf="convertToInt(element.type) === BNPL_HELP_ELEMENT_TYPE.TEXT_CARD_STEPS"
+  [payload]="element.payload"
+></app-ui-landing-element-text-card-steps>
+<app-ui-landing-element-alert-box-extended
+  *ngIf="convertToInt(element.type) === BNPL_HELP_ELEMENT_TYPE.ALERT_BOX_EXTENDED"
+  [payload]="element.payload"
+></app-ui-landing-element-alert-box-extended>
+<app-ui-landing-element-text-simple-items
+  (showDialog)="showDialogById($event)"
+  *ngIf="convertToInt(element.type) === BNPL_HELP_ELEMENT_TYPE.TEXT_SIMPLE_ITEMS"
+  [payload]="element.payload"
+></app-ui-landing-element-text-simple-items>

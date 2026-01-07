@@ -1,0 +1,58 @@
+.main-section {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.7;
+
+  * {
+    box-sizing: border-box;
+    direction: rtl;
+  }
+
+  .top-section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .call-to-actions-section {
+    flex-grow: 0;
+    padding: 20px 20px 40px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.page-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  .form-info {
+    flex-grow: 0;
+  }
+}
+
+.field {
+  display: block;
+  margin: 16px 0 32px;
+}
+
+.form-info {
+  max-height: 300px;
+  transition: all 0.1s;
+  overflow: hidden;
+
+  .form-info-image {
+    margin-bottom: 41px;
+
+    credit-digipay-image {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &.form-info-collapse {
+    max-height: 0;
+  }
+}

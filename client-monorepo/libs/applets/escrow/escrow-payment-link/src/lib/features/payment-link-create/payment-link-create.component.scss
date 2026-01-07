@@ -1,0 +1,16 @@
+.icon-circle {
+    width: 36px;
+    height: 36px;
+}
+
+
+  .hide {
+    visibility: hidden;
+  }
+
+    .hide-hint-with-animation {
+    transition: 1s ease all;
+    height: 0 !important;
+    padding: 0 !important;
+    transform: scale(0);
+  }

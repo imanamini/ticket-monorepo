@@ -1,0 +1,18 @@
+.credit-button-select {
+  flex-wrap: wrap;
+  direction: rtl;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.credit-button-select-collapsed {
+  .credit-button-select-option {
+    height: 28px;
+  }
+}
+.prevent-selection{
+  user-select: none;
+  pointer-events: none;
+}

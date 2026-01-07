@@ -1,0 +1,32 @@
+@import "@digipay/base-style/swatch";
+
+:host {
+  display: flex;
+  align-items: center;
+  min-width: fit-content;
+}
+
+.filter-badge {
+  border-radius: 48px;
+  padding: 0.25rem 0.5rem;
+  background-color: $swatch_white_900;
+  max-height: 28px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 2px solid $swatch_white_900;
+  transition: 0.2s;
+
+  .title {
+    font-weight: 450;
+    font-size: 12px;
+    color: black
+  }
+}
+
+.selected {
+  .title,
+  .icon {
+    color: $swatch_blue_500;
+  }
+}

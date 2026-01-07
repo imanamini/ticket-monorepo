@@ -1,0 +1,15 @@
+<div class="flex-grow">
+  <ngx-status-result
+    (finished)="onFinish()"
+    [timer]="time"
+    [title]="title"
+  >
+    <ng-container status-image>
+      <ngx-waiting-stepper
+        [state]="WaitingStepperStateEnum.PROGRESS"
+        [isSelfProgress]="true"
+        [timerDeadline]="time.timeInSeconds"
+      ></ngx-waiting-stepper>
+    </ng-container>
+  </ngx-status-result>
+</div>

@@ -1,0 +1,37 @@
+<div class="inquiry-method-select">
+  <div class="top-bar">
+    <app-ui-vehicle-simple-plate
+      [plateDetail]="vehiclePlateDetails"
+      [plateNumber]="vehiclePlateNo"
+    ></app-ui-vehicle-simple-plate>
+    <app-ui-button
+      (clicked)="previousStep()"
+      appearance="BLUE-TEXT"
+      class="cta"
+    >
+      ویرایش
+      <ngx-icon
+        [name]="'arrow-2-left'"
+        class="text-onback-brand"
+      ></ngx-icon>
+    </app-ui-button>
+  </div>
+  <div class="inquiry-method-select-body">
+    <div class="title">چه نوع استعلامی را انتخاب می کنید؟</div>
+    <div class="inquiry-methods">
+      <app-ui-inquiry-method-card
+        (clickMethod)="changeInquiryMethod(inquiryMethod.type)"
+        *ngFor="let inquiryMethod of inquiryMethods"
+        [method]="inquiryMethod"
+        [selected]="inquiryMethod.type === selectedMethod"
+      ></app-ui-inquiry-method-card>
+    </div>
+    <div class="ctas">
+      <app-ui-button
+        (clicked)="nextStep()"
+        class="submit-btn"
+        >استعلام خلافی
+      </app-ui-button>
+    </div>
+  </div>
+</div>

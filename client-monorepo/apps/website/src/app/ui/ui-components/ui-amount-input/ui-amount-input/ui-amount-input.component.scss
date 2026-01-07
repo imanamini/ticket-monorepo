@@ -1,0 +1,178 @@
+@import "globals";
+
+:host {
+  display: block;
+}
+
+.ui-amount-input {
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid #afb9c5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  direction: ltr;
+
+  &.mobile-mode {
+    border: none !important;
+  }
+
+  .unit {
+    font-weight: 700;
+    font-size: 18px;
+    color: #424c5c;
+
+    &.empty {
+      font-size: rem(18, 16);
+      font-weight: 300;
+    }
+  }
+
+  input {
+    height: 100%;
+    border: none;
+    width: auto;
+    padding: 0;
+    min-width: 10px;
+    margin-left: 10px;
+    text-align: left;
+    direction: ltr;
+    box-shadow: none;
+    font-weight: 700;
+    font-size: 18px;
+    color: #424c5c;
+
+    &:focus {
+      box-shadow: none;
+      outline: none;
+    }
+
+    &.has-placeholder {
+      min-width: 100px;
+      font-size: rem(18, 16);
+      font-weight: 300;
+    }
+  }
+
+  &.has-error {
+    border-color: $swatch_red_500 !important;
+  }
+
+  &.blue-border {
+    border: solid 2px $swatch_blue_700;
+  }
+}
+
+.hint {
+  font-size: 0.9rem;
+  color: $swatch_red_500;
+  display: block;
+  text-align: center;
+  margin-top: 6px;
+  height: 20px;
+}
+
+.ui-amount-input.disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+:host ::ng-deep {
+  mat-form-field {
+    .mat-form-field-outline-start {
+      min-width: 16px !important;
+      border-radius: 16px 0 0 16px !important;
+    }
+
+    .mat-form-field-outline-end {
+      border-radius: 0 16px 16px 0 !important;
+    }
+
+    .mat-form-field-infix {
+      padding: 10px 0;
+      height: 56px;
+      border-top: none;
+      @include flex-center;
+      justify-content: space-between;
+    }
+
+    .mat-error {
+      line-height: 16px;
+      text-align: center;
+      //@include fontSize(10);
+    }
+
+    .mat-hint {
+      line-height: 17px;
+      width: 100%;
+      text-align: center;
+      //@include fontSize(10);
+      color: #666 !important;
+    }
+
+    .mat-form-field-hint-spacer {
+      display: none;
+    }
+
+    .mat-mdc-form-field-flex {
+      input {
+        padding: 0 50px;
+      }
+
+      .counter-spinner {
+        height: 32px;
+        min-width: 32px;
+        margin-top: 3px;
+        @include flex-center;
+        //display: none !important;
+
+        &.counter-active-increase {
+          //background: url('./images/counter-blue-plus.svg') no-repeat 0 0/100%;
+          cursor: pointer;
+        }
+
+        &.counter-active-decrease {
+          //background: url('./images/counter-blue-minus.svg') no-repeat 0 0/100%;
+          cursor: pointer;
+        }
+
+        &.counter-disable-increase {
+          //background: url('./images/spinner-plus.svg') no-repeat 0 0/100%;
+          cursor: not-allowed;
+        }
+
+        &.counter-disable-decrease {
+          //background: url('./images/spinner-minus.svg') no-repeat 0 0/100%;
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    &.has-counter {
+      .mat-mdc-form-field-flex {
+        input {
+          padding: 0;
+        }
+
+        .counter-spinner {
+          display: flex !important;
+        }
+      }
+    }
+
+    &:not(.has-counter) {
+      .mat-mdc-form-field-flex {
+        &::after {
+          top: 50%;
+          left: 15px;
+          width: 32px;
+          content: ' ';
+          height: 28px;
+          position: absolute;
+          transform: translateY(-50%);
+          //background: url('./images/input-amount-rial.svg') no-repeat 0 0/100%;
+        }
+      }
+    }
+  }
+}

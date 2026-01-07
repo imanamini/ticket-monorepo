@@ -1,0 +1,47 @@
+.noteSection {
+  background: #000060;
+
+  .text {
+    width: 704px;
+  }
+}
+
+
+::ng-deep {
+  ui-button {
+    .button {
+      border-radius: 100px !important;
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .intro, .proposition, .steps {
+    margin-bottom: 32px !important;
+  }
+  .noteSection {
+    padding: 32px 20px 38px !important;
+    gap: 16px !important;
+    margin-bottom: 16px;
+
+    .text {
+      width: 100%;
+      font-size: 14px !important;
+      font-weight: 450 !important;
+    }
+
+    .cta {
+      width: 100%;
+
+      ui-button {
+        width: 100%;
+      }
+    }
+
+
+  }
+
+  .steps {
+    margin: 0 20px;
+  }
+}

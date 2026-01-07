@@ -1,0 +1,102 @@
+<section class="c-bnpl-stores">
+  <div class="container">
+    <h2 class="text-align-center">{{ cBnplStores.title }}</h2>
+    <div class="stores-wrapper">
+      <div
+        *ngIf="cBnplStores.storeCategories.length > 0"
+        class="categories"
+      >
+        <div class="cat-swiper">
+          <swiper-container
+            appSwiper
+            #swiper
+            [config]="categoriesConfig"
+            class="swiper"
+          >
+            <swiper-slide *ngFor="let category of cBnplStores.storeCategories">
+              <div
+                (click)="changeSelectedCategory(category.category)"
+                [ngClass]="selectedCategory === category.category ? 'selected' : ''"
+                class="category"
+              >
+                {{ STORE_CATEGORIES_TRANSLATION[category.category] }}
+              </div>
+            </swiper-slide>
+          </swiper-container>
+        </div>
+      </div>
+      <div class="stores">
+        <div class="stores-list">
+          <swiper-container
+            appSwiper
+            #swiper="appSwiper"
+            [config]="storesConfig"
+            class="stores-swiper"
+          >
+            <swiper-slide *ngFor="let store of filteredStoresList">
+              <div class="store">
+                <img
+                  [src]="environment.appUrl + '/mini-app/stores/' + store.imageId"
+                  class="store-logo"
+                />
+                <div class="title">{{ store.title }}</div>
+                <div class="delimiter">
+                  <div class="line"></div>
+                </div>
+                <app-ui-button
+                  [linkTarget]="'_blank'"
+                  [link]="store.website"
+                  [withoutHref]="withoutHref"
+                  appearance="BLUE-TEXT"
+                  class="cta"
+                  size="BIG"
+                >
+                  وبسایت فروشگاه
+                  <ngx-icon
+                    [name]="'arrow-left'"
+                    class="text-onback-brand"
+                  ></ngx-icon>
+                </app-ui-button>
+              </div>
+            </swiper-slide>
+          </swiper-container>
+          <div class="navigation">
+            <div
+              class="store-prev"
+              (click)="swiper.slidePrev()"
+            >
+              <ngx-icon
+                [iconSize]="'24'"
+                [name]="'arrow-2-right'"
+                class="text-onback-brand"
+              ></ngx-icon>
+            </div>
+            <div
+              class="store-next"
+              (click)="swiper.slideNext()"
+            >
+              <ngx-icon
+                [name]="'arrow-2-left'"
+                class="text-onback-brand"
+              ></ngx-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="all-categories-cta">
+      <app-ui-button
+        [linkTarget]="'_blank'"
+        [link]="'/credit/merchants'"
+        appearance="BLUE-TEXT"
+        size="BIG"
+      >
+        همه فروشگاه ها
+        <ngx-icon
+          [name]="'arrow-left'"
+          class="text-onback-brand"
+        ></ngx-icon>
+      </app-ui-button>
+    </div>
+  </div>
+</section>

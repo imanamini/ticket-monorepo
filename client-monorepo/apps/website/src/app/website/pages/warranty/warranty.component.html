@@ -1,0 +1,7 @@
+<app-base-layout [loaded]="loaded">
+  <app-warranty-intro [data]="warrantyPage"></app-warranty-intro>
+  <app-ui-section-promotion-banner
+    *ngIf="warrantyPage && warrantyPage.templateData && warrantyPage.templateData.promotion"
+    [promotionBanner]="warrantyPage.templateData.promotion"
+  ></app-ui-section-promotion-banner>
+</app-base-layout>

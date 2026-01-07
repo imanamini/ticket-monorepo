@@ -1,0 +1,36 @@
+<div class="w-100 d-flex flex-wrap">
+  <div class="w-100 d-flex justify-content-center">
+    <img
+      src="./wealth-assets/svg/check-cancel-credit-icon.svg"
+      alt=""
+    />
+  </div>
+
+  <div class="w-100 mt-big">
+    <p class="w-100 text-align-center st-7 text-onack-high">آیا از لغو اعتبار ۴ قسطه خود مطمئن هستید؟</p>
+    <p class="w-100 text-align-center b-3 text-onack-medium mt-minus">
+      با تایید این درخواست، اعتبار ۴ قسطه شما لغو و تمام موجودیتان در {{ data()?.walletName }} قابل برداشت خواهد شد. لغو اعتبار شما در صورتی
+      قابل انجام است که بدهی پرداخت نشده نداشته باشید.
+    </p>
+  </div>
+
+  <div class="w-100 gap-medium d-grid mt-large buttons-container">
+    <ngx-button
+      [style]="'tinted-on-elevated'"
+      [fullWidth]="true"
+      [size]="'medium'"
+      (clickHandler)="actionClick('CANCEL')"
+    >
+      بستن
+    </ngx-button>
+    <ngx-button
+      [buttonId]="'WALLET_BNPL_CONFIRM_CANCEL'"
+      [style]="'fill'"
+      [fullWidth]="true"
+      [size]="'medium'"
+      (clickHandler)="actionClick('CONFIRM')"
+    >
+      تایید و ادامه
+    </ngx-button>
+  </div>
+</div>

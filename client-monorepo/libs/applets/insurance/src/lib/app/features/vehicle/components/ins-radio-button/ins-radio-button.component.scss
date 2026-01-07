@@ -1,0 +1,60 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.ins-radio-button {
+
+  &.seperated {
+    @include flex-column();
+    gap: 24px;
+
+    .radio-button-item {
+      @include flex-center-start();
+      height: 56px;
+      gap: 8px;
+      border: 1px solid #afb9c5;
+      border-radius: 12px;
+      padding: 8px 16px;
+      cursor: pointer;
+
+      .item-title {
+        cursor: pointer;
+      }
+    }
+
+    .active {
+      border-color: #0040ff;
+      background-color: #f0f5ff;
+    }
+  }
+
+  &.sticked {
+    @include flex-column();
+
+    .radio-button-item {
+      @include flex-center-start();
+      height: 56px;
+      gap: 12px;
+      border-top: 1px solid #dee3e7;
+      padding: 12px 16px;
+      cursor: pointer;
+
+      .item-title {
+        color: #6e798d;
+        font-size: 14px;
+        font-weight: 400;
+        cursor: pointer;
+      }
+
+      &:last-child {
+        border-bottom: 1px solid #dee3e7;
+      }
+    }
+
+    .active {
+      background-color: #f0f5ff;
+
+      .item-title {
+        color: #0040ff;
+      }
+    }
+  }
+}

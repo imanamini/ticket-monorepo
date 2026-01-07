@@ -1,0 +1,25 @@
+<section *ngIf="posts && posts.length">
+  <div class="rest-posts">
+    <div
+      *ngFor="let post of posts"
+      class="item"
+    >
+      <app-ui-post-card [post]="post"></app-ui-post-card>
+    </div>
+  </div>
+  <div class="go-to-archive">
+    <app-ui-button
+      *ngIf="category"
+      [link]="'mag/archive/?categoryId=' + category.id"
+      appearance="BLUE-TEXT"
+      linkTarget="_blank"
+      size="BIG"
+    >
+      مشاهده همه مطالب {{ category.title }}
+      <ngx-icon
+        [name]="'arrow-2-left'"
+        class="text-onback-brand"
+      ></ngx-icon>
+    </app-ui-button>
+  </div>
+</section>

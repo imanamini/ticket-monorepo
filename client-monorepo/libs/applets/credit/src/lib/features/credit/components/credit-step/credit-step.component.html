@@ -1,0 +1,71 @@
+<div
+  class="credit-step radius-plus border-color-light p-plus mb-pony"
+  [class]="{
+    'surface-back': open(),
+    'surface-error-tint': stepError(),
+    'surface-warning-tint': stepWarning(),
+    'border-none': noBorder(),
+  }"
+>
+  <div
+    (click)="clicked()"
+    ngxTrackableId
+    trackerId="clickedOnStep'"
+    class="header {{ open() ? 'mb-small' : '' }}"
+  >
+    <div class="d-flex flex-column w-100 gap-tiny">
+      <h4
+        class="title"
+        [class]="stepTitleClass()"
+      >
+        {{ step()?.title }}
+      </h4>
+      @if (step()?.open) {
+        <span class="st-8 text-onback-high">{{ step()?.activationTitle }}</span>
+      }
+    </div>
+
+    @if (progressValue()) {
+      <div class="progress">
+        <span class="value fs-24">{{ progressValue() }}</span>
+        @if (progressMeta()) {
+          <span class="fs-10">{{ progressMeta() }}</span>
+        }
+      </div>
+    }
+
+    @switch (step()?.state?.toLowerCase()) {
+      @case (CREDIT_STEP_STATE.ERROR) {
+        <ngx-icon
+          classes="text-onback-error"
+          name="error-circle"
+          type="due"
+          iconSize="32px"
+        ></ngx-icon>
+      }
+      @case (CREDIT_STEP_STATE.WARNING) {
+        <ngx-icon
+          classes="text-onback-warning"
+          name="error-circle"
+          type="due"
+          iconSize="32px"
+        ></ngx-icon>
+      }
+      @case (CREDIT_STEP_STATE.SUCCESS) {
+        <div [style.opacity]="0.4">
+          <ngx-icon
+            classes="text-onback-success"
+            name="check-circle"
+            type="due"
+            iconSize="32px"
+          ></ngx-icon>
+        </div>
+      }
+    }
+  </div>
+  @if (open()) {
+    <div class="body">
+      <ng-content></ng-content>
+    </div>
+  }
+</div>

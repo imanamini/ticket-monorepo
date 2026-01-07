@@ -1,0 +1,849 @@
+@import "../../../../../style/globals";
+
+.section-credit-plans-types {
+  background-color: #fff;
+
+  h2 {
+    margin-bottom: 32px;
+  }
+
+  .animated-switch {
+    height: 70px;
+    border-radius: 16px;
+    border: 2px solid $swatch_steel_200;
+    padding: 8px;
+    background-color: #fff;
+
+    ::ng-deep {
+      .switch {
+        background-color: #fff;
+
+        .switch-options {
+          background-color: #fff;
+
+          .option {
+            color: $swatch_steel_400;
+            font-size: 20px;
+            font-weight: 800;
+          }
+
+          .option.selected {
+            color: $swatch_blue_500;
+            font-weight: 900;
+          }
+
+          .selected-option-highlight {
+            background-color: $swatch_blue_100;
+            border-radius: 12px;
+            border: 2px solid;
+          }
+        }
+      }
+    }
+  }
+
+  .tabs {
+    ::ng-deep {
+      .swiper-button-prev,
+      .swiper-button-next {
+        display: none;
+      }
+
+      .swiper-wrapper {
+        border-radius: 16px;
+        border: 2px solid $swatch_steel_200;
+        height: 100%;
+        width: 100%;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+
+        :first-child {
+          border-top-right-radius: 12px;
+          border-bottom-right-radius: 12px;
+        }
+
+        :last-child {
+          border-top-left-radius: 12px;
+          border-bottom-left-radius: 12px;
+        }
+
+        .swiper-slide {
+          cursor: pointer;
+          width: calc(100% / 3);
+          height: 51px;
+          padding: 0;
+          margin: 0;
+
+          .item {
+            height: 100%;
+            width: 100%;
+            margin-bottom: 0;
+            border: none;
+            background: none;
+            padding: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            span {
+              font-size: 20px;
+              color: $swatch_steel_400;
+              font-weight: 900;
+            }
+
+            &.active {
+              background-color: $swatch_blue_100 !important;
+              border-radius: 12px;
+              border: 2px solid $swatch_blue_500;
+
+              span {
+                color: $swatch_blue_500;
+              }
+            }
+
+            &:before {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .content-container {
+    margin-top: 64px;
+
+    .tab-content {
+      display: none;
+
+      &.active {
+        display: block;
+      }
+
+      .description {
+        margin-bottom: 32px;
+        font-weight: 600;
+        font-size: 18px;
+        color: #061962;
+      }
+
+      .tab-hints {
+        width: 100%;
+        border: 1px solid $swatch_steel_200;
+        padding: 16px 18px;
+        border-radius: 12px;
+        background: #f2f5f8;
+        margin-bottom: 32px;
+
+        li {
+          display: flex;
+          flex-direction: row;
+          align-items: flex-start;
+
+          .dot {
+            width: 8px;
+            height: 8px;
+            background-color: $swatch_blue_400;
+            border-radius: 50%;
+            display: inline-block;
+          }
+
+          .dot-wrapper {
+            width: 20px;
+            height: 20px;
+            background-color: $swatch_blue_200;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          span {
+            margin-right: 8px;
+          }
+
+          &.hint-title {
+            span {
+              color: $swatch_steel_900;
+              font-size: 20px;
+              font-weight: 600;
+            }
+          }
+
+          &.hint {
+            .dot-wrapper {
+              background-color: unset;
+            }
+
+            ::ng-deep {
+              .hintText {
+                p {
+                  color: $swatch_steel_900;
+                  font-size: 16px;
+                  font-weight: 400;
+
+                  a {
+                    text-decoration: revert;
+                    color: $swatch_blue_500;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .cards {
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+        min-height: 693px;
+
+        .card {
+          border: 4px solid $swatch_steel_100;
+          padding: 48px 16px 32px;
+          border-radius: 24px;
+          width: auto;
+          height: fit-content;
+          position: relative;
+
+          .cover {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: $swatch_steel_100;
+            right: 0;
+            top: 0;
+            opacity: 0.25;
+          }
+
+          .card-container {
+            display: flex;
+            gap: 24px;
+          }
+
+          &.inactive {
+            .card-container {
+              mix-blend-mode: luminosity;
+            }
+
+            &:hover {
+              .cta {
+                display: none;
+              }
+            }
+          }
+
+          .artwork {
+            width: 150px;
+            height: 115px;
+            margin-bottom: 8px;
+
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          .content {
+            flex-grow: 1;
+          }
+
+          .card-titles {
+            margin-bottom: 32px;
+          }
+
+          .card-title {
+            span {
+              font-size: 22px;
+              font-weight: 800;
+              color: $swatch_steel_900;
+            }
+          }
+
+          .card-subtitle {
+            span {
+              font-size: 16px;
+              color: $swatch_steel_500;
+            }
+          }
+
+          .card-description {
+            margin-bottom: 32px;
+
+            p {
+              text-align: justify;
+              font-size: 14px;
+              font-weight: 400;
+              color: $swatch_steel_500;
+            }
+
+            .hints {
+              list-style: disc;
+              list-style-position: inside;
+
+              li {
+                text-align: justify;
+                font-size: 14px;
+                font-weight: 400;
+                color: $swatch_steel_500;
+              }
+            }
+          }
+
+          .facilities-amount {
+            margin-bottom: 32px;
+
+            .facilities-title {
+              margin-bottom: 8px;
+              font-size: 18px;
+              font-weight: 600;
+              color: $swatch_steel_900;
+            }
+
+            .facilities-wrapper {
+              background-color: $swatch_blue_100;
+              border-radius: 12px;
+              padding: 8px 12px 8px 24px;
+
+              .facility {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                border-bottom: 1px solid #fff;
+                padding: 8px 0;
+                list-style: unset;
+                list-style-position: inside;
+
+                &:last-child {
+                  margin: 0;
+                  border: none;
+                }
+
+                .facility-title {
+                  font-size: 16px;
+                  font-weight: 400;
+                  color: $swatch_steel_400;
+                }
+
+                .facility-data {
+                  color: $swatch_steel_900;
+                  font-size: 15px;
+                  font-weight: 600;
+                }
+              }
+            }
+          }
+
+          .approved-guarantees {
+            .approved-guarantees-title {
+              font-size: 18px;
+              font-weight: 700;
+              color: $swatch_steel_900;
+              margin-bottom: 8px;
+            }
+
+            .guarantees-wrapper {
+              display: grid;
+              grid-template-columns: auto auto;
+              grid-template-rows: auto auto;
+              grid-auto-flow: column;
+              row-gap: 8px;
+
+              .guarantee {
+                display: flex;
+                align-items: center;
+
+                img {
+                  width: 24px;
+                  height: 24px;
+                  margin-left: 4px;
+                }
+
+                span {
+                  color: $swatch_steel_400;
+                  font-size: 16px;
+                  font-weight: 500;
+                }
+              }
+            }
+          }
+
+          .cta {
+            display: none;
+            margin-top: 56px;
+          }
+
+          &:hover {
+            .cta {
+              display: block;
+            }
+          }
+        }
+
+        &.quad_card {
+          display: grid;
+          grid-template-columns: auto auto auto auto;
+          min-height: 685px;
+
+          .card {
+            min-height: 579px;
+            width: 282px;
+          }
+
+          .card-container {
+            flex-direction: column;
+          }
+        }
+
+        &.single_card {
+          min-height: auto;
+          flex-direction: column;
+
+          .card {
+            padding: 32px;
+
+            .approved-guarantees {
+              .guarantees-wrapper {
+                display: flex;
+
+                .guarantee {
+                  margin-right: 8px;
+                }
+              }
+            }
+
+            .cta {
+              width: 202px;
+              height: 56px;
+              position: absolute;
+              top: -7px;
+              left: 32px;
+              display: inline-block;
+
+              ::ng-deep {
+                button {
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .features {
+        margin-top: 64px;
+        gap: 64px;
+
+        .feature {
+          display: flex;
+          flex-direction: row;
+          align-items: flex-start;
+          gap: 64px;
+          margin-top: 64px;
+          text-align: right;
+
+          //&.ltr {
+          //  flex-direction: row-reverse;
+          //}
+
+          .artwork {
+            img {
+              width: 430px;
+              height: 255px;
+              border-radius: 24px;
+            }
+          }
+
+          .content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .content-tag {
+              color: $swatch_green_500;
+              font-weight: 700;
+              font-size: 14px;
+              margin-bottom: 24px;
+            }
+
+            .content-title {
+              margin-bottom: 8px;
+              color: $swatch_steel_700;
+              font-weight: 700;
+              font-size: 22px;
+            }
+
+            .content-description {
+              font-weight: 400;
+              font-size: 16px;
+              color: $swatch_steel_500;
+              margin-bottom: 24px;
+              line-height: 29px;
+              text-align: justify;
+              direction: rtl;
+            }
+
+            .features-types {
+              display: flex;
+              flex-direction: column;
+
+              .feature-types-title {
+                margin-bottom: 16px;
+
+                p {
+                  color: $swatch_steel_700;
+                  font-size: 20px;
+                  font-weight: 700;
+                }
+              }
+
+              .feature-type {
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 8px;
+
+                .icon {
+                  border-radius: 50%;
+                  width: 25px !important;
+                  height: 25px;
+                  margin-left: 15px;
+                  background-color: $swatch_blue_100;
+                  padding: 5px 6px 6px;
+
+                  img {
+                    width: 13px;
+                    height: 13px;
+                  }
+                }
+
+                .feature-type-content {
+                  display: flex;
+                  flex-direction: column;
+
+                  .feature-type-title {
+                    font-weight: 700;
+                    font-size: 16px;
+                    color: $swatch_steel_900;
+                    margin-bottom: 4px;
+                  }
+
+                  .feature-type-description {
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 29px;
+                    color: $swatch_steel_500;
+                    text-align: justify;
+                    direction: rtl;
+                  }
+                }
+              }
+            }
+
+            .cta {
+              width: fit-content;
+
+              .icon {
+                margin-right: 4px;
+                width: 20px;
+                height: 20px;
+
+                img {
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .section-credit-plans-types {
+    .animated-switch {
+      height: 64px;
+
+      ::ng-deep .switch .switch-options {
+        .option,
+        .option.selected {
+          font-size: 13px;
+          font-weight: 900;
+        }
+      }
+    }
+
+    .tabs ::ng-deep .swiper-wrapper {
+      min-width: 650px;
+    }
+
+    .content-container {
+      margin-top: 32px;
+
+      .tab-content {
+        .cards {
+          display: grid;
+          grid-template-columns: auto auto;
+
+          .card {
+            &:not(.inactive) {
+              grid-column: 1 / 3;
+            }
+
+            .cta {
+              display: block;
+            }
+          }
+
+          &.quad_card {
+            grid-template-columns: auto auto;
+
+            .card {
+              width: auto;
+
+              &:not(.inactive) {
+                grid-column: auto;
+              }
+
+              .card-container {
+                flex-direction: column;
+                gap: 16px;
+              }
+            }
+          }
+
+          &.single_card {
+            display: flex;
+            flex-direction: column;
+
+            .card {
+              display: flex;
+              flex-direction: column;
+              gap: 24px;
+              padding: 32px;
+
+              .card-container {
+                flex-direction: column;
+                gap: 16px;
+              }
+
+              .approved-guarantees {
+                .guarantees-wrapper {
+                  display: grid;
+                  grid-template-columns: auto auto;
+
+                  .guarantee {
+                    margin-right: 8px;
+                  }
+                }
+              }
+
+              .cta {
+                position: relative;
+                display: block;
+                top: auto;
+                left: auto;
+                width: auto;
+                height: auto;
+
+                ::ng-deep {
+                  button {
+                    font-size: 16px;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .features {
+          margin-top: 0;
+          gap: 24px;
+
+          .feature {
+            flex-direction: column;
+            gap: 24px;
+
+            &.ltr {
+              flex-direction: column;
+            }
+
+            .content {
+              .content-title {
+                font-size: 20px;
+              }
+
+              .content-description {
+                font-size: 14px;
+              }
+
+              .features-types {
+                .feature-types-title p {
+                  font-size: 18px;
+                }
+
+                .feature-type .feature-type-title {
+                  font-size: 14px;
+                }
+
+                .feature-type-description {
+                  font-size: 14px !important;
+                }
+              }
+
+              .cta {
+                align-self: flex-end;
+              }
+            }
+
+            .artwork {
+              width: 100%;
+              height: auto;
+
+              img {
+                width: 100%;
+                height: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .section-credit-plans-types {
+    .animated-switch {
+      height: 53px;
+      padding: 4px 0;
+      border-radius: 10px;
+
+      ::ng-deep .switch .switch-options {
+        .option,
+        .option.selected {
+          border-radius: 8px;
+          font-size: 13px;
+          font-weight: 900;
+        }
+      }
+    }
+
+    .tabs ::ng-deep .swiper-wrapper {
+      min-width: 550px;
+      height: 61px;
+
+      .swiper-slide {
+        height: 45px;
+
+        .item {
+          padding: 10px 16px;
+
+          span {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+    .content-container {
+      margin-top: 24px;
+
+      .tab-content .tab-hints li {
+        &.hint ::ng-deep .hintText p {
+          font-size: 14px;
+        }
+
+        &.hint-title {
+          span {
+            font-size: 18px;
+          }
+        }
+      }
+
+      .tab-content {
+        .description {
+          font-size: 14px;
+        }
+
+        .cards {
+          grid-template-columns: auto;
+
+          .card {
+            grid-column: auto;
+
+            .card-title span {
+              font-size: 14px;
+            }
+
+            &:not(.inactive) {
+              grid-column: auto;
+            }
+
+            .facilities-amount {
+              .facilities-title {
+                font-size: 16px;
+              }
+
+              .facilities-wrapper .facility {
+                .facility-title,
+                .facility-data {
+                  font-size: 12px;
+                }
+              }
+            }
+          }
+
+          &.quad_card {
+            grid-template-columns: auto;
+          }
+
+          &.single_card .card .approved-guarantees .guarantees-wrapper {
+            display: flex;
+            flex-direction: column;
+
+            .guarantee {
+              margin-right: 8px;
+
+              span {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+
+        .features {
+          gap: 0;
+
+          .feature {
+            gap: 16px;
+            margin-top: 32px;
+
+            .content .features-types .feature-types-title {
+              margin-bottom: 24px;
+
+              p {
+                font-size: 16px;
+              }
+            }
+
+            .artwork {
+              width: 100%;
+
+              img {
+                max-width: 100%;
+                height: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.content {
+  height: calc(100svh - 56px);
+}
+
+.icon-container {
+  width: 96px;
+  height: 96px;
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}
+
+.pt-massive {
+  @media screen and (max-width: 414px) {
+    padding-top: 2rem !important;
+  }
+}

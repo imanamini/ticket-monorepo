@@ -1,0 +1,22 @@
+<div class="w-100 h-100 d-flex flex-wrap align-items-center justify-content-center container">
+  <img [src]="'./wealth-assets/images/pending-empty-' + state() + '.svg'" />
+
+  <p class="w-100 title mt-big">
+    شما سفارش {{ state() === 'BUY_TRANSACTION' ? 'خرید' : state() === 'SELL_TRANSACTION' ? 'فروش' : 'برداشت' }} در انتظار ندارید.
+  </p>
+
+  @if (state() === 'BUY_TRANSACTION') {
+    <span class="w-100 register-buy"> از میان دسته‌بندی‌های موجود خرید خود را ثبت کنید. </span>
+
+    <ngx-button
+      [style]="'link'"
+      [leftIcon]="{
+        name: 'arrow-left',
+        type: 'linear',
+      }"
+      (clickHandler)="startInvestment()"
+    >
+      شروع سرمایه‌گذاری
+    </ngx-button>
+  }
+</div>

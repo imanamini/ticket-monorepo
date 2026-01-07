@@ -1,0 +1,54 @@
+<section>
+  <div class="container">
+    <div class="content">
+      <div class="title">
+        {{ heroSection.title }}
+      </div>
+      <div class="subtitle">
+        {{ heroSection.subtitle }}
+      </div>
+      <div class="non-mobile-button">
+        <app-ui-button
+          [link]="heroSection.cta.link"
+          linkTarget="_blank"
+          size="BIG"
+        >
+          {{ heroSection.cta.title }}
+          <span
+            ui-icon
+            icon="icon-arrow-left-white"
+            size="24"
+          ></span>
+        </app-ui-button>
+      </div>
+
+      <div
+        class="qr"
+        *ngIf="heroSection?.qr?.url"
+      >
+        <img
+          [src]="heroSection.qr.url"
+          width="54px"
+          height="54px"
+        />
+        <div class="text-box">
+          <div class="text">دانلـود اپلیکیشن دیجی‌پی</div>
+          <div class="subtext">و درخواست وام و اعتبار خرید</div>
+        </div>
+      </div>
+    </div>
+    <div class="image">
+      <img [src]="heroSection.image.url" />
+    </div>
+
+    <div class="mobile-button">
+      <app-ui-button
+        [link]="heroSection.cta.link"
+        linkTarget="_blank"
+        size="BIG"
+      >
+        {{ heroSection.cta.title }}
+      </app-ui-button>
+    </div>
+  </div>
+</section>

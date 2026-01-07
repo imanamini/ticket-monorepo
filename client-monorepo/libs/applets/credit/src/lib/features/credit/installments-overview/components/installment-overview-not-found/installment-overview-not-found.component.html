@@ -1,0 +1,26 @@
+<div class="d-flex flex-column align-items-center">
+  <div class="p-big d-flex align-items-center justify-content-center surface-back radius-rounded">
+    <ngx-icon
+      name="receipt-bill-search"
+      type="due"
+      [iconSize]="'48px'"
+      [classes]="'text-onback-brand'"
+    />
+  </div>
+  <div class="st-3 mt-huge">{{ title() }}</div>
+  <div class="b-2 text-onback-medium text-align-center">{{ description() }}</div>
+  @if (ctaTitle()) {
+    <ngx-button
+      class="mt-huge"
+      [style]="'fill'"
+      [mode]="'section'"
+      [size]="'medium'"
+      (clickHandler)="ctaClicked.emit()"
+      [leftIcon]="{
+        name: 'arrow-2-left',
+      }"
+    >
+      {{ ctaTitle() }}
+    </ngx-button>
+  }
+</div>

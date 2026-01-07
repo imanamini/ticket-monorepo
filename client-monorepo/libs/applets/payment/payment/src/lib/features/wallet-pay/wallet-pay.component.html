@@ -1,0 +1,30 @@
+@if (!getPassword) {
+  <common-ui-components-page-layout
+    [stickyHeader]="true"
+    title="پرداخت با کیف پول"
+  >
+    @if (!gettingBalance) {
+      <div class="page-content d-flex flex-column align-items-center p-big">
+        <div class="card-wrapper w-100">
+          <ui-wallet-card [balance]="balance"></ui-wallet-card>
+        </div>
+        <div class="mt-big w-100 d-flex justify-content-end">
+          <ngx-button
+            (clickHandler)="pay()"
+            [brandButton]="true"
+          >
+            پرداخت
+          </ngx-button>
+        </div>
+      </div>
+    } @else {
+      <lib-ngx-skeleton-loading></lib-ngx-skeleton-loading>
+    }
+  </common-ui-components-page-layout>
+} @else {
+  <common-ui-components-page-layout>
+    <div class="h-100 surface-elevated px-plus d-flex flex-column justify-content-center position-relative">
+      <payment-applet-enter-password></payment-applet-enter-password>
+    </div>
+  </common-ui-components-page-layout>
+}

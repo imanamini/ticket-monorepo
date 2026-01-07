@@ -1,0 +1,104 @@
+@if (hasTitle()) {
+  <common-ui-components-title-summary
+    [isLoading]="isLoading()"
+    [title]="category().description ?? ''"
+    [showButton]="false"
+  ></common-ui-components-title-summary>
+}
+@if (insideServiceMode()) {
+  @if (!isLoading()) {
+    @if (sliderMode()) {
+      <common-ui-components-horizontal-scroll [classes]="'pt-big gap-medium'">
+        @for (service of filteredServices(); track $index) {
+          <common-ui-components-framed-icon
+            ngxRouterLoading
+            class="cursor-pointer categorize-max-width"
+            [size]="iconSize()"
+            [serviceMode]="true"
+            [border]="'border-100 border-color-air'"
+            [showText]="true"
+            [type]="service.data.imageType ?? ServiceImagesType.IMAGE_ID"
+            [iconColor]="iconColor()"
+            [bg]="bg()"
+            [text]="service.data.title || ''"
+            [showBadge]="showBadge()"
+            [badge]="showBadge() ? service.data.badge : undefined"
+            [icon]="service.data.imageType === ServiceImagesType.SRC ? '/assets/services/' + service.data.icon : service.data.icon || ''"
+            [trackerIdPrefix]="service.data.icon || ''"
+            [iconType]="'due'"
+            [enableMixedBlendMode]="serviceType() === 'bill'"
+            (click)="handleClickOnService(service)"
+          ></common-ui-components-framed-icon>
+        }
+      </common-ui-components-horizontal-scroll>
+    } @else {
+      <div class="d-grid w-100 categorized-service-grid pt-big">
+        @for (service of filteredServices(); track $index) {
+          <common-ui-components-framed-icon
+            ngxRouterLoading
+            class="cursor-pointer categorize-max-width"
+            [size]="iconSize()"
+            [serviceMode]="true"
+            [border]="'border-100 border-color-air'"
+            [showText]="true"
+            [type]="service.data.imageType ?? ServiceImagesType.IMAGE_ID"
+            [iconColor]="iconColor()"
+            [bg]="bg()"
+            [text]="service.data.title || ''"
+            [showBadge]="showBadge()"
+            [badge]="showBadge() ? service.data.badge : undefined"
+            [icon]="service.data.imageType === ServiceImagesType.SRC ? '/assets/services/' + service.data.icon : service.data.icon || ''"
+            [trackerIdPrefix]="service.data.icon || ''"
+            [iconType]="'due'"
+            [enableMixedBlendMode]="serviceType() === 'bill'"
+            (click)="handleClickOnService(service)"
+          ></common-ui-components-framed-icon>
+        }
+      </div>
+    }
+  } @else {
+    <div class="d-grid w-100 categorized-service-grid pt-big">
+      @for (item of rangeCreator(4); track $index) {
+        <lib-ngx-skeleton-loading
+          [height]="'64px'"
+          [classes]="'radius-medium'"
+          [width]="'64px'"
+        ></lib-ngx-skeleton-loading>
+      }
+    </div>
+  }
+} @else {
+  <div class="d-flex gap-minus flex-wrap pt-tiny">
+    @if (!isLoading()) {
+      @for (service of filteredServices(); track $index) {
+        <common-ui-components-framed-icon
+          ngxRouterLoading
+          class="cursor-pointer categorize-max-width"
+          [size]="iconSize()"
+          [serviceMode]="true"
+          [border]="'border-100 border-color-air'"
+          [showText]="true"
+          [type]="service.data.imageType ?? ServiceImagesType.IMAGE_ID"
+          [iconColor]="iconColor()"
+          [bg]="bg()"
+          [text]="service.data.title || ''"
+          [showBadge]="showBadge()"
+          [badge]="showBadge() ? service.data.badge : undefined"
+          [icon]="service.data.imageType === ServiceImagesType.SRC ? '/assets/services/' + service.data.icon : service.data.icon || ''"
+          [trackerIdPrefix]="service.data.icon || ''"
+          [iconType]="'due'"
+          [enableMixedBlendMode]="serviceType() === 'bill'"
+          (click)="handleClickOnService(service)"
+        ></common-ui-components-framed-icon>
+      }
+    } @else {
+      @for (item of rangeCreator(4); track $index) {
+        <lib-ngx-skeleton-loading
+          [height]="'64px'"
+          [classes]="'radius-medium'"
+          [width]="'64px'"
+        ></lib-ngx-skeleton-loading>
+      }
+    }
+  </div>
+}

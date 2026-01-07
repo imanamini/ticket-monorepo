@@ -1,0 +1,68 @@
+{
+  "$schema": "../../node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "lazy-chunks",
+      "installMode": "lazy",
+      "updateMode": "lazy",
+      "resources": {
+        "files": ["/chunk-*.js"]
+      }
+    },
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreSearch": false
+      },
+      "resources": {
+        "files": ["/favicon.ico", "/manifest.webmanifest", "/*.css", "/*.js"]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "lazy",
+      "resources": {
+        "files": ["/assets/**", "/media/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|mp4|webm|ogg|mov)", "/wealth-assets/**"]
+      }
+    }
+  ],
+  "appData": {
+    "version": "3.3.9",
+    "name": "dpx"
+  },
+  "dataGroups": [
+    {
+      "name": "index-html",
+      "urls": ["/index.html"],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxSize": 1,
+        "maxAge": "20m",
+        "timeout": "3s"
+      }
+    },
+    {
+      "name": "digipay_api",
+      "urls": ["/mini-app/**"],
+      "cacheConfig": {
+        "maxSize": 0,
+        "maxAge": "0u",
+        "strategy": "freshness"
+      }
+    },
+    {
+      "name": "api-images-dpx",
+      "urls": ["/digipay/api/files/**"],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "8h",
+        "strategy": "performance",
+        "timeout": "10s"
+      }
+    }
+  ]
+}

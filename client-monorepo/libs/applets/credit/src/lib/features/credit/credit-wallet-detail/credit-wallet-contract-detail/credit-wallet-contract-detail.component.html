@@ -1,0 +1,45 @@
+@if (!gettingData()) {
+  <app-credit-app-bar
+    [title]="contract.title"
+    [backButton]="true"
+    [actionText]="'لیست خرید'"
+    [actionImage]="'checklist'"
+    (onBackButtonClick)="onBack()"
+    (onTextClick)="goToPurchaseDetail()"
+  ></app-credit-app-bar>
+  <div [ngClass]="['full-height', 'content-wrapper', 'fundProviderCode-' + fundProviderCode]">
+    <app-credit-scrollable-view [fullHeightContent]="true">
+      <div class="main-content">
+        <div class="contract-detail-header">
+          <div class="main-row">
+            <div class="title-text">باقی‌مانده بدهی</div>
+            <div class="title-value">
+              {{ contract.remainingDebtAmount ? (contract.remainingDebtAmount | IRR) : '-' }}
+            </div>
+          </div>
+          <div class="detail-row">
+            <div>
+              <div class="detail-text">{{ data.header.rightLabelTitle }}</div>
+              <div class="detail-value">{{ data.header.rightLabelValue }}</div>
+            </div>
+            <div class="detail-end-col">
+              <div class="detail-text">{{ data.header.leftLabelTitle }}</div>
+              <div class="detail-value">{{ data.header.leftLabelValue }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="contract-detail-content">
+          <app-credit-wallet-detail-single-contract
+            [contract]="contract"
+            [creditId]="creditId"
+            [fundProviderCode]="fundProviderCode"
+            [totalInstallmentCount]="data.header.installmentCount"
+            [maxPaymentAmount]="data.maxLimitAmount"
+            [serviceType]="serviceType"
+          ></app-credit-wallet-detail-single-contract>
+        </div>
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+}
+<credit-page-loading [active]="gettingData()"></credit-page-loading>

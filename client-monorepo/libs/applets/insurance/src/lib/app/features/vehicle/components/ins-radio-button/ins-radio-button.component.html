@@ -1,0 +1,13 @@
+<div [ngClass]="InsRadioButtonType[type()].toLowerCase()"
+     class="ins-radio-button">
+  @for (item of items(); track item.value) {
+    <div class="radio-button-item"
+         [ngClass]="{active:item.value===value(),'border-color-error border-300': showError() && (value() == null)}"
+         (click)="handleClickOnItem(item.value)">
+      <ins-icon [name]="item.value===value()? IconEnum.RadioButtonActive : IconEnum.RadioButton"
+                [width]="24"
+                [height]="24"></ins-icon>
+      <p class="item-title">{{ item.title }}</p>
+    </div>
+  }
+</div>

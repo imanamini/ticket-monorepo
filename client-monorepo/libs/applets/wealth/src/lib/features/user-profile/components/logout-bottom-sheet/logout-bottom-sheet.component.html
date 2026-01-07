@@ -1,0 +1,30 @@
+<div class="container">
+  <img
+    src="wealth-assets/svg/logout.svg"
+    alt=""
+  />
+
+  <span class="title"> می‌خواهید از حساب کاربری خود خارج شوید؟ </span>
+
+  <div class="buttons-container">
+    <ngx-button
+      [style]="'fill'"
+      [brandButton]="true"
+      size="medium"
+      [fullWidth]="true"
+      (clickHandler)="onClose(true)"
+    >
+      بله
+    </ngx-button>
+
+    <ngx-button
+      [style]="'tinted-on-elevated'"
+      [fullWidth]="true"
+      size="medium"
+      [classNames]="['red']"
+      (clickHandler)="onClose(false)"
+    >
+      خیر
+    </ngx-button>
+  </div>
+</div>

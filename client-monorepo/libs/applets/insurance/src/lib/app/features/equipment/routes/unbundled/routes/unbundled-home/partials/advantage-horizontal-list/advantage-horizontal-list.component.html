@@ -1,0 +1,33 @@
+<div class="wrapper" id="steps">
+  <div class="inner">
+    <div class="buttons">
+      <div (click)="changeTab(item.id)"
+           *ngFor="let item of buttonGroup"
+           [class.selected]="item.id === selectedList"
+           class="button"
+      >{{ item.message }}
+      </div>
+    </div>
+    <div class="header">چطور می‌تونی بیمه گوشی موبایل دیجی‌پی رو داشته باشی؟</div>
+    <div class="swiper">
+      <new-swiper>
+        <ng-container *ngFor="let item of swiperList; let i = index">
+          <div *swiper-item class="item">
+            <div class="general">
+              <img alt="" class="img" height="60" src="./assets/icons/{{item.iconName}}.svg">
+              <div class="left">
+                <div class="number">{{ i + 1 | number:'2.0' }}</div>
+                <div class="title">{{ item.title }}</div>
+              </div>
+
+            </div>
+            <div class="description">
+              {{ item.description }}
+            </div>
+          </div>
+        </ng-container>
+      </new-swiper>
+    </div>
+  </div>
+
+</div>

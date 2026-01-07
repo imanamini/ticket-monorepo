@@ -1,0 +1,43 @@
+:host {
+  width: 100%;
+}
+
+.more-stores {
+  cursor: pointer;
+
+  // Match the inActive selector structure from store card
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.more-stores-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.more-stores-image {
+  border-radius: 12px; // Match 'radius-medium'
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px; // Match 'mb-low'
+  padding: 8px; // Match 'p-minus'
+  background: #f2f3f6; // Match 'surface-back'
+
+  ngx-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.store-title-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 60px;
+}

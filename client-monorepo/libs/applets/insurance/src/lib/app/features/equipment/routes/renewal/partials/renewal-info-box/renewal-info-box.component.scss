@@ -1,0 +1,22 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.journey-info-box {
+  @include flex-column();
+  padding: 16px;
+  background: #f2f5f8;
+  color: #2c3544;
+  gap: 6px;
+  border-radius: 12px;
+
+  .box-title {
+    @include flex-row();
+    @include flex-center-start();
+    gap: 6px;
+    line-height: 24px;
+    opacity: 0.6;
+  }
+
+  .box-description {
+    line-height: 20px;
+  }
+}

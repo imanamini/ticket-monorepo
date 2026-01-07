@@ -1,0 +1,17 @@
+@if (loading$ | async) {
+  <ui-loading-spinner></ui-loading-spinner>
+} @else {
+  <div class="select-brand-model">
+    @if (showBrandPicker$ | async) {
+      <used-brand-picker
+        (brandSelected)="handleBrandSelect($event)">
+      </used-brand-picker>
+    } @else {
+      <used-model-picker
+        [selectedBrand]="selectedBrand"
+        (modelSelected)="handleModelSelect($event)">
+      </used-model-picker>
+    }
+  </div>
+}
+

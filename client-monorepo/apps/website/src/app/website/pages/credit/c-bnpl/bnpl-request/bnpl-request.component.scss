@@ -1,0 +1,19 @@
+@import "../../../../../style/globals";
+
+
+
+.container {
+  padding: 128px 0;
+}
+
+@media (max-width: 1280px) {
+  .container {
+    padding: 64px 0;
+  }
+}
+
+@media (max-width: 744px) {
+  .container {
+    padding: 32px 0;
+  }
+}

@@ -1,0 +1,27 @@
+<div *ngIf="leadInfo" class="lead-new" id="detail">
+  <div class="header">
+    <div class="user-message">
+      <div class="message-title flex-row flex-wrap justify-content-center">
+        {{ leadInfo.productCategoryFa }} جدید مبارک, {{ leadInfo.firstName }}
+        جان!
+      </div>
+      <div class="message-describe">
+        با بیمه کردن این خرید, از هر خسارتی در امان باش.
+      </div>
+    </div>
+  </div>
+
+  <lead-serial-required
+          (newSerialSubmitted)="newSerialSubmitted($event)"
+          *ngIf="!leadInfo.isValidSerialNumber"
+          [leadInfo]="leadInfo"
+  ></lead-serial-required>
+
+  <lead-voucher
+          (pay)="handlePayClick()"
+          *ngIf="leadInfo.isValidSerialNumber"
+          [isLoading]="isSubmitting"
+          [leadInfo]="leadInfo"
+  ></lead-voucher>
+
+</div>

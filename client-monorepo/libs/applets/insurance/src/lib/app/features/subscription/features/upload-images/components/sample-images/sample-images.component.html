@@ -1,0 +1,29 @@
+<div class="sample-images d-flex flex-column">
+  <main-header
+          (rightIconClicked)="backClicked.emit()"
+          title="راهنمای تصویری"
+  ></main-header>
+  <div class="screens d-flex flex-column">
+    <div class="info-container d-flex">
+      <img alt="" class="info-box-blue" height="24 " src="insurance-assets/icons/info-box-blue.svg" width="24">
+      <p>نمونه تصاویر قابل پذیرش برای گوشی با یک صفحه نمایش</p>
+    </div>
+    <div class="cards">
+      @for (item of cardsOneScreen; track item.src) {
+        <guide-card [config]="item"></guide-card>
+      }
+    </div>
+  </div>
+
+  <div class="screens">
+    <div class="info-container d-flex">
+      <img alt="" class="info-box-blue" height="24px " src="assets/icons/info-box-blue.svg" width="24px">
+      <p>نمونه تصاویر قابل پذیرش برای گوشی با دو صفحه نمایش</p>
+    </div>
+    <div class="cards d-flex justify-content-start">
+      @for (item of cardsTwoScreen; track item.src) {
+        <guide-card [config]="item"></guide-card>
+      }
+    </div>
+  </div>
+</div>

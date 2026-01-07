@@ -1,0 +1,158 @@
+@import "@digipay/base-style/styleguide";
+
+.bnpl-usage {
+  .usage-container {
+    display: flex;
+    column-gap: map-get($spacing-sizes, 'giant');
+    row-gap: map-get($spacing-sizes, 'big');
+  }
+
+  .usage-container-mobile {
+    display: none;
+  }
+
+  .usage-list {
+    width: 554px;
+    height: 117px;
+
+    .title {
+      color: #000;
+      text-align: right;
+      font-feature-settings: 'liga' off, 'clig' off;
+      font-size: 26px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 32px; /* 123.077% */
+    }
+  }
+
+  .usage-item {
+    width: 554px;
+    height: 117px;
+    padding: map-get($spacing-sizes, 'medium');
+    border-radius: map-get($border-radius-sizes, 'big');
+    background: linear-gradient(90deg, rgba(17, 89, 252, 0.00) 0%, rgba(17, 89, 252, 0.20) 100%);
+
+    .title {
+      width: 200px;
+    }
+
+    .image {
+      width: 110px;
+      height: 123px;
+
+      img {
+        width: 110px;
+        height: auto;
+      }
+    }
+
+    .logos {
+
+      .logo-item {
+        display: flex;
+        width: 57px;
+        height: 57px;
+
+        justify-content: center;
+        align-items: center;
+        border-radius: 100px;
+        background: var(--Surfaces-Grounds-Elevated, #FFF);
+
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 100px;
+        }
+      }
+
+      span.logo-span {
+        width: 40px;
+        height: 40px;
+      }
+
+
+    }
+  }
+
+
+}
+
+
+@media (max-width: 1280px) {
+
+  .bnpl-usage {
+
+    padding: 32px 0 40px !important;
+
+    .usage-container {
+      display: none !important;
+    }
+
+    &.credit {
+      .usage-container-mobile {
+        padding-right: 0 !important;
+      }
+    }
+
+    .usage-container-mobile {
+      display: block !important;
+      width: 100%;
+      padding-right: 20px;
+    }
+
+    .usage-list {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px !important;
+      height: auto;
+
+      .title {
+        font-size: 20px !important;
+        text-align: center;
+        margin-bottom: 12px !important;
+      }
+
+      .subtitle {
+        font-size: 12px !important;
+
+      }
+    }
+
+    .usage-item {
+      width: 302px;
+      height: 78px;
+
+      .image {
+        width: 64px;
+        height: 72px;
+
+        img {
+          width: 64px;
+        }
+      }
+
+      .title {
+        font-size: 14px !important;
+        width: auto;
+      }
+
+      .logos {
+        .logo-item {
+          width: 38px;
+          height: 38px;
+
+          img {
+            width: 26px;
+            height: 26px;
+          }
+        }
+      }
+    }
+
+    &.credit {
+      padding-top: 0 !important;
+    }
+  }
+
+}

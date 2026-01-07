@@ -1,0 +1,62 @@
+<div class="flex flex-column">
+  <span class="st-6">{{ data.title }}</span>
+  <div class="b-3 my-tiny d-flex gap-micro">
+    <span>کد تایید ارسال شده به شماره</span>
+    <span class="text-onback-brand ltr">{{ maskedPhoneNumber() }}</span
+    ><span> را وارد کنید.</span>
+  </div>
+  <div class="mt-big d-flex flex-column gap-small">
+    <ngx-otp
+      [(otp)]="otpCode"
+      [otpLength]="6"
+      [supportText]="''"
+      [status]="otpStatus()"
+    />
+    @if (otpStatus() === 'error') {
+      <div class="l-3 text-align-center text-onback-error">کد وارد شده اشتباه است.</div>
+    }
+  </div>
+  <div class="d-flex justify-content-center align-items-center">
+    @if (isTimerRunning()) {
+      <span class="c-2 text-onback-low">ارسال مجدد کد در:</span>
+      <div class="b-3 timer-wrapper">
+        <ngx-count-down
+          (finished)="onFinish()"
+          [timeInSeconds]="timeInSeconds()"
+          [type]="'mm:ss'"
+        />
+      </div>
+      <common-icon-dp-icon
+        [iconSize]="'16'"
+        icon="circle-clock"
+        iconType="linear"
+      ></common-icon-dp-icon>
+    } @else {
+      <ngx-button
+        [style]="'link'"
+        [mode]="'section'"
+        [size]="'small'"
+        (clickHandler)="resendCode()"
+      >
+        ارسال مجدد کد
+      </ngx-button>
+    }
+  </div>
+
+  <div class="d-flex gap-small actions mt-huge">
+    <ngx-button
+      [fullWidth]="true"
+      [style]="'tinted-on-elevated'"
+      (clickHandler)="cancel()"
+    >
+      انصراف
+    </ngx-button>
+    <ngx-button
+      [fullWidth]="true"
+      (clickHandler)="approve()"
+      [disabled]="approveBtnDisabled()"
+    >
+      تایید
+    </ngx-button>
+  </div>
+</div>

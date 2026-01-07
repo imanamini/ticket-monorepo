@@ -1,0 +1,33 @@
+<div class="voucher-remove d-flex flex-column p-plus">
+  <div class="header d-flex flex-row justify-content-space-between align-items-center">
+    <div class="title st-3">حذف کد تخفیف</div>
+    <div class="icon-wrapper d-flex align-items-center justify-content-center surface-back radius-rounded">
+      <ngx-icon
+        [name]="'question-mark-circle'"
+        class="text-onback-brand"
+        type="bold"
+        iconSize="32px"
+      ></ngx-icon>
+    </div>
+  </div>
+  <div class="notice-title mt-minus b-2">آیا تمایل به حذف کد تخفیف خود دارید؟</div>
+  <div class="ctas mt-plus d-flex flex-row gap-small">
+    <ins-button
+      [fullWidth]="true"
+      [style]="InsButtonStyleEnum.Fill"
+      [mode]="InsButtonModeEnum.Section"
+      [size]="InsButtonSizeEnum.Large"
+      (clickHandler)="close(true)"
+      text="بله">
+    </ins-button>
+    <ins-button
+      [destructive]="true"
+      [fullWidth]="true"
+      [style]="InsButtonStyleEnum.Fill"
+      [mode]="InsButtonModeEnum.Section"
+      [size]="InsButtonSizeEnum.Large"
+      (clickHandler)="close(false)"
+      text="خیر">
+    </ins-button>
+  </div>
+</div>

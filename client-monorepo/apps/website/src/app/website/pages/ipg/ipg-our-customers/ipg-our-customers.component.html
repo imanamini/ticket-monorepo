@@ -1,0 +1,37 @@
+<section class="ipg__customers">
+  <div class="container">
+    <h2 class="heading-w900 text-align-center">
+      {{ templateData?.ourCustomersTitle }}
+    </h2>
+    <swiper-container
+      appSwiper
+      #swiper
+      [config]="config"
+    >
+      <swiper-slide
+        class="ipg__customers_item"
+        *ngFor="let item of templateData?.customerItems"
+      >
+        <div>
+          <div class="ipg__customers_item-logo">
+            <img
+              *ngIf="item.customerLogo"
+              [src]="item.customerLogo.url"
+              alt=""
+            />
+          </div>
+          <div class="ipg__customers_item-title">
+            <b *ngIf="item.customerTitle">{{ item.customerTitle }}</b>
+            <span *ngIf="item.customerSubtitle">{{ item.customerSubtitle }}</span>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+    <div class="ipg__customers_more">
+      <div>
+        <b>و ده‌ها شرکت و استارت آپ بزرگ دیگر</b>
+        <span>که به ما اعتماد کرده اند</span>
+      </div>
+    </div>
+  </div>
+</section>

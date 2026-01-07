@@ -1,0 +1,19 @@
+<section class="section-benefits">
+  <div class="container">
+    <h2 class="text-align-center">
+      {{ benefits.benefitsTitle }}
+    </h2>
+    <div
+      *ngIf="benefits.benefitsSubtitle"
+      class="text-align-center subtitle"
+    >
+      {{ benefits.benefitsSubtitle }}
+    </div>
+    <app-ui-value-simple
+      *ngIf="features.length > 0"
+      [features]="features"
+      class="items"
+    >
+    </app-ui-value-simple>
+  </div>
+</section>

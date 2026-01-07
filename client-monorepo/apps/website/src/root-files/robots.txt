@@ -1,0 +1,8 @@
+user-agent: *
+disallow: *?*
+disallow: *utm_*
+disallow: /products/*
+disallow: /support/faq/
+Allow: */mag/*.js
+Allow: */mag/*.css
+sitemap:https://www.mydigipay.com/mag/sitemap_index.xml

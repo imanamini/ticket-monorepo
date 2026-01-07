@@ -1,0 +1,207 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.lead-voucher {
+  display: flex;
+  gap: 15px;
+  width: 75%;
+  margin: auto;
+
+  .device-info-main {
+    flex: 2.75 1;
+    border: 1px solid #dee3e7;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    gap: 15px;
+
+    .detail {
+      flex: 3 1;
+
+      .device-info {
+        border-bottom: 1px solid #f2f5f8;
+      }
+
+      .detail-title {
+        line-height: 1.5;
+        color: #6e798d;
+        margin: 15px 0;
+        font-size: .9rem;
+
+        &.large {
+          font-size: 1.2rem;
+        }
+      }
+
+      .detail-text {
+        line-height: 1.5;
+        margin: 15px 0;
+        color: #424c5c;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .insurer {
+        color: #6e798d;
+        margin: 20px 0;
+      }
+
+      .no-subscription, .has-subscription {
+        display: flex;
+        align-items: center;
+        font-size: 1.2rem;
+
+        .img {
+          margin-left: 10px;
+        }
+      }
+
+      .no-subscription {
+        color: $secondary-color;
+      }
+
+      .has-subscription {
+        color: $rightel-color;
+      }
+    }
+
+    .schema {
+      flex: 1.25 1;
+
+      .hint {
+        margin-bottom: 15px;
+      }
+
+      .device-image {
+        border: 1px solid #dee3e7;
+        border-radius: 12px;
+        height: 100%;
+        padding: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        insurtech-collection-image-cdn {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .voucher {
+    flex: 1.25 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .voucher-section {
+      display: flex;
+      height: 55px;
+      margin: 11px 0;
+      gap: 10px;
+
+      .field {
+        flex: 2.25 1;
+      }
+
+      .button {
+        flex: 1.5 1;
+      }
+    }
+
+    .detail-list {
+      background: #ffffff;
+      border: 1px solid #dee3e7;
+      border-radius: 12px;
+
+      .list-item {
+        padding: 16px;
+        border-top: dotted #afb9c5 1px;
+      }
+
+      .policy-title {
+        flex: 1;
+      }
+
+      .policy-price {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: end;
+        flex: 1;
+        gap: 8px;
+
+        .price-line-through {
+          text-decoration: line-through;
+          text-decoration-color: #d82137;
+          text-decoration-thickness: 2px;
+          color: #424c5c;
+          font-weight: normal;
+          font-size: 1rem;
+        }
+
+        .policy-display-wage {
+          gap: 8px;
+        }
+      }
+
+      .list-payable {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .item-value {
+    direction: rtl !important;
+  }
+
+  hint {
+    width: 100%;
+  }
+
+  .dg-input-wrapper {
+    max-height: 47px;
+  }
+
+  .schema {
+    insurtech-collection-image-cdn {
+      img {
+        width: 83%;
+      }
+    }
+  }
+}
+
+@include mediaMaxWidth(1980px) {
+  .policy-price {
+    flex-direction: column-reverse !important;
+    align-items: end !important;
+  }
+}
+
+@include mediaMaxWidth(1200px) {
+  .lead-voucher {
+    flex-direction: column;
+    width: 80% !important;
+  }
+}
+
+@include mediaTablet {
+  .schema {
+    display: none;
+  }
+}
+
+@include mediaMobile {
+  .lead-voucher {
+    width: 90% !important;
+  }
+}
+
+@include mediaMaxWidth(320px) {
+  .device-info-main {
+    padding: 8px !important;
+  }
+}

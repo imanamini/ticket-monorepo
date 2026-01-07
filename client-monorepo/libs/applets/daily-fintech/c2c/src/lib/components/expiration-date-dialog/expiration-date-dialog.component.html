@@ -1,0 +1,31 @@
+<div class="container p-plus">
+  <div class="d-flex flex-column align-items-center mt-medium">
+    <div class="surface-back radius-rounded p-big">
+      <common-icon-dp-icon
+        [classes]="'text-onback-warning'"
+        [iconSize]="'48'"
+        [icon]="'error-circle'"
+        [iconType]="'bold'"
+      ></common-icon-dp-icon>
+    </div>
+    <p class="text-onback-high st-3 mt-huge">کارت شما منقضی شده‌است</p>
+    <p class="text-onback-medium b-2 mt-low">برای ادامه فرآیند تاریخ انقضای خود را ویرایش کنید.</p>
+  </div>
+  <div class="actions w-100 d-flex flex-column justify-content-space-between gap-minus mt-giant">
+    <ngx-button
+      class="edit-button"
+      [fullWidth]="true"
+      (clickHandler)="dialogClose(true)"
+    >
+      ویرایش کارت
+    </ngx-button>
+    <ngx-button
+      class="cancel-button"
+      [style]="'tinted-on-elevated'"
+      [fullWidth]="true"
+      (clickHandler)="dialogClose(false)"
+    >
+      انصراف
+    </ngx-button>
+  </div>
+</div>

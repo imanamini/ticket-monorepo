@@ -1,0 +1,11 @@
+<div
+  [ngClass]="{
+    'is-visible': visible,
+    'is-error': appearance === 'error',
+    'is-success': appearance === 'success',
+    'is-hint': appearance === 'hint',
+  }"
+  class="text-field-notice"
+>
+  <ng-content></ng-content>
+</div>

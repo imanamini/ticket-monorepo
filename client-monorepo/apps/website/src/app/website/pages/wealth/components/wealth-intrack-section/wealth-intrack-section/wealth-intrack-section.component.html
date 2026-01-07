@@ -1,0 +1,47 @@
+<div class="get-lead-box">
+  <div class="get-lead-content">
+    <img
+      src="../../../../../../../assets/images/wealth/sejam-link.svg"
+      width="240"
+      height="160"
+      alt=""
+    />
+    <div class="details">
+      <div class="title">ثبت‌نام در سامانه سجام</div>
+      <div class="description">
+        <span
+          appUiIcon
+          icon="icon-verified-green"
+          [size]="24"
+        ></span>
+        برای شروع سرمایه‌گذاری در بازار سرمایه، ابتدا سجامی شوید.
+      </div>
+      <app-ui-button
+        class="cta"
+        (click)="onClickGetSejam()"
+      >
+        ثبت‌نام در سامانه سجام
+      </app-ui-button>
+    </div>
+  </div>
+</div>
+
+<ngx-status-result
+  *ngIf="showThanksMsg"
+  [title]="'با تشکر از همراهی شما،'"
+  [description]="'لینک ساخت کد بورسی و سجام ارسال شد.'"
+  [buttons]="[
+    {
+      id: 'primary',
+      buttonType: 'tinted',
+      label: 'متوجه شدم',
+    },
+  ]"
+>
+  <ng-container status-image>
+    <img
+      src="assets/images/wealth/thanks-msg.svg"
+      alt=""
+    />
+  </ng-container>
+</ngx-status-result>

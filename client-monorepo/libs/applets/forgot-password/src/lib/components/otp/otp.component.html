@@ -1,0 +1,12 @@
+<common-otp-fill-otp
+  [otpLength]="6"
+  [mode]="'forgot-password'"
+  [autoVerify]="false"
+  [phoneNumber]="forgotPasswordData().phone"
+  [editButton]="false"
+  [isSubmitButton]="true"
+  [isTwiceButton]="false"
+  (fillOtp)="fillOtp($event)"
+  [ngClass]="bottomSheetData() ? '' : 'mt-hulk p-plus'"
+>
+</common-otp-fill-otp>

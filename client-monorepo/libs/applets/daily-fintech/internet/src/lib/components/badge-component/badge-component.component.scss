@@ -1,0 +1,33 @@
+@import "@digipay/base-style/swatch";
+
+.bundle-times {
+  display: flex;
+  gap: 8px;
+  margin: 21px 9px 21px 0;
+  padding: 3px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  &::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+  }
+
+  .time {
+    padding: 4px 12px;
+    background: $swatch_steel_100;
+    color: $swatch_steel_700;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    border-radius: 24px;
+    cursor: pointer;
+
+    &.selected {
+      box-shadow: 0 0 0 2px $swatch_blue_500 inset;
+      background-color: #f0f5ff;
+      color: $swatch_blue_500;
+    }
+  }
+}

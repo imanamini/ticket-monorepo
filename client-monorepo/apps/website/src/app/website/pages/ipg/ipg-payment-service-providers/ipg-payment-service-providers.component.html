@@ -1,0 +1,33 @@
+<section id="payment-service-providers">
+  <div class="container">
+    <h2 class="text-align-center">
+      {{ templateData?.paymentServiceProviders?.mainTitle }}
+    </h2>
+    <div class="ipg__psps_content">
+      <swiper-container
+        appSwiper
+        #swiper
+        [config]="config"
+        class="swiper d-flex"
+      >
+        <swiper-slide
+          class="ipg__psps_item swiper-slide"
+          *ngFor="let item of templateData?.paymentServiceProviders?.pspItems"
+        >
+          <div>
+            <div class="ipg__psps_item-logo">
+              <img
+                *ngIf="item.pspLogo"
+                [src]="item.pspLogo.url"
+                alt=""
+              />
+            </div>
+            <div class="ipg__psps_item-title">
+              {{ item.hoverText }}
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,132 @@
+<app-base-layout [loaded]="loaded">
+  <ng-container *ngIf="pdyPage && pdyPage.templateData">
+    <!--  section 1-->
+    <app-ui-introduction-default
+      [heroImage]="pdyPage.templateData.introArtwork"
+      [introductionType]="pdyPage.templateData.introType"
+    >
+      <div>
+        <h1>{{ pdyPage?.templateData?.introTitle }}</h1>
+        <h2>{{ pdyPage?.templateData?.introSubtitle }}</h2>
+        <h3>{{ pdyPage?.templateData?.introSubtitle2 }}</h3>
+        <app-ui-button
+          *ngIf="pdyPage.templateData.introFirstCta.link && pdyPage.templateData.introFirstCta.title"
+          [link]="pdyPage.templateData.introFirstCta.link"
+          linkTarget="_blank"
+        >
+          <i> </i>
+          <span>
+            {{ pdyPage.templateData.introFirstCta.title }}
+          </span>
+        </app-ui-button>
+      </div>
+    </app-ui-introduction-default>
+
+    <!--  section 2-->
+    <app-ui-feature-cards
+      *ngIf="pdyPage && pdyPage.templateData && pdyPage.templateData.features"
+      [features]="pdyPage.templateData.features"
+    >
+    </app-ui-feature-cards>
+
+    <!--  section 3-->
+    <app-ui-basic-segment
+      [content]="contentTemplateServiceExplanation"
+      [figure]="figureTemplateServiceExplanation"
+      [rtl]="true"
+      [title]="pdyPage?.templateData?.serviceExplanation?.title"
+    ></app-ui-basic-segment>
+    <ng-template #figureTemplateServiceExplanation>
+      <img
+        [alt]="pdyPage?.templateData?.serviceExplanation?.title"
+        [src]="pdyPage?.templateData?.serviceExplanation?.artwork?.url"
+      />
+    </ng-template>
+    <ng-template #contentTemplateServiceExplanation>
+      {{ pdyPage?.templateData?.serviceExplanation?.text }}
+    </ng-template>
+
+    <!--  section 4-->
+    <app-ui-basic-segment
+      [content]="contentTemplateUserInterfaceExplanation"
+      [figure]="figureTemplateUserInterfaceExplanation"
+      [rtl]="false"
+      [title]="pdyPage?.templateData?.userInterfaceExplanation?.title"
+    ></app-ui-basic-segment>
+    <ng-template #figureTemplateUserInterfaceExplanation>
+      <img
+        [alt]="pdyPage?.templateData?.userInterfaceExplanation?.title"
+        [src]="pdyPage?.templateData?.userInterfaceExplanation?.artwork?.url"
+      />
+    </ng-template>
+    <ng-template #contentTemplateUserInterfaceExplanation>
+      {{ pdyPage?.templateData?.userInterfaceExplanation?.text }}
+    </ng-template>
+
+    <!--  section 5-->
+    <app-ui-basic-segment
+      [content]="contentTemplateWalletExplanation"
+      [figure]="figureTemplateWalletExplanation"
+      [rtl]="true"
+      [title]="pdyPage?.templateData?.walletExplanation?.title"
+    ></app-ui-basic-segment>
+    <ng-template #figureTemplateWalletExplanation>
+      <img
+        [alt]="pdyPage?.templateData?.walletExplanation?.title"
+        [src]="pdyPage?.templateData?.walletExplanation?.artwork?.url"
+      />
+    </ng-template>
+    <ng-template #contentTemplateWalletExplanation>
+      {{ pdyPage?.templateData?.walletExplanation?.text }}
+    </ng-template>
+
+    <!--  section 6-->
+    <app-ui-tariff
+      *ngIf="pdyPage && pdyPage.templateData && pdyPage.templateData.tariffs"
+      [description]="pdyPage.templateData.tariffs.description"
+      [input]="pdyPage.templateData.tariffs.keyValuePairs"
+      [notice]="pdyPage.templateData.tariffs.notice"
+      [subtitle]="pdyPage.templateData.tariffs.subtitle"
+      [title]="pdyPage.templateData.tariffs.title"
+    >
+    </app-ui-tariff>
+
+    <!--  section 7-->
+    <app-ui-timeline
+      *ngIf="pdyPage && pdyPage.templateData && pdyPage.templateData.registrationSteps"
+      [steps]="pdyPage.templateData.registrationSteps.steps"
+      [title]="pdyPage.templateData.registrationSteps.title"
+      [type]="'gray'"
+    ></app-ui-timeline>
+
+    <!--  section 8-->
+    <app-ui-document
+      [email]="'merchant.support@mydigipay.com'"
+      [url]="'https://www.mydigipay.com/developers/docs/upg'"
+    ></app-ui-document>
+
+    <!--  section 9-->
+    <app-ui-seo
+      *ngIf="pdyPage.templateData.sectionSeoContent"
+      [seoContent]="pdyPage.templateData.sectionSeoContent"
+    ></app-ui-seo>
+
+    <!--  section 10-->
+    <app-ui-faq
+      *ngIf="pdyPage && pdyPage.templateData && pdyPage.templateData.faq"
+      [faqs]="pdyPage.templateData.faq.faqItems"
+      [subtitle]="pdyPage.templateData.faq.subtitle"
+      [title]="pdyPage.templateData.faq.title"
+    >
+    </app-ui-faq>
+
+    <!--  section 11-->
+    <app-blog-cards
+      *ngIf="pdyPage && pdyPage.templateData && pdyPage.templateData.relatedPosts && posts.length > 0"
+      [blogPosts]="posts"
+      [subtitle]="pdyPage.templateData.relatedPosts.subtitle"
+      [title]="pdyPage.templateData.relatedPosts.title"
+    >
+    </app-blog-cards>
+  </ng-container>
+</app-base-layout>

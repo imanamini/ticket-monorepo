@@ -1,0 +1,107 @@
+<div class="px-plus">
+  <common-ui-components-title-summary
+    [title]="title() || 'فروشگاه‌ها'"
+    [showButton]="secureType() === 'large-logo-h'"
+    [buttonIconReversed]="true"
+    [buttonTitle]="'همه'"
+    [buttonIcon]="'arrow-2-left'"
+    [navigationLink]="isSocialStores() ? 'stores/social/all-stores' : 'stores/all-stores'"
+  ></common-ui-components-title-summary>
+</div>
+<div class="mt-small">
+  @if (secureType() === 'large-logo-h') {
+    <common-ui-components-horizontal-scroll [classes]="horizontalScrollClasses()">
+      @if (logoStores()) {
+        @for (groupedStore of logoStores(); track $index) {
+          <div class="d-flex flex-column gap-medium">
+            <common-stores-store-preview
+              commonUtilitiesSafePress
+              (safePress)="goToStore(groupedStore[0].trackingCode)"
+              [store]="groupedStore[0]"
+              [mode]="'logo-only'"
+            ></common-stores-store-preview>
+            @if (!$last) {
+              <common-stores-store-preview
+                commonUtilitiesSafePress
+                (safePress)="goToStore(groupedStore[1].trackingCode)"
+                [store]="groupedStore[1]"
+                [mode]="'logo-only'"
+              ></common-stores-store-preview>
+            } @else {
+              <div
+                class="d-flex flex-column justify-content-space-between h-100 align-items-center"
+                commonUtilitiesSafePress
+                (safePress)="goToAllStoresPage()"
+              >
+                <ngx-button
+                  [mode]="'icon-only'"
+                  [leftIcon]="{ name: 'info-menu', type: 'bold' }"
+                  [style]="'tinted-on-back'"
+                  [size]="'large'"
+                ></ngx-button>
+                <span class="c-2 text-onback-brand text-align-center">بیشتر</span>
+              </div>
+            }
+          </div>
+        }
+      } @else {
+        @for (skeleton of rangeCreator(9); track $index) {
+          <div class="d-flex flex-column gap-medium">
+            <div class="d-flex flex-column gap-pony">
+              <lib-ngx-skeleton-loading
+                [width]="'64px'"
+                [height]="'64px'"
+                [loadingEffect]="loadingEffect()"
+              ></lib-ngx-skeleton-loading>
+              <lib-ngx-skeleton-loading
+                [width]="'64px'"
+                [height]="'12px'"
+                [loadingEffect]="loadingEffect()"
+              ></lib-ngx-skeleton-loading>
+            </div>
+            <div class="d-flex flex-column gap-pony">
+              <lib-ngx-skeleton-loading
+                [width]="'64px'"
+                [height]="'64px'"
+                [loadingEffect]="loadingEffect()"
+              ></lib-ngx-skeleton-loading>
+              <lib-ngx-skeleton-loading
+                [width]="'64px'"
+                [height]="'12px'"
+                [loadingEffect]="loadingEffect()"
+              ></lib-ngx-skeleton-loading>
+            </div>
+          </div>
+        }
+      }
+    </common-ui-components-horizontal-scroll>
+  }
+  @if (secureType() === 'listing') {
+    <div class="px-atom">
+      <div class="d-flex flex-column gap px-plus pb-giant">
+        @if (!logoStores()) {
+          @for (_ of rangeCreator(4); track $index) {
+            <lib-ngx-skeleton-loading
+              class="mb-small"
+              [height]="'72.84px'"
+              [width]="'100%'"
+              [classes]="'radius-minus'"
+              [loadingEffect]="loadingEffect()"
+            ></lib-ngx-skeleton-loading>
+          }
+        } @else {
+          @for (store of listingStores(); track $index) {
+            <common-ui-components-item-overview
+              [disableTopPadding]="$index === 0"
+              [mixedBlendModeEnabled]="true"
+              [item]="store"
+              commonUtilitiesSafePress
+              (safePress)="goToStore(store.id || '')"
+            >
+            </common-ui-components-item-overview>
+          }
+        }
+      </div>
+    </div>
+  }
+</div>

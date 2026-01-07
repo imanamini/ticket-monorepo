@@ -1,0 +1,133 @@
+<div class="car-info-entering">
+  <div class="top-bar">
+    <div class="title">
+      <ng-container *ngIf="carInfoState === 'PLATES_LIST'"> پلاک های من </ng-container>
+      <ng-container *ngIf="carInfoState === 'PLATE_LAST_INQUIRY'"> گزارش آخرین استعلام </ng-container>
+    </div>
+    <app-ui-button
+      (clicked)="platesListClicked()"
+      *ngIf="carInfoState === 'ENTERING_NEW_PLATE'"
+      appearance="BLUE-TEXT"
+      class="cta"
+    >
+      پلاک‌های من
+      <ngx-icon
+        [name]="'arrow-2-left'"
+        class="text-onback-brand"
+      ></ngx-icon>
+    </app-ui-button>
+    <app-ui-button
+      (clicked)="enterNewPlate()"
+      *ngIf="carInfoState === 'PLATE_LAST_INQUIRY'"
+      appearance="BLUE-TEXT"
+    >
+      بازگشت
+      <ngx-icon
+        [name]="'arrow-2-left'"
+        class="text-onback-brand"
+      ></ngx-icon>
+    </app-ui-button>
+    <app-ui-button
+      (clicked)="enterNewPlate()"
+      *ngIf="carInfoState === 'PLATES_LIST'"
+      appearance="GREEN-TEXT"
+      class="new-plate-cta"
+      size="BIG"
+    >
+      پلاک جدید
+      <span
+        icon="icon-plus-green"
+        size="24"
+        appUiIcon
+      ></span>
+    </app-ui-button>
+  </div>
+  <div
+    *ngIf="carInfoState === 'ENTERING_NEW_PLATE'"
+    class="vehicle-info-entering-body"
+  >
+    <div class="title">نوع وسیله نقلیه خود را انتخاب کنید</div>
+
+    <div class="vehicle-type-select">
+      <app-ui-animated-switch
+        [options]="vehicleTypes"
+        [selectedOption]="vehicleTypes[0]"
+      ></app-ui-animated-switch>
+    </div>
+
+    <div class="car-info">
+      <div class="title">اطلاعات خودرو خود را وارد کنید.</div>
+
+      <div
+        [formGroup]="form"
+        class="forms"
+      >
+        <div>
+          <app-ui-plate-input
+            (valueChange)="plateInputChange($event)"
+            [colors]="colors"
+            [values]="values"
+            class="plate-input"
+          ></app-ui-plate-input>
+          <div
+            *ngIf="!isFormValid && isPlateInputTouched"
+            class="plate-input-errors"
+          >
+            پلاک وارد شده صحیح نیست
+          </div>
+        </div>
+        <ui-form-field
+          [label]="'نام خودرو'"
+          [placeholder]="'ماشین من'"
+          [required]="true"
+          [type]="'input'"
+          class="car-name-input"
+          formControlName="plateTitle"
+        ></ui-form-field>
+      </div>
+    </div>
+    <div class="ctas">
+      <app-ui-button
+        (clicked)="nextStep()"
+        [disabled]="!isFormValid"
+        class="submit-btn"
+        >ثبت و استعلام خلافی
+      </app-ui-button>
+    </div>
+    <marquee
+      direction="down"
+      height="28px"
+      scrollamount="1"
+      width="100%"
+    >
+      <ng-container *ngFor="let promotion of servicePromotions">
+        <div class="promotion">
+          <img
+            *ngIf="promotion.icon && promotion.icon.url"
+            [ngSrc]="promotion.icon.url"
+            class="icon"
+            height="20"
+            width="20"
+          />
+          {{ promotion.text }}
+        </div>
+      </ng-container>
+    </marquee>
+  </div>
+  <div
+    *ngIf="carInfoState === 'PLATES_LIST'"
+    class="plates"
+  >
+    <app-plates-list
+      (enterNewPlateBtn)="enterNewPlate()"
+      (showInquiryLastReport)="showInquiryLastReport($event)"
+    ></app-plates-list>
+  </div>
+  <div *ngIf="carInfoState === 'PLATE_LAST_INQUIRY'">
+    <app-last-inquiry-report
+      (newPlate)="enterNewPlate()"
+      (payFine)="payVehicleFine()"
+      [trafficFineDto]="trafficFineDto"
+    ></app-last-inquiry-report>
+  </div>
+</div>

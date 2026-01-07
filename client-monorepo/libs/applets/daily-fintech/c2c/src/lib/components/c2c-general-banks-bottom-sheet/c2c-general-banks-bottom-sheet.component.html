@@ -1,0 +1,26 @@
+<div class="container">
+  <p class="pb-minus pt-big border-b-100 border-color-light px-plus">بانک‌های مبدا تحت پوشش</p>
+  <div class="d-grid wrapper-banks pt-big px-plus py-plus">
+    @for (bank of allBanks(); track $index) {
+      <div class="banks">
+        <div class="surface-back p-minus radius-medium bank-card">
+          <ui-api-image
+            [imageId]="bank.imageId"
+            [width]="'32px'"
+            [height]="'32px'"
+          ></ui-api-image>
+        </div>
+
+        <div class="bank-name mt-low l-2 text-onback-medium">{{ bank.name }}</div>
+        @if (bank.badge) {
+          <div
+            class="badge radius-giant l-4 text-oninvert-high"
+            [style.background-color]="bank.badge.backgroundColor"
+          >
+            {{ bank.badge.value }}
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

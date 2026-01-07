@@ -1,0 +1,16 @@
+<app-credit-app-bar
+  (onBackButtonClick)="back.emit()"
+  [backButton]="true"
+></app-credit-app-bar>
+<div class="page-content">
+  <ngx-status-result
+    (clicked)="onClick($event)"
+    [buttons]="buttons()"
+    description="برای ادامه مسیر مطمئن باش که داری از آخرین نسخه استفاده می کنی."
+    title="آیا دیجی‌پی شما به‌روز است؟"
+  >
+    <ng-container status-image>
+      <div class="message-image"></div>
+    </ng-container>
+  </ngx-status-result>
+</div>

@@ -1,0 +1,18 @@
+@import "@digipay/base-style/styleguide";
+.character-container{
+  backdrop-filter: blur(4px);
+
+  .character{
+    width:40px;
+    height:40px;
+    font-size: 16px;
+    font-style: normal;
+    line-height: normal;
+    outline: none;
+    -webkit-appearance: none;
+
+    &.selected ,&:focus, &:active{
+      background-color: #{map-get($blue, "tint-50")} !important;
+    }
+  }
+}

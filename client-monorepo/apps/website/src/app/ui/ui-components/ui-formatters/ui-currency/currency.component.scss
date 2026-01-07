@@ -1,0 +1,22 @@
+
+
+:host {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 0;
+}
+
+.currency {
+  font-weight: 400;
+}
+
+.unit {
+  font-size: smaller;
+  font-weight: 200;
+}
+
+@media (max-width: 744px) {
+  .currency {
+    font-size: 12px !important;
+  }
+}

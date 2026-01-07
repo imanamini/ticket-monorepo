@@ -1,0 +1,8 @@
+@import "@digipay/base-style/styleguide-theme";
+
+.dot {
+  width: 4px;
+  height: 4px;
+  background-color: map-get($titanium, shade-30);
+  opacity: 0.4;
+}

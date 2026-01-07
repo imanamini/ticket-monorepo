@@ -1,0 +1,14 @@
+.cashin-container {
+  height: 100svh;
+}
+
+ngx-checkbox {
+  .check-box-text {
+    height: 26px;
+    align-items: center;
+  }
+}
+
+.d-grid {
+  grid-template-columns:1.3fr 1fr;
+}

@@ -1,0 +1,163 @@
+@import "@digipay/base-style/styleguide";
+
+.black-friday-merchants {
+  gap: map-get($spacing-sizes, 'big');
+  margin-top: 120px;
+  position: relative;
+
+
+  &::before {
+    content: "";
+    position: absolute;
+    background-image: url("../../../../../../assets/images/black-friday/sec3-back.svg");
+    pointer-events: none;
+    background-size: cover;
+    z-index: 0;
+    inset: -2% 6% 0;
+    height: 100%;
+    -webkit-mask-image: radial-gradient(ellipse, 57%, transparent 70%);
+    mask-image: radial-gradient(ellipse, black 57%, transparent 70%);
+    opacity: 0.7;
+  }
+
+  .title {
+    color: #FFF;
+    text-align: center;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 64px; /* 200% */
+    width: 688px;
+    margin: 0 auto;
+  }
+
+  .categories-product {
+
+    gap: map-get($spacing-sizes, 'mega');
+
+    .category-header {
+      margin-bottom: map-get($spacing-sizes, 'medium');
+    }
+
+    .category-title {
+      color: #FFF;
+      text-align: right;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 37.908px; /* 210.599% */
+
+    }
+
+    .navigation {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.80);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100px;
+
+      &.disabled {
+        border: 1px solid #B4B7BD;
+        pointer-events: none;
+        opacity: 0.4;
+      }
+    }
+
+    .desktop {
+      display: flex;
+    }
+
+    .product-item {
+      position: relative;
+      display: inline-block;
+      border-radius: 24px;
+      overflow: hidden;
+      z-index: 0;
+
+      img {
+        width: 150px;
+        height: auto;
+        display: block;
+        border-radius: inherit;
+        object-fit: cover;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 2px;
+        border-radius: inherit;
+        background: linear-gradient(
+            223.86deg,
+            rgba(255, 255, 255, 0.5) -7.28%,
+            rgba(49, 26, 21, 0.5) 55.04%,
+            rgba(224, 224, 224, 0.5) 105.44%
+        );
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        z-index: 1;
+        pointer-events: none; // allow clicks on the image
+      }
+    }
+  }
+}
+
+
+@media (max-width: 1280px) {
+  .black-friday-merchants {
+    &::before {
+      content: "";
+      position: absolute;
+      background-image: url("../../../../../../assets/images/black-friday/sec3-back.svg");
+      background-size: cover;
+      z-index: 3;
+      inset: 2% 0%;
+      height: 100%;
+      width: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      mask-image: radial-gradient(ellipse, black 57%, transparent 90%);
+
+    }
+
+    margin-top: 64px;
+
+    .title {
+      width: 100%;
+      font-size: 18px !important;
+      line-height: 32px;
+    }
+
+    .categories-product {
+      gap: 28px;
+
+      .category-header {
+        margin-bottom: 12px;
+      }
+
+      .category-title {
+        font-size: 14px !important;
+      }
+
+      .desktop {
+        display: none;
+      }
+
+      .product-item {
+        border-radius: 12px !important;
+
+        img {
+          width: 103px;
+          height: 107px;
+        }
+      }
+
+    }
+  }
+}

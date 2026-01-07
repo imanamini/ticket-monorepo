@@ -1,0 +1,22 @@
+@import "globals";
+
+.section-download-intro {
+  background: #ffffff;
+
+  > div {
+    @include flex-center;
+    gap: 16px;
+
+    .logo img {
+      width: 68px;
+      height: 68px;
+    }
+
+    .titles {
+      h1,
+      .subtitle {
+        margin-bottom: unset;
+      }
+    }
+  }
+}

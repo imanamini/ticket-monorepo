@@ -1,0 +1,27 @@
+<ui-api-image
+  width="126px"
+  [imageId]="data.imageId"
+></ui-api-image>
+<div class="description">
+  <header>
+    {{ data.title }}
+  </header>
+  <div>{{ data.description }}</div>
+</div>
+
+<div class="actions">
+  <ngx-button
+    (clickHandler)="guidStudy()"
+    [style]="'link'"
+    [size]="'medium'"
+  >
+    مطالعه راهنما
+  </ngx-button>
+  <ngx-button
+    (clickHandler)="close()"
+    [style]="'link'"
+    [size]="'medium'"
+  >
+    متوجه شدم
+  </ngx-button>
+</div>

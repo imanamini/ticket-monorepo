@@ -1,0 +1,12 @@
+<div
+  [style]="{ fontSize: size + 'px', opacity: opacity }"
+  class="ui-preparing"
+>
+  @if (title) {
+    <p class="title">{{ title }}</p>
+  }
+  @if (subtitle) {
+    <p class="subtitle">{{ subtitle }}</p>
+  }
+  <ngx-spinner></ngx-spinner>
+</div>

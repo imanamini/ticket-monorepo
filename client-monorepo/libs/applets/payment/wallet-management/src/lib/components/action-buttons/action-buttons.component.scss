@@ -1,0 +1,42 @@
+@import "@digipay/base-style/swatch";
+:host {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+
+  .divider {
+    width: 2px;
+    height: 24px;
+    background-color: #DEE3E7;
+    border-radius: 16px;
+  }
+
+  .action-button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    color: $swatch_steel_500;
+
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .plus {
+      background-image: url("../../../../../../../../apps/dpx/src/assets/wallet-management/plus-border.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .send {
+      background-image: url("../../../../../../../../apps/dpx/src/assets/wallet-management/send-border.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+}

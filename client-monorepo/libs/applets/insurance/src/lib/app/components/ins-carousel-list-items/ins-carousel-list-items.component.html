@@ -1,0 +1,56 @@
+<div class="ins-carousel-list-items d-flex flex-column pt-tiny gap-big radius-big surface-elevated">
+  <div class="d-flex flex-column gap-micro px-tiny">
+    @defer (on viewport) {
+      <img [height]="204"
+           [width]="312"
+           [loading]="'lazy'"
+           [ngSrc]="'insurance-assets/icons/png/insurers-list-icon.png'"
+           alt="insurer-list">
+    } @placeholder () {
+      <lib-ngx-skeleton-loading [loadingEffect]="true"
+                                height="204px"
+                                width="312px"></lib-ngx-skeleton-loading>
+    }
+
+    <h3 [textContent]="title()"
+        class="st-6 text-oninvert-brand text-align-center"></h3>
+    <p [textContent]="description()"
+       class="c-2 text-onback-low text-align-center"></p>
+  </div>
+  <div class="pb-big px-huge surface-high-contrast radius-big">
+    <ins-carousel [mode]="'CARD'"
+                  [visibleItemCount]="1"
+                  [centerMode]="true"
+                  [showNavigation]="true"
+                  [isFixedGap]="true"
+                  [mainContainerClasses]="'h-100'"
+                  [fixedGap]="0"
+                  [disableScaling]="true"
+                  [showButtons]="false">
+      @for (set of items(); track i; let i = $index) {
+        <div commonUiCarouselSlide
+             class="item d-flex flex-row gap-plus flex-wrap w-100 justify-content-flex-start">
+          @for (item of set; track item.icon) {
+            <div class="d-flex flex-column align-items-center">
+              <div class="d-flex justify-content-center align-items-center p-small radius-medium">
+                @defer (on viewport) {
+                  <ins-icon [name]="item.icon"
+                            [width]="32"
+                            [height]="32"></ins-icon>
+                } @placeholder () {
+                  <lib-ngx-skeleton-loading [loadingEffect]="true"
+                                            width="32px"
+                                            height="32px"></lib-ngx-skeleton-loading>
+                }
+
+              </div>
+              <span [textContent]="item.title"
+                    class="l-2 text-onback-medium"></span>
+            </div>
+          }
+        </div>
+      }
+    </ins-carousel>
+
+  </div>
+</div>

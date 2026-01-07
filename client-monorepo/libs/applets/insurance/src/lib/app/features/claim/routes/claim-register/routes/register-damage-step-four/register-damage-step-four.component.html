@@ -1,0 +1,13 @@
+<div class="step-four">
+  <div class="illustration"></div>
+  <div class="title">خسارت شما با شماره پرونده خسارت {{ claimData?.claimCaseNo }} ثبت شد.</div>
+  <div class="description">شما میتوانید با مراجعه به بخش خسارت‌ها در بیمه نامه‌ی خود، از آخرین وضعیت خسارت‌های خود
+    با‌خبر شوید.
+  </div>
+
+  <action-buttons (activeButtonClicked)="goToClaimList()"
+                  [backgroundMode]="'gray'"
+                  [activeButtonText]="'متوجه شدم'"
+                  [showDeActiveButton]="false"
+  ></action-buttons>
+</div>

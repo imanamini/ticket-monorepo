@@ -1,0 +1,44 @@
+@if (!isLoading()) {
+  <div
+    class="nex-action d-flex flex-column align-items-stretch justify-content-space-between px-atom pt-micro pb-pony w-100"
+    commonUtilitiesAppletOnHold
+    [holdTime]="500"
+    (handleOnHold)="secondaryClicked.emit()"
+    (click)="primaryClicked.emit()"
+  >
+    <div class="w-100 d-flex align-items-start justify-content-space-between flex-grow">
+      <div class="d-flex flex-column gap-tiny">
+        <div class="d-flex align-items-center justify-content-start gap-small">
+          <div class="text-onback-high c-1">{{ config()?.data?.title }}</div>
+          @if (config()?.data?.stepper?.title) {
+            <div class="text-onback-low l-3">{{ config()?.data?.stepper?.title }}</div>
+          }
+        </div>
+        @if (config()?.data?.description) {
+          <div class="text-onback-low c-3">
+            {{ config()?.data?.description }}
+          </div>
+        }
+      </div>
+      <div class="mt-tiny mr-medium">
+        <ngx-button
+          [style]="'tinted-on-elevated'"
+          [brandButton]="false"
+          [mode]="'icon-only'"
+          [size]="'small'"
+          [leftIcon]="{ name: 'arrow-left' }"
+        ></ngx-button>
+      </div>
+    </div>
+    <common-journey-management-journey-top-section
+      [config]="config()"
+      [placeHolder]="false"
+      [classes]="'mt-medium'"
+    ></common-journey-management-journey-top-section>
+  </div>
+} @else {
+  <lib-ngx-skeleton-loading
+    [height]="'100%'"
+    [width]="'100%'"
+  ></lib-ngx-skeleton-loading>
+}

@@ -1,0 +1,24 @@
+app-ui-button{
+  display: block !important;
+}
+
+.success-content{
+  border-radius: 20px;
+  background: var(--Surfaces-Materials-Glass-High-Contrast-invert, rgba(20, 21, 24, 0.75));
+}
+
+.title{
+  font-weight: 600 ;
+}
+
+
+
+
+@media screen and (max-width: 744px) {
+  .segment-half {
+    width: 100% !important;
+  }
+  .component-contact-form .d-flex{
+    flex-direction: column;
+  }
+}

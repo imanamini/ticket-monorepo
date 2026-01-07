@@ -1,0 +1,38 @@
+<div class="isiran-dialog">
+  <div class="dialog-body">
+    <div style="background: #f2f5f8; padding: 24px 24px 32px">
+      <div
+        (click)="closeDialog()"
+        class="close"
+      >
+        <ngx-icon
+          [name]="'close'"
+          classes="text-onback-high cursor-pointer"
+        ></ngx-icon>
+      </div>
+      <div class="titles">
+        <div style="font-size: 24px; font-weight: 800">دریافت وام</div>
+        <div style="font-size: 32px; font-weight: 900">
+          فروشندگان
+          <span style="color: #ff2638"> دیجی‌کالا </span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <app-ui-value-simple
+        *ngIf="features && features.length > 0"
+        [features]="features"
+        class="items"
+      >
+      </app-ui-value-simple>
+    </div>
+  </div>
+  <div class="dialog-footer">
+    <app-ui-button
+      (click)="submit()"
+      [id]="'confirm-onboard'"
+      size="BIG"
+      >درخواست وام</app-ui-button
+    >
+  </div>
+</div>

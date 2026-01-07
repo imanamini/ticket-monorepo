@@ -1,0 +1,132 @@
+<div class="fine-ticket surface-elevated radius-large text-onback-high">
+  <div class="fine-ticket-header px-plus pt-plus">
+    <div class="d-flex justify-content-space-between align-items-center">
+      <div class="d-flex gap-low">
+        <common-icon-dp-icon
+          [icon]="'car'"
+          [iconSize]="'24'"
+        ></common-icon-dp-icon>
+        <div class="st-8">{{ fine().title }}</div>
+      </div>
+      <div>
+        @if (fine().hasImage) {
+          <ngx-button
+            [style]="'link'"
+            [size]="'tiny'"
+            [rightIcon]="{ name: 'image' }"
+            (clickHandler)="showImage()"
+          >
+            تصویر جریمه
+          </ngx-button>
+        }
+      </div>
+    </div>
+    <div class="fine-details mt-minus d-flex flex-column gap-pony text-onback-medium b-3">
+      @if (fine().fineDetail.dateSimpleText) {
+        <div class="d-flex gap-tiny">
+          <div class="text-onback-disabled">
+            <common-icon-dp-icon
+              [icon]="'calendar'"
+              [iconSize]="'16'"
+            ></common-icon-dp-icon>
+          </div>
+          <div>
+            {{ fine().fineDetail.dateSimpleText }}
+          </div>
+        </div>
+      }
+      @if (fine().fineDetail.location) {
+        <div class="d-flex gap-tiny">
+          <div class="text-onback-disabled">
+            <common-icon-dp-icon
+              [icon]="'location'"
+              [iconSize]="'16'"
+            ></common-icon-dp-icon>
+          </div>
+          <div>{{ fine().fineDetail.location }}</div>
+        </div>
+      }
+      @if (fine().alertDto) {
+        <div>
+          <ngx-badge
+            [hasIcon]="true"
+            [mode]="'fill'"
+            [size]="'sm'"
+            [status]="'error'"
+          >
+            <ngx-icon
+              badge-icon
+              [name]="'info-circle'"
+              [type]="'linear'"
+              [iconSize]="'16px'"
+            />
+            {{ fine().alertDto.description.note }}
+          </ngx-badge>
+        </div>
+      }
+    </div>
+  </div>
+  <div class="fine-ticket-divider px-plus">
+    <div class="dashed-line border-color-light"></div>
+  </div>
+  <div class="fine-ticket-footer px-plus pb-plus">
+    @if (fine().fineDetail.desc) {
+      <div class="c-1 text-onback-medium mb-medium">{{ fine().fineDetail.desc }}</div>
+    }
+
+    @if (fine().status === FineStatus.READY_TO_PAY) {
+      <ngx-button
+        [mode]="'section'"
+        [style]="'tinted-on-elevated'"
+        [size]="'medium'"
+        [fullWidth]="true"
+        (clickHandler)="pay()"
+      >
+        پرداخت
+        {{ fine().fineDetail.amount | thousands }}
+        <span class="is-currency">ریال</span>
+      </ngx-button>
+    }
+
+    @if (fine().status === FineStatus.NOT_PAYABLE) {
+      <ngx-button
+        [mode]="'section'"
+        [style]="'tinted-on-elevated'"
+        [size]="'medium'"
+        [fullWidth]="true"
+        [disabled]="true"
+      >
+        غیرقابل پرداخت
+        {{ fine().fineDetail.amount | thousands }}
+        <span class="is-currency">ریال</span>
+      </ngx-button>
+    }
+
+    @if (fine().status === FineStatus.PAID) {
+      <div class="d-flex justify-content-space-between">
+        <div class="t-7 text-onback-high">
+          {{ fine().fineDetail.amount | thousands }}
+          <span class="is-currency">ریال</span>
+        </div>
+        <div>
+          <ngx-badge
+            [mode]="'fill'"
+            [size]="'md'"
+            [status]="'success'"
+            [type]="'text'"
+            [hasIcon]="true"
+          >
+            <ng-container badge-icon>
+              <common-icon-dp-icon
+                [iconType]="'linear'"
+                [icon]="'check-circle'"
+                [iconSize]="'16'"
+              ></common-icon-dp-icon>
+            </ng-container>
+            پرداخت شده
+          </ngx-badge>
+        </div>
+      </div>
+    }
+  </div>
+</div>

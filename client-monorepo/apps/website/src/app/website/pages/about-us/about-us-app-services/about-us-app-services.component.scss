@@ -1,0 +1,78 @@
+@import "@digipay/base-style/styleguide";
+
+
+.about-us-app-services {
+  background: #03072F;
+  padding: 140px map-get($spacing-sizes, 'atom') map-get($spacing-sizes, 'hulk');
+  position: relative;
+  z-index: 2;
+
+  .about-us-app-services-title {
+    color: #FFF;
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-size: 38px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+  }
+
+  .about-us-app-services-logo-list {
+    width: 1200px;
+    padding: 62px;
+
+    .about-us-app-services-logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 28px;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+.logo-row {
+  display: flex;
+  justify-content: center;
+  gap: map-get($spacing-sizes, 'huge');
+  margin-bottom: map-get($spacing-sizes, 'large'); // adjust if needed
+}
+
+
+@media screen and (max-width: 1280px) {
+
+  .about-us-app-services {
+
+    padding-top: 85px;
+    padding-bottom: 65px;
+
+    .about-us-app-services-logo-list {
+      width: 100% !important;
+      padding: 10px;
+
+      .about-us-app-services-logo {
+        width: 68px;
+        height: auto;
+      }
+    }
+
+    .about-us-app-services-title {
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 40px;
+    }
+
+    .about-us-app-services-subtitle {
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 40px; /* 166.667% */
+    }
+  }
+
+
+}

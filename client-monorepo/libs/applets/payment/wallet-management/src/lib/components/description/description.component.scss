@@ -1,0 +1,75 @@
+@import "@digipay/base-style/swatch";
+
+.description-content {
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 500px;
+
+  .title-wrapper {
+    color: $swatch_steel_900;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .content {
+    display: flex;
+    gap: 16px;
+
+    p {
+      margin: 0;
+    }
+
+    .icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .money {
+      width: 32px;
+      height: 32px;
+      background-repeat: no-repeat;
+      background-image: url("../../../../../../../../apps/dpx/src/assets/wallet-management/money-wallet-description.svg");
+    }
+
+    .romance {
+      width: 32px;
+      height: 32px;
+      background-repeat: no-repeat;
+      background-image: url("../../../../../../../../apps/dpx/src/assets/wallet-management/romance-wallet-description.svg");
+    }
+
+    .shop {
+      width: 32px;
+      height: 32px;
+      background-repeat: no-repeat;
+      background-image: url("../../../../../../../../apps/dpx/src/assets/wallet-management/shop-wallet-description.svg");
+    }
+
+    > p {
+      color: $swatch_steel_500;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+
+  .submit {
+    margin-top: 8px;
+    width: 100%;
+
+    ::ng-deep .ui-button {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 958px) {
+  .description-content {
+    max-width: 100% !important;
+  }
+}
+
+

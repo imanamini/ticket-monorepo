@@ -1,0 +1,13 @@
+export enum FUND_PROVIDER_CODE {
+  TEJARAT = 13,
+  MELLAT = 1,
+  DIGIPAY = 7,
+  SADERAT = 18,
+}
+
+export const FUND_PROVIDER_TRANSLATOR = {
+  [FUND_PROVIDER_CODE.MELLAT]: 'ملت',
+  [FUND_PROVIDER_CODE.TEJARAT]: 'تجارت',
+  [FUND_PROVIDER_CODE.DIGIPAY]: 'دیجی‌پی',
+  [FUND_PROVIDER_CODE.SADERAT]: 'صادرات ایران',
+};

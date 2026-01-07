@@ -1,0 +1,43 @@
+<div class="d-flex flex-column align-items-start justify-content-start flex-grow w-100">
+  <div class="px-plus w-100">
+    <common-ui-components-title-summary
+      [isLoading]="searching()"
+      [title]="'محصولات'"
+      [showButton]="false"
+    ></common-ui-components-title-summary>
+  </div>
+
+  <!-- Filters -->
+  <div class="px-plus filters w-100 surface-high-contrast pb-small">
+    <common-stores-products-sort-and-filter></common-stores-products-sort-and-filter>
+  </div>
+  <!-- End Filters -->
+
+  <!-- Products -->
+  <div
+    class="mt-minus w-100 d-flex flex-wrap px-plus justify-content-space-around"
+    commonUtilitiesScrolledToEnd
+    (scrolledToEnd)="handleNewPage()"
+  >
+    @for (product of allProducts(); track product.externalId) {
+      <common-stores-product-preview
+        [isLoading]="false"
+        [classes]="'mb-pony'"
+        [product]="product"
+        [backgroundMode]="'back'"
+        [queryId]="queryId()"
+        [position]="$index + 1"
+        (click)="handleProductClick(product)"
+      ></common-stores-product-preview>
+    }
+    @if (searching()) {
+      @for (_ of rangeCreator(2); track $index) {
+        <common-stores-product-preview
+          [isLoading]="true"
+          [backgroundMode]="'back'"
+        ></common-stores-product-preview>
+      }
+    }
+  </div>
+  <!-- End Products -->
+</div>

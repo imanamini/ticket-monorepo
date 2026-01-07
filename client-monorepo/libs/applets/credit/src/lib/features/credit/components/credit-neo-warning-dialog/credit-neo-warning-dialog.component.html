@@ -1,0 +1,36 @@
+<app-credit-digipay-dialog
+  (close)="dialogClose($event)"
+  [confirmText]="confirmBtnTxt()"
+  [rejectText]="rejectBtnTxt()!"
+  [title]="title()!"
+>
+  <p class="text first-description">
+    {{ firstDesc() }}
+  </p>
+
+  @if (pictorial()) {
+    <div class="dialog-image-wrapper">
+      <div class="warning-image"></div>
+    </div>
+  }
+
+  <div class="second-description-row">
+    @if (secondDescImgId()) {
+      <div class="second-description-icon">
+        <credit-digipay-image
+          [imageId]="secondDescImgId()!"
+          width="18px"
+        ></credit-digipay-image>
+      </div>
+    }
+    <div
+      [style]="{ color: secondDescColor() || '#191919' }"
+      class="text second-description"
+    >
+      <div
+        [innerHTML]="secondDesc()"
+        class="html"
+      ></div>
+    </div>
+  </div>
+</app-credit-digipay-dialog>

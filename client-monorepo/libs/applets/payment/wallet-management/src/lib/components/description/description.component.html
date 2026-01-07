@@ -1,0 +1,39 @@
+<div class="description-content">
+  <p class="title-wrapper">موجودی کیف پول</p>
+
+  <div class="content">
+    <div class="icon">
+      <div class="money"></div>
+    </div>
+    <p>
+      {{ DESCRIPTIONS[0] }}
+    </p>
+  </div>
+
+  <div class="content">
+    <div class="icon">
+      <div class="romance"></div>
+    </div>
+    <p>
+      {{ DESCRIPTIONS[1] }}
+    </p>
+  </div>
+
+  <div class="content">
+    <div class="icon">
+      <div class="shop"></div>
+    </div>
+    <p>
+      {{ DESCRIPTIONS[2] }}
+    </p>
+  </div>
+
+  <ngx-button
+    [size]="'medium'"
+    [fullWidth]="true"
+    (clickHandler)="close()"
+    class="submit"
+    [style]="'tinted-on-elevated'"
+    >&nbsp; متوجه شدم
+  </ngx-button>
+</div>

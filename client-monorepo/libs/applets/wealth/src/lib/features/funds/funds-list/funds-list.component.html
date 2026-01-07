@@ -1,0 +1,66 @@
+<div class="d-flex flex-wrap">
+  <ngx-app-bar
+    class="w-100"
+    [title]="pageTitle()"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  @if (isLoading()) {
+    <app-spinner class="h-100"></app-spinner>
+  } @else {
+    <div class="w-100 d-flex flex-wrap px-plus my-plus">
+      <!-- ? Filter button -->
+      @if (funds()?.length > 1) {
+        <div class="w-100">
+          <ngx-button
+            [style]="'tinted-on-back'"
+            [fullWidth]="true"
+            [mode]="'section'"
+            size="small"
+            [classNames]="['text-onback-high']"
+            (clickHandler)="sortBottomSheet()"
+            [rightIcon]="{
+              name: 'sorts',
+            }"
+          >
+            مرتب‌سازی بر اساس
+          </ngx-button>
+        </div>
+      }
+
+      <div
+        class="funds-introduction-card w-100 mt-big d-flex align-items-center position-relative cursor-pointer surface-elevated justify-content-space-between px-plus radius-plus"
+        (click)="showIntroduction(fundIntroduction().type)"
+        [id]="'SHOW_INTRODUCTION_' + fundIntroduction().type"
+      >
+        <div class="back-image">
+          <img
+            class="card-background"
+            [src]="fundIntroduction().imageUrl"
+          />
+        </div>
+        <span class="p-medium st-7">
+          {{ fundIntroduction().title }}
+        </span>
+        <ngx-icon name="arrow-left"></ngx-icon>
+      </div>
+
+      <!-- ? Funds -->
+      <div class="w-100 d-flex flex-wrap">
+        @for (fund of funds(); track fund) {
+          <app-funds-list-item
+            class="w-100 mt-plus radius-medium p-medium surface-elevated"
+            [fund]="fund"
+            [ready]="true"
+          />
+        }
+      </div>
+    </div>
+  }
+</div>

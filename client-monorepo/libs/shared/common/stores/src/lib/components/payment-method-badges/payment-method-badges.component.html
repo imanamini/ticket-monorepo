@@ -1,0 +1,30 @@
+<div class="payment-methods">
+  @if (hasCredit()) {
+    <div
+      class="payment-methods-item"
+      [ngClass]="{ 'surface-elevated': backgroundMode() === 'elevated', 'surface-back': backgroundMode() !== 'elevated' }"
+    >
+      <ngx-icon
+        [name]="'credit'"
+        [iconSize]="'12px'"
+        [type]="'linear'"
+        classes="text-onback-low"
+      ></ngx-icon>
+      <span class="l-2 text-onback-low">وام</span>
+    </div>
+  }
+  @if (hasBnpl()) {
+    <div
+      class="payment-methods-item"
+      [ngClass]="{ 'surface-elevated': backgroundMode() === 'elevated', 'surface-back': backgroundMode() !== 'elevated' }"
+    >
+      <ngx-icon
+        [name]="'bnpl'"
+        [iconSize]="'12px'"
+        [type]="'linear'"
+        classes="text-onback-low"
+      ></ngx-icon>
+      <span class="l-2 text-onback-low">اعتبار</span>
+    </div>
+  }
+</div>

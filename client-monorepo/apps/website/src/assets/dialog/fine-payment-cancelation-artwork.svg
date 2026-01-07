@@ -1,0 +1,39 @@
+<svg width="114" height="87" viewBox="0 0 114 87" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g id="Group 2">
+    <path id="Clip 17 Copy" fill-rule="evenodd" clip-rule="evenodd"
+          d="M103.536 66.3455C101.01 69.0547 99.2166 71.3579 100.213 73.2939C101.21 75.2299 105.353 73.6028 107.88 70.8936C110.406 68.1843 112.341 63.5714 110.599 62.2617C108.856 60.9521 106.063 63.6362 103.536 66.3455Z"
+          fill="#FFEEF3"/>
+    <path id="Clip 17 Copy 2" fill-rule="evenodd" clip-rule="evenodd"
+          d="M29.8827 15.4449C33.7658 13.4664 36.6456 11.5836 36.0883 8.58202C35.531 5.58044 30.0756 5.28046 26.1925 7.25903C22.3093 9.23761 18.5118 13.9473 20.1598 16.5834C21.8079 19.2195 25.9995 17.4235 29.8827 15.4449Z"
+          fill="#FFEEF3"/>
+    <path id="Clip 17" fill-rule="evenodd" clip-rule="evenodd"
+          d="M61.5659 73.6473C82.4955 72.9164 98.835 69.8271 102.3 49.7874C105.765 29.7477 82.4242 11.8925 61.4944 12.6234C40.5647 13.3542 14.6337 31.0822 16.6732 52.0832C18.7127 73.0843 40.6364 74.3782 61.5659 73.6473Z"
+          fill="#FFEEF3"/>
+    <ellipse id="Oval" cx="58.1063" cy="83.8609" rx="32.2887" ry="3.13918" fill="#FFC3D1"/>
+    <g id="Group">
+      <path id="Triangle"
+            d="M53.8422 14.4463C56.3558 10.1757 62.5321 10.1757 65.0457 14.4463L85.202 48.6927C87.7524 53.0258 84.6282 58.4897 79.6003 58.4897H39.2876C34.2597 58.4897 31.1355 53.0258 33.6859 48.6927L53.8422 14.4463Z"
+            fill="#FFEEF3" stroke="#FF6572" stroke-width="5"/>
+      <path id="Path" d="M59.2885 37.3543V27.5435" stroke="#FF6572" stroke-width="5" stroke-linecap="round"
+            stroke-linejoin="round"/>
+      <path id="Path_2"
+            d="M59.2859 44.9224C58.9239 44.9224 58.6301 45.2162 58.6327 45.5782C58.6327 45.9402 58.9265 46.234 59.2885 46.234C59.6505 46.234 59.9443 45.9402 59.9443 45.5782C59.9443 45.2162 59.6505 44.9224 59.2859 44.9224"
+            stroke="#FF6572" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g id="Group Copy">
+      <path id="Stroke 3 Copy" d="M15.055 69.062L7.87976 61.8867" stroke="#FF96A6" stroke-width="2"
+            stroke-linecap="round"/>
+      <path id="Stroke 4 Copy" d="M7.87976 69.062L15.055 61.8867" stroke="#FF96A6" stroke-width="2"
+            stroke-linecap="round"/>
+    </g>
+    <g id="Group Copy 2">
+      <path id="Stroke 3 Copy_2" d="M101.158 27.8039L90.3949 17.041" stroke="#FF96A6" stroke-width="2"
+            stroke-linecap="round"/>
+      <path id="Stroke 4 Copy_2" d="M90.3949 27.8039L101.158 17.041" stroke="#FF96A6" stroke-width="2"
+            stroke-linecap="round"/>
+    </g>
+    <path id="Stroke 31 Copy 3" fill-rule="evenodd" clip-rule="evenodd"
+          d="M7.77839 46.5445C7.77839 44.5631 6.15914 42.957 4.1616 42.957C2.16405 42.957 0.5448 44.5631 0.5448 46.5445C0.5448 48.5258 2.16405 50.1323 4.1616 50.1323C6.15914 50.1323 7.77839 48.5258 7.77839 46.5445Z"
+          fill="#FFEEF3"/>
+  </g>
+</svg>

@@ -1,0 +1,121 @@
+@if (isSearchActive()) {
+  <c2c-applet-card-search-dialog (handleClose)="handleSearchClose($event)"></c2c-applet-card-search-dialog>
+} @else {
+  <common-ui-components-page-layout
+    [stickyHeader]="true"
+    [showBackIcon]="true"
+    title="کارت مقصد"
+    (onBackAction)="goBack()"
+    [hasBackAction]="false"
+    [actionText]="'جستجو'"
+    [actionImage]="'search'"
+    (onTextClick)="openSearchDialog()"
+  >
+    <div
+      class="body d-flex flex-column"
+      id="destination_card_c2c_v3"
+    >
+      <div class="content d-flex flex-column">
+        <div class="w-100 pb-minus pt-tiny px-plus">
+          <c2c-applet-c2c-card-title titleText="به کارت"></c2c-applet-c2c-card-title>
+        </div>
+        <!-- Card Number Input Section -->
+        <section class="px-plus mb-plus">
+          <div
+            class="form pb-tiny group-list-item"
+            [formGroup]="destForm"
+          >
+            <ui-form-field
+              [errorMessageMapper]="{
+                bankCardNumberValidator: 'شماره کارت وارد شده اشتباه است.',
+                sameCardNumber: 'این شماره کارت به عنوان کارت مبدا انتخاب شده‌است.',
+                serverValidationError: this.errorServerMessage(),
+              }"
+              [error]="destForm.controls['destinationCardNumber'].errors"
+              [formControlName]="'destinationCardNumber'"
+              [label]="'شماره کارت مقصد'"
+              [disabled]="destForm.controls['destinationCardNumber'].disabled"
+              [type]="'card-number'"
+              [isNumericKeyboard]="true"
+              [convertNonEnglishDigits]="true"
+              [hasCleaner]="true"
+              [leadingIcon]="leadingIcon"
+            ></ui-form-field>
+            <ng-template #leadingIcon>
+              <common-icon-dp-icon
+                [iconSize]="'20'"
+                [icon]="'card-to-card'"
+                [iconType]="'linear'"
+              ></common-icon-dp-icon>
+            </ng-template>
+
+            @if (shouldShowBankInfo()) {
+              <div class="info l-3 above-btn-message text-onback-brand pt-tiny px-pony">
+                <span>{{ bank()?.name }}</span>
+                @if (destinationCardProfile()?.cardHolder) {
+                  <span> - {{ destinationCardProfile()?.cardHolder }}</span>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Save Card Checkbox -->
+          <div class="d-flex align-self-start gap-small b-3 p-minus text-onback-high">
+            <ngx-checkbox [(checked)]="wantToSaveCard"> ذخیره‌ی کارت مقصد </ngx-checkbox>
+          </div>
+        </section>
+
+        <!-- Saved Cards Section -->
+        @if (itemsList().length > 0) {
+          <section>
+            <div class="px-plus py-small">
+              <c2c-applet-c2c-card-title titleText="کارت‌های پرمراجعه"></c2c-applet-c2c-card-title>
+            </div>
+
+            <div
+              class="d-flex flex-column gap-small px-plus position-relative"
+              commonUtilitiesScrolledToEnd
+              (scrolledToEnd)="loadNewPage()"
+            >
+              @for (cardItem of itemsList(); track cardItem.profile.pan) {
+                <daily-bank-card-preview
+                  [config]="{
+                    classes: 'w-100',
+                    cardNumber: cardItem.profile.pan,
+                    ownerName: cardItem.profile.cardOwner || '',
+                    isPinned: cardItem.profile.pinned,
+                    isMinimized: true,
+                    alias: cardItem.profile.alias,
+                    isDestination: true,
+                  }"
+                  (click)="storedDestinationCardClick(cardItem.profile, $event)"
+                  (handleOnHold)="cardActions(cardItem.profile)"
+                  commonUtilitiesAppletOnHold
+                ></daily-bank-card-preview>
+              }
+            </div>
+          </section>
+        }
+
+        <!-- Loading State -->
+        @if (loading()) {
+          <div class="px-plus py-small d-flex flex-column gap-medium">
+            <lib-ngx-skeleton-loading [height]="'72px'"></lib-ngx-skeleton-loading>
+          </div>
+        }
+      </div>
+
+      <!-- Continue Button -->
+      <div class="action px-plus pt-medium pb-huge">
+        <ngx-button
+          (clickHandler)="goNextStep()"
+          [disabled]="!destinationCardProfile()"
+          [isLoading]="getProfileCardSpinner()"
+          [fullWidth]="true"
+        >
+          ادامه
+        </ngx-button>
+      </div>
+    </div>
+  </common-ui-components-page-layout>
+}

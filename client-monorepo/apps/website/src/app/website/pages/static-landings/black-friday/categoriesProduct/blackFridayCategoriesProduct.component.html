@@ -1,0 +1,49 @@
+<div class="black-friday-categories-product">
+  <div class="title">{{ categoriesProducts()?.title }}</div>
+
+  <div class="categories-product d-flex flex-column gap-large">
+    @if (mobileMode()) {
+      <div class="categories mr-plus">
+        <swiper-container
+          appSwiper
+          #swiper="appSwiper"
+          class="swiper"
+          [config]="config"
+        >
+          @for (item of categoriesList(); track item) {
+            <swiper-slide class="">
+              <div class="filter-cat c-2 text-oninvert-high radius-giant cursor-pointer"
+                   (click)="filterProduct(item)"
+                   [ngClass]="{'active': activeCategory() === item }"
+              >
+                {{ item }}
+              </div>
+            </swiper-slide>
+          }
+        </swiper-container>
+      </div>
+    } @else {
+      <div class="categories d-flex align-items-center gap-minus justify-content-center">
+        @for (item of categoriesList(); track item) {
+          <div class="filter-cat c-2 text-oninvert-high radius-giant cursor-pointer"
+               (click)="filterProduct(item)"
+               [ngClass]="{'active': activeCategory() === item }"
+          >
+            {{ item }}
+          </div>
+        }
+      </div>
+
+    }
+    <div class="products d-flex align-items-center flex-wrap gap-medium justify-content-center"
+         [ngClass]="{'container' : !mobileMode()}">
+      @for (product of filteredProducts(); track product) {
+        @if (product?.image) {
+          <div class="product-item radius-big" (click)="openLink(product?.link)">
+            <img src="{{product?.image?.url}}" class="radius-big" alt="">
+          </div>
+        }
+      }
+    </div>
+  </div>
+</div>

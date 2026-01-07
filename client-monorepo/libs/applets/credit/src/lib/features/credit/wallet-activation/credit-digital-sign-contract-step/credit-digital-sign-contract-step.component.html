@@ -1,0 +1,31 @@
+<app-credit-app-bar
+  (onBackButtonClick)="goBack()"
+  [backButton]="true"
+  [title]="pageTitle()"
+>
+</app-credit-app-bar>
+
+@if (!gettingData()) {
+  <div class="main-section flex-full-height">
+    <div class="top-section">
+      <app-credit-scrollable-view [fullHeightContent]="true">
+        <div class="page-content">
+          <app-credit-step-status-message
+            [imageId]="data()?.imageId"
+            [message]="data()?.message"
+            [title]="data()?.title"
+          ></app-credit-step-status-message>
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+    <div class="bottom-section">
+      <ngx-button
+        (click)="goToAction()"
+        [fullWidth]="true"
+      >
+        {{ data()?.buttonLabel }}
+      </ngx-button>
+    </div>
+  </div>
+}
+<credit-page-loading [active]="gettingData()"></credit-page-loading>

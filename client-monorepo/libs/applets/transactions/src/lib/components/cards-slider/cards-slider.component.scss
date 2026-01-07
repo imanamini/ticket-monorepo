@@ -1,0 +1,34 @@
+$animationTime: 7s;
+.card-section {
+  position: relative;
+  height: 216px;
+
+  .card-item {
+    position: absolute;
+    width: 216px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    filter: blur(0);
+    transform-origin: right center;
+  }
+
+  .card-wrapper {
+    width: 216px;
+  }
+}
+
+.card-section {
+  &.front-fade {
+    .card-item {
+      transition: all $animationTime cubic-bezier(0.15, 0.65, 0.18, 1.09);
+    }
+  }
+}
+
+.card-title {
+  line-height: 20px !important;
+  text-align: left;
+  white-space: nowrap;
+  font-weight: normal;
+}

@@ -1,0 +1,83 @@
+<ng-container *ngIf="type === 'input'">
+  <app-dg-input
+    [errorMessage]="finalErrorMessage"
+    [form]="form"
+    [hasCleaner]="hasCleaner"
+    [hint]="hint"
+    [inputType]="inputType"
+    [label]="label"
+    [ltrInput]="ltrInput"
+    [ltrPlaceholder]="ltrPlaceholder"
+    [mandatory]="mandatory"
+    [maxSize]="maxSize"
+    [multiLine]="multiLine"
+    [placeholder]="placeholder"
+    [readonly]="readonly"
+    [tooltipText]="tooltipText"
+  ></app-dg-input>
+</ng-container>
+<ng-container *ngIf="type === 'amount'">
+  <app-dg-amount
+    [errorMessage]="finalErrorMessage"
+    [form]="form"
+    [hasCleaner]="hasCleaner"
+    [hint]="hint"
+    [label]="label"
+    [ltrInput]="ltrInput"
+    [ltrPlaceholder]="ltrPlaceholder"
+    [placeholder]="placeholder"
+    [readonly]="readonly"
+  ></app-dg-amount>
+</ng-container>
+<ng-container *ngIf="type === 'select'">
+  <app-dg-select
+    [errorMessage]="finalErrorMessage"
+    [form]="form"
+    [hasCleaner]="hasCleaner"
+    [hint]="hint"
+    [label]="label"
+    [ltrInput]="ltrInput"
+    [ltrPlaceholder]="ltrPlaceholder"
+    [multiSelect]="multiSelect"
+    [options]="options"
+    [placeholder]="placeholder"
+    [readonly]="readonly"
+  ></app-dg-select>
+</ng-container>
+<ng-container *ngIf="type === 'wheel-select'">
+  <app-dg-wheel-select
+    [errorMessage]="finalErrorMessage"
+    [form]="form"
+    [hasCleaner]="hasCleaner"
+    [hint]="hint"
+    [label]="label"
+    [ltrInput]="ltrInput"
+    [ltrPlaceholder]="ltrPlaceholder"
+    [options]="options"
+    [placeholder]="placeholder"
+    [readonly]="readonly"
+  ></app-dg-wheel-select>
+</ng-container>
+<ng-container *ngIf="type === 'slide-toggle'">
+  <app-dg-slide-toggle
+    [form]="form"
+    [hint]="hint"
+    [label]="label"
+  ></app-dg-slide-toggle>
+</ng-container>
+<ng-container *ngIf="type === 'date' || type === 'date-time' || type === 'date-end'">
+  <app-dg-date
+    [dateRange]="dateRange"
+    [endPicker]="type === 'date-end'"
+    [errorMessage]="finalErrorMessage"
+    [form]="form"
+    [hasCleaner]="hasCleaner"
+    [hint]="hint"
+    [label]="label"
+    [ltrInput]="ltrInput"
+    [ltrPlaceholder]="ltrPlaceholder"
+    [placeholder]="placeholder"
+    [readonly]="readonly"
+    [showTime]="type === 'date-time'"
+  ></app-dg-date>
+</ng-container>

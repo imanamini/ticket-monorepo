@@ -1,0 +1,7 @@
+<car-info-box class="ex-insurer"
+              text="شرکت بیمه‌گر قبلی خود را وارد کنید:"
+              (activeButtonClicked)="handleActiveButtonClicked()"
+              (deActiveButtonClicked)="handleDeActiveButtonClicked()">
+  <ex-insurer-form [exInsurerForm]="exInsurerForm"
+                   [showError]="showError"></ex-insurer-form>
+</car-info-box>

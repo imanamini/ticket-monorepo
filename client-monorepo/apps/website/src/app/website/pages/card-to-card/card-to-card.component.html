@@ -1,0 +1,55 @@
+<app-base-layout
+  *ngIf="cardToCardPage && cardToCardPage.templateData"
+  [loaded]="loaded"
+>
+  <app-card-to-card-banks [sectionBanks]="cardToCardPage.templateData.sectionBanks"></app-card-to-card-banks>
+  <app-card-to-card-value
+    [features]="cardToCardPage.templateData.sectionValue.values"
+    [title]="cardToCardPage.templateData.sectionValue.title"
+  ></app-card-to-card-value>
+  <app-card-to-card-transaction
+    [sectionBankTransaction]="cardToCardPage.templateData.sectionBankTransaction"
+    [title]="cardToCardPage.templateData.sectionBankTransaction.title"
+  ></app-card-to-card-transaction>
+  <app-card-to-card-steps
+    [cta]="cardToCardPage.templateData.sectionSteps.firstCta"
+    [statisticsSide]="cardToCardPage.templateData.sectionSteps.statisticsSide"
+    [steps]="cardToCardPage.templateData.sectionSteps.steps"
+    [title]="cardToCardPage.templateData.sectionSteps.title"
+  ></app-card-to-card-steps>
+  <app-card-to-card-active-shaparak
+    *ngIf="
+      cardToCardPage.templateData.sectionShaparakActivate &&
+      cardToCardPage.templateData.sectionShaparakActivate.complexAccordions &&
+      cardToCardPage.templateData.sectionShaparakActivate.complexAccordions.length > 0
+    "
+    [accordionsData]="cardToCardPage.templateData.sectionShaparakActivate.complexAccordions"
+    [title]="cardToCardPage.templateData.sectionShaparakActivate.title"
+  ></app-card-to-card-active-shaparak>
+  <app-ui-similar-services
+    *ngIf="
+      cardToCardPage.templateData.similar &&
+      cardToCardPage.templateData.similar.items &&
+      cardToCardPage.templateData.similar.items.length > 0
+    "
+    [data]="cardToCardPage.templateData.similar"
+  ></app-ui-similar-services>
+
+  <app-ui-seo
+    *ngIf="cardToCardPage.templateData.sectionSeoContent"
+    [seoContent]="cardToCardPage.templateData.sectionSeoContent"
+  ></app-ui-seo>
+  <app-ui-faq
+    *ngIf="
+      cardToCardPage &&
+      cardToCardPage.templateData &&
+      cardToCardPage.templateData.faq &&
+      cardToCardPage.templateData.faq.faqItems &&
+      cardToCardPage.templateData.faq.faqItems.length > 0
+    "
+    [faqs]="cardToCardPage.templateData.faq.faqItems"
+    [subtitle]="cardToCardPage.templateData.faq.subtitle"
+    [title]="cardToCardPage.templateData.faq.title"
+  >
+  </app-ui-faq>
+</app-base-layout>

@@ -1,0 +1,11 @@
+<common-otp-fill-otp
+  [otpLength]="6"
+  [mode]="'fine'"
+  (retryOutput)="retryOtp($event)"
+  [phoneNumber]="sheetData.cellNumber"
+  [autoVerify]="false"
+  [editButton]="false"
+  [isTwiceButton]="false"
+  [(externalErrorMessage)]="errorMessage"
+  (fillOtp)="fillOtp($event)"
+></common-otp-fill-otp>

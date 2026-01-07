@@ -1,0 +1,10 @@
+<div class="carrier-select">
+  <div
+    (click)="onCLick(carrier)"
+    *ngFor="let carrier of carriers"
+    [ngClass]="'is-' + carrier.icon + (selected && selected.value === carrier.value ? ' is-selected' : '')"
+    class="carrier"
+  >
+    <span class="icon"></span>
+  </div>
+</div>

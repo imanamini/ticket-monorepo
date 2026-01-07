@@ -1,0 +1,26 @@
+.page-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+
+  > div{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.card-scheme-area {
+  padding: 16px;
+
+  ui-c2c-bank-card-scheme {
+    width: 260px;
+    margin: 0 auto;
+  }
+}
+
+.action {
+  margin-top: 36px;
+  width: 100%;
+}

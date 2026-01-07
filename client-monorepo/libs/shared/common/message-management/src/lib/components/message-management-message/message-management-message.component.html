@@ -1,0 +1,208 @@
+<ng-container>
+  @switch (message()?.template) {
+    @case (MessageTemplateEnum.SIMPLE) {
+      <div
+        class="d-flex flex-column gap-small px-plus py-minus position-relative cursor-pointer"
+        (click)="onMessageClicked()"
+        [ngClass]="getMessageBackgroundClass()"
+      >
+        @if (!message()?.isRead && !isRead() && !message()?.isExpired) {
+          <span class="unread-icon"></span>
+        }
+        <div class="d-flex justify-content-space-between align-items-center w-100">
+          <div class="d-flex gap-small align-items-center">
+            @if (message()?.title) {
+              <span
+                class="st-7"
+                [ngClass]="getMessageDisableClass()"
+                >{{ message()?.title }}</span
+              >
+            }
+            @if (message()?.scheduledDateFormatted) {
+              <span
+                class="text-onback-low l-3"
+                [ngClass]="getMessageDisableClass()"
+                >{{ message()?.scheduledDateFormatted }}</span
+              >
+            }
+          </div>
+          <div>
+            @if (message()?.parseBadge) {
+              <ngx-badge
+                [status]="message()?.isExpired ? 'inactive' : (message()?.parseBadge?.status ?? 'info')"
+                [size]="'tiny'"
+                [mode]="message()?.isExpired ? 'bold' : (message()?.parseBadge?.mode ?? 'fill')"
+              >
+                {{ message()?.parseBadge?.text }}
+              </ngx-badge>
+            }
+          </div>
+        </div>
+        @if (message()?.safeContent) {
+          <div
+            class="b-3 text-onback-medium app-message-html-content"
+            [ngClass]="getMessageDisableClass()"
+            [innerHTML]="message()?.safeContent"
+          ></div>
+        }
+        @if (message()?.parseCta && message()?.parseCta?.text) {
+          <div class="w-100 d-flex justify-content-end">
+            <ngx-button
+              [size]="'small'"
+              [mode]="'form'"
+              [disabled]="message()?.isExpired ?? false"
+              [style]="'link'"
+              [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+              [classNames]="['button-text-neutral-link']"
+            >
+              {{ message()?.parseCta?.text }}
+            </ngx-button>
+          </div>
+        }
+      </div>
+    }
+    @case (MessageTemplateEnum.BANNER) {
+      <div
+        class="d-flex flex-column gap-small px-plus py-minus position-relative cursor-pointer"
+        (click)="onMessageClicked()"
+        [ngClass]="getMessageBackgroundClass()"
+      >
+        @if (!message()?.isRead && !isRead() && !message()?.isExpired) {
+          <span class="unread-icon"></span>
+        }
+        <div class="d-flex justify-content-space-between align-items-center w-100">
+          <div class="d-flex gap-small align-items-center">
+            @if (message()?.title) {
+              <span
+                class="st-7"
+                [ngClass]="getMessageDisableClass()"
+                >{{ message()?.title }}</span
+              >
+            }
+            @if (message()?.scheduledDateFormatted) {
+              <span
+                class="text-onback-low l-3"
+                [ngClass]="getMessageDisableClass()"
+                >{{ message()?.scheduledDateFormatted }}</span
+              >
+            }
+          </div>
+          @if (message()?.parseBadge) {
+            <ngx-badge
+              [status]="message()?.isExpired ? 'inactive' : (message()?.parseBadge?.status ?? 'info')"
+              [size]="'tiny'"
+              [mode]="message()?.isExpired ? 'bold' : (message()?.parseBadge?.mode ?? 'fill')"
+            >
+              {{ message()?.parseBadge?.text }}
+            </ngx-badge>
+          }
+        </div>
+        @if (message()?.bannerImageId) {
+          <ui-api-image
+            [imageId]="message()?.bannerImageId ?? ''"
+            [width]="'100%'"
+            [styles]="{
+              'aspect-ratio': '3.33',
+            }"
+            [classes]="message()?.isExpired ? 'image-expired' : ''"
+          ></ui-api-image>
+        }
+        @if (message()?.safeContent) {
+          <div
+            class="b-3 text-onback-medium app-message-html-content"
+            [ngClass]="getMessageDisableClass()"
+            [innerHTML]="message()?.safeContent"
+          ></div>
+        }
+        @if (message()?.parseCta) {
+          <div class="w-100 d-flex justify-content-end">
+            <ngx-button
+              [size]="'small'"
+              [mode]="'form'"
+              [disabled]="message()?.isExpired ?? false"
+              [style]="'link'"
+              [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+              [classNames]="['button-text-neutral-link']"
+            >
+              {{ message()?.parseCta?.text }}
+            </ngx-button>
+          </div>
+        }
+      </div>
+    }
+    @case (MessageTemplateEnum.AVATAR) {
+      <div
+        class="d-flex flex-column gap-small px-plus py-minus position-relative cursor-pointer"
+        (click)="onMessageClicked()"
+        [ngClass]="getMessageBackgroundClass()"
+      >
+        @if (!message()?.isRead && !isRead() && !message()?.isExpired) {
+          <span class="unread-icon"></span>
+        }
+        <div class="d-flex justify-content-space-between align-items-center w-100">
+          <div class="d-flex gap-small align-items-center">
+            @if (message()?.parseAvatar) {
+              <ngx-avatar
+                [config]="{
+                  size: 'lg',
+                  type: 'logo_fill',
+                  src: message()?.parseAvatar?.imageId ?? '',
+                  colorBadge: message()?.isExpired ? 'inactive' : message()?.parseAvatar?.badgeType,
+                  iconBadgeName: message()?.parseAvatar?.badgeIcon,
+                  showTopBadge: !!message()?.parseAvatar?.badgeIcon,
+                }"
+                [imageClasses]="message()?.isExpired ? 'image-expired' : ''"
+              ></ngx-avatar>
+            }
+            <div class="d-flex flex-column">
+              @if (message()?.title) {
+                <span
+                  class="st-7"
+                  [ngClass]="getMessageDisableClass()"
+                  >{{ message()?.title }}</span
+                >
+              }
+              @if (message()?.scheduledDateFormatted) {
+                <span
+                  class="text-onback-low l-3"
+                  [ngClass]="getMessageDisableClass()"
+                  >{{ message()?.scheduledDateFormatted }}</span
+                >
+              }
+            </div>
+          </div>
+          @if (message()?.parseBadge) {
+            <ngx-badge
+              [status]="message()?.isExpired ? 'inactive' : (message()?.parseBadge?.status ?? 'info')"
+              [size]="'tiny'"
+              [mode]="message()?.isExpired ? 'bold' : (message()?.parseBadge?.mode ?? 'fill')"
+            >
+              {{ message()?.parseBadge?.text }}
+            </ngx-badge>
+          }
+        </div>
+        @if (message()?.safeContent) {
+          <div
+            class="b-3 text-onback-medium app-message-html-content"
+            [ngClass]="getMessageDisableClass()"
+            [innerHTML]="message()?.safeContent"
+          ></div>
+        }
+        @if (message()?.parseCta && this.message()?.parseCta?.text) {
+          <div class="w-100 d-flex justify-content-end">
+            <ngx-button
+              [size]="'small'"
+              [mode]="'form'"
+              [classNames]="['button-text-neutral-link']"
+              [disabled]="message()?.isExpired ?? false"
+              [style]="'link'"
+              [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+            >
+              {{ message()?.parseCta?.text }}
+            </ngx-button>
+          </div>
+        }
+      </div>
+    }
+  }
+</ng-container>

@@ -1,0 +1,89 @@
+<div class="w-100 d-flex flex-column">
+  <div class="w-100 d-flex align-items-center mb-minus gap-tiny">
+    <p class="st-8 text-onback-medium">وثیقه شده</p>
+    <ngx-button
+      [mode]="'icon-only'"
+      [style]="'neutral-link'"
+      [leftIcon]="{
+        name: uncollectibleCollapsed() ? 'arrow-2-up' : 'arrow-2-down',
+      }"
+      [size]="'tiny'"
+      (clickHandler)="uncollectibleCollapsed.set(!uncollectibleCollapsed())"
+    />
+    <div class="d-flex flex-1 justify-content-end">
+      <p class="st-8 text-onback-medium">
+        {{ detail().current.uncollectibleBalance.total | thousands }}
+        <span class="is-currancy">ریال</span>
+      </p>
+    </div>
+  </div>
+  @if (uncollectibleCollapsed()) {
+    <div class="stepper mt-atom">
+      @for (uncollectibleBalance of detail().current.uncollectibleBalance.detail; track $index; let last = $last) {
+        <div
+          class="step w-100 d-flex mb-atom"
+          [ngClass]="{ 'mb-minus': !last }"
+        >
+          <div class="circle"></div>
+          <div class="w-100 d-flex">
+            <p class="c-2 text-onback-medium">
+              {{ uncollectibleBalance.walletTitle }}
+            </p>
+            <div class="d-flex flex-1 justify-content-end">
+              <p class="c-2 text-onback-medium">
+                {{ uncollectibleBalance.uncollectibleBalance | thousands }}
+                <span class="is-currancy">ریال</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+  <div
+    class="w-100 d-flex mb-minus"
+    [ngClass]="{ 'mt-plus': uncollectibleCollapsed() }"
+  >
+    <p class="st-8 text-onback-medium">قابل برداشت</p>
+    <ngx-button
+      [mode]="'icon-only'"
+      [style]="'neutral-link'"
+      [leftIcon]="{
+        name: collectibleCollapsed() ? 'arrow-2-up' : 'arrow-2-down',
+      }"
+      [size]="'tiny'"
+      (clickHandler)="collectibleCollapsed.set(!collectibleCollapsed())"
+    />
+    <div class="d-flex flex-1 justify-content-end">
+      <p class="st-8 text-onback-medium">
+        {{ detail().current.withdrawableBalance.total | thousands }}
+        <span class="is-currancy">ریال</span>
+      </p>
+    </div>
+  </div>
+
+  @if (collectibleCollapsed()) {
+    <div class="stepper mt-atom">
+      @for (withdrawableBalance of detail().current.withdrawableBalance.detail; track $index; let last = $last) {
+        <div
+          class="step w-100 d-flex mb-atom"
+          [ngClass]="{ 'mb-minus': !last }"
+        >
+          <div class="circle"></div>
+          <div class="w-100 d-flex">
+            <p class="c-2 text-onback-medium">
+              {{ withdrawableBalance.walletTitle }}
+            </p>
+            <div class="d-flex flex-1 justify-content-end">
+              <p class="c-2 text-onback-medium">
+                {{ withdrawableBalance.withdrawableBalance | thousands }}
+                <span class="is-currancy">ریال</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

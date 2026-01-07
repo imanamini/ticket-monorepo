@@ -1,0 +1,12 @@
+<ngx-tabs>
+  @for (tab of tabs(); track tab.value) {
+    <ngx-tab
+      [label]="tab.title"
+      [state]="tab.value === activeTab() ? 'selected' : 'enabled'"
+      [badgeContent]="tab.badge"
+      [iconName]="tab.icon"
+      (stateChange)="handleStateChange($event, tab.value)"
+    >
+    </ngx-tab>
+  }
+</ngx-tabs>

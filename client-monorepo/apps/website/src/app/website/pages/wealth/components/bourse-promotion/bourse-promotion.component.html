@@ -1,0 +1,133 @@
+<div class="section-bourse-promotion">
+  <div class="container">
+    <h2 class="title">{{ boursePromotionData.title }}</h2>
+    <div class="subtitle">
+      <span>{{ boursePromotionData.subtitle }}</span>
+    </div>
+    <div class="cool-background"></div>
+    <div class="boxes">
+      <div class="effective-parameters box">
+        <div class="top-part">
+          <div class="icon">
+            <span
+              appUiIcon
+              icon="icon-circle-arrow-left"
+              size="18"
+            ></span>
+          </div>
+          <div class="title">موارد تاثیرگذار:</div>
+        </div>
+        <div class="description">
+          <span
+            appUiIcon
+            icon="icon-curved-arrow-left"
+            size="24"
+            class="icon"
+          ></span>
+          <p [innerHTML]="boursePromotionData.effectiveParameters.description"></p>
+        </div>
+        <div class="items">
+          <div
+            class="item"
+            *ngFor="let item of boursePromotionData.effectiveParameters.items"
+          >
+            <img
+              *ngIf="item.icon && item.icon.url"
+              [ngSrc]="item.icon.url"
+              width="24"
+              height="24"
+            />
+            <div>{{ item.title }}</div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="bottom-boxes"
+        *ngIf="!wealthMode"
+      >
+        <div class="stock-fund box">
+          <div class="bottom-to-top-arrow"></div>
+          <div class="outer-title">
+            <span>سودهی بالا</span>
+            <span
+              appUiIcon
+              icon="icon-filled-triangle-up"
+              size="14"
+            ></span>
+          </div>
+          <div>
+            <div class="top-part">
+              <div class="title">صندوق سهامی</div>
+            </div>
+            <div class="description">
+              <p [innerHTML]="boursePromotionData.stockFund.description"></p>
+            </div>
+          </div>
+          <div class="items">
+            <div
+              class="item"
+              *ngFor="let item of boursePromotionData.stockFund.items"
+            >
+              <div class="icon-wrapper">
+                <img
+                  *ngIf="item.icon && item.icon.url"
+                  [ngSrc]="item.icon.url"
+                  width="24"
+                  height="24"
+                />
+              </div>
+              <div>{{ item.title }}</div>
+            </div>
+          </div>
+          <app-ui-button
+            size="BIG"
+            *ngIf="boursePromotionData.stockFund.firstCta && boursePromotionData.stockFund.firstCta.link"
+            [link]="boursePromotionData.stockFund.firstCta.link"
+            >{{ boursePromotionData.stockFund.firstCta.title }}</app-ui-button
+          >
+        </div>
+        <div class="fixed-income-fund box">
+          <div class="top-to-bottom-arrow"></div>
+          <div class="outer-title">
+            <span>ریسک پایین</span>
+            <span
+              appUiIcon
+              icon="icon-filled-triangle-down"
+              size="14"
+            ></span>
+          </div>
+          <div>
+            <div class="top-part">
+              <div class="title">صندوق درآمدثابت</div>
+            </div>
+            <div class="description">
+              <p [innerHTML]="boursePromotionData.fixedIncomeFund.description"></p>
+            </div>
+          </div>
+          <div class="items">
+            <div
+              class="item"
+              *ngFor="let item of boursePromotionData.fixedIncomeFund.items"
+            >
+              <div class="icon-wrapper">
+                <img
+                  *ngIf="item.icon && item.icon.url"
+                  [ngSrc]="item.icon.url"
+                  width="24"
+                  height="24"
+                />
+              </div>
+              <div>{{ item.title }}</div>
+            </div>
+          </div>
+          <app-ui-button
+            size="BIG"
+            *ngIf="boursePromotionData.fixedIncomeFund.firstCta && boursePromotionData.fixedIncomeFund.firstCta.link"
+            [link]="boursePromotionData.fixedIncomeFund.firstCta.link"
+            >{{ boursePromotionData.fixedIncomeFund.firstCta.title }}</app-ui-button
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

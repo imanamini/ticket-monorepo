@@ -1,0 +1,73 @@
+<div class="bottom-sheet-container">
+  <ngx-bottom-sheet-header
+    [showResizable]="false"
+    [title]="'انتخاب آدرس'"
+  ></ngx-bottom-sheet-header>
+  <div class="addresses-container px-plus pt-plus pb-mega">
+    <common-ui-components-selection-box
+      (selectedOption)="selectAddress()"
+      [checkboxType]="true"
+      [config]="{
+        label: 'آدرس جدید',
+        value: '',
+        selected: newAddressSelected(),
+      }"
+    >
+    </common-ui-components-selection-box>
+    <span class="b-2">آدرس‌های اخیر شما</span>
+    <div class="recent-address d-flex flex-column flex-grow">
+      <app-credit-scrollable-view [fullHeightContent]="true">
+        <div class="d-flex flex-column flex-grow gap-minus">
+          @for (item of recentAddresses(); track index; let index = $index) {
+            <common-ui-components-selection-box
+              (selectedOption)="selectAddress(item, index)"
+              [config]="item.listOption"
+              [checkboxType]="true"
+            >
+              <div class="address">
+                <div class="address-items">
+                  <div class="item gap-pony">
+                    <ngx-icon
+                      classes="text-onback-low"
+                      name="location"
+                      type="bold"
+                      iconSize="16px"
+                    ></ngx-icon>
+                    <span class="b-2 text-onback-low">{{ item.provinceName }}، {{ item.cityName }}</span>
+                  </div>
+                  <div class="item gap-pony">
+                    <ngx-icon
+                      classes="text-onback-low"
+                      name="home"
+                      type="bold"
+                      iconSize="16px"
+                    ></ngx-icon>
+                    <span class="b-2 text-onback-low">{{ item.postalCode }}</span>
+                  </div>
+                  <div class="item gap-pony">
+                    <ngx-icon
+                      classes="text-onback-low"
+                      name="email"
+                      type="bold"
+                      iconSize="16px"
+                    ></ngx-icon>
+                    <span class="b-2 text-onback-low">پلاک {{ item.addressUnit }} - واحد {{ item.addressNo }}</span>
+                  </div>
+                </div>
+              </div>
+            </common-ui-components-selection-box>
+          }
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+    <div class="button-section">
+      <ngx-button
+        (clickHandler)="onClose()"
+        [fullWidth]="true"
+        [style]="'fill'"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  </div>
+</div>

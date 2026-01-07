@@ -1,0 +1,28 @@
+<div
+  [ngClass]="{ 'extra-open': isExtraOpen }"
+  class="box"
+>
+  <div class="top-part">
+    <div></div>
+  </div>
+  <div
+    class="swipe-btn"
+    id="swipe-btn"
+  >
+    <div class="filters">
+      <app-category-filter
+        (selectCategoryId)="selectCategory($event)"
+        *ngIf="filters"
+        [filters]="filters"
+        [selectedCategoryId]="selectedCategoryId"
+      ></app-category-filter>
+    </div>
+  </div>
+  <div class="submit">
+    <app-ui-button
+      (clicked)="submitFilters()"
+      class="cta"
+      >اعمال</app-ui-button
+    >
+  </div>
+</div>

@@ -1,0 +1,169 @@
+<div class="container merchant-register mt-hulk mb-hulk">
+  <div>
+    <div
+      class="component-contact-form form"
+      *ngIf="form.value"
+      [formGroup]="form"
+    >
+      <ng-container>
+        <label class="segment-half">
+          <ui-form-field
+            [errorMessageMapper]="{
+              required: 'نام و نام خانوادگی را وارد کنید.',
+            }"
+            [error]="form.controls['fullName']?.errors"
+            [formControlName]="'fullName'"
+            [isNumericKeyboard]="false"
+            [label]="'نام و نام خانوادگی'"
+            [required]="hasRequiredValidator(form.controls['fullName'])"
+          ></ui-form-field>
+        </label>
+      </ng-container>
+      <ng-container>
+        <label class="segment-half">
+          <ui-form-field
+            [errorMessageMapper]="{
+              required: 'نام کسب و کار را وارد کنید.',
+            }"
+            [error]="form.controls['businessName']?.errors"
+            [formControlName]="'businessName'"
+            [isNumericKeyboard]="false"
+            [label]="'نام کسب و کار'"
+            [required]="hasRequiredValidator(form.controls['businessName'])"
+          ></ui-form-field>
+        </label>
+      </ng-container>
+      <ng-container>
+        <label class="segment-half">
+          <ui-form-field
+            [errorMessageMapper]="{
+              required: ' صنف را وارد کنید.',
+            }"
+            [error]="form.controls['class']?.errors"
+            [formControlName]="'class'"
+            [isNumericKeyboard]="false"
+            [label]="'صنف'"
+            [required]="hasRequiredValidator(form.controls['class'])"
+          ></ui-form-field>
+        </label>
+      </ng-container>
+      <ng-container>
+        <label class="segment-half">
+          <ui-form-field
+            [errorMessageMapper]="{
+              required: 'کدملی اجباری است.',
+              invalidNotionalCode: 'فرمت کدملی اشتباه است.',
+            }"
+            [error]="form.controls['nationalId']?.errors"
+            [formControlName]="'nationalId'"
+            [isNumericKeyboard]="true"
+            [maxSize]="10"
+            [label]="'کد ملی'"
+            [required]="hasRequiredValidator(form.controls['nationalId'])"
+          ></ui-form-field>
+        </label>
+      </ng-container>
+      <ng-container>
+        <label class="segment-half">
+          <ui-form-field
+            [errorMessageMapper]="{
+              required: 'شماره همراه را وارد کنید.',
+              invalidCellNumber: 'شماره همراه وارد شده معتبر نیست.',
+            }"
+            [error]="form.controls['cellNumber']?.errors"
+            [formControlName]="'cellNumber'"
+            [isNumericKeyboard]="true"
+            [label]="'شماره تماس'"
+            [required]="hasRequiredValidator(form.controls['cellNumber'])"
+          ></ui-form-field>
+        </label>
+      </ng-container>
+      <ng-container>
+        <label class="segment-half">
+          <ui-form-field
+            [error]="form.controls['province']?.errors"
+            [formControlName]="'province'"
+            [isNumericKeyboard]="false"
+            [label]="'استان'"
+            [required]="hasRequiredValidator(form.controls['province'])"
+          ></ui-form-field>
+        </label>
+      </ng-container>
+      <ng-container>
+        <label class="segment-half">
+          <ui-form-field
+            [error]="form.controls['city']?.errors"
+            [formControlName]="'city'"
+            [isNumericKeyboard]="false"
+            [label]="'شهر'"
+            [required]="hasRequiredValidator(form.controls['city'])"
+          ></ui-form-field>
+        </label>
+      </ng-container>
+      <ng-container>
+        <label class="segment-half">
+          <ui-form-field
+            [error]="form.controls['representativeId']?.errors"
+            [formControlName]="'representativeId'"
+            [isNumericKeyboard]="false"
+            [label]="'کد معرف'"
+            [required]="hasRequiredValidator(form.controls['representativeId'])"
+          ></ui-form-field>
+        </label>
+      </ng-container>
+
+      <span class="sm-block"> راهکار مورد نیاز: (امکان انتخاب هر دو وجود دارد) </span>
+      <label class="text-onback-low fs-14 custom-input">
+        <input
+          formControlName="pos"
+          type="checkbox"
+          (change)="onCheckboxChange('POS', $event)"
+          value="1"
+        />
+        {{ 'دستگاه کارتخوان (پوز)' }}
+      </label>
+
+      <label class="text-onback-low fs-14 custom-input">
+        <input
+          formControlName="QR"
+          type="checkbox"
+          (change)="onCheckboxChange('QR', $event)"
+          value="1"
+        />
+        {{ 'کد QR' }}
+      </label>
+    </div>
+  </div>
+
+  <div>
+    <div
+      *ngIf="responseMessage && errors && errors.length === 0"
+      class="response-output icon-check-blue-fill"
+    >
+      <span>
+        {{ responseMessage }}
+      </span>
+    </div>
+    <app-ui-button
+      (clicked)="onSubmit()"
+      appearance="DEFAULT"
+      [disabled]="form.invalid"
+      [size]="'BIG'"
+      class="submit-button mt-mega"
+    >
+      {{ 'ارسال اطلاعات' }}
+      <span
+        [size]="24"
+        icon="icon-arrow-left-white"
+        class="mr-tiny"
+        appUiIcon
+      ></span>
+    </app-ui-button>
+    <ul
+      *ngIf="errors.length > 0"
+      class="form-errors"
+    >
+      <li *ngFor="let error of errors">{{ error }}</li>
+    </ul>
+  </div>
+</div>

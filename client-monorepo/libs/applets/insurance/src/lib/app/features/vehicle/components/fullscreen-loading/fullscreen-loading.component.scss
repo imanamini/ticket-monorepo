@@ -1,0 +1,18 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+#fullscreen-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background-color: #ffffff;
+  @include column-center();
+  height: 100%;
+  gap: 16px;
+
+  .loading-text {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 32px;
+    color: #2c3544;
+  }
+}

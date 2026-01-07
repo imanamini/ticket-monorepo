@@ -1,0 +1,31 @@
+<div
+  [formGroup]="form"
+  class="multiple-checkbox-filters"
+>
+  <div class="filter-title">{{ FILTER_TITLE_TRANSLATOR[title] }}</div>
+  <div [formGroupName]="title">
+    <div
+      *ngFor="let filter of Object.keys(filters.filterOptions).slice(0, Object.keys(filters.filterOptions).length / 2)"
+      class="single-filter"
+    >
+      <div class="checkbox-container">
+        <div class="checkbox">
+          <input
+            [formControlName]="filter"
+            type="checkbox"
+          />
+          <span class="checkmark"></span>
+        </div>
+      </div>
+      <img
+        [ngSrc]="'assets/stores-db/filter-icons/' + title + '-' + filters.filterOptions[filter].toLowerCase() + '.svg'"
+        class="icon"
+        height="24"
+        width="24"
+      />
+      <div class="single-filter-text">
+        {{ SELECT_FILTER_TRANSLATOR[title][filter] }}
+      </div>
+    </div>
+  </div>
+</div>

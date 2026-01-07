@@ -1,0 +1,15 @@
+<div class="info-container">
+  @for (item of data(); track $index) {
+    <div class="info-data">
+      <div class="first-value">
+        <ui-api-image
+          [styles]="{ height: '24px', width: '24px' }"
+          [imageId]="item.imageId"
+        >
+        </ui-api-image>
+        <p>{{ item.leftValue }}</p>
+      </div>
+      <p class="second-value">{{ item.rightValue }}</p>
+    </div>
+  }
+</div>

@@ -1,0 +1,80 @@
+<div class="d-flex flex-column surface-high-contrast cashin-container">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'برداشت از ' + state().walletTitle"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+  <div class="d-flex flex-column align-items-center py-big surface-elevated p-medium">
+    <wealth-applet-wallet-payable-info
+      class="w-100 d-flex"
+      [uncollectible]="state().walletUncollectibleBalance"
+      [withdrawalBalance]="state().walletWithdrawableBalance"
+      [walletName]="state().walletTitle"
+    />
+
+    <wealth-applet-wallet-amount-form
+      class="w-100 cashin-content"
+      [ngClass]="{
+        'cashin-content-max-heigh': !state().requireAgreement,
+      }"
+      [type]="'cashOut'"
+      [minAmount]="state().minAmount"
+      [maxAmount]="state().walletWithdrawableBalance"
+      [amount]="this.state().amount"
+      [title]="'مبلغ مورد نظر برای برداشت را وارد کنید.'"
+      (amountChange)="amountChange($event)"
+    />
+
+    <div class="w-100 d-flex flex-column gap-small">
+      <div class="w-100 d-flex">
+        @if (state().requireAgreement) {
+          <ngx-checkbox
+            class="align-items-center mt-small"
+            (checkedChange)="onToggleAgreement($event)"
+            [checked]="agreementChecked()"
+          >
+            <div class="d-flex gap-tiny check-box-text">
+              <span>شرایط</span>
+              <span
+                (click)="agreementView(pdfType.REGULATIONS)"
+                class="text-onback-brand"
+              >
+                قوانین و مقررات
+              </span>
+              <span>را می‌پذیرم.</span>
+            </div>
+          </ngx-checkbox>
+        }
+      </div>
+
+      <div class="w-100 d-grid gap-small">
+        <ngx-button
+          [style]="'tinted-on-elevated'"
+          [fullWidth]="true"
+          [mode]="'form'"
+          size="medium"
+          (clickHandler)="cashout('all')"
+        >
+          برداشت تمام موجودی
+        </ngx-button>
+        <ngx-button
+          [style]="'fill'"
+          [fullWidth]="true"
+          [mode]="'form'"
+          size="medium"
+          (clickHandler)="cashout()"
+          [disabled]="(state().requireAgreement && !agreementChecked()) || !isValid() || btnLoading()"
+          [isLoading]="btnLoading()"
+        >
+          تایید و ادامه
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+</div>

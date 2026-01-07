@@ -1,0 +1,44 @@
+@import '@digipay/base-style/swatch';
+
+.collateral-container {
+  margin-top: 1.333rem;
+  border-radius: 1.666rem;
+  background-color: $swatch_white_900;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+
+  .content-container {
+    display: grid;
+    gap: 4px;
+    grid-template-columns: 1fr 5fr 0.5fr;
+    padding: 1.166rem 1rem 0;
+
+    .icon {
+      width: 4.666rem;
+      height: 4.666rem;
+    }
+
+    .title {
+      color: #000;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .description {
+      color: #74777c;
+      font-weight: 450;
+      font-size: 0.8333rem;
+    }
+
+    .starter-button {
+      position: absolute;
+      top: 1.4rem;
+      left: 1rem;
+    }
+  }
+
+  .two-columns {
+    grid-template-columns: 1fr 5fr;
+  }
+}

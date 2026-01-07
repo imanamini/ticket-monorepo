@@ -1,0 +1,47 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100svh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'جزییات وثیقه'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+  <div class="w-100 mt-massive d-flex flex-column px-plus justify-content-center align-items-center">
+    <div class="radius-rounded surface-glass-onelevated d-flex align-items-center justify-content-center icon-container">
+      <ngx-icon
+        [name]="state().status ? 'check-circle' : 'close-circle'"
+        [type]="'bold'"
+        [iconSize]="'48px'"
+        [class]="state().status ? 'text-onback-success' : 'text-onback-error'"
+      />
+    </div>
+
+    <p class="st-3 text-onback-high mt-huge">{{ swapTitle() }}</p>
+    <p class="b-2 text-onback-medium mt-low text-align-center">{{ swapDescription() }}</p>
+  </div>
+
+  <div class="mt-massive w-100 px-plus d-flex flex-column gap-small">
+    @if (state().status) {
+      <ngx-button
+        [style]="'link'"
+        [fullWidth]="true"
+        size="medium"
+        (clickHandler)="supperAppTransactions()"
+      >
+        مشاهده تراکنش
+      </ngx-button>
+    }
+    <ngx-button
+      [style]="'tinted-on-elevated'"
+      [fullWidth]="true"
+      size="medium"
+      (clickHandler)="onBackHandler()"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

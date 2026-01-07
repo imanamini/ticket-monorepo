@@ -1,0 +1,91 @@
+$icon-names: (
+  'icon-charon-down-light-blue',
+  'icon-charon-left',
+  'icon-charon-left-white',
+  'icon-charon-right-white',
+  'icon-charon-left-red',
+  'icon-charon-right',
+  'icon-charon-left-green',
+  'icon-charon-up',
+  'icon-hints',
+  'icon-hint',
+  'location',
+  'mobile-device',
+  'icon-general-date',
+  'icon-general-date-h',
+  'icon-arrow-right',
+  'icon-date-picker-blue',
+  'icon-exclamation-hint-blue',
+  'icon-creditor',
+  'icon-debtor',
+  'icon-default-user-profile',
+  'icon-smart-home',
+  'icon-transactions',
+  'icon-logout',
+  'icon-connection-error',
+  'icon-car-blue',
+  'icon-download-white',
+  'icon-calender-gray',
+  'icon-wallet-gray',
+  'icon-wallet-charge-gray',
+  'icon-plus-green',
+  'icon-minus',
+  'icon-check-blue',
+  'icon-hamburger-menu',
+  'icon-close-red',
+  'icon-warning',
+  'icon-sort',
+  'icon-search',
+  'icon-location-blue',
+  'icon-verified-green',
+  'icon-check-white',
+  'icon-curved-arrow-left',
+  'icon-circle-arrow-left',
+  'icon-filled-triangle-up',
+  'icon-filled-triangle-down',
+  'icon-arrow-left-white',
+  'icon-wealth-invest-amount',
+  'icon-wealth-invest-time',
+  'icon-hints-green',
+  'icon-question-mark-in-dashed-box',
+  'icon-copy-gray',
+  'icon-arrow-down-blue',
+  'icon-arrow-right-blue',
+  'icon-diamond-silver',
+  'icon-diamond-platinium-shadowed',
+  'icon-diamond-bronze-shadowed',
+  'icon-diamond-gold-shadowed',
+  'icon-diamond-silver-shadowed',
+  'icon-diamond-bronze',
+  'icon-diamond-gold',
+  'icon-diamond-platinium',
+  'icon-square-info',
+  'icon-not-respond',
+  'icon-Polygon',
+  'icon-stepper-1',
+  'icon-stepper-2',
+  'icon-stepper-3',
+  'icon-stepper-4',
+  'icon-no-result',
+  'icon-error',
+  'icon-warningg',
+  'icon-square-close'
+);
+
+:host {
+  display: inline-block;
+  vertical-align: middle;
+
+  span {
+    width: 100%;
+    height: 100%;
+    background: transparent no-repeat center/100%;
+    display: block;
+  }
+
+  @each $icon in $icon-names {
+    .#{$icon} {
+      background-image: url('./icons/#{$icon}.svg');
+    }
+  }
+}

@@ -1,0 +1,131 @@
+<div
+  class="ui-upload-image"
+  [formGroup]="inputForm"
+>
+  <div
+    class="upload-image"
+    [ngClass]="'state-' + UploadImageStates[state()].toLowerCase()"
+  >
+    <div
+      class="image-input"
+      [ngStyle]="state() === UploadImageStates.Uploaded && previewImageSrc() && { 'background-image': 'url(' + previewImageSrc() + ')' }"
+    >
+      <div
+        class="title"
+        (click)="state() === UploadImageStates.Uploaded && previewSelected()"
+        [ngStyle]="{ cursor: 'pointer' }"
+      >
+        <div class="icon">
+          <img
+            [ngSrc]="
+              'insurance-assets/icons/' +
+              (state() === UploadImageStates.Rest || state() === UploadImageStates.Error
+                ? 'gallery-gray.svg'
+                : state() === UploadImageStates.Uploading
+                  ? 'white-gallery.svg'
+                  : 'eye-view.svg')
+            "
+            [width]="24"
+            [height]="24"
+          />
+        </div>
+        <div class="text text-onback-medium">
+          {{ imageTitle() }}
+        </div>
+      </div>
+    </div>
+
+    <input
+      type="file"
+      class="input"
+      (change)="fileSelected($event)"
+      [accept]="supportedImageTypes()"
+      formControlName="fileInput"
+    />
+
+    @if (state() === UploadImageStates.Uploading) {
+      <div class="uploading">
+        <div class="upload-progress">
+          <ui-progress-bar></ui-progress-bar>
+        </div>
+        <ng-container [ngTemplateOutlet]="file_info"></ng-container>
+      </div>
+    }
+
+    @if (state() === UploadImageStates.Uploaded) {
+      <div class="uploaded">
+        <div class="reset">
+          <img
+            ngSrc="insurance-assets/icons/icon-repeat.svg"
+            width="20"
+            height="20"
+          />
+          <p>بارگذاری مجدد</p>
+        </div>
+        <ng-container [ngTemplateOutlet]="file_info"></ng-container>
+      </div>
+    }
+  </div>
+
+  <div
+    class="max-size-limit-notice"
+    [ngClass]="{ hasError: state() === UploadImageStates.Error }"
+  >
+    @if (messages[currentMessage()]) {
+      <img
+        ngSrc="insurance-assets/icons/icon-warning-filled.svg"
+        width="16"
+        height="16"
+      />
+    }
+    <div class="text">
+      {{ messages[currentMessage()] }}
+    </div>
+  </div>
+</div>
+@if (showPreview() && (previewImageSrc() || previewPdf())) {
+  <div class="preview-image">
+    <img
+      (click)="closePreviewImage()"
+      class="icon-close"
+      ngSrc="insurance-assets/icons/icon-close-image.svg"
+      width="48"
+      height="48"
+    />
+    @if (isPdfMode()) {
+      <div class="pdf-wrapper">
+        <embed
+          type="application/pdf"
+          [src]="previewPdf()"
+          frameBorder="0"
+          scrolling="none"
+          height="100%"
+          width="100%"
+        />
+      </div>
+    } @else {
+      <div class="image-wrapper">
+        <img
+          class="loaded-image"
+          [src]="previewImageSrc()"
+        />
+      </div>
+    }
+  </div>
+}
+
+<ng-template #file_info>
+  <div class="file-info">
+    <p
+      class="file-name"
+      [textContent]="uploadedImage()?.name || fileName()"
+    ></p>
+    <img
+      (click)="closeBtnClicked()"
+      class="icon-reset-data"
+      ngSrc="insurance-assets/icons/icon-reset-data.svg"
+      width="20"
+      height="20"
+    />
+  </div>
+</ng-template>

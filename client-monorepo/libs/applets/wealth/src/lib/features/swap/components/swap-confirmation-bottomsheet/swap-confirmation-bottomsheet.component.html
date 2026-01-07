@@ -1,0 +1,29 @@
+<div class="w-100 d-flex flex-column p-plus">
+  <div class="d-flex w-100 align-items-center gap-small justify-content-space-between">
+    <p class="st-3 text-onback-high">آیا از تبدیل دارایی خود مطمئن هستید؟</p>
+    <div class="radius-rounded surface-glass-onelevated d-flex align-items-center justify-content-center icon-container">
+      <ngx-icon
+        [name]="'question-mark-circle'"
+        [type]="'bold'"
+        [iconSize]="'48px'"
+      />
+    </div>
+  </div>
+  <p class="mt-plus">شما در حال تبدیل دارایی {{ origin() }} خود به {{ destination() }} هستید.</p>
+
+  <div class="w-100 d-flex gap-minus align-items-center mt-giant">
+    <ngx-button
+      (clickHandler)="handleAction('cancel')"
+      [fullWidth]="true"
+      [style]="'tinted-on-elevated'"
+    >
+      انصراف
+    </ngx-button>
+    <ngx-button
+      (clickHandler)="handleAction('continue')"
+      [fullWidth]="true"
+    >
+      بله
+    </ngx-button>
+  </div>
+</div>

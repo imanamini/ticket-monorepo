@@ -1,0 +1,7 @@
+@import "../../../../../../../../node_modules/@digipay/base-style/styleguide";
+
+.posts-grid {
+  display: grid;
+  gap: map-get($spacing-sizes, 'micro');
+  overflow: hidden;
+}

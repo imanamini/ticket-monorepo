@@ -1,0 +1,20 @@
+@import "@digipay/base-style/styleguide";
+
+.option {
+  padding: 18px 16px;
+  cursor: pointer;
+  color: var(--text-onback-medium);
+}
+
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  background: no-repeat 0 0/cover;
+  margin-left: 6px;
+  padding: 0 6px;
+  color: var(--text-onback-high);
+}
+
+.arrow-icon {
+  margin-right: auto;
+}

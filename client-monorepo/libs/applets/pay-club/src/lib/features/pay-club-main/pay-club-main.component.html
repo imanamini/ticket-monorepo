@@ -1,0 +1,82 @@
+<common-ui-components-page-layout
+  [stickyHeader]="false"
+  title="پی‌کلاب"
+  (infoClick)="showRules()"
+  [infoButton]="true"
+  [infoStyle]="'default'"
+  [leftIcon]="'bag'"
+  [headerClasses]="'payclub-bg-transparent'"
+  [bodyClasses]="'payclub-bg-transparent'"
+  [layoutClasses]="'payclub-bg'"
+  (onLeftIconClick)="showPrizes()"
+>
+  @if (!isLoading()) {
+    <div>
+      <div class="pt-big pb-medium">
+        <pay-club-applet-receive-coin
+          (getScoreClicked)="getScore()"
+          [balance]="generalBalance()"
+          [isLoggedIn]="isLoggedIn()"
+        >
+        </pay-club-applet-receive-coin>
+      </div>
+
+      @if (!gettingClubRewards()) {
+        <div
+          *ngFor="let item of [1, 2]"
+          class="p-plus"
+        >
+          <lib-ngx-skeleton-loading
+            [height]="'61px'"
+            [classes]="'mb-big w-50'"
+          ></lib-ngx-skeleton-loading>
+          <lib-ngx-skeleton-loading [height]="'260px'"></lib-ngx-skeleton-loading>
+        </div>
+      }
+
+      @if (clubRewards()?.lotteries?.length ?? 0 > 0) {
+        <pay-club-applet-pay-club-draw
+          id="draw"
+          [lotteries]="clubRewards().lotteries"
+          [isLoading]="!gettingClubRewards()"
+          [isLoggedIn]="isLoggedIn()"
+        >
+        </pay-club-applet-pay-club-draw>
+      }
+      @if (clubRewards() && clubRewards()?.vouchers) {
+        <pay-club-applet-pay-club-rewards
+          class="home-section"
+          id="reward"
+          [isLoggedIn]="isLoggedIn()"
+          [isLoading]="!gettingClubRewards()"
+          [vouchers]="clubRewards()?.vouchers || []"
+        >
+        </pay-club-applet-pay-club-rewards>
+      }
+      @if (scoringSettingData()?.items?.length ?? 0 > 0) {
+        <pay-club-applet-pay-club-earn-point
+          class="home-section"
+          id="earn-point"
+          [scoringItems]="scoringSettingData()?.items || []"
+        >
+        </pay-club-applet-pay-club-earn-point>
+      }
+
+      @if (firstLottery() && firstLottery().info) {
+        <pay-club-applet-pay-club-draw-countdown
+          class="mt-big"
+          [lottery]="firstLottery()"
+          (click)="showFirstLotteryDetails()"
+        >
+        </pay-club-applet-pay-club-draw-countdown>
+      }
+
+      @if (clubRewards && clubRewards()?.currentTime > 0) {
+        <pay-club-applet-pay-club-winners [currentTime]="clubRewards()?.currentTime || 0"></pay-club-applet-pay-club-winners>
+      }
+      <pay-club-applet-pay-club-invite-friends></pay-club-applet-pay-club-invite-friends>
+    </div>
+  } @else {
+    <pay-club-applet-skeleton-loading></pay-club-applet-skeleton-loading>
+  }
+</common-ui-components-page-layout>

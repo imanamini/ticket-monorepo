@@ -1,0 +1,10 @@
+.video-wrapper {
+  display: block;
+  line-height: 0;
+
+  video {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 90vh;
+  }
+}

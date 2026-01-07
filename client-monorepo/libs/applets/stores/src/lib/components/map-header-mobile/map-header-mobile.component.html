@@ -1,0 +1,29 @@
+<div class="d-flex flex-column gap-minus w-100">
+  <div [class]="'d-flex gap-small align-items-center w-100 ' + searchBarClasses()">
+    @if (showBackButton()) {
+      <div class="d-flex justify-content-center align-items-center">
+        <ngx-button
+          [mode]="'icon-only'"
+          [size]="'medium'"
+          [style]="'tinted-on-back'"
+          [rightIcon]="{ name: 'arrow-right' }"
+          (clickHandler)="handleBackClick()"
+        ></ngx-button>
+      </div>
+    }
+    <ngx-search-box
+      class="w-100"
+      (searchTextChange)="handleSearchTextChange($event ?? '')"
+      [(searchText)]="searchText"
+      [mode]="searchbarMode()"
+      [placeHolder]="'جست‌وجو در نقشه'"
+    ></ngx-search-box>
+  </div>
+  <div class="store-categories-filter-wrapper">
+    <lib-store-categories-filter
+      [classes]="filterClasses()"
+      [selectedCategory]="selectedCategory()"
+      (selectedCategoryChange)="changeCategory($event)"
+    ></lib-store-categories-filter>
+  </div>
+</div>

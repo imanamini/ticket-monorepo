@@ -1,0 +1,29 @@
+<div class="d-flex flex-column justify-content-space-between align-items-center h-100">
+  <div class="d-flex flex-column align-items-center justify-content-center gap-small">
+    <img
+      width="100"
+      height="100"
+      [src]="feedBackData.imageUrl"
+    />
+    <p class="st-6">{{ feedBackData.title }}</p>
+    <p class="bt-1 text-align-center">{{ feedBackData.description }}</p>
+  </div>
+  <div class="d-flex align-items-center justify-content-center gap-medium w-100">
+    <ngx-button
+      [style]="'link'"
+      [destructive]="true"
+      [size]="'small'"
+      (clickHandler)="onRejectClicked()"
+    >
+      انصراف
+    </ngx-button>
+    <ngx-button
+      (clickHandler)="onButtonClicked()"
+      [size]="'large'"
+      [fullWidth]="true"
+      [brandButton]="true"
+    >
+      {{ feedBackData.buttonTitle }}
+    </ngx-button>
+  </div>
+</div>

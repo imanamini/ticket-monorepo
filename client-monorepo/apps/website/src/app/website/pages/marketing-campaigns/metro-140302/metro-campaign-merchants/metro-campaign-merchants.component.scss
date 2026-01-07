@@ -1,0 +1,65 @@
+@import "globals";
+
+section {
+  .title {
+    display: flex;
+    justify-content: center;
+    font-size: 27px;
+    font-weight: 950;
+    line-height: 140%;
+    margin-bottom: 32px;
+  }
+
+  .merchants {
+    display: flex;
+    justify-content: center;
+    gap: 32px 44px;
+    flex-wrap: wrap;
+
+    .merchant {
+      text-align: center;
+      width: 162px;
+
+      .name {
+        font-size: 14px;
+        font-weight: 375;
+        line-height: 24px;
+        color: $swatch_steel_900;
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  section {
+    .title {
+      font-size: 19px;
+      font-weight: 690;
+      line-height: 155%; /* 29.45px */
+      letter-spacing: -0.57px;
+    }
+
+    .merchants {
+      .merchant {
+        width: 70px;
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  section {
+    padding: 24px 0;
+
+    .title {
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .merchants {
+      .merchant {
+        width: 68px;
+      }
+    }
+  }
+}

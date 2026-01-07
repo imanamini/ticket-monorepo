@@ -1,0 +1,147 @@
+<ngx-app-bar
+  class="w-100"
+  [title]="'فروش سهام'"
+  [rightButton]="{
+    icon: 'arrow-right',
+    style: 'neutral-link',
+    mode: 'icon-only',
+    size: 'medium',
+  }"
+  (onRightButtonClick)="onBackHandler()"
+/>
+
+@if (isLoading) {
+  <app-spinner></app-spinner>
+} @else {
+  <div class="w-100 d-flex flex-wrap container">
+    <div class="w-100 d-flex flex-wrap sell-card">
+      <div class="w-100 d-flex align-items-center stock-logo">
+        <app-image
+          [imageUrl]="assetData.thumbnailLogoAddress"
+          [defaultImage]="'./wealth-assets/images/default-ipo-banner.png'"
+        />
+
+        <span> نماد {{ assetData.displaySymbol }} </span>
+      </div>
+
+      <div class="w-100 mt-4">
+        @for (item of tableInfo; track $index) {
+          <div class="w-100 d-flex flex-wrap table-info">
+            <div class="d-flex align-items-center key">
+              <span>
+                {{ item.title }}
+              </span>
+              @if (item.id === 1) {
+                <img
+                  src="./wealth-assets/icons/question.svg"
+                  alt="موجودی قابل برداشت شما"
+                  [ngxTooltip]="'این موجودی ممکن است به دلیل در انتظار بودن تعدادی از واحد‌ها برای فروش، با موجودی کلی شما متفاوت باشد.'"
+                  [tooltipPosition]="'bottom'"
+                />
+              }
+            </div>
+            <div class="value">
+              <p>
+                <span class="bold">
+                  @if (item.id === 1) {
+                    {{ item.value }}
+                  } @else {
+                    {{ item.value | thousands }}
+                  }
+                </span>
+                @if (item.id === 1) {
+                  واحد
+                } @else {
+                  ریال
+                }
+              </p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="mt-4 w-100 d-flex flex-wrap units-container">
+      <p>تعداد سهم مورد نظر خود را وارد کنید.</p>
+
+      <div
+        class="mt-4 w-100 input-container"
+        [ngClass]="{ 'invalid-unit-container': sellUnits && !isValid() }"
+      >
+        <ngx-button
+          [mode]="'icon-only'"
+          [leftIcon]="{
+            name: 'plus',
+            type: 'linear',
+          }"
+          [style]="'neutral-link'"
+          [size]="'small'"
+          (clickHandler)="updateValue('pluse')"
+        >
+        </ngx-button>
+
+        <div
+          class="units d-flex align-items-center justify-content-center"
+          (click)="unitInput.focus()"
+        >
+          <div
+            [formGroup]="form"
+            class="amount"
+          >
+            <input
+              #unitInput
+              dir="ltr"
+              formControlName="count"
+              type="text"
+              placeholder="0"
+              maxlength="13"
+              [style.width]="inputWidth"
+              [ngClass]="{ 'invalid-unit': sellUnits && !isValid() }"
+            />
+          </div>
+          <ngx-icon
+            [name]="'close'"
+            [type]="'linear'"
+            [iconSize]="'1.5rem'"
+            [ngClass]="sellUnits && !isValid() ? 'invalid-unit' : ''"
+          />
+        </div>
+
+        <ngx-button
+          [mode]="'icon-only'"
+          [leftIcon]="{
+            name: 'minus',
+            type: 'linear',
+          }"
+          [style]="'neutral-link'"
+          [size]="'small'"
+          (clickHandler)="updateValue('minus')"
+        >
+        </ngx-button>
+      </div>
+
+      @if (isValid() && convertedRialValue.length > 1) {
+        <div class="converted-value is-currency">
+          <p>معادل {{ convertedRialValue }} ریال</p>
+        </div>
+      }
+
+      @if (!isValid() && sellUnits) {
+        <div class="converted-value">
+          <p class="invalid-unit">موجودی قابل برداشت شما {{ availableUnits }} واحد است.</p>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="w-100 button-container">
+    <ngx-button
+      [style]="'fill'"
+      [size]="'medium'"
+      [fullWidth]="true"
+      (clickHandler)="onShowDetail()"
+    >
+      فروش
+    </ngx-button>
+  </div>
+}

@@ -1,0 +1,45 @@
+<section class="partner-section">
+  <div class="container">
+    <h2 class="text-align-center">{{ title() }}</h2>
+    <div class="subtitle text-align-center">{{ subtitle() }}</div>
+    <div class="segment-content">
+      @if (partners()?.length > 0) {
+        <ul>
+          <swiper-container
+            appSwiper
+            #swiper="appSwiper"
+            class="swiper"
+            [config]="config"
+          >
+            @for (partner of partners(); track partner) {
+              <swiper-slide class="swiper-slide">
+                <li>
+                  @if (partner.firstCta?.link && !partner.firstCta.title) {
+                    <a
+                      [href]="partner.firstCta.link"
+                      class="link"
+                      target="_blank"
+                    ></a>
+                  }
+                  <img
+                    [attr.alt]="partner.name"
+                    [src]="partner.logo?.url"
+                  />
+                  @if (partner.firstCta?.link && partner.firstCta.title) {
+                    <app-ui-button
+                      [linkTarget]="'_blank'"
+                      [link]="partner.firstCta.link"
+                      class="cta"
+                    >
+                      {{ partner.firstCta.title }}
+                    </app-ui-button>
+                  }
+                </li>
+              </swiper-slide>
+            }
+          </swiper-container>
+        </ul>
+      }
+    </div>
+  </div>
+</section>

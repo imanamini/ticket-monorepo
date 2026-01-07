@@ -1,0 +1,38 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100 align-items-center justify-content-center">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'بررسی اطلاعات'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="w-100 d-flex flex-column px-plus align-items-center justify-content-center container">
+    <div class="d-flex align-items-center justify-content-center surface-back radius-rounded mb-huge icon-container">
+      <ngx-icon
+        class="text-onback-error"
+        [name]="'close-circle'"
+        [type]="'bold'"
+        [iconSize]="'48px'"
+      />
+    </div>
+    <p class="w-100 text-align-center st-3 text-onback-high">صاحب این کد ملی فوت شده است</p>
+    <p class="w-100 text-align-center b-2 text-onback-medium mt-micro">امکان استفاده از سرویس کیف ثروت برای این کد ملی وجود ندارد.</p>
+
+    <div class="w-100 mt-massive">
+      <ngx-button
+        [buttonId]="'SEJAM_SUCCESS'"
+        size="medium"
+        [fullWidth]="true"
+        (clickHandler)="onBackHandler()"
+        mode="form"
+      >
+        متوجه شدم
+      </ngx-button>
+    </div>
+  </div>
+</div>

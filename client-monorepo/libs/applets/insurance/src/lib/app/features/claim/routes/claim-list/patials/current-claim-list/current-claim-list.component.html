@@ -1,0 +1,12 @@
+<div class="active-claim-container d-flex flex-row align-items-start justify-content-start w-100 gap-small"
+     (mousedown)="onMouseDown($event)"
+     (mousemove)="onMouseMove($event)"
+     (mouseup)="onMouseUp()"
+     (mouseleave)="onMouseLeave()"
+     (touchstart)="onTouchStart($event)"
+     (touchmove)="onTouchMove($event)"
+     (touchend)="onTouchEnd()">
+  @for (claim of claims(); track claim?.claimStatus?.id) {
+    <claim-card [claim]="claim"></claim-card>
+  }
+</div>

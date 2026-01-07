@@ -1,0 +1,24 @@
+<div class="expired-notice-container">
+  <div class="expired-notice-content">
+    <div class="expired-notice-description">
+      <div class="expired-image">
+        <img
+          src="wealth-assets/svg/session-expired.svg"
+          alt="session-expired"
+        />
+      </div>
+      <div class="expired-description">
+        <span>شما مدت طولانی بدون فعالیت بوده‌اید.</span>
+        <span>لطفا دوباره وارد شوید.</span>
+      </div>
+    </div>
+    <div class="w-100 expired-notice-button">
+      <ngx-button
+        [fullWidth]="true"
+        (clickHandler)="onBtnClicked()"
+      >
+        متوجه شدم
+      </ngx-button>
+    </div>
+  </div>
+</div>

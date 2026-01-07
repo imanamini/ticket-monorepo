@@ -1,0 +1,29 @@
+@if (config()) {
+  <div class="surface-back radius-plus p-medium my-medium d-flex gap-small flex-column">
+    <div class="d-flex align-items-center">
+      <ngx-icon
+        iconSize="24px"
+        class="text-onback-brand ml-tiny"
+        name="error-circle"
+        type="bold"
+      ></ngx-icon>
+      <span class="b-3 text-onback-medium">{{ config()?.headerTitle }}</span>
+      </div>
+
+        <p class="b-3">
+          {{ description() }}
+        </p>
+        
+    @if (noAction()) {
+      <div class="d-flex justify-content-flex-end border-color-tint border-t-100">
+        <ngx-button
+          (clickHandler)="done()"
+          [style]="'link'"
+          [size]="'small'"
+          [leftIcon]="{ name: 'arrow-2-left' }"
+          >متوجه شدم</ngx-button
+        >
+      </div>
+    }
+  </div>
+}

@@ -1,0 +1,24 @@
+<div class="coverage-list d-flex flex-column gap-minus justify-content-center align-items-center">
+  <label
+    *ngFor="let coverage of coverageList;let i = index"
+    [class.selected]="selectedCoverage.identifier === coverage.identifier"
+    class="coverage-item">
+    <div class="image-wrapper">
+      <insurtech-collection-image-cdn
+        [category]="'coverage'"
+        [status]="selectedCoverage.identifier === coverage.identifier ? 'active': 'inactive'"
+        [subCategory]="coverage.identifier"
+      ></insurtech-collection-image-cdn>
+    </div>
+    <div class="content">
+      <div class="title">{{ coverage.title }}</div>
+      <div class="description">{{ coverage.description }}</div>
+    </div>
+    <div (click)="selectCoverage(coverage,i)" class="selection">
+      <input
+        [checked]="selectedCoverage.identifier === coverage.identifier"
+        type="checkbox"
+      />
+    </div>
+  </label>
+</div>

@@ -1,0 +1,63 @@
+<div class="modal-top-banner">
+  <div
+    (click)="closeDialog()"
+    class="close desktop"
+  >
+    <ngx-icon
+      class="cursor-pointer"
+      [name]="'close'"
+      [iconSize]="'24px'"
+    ></ngx-icon>
+  </div>
+  <div class="close mobile">
+    <img
+      alt=""
+      src="assets/images/icons/icon-line.svg"
+    />
+  </div>
+  <div class="top-image">
+    <img
+      [src]="templateData.image.url"
+      alt=""
+    />
+  </div>
+  <div class="content">
+    <div class="title">
+      {{ templateData.title }}
+    </div>
+    <div class="subtitle">
+      {{ templateData.subtitle }}
+    </div>
+    <div class="description">
+      {{ templateData.description }}
+    </div>
+    <div class="texts">
+      <div
+        *ngFor="let text of templateData.texts; let textIndex = index"
+        class="text"
+      >
+        {{ textIndex + 1 + '.' + text.text }}
+      </div>
+    </div>
+    <div class="ctas">
+      <app-ui-button
+        *ngIf="templateData.secondCta && templateData.secondCta.link && templateData.secondCta.title"
+        [appearance]="'BLUE-TEXT'"
+        [linkTarget]="'_blank'"
+        [link]="templateData.secondCta.link"
+        >{{ templateData.secondCta.title }}
+      </app-ui-button>
+      <app-ui-button
+        *ngIf="templateData.firstCta && templateData.firstCta.link && templateData.firstCta.title"
+        [linkTarget]="'_blank'"
+        [link]="templateData.firstCta.link"
+        >{{ templateData.firstCta.title }}
+      </app-ui-button>
+      <app-ui-button
+        (click)="closeDialog()"
+        *ngIf="!templateData.firstCta && !templateData.secondCta"
+        >متوجه شدم</app-ui-button
+      >
+    </div>
+  </div>
+</div>

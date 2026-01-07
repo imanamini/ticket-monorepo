@@ -1,0 +1,21 @@
+.terms-and-condition {
+  overflow: hidden;
+  position: relative;
+
+  .container {
+    height: calc(100% - 56px);
+    overflow-y: auto;
+
+    .clauses {
+      list-style-type: disc;
+      list-style-position: outside;
+    }
+  }
+
+  .cta {
+    width: calc(100% - 48px);
+    position: absolute;
+    bottom: 24px;
+    right: 20px;
+  }
+}

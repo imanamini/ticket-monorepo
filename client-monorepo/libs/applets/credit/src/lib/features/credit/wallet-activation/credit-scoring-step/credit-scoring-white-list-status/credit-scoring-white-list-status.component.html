@@ -1,0 +1,26 @@
+@if (!loading()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="close.emit()"
+    [backButton]="true"
+    [actionText]="'لغو فرآیند'"
+    (onTextClick)="onCancelActivation()"
+    [actionTextMode]="'info'"
+    title="نتیجه اعتبارسنجی"
+  >
+  </app-credit-app-bar>
+  <div class="d-flex flex-column flex-grow">
+    <div class="flex-grow justify-content-center pb-plus">
+      <ngx-status-result
+        (clicked)="next.emit()"
+        [buttons]="buttons"
+        [description]="description"
+        [title]="title"
+        [type]="'Status'"
+        [iconState]="'done'"
+      >
+      </ngx-status-result>
+    </div>
+  </div>
+} @else {
+  <credit-page-loading [active]="loading()"></credit-page-loading>
+}

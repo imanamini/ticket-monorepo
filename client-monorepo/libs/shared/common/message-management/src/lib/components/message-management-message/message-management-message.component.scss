@@ -1,0 +1,20 @@
+.unread-icon{
+  background: url("apps/dpx/src/assets/message-management/status-unread.svg") center;
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  left: 4px;
+}
+
+.unread-background{
+  background: rgba(222, 237, 255, 0.5);
+}
+
+.image-expired {
+  filter: grayscale(100) opacity(0.5);
+}
+.app-message-html-content strong {
+  font-weight: bold;
+}

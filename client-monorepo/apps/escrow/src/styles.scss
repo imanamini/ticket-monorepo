@@ -1,0 +1,22 @@
+@import "@digipay/base-style/styleguide";
+
+hr {
+  color: var(--text-oninvert-disabled);
+  margin: 0;
+}
+
+.h-100vh {
+  height: 100vh;
+}
+
+.h-50vh {
+  height: 50vh;
+}
+
+.underlined-text {
+  text-decoration: underline;
+}
+
+.w-200px{
+  width: 200px !important;
+}

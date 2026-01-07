@@ -1,0 +1,119 @@
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-column-reverse {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-start-center {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+@mixin flex-center-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-center-around {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@mixin flex-stretch-between {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+@mixin flex-end-between {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+@mixin flex-center-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@mixin flex-stretch-start {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+@mixin flex-center-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@mixin flex-stretch-end {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+@mixin flex-start-between {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+@mixin column-center-between {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin column-start-between {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+@mixin column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin column-start-center {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}

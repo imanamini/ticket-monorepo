@@ -1,0 +1,22 @@
+<div class="used-health-check-result">
+  <!--  HealthCheck Failure -->
+
+  <journey-action-result
+          [data]="actionResultData">
+    با عرض پوزش! با توجه به تست سلامت انجام شده، دستگاه شما تحت پوشش بیمه قرار نمی‌گیرد!
+  </journey-action-result>
+
+  <div class="button">
+    <journey-buttons
+            (backClicked)="goToRefund()"
+            (nextClicked)="goToStepper()"
+            [backText]="'درخواست بازگشت وجه'"
+            [disableNext]="(loading$ | async)"
+            [hideBackBtn]="false"
+            [idValue]="'used-health-check-result'"
+            [isReversed]="false"
+            nextText="تلاش مجدد">
+    </journey-buttons>
+  </div>
+
+</div>

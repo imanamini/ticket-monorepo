@@ -1,0 +1,16 @@
+<ngx-app-bar
+  class="w-100"
+  [title]="'گزارش ورود و خروج'"
+  [rightButton]="{
+    icon: 'arrow-right',
+    style: 'neutral-link',
+    mode: 'icon-only',
+    size: 'medium',
+  }"
+  (onRightButtonClick)="onBackHandler()"
+/>
+
+<app-user-login-activity
+  [noCard]="true"
+  [logs]="userLoginActivity"
+/>

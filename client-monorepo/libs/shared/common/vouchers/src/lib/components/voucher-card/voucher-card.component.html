@@ -1,0 +1,111 @@
+@if (cardMode() === 'in-carousel') {
+  <div class="item-container d-flex flex-column radius-big position-relative">
+    <div class="top-section d-flex flex-column gap-tiny p-minus {{ bgMode() }}">
+      <div class="d-flex gap-tiny justify-content-start align-items-center flex-nowrap">
+        @if (merchantLogo()) {
+          <ui-api-image
+            [imageId]="merchantLogo()!"
+            width="40px"
+            height="40px"
+            [lazy]="true"
+            [lazyConfig]="{ root: '.dpx-main-layout-body' }"
+          ></ui-api-image>
+        }
+        <div class="d-flex flex-column gap-micro ellipsis">
+          <div class="st-8 ellipsis">
+            {{ merchantName() }}
+          </div>
+          <div class="d-flex gap-tiny">
+            @if (iconName()) {
+              <ngx-icon
+                [name]="iconName()!"
+                [type]="'linear'"
+                [iconSize]="'16px'"
+              ></ngx-icon>
+            }
+            <div class="bt-3 ellipsis">
+              {{ codeText() }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img
+      [src]="'assets/voucher-carousel-item/voucher-divider.svg'"
+      alt="voucher"
+      width="145"
+      height="2"
+      class="voucher-divider"
+      loading="lazy"
+    />
+    <div class="bottom-section d-flex flex-column gap-micro mb-pony px-minus {{ bgMode() }}">
+      <span
+        class="st-1"
+        style="line-height: 24px !important"
+        >{{ type() === VoucherType.AMOUNT ? previewAmountValue() : value() + '%' }}</span
+      >
+      <span class="c-2">{{ type() === VoucherType.AMOUNT ? previewAmountUnit() : 'تخفیف' }}</span>
+    </div>
+  </div>
+} @else {
+  <div class="p-small d-flex justify-content-space-between w-100 h-129 radius-big {{ bgMode() }}">
+    <div class="d-flex flex-column gap-plus">
+      <div class="d-flex flex-column {{ bgMode() }}">
+        <div class="d-flex gap-tiny justify-content-start align-items-start flex-nowrap">
+          @if (merchantLogo()) {
+            <ui-api-image
+              [imageId]="merchantLogo()!"
+              width="40px"
+              height="40px"
+              [lazy]="true"
+              [lazyConfig]="{ root: '.dpx-main-layout-body' }"
+            ></ui-api-image>
+          }
+          <div class="d-flex flex-column gap-micro">
+            <div class="st-8 ellipsis mw-full">
+              {{ merchantName()! | summarize: 25 }}
+            </div>
+            <div class="d-flex gap-tiny mw-full">
+              @if (iconName()) {
+                <ngx-icon
+                  [name]="iconName()!"
+                  [type]="'linear'"
+                  [iconSize]="'16px'"
+                ></ngx-icon>
+              }
+              <div class="bt-3 ellipsis">
+                {{ codeText()! | summarize: 25 }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-column gap-micro px-low {{ bgMode() }}">
+        <span
+          class="st-1"
+          style="line-height: 24px !important"
+          >{{ type() === VoucherType.AMOUNT ? previewAmountValue() : value() + '%' }}</span
+        >
+        <span class="c-2">{{ type() === VoucherType.AMOUNT ? previewAmountUnit() : 'تخفیف' }}</span>
+      </div>
+    </div>
+    @if (image()) {
+      <ui-api-image
+        [imageId]="image()"
+        [width]="'112px'"
+        [height]="'112px'"
+        [classes]="'radius-medium'"
+        [lazy]="true"
+        [lazyConfig]="{ root: '.dpx-main-layout-body' }"
+      ></ui-api-image>
+    } @else {
+      <img
+        [src]="defaultImage()"
+        [width]="112"
+        [height]="112"
+        [class]="'radius-medium'"
+        loading="lazy"
+      />
+    }
+  </div>
+}

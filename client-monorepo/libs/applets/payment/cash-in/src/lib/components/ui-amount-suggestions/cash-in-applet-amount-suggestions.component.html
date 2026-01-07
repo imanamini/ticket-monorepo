@@ -1,0 +1,14 @@
+<div class="suggestions">
+  <div
+    class="suggestion-wrapper"
+    *ngFor="let suggestion of suggestions; let i = index"
+  >
+    <div
+      class="suggestion"
+      (click)="onClick(suggestion, i)"
+      [ngClass]="{ selected: selectedValue === suggestion }"
+    >
+      <cash-in-applet-currency [value]="suggestion"></cash-in-applet-currency>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<common-ui-components-page-layout
+  [title]="'همه‌ی خدمات'"
+  [showBorder]="false"
+>
+  @if (!isLoading()) {
+    <div class="hub-search d-flex flex-column align-items-stretch justify-content-start gap-plus w-100 h-100">
+      <div class="px-plus">
+        <ngx-search-box
+          [placeHolder]="'جست‌وجو'"
+          (searchTextChange)="doSearch($event ?? '')"
+          [(searchText)]="searchText"
+          [mode]="'section'"
+          [autoFocus]="true"
+        ></ngx-search-box>
+      </div>
+      @if (searching() || searched()) {
+        <div class="px-plus d-flex flex-column align-items-stretch justify-content-start gap-minus flex-grow">
+          @if (searching()) {
+            @for (item of rangeCreator(3); track $index) {
+              <hub-applet-search-result [isLoading]="true"></hub-applet-search-result>
+            }
+          } @else {
+            @if (showingServices().length) {
+              @for (service of showingServices(); track $index) {
+                <hub-applet-search-result
+                  [ngClass]="!$last ? 'border-b-100 border-color-air' : ''"
+                  (clicked)="handleResultClick($event)"
+                  [service]="service"
+                ></hub-applet-search-result>
+              }
+            } @else {
+              <div class="flex-grow d-flex align-items-center justify-content-center">
+                <common-ui-components-no-item></common-ui-components-no-item>
+              </div>
+            }
+          }
+        </div>
+      } @else {
+        <hub-applet-hub-search-history
+          [ngClass]="{ 'd-none': !hasHistory() }"
+          (itemClicked)="handleResultClick($event)"
+          (hasHistory)="handleHasHistory($event)"
+          [services]="services()"
+        ></hub-applet-hub-search-history>
+      }
+    </div>
+  }
+</common-ui-components-page-layout>

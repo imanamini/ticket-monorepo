@@ -1,0 +1,45 @@
+<div class="pricing-input dg-ltr-input dg-ltr-placeholder">
+  <div [ngClass]="{'mobile':isMobile}"
+       class="input">
+    <form [formGroup]="form">
+      <input #dgPricingInput
+             (click)="handleInputClick()"
+             [autocomplete]="'off'"
+             [formControlName]="'price'"
+             [placeholder]="placeholder || '0'"
+             [readonly]="readonly"
+             [type]="'text'"
+             class="no-spinners"/>
+    </form>
+    <span class="currency">
+      {{ currency }}
+    </span>
+  </div>
+  <div class="input-description">
+    {{ ( controls.price.value && !isRangeSelected ) ? numberInString : hint }}
+  </div>
+
+  <div [ngClass]="{'mobile':isMobile}"
+       class="pricing-suggestions">
+    <ng-container *ngFor="let price of pricingList">
+      <ui-info-chips
+              (click)="handleRangeSelect(price)"
+              [isActive]="isRangeSelected && selectedRange === price">
+        <ng-container *ngIf="price.isFirstRange">
+          کمتر از
+          {{ price.maxValue }}
+        </ng-container>
+        <ng-container *ngIf="!price.isFirstRange && !price.isLastRange">
+          {{ price.minValue }}
+          تا
+          {{ price.maxValue }}
+        </ng-container>
+        <ng-container *ngIf="price.isLastRange">
+          بیشتر از
+          {{ price.minValue }}
+        </ng-container>
+        میلیون تومان
+      </ui-info-chips>
+    </ng-container>
+  </div>
+</div>

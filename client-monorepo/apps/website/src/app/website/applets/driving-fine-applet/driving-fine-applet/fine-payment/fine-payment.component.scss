@@ -1,0 +1,139 @@
+@import "globals";
+
+.fine-payment {
+  .top-bar {
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $swatch_steel_200;
+    padding: 14px 48px;
+
+    .cta {
+      color: $swatch_red_500;
+    }
+  }
+
+  .fine-payment-body {
+    padding: 32px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .inquiry-detail.loading {
+      width: 100%;
+      height: 56px;
+      border-radius: 12px;
+      border: 1px solid $swatch_steel_200;
+      background-color: $swatch_steel_100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .ctas {
+    display: flex;
+    gap: 16px;
+
+    .first-cta {
+      width: 164px;
+    }
+
+    .second-cta {
+      width: 250px;
+    }
+  }
+
+  .service-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    gap: 16px;
+    padding: 24px 48px;
+
+    .cta {
+      display: block;
+      width: 100%;
+    }
+
+    .ctas {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+
+      .transactions {
+        width: 132px;
+      }
+
+      .retry {
+        width: 274px;
+      }
+    }
+
+    .error-title {
+      color: $swatch_blue_900;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .error-description {
+      color: $swatch_steel_500;
+      font-size: 13px;
+      font-weight: 300;
+      text-align: center;
+    }
+  }
+
+  marquee {
+    margin-top: 24px;
+    text-align: center;
+
+    .promotion {
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .fine-payment {
+    .top-bar {
+      padding: 16px;
+    }
+
+    .fine-payment-body {
+      padding: 16px;
+    }
+
+    .ctas {
+      display: flex;
+      flex-direction: column-reverse;
+
+      .first-cta,
+      .second-cta {
+        width: 100%;
+      }
+    }
+
+    .service-error {
+      padding: 50px 16px 16px 16px;
+
+      .ctas {
+        width: 100%;
+
+        .cta {
+          width: calc((100% - 16px) / 2);
+        }
+      }
+    }
+
+    marquee {
+      margin-top: 16px;
+    }
+  }
+}

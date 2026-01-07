@@ -1,0 +1,55 @@
+@if (selectedBranch()) {
+  <div class="d-flex flex-column gap-medium w-100">
+    <!-- Branch Intro -->
+    <div class="d-flex gap-minus flex-nowrap">
+      <!-- Branch Logo -->
+      <div class="d-flex justify-content-center align-items-start">
+        <common-ui-components-framed-icon
+          [type]="ServiceImagesType.IMAGE_ID"
+          [size]="'SMALL'"
+          [enableMixedBlendMode]="true"
+          [icon]="selectedBranch()!.store.logoImageId"
+        ></common-ui-components-framed-icon>
+      </div>
+      <!-- End Branch Logo -->
+      <div class="d-flex flex-column overflow-hidden">
+        <!-- Title -->
+        <div class="d-flex gap-low flex-nowrap overflow-hidden w-100">
+          <div class="ellipsis-title overflow-hidden st-8 text-onback-high">
+            {{ selectedBranch()?.store?.title + ' ' + selectedBranch()?.title }}
+          </div>
+          @for (badge of selectedBranch()?.store?.badges; track badge.content) {
+            <ngx-badge [mode]="badge.mode">{{ badge.content }}</ngx-badge>
+          }
+        </div>
+        <!-- End Title -->
+
+        <!-- Subtitle -->
+        <div class="c-3 ellipsis-title text-onback-high pt-tiny">{{ selectedBranch()?.store?.subtitle }}</div>
+        <!-- End Subtitle -->
+
+        <!-- Payment Methods -->
+        <div class="d-flex gap-small align-items-center flex-wrap pt-low">
+          @for (paymentType of paymentMethodBadges(); track paymentType) {
+            <span class="l-3 text-onback-low">
+              {{ paymentType }}
+            </span>
+            @if (!$last) {
+              <div class="h-divider"></div>
+            }
+          }
+        </div>
+        <!-- End Payment Methods -->
+      </div>
+    </div>
+    <!-- End Branch Intro -->
+    @if (branchOverview()) {
+      <div class="d-flex flex-column mt-small gap-small">
+        <stores-applet-branch-overview
+          [branch]="branchOverview()!"
+          [mode]="'EXTENDED'"
+        ></stores-applet-branch-overview>
+      </div>
+    }
+  </div>
+}

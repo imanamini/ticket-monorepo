@@ -1,0 +1,16 @@
+.card-container {
+  direction: rtl;
+  text-align: right;
+  width: 100%;
+  padding: 18px 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+
+  .text-col {
+    display: flex;
+    align-items: center;
+  }
+}

@@ -1,0 +1,36 @@
+@import "@digipay/base-style/swatch";
+
+.dialog-container {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+
+  .card-title {
+    font-size: 16px;
+  }
+
+  .sim-icon {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hint-message {
+    display: flex;
+    margin-top: 18px;
+    font-weight: 500;
+    color: $swatch_steel_900;
+    text-align: right;
+  }
+
+  .check-eligibility {
+    display: flex;
+    text-align: right;
+    margin-bottom: 18px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+}

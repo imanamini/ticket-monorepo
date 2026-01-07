@@ -1,0 +1,112 @@
+@import "globals";
+
+::ng-deep {
+  .cdk-overlay-pane {
+    max-width: 100% !important;
+  }
+}
+
+.modal-full-page {
+  direction: rtl;
+  padding: 40px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 1200px;
+  width: 100%;
+
+  .dialog-body {
+    background: #fff;
+    display: flex;
+    border-radius: 16px;
+    padding: 16px;
+    flex-grow: 1;
+  }
+
+  .close {
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 744px) {
+  .modal-full-page {
+    padding: 0;
+
+    .close {
+      margin-bottom: unset;
+    }
+
+    .dialog-body {
+      padding: 0;
+    }
+  }
+}
+
+:host {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row-reverse;
+}
+
+.right-side {
+  padding: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+  border-radius: 12px;
+  background: var(--Surface-Surface-Brand-Tint, #f0f5ff);
+}
+
+.left-side {
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  padding: 70px;
+  flex-direction: column;
+  min-height: 600px;
+}
+
+.acceptanceRules {
+  margin: 20px 0;
+}
+
+.ctas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  :host {
+    flex-direction: column-reverse;
+  }
+  .right-side {
+    padding: 24px;
+  }
+
+  .header-title {
+    margin-bottom: 32px;
+  }
+  .left-side,
+  .right-side {
+    width: 100%;
+    flex-grow: 1;
+  }
+}
+
+@media (max-width: 744px) {
+  .modal-full-page {
+    .dialog-body {
+      flex-direction: column;
+    }
+  }
+}

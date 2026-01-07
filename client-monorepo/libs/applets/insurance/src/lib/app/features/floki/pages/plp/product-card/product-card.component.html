@@ -1,0 +1,39 @@
+<div (click)="productCardHandler()"
+     [ngClass]="{
+     'border-700 border-color-tint box-shadow-small' : active(),
+     'border-300 border-color-air box-shadow-big': !active()
+      }"
+     class="radius-medium py-medium px-minus gap-small border-color-light d-flex flex-column card-container surface-high-contrast">
+  <div [lazy-load-image]="product().productImageName" [application-form-id]="appId()" [set-image-to-src]="false"  class="background-image-card"></div>
+  <div class="d-flex">
+    <div class="d-flex flex-column">
+      <div class="d-flex gap-tiny">
+        <img width="16" height="16" [alt]="product().name" [lazy-load-image]="product().insurerImageName" [application-form-id]="appId()" src="assets/icons/zomorod-plan.svg">
+        <p class="l-3 text-onback-high">{{ product().insurerPartyName }}</p>
+      </div>
+      <div class="st-6 text-onback-high " [textContent]="product().name"></div>
+    </div>
+  </div>
+  <div class="price-container d-flex flex-column gap-micro">
+    <div class="text-onback-low c-2 number-discount">
+      <del> {{ product().priceBeforeMarkdown | number }}</del>
+    </div>
+    <div class="d-flex gap-tiny justify-content-space-between	">
+      <div class="d-flex align-items-center">
+        <span class="fw-medium text-onback-high st-8">
+         {{ product().price | number:'1.0-0' }}
+       </span>
+        <span class="text-onback-low c-2 mr-tiny">
+        ریال
+       </span>
+      </div>
+      @if (product().priceBeforeMarkdown) {
+        <div>
+          <ngx-badge [hasIcon]="true" mode="bold" size="md" status="error" type="count">
+            40%
+          </ngx-badge>
+        </div>
+      }
+    </div>
+  </div>
+</div>

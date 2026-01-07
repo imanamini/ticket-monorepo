@@ -1,0 +1,14 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.car-info-form {
+  @include flex-column();
+
+  .brand-model-box {
+    @include flex-center();
+    gap: 16px;
+
+    ui-form-field {
+      width: 50%;
+    }
+  }
+}

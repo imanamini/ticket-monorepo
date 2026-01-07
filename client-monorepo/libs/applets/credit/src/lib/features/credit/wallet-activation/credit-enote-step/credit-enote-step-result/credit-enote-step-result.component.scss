@@ -1,0 +1,41 @@
+.main-section {
+  display: flex;
+  flex-direction: column;
+
+  * {
+    box-sizing: border-box;
+    direction: rtl;
+  }
+
+  .top-section {
+    flex-grow: 1;
+  }
+
+  .call-to-action-section {
+    flex-grow: 0;
+  }
+}
+
+.enote-result-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.enote-image-box {
+  position: relative;
+  width: 100%;
+  padding-top: 73%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .viewer {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    flex-grow: 1;
+  }
+}

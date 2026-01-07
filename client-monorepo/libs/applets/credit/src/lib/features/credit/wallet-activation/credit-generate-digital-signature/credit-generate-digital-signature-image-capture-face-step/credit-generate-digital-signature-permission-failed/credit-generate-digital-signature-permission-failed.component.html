@@ -1,0 +1,18 @@
+<app-credit-app-bar
+  (onBackButtonClick)="back.emit()"
+  [backButton]="true"
+  title="امضای دیجیتال"
+></app-credit-app-bar>
+<div class="flex-grow d-flex flex-column">
+  <div class="flex-grow d-flex justify-content-center rtl pb-plus">
+    <ngx-status-result
+      [type]="'Status'"
+      [iconState]="'error'"
+      [description]="description()"
+      [title]="'اشکال در دسترسی به دوربین و میکروفون'"
+      [buttons]="buttons()"
+      (clicked)="openGuidBottomSheet()"
+    >
+    </ngx-status-result>
+  </div>
+</div>

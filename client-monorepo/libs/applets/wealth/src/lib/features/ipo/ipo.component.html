@@ -1,0 +1,165 @@
+<div class="w-100 d-flex flex-wrap surface-elevated">
+  @if (loading()) {
+    <app-spinner class="w-100 h-100"></app-spinner>
+  } @else {
+    <ngx-app-bar
+      class="w-100"
+      [title]="'عرضه اولیه ' + profile().title"
+      [rightButton]="{
+        icon: 'arrow-right',
+        style: 'neutral-link',
+        mode: 'icon-only',
+        size: 'medium',
+      }"
+      (onRightButtonClick)="onBackHandler()"
+    />
+    <div
+      class="w-100 d-flex flex-wrap align-items-center align-content-center px-medium mt-big"
+      [ngClass]="{ 'pb-big': buttons.length <= 0 }"
+    >
+      <div class="d-flex align-items-center justify-content-center w-100 mb-huge">
+        <app-image
+          class="cover-logo"
+          [imageUrl]="profile().coverLogoAddress"
+          [needSkeleton]="true"
+          [alt]="profile().title"
+          [defaultImage]="'./wealth-assets/images/default-ipo-banner.png'"
+        />
+      </div>
+
+      @if (displayStatusInformation()) {
+        <div [class]="'w-100 d-grid gap-small radius-plus p-plus info-container ' + ipoStatusInformation().bgColor">
+          <ngx-icon
+            [class]="ipoStatusInformation().iconColor"
+            [name]="ipoStatusInformation().iconName"
+            [type]="'linear'"
+          />
+          <div>
+            @if (ipoStatusInformation().title) {
+              <p class="w-100 st-8 text-onback-high">
+                {{ ipoStatusInformation().title }}
+              </p>
+            }
+            @if (ipoStatusInformation().description) {
+              <p class="w-100 b-3 text-onback-medium">
+                {{ ipoStatusInformation().description }}
+              </p>
+            }
+          </div>
+        </div>
+      }
+
+      <div class="w-100 d-flex flex-wrap px-plus mt-big">
+        <p class="w-100 st-5 text-onback-medium text-align-center">عرضه اولیه {{ profile().title }} چیست؟</p>
+
+        <div class="w-100 mt-medium d-flex flex-column gap-plus">
+          @for (item of profile().bioItems; track $index) {
+            <div class="stepper">
+              <div class="bullet"></div>
+              <span>
+                {{ item }}
+              </span>
+            </div>
+          }
+        </div>
+      </div>
+
+      @if (profile().status === EIPOStatus.PreOrderNotRegistered || profile().status === EIPOStatus.PreOrderRegistered) {
+        <div class="px-small mt-big">
+          <p class="c-2 text-onback-medium">شما می توانید درخواست خرید خود را جهت شرکت در عرضه اولیه از فرایند پیش رو ثبت کنید:</p>
+        </div>
+      }
+
+      <div class="w-100 d-flex flex-wrap mt-plus radius-plus p-plus surface-back">
+        @if (profile().thumbnailLogoAddress && profile().displaySymbol) {
+          <div class="d-flex align-items-center gap-small">
+            <div class="symbol-image-container radius-rounded surface-elevated p-tiny d-flex align-items-center justify-content-center">
+              <app-image
+                class="w-100 h-100"
+                [imageUrl]="profile().thumbnailLogoAddress"
+                [alt]="profile().displaySymbol"
+                [defaultImage]="'./wealth-assets/images/default-ipo-banner.png'"
+              />
+            </div>
+            <span class="c-2 text-onback-medium"> نام نماد: </span>
+
+            <span class="st-7 text-onback-medium">
+              {{ profile()?.displaySymbol }}
+            </span>
+          </div>
+        }
+
+        <div
+          class="w-100 d-flex flex-wrap mt-big"
+          [ngClass]="{ 'mt-atom': !profile().thumbnailLogoAddress || !profile().displaySymbol }"
+        >
+          @for (item of profile() | ipoTableInfo; track item; let last = $last) {
+            <div class="w-100 d-flex align-items-center justify-content-space-between gap-small item-container mt-small">
+              <div class="key c-2 text-onback-medium">
+                <span>
+                  {{ item.key }}
+                </span>
+              </div>
+
+              <div class="value c-2 text-onback-medium text-align-left">
+                @if (item.value) {
+                  @if (item.type === 'number') {
+                    <span>
+                      {{ item.value | thousands }}
+                      سهم
+                    </span>
+                  } @else {
+                    <span>
+                      {{ item.value }}
+                    </span>
+                  }
+                }
+              </div>
+            </div>
+            @if (!last) {
+              <ngx-divider
+                class="my-minus"
+                [color]="BorderColorsEnum.Light"
+              ></ngx-divider>
+            }
+          }
+        </div>
+      </div>
+
+      @if (bnpl()) {
+        <div class="w-100 mt-big">
+          <wealth-applet-bnpl-banner
+            class="d-flex"
+            [bnplDescription]="' در صورت سرمایه‌گذاری در عرضه اولیه' + profile().displaySymbol + '، اعتبار ۴ قسطه هدیه خواهید گرفت.'"
+          />
+        </div>
+      }
+
+      <!--      @if (buttons().length > 0) {-->
+      <div
+        class="w-100 surface-elevated d-grid py-plus buttons-container"
+        [ngClass]="{ 'two-columns': buttons().length > 1 }"
+      >
+        @for (button of buttons(); track button) {
+          @if (button.isActive) {
+            <ngx-button
+              [classNames]="button.style === 'fill' ? ['buy-button'] : []"
+              [style]="button.style === 'fill' ? 'fill' : 'tinted-on-elevated'"
+              size="medium"
+              [mode]="'form'"
+              [fullWidth]="true"
+              [disabled]="button.disabled || button.loading"
+              (clickHandler)="action(button.id)"
+              [rightIcon]="button.leftIcon"
+              [isLoading]="button.loading"
+              [buttonId]="'IPO_' + button.id"
+            >
+              {{ button.label }}
+            </ngx-button>
+          }
+        }
+      </div>
+      <!--      }-->
+    </div>
+  }
+</div>

@@ -1,0 +1,15 @@
+<app-base-layout [loaded]="true">
+
+  <!--  section 1-->
+  <app-careers-header [heroSection]="templateData().heroSection" ></app-careers-header>
+
+  <!--  section 2-->
+  <app-organization-values [organizationValue]="templateData().sectionValue"></app-organization-values>
+
+  <!--  section 3-->
+  <app-digipay-benefit [benefit]="templateData().benefitsSection"></app-digipay-benefit>
+
+  <!--  section 4-->
+  <app-join-flow [joinFlow]="templateData().joinFlowSection"></app-join-flow>
+
+</app-base-layout>

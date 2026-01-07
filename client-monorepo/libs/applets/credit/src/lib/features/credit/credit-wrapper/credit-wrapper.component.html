@@ -1,0 +1,10 @@
+<div class="credit-view credit-global-style">
+  <router-outlet></router-outlet>
+  <!--  <credit-bottom-sheet></credit-bottom-sheet>-->
+</div>
+@if (creditEnvironment.creditEnv !== 'pwa') {
+  <app-credit-wrapper-global-style></app-credit-wrapper-global-style>
+}
+@if (creditEnvironment.creditEnv === 'pwa') {
+  <app-credit-wrapper-local-style></app-credit-wrapper-local-style>
+}

@@ -1,0 +1,20 @@
+<p class="caption">کد هدیه خود را وارد کنید</p>
+<cash-in-applet-cash-in-voucher-code
+  [(code)]="code"
+  [codeHasError]="!!codeError"
+></cash-in-applet-cash-in-voucher-code>
+<cash-in-applet-form-notice
+  appearance="error"
+  [visible]="!!codeError"
+  >{{ codeError }}
+</cash-in-applet-form-notice>
+<br/>
+<ngx-button
+  [size]="'medium'"
+  [brandButton]="true"
+  (clickHandler)="onConfirm()"
+  [disabled]="checkingCode || !code"
+  [fullWidth]="true"
+  [isLoading]="checkingCode"
+  >بررسی و تایید
+</ngx-button>

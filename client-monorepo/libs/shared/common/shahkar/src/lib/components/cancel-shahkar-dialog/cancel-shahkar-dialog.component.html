@@ -1,0 +1,37 @@
+<div class="wrapper h-100 w-100 d-flex">
+  <div class="container d-flex flex-column justify-content-end w-100 p-medium">
+    <div class="content d-flex flex-column w-100 p-medium surface-elevated border-radius-big">
+      <div class="d-flex gap-small align-items-center mb-small">
+        <div class="surface-error-tint border-radius-circle p-tiny">
+          <common-icon-dp-icon
+            [icon]="'error-triangle'"
+            [iconType]="'linear'"
+            [iconSize]="'24'"
+            [classes]="'text-onback-error'"
+          ></common-icon-dp-icon>
+        </div>
+        <span class="text-onback-error st-6">آیا مطمئن هستید؟</span>
+      </div>
+      <p class="b-2 text-onback-high">با انصراف از ثبت کد ملی، رمز عبور شما حذف خواهد شد.</p>
+      <div class="d-flex gap-small mt-huge">
+        <ngx-button
+          [size]="'large'"
+          [style]="'tinted-on-elevated'"
+          [fullWidth]="true"
+          (clickHandler)="cancelClicked.emit()"
+        >
+          انصراف
+        </ngx-button>
+        <ngx-button
+          [size]="'large'"
+          [destructive]="true"
+          [fullWidth]="true"
+          [classNames]="['text-onback-error', 'surface-error-tint']"
+          (clickHandler)="confirmClicked.emit()"
+        >
+          حذف رمز
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+</div>

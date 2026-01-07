@@ -1,0 +1,25 @@
+<div [ngClass]="{'mobile': isMobile}"
+     class="bar-container">
+
+  <div class="info">
+    <div class="support-icon">
+      <img alt="support-outline-dark-blue"
+           class="icon"
+           src="insurance-assets/icons/information.svg"/>
+    </div>
+    <div class="detail-info">
+      <p class="title">
+        {{ title }}
+      </p>
+      <span class="sub-title"> {{ subTitle }}</span>
+    </div>
+  </div>
+
+  <div>
+    <ng-button (click)="makeCall()" [hasIcon]="true" buttonMode="fab" buttonStyle="compact">
+      <ng-container button-icon>
+        <img src="insurance-assets/icons/phone-call.svg">
+      </ng-container>
+    </ng-button>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<app-base-layout [loaded]="loaded">
+  <!--  section 1-->
+  <app-ui-introduction-default
+    *ngIf="bnplPage && bnplPage.templateData"
+    [heroImage]="bnplPage.templateData.introArtwork"
+    [introductionType]="bnplPage.templateData.introType"
+    class="bnpl-intro-section"
+  >
+    <div>
+      <h1>
+        {{ bnplPage?.templateData?.introTitle }} <br />
+        {{ bnplPage?.templateData?.introSubtitle }}
+      </h1>
+      <div class="subtitle">{{ bnplPage?.templateData?.introSubtitle2 }}</div>
+      <div>
+        <app-ui-button scrollToAnchor="contact-section">
+          <span>
+            {{ bnplPage.templateData.introCtaText }}
+          </span>
+        </app-ui-button>
+      </div>
+    </div>
+  </app-ui-introduction-default>
+
+  <!--  section 2-->
+  <app-ui-feature-cards
+    *ngIf="bnplPage && bnplPage.templateData && bnplPage.templateData.features"
+    [features]="bnplPage.templateData.features"
+  >
+  </app-ui-feature-cards>
+
+  <!--  section 3-->
+  <app-ui-horizontal-flow
+    *ngIf="bnplPage && bnplPage.templateData && bnplPage.templateData.purchaseSteps"
+    [steps]="bnplPage.templateData.purchaseSteps.steps"
+    [title]="bnplPage.templateData.purchaseSteps.title"
+  >
+  </app-ui-horizontal-flow>
+
+  <!--  section 4-->
+  <app-ui-contact-section
+    *ngIf="bnplPage && bnplPage.templateData && bnplPage.templateData.mainForm && contactForm"
+    [contactForm]="contactForm"
+    [description]="bnplPage.templateData.mainForm.description"
+    [id]="'contact-section'"
+    [notice]="bnplPage.templateData.mainForm.notice"
+    [title]="bnplPage.templateData.mainForm.title"
+  ></app-ui-contact-section>
+
+  <!--  section 5-->
+  <app-ui-faq
+    *ngIf="bnplPage && bnplPage.templateData && bnplPage.templateData.faq"
+    [faqs]="bnplPage.templateData.faq.faqItems"
+    [subtitle]="bnplPage.templateData.faq.subtitle"
+    [title]="bnplPage.templateData.faq.title"
+  >
+  </app-ui-faq>
+
+  <!--  section 6-->
+  <app-blog-cards
+    *ngIf="bnplPage && bnplPage.templateData && bnplPage.templateData.relatedPosts && posts.length > 0"
+    [blogPosts]="posts"
+    [subtitle]="bnplPage.templateData.relatedPosts.subtitle"
+    [title]="bnplPage.templateData.relatedPosts.title"
+  >
+  </app-blog-cards>
+</app-base-layout>

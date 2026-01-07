@@ -1,0 +1,49 @@
+<section class="credit-digikala-products position-relative">
+  <div class="container">
+    @if (templateData()?.title) {
+      <h2 class="text-align-center">{{ templateData().title }}</h2>
+    }
+    @if (templateData()?.subtitle) {
+      <div class="subtitle text-align-center">{{ templateData().subtitle }}</div>
+    }
+    @if (templateData()?.tabs?.length > 1 && templateData()?.tabs[selectedTab()]) {
+      <div class="blog-category">
+        <swiper-container
+          appSwiper
+          #swiper="appSwiper"
+          [config]="configCategories"
+          class="button-group swiper swiper-horizontal swiper-pointer-events swiper-rtl swiper-watch-progress swiper-backface-hidden"
+        >
+          @for (category of templateData().tabs; track category; let categoryIndex = $index) {
+            <swiper-slide class="swiper-slide">
+              <div
+                (click)="changeTab(categoryIndex)"
+                [id]="category.id"
+                [ngClass]="selectedTab() === categoryIndex ? 'active' : ''"
+                class="links__item"
+              >
+                <button
+                  (click)="changeTab(categoryIndex)"
+                  [ngClass]="{ active: categoryIndex === selectedTab() }"
+                  class="ui-curve-button"
+                >
+                  {{ category.title }}
+                </button>
+              </div>
+            </swiper-slide>
+          }
+        </swiper-container>
+      </div>
+    }
+    @if (templateData()?.tabs && selectedTab() > -1) {
+      <div class="content">
+        <app-products-list
+          [creditConfig]="creditConfig()"
+          [digikalaProducts]="digikalaProducts()"
+          [productSingle]="productSingle()"
+          [selectedTab]="selectedTab()"
+        ></app-products-list>
+      </div>
+    }
+  </div>
+</section>

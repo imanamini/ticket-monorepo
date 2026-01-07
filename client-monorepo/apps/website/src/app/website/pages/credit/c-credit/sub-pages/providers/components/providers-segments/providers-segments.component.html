@@ -1,0 +1,54 @@
+<section>
+  <div class="container">
+    <app-ui-complex-accordion
+      *ngIf="collateralTabs[collateralValue] && collateralTabs[collateralValue].stepChequeAccordion.title"
+      [isDisabled]="true"
+      [section]="collateralTabs[collateralValue].stepChequeAccordion"
+    ></app-ui-complex-accordion>
+    <app-ui-complex-accordion
+      *ngIf="
+        collateralTabs[collateralValue] &&
+        collateralTabs[collateralValue].stepEnoteAccordion &&
+        collateralTabs[collateralValue].stepEnoteAccordion.title
+      "
+      [isDisabled]="true"
+      [section]="collateralTabs[collateralValue].stepEnoteAccordion"
+    ></app-ui-complex-accordion>
+    <app-ui-complex-accordion
+      *ngIf="
+        collateralTabs[collateralValue] &&
+        collateralTabs[collateralValue].stepContractAccordion &&
+        collateralTabs[collateralValue].stepContractAccordion.title
+      "
+      [isDisabled]="true"
+      [section]="collateralTabs[collateralValue].stepContractAccordion"
+    ></app-ui-complex-accordion>
+    <app-ui-complex-accordion
+      *ngIf="
+        collateralTabs[collateralValue] &&
+        collateralTabs[collateralValue].stepTermAccordion &&
+        collateralTabs[collateralValue].stepTermAccordion.title
+      "
+      [isDisabled]="true"
+      [section]="collateralTabs[collateralValue].stepTermAccordion"
+    ></app-ui-complex-accordion>
+    <app-ui-complex-accordion
+      *ngIf="
+        collateralTabs[collateralValue] &&
+        collateralTabs[collateralValue].stepDeadlineAccordion &&
+        collateralTabs[collateralValue].stepDeadlineAccordion.title
+      "
+      [isDisabled]="true"
+      [section]="collateralTabs[collateralValue].stepDeadlineAccordion"
+    ></app-ui-complex-accordion>
+    <app-ui-complex-accordion
+      *ngIf="
+        collateralTabs[collateralValue] &&
+        collateralTabs[collateralValue].stepRefundAccordion &&
+        collateralTabs[collateralValue].stepRefundAccordion.title
+      "
+      [isDisabled]="true"
+      [section]="collateralTabs[collateralValue].stepRefundAccordion"
+    ></app-ui-complex-accordion>
+  </div>
+</section>

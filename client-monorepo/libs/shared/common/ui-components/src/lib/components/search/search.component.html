@@ -1,0 +1,51 @@
+@if (!isLoading()) {
+  <div
+    class="search-container py-small pr-medium pl-minus d-flex align-items-center justify-content-start radius-giant gap-small w-100"
+    (click)="handleClick($event)"
+    [ngStyle]="{ height: height() }"
+  >
+    @if (leadingIcon()) {
+      <div
+        class="search-container-iconbox leading h-100 d-flex align-items-center justify-content-center cursor-pointer text-onback-high"
+        (click)="leadingIconClicked.emit()"
+      >
+        <common-icon-dp-icon
+          [iconSize]="'20'"
+          [icon]="leadingIcon()"
+          [iconType]="'linear'"
+        ></common-icon-dp-icon>
+      </div>
+    }
+    <div class="search-container-inputbox cursor-pointer h-100 d-flex align-items-center justify-content-center">
+      <input
+        [readOnly]="readOnlyMode()"
+        type="search"
+        #searchEl
+        [(ngModel)]="tempSearchText"
+        class="search-container-inputbox-input border-300 radius-giant d-flex align-items-center justify-content-start b-2 text-onback-high {{
+          mode()
+        }}"
+        [placeholder]="placeHolder()"
+      />
+    </div>
+    @if (trailingIcon()) {
+      <div
+        class="search-container-iconbox trailing h-100 d-flex align-items-center justify-content-center cursor-pointer text-onback-high"
+        (click)="handleClickOnTrailingIcon()"
+      >
+        <common-icon-dp-icon
+          [iconSize]="'20'"
+          [icon]="trailingIcon()"
+          [iconType]="'linear'"
+        ></common-icon-dp-icon>
+      </div>
+    }
+  </div>
+} @else {
+  <div class="w-100">
+    <lib-ngx-skeleton-loading
+      [height]="height()"
+      [classes]="'radius-giant'"
+    ></lib-ngx-skeleton-loading>
+  </div>
+}

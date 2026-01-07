@@ -1,0 +1,55 @@
+.card {
+  position: relative;
+  height: 100%;
+
+  .main-container {
+    padding: 0 16px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    .title-wrapper {
+      color: var(--Text-Text-Medium-Emphasis, #6E798D);
+      text-align: right;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 450;
+    }
+
+    .description {
+      color: var(--Text-Text-High-Emphasis, #2C3544);
+      text-align: right;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 580;
+    }
+  }
+
+  .subscription-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #3C6DFF;
+    text-align: right;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 540;
+
+    .arrow-left {
+      background-image: url("libs/shared/common/assets/src/lib/images/icons/arrow-left.svg");
+      height: 20px;
+      width: 20px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+
+}

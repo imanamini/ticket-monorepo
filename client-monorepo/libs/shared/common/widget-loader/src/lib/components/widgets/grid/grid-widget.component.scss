@@ -1,0 +1,17 @@
+.row {
+  padding: 20px;
+  border: 1px solid red;
+  background: #FFEEEE;
+  display: flex;
+  gap: 16px;
+
+  .col {
+    padding: 20px;
+    border: 1px solid blue;
+    background: #EEEEFF;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+}

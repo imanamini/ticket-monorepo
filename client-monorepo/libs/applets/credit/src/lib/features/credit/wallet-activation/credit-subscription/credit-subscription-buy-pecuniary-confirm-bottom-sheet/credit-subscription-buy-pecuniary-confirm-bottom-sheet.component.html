@@ -1,0 +1,26 @@
+<div class="d-flex flex-column flex-grow rtl gap-plus">
+  <div class="d-flex flex-column w-100 gap-small px-plus pt-plus">
+    <span class="w-100 st-3 text-onback-high text-align-right"> آیا تمایل دارید هزینه اشتراک را به صورت نقدی پرداخت کنید؟ </span>
+    <div class="w-100 b-2 text-onback-medium text-align-right">
+      در این روش، هزینه اشتراک را به صورت نقدی و از درگاه پرداخت آنلاین یا از کیف پول دیجی‌پی خود پرداخت می‌کنید.
+    </div>
+  </div>
+  <div class="d-flex flex-row align-items-center px-plus pb-plus gap-small">
+    <ngx-button
+      (clickHandler)="closeBottomSheet()"
+      [fullWidth]="true"
+      [style]="'tinted-on-elevated'"
+      ngxTrackableId
+      trackerId="subscriptionBuyCashCancelButton"
+      >خیر
+    </ngx-button>
+    <ngx-button
+      (clickHandler)="onConfirm()"
+      [fullWidth]="true"
+      [style]="'fill'"
+      ngxTrackableId
+      trackerId="subscriptionBuyCashConfirmButton"
+      >بله
+    </ngx-button>
+  </div>
+</div>

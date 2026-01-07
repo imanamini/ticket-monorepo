@@ -1,0 +1,19 @@
+<div [@.disabled]="disabledAccordion()"
+     class="container d-flex flex-column gap-plus radius-minus px-plus pt-plus surface-high-contrast">
+  <ng-content select="[header]"></ng-content>
+  <div [@expandCollapse]="expanded"
+       class="body-container">
+    <ng-content select="[body]"></ng-content>
+  </div>
+
+  @if (!disabledAccordion()) {
+    <div class="chevron-icon-container"
+         (click)="expanded = !expanded">
+      <ins-icon
+        [@rotateChevron]="expanded"
+        [name]="IconEnum.BottomChevronDarkGray"
+        [width]="8"
+      ></ins-icon>
+    </div>
+  }
+</div>

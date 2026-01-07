@@ -1,0 +1,35 @@
+<div class="modal-full-page">
+  <div class="dialog-header">
+    <div
+      (click)="closeDialog()"
+      class="close"
+    >
+      <span
+        [size]="24"
+        class="cursor-pointer"
+        icon="icon-square-close"
+        appUiIcon
+      ></span>
+    </div>
+  </div>
+  <div class="not-response">
+    <span
+      [size]="80"
+      icon="icon-not-respond"
+      appUiIcon
+    ></span>
+    <span class="not-response-title"> سرویس‌دهنده در دسترس نیست </span>
+    <span class="not-response-subtitle"> لطفا دوباره تلاش کنید </span>
+  </div>
+  <div>
+    <div class="ctas">
+      <app-ui-button
+        (click)="back()"
+        class="w-40"
+        appearance="BLUE-TEXT"
+      >
+        بازگشت
+      </app-ui-button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<app-credit-app-bar
+  (onBackButtonClick)="prevStep.emit()"
+  [backButton]="true"
+  title="خرید اشتراک"
+></app-credit-app-bar>
+<div class="main-section d-flex flex-column flex-grow">
+  <div class="d-flex flex-column flex-grow">
+    <app-credit-scrollable-view [fullHeightContent]="true">
+      <div class="d-flex flex-grow justify-content-center rtl">
+        <ngx-status-result
+          [type]="'Status'"
+          [iconState]="subscriptionDetail()?.hasIncompatiblePlan ? 'warning' : 'info'"
+          [description]="description()"
+          [title]="title()"
+          [buttons]="buttons()"
+          (clicked)="onNext()"
+        >
+          <div
+            html-content
+            class="d-flex flex-column flex-grow justify-content-flex-end"
+          >
+            @if (subscriptionDetail()?.hasIncompatiblePlan) {
+              <ngx-callout
+                [mode]="'multiple'"
+                [messagesDashed]="false"
+                [title]="calloutTitle"
+                [messages]="calloutMessages"
+              />
+            }
+          </div>
+        </ngx-status-result>
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+</div>

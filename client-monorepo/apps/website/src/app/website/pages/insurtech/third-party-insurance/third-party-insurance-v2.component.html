@@ -1,0 +1,178 @@
+
+<app-base-layout *ngIf="creditCampaignPage && creditCampaignPage.templateData" [loaded]="loaded">
+    <ng-container>
+        <div class="main-banner-plate d-flex align-items-center justify-content-center">
+            <div class="content d-flex flex-column gap-big">
+                <span class="text-oninvert-high title">نگران پیج‌و‌خم مسیر نباش</span>
+                <span class="text-oninvert-high primary-text">از دیجی‌پی <span
+                        class="colored text-onback-success">اعتبار آنی</span> بگیر و بیمه شخص ثالث ماشینت رو قسطی بخر</span>
+            </div>
+            <div class="d-flex flex-column gap-plus align-items-center">
+                <div class="plate d-flex flex-column p-big">
+                    <span class="st-3 text-oninvert-high"> خرید بیمه شخص ثالث </span>
+                    <span class="b-3 text-oninvert-medium mt-micro">شماره پلاک خودرو و کدملی صاحب پلاک را وارد کنید:</span>
+                    <div [formGroup]="form" class="d-flex flex-column gap-medium mt-plus">
+<span class="surface-back m-atom p-atom radius-small">
+  <ngx-plate class="w-100"
+             [id]="'letterPicker1'"
+             [size]="'MEDIUM'"
+             (valueChange)="setPlateValue($event)"
+             (isPlateComplete)="plateComplete($event)"
+  ></ngx-plate>
+</span>
+
+                        <ui-form-field
+                                [errorMessageMapper]="{
+                'required': 'کد ملی را وارد کنید.',
+                'invalidNotionalCode': 'کد ملی وارد شده نامعتبر است.'
+              }"
+                                [error]="form.controls.nationalCode.errors"
+                                [isNumericKeyboard]="true"
+                                [maxSize]="10"
+                                [required]="true"
+                                formControlName="nationalCode"
+                                label="کدملی صاحب پلاک"
+                                type="input">
+                        </ui-form-field>
+                    </div>
+                    <span class="b-3 text-oninvert-medium">بر روی برگ سبز یا کارت خودرو قابل مشاهده است.</span>
+                    <span class="mt-medium">
+             <ngx-button
+                     (clickHandler)="buyInsurance()"
+                     [size]="'BIG'"
+                     [fullWidth]="true"
+                     [disabled]="setDisabled"
+             >
+         خرید بیمه‌ شخص ثالث
+    </ngx-button>
+          </span>
+                </div>
+                <div class="link text-oninvert-medium b-2">
+                    در صورتی که صاحب پلاک نیستید <span class="st-7 cursor-pointer" (click)="noPlateInsurance()">اینجا کلیک</span>
+                    کنید.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="car-animation-wrapper" #animationWrapper>
+            <div class="dashed"></div>
+            <div class="car-animation" #car>
+                <img class="car-img" src="/assets/insurance/car.png" alt="Car">
+                <div class="bubble" #bubble><img src="/assets/insurance/bubble.png"
+                                                 alt="">
+                </div>
+            </div>
+
+        </div>
+    </ng-container>
+
+    <div class="section-registering">
+        <div class="container">
+            <app-insurance-benefit [registerBenefitsData]="digiPayBenefit"></app-insurance-benefit>
+        </div>
+    </div>
+
+    <div class="onboarding" *ngIf="creditCampaignPage.templateData.sectionOnboarding">
+        <ng-container>
+            <app-ui-horizontal-flow
+                    *ngIf="creditCampaignPage.templateData.sectionOnboarding && creditCampaignPage.templateData.sectionOnboarding.values.length > 0"
+                    [steps]="creditCampaignPage.templateData.sectionOnboarding.values"
+                    [title]="creditCampaignPage.templateData.sectionOnboarding.title"
+                    [subtitle]="creditCampaignPage.templateData.sectionOnboarding.subtitle"
+                    [ctaLink]="creditCampaignPage.templateData.sectionOnboarding.onboardingCta"
+                    [insurance]="true"
+                    id="section-flow">
+            </app-ui-horizontal-flow>
+        </ng-container>
+
+    </div>
+
+    <ng-container
+            *ngIf="creditCampaignPage.templateData.sectionPartners && creditCampaignPage.templateData.sectionPartners.items.length > 0">
+        <app-our-partners [title]="creditCampaignPage.templateData.sectionPartners.title"
+                          [subtitle]="creditCampaignPage.templateData.sectionPartners.subtitle"
+                          [partnerItems]="creditCampaignPage.templateData.sectionPartners.items"></app-our-partners>
+    </ng-container>
+
+    <div class="video-wrapper">
+        <div class="container">
+            <div class="video-insurance">
+                <div>
+                    <button (click)="startVideo()" style="display:none" #startBtn>Start</button>
+
+                    <video #videoPlayer
+                           class="video-background"
+                           muted
+                           autoplay
+                           loop
+                           playsinline
+                           preload="auto"
+                           poster="/assets/insurance/car-poaster.jpg"
+                    >
+                        <source src="/assets/insurance/car-animation.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="plate-wrapper d-flex flex-column gap-plus align-items-center">
+                    <div class="plate d-flex flex-column p-big test-plate">
+                        <span class="st-3 text-onback-high"> بیمه شخص ثالث </span>
+                        <span class="b-3 text-onback-medium mt-micro">شماره پلاک خودرو و کدملی صاحب پلاک را وارد کنید:</span>
+                        <div [formGroup]="form" class="d-flex flex-column gap-medium mt-plus test">
+                            <span class="surface-back m-atom p-atom radius-small">
+                                 <ngx-plate class="w-100"
+                                           [id]="'letterPicker2'"
+                                           [size]="'MEDIUM'"
+                                           (valueChange)="setPlateValue($event)"
+                                           (isPlateComplete)="plateComplete($event)"
+                                ></ngx-plate>
+                            </span>
+                            <ui-form-field
+                                    [errorMessageMapper]="{
+                              'required': 'کد ملی را وارد کنید.',
+                              'invalidNotionalCode': 'کد ملی وارد شده نامعتبر است.'
+                            }"
+                                    [error]="form.controls.nationalCode.errors"
+                                    [isNumericKeyboard]="true"
+                                    [maxSize]="10"
+                                    [required]="true"
+                                    formControlName="nationalCode"
+                                    label="کدملی صاحب پلاک"
+                                    type="input">
+                            </ui-form-field>
+                        </div>
+                        <span class="b-3 text-onback-medium">بر روی برگ سبز یا کارت خودرو قابل مشاهده است.</span>
+                        <span class="mt-medium">
+ <ngx-button
+         (clickHandler)="buyInsurance()"
+         [size]="'BIG'"
+         [fullWidth]="true"
+         [disabled]="setDisabled"
+ >
+         خرید بیمه‌ شخص ثالث
+    </ngx-button>
+          </span>
+                    </div>
+                    <div class="link text-oninvert-medium b-2">
+                        در صورتی که صاحب پلاک نیستید <span class="st-7 cursor-pointer"
+                                                           (click)="noPlateInsurance()">اینجا کلیک</span>
+                        کنید.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq" *ngIf="creditCampaignPage.templateData.faq && creditCampaignPage.templateData.faq.faqItems">
+        <app-ui-faq
+                *ngIf="creditCampaignPage.templateData.faq && creditCampaignPage.templateData.faq.faqItems && creditCampaignPage.templateData.faq.faqItems.length > 0"
+                [faqs]="creditCampaignPage.templateData.faq.faqItems"
+                [subtitle]="creditCampaignPage.templateData.faq.subtitle"
+                [title]="creditCampaignPage.templateData.faq.title"></app-ui-faq>
+    </div>
+
+
+    <app-waiting-spinner>
+    </app-waiting-spinner>
+
+
+</app-base-layout>

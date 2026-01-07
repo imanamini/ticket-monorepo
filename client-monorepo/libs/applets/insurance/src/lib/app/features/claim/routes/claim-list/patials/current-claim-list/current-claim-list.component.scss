@@ -1,0 +1,30 @@
+@import "@digipay/base-style/base/variables";
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.active-claim-container {
+  overflow-x: auto;
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+  cursor: grab;
+  user-select: none;
+
+  &::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  &:first-child {
+    padding-right: map-get($spacing-sizes, 'plus');
+  }
+
+  &:last-child {
+    padding-left: map-get($spacing-sizes, 'plus');
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+}

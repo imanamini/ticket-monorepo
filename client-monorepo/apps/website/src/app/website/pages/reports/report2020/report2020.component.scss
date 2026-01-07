@@ -1,0 +1,1951 @@
+/* make sure to set some focus styles for accessibility */
+:focus {
+  outline: 0;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+input[type='search'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+textarea {
+  overflow: auto;
+  vertical-align: top;
+  resize: vertical;
+}
+
+/** * Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3. */
+audio,
+canvas,
+video {
+  display: inline-block;
+  //*display: inline;
+  //*zoom: 1;
+  max-width: 100%;
+}
+
+/** * Prevent modern browsers from displaying `audio` without controls. * Remove excess height in iOS 5 devices. */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/** * Address styling not present in IE 7/8/9, Firefox 3, and Safari 4. * Known issue: no IE 6 support. */
+[hidden] {
+  display: none;
+}
+
+/** * 1. Correct text resizing oddly in IE 6/7 when body `font-size` is set using * `em` units. * 2. Prevent iOS text size adjust after orientation change, without disabling * user zoom. */
+html {
+  font-size: 100%;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  scroll-behavior: smooth;
+}
+
+/** * Address `outline` inconsistency between Chrome and other browsers. */
+a:focus {
+  outline: thin dotted;
+}
+
+/** * Improve readability when focused and also mouse hovered in all browsers. */
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/** * 1. Remove border when inside `a` element in IE 6/7/8/9 and Firefox 3. * 2. Improve image quality when scaled in IE 7. */
+img {
+  border: 0;
+  /* 1 */
+  -ms-interpolation-mode: bicubic;
+  /* 2 */
+}
+
+/** * Address margin not present in IE 6/7/8/9, Safari 5, and Opera 11. */
+figure {
+  margin: 0;
+}
+
+/** * Correct margin displayed oddly in IE 6/7. */
+form {
+  margin: 0;
+}
+
+/** * Define consistent border, margin, and padding. */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/** * 1. Correct color not being inherited in IE 6/7/8/9. * 2. Correct text not wrapping in Firefox 3. * 3. Correct alignment displayed oddly in IE 6/7. */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  white-space: normal;
+  /* 2 */
+  //*margin-left: -7px;
+  /* 3 */
+}
+
+/** * 1. Correct font size not being inherited in all browsers. * 2. Address margins set differently in IE 6/7, Firefox 3+, Safari 5, * and Chrome. * 3. Improve appearance and consistency in all browsers. */
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  vertical-align: baseline;
+  /* 3 */
+  //*vertical-align: middle;
+  /* 3 */
+}
+
+/** * Address Firefox 3+ setting `line-height` on `input` using `!important` in * the UA stylesheet. */
+button,
+input {
+  line-height: normal;
+}
+
+/** * Address inconsistent `text-transform` inheritance for `button` and `select`. * All other form control elements do not inherit `text-transform` values. * Correct `button` style inheritance in Chrome, Safari 5+, and IE 6+. * Correct `select` style inheritance in Firefox 4+ and Opera. */
+button,
+select {
+  text-transform: none;
+}
+
+/** * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio` * and `video` controls. * 2. Correct inability to style clickable `input` types in iOS. * 3. Improve usability and consistency of cursor style between image-type * `input` and others. * 4. Remove inner spacing in IE 7 without affecting normal text inputs. * Known issue: inner spacing remains in IE 6. */
+button, html input[type="button"],
+  /* 1 */
+input[type="reset"], input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+  //*overflow: visible;
+  /* 4 */
+}
+
+/** * Re-set default cursor for disabled elements. */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/** * 1. Address box sizing set to content-box in IE 8/9. * 2. Remove excess padding in IE 8/9. * 3. Remove excess padding in IE 7. * Known issue: excess padding remains in IE 6. */
+input[type='checkbox'],
+input[type='radio'] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+  //*height: 13px;
+  /* 3 */
+  //*width: 13px;
+  /* 3 */
+}
+
+/** * 1. Address `appearance` set to `search field` in Safari 5 and Chrome. * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome * (include `-moz` to future-proof). */
+input[type='search'] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box;
+}
+
+/** * Remove inner padding and search cancel button in Safari 5 and Chrome * on OS X. */
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/** * Remove inner padding and border in Firefox 3+. */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/** * 1. Remove default vertical scrollbar in IE 6/7/8/9. * 2. Improve readability and alignment in all browsers. */
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */
+}
+
+/** * Remove most spacing between table cells. */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+html,
+button,
+input,
+select,
+textarea {
+  color: #222;
+}
+
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+img {
+  vertical-align: middle;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.container {
+  margin: auto;
+}
+
+section {
+  margin: auto;
+}
+
+.bg-blue {
+  background-color: #0040ff;
+}
+
+.text-blue {
+  color: #0040ff;
+}
+
+.bg-green {
+  background-color: #00c96d;
+}
+
+.text-green {
+  color: #00c96d;
+}
+
+.bg-gray {
+  background-color: #e9eaeb;
+}
+
+.text-black {
+  color: #404040;
+}
+
+.number-xxl {
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.number-xl {
+  font-size: 60px;
+  font-weight: 700;
+  direction: ltr;
+  margin-top: 0.1em;
+}
+
+.number-medium {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 30px;
+  direction: ltr;
+}
+
+.number-medium--gray {
+  font-weight: 600;
+  font-size: 35px;
+  line-height: 30px;
+  direction: ltr;
+}
+
+.number-xl--gray {
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 30px;
+  color: #404040;
+}
+
+/*************** Header style ***************/
+.report__header-arrow__background {
+  width: 8em;
+  height: 8em;
+  border-radius: 50%;
+  background-color: #0033cc;
+  margin: auto;
+}
+
+.report__header-title img {
+  width: 100%;
+  height: 100%;
+}
+
+.report__header-content {
+  font-size: 10px;
+  z-index: 0;
+  position: absolute;
+  bottom: 3em;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.report__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.report__button-bordered {
+  font-size: 10px;
+  border: 0.15em solid white;
+  border-radius: 1em;
+  display: flex;
+  align-items: center;
+  min-height: 4.5em;
+  background-color: #fff;
+}
+
+.report__button-bordered a {
+  text-decoration: none;
+  color: #0440ff;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 0.6em 2.6em;
+}
+
+.report__button-bordered i,
+.report__download-button i {
+  background-image: url('/apps/website/src/assets/images/report2020/i-download.svg');
+  width: 12px;
+  height: 16px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: white;
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+  background-size: contain;
+}
+
+section.header-report:before {
+  content: '';
+  background-image: url('/apps/website/src/assets/images/report2020/bg-top.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: block;
+  position: absolute;
+  background-position: top center;
+  top: 98px;
+  max-width: 950px;
+  height: 100%;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: 1s dotsback ease-in-out infinite;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes dotsback {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.report__header-logo {
+  width: 19em;
+  height: 19em;
+  background-color: white;
+  border-radius: 6em;
+  overflow: hidden;
+  margin: auto;
+}
+
+.report__header-logo img {
+  width: 100%;
+  height: 100%;
+  padding: 4em 5.5em;
+}
+
+.report__header-title {
+  width: 20em;
+  height: 10em;
+  margin: 20em auto 0;
+}
+
+.report__header-arrow {
+  margin-top: 5em;
+}
+
+.report__header-arrow__background i {
+  background-image: url('/apps/website/src/assets/images/report2020/arrow.svg');
+  display: block;
+  width: 100%;
+  position: relative;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: arrow 1s infinite linear;
+  background-size: 30%;
+}
+
+@keyframes arrow {
+  from {
+    top: -1em;
+  }
+  to {
+    top: 1em;
+  }
+}
+
+.header-report .nav-report {
+  padding: 20px 50px;
+  background-color: rgb(0 0 0 / 15%);
+  backdrop-filter: blur(2px);
+  z-index: 1;
+  position: relative;
+  height: unset;
+}
+
+.report__title-section span {
+  width: 20px;
+  height: 50px;
+  display: inline-block;
+}
+
+.Authentication .report__title-section p {
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 50px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.report__title-section {
+  display: flex;
+  align-items: center;
+  /* width: 100%;
+   */
+}
+
+.report__content-section {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.8em;
+  text-align: justify;
+  margin-top: 1.8em;
+}
+
+/*****************about section****************/
+.report__about .report__container {
+  display: flex;
+  flex-direction: column;
+}
+
+section.report__about {
+  margin: 70px 0 150px;
+}
+
+ul.report__vectors__wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+li.report__vectors-item {
+  display: flex;
+  width: 33%;
+  padding: 0 55px;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+.report__vectors {
+  display: flex;
+  justify-content: center;
+}
+
+.report__vectors-item span {
+  display: block;
+  margin-top: 30px;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 28px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+i.super-app {
+  background-image: url('/apps/website/src/assets/images/report2020/super-ap.svg');
+}
+
+.report__vectors-item__img {
+  height: 150px;
+  width: 100%;
+}
+
+i.wallet-transaction {
+  background-image: url('/apps/website/src/assets/images/report2020/wallet-money-service.svg');
+  background-size: 85%;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.report__vectors-item img {
+  width: 100%;
+  height: 100%;
+}
+
+.report__notice {
+  margin-top: 7em;
+  border-radius: 3em;
+  font-size: 10px;
+  background-color: #f2f2f2;
+  min-height: 8.5em;
+  position: relative;
+  display: flex;
+  padding: 3em 5em;
+  justify-content: center;
+  align-items: center;
+  text-align-last: center;
+}
+
+.report__notice span {
+  font-size: 18px;
+  line-height: 1.8em;
+  text-align: center;
+  display: block;
+  font-weight: 300;
+  text-align: justify;
+}
+
+.report__notice .number-medium--gray div {
+  font-size: 0.8em;
+}
+
+.report__notice span b {
+  font-weight: 600;
+}
+
+/***************inOneView style************/
+.report__inOneView .report__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.report__notice i {
+  background-image: url('/apps/website/src/assets/images/report2020/qute.svg');
+  width: 30px;
+  height: 23px;
+  position: absolute;
+  top: -10px;
+  right: 42px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+section.report__inOneView {
+  background-color: #f2f2f2;
+  padding: 90px 0;
+}
+
+.report__card-content li.report__card-item {
+  width: 33.3%;
+  padding: 12px;
+}
+
+.report__card-content li.report__card-item i {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+}
+
+i.user-active {
+  background-image: url('/apps/website/src/assets/images/report2020/user.svg');
+}
+
+i.services-app {
+  background-image: url('/apps/website/src/assets/images/report2020/i-mobile.svg');
+}
+
+i.transaction-user {
+  background-image: url('/apps/website/src/assets/images/report2020/Payment-transaction.svg');
+}
+
+i.super-app {
+  background-image: url('/apps/website/src/assets/images/report2020/super-ap.svg');
+}
+
+.report__vectors-item__img {
+  height: 150px;
+  width: 100%;
+}
+
+.report__vectors-item__img i {
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+i.loan-services {
+  background-image: url('/apps/website/src/assets/images/report2020/loan-pay.svg');
+}
+
+.report__logo {
+  display: flex;
+  align-items: center;
+  height: 45px;
+}
+
+.report__logo img {
+  /* content: url("https://www.mydigipay.com/wp-content/uploads/2021/03/logo-top.svg");
+   */
+  height: 100%;
+}
+
+.report__header-title img {
+  /* content: url('https://www.mydigipay.com/wp-content/uploads/2021/03/logo-header.svg');
+   */
+  height: 100%;
+  width: 100%;
+}
+
+i.wallet-transaction {
+  background-image: url('/apps/website/src/assets/images/report2020/wallet-money-service.svg');
+}
+
+i.User-credentials {
+  background-image: url('/apps/website/src/assets/images/report2020/i-money.svg');
+}
+
+i.user-register {
+  background-image: url('/apps/website/src/assets/images/report2020/user-register.svg');
+  background-size: 45%;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+ul.report__card-content {
+  display: flex;
+  flex-direction: row;
+  margin: 0 -12px;
+  flex-wrap: wrap;
+}
+
+.report__card-item__detail {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  width: 100%;
+  border-radius: 70px;
+}
+
+.authentication-section .report__card-item__detail {
+  font-size: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em 4em;
+  height: 100%;
+  border-radius: 4em;
+  flex-wrap: wrap;
+  background-color: #f2f2f2;
+}
+
+.report__card-item-icon {
+  width: 11em;
+  height: 11em;
+  border-radius: 3.5em;
+  background-color: white;
+  display: table;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2em;
+  padding: 3em;
+}
+
+.report__card-item__detail span {
+  font-weight: 400;
+  margin-top: 5px;
+  font-size: 14px;
+  line-height: 25px;
+}
+
+/******************install active***************/
+ul.install__logo-icon {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+section.install__active {
+  padding: 150px 0 100px;
+}
+
+section.install__active .number-medium--gray {
+  font-size: 40px;
+  vertical-align: middle;
+}
+
+li.install_logo-item {
+  width: 7.142%;
+  padding: 10px;
+  position: relative;
+}
+
+.install_logo-item i {
+  background-image: url('/apps/website/src/assets/images/report2020/logo-white.svg');
+  background-size: 35%;
+  width: 60px;
+  padding-top: 100%;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center center;
+  max-width: 100%;
+  position: static;
+  z-index: 2;
+  background-color: #0040ff;
+  border-radius: 20px;
+}
+
+.install_logo-item i.logo-overlap:before {
+  background-image: url('/apps/website/src/assets/images/report2020/loading.svg');
+  background-color: rgb(255 255 255 / 80%);
+  background-size: 35%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.logo-overlap:before {
+  background-size: 50%;
+  background-image: url('/apps/website/src/assets/images/report2020/logp-overlap.svg');
+  content: '';
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center center;
+  /* background-color:rgba(0, 0, 0, 16%) ;
+   */
+}
+
+.install__active__section {
+  position: relative;
+  width: 100%;
+}
+
+.install__bordered {
+  font-size: 10px;
+  border: 5px solid #f2f2f2;
+  border-radius: 4em;
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*******************cash-back section style*************/
+section.cash-back {
+  position: relative;
+  /* background-image: linear-gradient(rgb(242, 242, 242), transparent);
+   */
+}
+
+.cash-back__header {
+  padding: 110px 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+}
+
+.cash-back__header__icon {
+  font-size: 10px;
+  width: 34em;
+  height: 20em;
+}
+
+.cash-back__header__icon i,
+.demand-credit__header__icon img {
+  background-image: url('/apps/website/src/assets/images/report2020/operation.svg');
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.install__content {
+  position: relative;
+  width: 100%;
+}
+
+.install__bordered:before {
+  background-color: white;
+  width: 700px;
+  height: 500px;
+  z-index: -1;
+}
+
+.cash-back__component-icon i {
+  background-image: url('/apps/website/src/assets/images/report2020/user-cash-back.svg');
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  display: block;
+  background-position: center center;
+  background-size: contain;
+}
+
+.cash-back__content {
+  text-align: center;
+}
+
+.cash-back__des {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 40px;
+  margin-bottom: 0.7em;
+  text-align: center;
+}
+
+.cash-back__number b {
+  font-weight: 700;
+  font-size: 75px;
+}
+
+.cash-back__number {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+ul.cash-back__component-content {
+  display: flex;
+  flex-direction: row;
+  padding: 90px 0 150px;
+  margin: 0px -25px;
+}
+
+.cash-back__component-icon {
+  font-size: 10px;
+  width: 17em;
+  height: 14em;
+  margin: auto auto 7em;
+}
+
+li.cash-back__component__item {
+  width: 50%;
+  padding: 0 50px;
+}
+
+.cash-back__component-text {
+  border-top: 5px solid white;
+  padding-top: 4em;
+  text-align: center;
+  line-height: 4em;
+}
+
+.cash-back__component-text span {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 40px;
+}
+
+.cash-back__component-text b {
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 30px;
+  margin-top: 10px;
+}
+
+.cash-back__component__header {
+  background-color: white;
+  padding: 2em 2.5em;
+  line-height: 2em;
+  border-radius: 3em;
+  text-align: justify;
+}
+
+i.esfahan-icon {
+  background-image: url('/apps/website/src/assets/images/report2020/esfahan.svg');
+  height: 100%;
+  background-size: contain;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 100%;
+  top: -33%;
+}
+
+.cash-back__component__city {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 2em 2em;
+}
+
+section.header-report {
+  position: relative;
+  height: 100vh;
+  padding-top: 98px;
+}
+
+.report__card-content li.report__card-item:nth-child(4),
+.report__card-content li.report__card-item:nth-child(5) {
+  width: 50%;
+}
+
+.report__card-item__content {
+  background-color: #e9eaeb;
+  padding: 1.6em;
+  font-size: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 4em;
+}
+
+.report__inOneView .report__title-section {
+  margin-bottom: 60px;
+}
+
+.cash-back__component__item__container {
+  background-color: #f2f2f2;
+  border-radius: 70px;
+  display: flex;
+  flex-direction: column;
+  padding: 60px;
+  height: 100%;
+}
+
+.cash-back__component__item:last-child .cash-back__component__item__container {
+  background-color: #f2f2f2;
+  border-radius: 70px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  height: 100%;
+}
+
+.report__title-section p {
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 50px;
+  display: inline-block;
+  margin-right: 20px;
+  white-space: nowrap;
+}
+
+.cash-back__component-text p {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+i.shiraz-icon {
+  background-image: url('/apps/website/src/assets/images/report2020/shiraz.svg');
+  height: 100%;
+  background-size: 80%;
+  display: block;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: -83%;
+  width: inherit;
+}
+
+i.ahvaz-icon {
+  background-image: url('/apps/website/src/assets/images/report2020/ahvaz.svg');
+  width: inherit;
+  height: 100%;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  display: block;
+  position: absolute;
+  bottom: 0;
+}
+
+section.Authentication:before,
+section.cash-back:before {
+  content: '';
+  width: 100%;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  display: block;
+  position: absolute;
+  background-position: top center;
+  min-height: 430px;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+
+section.Authentication {
+  position: relative;
+}
+
+.authentication__header {
+  padding: 110px 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+}
+
+.Authentication li.report__card-item:nth-child(1) {
+  width: 100%;
+}
+
+.authentication-section .report__card-item__content {
+  background-color: rgb(242 242 242 / 30%);
+  padding: 0;
+  height: 11em;
+}
+
+.authentication-section .report__card-item-icon {
+  width: 13em;
+  height: 100%;
+  background-color: transparent;
+  margin-left: 0;
+  padding-right: 1em;
+  padding-left: 0;
+}
+
+.Authentication li.report__card-item:nth-child(2),
+.Authentication li.report__card-item:nth-child(3) {
+  width: 50%;
+}
+
+.Authentication ul:first-of-type li.report__card-item:nth-child(2) b,
+.Authentication ul:first-of-type li.report__card-item:nth-child(3) b {
+  width: 100%;
+}
+
+.Authentication .report__card-content:last-child li.report__card-item {
+  width: 100%;
+}
+
+.authentication-section__text {
+  margin: 70px 0;
+}
+
+.authentication-section__text span {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.Authentication .report__card-item__detail b {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  white-space: nowrap;
+}
+
+i.headphone {
+  background-image: url('/apps/website/src/assets/images/report2020/headphone.svg');
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+i.document-tick {
+  background-image: url('/apps/website/src/assets/images/report2020/document-tick.svg');
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+i.up-ticks {
+  background-image: url('/apps/website/src/assets/images/report2020/up-ticks.svg');
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+i.phone-up {
+  background-image: url('/apps/website/src/assets/images/report2020/phone-up.svg');
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+i.phone-wave {
+  background-image: url('/apps/website/src/assets/images/report2020/phone-wave.svg');
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.authentication-section .report__card-item-icon i {
+  max-width: 40%;
+  margin: auto;
+}
+
+.install__active .report__title-section {
+  margin-bottom: 60px;
+}
+
+.footer-section {
+  width: 100%;
+  position: relative;
+}
+
+.report__title-footer p {
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 30px;
+  color: white;
+  text-align: center;
+}
+
+.report__title-footer span {
+  font-weight: 200;
+  color: white;
+  text-align: center;
+  line-height: 20px;
+  display: block;
+  margin-top: 1em;
+  font-size: 2.3em;
+}
+
+.report__download-button a {
+  line-height: 20px;
+  font-size: 20px;
+  color: #0440ff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 16px 50px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px -20px #000;
+}
+
+.report__download-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8.5em 0 20em;
+  font-size: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.report__footer-des p {
+  font-size: 16px;
+  color: white;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+}
+
+.icon-city__items {
+  margin: 0;
+  width: 33.33%;
+  height: 100%;
+  position: relative;
+}
+
+.cash-back__path {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.demand-credit__header {
+  display: flex;
+  flex-direction: row;
+}
+
+section.demand-credit:before {
+  content: '';
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: block;
+  position: absolute;
+  background-position: top center;
+  min-height: 430px;
+  top: 0;
+  right: 0;
+}
+
+.footer .footer-section:after {
+  content: '';
+  background-image: url('/apps/website/src/assets/images/report2020/dots-white.svg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  display: block;
+  position: absolute;
+  background-position: bottom center;
+  bottom: 0;
+  max-width: 980px;
+  height: 100%;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  z-index: 0;
+}
+
+.footer {
+  position: relative;
+  background-color: #0040ff;
+  padding-top: 8em;
+}
+
+section.demand-credit {
+  position: relative;
+  margin: 150px 0;
+  /* background-image: linear-gradient(rgb(242, 242, 242), transparent);
+   */
+}
+
+.demand-credit__header {
+  padding: 110px 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+}
+
+.demand-credit__header__icon {
+  font-size: 10px;
+  width: 34em;
+  height: 20em;
+}
+
+i.path-city {
+  background-image: url('/apps/website/src/assets/images/report2020/city-path.svg');
+  background-size: 75%;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+
+.cash-back__icon-group {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  position: relative;
+  height: 100%;
+  background-image: url('/apps/website/src/assets/images/report2020/cash-back-citys.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.icon-city__items__img {
+  position: relative;
+  width: 80px;
+  height: 70px;
+  display: block;
+  margin: 0;
+}
+
+.container {
+  max-width: 1100px;
+}
+
+.demand__item img {
+  max-width: 50%;
+}
+
+.cash-back__number.text-blue {
+  font-size: 25px;
+  margin-bottom: 0.5em;
+}
+
+li.demand-icon__item {
+}
+
+.demand__item {
+  border: 3px solid #f2f2f2;
+  border-radius: 35px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+}
+
+i {
+}
+
+.install__bordered-contain {
+  width: 43%;
+  background-color: #fff;
+  height: 33%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1em;
+}
+
+b.number-medium--gray.with-l n {
+  direction: ltr;
+  display: inline-block;
+  margin-left: 0.3em;
+}
+
+b.number-medium--gray.with-l {
+  direction: rtl;
+  align-items: center;
+  display: flex;
+}
+
+b.number-medium--gray.with-l c {
+  font-size: 0.8em;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+li.demand-icon__item {
+  width: 12em;
+  height: 12em;
+  margin: 10px;
+}
+
+ul.demand-icon__content {
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  margin: 4em 0;
+}
+
+li.demand-icon__item-big {
+  width: 53em;
+  margin: 0 2em;
+}
+
+.demand-credit__content {
+  margin-top: 3em;
+}
+
+.report__notice img {
+  margin-right: 3em;
+}
+
+li.demand-icon__item-big .cash-back__number {
+  font-size: 80px;
+  color: #00c96d;
+  direction: ltr;
+}
+
+section.Authentication:after {
+  top: 0;
+  right: 0;
+  position: absolute;
+  content: '';
+  /* background-image: linear-gradient(rgb(242, 242, 242), transparent);
+   */
+  width: 100%;
+  height: 400px;
+  z-index: -2;
+}
+
+@media (max-width: 1280px) {
+  .report__card-content li.report__card-item:nth-child(5) {
+    width: 100%;
+  }
+  .report__card-content li.report__card-item {
+    width: 50%;
+  }
+  .install_logo-item i {
+    border-radius: 17px;
+  }
+  li.install_logo-item {
+    padding: 7px;
+  }
+  .install__bordered {
+    border-radius: 2em;
+  }
+  li.cash-back__component__item {
+    padding: 0 24px;
+  }
+  ul.cash-back__component-content {
+    margin: 0 -12px;
+  }
+  .authentication-section .report__card-item-icon {
+    width: 10em;
+  }
+  .demand-credit__header {
+    padding: 50px 100px 50px;
+  }
+  .container {
+    max-width: 600px;
+  }
+  .report__vectors-item__img {
+    height: 100px;
+  }
+  li.report__vectors-item {
+    padding: 0 10px;
+  }
+  .report__vectors-item span {
+    font-size: 14px;
+  }
+  .report__title-section p {
+    font-size: 30px;
+  }
+  .report__card-content li.report__card-item {
+    width: 100%;
+  }
+  .report__card-content li.report__card-item:nth-child(4) {
+    width: 100%;
+  }
+  .cash-back__header {
+    padding: 90px 0;
+  }
+  .authentication__header {
+    padding: 90px 0;
+  }
+  .demand-credit__header {
+    padding: 90px 0 50px;
+  }
+  li.install_logo-item {
+    width: 10%;
+  }
+  .install__bordered-contain {
+    width: 60%;
+    height: 26%;
+  }
+  li.install_logo-item:nth-last-child(1),
+  li.install_logo-item:nth-last-child(2),
+  li.install_logo-item:nth-last-child(3),
+  li.install_logo-item:nth-last-child(4) {
+    display: none;
+  }
+  li.cash-back__component__item {
+    width: 100%;
+    margin-bottom: 2em;
+  }
+  ul.cash-back__component-content {
+    flex-wrap: wrap;
+    padding: 70px 0 100px;
+  }
+  .cash-back__component-text {
+    padding-top: 2em;
+  }
+  .cash-back__component-icon {
+    margin-bottom: 4em;
+  }
+  .cash-back__component__city {
+    height: 350px;
+  }
+  .Authentication li.report__card-item:nth-child(2),
+  .Authentication li.report__card-item:nth-child(3) {
+    width: 100%;
+  }
+  .Authentication .report__card-item__detail b {
+    font-size: 16px;
+  }
+  .Authentication ul:first-of-type li.report__card-item:nth-child(2) b,
+  .Authentication ul:first-of-type li.report__card-item:nth-child(3) b {
+    width: auto;
+  }
+  li.demand-icon__item {
+    width: 9em;
+    height: 9em;
+    margin: 8px;
+  }
+  .demand__item img {
+    max-width: 50%;
+    max-height: 40%;
+  }
+  .demand__item {
+    border-radius: 25px;
+  }
+  li.demand-icon__item-big {
+    width: 35em;
+    margin: 0 1em;
+  }
+  li.demand-icon__item-big .cash-back__number {
+    font-size: 60px;
+    margin-top: 0.1em;
+  }
+  ul.demand-icon__content {
+    margin: 2em 0;
+  }
+  section.demand-credit {
+    margin: 100px 0;
+  }
+  section.install__active {
+    padding: 100px 0;
+  }
+  section.report__about {
+    margin: 50px 0 100px;
+  }
+  .report__inOneView .report__title-section {
+    margin-bottom: 40px;
+  }
+  section.cash-back:before {
+    background-size: 80%;
+  }
+  .authentication-section__text {
+    margin: 50px 0;
+    text-align: justify;
+  }
+
+  .report__download-button {
+    padding-bottom: 100px;
+  }
+  section.header-report {
+    padding-top: 80px;
+  }
+  section.header-report:before {
+    top: 80px;
+  }
+}
+
+@media (max-width: 744px) {
+  section.header-report {
+    padding-top: 48px;
+  }
+  section.header-report:before {
+    top: 48px;
+  }
+  .container {
+    width: 90%;
+  }
+  li.report__vectors-item {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 50px;
+  }
+  .report__vectors-item span {
+    font-size: 16px;
+  }
+  li.install_logo-item {
+    width: 20%;
+    padding: 1.5vw;
+  }
+  .install_logo-item i {
+    width: 100%;
+    border-radius: 5vw;
+  }
+  li.install_logo-item:nth-child(even) {
+    display: none;
+  }
+  .install__bordered {
+    border-radius: 6vw;
+  }
+  .number-xl {
+    font-size: 11vw;
+  }
+  .install__bordered-contain {
+    width: 55vw;
+  }
+  .cash-back__number b {
+    font-size: 40px;
+  }
+  .cash-back__des {
+    line-height: 30px;
+    font-size: 18px;
+  }
+  ul.cash-back__component-content {
+    padding: 40px 0 0;
+  }
+  .cash-back__component__item__container {
+    border-radius: 40px;
+  }
+  .cash-back__component-icon {
+    font-size: 6px;
+  }
+  .cash-back__component-text {
+    padding-top: 1.5em;
+    line-height: 2em;
+    border-width: 3px;
+  }
+  .cash-back__component__item__container {
+    padding: 30px 30px 30px;
+  }
+  .cash-back__component-text span {
+    line-height: 0.9em;
+    font-size: 18px;
+  }
+  .cash-back__component-text p {
+    font-size: 20px;
+    margin-top: 1.5em;
+  }
+  .cash-back__component-text b {
+    font-size: 40px;
+    line-height: 20px;
+  }
+  .cash-back__component__item:last-child
+    .cash-back__component__item__container {
+    border-radius: 40px;
+    padding: 15px 15px;
+  }
+  .cash-back__component__header {
+    border-radius: 30px;
+    padding: 1em 1.5em;
+  }
+  .cash-back__component__city {
+    padding: 0;
+    height: 300px;
+    padding: 30px 0;
+    max-height: 60vw;
+  }
+  .cash-back__header__icon,
+  .demand-credit__header__icon {
+    width: 100%;
+    order: 1;
+    height: 11em;
+  }
+  .report__title-section {
+    order: 2;
+    margin: 2em auto auto;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: auto;
+    display: grid;
+  }
+  .authentication__header {
+    flex-wrap: wrap;
+    padding: 60px 0;
+  }
+  .Authentication .report__title-section p {
+    font-size: 30px;
+    line-height: 45px;
+    margin: 0;
+    white-space: break-spaces;
+  }
+  .report__title-section span {
+    width: 100%;
+    height: 5px;
+    margin-top: 0.5em;
+    order: 1;
+  }
+  .authentication-section .report__card-item__content {
+    width: 100%;
+    flex-wrap: wrap;
+    height: auto;
+  }
+  section.Authentication {
+    /* background-image: linear-gradient(rgb(242, 242, 242), transparent);
+     */
+  }
+  .authentication-section .report__card-item-icon {
+    margin: auto;
+    height: 8em;
+    padding: 0;
+    display: flex;
+  }
+  .report__card-content li.report__card-item i {
+    height: 50%;
+  }
+  .report__card-item__content {
+    border-radius: 2em;
+    padding: 2em 1.5em;
+  }
+  .authentication-section .report__card-item__detail {
+    border-radius: 2em;
+    padding: 2em;
+    justify-content: center;
+  }
+  .Authentication .report__card-item__detail b {
+    margin-bottom: 0.5em;
+    white-space: normal;
+    font-size: 15px;
+    width: 100%;
+    text-align: center;
+  }
+  .authentication-section__text {
+    margin: 20px 0;
+  }
+  .report__notice {
+    padding: 2.5em 2em;
+    margin-top: 5em;
+    flex-wrap: wrap;
+  }
+  .report__card-item-icon {
+    font-size: 6px;
+    display: flex;
+    padding: 2em;
+    border-radius: 2.5em;
+  }
+  .number-medium--gray {
+    font-size: 25px;
+  }
+  .report__card-item__detail span {
+    margin-top: 2px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .report__card-item__detail {
+    padding-left: 0;
+  }
+  b.number-medium--gray.with-l c {
+    font-size: 0.7em;
+  }
+  .report__title-section p {
+    margin-right: 0;
+    text-align: center;
+    font-size: 25px;
+    line-height: 40px;
+    white-space: break-spaces;
+  }
+  .authentication-section .report__card-item__detail .number-medium {
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+  }
+  .report__header-logo {
+    font-size: 2vw;
+  }
+  .report__header-title {
+    font-size: 2vw;
+  }
+  .report__header-arrow__background {
+    font-size: 2vw;
+  }
+  section.header-report:before {
+    background-size: 120vw;
+  }
+  section.report__about {
+    margin: 30px 0 60px;
+  }
+  section.report__about .report__title-section {
+    order: inherit;
+  }
+  .report__inOneView .report__title-section {
+    order: inherit;
+  }
+  section.report__inOneView {
+    padding: 30px 0;
+  }
+  section.install__active {
+    padding: 30px 0 40px;
+  }
+  .cash-back__header {
+    flex-wrap: wrap;
+    padding: 60px 0 80px;
+  }
+  .demand-credit__header {
+    flex-wrap: wrap;
+    padding: 50px 0;
+  }
+  .demand-credit__header__icon img {
+    background-image: none;
+  }
+  .demand-credit__content {
+    margin: 1em 0 0;
+  }
+  .report__notice span {
+    font-size: 16px;
+  }
+  section.demand-credit {
+    margin: 60px 0;
+  }
+  .report__notice img {
+    margin: 2em 0 0;
+    height: 40px;
+  }
+  li.demand-icon__item {
+    height: 5em;
+    width: 5em;
+    margin: 4px;
+  }
+  .demand__item {
+    border-radius: 1.5em;
+  }
+  li.demand-icon__item-big .cash-back__number {
+    font-size: 35px;
+  }
+  li.demand-icon__item-big {
+    width: 15em;
+    margin: 0 0.5em;
+  }
+  ul.demand-icon__content {
+    margin: 1em 0;
+  }
+  .report__title-footer p {
+    font-size: 30px;
+  }
+  .report__title-footer span {
+    font-size: 1.5em;
+    margin-top: 0.4em;
+  }
+  .report__download-button {
+  }
+  .report__download-button a {
+    padding: 16px;
+    width: 100%;
+    text-align: center;
+    max-width: 250px;
+  }
+  .report__notice i {
+    width: 25px;
+  }
+  .report__button-bordered a span {
+    display: none;
+  }
+  .report__button-bordered i {
+    margin: 0;
+    width: 1em;
+    height: 1.3em;
+  }
+  .report__button-bordered {
+    padding: 0.5em 0;
+  }
+  .header-report .nav-report {
+    padding: 15px 0;
+  }
+  .report__footer-des {
+    padding: 2em;
+  }
+  .report__footer-des p {
+    font-size: 14px;
+  }
+}
+
+/******Live*********/
+.report__liveBanner_banner_desktop img,
+.report__liveBanner_banner_mobile img {
+  max-width: 100%;
+}
+
+.report__liveBanner_banner_mobile {
+  display: none;
+}
+
+section.report__liveBanner {
+  padding: 3em 0 2em;
+}
+
+section.report__liveBanner .report__title-section {
+  margin-bottom: 2em;
+  margin-top: 0;
+}
+
+@media (max-width: 100px) {
+  .report__liveBanner_banner_mobile {
+    display: block;
+  }
+  .report__liveBanner_banner_desktop {
+    display: none;
+  }
+}

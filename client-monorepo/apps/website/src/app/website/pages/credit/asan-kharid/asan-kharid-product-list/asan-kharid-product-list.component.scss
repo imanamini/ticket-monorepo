@@ -1,0 +1,225 @@
+@import "../../../../../style/globals";
+
+.horizontal-flow-icon__arrow-left:before {
+  content: '\e900';
+  color: $text-color;
+}
+
+.horizontal-flow-icon__arrow-right:before {
+  content: '\e904';
+  color: $text-color;
+}
+
+section.product-lists {
+  overflow: hidden;
+}
+
+.horizontal-flow-button-next i,
+.horizontal-flow-button-prev i {
+  font-family: 'icomoon';
+  font-size: 25px;
+  font-style: normal;
+  color: #828cb1 !important;
+  text-decoration: none;
+}
+
+.swiper-navigation > div > div.swiper-button-disabled {
+  opacity: 0.15;
+}
+
+.swiper-navigation {
+  margin-bottom: 24px;
+}
+
+.swiper-navigation > div > div {
+  cursor: pointer;
+  display: flex;
+}
+
+.horizontal-flow-navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.swiper-button-next i,
+.swiper-button-prev i {
+  font-size: 25px;
+  color: rgb(0 26 102 / 30%);
+}
+
+:host ::ng-deep {
+  .swiper-slide-visible .horizontal-flow-text {
+    opacity: 1;
+  }
+
+  .swiper-slide-visible .horizontal-flow-icon > div {
+    box-shadow: 0 5px 30px -5px rgb(0 64 255 / 10%);
+    background-color: #1c40ff;
+  }
+
+  .product-lists__item {
+    /* width: 25%; */
+    /* padding: 0 1em; */
+    height: auto;
+    opacity: 0.3;
+  }
+
+  .product-lists__item.swiper-slide-visible {
+    opacity: 1;
+  }
+
+  .product-lists__item > div {
+    background-color: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 30px;
+    height: 100%;
+  }
+
+  .product-lists__item > div a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+
+  .product-lists__image {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+  }
+
+  .product-lists__image > div {
+    width: 100%;
+  }
+
+  .product-lists__image img {
+    width: 100%;
+  }
+
+  .product-lists__title > div {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .product-lists__title {
+    margin: 20px 0 30px;
+  }
+
+  .product-lists__discount > div {
+    color: #fff;
+    background-color: #ef394e;
+    display: inline-flex;
+    font-size: 14px;
+    border-radius: 100px;
+    padding: 0 8px;
+    font-weight: bold;
+    line-height: 1.8;
+  }
+
+  .product-lists__prices > div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .product-lists__new-price > div > b {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .product-lists__old-price > div {
+    font-size: 14px;
+    text-decoration: line-through;
+    opacity: 0.5;
+    text-align: left;
+  }
+
+  .product-lists__new-price > div > span,
+  .product-lists__old-price > div > span {
+    font-size: 12px;
+    font-weight: 500;
+    width: 22px;
+    display: inline-flex;
+  }
+
+  .product-lists__contain .swiper-container {
+    overflow: visible;
+    width: 100%;
+  }
+
+  .product-lists__contain {
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  .product-lists__contain .swiper-container > ul {
+    /* margin: 0 -1em; */
+  }
+
+  .product-lists__price-list {
+    width: 100%;
+  }
+
+  .product-lists__new-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+
+  .product-lists__gift-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #00cc65;
+  }
+
+  .product-lists__gift-price > div:first-child {
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+
+  .product-lists__gift-price > div:first-child span {
+    margin-right: 5px;
+  }
+
+  .product-lists__gift-price > div:last-child span {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .product-lists__gift-price > div:last-child b {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .product-lists__gift-price > div:last-child {
+    opacity: 0.5;
+  }
+
+  .product-lists__gift-price > div:first-child svg {
+    width: 14px;
+    height: 14px;
+    margin-top: -2px;
+  }
+}
+
+@media (max-width: 744px) {
+  .product-lists__image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .product-lists__title {
+    margin: 10px 0 20px;
+  }
+
+  .product-lists__item > div {
+    padding: 20px;
+    border-radius: 16px;
+  }
+}

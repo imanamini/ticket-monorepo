@@ -1,0 +1,64 @@
+<div class="operation-result-container">
+  <div class="operation-result-content">
+    <div class="operation-result-image">
+      <img
+        [src]="image()"
+        alt="operation-result"
+      />
+    </div>
+    <div class="operation-result-title">
+      {{ titleText() }}
+    </div>
+    <div class="operation-result-desc">
+      {{ description() }}
+    </div>
+    @if (isSuccess() === 'true' && (ipoDate() || instrumentType() === 'CrowdFund')) {
+      <div class="operation-result-receipt">
+        <span class="receipt-title">کد رهگیری</span>
+        <span class="receipt-value">{{ receiptNumber() }}</span>
+      </div>
+    }
+  </div>
+
+  @if (ipoDate() || instrumentType() === 'CrowdFund') {
+    <div class="w-100 two-columns">
+      @for (button of buttons(); track $index) {
+        <ngx-button
+          [style]="button.style"
+          (clickHandler)="actionHandler(button.id)"
+          [fullWidth]="true"
+          [size]="button.size || 'medium'"
+          [buttonId]="button.id"
+        >
+          {{ button.title }}
+        </ngx-button>
+      }
+    </div>
+  } @else {
+    <div
+      class="w-100"
+      [ngClass]="{ 'operation-result-button': buttonsCondition() }"
+    >
+      <ngx-button
+        [style]="buttonsCondition() ? 'tinted-on-elevated' : 'fill'"
+        (clickHandler)="onBackClicked()"
+        [fullWidth]="true"
+        [destructive]="false"
+        size="medium"
+      >
+        متوجه شدم
+      </ngx-button>
+      @if (buttonsCondition()) {
+        <ngx-button
+          [style]="'fill'"
+          (clickHandler)="goToPortfo()"
+          [fullWidth]="true"
+          [destructive]="false"
+          size="medium"
+        >
+          مشاهده کیف پول ETF
+        </ngx-button>
+      }
+    </div>
+  }
+</div>

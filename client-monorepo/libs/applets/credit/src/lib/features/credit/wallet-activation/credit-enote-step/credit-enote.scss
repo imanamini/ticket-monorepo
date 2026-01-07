@@ -1,0 +1,81 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.main-section {
+  flex-grow: 1;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .top-section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    direction: rtl;
+
+    > .title {
+      font-size: 14px;
+      color: #2c3544;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      display: block;
+    }
+  }
+
+  .bottom-section {
+    flex-grow: 0;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+}
+
+@keyframes shakeX {
+  0%,
+  to {
+    transform: translateZ(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate3d(-3px, 0, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate3d(3px, 0, 0);
+  }
+}
+
+.confirm-checkbox {
+  margin-top: 16px;
+  margin-bottom: 16px;
+
+  &.warning-shack-x {
+    animation-name: shakeX;
+    animation-duration: 0.4s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+  }
+}

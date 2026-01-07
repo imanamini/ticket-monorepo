@@ -1,0 +1,45 @@
+<div
+  [class]="
+    'pin-layout-wrapper d-flex' +
+    (!pinConfig().forgotPassword && !layoutConfig().isInPage ? ' surface-back' : '') +
+    (layoutConfig().isInPage ? ' in-page' : '')
+  "
+>
+  <div
+    [class]="'pin-layout-container d-flex flex-column'"
+    [ngClass]="pinConfig().forgotPassword ? 'surface-elevated' : 'surface-back'"
+  >
+    <div class="pin-layout-header d-flex justify-content-space-between px-plus py-pony w-100">
+      <div class="header-right-action">
+        @if (!layoutConfig()?.isBackActionHidden) {
+          <common-icon-dp-icon
+            (click)="handleBackAction()"
+            [icon]="'Arrow-Right'"
+            [iconSize]="'24'"
+            [iconType]="'linear'"
+            [classes]="'text-onback-brand'"
+            class="cursor-pointer py-low"
+          ></common-icon-dp-icon>
+        }
+      </div>
+
+      @if (!layoutConfig()?.newPasswordType) {
+        <ngx-button
+          [style]="'link'"
+          [size]="'small'"
+          (clickHandler)="handleResetPassword()"
+        >
+          فراموشی رمز عبور
+        </ngx-button>
+      }
+    </div>
+    <div class="pin-layout-content h-100">
+      <common-pin-user-pin
+        [showBiometric]="!layoutConfig()?.newPasswordType"
+        [pinConfig]="layoutConfig()"
+        (callbackFunction)="handleCallbackFunction($event)"
+        (pinOutput)="pinOutput.emit($event)"
+      ></common-pin-user-pin>
+    </div>
+  </div>
+</div>

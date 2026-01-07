@@ -1,0 +1,28 @@
+@if (data()?.length > 0) {
+  <p class="hint text-onback-high bt-3 mb-plus text-align-right">
+    موارد زیر قسط(های) معوق شماست. بعد از برطرف کردن آن‌ها بررسی دوباره را بزنید.
+  </p>
+}
+<div class="details-container w-100 d-flex flex-column align-items-center flex-grow">
+  @for (item of data(); track item) {
+    <div
+      class="details border-color-light border-100"
+      (click)="openDetailBottomSheet(item)"
+    >
+      <div class="bank-name text-onback-medium st-5">{{ item.bankName }}</div>
+      <div class="item-detail">
+        <span class="b-2 text-onback-medium">{{ item.bouncedDate | jalaliDate: 'jYYYY/jMM/jDD' }}</span>
+        <span class="st-7 amount text-onback-high">
+          <span>{{ item.amount | IRR: 'hideRial' }}</span>
+          <span class="bt-1 is-currency">ریال</span>
+        </span>
+      </div>
+    </div>
+  }
+  @if (data()?.length === 0) {
+    <div class="no-data">
+      <div class="no-data-image"></div>
+      <span class="c-3 text-align-center text-onback-medium">{{ CheckCreditFileFailedNoData[0] }}</span>
+    </div>
+  }
+</div>

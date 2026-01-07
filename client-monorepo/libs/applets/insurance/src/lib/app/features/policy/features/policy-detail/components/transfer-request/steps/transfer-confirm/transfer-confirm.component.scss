@@ -1,0 +1,30 @@
+@import "../../../../../../../../style/once/global";
+
+.row-container {
+  @include flex-column;
+  padding: 16px 0;
+  border-top: 1px solid $swatch_steel_200;
+  line-height: 24px;
+
+  .row-title {
+    font-size: .9rem;
+    color: $swatch_steel_700;
+    font-weight: 500;
+  }
+}
+
+.insurer-info {
+  @include flex-center-between;
+  margin: 16px 10px 0 0;
+
+  .title {
+    color: $swatch_steel_500;
+    font-size: .9rem;
+  }
+
+  .text {
+    font-weight: 500;
+    color: $swatch_steel_900;
+
+  }
+}

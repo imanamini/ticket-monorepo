@@ -1,0 +1,12 @@
+.house-incidents-plp {
+  overflow: hidden;
+
+  .content-container {
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

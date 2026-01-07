@@ -1,0 +1,76 @@
+<div class="w-100 d-flex flex-wrap container">
+  <div class="w-100 header">
+    <ngx-button
+      [leftIcon]="{ name: 'close' }"
+      [mode]="'icon-only'"
+      [size]="'medium'"
+      [style]="'link'"
+      (clickHandler)="close()"
+      [buttonId]="'CLOSE_REQUEST_TO_COLLATERAL'"
+    ></ngx-button>
+
+    <p>درخواست توثیق</p>
+  </div>
+
+  <div class="w-100 d-flex flex-wrap body mt-big">
+    <div class="w-100 d-flex flex-wrap info-card">
+      <p class="w-100">
+        <span> اینجانب </span>
+        <span class="bold">
+          {{ data.fullName }}
+        </span>
+        <span> با کد ملی </span>
+        <span class="bold">
+          {{ data.nationalId }}
+        </span>
+        <span> و شماره تماس </span>
+        <span class="bold">
+          {{ data.phoneNumber }}
+        </span>
+        <span> در مورخ </span>
+        <span class="bold">
+          {{ data.date }}
+        </span>
+        <span> متقاضی دریافت اعتبار از دیجی‌پی هستم، لذا لطفا در خصوص توثیق تعداد </span>
+        <span class="bold">
+          {{ data.units }}
+        </span>
+        <span> واحد سرمایه گذاری صندوق {{ data.instrument_name }} معادل مبلغ </span>
+        <span class="bold">
+          {{ data.units * data.instrumentNav.purchaseNav | thousands }}
+        </span>
+        <span> ریال اقدامات لازمه را مبذول نمایید. </span>
+      </p>
+      <p class="w-100 mt-medium">
+        بدیهی است که در صورت عدم تسویه بدهی خود، آن شرکت محترم می تواند راساً از محل وثایق/ وثیقه مطالبات خود را وصول نماید.
+      </p>
+    </div>
+
+    <div class="w-100 d-flex flex-wrap mt-medium">
+      <ngx-checkbox
+        class="purchase-agreement"
+        (checkedChange)="onToggleAgreement($event)"
+        [(checked)]="agreementChecked"
+      >
+      </ngx-checkbox>
+      <div
+        class="d-flex align-items-center checkbox-text"
+        (click)="onToggleAgreement(!agreementChecked)"
+      >
+        <span> درخواست بالا را تایید و امضا می‌کنم. </span>
+      </div>
+    </div>
+
+    <div class="w-100 mt-small">
+      <ngx-button
+        [buttonId]="'COLLATERAL_CONFIRM_AND_SIGN'"
+        [fullWidth]="true"
+        [disabled]="!agreementChecked || isLoading"
+        [isLoading]="isLoading"
+        (clickHandler)="continue()"
+      >
+        تایید و امضای قرارداد
+      </ngx-button>
+    </div>
+  </div>
+</div>

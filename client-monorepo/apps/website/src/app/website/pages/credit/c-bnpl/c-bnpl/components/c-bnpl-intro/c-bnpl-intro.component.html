@@ -1,0 +1,103 @@
+<section class="c-bnpl-intro">
+  <div class="container">
+    <div class="video">
+      <video
+        *ngIf="!isForBaniMode && cBnplData.cBnplIntro.video"
+        controls
+        preload="metadata"
+        width="100%"
+      >
+        <source
+          [src]="cBnplData.cBnplIntro.video.url + '#t=0.3'"
+          type="video/mp4"
+        />
+      </video>
+      <app-c-bnpl-promotion-banner
+        *ngIf="isForBaniMode"
+        [promotionBanner]="cBnplData.promotionBanner"
+        [requestBnplFormId]="cBnplData.cBnplIntro.requestBnplFormId"
+        [isIntroSection]="true"
+      ></app-c-bnpl-promotion-banner>
+    </div>
+
+    <div class="content">
+      <div
+        class="title"
+        *ngIf="cBnplData.cBnplIntro.title"
+      >
+        {{ cBnplData.cBnplIntro.title }}
+      </div>
+      <div
+        class="subtitle"
+        *ngIf="cBnplData.cBnplIntro.subtitle"
+      >
+        <img
+          *ngIf="cBnplData.cBnplIntro.bnplIcon && cBnplData.cBnplIntro.bnplIcon.url"
+          [ngSrc]="cBnplData.cBnplIntro.bnplIcon.url"
+          width="24"
+          height="24"
+        />
+        {{ cBnplData.cBnplIntro.subtitle }}
+      </div>
+      <div class="descriptions">
+        <div
+          class="desc1"
+          *ngIf="cBnplData.cBnplIntro.desc1"
+        >
+          <span
+            appUiIcon
+            icon="icon-curved-arrow-left"
+            size="24"
+            class="icon"
+          ></span>
+          {{ cBnplData.cBnplIntro.desc1 }}
+        </div>
+        <div
+          class="desc2"
+          *ngIf="cBnplData.cBnplIntro.desc2"
+        >
+          <div class="star-img">
+            <img
+              ngSrc="../../../../../../../../assets/images/c-bnpl-v2/stars-purple.svg"
+              alt=""
+              width="21"
+              height="20"
+            />
+          </div>
+          {{ cBnplData.cBnplIntro.desc2 }}
+        </div>
+      </div>
+      <div class="ctas">
+                <app-ui-button
+                  appearance="FLAT-BLUE"
+                  class="cta"
+                  size="BIG"
+                  (clicked)="goToStores()"
+                >
+                  فروشگاه ها
+<!--                  <span-->
+<!--                    appUiIcon-->
+<!--                    icon="icon-arrow-down-blue"-->
+<!--                  ></span>-->
+                </app-ui-button>
+        <app-ui-button
+          id="request-bnpl-button"
+          class="cta"
+          (clicked)="sendRequest()"
+          [disabled]="isGettingPlans"
+          size="BIG"
+        >
+          درخواست اعتبار
+          <span
+            appUiIcon
+            icon="icon-arrow-left-white"
+            size="24"
+          ></span>
+        </app-ui-button>
+
+
+
+      </div>
+    </div>
+  </div>
+</section>

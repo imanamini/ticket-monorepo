@@ -1,0 +1,14 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+#error-container {
+  height: 100%;
+  width: 100%;
+  @include flex-center();
+  @include flex-column();
+
+  #btn-style {
+    margin-top: 20px;
+    width: 100%;
+    @include flex-center();
+  }
+}

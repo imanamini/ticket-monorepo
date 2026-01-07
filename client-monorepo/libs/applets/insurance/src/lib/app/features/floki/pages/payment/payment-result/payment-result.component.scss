@@ -1,0 +1,39 @@
+:host {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+}
+
+.payment-result {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 3fr 1fr;
+  gap: 0 0;
+  grid-auto-flow: row;
+
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .result-wrapper {
+    div:last-child {
+      p {
+        text-align: center;
+      }
+    }
+  }
+
+  .action-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+
+    p {
+      font-size: 1.5rem;
+    }
+  }
+}

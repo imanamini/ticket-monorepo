@@ -1,0 +1,54 @@
+@if (config()) {
+  <div class="jm-bottom-sheet w-100 surface-elevated d-flex flex-column p-atom align-items-stretch justify-content-start">
+    <common-journey-management-journey-top-section [config]="config()"></common-journey-management-journey-top-section>
+    <div class="mt-big w-100 d-flex flex-column align-items-stretch justify-content-start">
+      @if (config().data.stepper?.title) {
+        <div class="l-1 text-onback-low mb-tiny">{{ config().data.stepper.title }}</div>
+      }
+      @if (config().data.title) {
+        <div class="text-onback-high st-1 mb-tiny">{{ config().data.title }}</div>
+      }
+      @if (config().data.description) {
+        <div class="text-onback-low b-2">{{ config().data.description }}</div>
+      }
+      @if (config().data.secondaryDescription) {
+        <div
+          class="text-onback-high c-2 mt-big text-align-right"
+          [innerHTML]="config().data.secondaryDescription"
+        ></div>
+      }
+    </div>
+    <div class="mt-huge w-100 d-flex flex-column align-items-stretch justify-content-start gap-small">
+      <ngx-button
+        [fullWidth]="true"
+        [mode]="config()?.data?.primaryAction?.mode ?? 'section'"
+        [size]="config()?.data?.primaryAction?.size ?? 'medium'"
+        [style]="config()?.data?.primaryAction?.style ?? 'fill'"
+        [brandButton]="config()?.data?.primaryAction?.brandButton ?? false"
+        [destructive]="config()?.data?.primaryAction?.destructive ?? false"
+        [rightIcon]="config()?.data?.primaryAction?.rightIcon ?? null"
+        [leftIcon]="config()?.data?.primaryAction?.leftIcon ?? { name: 'arrow-left' }"
+        (clickHandler)="handleClick(config()?.data?.primaryAction?.action ?? undefined)"
+      >
+        {{ config()?.data.primaryAction.text }}</ngx-button
+      >
+      @if (config().data.secondaryActions) {
+        @for (action of config().data.secondaryActions; track $index) {
+          <ngx-button
+            [fullWidth]="true"
+            [mode]="action.mode ?? 'section'"
+            [size]="action.size ?? 'medium'"
+            [style]="action.style ?? 'tinted-on-elevated'"
+            [brandButton]="action.brandButton ?? false"
+            [destructive]="action.destructive ?? false"
+            [rightIcon]="action.rightIcon ?? undefined"
+            [leftIcon]="action.leftIcon ?? undefined"
+            (clickHandler)="handleClick(action.action)"
+          >
+            {{ action.text }}</ngx-button
+          >
+        }
+      }
+    </div>
+  </div>
+}

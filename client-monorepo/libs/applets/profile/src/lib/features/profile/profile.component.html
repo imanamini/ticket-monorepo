@@ -1,0 +1,90 @@
+<div class="profile pt-medium px-big">
+  <h1 class="profile-title fs-18 fw-semi-bold text-high-emphasis mb-plus">حساب من</h1>
+  <div class="mb-medium">
+    <profile-applet-user-preview></profile-applet-user-preview>
+  </div>
+  @if (appName !== APP_NAME_ENUM.PILLAR) {
+    <div class="profile-cards mb-medium">
+      <div
+        id="profile-subscription"
+        class="profile-cards-item"
+      >
+        <profile-applet-subscription-preview (click)="goToSubscription()"></profile-applet-subscription-preview>
+      </div>
+      <div
+        id="profile-pay-club"
+        class="profile-cards-item"
+      >
+        <profile-applet-pay-club-preview (click)="goToPayClub()"></profile-applet-pay-club-preview>
+      </div>
+    </div>
+  }
+  <!--  <div-->
+  <!--    class="mb-big surface-elevated radius-big px-plus py-medium gap-huge d-flex justify-content-space-between"-->
+  <!--    (click)="goToInsurance()"-->
+  <!--  >-->
+  <!--    <div class="d-flex flex-column">-->
+  <!--      <span class="text-onback-low st-8">بیمه‌نامه‌ها</span>-->
+  <!--      <span class="text-onback-disabled l-1 mb-medium">اقساطی و نقدی</span>-->
+  <!--      <common-ui-components-temp-ngx-button-->
+  <!--        [mode]="'form'"-->
+  <!--        [size]="'tiny'"-->
+  <!--        [style]="'link'"-->
+  <!--        [leftIcon]="{ name: 'arrow-2-left' }"-->
+  <!--        >مشاهده</common-ui-components-temp-ngx-button-->
+  <!--      >-->
+  <!--    </div>-->
+  <!--    <div class="d-flex gap-minus flex-grow justify-content-center">-->
+  <!--      <common-ui-components-framed-icon-->
+  <!--        [size]="'SMALL'"-->
+  <!--        [bg]="'surface-back'"-->
+  <!--        [showText]="true"-->
+  <!--        [text]="'ثالث'"-->
+  <!--        [icon]="'car'"-->
+  <!--        [iconType]="'bold'"-->
+  <!--        [iconStyle]="'color: rgb(62, 59, 162)'"-->
+  <!--      ></common-ui-components-framed-icon>-->
+  <!--      <common-ui-components-framed-icon-->
+  <!--        [size]="'SMALL'"-->
+  <!--        [bg]="'surface-back'"-->
+  <!--        [showText]="true"-->
+  <!--        [text]="'بدنه خودرو'"-->
+  <!--        [icon]="'car-crash'"-->
+  <!--        [iconStyle]="'color: rgb(62, 59, 162)'"-->
+  <!--        [iconType]="'bold'"-->
+  <!--      ></common-ui-components-framed-icon>-->
+  <!--      <common-ui-components-framed-icon-->
+  <!--        [size]="'SMALL'"-->
+  <!--        [bg]="'surface-back'"-->
+  <!--        [showText]="true"-->
+  <!--        [text]="'دیجیتال'"-->
+  <!--        [icon]="'digital-device'"-->
+  <!--        [iconStyle]="'color: rgb(62, 59, 162)'"-->
+  <!--        [iconType]="'bold'"-->
+  <!--      ></common-ui-components-framed-icon>-->
+  <!--    </div>-->
+  <!--  </div>-->
+
+  @for (item of profileMenus(); track $index) {
+    <div class="mb-plus">
+      <profile-applet-profile-menu-group
+        [items]="item.menu"
+        [groupTitle]="item.title"
+        (onAction)="chooseSupportAction($event.title)"
+      />
+    </div>
+  }
+
+  <div class="mb-massive">
+    <ngx-button
+      [mode]="'form'"
+      [style]="'tinted-on-back'"
+      [destructive]="true"
+      [fullWidth]="true"
+      [size]="'large'"
+      (clickHandler)="logout()"
+    >
+      خروج از حساب کاربری
+    </ngx-button>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+:host {
+  width: 100%;
+  display: flex;
+}
+.container {
+  padding: 0 1.666rem 1.666rem;
+  .header {
+    display: flex;
+    align-items: center;
+    justify-items: flex-start;
+    gap: 2px;
+    border-bottom: 1px solid #dfe1e5;
+    padding-bottom: 0.8rem;
+
+    p {
+      font-size: 1.333rem;
+      font-weight: 600;
+    }
+  }
+
+  .body {
+    .info-card {
+      padding: 1.666rem;
+      border-radius: 1.666rem;
+      background-color: #f2f3f6;
+
+      p {
+        color: #45474a;
+        font-size: 1rem;
+        font-weight: 450;
+        text-align: justify;
+      }
+
+      .bold {
+        font-weight: 600;
+        color: #000;
+      }
+    }
+
+    .checkbox-text {
+      color: #2c3544;
+      font-weight: 400;
+      font-size: 1rem;
+    }
+  }
+}

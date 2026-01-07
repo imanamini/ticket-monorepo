@@ -1,0 +1,172 @@
+/*Map*/
+.digipay__map {
+  padding-top: 128px;
+  padding-bottom: 0;
+}
+
+.digipay__map-contain {
+  position: relative;
+}
+
+.digipay__map-contain:before {
+  content: '';
+  background: -webkit-linear-gradient( top, #F2F3F6 0%, rgba(242, 243, 246, 0.9) 36.46%, rgba(242, 243, 246, 0.01) 100% );
+  background: linear-gradient( 180deg, #F2F3F6 0%, rgba(242, 243, 246, 0.9) 36.46%, rgba(242, 243, 246, 0.01) 100% );
+  box-shadow: inset 0px -80px 40px -90px rgb(6 25 98 / 20%);
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.digipay__map-contain .container {
+  z-index: 2;
+  position: relative;
+}
+
+.badge-contactUs {
+  position: relative;
+  height: 25px;
+}
+
+.digipay__map .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto;
+  position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+}
+
+.digipay__map .badge {
+  background: rgba(6, 25, 98, 0.5);
+  border-radius: 100px;
+  padding: 2px 13px;
+  font-size: 8px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.badge {
+  border: 1px solid rgba(6, 25, 98, 0.1);
+  border-radius: 40px;
+  padding: 10px 20px;
+}
+
+.digipay__map .badge > span {
+  font-size: 14px;
+  color: white;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.badge > span {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+}
+
+.digipay__map .title > span {
+  display: inline-flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.section-title .subtitle {
+  margin-bottom: 0;
+  margin-top: 16px;
+}
+
+.digipay__map .section-title .subtitle > span {
+  font-size: 27px;
+}
+
+.section-title .subtitle > span {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 42px;
+}
+
+.section-title__desc {
+  text-align: center;
+}
+
+.section-title__desc > span {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 15px;
+}
+
+.as-digipay__email {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.as-digipay__email > span {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 15px;
+}
+
+.digipay__map__img {
+  height: 800px;
+  margin-top: -120px;
+  z-index: -2;
+  position: relative;
+}
+
+.digipay__map__img > div {
+  width: 100%;
+  height: 100%;
+}
+
+.digipay__map__img > div > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+@media (max-width: 992px) {
+  .digipay__map {
+    padding-top: 64px;
+  }
+  .digipay__map .title > span {
+    font-size: 36px;
+  }
+  .section-title .subtitle > span {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .digipay__map .section-title .subtitle > span {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 577px) {
+  .section-title .title > span {
+    font-size: 24px;
+  }
+  .digipay__map .section-title .subtitle > span {
+    font-size: 20px;
+  }
+  .digipay__map__img {
+    margin-top: -9px;
+    height: 460px;
+  }
+}

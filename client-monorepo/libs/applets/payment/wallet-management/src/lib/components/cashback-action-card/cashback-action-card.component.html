@@ -1,0 +1,20 @@
+<div class="cashback">
+  <span>
+    <ngx-icon
+      class="cashback-icon"
+      name="wallet"
+    ></ngx-icon>
+    <span class="cashback-title">جایزه‌ها</span>
+  </span>
+
+  <span class="gap-medium">
+    <span class="cashback-amount">{{ totalAmount() || 0 | thousands }} ریال</span>
+    <ngx-icon
+      class="cashback-action"
+      (click)="onNavigateToList()"
+      name="arrow-2-left"
+      [iconSize]="'18px'"
+      [classes]="'fw-bold'"
+    ></ngx-icon>
+  </span>
+</div>

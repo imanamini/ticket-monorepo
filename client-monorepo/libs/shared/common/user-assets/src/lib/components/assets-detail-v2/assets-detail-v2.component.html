@@ -1,0 +1,42 @@
+<div class="container">
+  <!-- Header Section -->
+  <div class="header pb-minus border-b-100 border-color-air">
+    <div class="header-title d-flex align-items-center gap-tiny">
+      <common-icon-dp-icon
+        [icon]="'money'"
+        [iconSize]="'24'"
+        [classes]="'text-onback-brand'"
+      ></common-icon-dp-icon>
+      <span class="c-1 text-onback-low">موجودی کل</span>
+    </div>
+    <div class="header-content pt-minus d-flex align-items-center gap-tiny">
+      <span class="text-onback-high st-1">{{ asset().totalBalance | thousands }}</span>
+      <span class="st-8 text-onback-low is-currency">ریال</span>
+    </div>
+  </div>
+
+  <!-- Content Section -->
+  <div class="content d-flex flex-column gap-minus pt-medium">
+    @if (isLoading()) {
+      <!-- Loading Skeletons -->
+      @for (i of Array(4); track $index) {
+        <lib-ngx-skeleton-loading
+          [height]="'68px'"
+          [width]="'100%'"
+          [classes]="'radius-medium'"
+        ></lib-ngx-skeleton-loading>
+      }
+    } @else {
+      <!-- Promotional Assets -->
+      @if (hasPromotions()) {
+        <common-user-assets-assets-promotions [promotions]="availablePromotions()"></common-user-assets-assets-promotions>
+      }
+
+      <!-- Regular Assets -->
+      <common-user-assets-asset-detail-items
+        [assetsDetail]="regularAssets()"
+        (clickedItem)="handleClickDetailItem($event)"
+      ></common-user-assets-asset-detail-items>
+    }
+  </div>
+</div>

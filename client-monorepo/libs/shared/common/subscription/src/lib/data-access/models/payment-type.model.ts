@@ -1,0 +1,4 @@
+export enum PAYMENT_TYPE {
+  FIX_AMOUNT = 0,
+  FIXED_PERCENTAGE = 1,
+}

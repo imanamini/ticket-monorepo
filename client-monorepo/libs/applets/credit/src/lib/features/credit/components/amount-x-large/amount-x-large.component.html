@@ -1,0 +1,48 @@
+<label
+  (click)="wrapperClick()"
+  [class]="{ disabled: !enabled(), 'border-color-error': errorState() }"
+  class="ui-amount-input"
+>
+  <span class="unit is-currency">ریال</span>
+  <input
+    #input
+    (focusin)="inputFocusIn()"
+    (focusout)="inputFocusOut()"
+    (keydown)="onInputKeyDown($event)"
+    (ngModelChange)="onValueChanged($event)"
+    (paste)="onInputPaste($event)"
+    [attr.disabled]="!enabled() ? 'disabled' : null"
+    [attr.maxlength]="maxLength() ? maxLength() : null"
+    [attr.placeholder]="value() && value().length > 0 ? null : placeholder()"
+    [autofocus]="true"
+    [ngModel]="value()"
+    [style.width]="inputWidth() + 'px'"
+    class="price"
+    maxlength="10"
+    numpad="price"
+    type="text"
+  />
+</label>
+<div class="hint">
+  @if (minAmount() && maxAmount()) {
+    @if (maxAmount() !== 0 && (!value() || value().length === 0 || value() === '0' || !descriptiveValue())) {
+      <span
+        [class]="{ 'text-onback-error': rangeError() }"
+        class="text-onback-medium hint-text surface-elevated is-currency"
+        >مبلغ باید بین
+        {{ minAmount() | IRR: 'hideRial' }}
+        تا
+        {{ maxAmount() | IRR: 'hideRial' }}
+        ریال باشد</span
+      >
+    }
+    @if (maxAmount() === 0 && (!value() || value().length === 0 || value() === '0')) {
+      <span class="hint-text text-onback-medium surface-elevated"> مبلغ را وارد کنید. </span>
+    }
+    @if (descriptiveValue()) {
+      <span class="hint-text text-onback-medium surface-elevated">
+        {{ descriptiveValue() }}
+      </span>
+    }
+  }
+</div>

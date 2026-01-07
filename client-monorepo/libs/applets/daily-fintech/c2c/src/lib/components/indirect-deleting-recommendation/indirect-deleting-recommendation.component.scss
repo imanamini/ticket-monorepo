@@ -1,0 +1,39 @@
+::ng-deep {
+  .bottom-sheet-content {
+    max-height: 80% !important;
+  }
+
+}
+
+.alert-img {
+  width: 100px;
+  height: 100px;
+  background: url("apps/dpx/src/assets/error-triangle.svg") no-repeat center;
+}
+
+.text {
+  max-width: 300px;
+  text-align: center;
+}
+
+.one-recommendation {
+  display: flex !important;
+  justify-content: center !important;
+
+  .item {
+    min-width: 156px;
+  }
+}
+
+.actions {
+  position: sticky;
+  bottom: 0;
+
+  .cancel-button {
+    width: 140px;
+  }
+
+  .save-button {
+    width: 100%;
+  }
+}

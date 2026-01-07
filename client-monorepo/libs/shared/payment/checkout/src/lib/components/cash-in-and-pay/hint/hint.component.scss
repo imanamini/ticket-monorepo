@@ -1,0 +1,52 @@
+.required-amount {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  margin: 24px 0;
+
+  .title {
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .amount {
+    color: #FF811A;
+    background-color: #FFF5EE;
+    border-radius: 16px;
+    font-weight: 500;
+    font-size: 24px;
+    padding: 16px;
+  }
+
+  .description {
+    display: flex;
+    align-items: center;
+  }
+
+
+}
+
+.pointer {
+  width: 24px;
+  height: 24px;
+  // todo fix svg
+  // background: url("../../../../../../assets/icon/orange-pointer.svg") no-repeat 0 0/100%;
+}
+
+.alert {
+  background-color: #FFF5EE;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.arrow-down {
+  width: 24px;
+  height: 24px;
+  // todo fix svg
+  // background: url("../../../../../../assets/icon/arrow-down.svg") no-repeat 0 0/100%;
+}

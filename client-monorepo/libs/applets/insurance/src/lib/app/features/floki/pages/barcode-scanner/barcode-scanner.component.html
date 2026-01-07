@@ -1,0 +1,52 @@
+<div class="scanner-wrapper">
+  @if (!hasStarted()) {
+    <div class="start-overlay">
+      <p>برای شروع اسکن دکمه زیر را بزنید</p>
+      <button class="start-btn" (click)="start()" [disabled]="isStarting()">
+        {{ isStarting() ? "در حال فعال‌سازی..." : "شروع اسکن" }}
+      </button>
+    </div>
+  }
+
+  <video #video autoplay muted playsinline class="video-feed"></video>
+
+  <div class="controls">
+    @if (hasTorch()) {
+      <button (click)="toggleTorch()" [class.active]="isTorchOn()" class="icon-btn">
+        💡
+      </button>
+    }
+    @if (hasZoom()) {
+      <div class="zoom-control">
+        <span>1x</span>
+        <input
+                type="range"
+                [min]="minZoom()"
+                [max]="maxZoom()"
+                step="0.1"
+                [value]="currentZoom()"
+                aria-label="تنظیم زوم"
+                (input)="setZoom($event)"
+        />
+        <span>{{ maxZoom() }}x</span>
+      </div>
+    }
+  </div>
+
+  <div class="overlay">
+    <div class="scan-box" #scanBox>
+      <div class="laser"></div>
+      <div class="scan-line"></div>
+    </div>
+    <p class="hint">بارکد را در کادر قرار دهید</p>
+    <p class="hint">اگر تصویر تار است، گوشی را کمی عقب ببرید و زوم کنید</p>
+  </div>
+
+  @if (result()) {
+    <div class="result-modal">
+      <p>شناسایی شد:</p>
+      <h2>{{ result() }}</h2>
+      <button (click)="reset()">اسکن مجدد</button>
+    </div>
+  }
+</div>

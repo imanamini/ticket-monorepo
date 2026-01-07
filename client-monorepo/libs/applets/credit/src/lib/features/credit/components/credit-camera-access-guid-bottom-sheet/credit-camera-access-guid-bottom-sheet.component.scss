@@ -1,0 +1,26 @@
+
+.bottom-sheet-container {
+  direction: rtl;
+  margin: 0 auto;
+
+  .image-container{
+    width: 64px;
+    height: 64px;
+    background-size: 48px 48px;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+      &.safari{
+        background-image: url('../../wallet-activation/credit-cheque-step/assets/safari-icon.svg');
+      }
+      &.chrome{
+        background-image: url('../../wallet-activation/credit-cheque-step/assets/chrome-icon.svg');
+      }
+     &.firefox{
+       background-image: url('../../wallet-activation/credit-cheque-step/assets/firefox-icon.svg');
+      }
+      &.hybrid {
+        background-image: url('../../wallet-activation/credit-cheque-step/assets/hybrid-icon.svg');
+      }
+  }
+}

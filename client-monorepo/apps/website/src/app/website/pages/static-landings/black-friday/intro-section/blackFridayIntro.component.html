@@ -1,0 +1,52 @@
+<div class="black-friday-intro container">
+  <div class="d-flex flex-column align-items-center justify-content-center gap-mega">
+    <div class="blackfriday-logo">
+      <img src="assets/images/black-friday/blackfriday-title.svg" alt="">
+    </div>
+    @if (introSection().deadline) {
+      <app-black-friday-timer [deadline]="introSection()?.deadline"></app-black-friday-timer>
+    }
+    <div class="d-flex flex-column align-items-center">
+      @if (introSection().title) {
+        <span class="title">{{ introSection()?.title }}</span>
+      }
+
+      @if (introSection().subtitle) {
+        <span class="subtitle st-2">{{ introSection()?.subtitle }}</span>
+      }
+      <div class="cta d-flex align-items-center">
+        @if (introSection().secondaryCta) {
+          <span class="cursor-pointer">
+               <ngx-button
+                 id="btn-1"
+                 [size]="!mobileMode() ? 'large' : 'medium'"
+                 [mode]="'section'"
+                 [class]="'custom-button'"
+                 appScrollToAnchor="black-friday-prize"
+                 behavior="smooth"
+               >
+           {{introSection()?.secondaryCta?.title}}
+          </ngx-button>
+          </span>
+        }
+        @if (introSection().primaryCta) {
+          <span class="cursor-pointer">
+               <ngx-button
+                 id="btn-2"
+                 [size]="!mobileMode() ? 'large' : 'medium'"
+                 [style]="'tinted-on-back'"
+                 [mode]="'section'"
+                 [class]="'custom-button-cta'"
+                 [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+                 (clickHandler)="openLink(introSection().primaryCta?.link)"
+               >
+                      {{introSection()?.primaryCta?.title}}
+          </ngx-button>
+          </span>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+

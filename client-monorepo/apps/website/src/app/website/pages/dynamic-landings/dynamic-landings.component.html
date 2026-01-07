@@ -1,0 +1,10 @@
+<app-base-layout [loaded]="true">
+  <iframe
+    #frame
+    [src]="iframeUrl"
+    (load)="onIframeLoad()"
+    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+    allowfullscreen
+    [ngStyle]="iframeStyles"
+  ></iframe>
+</app-base-layout>

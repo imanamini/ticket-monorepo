@@ -1,0 +1,34 @@
+<div
+  class="d-flex flex-column wrapper"
+  [class.surface-back]="iplDetailService.canAggregate()"
+>
+  <ipl-header class="not-shrink" />
+
+  <div class="body flex-grow">
+    @if (iplDetailService.canAggregate()) {
+      <app-ipl-detail-aggregate (payClicked)="onPay()" />
+    } @else {
+      @if (emptyDebt()) {
+        <div class="d-flex flex-column h-100">
+          <app-debtor-info
+            [fundProviderBusinessId]="userInfo().fundProviderDto.businessId"
+            [title]="userInfo().fundProviderDto.title"
+            [personInfo]="iplDetailService.personInfo()"
+          />
+
+          <div class="flex-grow d-flex align-items-center">
+            <ngx-callout
+              class="p-big"
+              [mode]="'single-without-title'"
+              [cta]="'دیجی‌پی'"
+              (ctaClick)="goToApp()"
+              message="در حال حاضر بدهی سررسید شده‌ای ندارید. برای مشاهده اقساط آینده با شماره همراهی که اعتبار را دریافت کردید وارد اپلیکیشن دیجی‌پی شوید."
+            />
+          </div>
+        </div>
+      } @else {
+        <app-ipl-detail-total-debt (payClicked)="onPay()" />
+      }
+    }
+  </div>
+</div>

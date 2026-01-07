@@ -1,0 +1,66 @@
+<div class="container">
+  <img
+    alt=""
+    src="insurance-assets/images/login/active-code.svg"
+  />
+  <div class="detail">
+    <p class="detail-title">
+      {{ isAutoFill ? 'به دلایل امنیتی، حتما باید از قابلیت پر شدن خودکار استفاده نمایید.' : 'کد فعالسازی به شماره زیر ارسال می شود.' }}
+    </p>
+    <div class="detail-number">
+      <p>{{ cellNumber }}</p>
+      <a
+        (click)="editCellNumber()"
+        *ngIf="showChangeNumber"
+        class="change-cell-number"
+      >
+        تغییر شماره همراه
+      </a>
+    </div>
+    <div class="otp-container">
+      <ui-pin-input
+        (pinChange)="onPinChange($event)"
+        [hasError]="otpError"
+        [readonly]="isReadonly"
+        [value]="this.autoFillOtpCode ? this.autoFillOtpCode : ''"
+        type="OTP"
+      >
+      </ui-pin-input>
+      <div class="error">
+        <mat-error *ngIf="otpValid"> کد وارد شده اشتباه است. </mat-error>
+        <mat-error *ngIf="hasResponse"> </mat-error>
+      </div>
+      <div class="detail-submit">
+        <button
+          [class.disable-timer]="!isTimeOver"
+          [disabled]="!isTimeOver"
+          class="timer-btn"
+          mat-button
+        >
+          @if (!isTimeOver) {
+            <ngx-count-down
+              (finished)="timerFinish()"
+              [timeInSeconds]="timeOutSeconds"
+              [type]="'mm:ss'"
+              class="mr-medium"
+            ></ngx-count-down>
+          }
+
+          <span
+            (click)="sendCodeAgain()"
+            *ngIf="isTimeOver"
+            class="send-again"
+            >ارسال مجدد</span
+          >
+        </button>
+        <ui-button
+          [disabled]="!isSubmitting || otpCode.length === 5"
+          class="digipay-btn submit-btn"
+        >
+          <span *ngIf="!isSubmitting"> تایید و ادامه </span>
+          <span *ngIf="isSubmitting"> صبر کنید... </span>
+        </ui-button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="insurance-notice d-flex flex-column gap-medium">
+  <div class="d-flex flex-column gap-pony px-medium pt-medium">
+    <div class="d-flex flex-row align-items-center gap-small">
+      <ins-icon-floki [height]="24"
+                [name]="data().mode === 'error' ? FlokiIconEnum.warningCircleAlert : FlokiIconEnum.warningCircleAlert"
+                [width]="24"></ins-icon-floki>
+      <span
+        [ngClass]="{'text-onback-error': data().mode === 'error', 'text-onback-warning': data().mode === 'warning' }"
+        class="insurance-notice-text st-8">{{ dialogData.title }}</span>
+    </div>
+    <div class="b-2 text-onback-high">{{ dialogData.text }}</div>
+  </div>
+  <action-buttons (activeButtonClicked)="activeButtonClicked()"
+                  (deActiveButtonClicked)="deActiveButtonClicked()"
+                  [activeButtonBackground]="data().activeButtonMode  ??  InsButtonStyleEnum.Brand"
+                  [activeButtonText]="dialogData.activeButtonText"
+                  [deActiveButtonText]="dialogData.deActiveButtonText"
+                  backgroundMode="transparent"></action-buttons>
+</div>

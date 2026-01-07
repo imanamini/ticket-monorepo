@@ -1,0 +1,17 @@
+<app-credit-app-bar
+  (onCloseButtonClick)="onClose()"
+  [closeButton]="true"
+  title="اطلاعات پایه"
+></app-credit-app-bar>
+<app-credit-register-form
+  (submit)="submitForm($event)"
+  [editable]="{
+    birthDate: true,
+    nationalCode: true,
+  }"
+  [errors]="serverValidationError()"
+  [values]="values()!"
+  class="d-flex flex-column flex-grow"
+  ctaText="تایید و ادامه"
+  title="اطلاعات خود را برای دریافت وام وارد کنید."
+></app-credit-register-form>

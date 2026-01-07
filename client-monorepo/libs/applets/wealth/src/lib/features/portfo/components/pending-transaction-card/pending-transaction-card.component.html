@@ -1,0 +1,64 @@
+<div
+  class="w-100 container cursor-pointer"
+  (click)="onClick()"
+>
+  <div class="logo-container">
+    <img
+      alt="instrumentLogoAddress"
+      class="pend-icon"
+      src="wealth-assets/icons/pend.svg"
+    />
+    @if (transaction().icon) {
+      @if (transaction().instrumentInvestmentType === 'CrowdFund') {
+        <img
+          src="./wealth-assets/svg/crowd-logo.svg"
+          [alt]="transaction().title"
+        />
+      } @else {
+        <app-image
+          [imageUrl]="transaction().icon"
+          defaultImage="wealth-assets/icons/default-instrument.svg"
+        ></app-image>
+      }
+    } @else if (transaction().type === transactionType.EtfWalletWithdrawal) {
+      <img
+        src="wealth-assets/icons/wallet-transaction.svg"
+        [alt]="transaction().title"
+      />
+    } @else if (transaction().type === transactionType.EtfWalletDeposit) {
+      <img
+        src="wealth-assets/icons/wallet-transaction.svg"
+        [alt]="transaction().title"
+      />
+    }
+  </div>
+
+  <div class="title">
+    <p>
+      {{ transaction().title }}
+    </p>
+  </div>
+
+  <div class="d-flex flex-wrap amount-date">
+    <p class="w-100 transaction-amount">
+      @if (transaction().amount) {
+        @if (canSee()) {
+          {{ transaction().amount | thousands }}
+        } @else {
+          <span> ****** </span>
+        }
+        ریال
+      } @else {
+        @if (canSee()) {
+          {{ transaction().units | number }}
+        } @else {
+          <span> ****** </span>
+        }
+        واحد
+      }
+    </p>
+    <p class="w-100 transaction-date">
+      {{ transaction().date }}
+    </p>
+  </div>
+</div>

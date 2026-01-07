@@ -1,0 +1,30 @@
+<div class="about-us-honors d-flex flex-column justify-content-center align-items-center mb-massive">
+  @if (templateData()?.honors.title) {
+    <div class="about-us-honors-title mb-large">{{ templateData()?.honors.title }}</div>
+  }
+
+  @if (templateData()?.honors.subtitle) {
+    <div class="text-onback-low about-us-honors-subtitle  st-2 mb-hulk">{{ templateData()?.honors.subtitle }}</div>
+  }
+  @if (templateData()?.honors?.items.length) {
+    <div class="about-us-honors-list d-flex align-items-center gap-hulk">
+
+      @for (item of templateData()?.honors?.items; track $index) {
+        <div class="about-us-honors-item d-flex align-items-center justify-content-center">
+          @if (!!item?.image?.url) {
+            <div><img src="{{item?.image?.url}}" width="230" alt=""></div>
+          } @else {
+            <div class="img-right"><img src="/assets/images/about/laurel-right-icon.svg" alt=""></div>
+            <div class="content d-flex flex-column align-items-center justify-content-center">
+              <span class="text-onback-medium primary-text"> {{ item.title }}</span>
+              <span class="st-8 secondary-text">{{ item.year }}</span>
+            </div>
+            <div class="img-left"><img src="/assets/images/about/laurel-left-icon.svg" alt=""></div>
+          }
+        </div>
+      }
+    </div>
+  }
+  <app-custom-gallery [honors]="templateData()?.honors?.gallery"></app-custom-gallery>
+
+</div>

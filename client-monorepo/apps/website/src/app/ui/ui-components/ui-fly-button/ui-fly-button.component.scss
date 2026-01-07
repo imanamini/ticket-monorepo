@@ -1,0 +1,38 @@
+.btn-popup {
+  transform: scale(1);
+  -webkit-transition: 0s all, 0.5s opacity;
+  transition: 0s all, 0.5s opacity;
+  position: relative;
+  -webkit-transform-origin: right;
+  transform-origin: right;
+
+  ::ng-deep app-ui-button {
+    display: block;
+  }
+
+  &.fixed {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    bottom: 40px;
+    z-index: 101;
+    -webkit-transition: 0s all, 0.5s opacity;
+    transition: 0s all, 0.5s opacity;
+
+    ::ng-deep app-ui-button {
+      button,
+      a {
+        border-radius: 100px;
+        box-shadow: 0 24px 24px -16px rgba(0, 64, 255, 0.24);
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .btn-popup {
+    &.fixed {
+      width: 90%;
+    }
+  }
+}

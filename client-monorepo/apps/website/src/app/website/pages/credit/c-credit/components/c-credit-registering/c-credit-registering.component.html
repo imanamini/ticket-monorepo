@@ -1,0 +1,51 @@
+<section class="section-registering">
+  <div class="container">
+    <app-ui-animated-switch
+      (changed)="changeTab($event)"
+      [height]="animatedHeight"
+      [options]="animatedOptions"
+      [selectedOption]="selectedRegisterPath"
+      class="animated-switch"
+    ></app-ui-animated-switch>
+    <app-credit-register-benefits
+      [registerBenefitsData]="
+        selectedRegisterPath.value === 0
+          ? CCreditRegisteringData.onlineRegister.registerBenefits
+          : selectedRegisterPath.value === 1
+            ? CCreditRegisteringData.inPersonRegister.registerBenefits
+            : null
+      "
+      class="register-benefits"
+    ></app-credit-register-benefits>
+    <div id="section-register"></div>
+    <div
+      *ngIf="selectedRegisterPath.value === 0"
+      class="online-register"
+    >
+      <app-credit-calculator-v3
+        [certainCollateralType]="certainCollateral"
+        [certainFundProviderCode]="certainFundProviderCode"
+        [title]="'طرح‌های اعتباری و اقساط آن'"
+        class="calculator"
+      ></app-credit-calculator-v3>
+    </div>
+    <ng-container *ngIf="selectedRegisterPath.value === 1">
+      <div class="in-person-register">
+        <h2 class="title">آدرس شعب ثبت نام حضوری</h2>
+                <app-c-credit-maps [data]="CCreditRegisteringData.inPersonRegister"></app-c-credit-maps>
+      </div>
+
+      <div class="accordions">
+        <div
+          *ngFor="let section of CCreditRegisteringData.inPersonRegister.helps; let i = index"
+          class="section-wrapper"
+        >
+          <app-ui-complex-accordion
+            [isDisabled]="true"
+            [section]="section"
+          ></app-ui-complex-accordion>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</section>

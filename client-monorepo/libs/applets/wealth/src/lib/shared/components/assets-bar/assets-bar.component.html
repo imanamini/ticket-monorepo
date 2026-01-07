@@ -1,0 +1,9 @@
+<div class="w-100 surface-back radius-small d-flex align-items-center bar">
+  @for (item of config(); track item) {
+    <div
+      class="h-100"
+      [style.background-color]="item.color"
+      [style.width]="item.width + '%'"
+    ></div>
+  }
+</div>

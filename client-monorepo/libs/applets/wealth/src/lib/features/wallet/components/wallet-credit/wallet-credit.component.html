@@ -1,0 +1,133 @@
+<div class="w-100 d-flex flex-wrap">
+  <div
+    class="w-100 d-flex flex-wrap flex-column justify-content-center px-medium py-big radius-big surface-high-contrast position-relative"
+  >
+    <p class="w-100 st-8 text-onback-high mb-medium">جزییات اعتبار</p>
+    @switch (creditStatusEnum()) {
+      @case (creditStatus.Empty) {
+        <img
+          class="empty-state-image"
+          src="./wealth-assets/svg/wallet-credit-bg.svg"
+          alt="credit"
+        />
+
+        <div class="w-100 d-flex flex-column justify-content-center empty-container">
+          <p class="w-100 mt-big st-7 text-onback-high text-align-center">به پشتوانه {{ walletTitle() }}، اعتبار 4 قسطه بگیر!</p>
+          <p class="w-100 mt-small l-2 text-onback-high text-align-center">حداقل موجودی لازم برای درخواست اعتبار، 5 میلیون تومان است.</p>
+
+          <ngx-button
+            class="z-2"
+            [buttonId]="'BTN_WALLET_CREDIT_REQUEST'"
+            [classNames]="['mt-medium']"
+            [fullWidth]="true"
+            [style]="'link'"
+            (click)="handleBnpl()"
+            [leftIcon]="{
+              name: 'arrow-left',
+              type: 'linear',
+            }"
+            [size]="'small'"
+          >
+            درخواست اعتبار
+          </ngx-button>
+        </div>
+      }
+      @default {
+        <wealth-applet-wallet-credit-detail
+          class="w-100 d-flex"
+          [creditAmount]="creditAmount()"
+          [creditStatusEnum]="creditStatusEnum()"
+        />
+      }
+    }
+
+    @if (creditStatusEnum() === creditStatus.Failed) {
+      <div class="w-100 d-flex flex-wrap mt-big">
+        <ngx-alert
+          class="w-100"
+          [color]="'red'"
+          [hasCloseIcon]="false"
+          [title]="'شما امکان دریافت این اعتبار را ندارید'"
+          [text]="'به دلیل داشتن اقساط پرداخت نشده و یا اعتبار فعال، امکان دریافت اعتبار را ندارید.'"
+        />
+
+        <ngx-button
+          class="z-2"
+          [buttonId]="'BTN_WALLET_CREDIT_REQUEST_AGAIN'"
+          [classNames]="['mt-big']"
+          [fullWidth]="true"
+          [style]="'link'"
+          (click)="handleBnpl()"
+          [leftIcon]="{
+            name: 'arrow-left',
+            type: 'linear',
+          }"
+          [size]="'small'"
+        >
+          درخواست دوباره
+        </ngx-button>
+      </div>
+    } @else if (creditStatusEnum() === creditStatus.Activated) {
+      <ngx-divider
+        class="w-100 mt-minus"
+        [color]="BorderColorsEnum.Air"
+        orientation="horizontal"
+      ></ngx-divider>
+      <div class="w-100 mt-medium d-flex align-items-center justify-content-space-between">
+        <div class="w-100 d-flex justify-content-center">
+          <ngx-button
+            class="z-2"
+            [buttonId]="'BTN_WALLET_CREDIT_SHOW'"
+            [style]="'link'"
+            (click)="redirectHandler('credit')"
+            [size]="'small'"
+          >
+            مشاهده اعتبار
+          </ngx-button>
+        </div>
+        <ngx-divider
+          class="h-100"
+          [color]="BorderColorsEnum.Air"
+          orientation="vertical"
+        ></ngx-divider>
+        <div class="w-100 d-flex justify-content-center">
+          <ngx-button
+            class="z-2"
+            [destructive]="true"
+            [buttonId]="'BTN_WALLET_CREDIT_CANCEL'"
+            [style]="'link'"
+            (click)="handleBnpl()"
+            [rightIcon]="{
+              name: 'minus-circle',
+              type: 'linear',
+              secondaryColor: 'text-onback-error',
+            }"
+            [size]="'small'"
+          >
+            لغو اعتبار
+          </ngx-button>
+        </div>
+      </div>
+    } @else if (creditStatusEnum() === creditStatus.Closed) {
+      <div class="w-100 d-flex flex-wrap">
+        <ngx-divider
+          class="w-100 mt-minus"
+          [color]="BorderColorsEnum.Air"
+          orientation="horizontal"
+        ></ngx-divider>
+
+        <ngx-button
+          class="z-2"
+          [buttonId]="'BTN_WALLET_CREDIT'"
+          [classNames]="['mt-medium']"
+          [fullWidth]="true"
+          [style]="'link'"
+          (click)="handleBnpl()"
+          [size]="'small'"
+        >
+          درخواست اعتبار
+        </ngx-button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="w-100 d-flex flex-wrap surface-elevated">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'انتخاب مبلغ اعتبار'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="w-100 d-flex flex-column justify-content-space-between align-items-center pt-hulk pb-big px-plus container">
+    <div class="w-100 d-flex flex-column align-items-center">
+      <div class="icon-container surface-back radius-rounded d-flex p-big align-items-center justify-content-center">
+        <ngx-icon
+          class="warning-icon"
+          [name]="'error-circle'"
+          [iconSize]="'48px'"
+          [type]="'bold'"
+        />
+      </div>
+
+      <div class="w-100 mt-huge d-flex flex-wrap justify-content-center">
+        <p class="st-3 text-onback-high text-align-center">احتمال رد شدن درخواست وجود دارد</p>
+        <p class="b-2 text-onback-medium text-align-center">
+          در صورت وجود اقساط تسویه نشده، ابتدا آن‌ها را پرداخت کنید. اگر قبلا اقساط خود را تسویه کرده‌اید می‌توانید فرایند را ادامه دهید.
+          توجه داشته باشید حتی در صورت رد شدن درخواست، همچنان از سود موثر سالانه 30٪ بهره‌مند می‌شوید.
+        </p>
+      </div>
+    </div>
+
+    <div class="w-100 mt-huge d-flex flex-column gap-minus">
+      <ngx-button
+        [fullWidth]="true"
+        [style]="'tinted-on-elevated'"
+        (clickHandler)="redirectToBnplInstallments()"
+      >
+        مشاهده و پرداخت اقساط
+      </ngx-button>
+      <ngx-button
+        [fullWidth]="true"
+        [style]="'fill'"
+        (clickHandler)="closeAndContinue()"
+      >
+        ادامه درخواست
+      </ngx-button>
+    </div>
+  </div>
+</div>

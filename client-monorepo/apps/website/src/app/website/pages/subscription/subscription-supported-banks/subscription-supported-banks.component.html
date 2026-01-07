@@ -1,0 +1,27 @@
+<section id="home-customers">
+  <div class="business-customers">
+    <h2 class="text-align-center">{{ templateData?.supportedBanks?.title }}</h2>
+    <div class="customer-logos">
+      <div class="container">
+        <swiper-container
+          appSwiper
+          #swiper="appSwiper"
+          [config]="config"
+          [id]="'switch-swiper'"
+        >
+          <swiper-slide *ngFor="let logo of templateData?.supportedBanks?.logos">
+            <a
+              *ngIf="logo.bankLogo && logo.bankLogo.url"
+              [attr.href]="logo.bankLogo.url"
+            >
+              <img
+                [alt]="logo.bankName"
+                [src]="logo.bankLogo.url"
+              />
+            </a>
+          </swiper-slide>
+        </swiper-container>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,421 @@
+<nav class="main-nav">
+  <div class="menu-container container pt-huge">
+    <div class="menu d-flex align-items-center justify-content-end flex-wrap">
+      <div class="logo" id="ang17">
+        <a href="#">
+          <img
+            src="assets/images/logos/Logo.svg"
+            alt="دیجی پی"
+          />
+        </a>
+      </div>
+      <div
+        class="mobile_btn"
+        (click)="toggleMenu()"
+      >
+        @if (!menuOpen) {
+          <span class="x-icon">
+            <ngx-icon
+              name="hamburger-menu"
+              type="linear"
+              iconSize="24px"
+            ></ngx-icon>
+          </span>
+        } @else {
+          <span class="x-icon">
+            <ngx-icon
+              name="close"
+              type="linear"
+              iconSize="24px"
+            ></ngx-icon>
+          </span>
+        }
+      </div>
+      <div
+        class="main_menu"
+        [ngClass]="{ 'd-block': menuOpen }"
+      >
+        <ul class="m-atom p-atom ml-mega">
+          @for (menu of menus; track $index) {
+            <li
+              class="l1"
+              (click)="activeMainMenu(menu)"
+            >
+              @if (menu.hasHref) {
+                <a
+                  href="{{ menu.link }}"
+                  class="bt-3 text-onback-medium mx-medium main"
+                  target="_blank"
+                >
+                  <span> {{ menu.title }} </span>
+                  @if (menu.subMenu) {
+                    <span class="d-s-block">
+                      <ngx-icon
+                        name="arrow-2-down"
+                        type="linear"
+                        iconSize="20px"
+                      >
+                      </ngx-icon>
+                    </span>
+                  }
+                </a>
+              } @else {
+                <a
+                  [routerLink]="menu.link"
+                  class="bt-3 text-onback-medium mx-medium main"
+                  target="_blank"
+                >
+                  <span> {{ menu.title }} </span>
+                  @if (menu.subMenu) {
+                    @if (menu.isActive) {
+                      <span class="d-s-block">
+                        <ngx-icon
+                          name="arrow-2-up"
+                          type="linear"
+                          iconSize="20px"
+                        >
+                        </ngx-icon>
+                      </span>
+                    } @else {
+                      <span class="d-s-block">
+                        <ngx-icon
+                          name="arrow-2-down"
+                          type="linear"
+                          iconSize="20px"
+                        >
+                        </ngx-icon>
+                      </span>
+                    }
+                  }
+                </a>
+              }
+              <ul
+                *ngIf="menu.subMenu"
+                class="sub_menu sub_menu_level1 d-sm-none surface-glass-high-contrast mt-micro flex-column gap-tiny"
+                [ngClass]="{ 'd-flex': menu.isActive, 'custom-width': isSubmenuHovered }"
+              >
+                @for (subItem of menu.subMenu; track $index) {
+                  <li
+                    [class.active]="subItem.isActive"
+                    (mouseenter)="setActiveSubmenu(subItem, true)"
+                    (mouseleave)="setActiveSubmenu(subItem, false)"
+                    (click)="activeSubmenu(subItem)"
+                    class="has_dropdown d-flex level1 p-pony"
+                  >
+                    @if (subItem.hasHref) {
+                      <a
+                        href="{{ subItem.link }}"
+                        class="d-flex align-items-center gap-tiny bt-3 text-onback-medium"
+                        target="_blank"
+                      >
+                        @if (subItem.icon) {
+                          <div
+                            class="icon-color"
+                            [ngClass]="{ active: subItem.isActive }"
+                          >
+                            @if (subItem.useImg) {
+                              <img
+                                src="{{ !subItem.isActive ? subItem.icon : subItem.iconActive }}"
+                                alt=""
+                              />
+                            } @else {
+                              <ngx-icon
+                                name="{{ subItem.icon }}"
+                                type="linear"
+                                iconSize="24px"
+                              ></ngx-icon>
+                            }
+                          </div>
+                        }
+                        <span [ngClass]="{ active: subItem.isActive }">{{ subItem.title }}</span>
+                      </a>
+                    } @else {
+                      <a
+                        [routerLink]="subItem.link"
+                        class="d-flex align-items-center gap-tiny bt-3 text-onback-medium"
+                        target="_blank"
+                      >
+                        @if (subItem.icon) {
+                          <div
+                            class="icon-color"
+                            [ngClass]="{ active: subItem.isActive }"
+                          >
+                            @if (subItem.useImg) {
+                              <img
+                                src="{{ !subItem.isActive ? subItem.icon : subItem.iconActive }}"
+                                alt=""
+                              />
+                            } @else {
+                              <ngx-icon
+                                name="{{ subItem.icon }}"
+                                type="linear"
+                                iconSize="24px"
+                              ></ngx-icon>
+                            }
+                          </div>
+                        }
+
+                        <span [ngClass]="{ active: subItem.isActive }">{{ subItem.title }}</span>
+                      </a>
+                    }
+
+                    @if (subItem.subMenu) {
+                      <ul
+                        class="sub_menu surface-glass-high-contrast level2-menu d-flex flex-column"
+                        [ngClass]="{ 'd-flex': subItem.isActive }"
+                      >
+                        <li
+                          class="p-small"
+                          [ngClass]="{ active: subSubItem.isActive }"
+                          *ngFor="let subSubItem of subItem.subMenu"
+                          (mouseenter)="setActiveSubsubmenu(subSubItem, true)"
+                          (mouseleave)="setActiveSubsubmenu(subSubItem, false)"
+                        >
+                          @if (subSubItem.hasHref) {
+                            <a
+                              href="{{ subSubItem.link }}"
+                              class="d-flex align-items-center gap-tiny bt-3 text-onback-medium"
+                              target="_blank"
+                            >
+                              @if (subSubItem.icon) {
+                                <div
+                                  class="icon-color"
+                                  [ngClass]="{ active: subSubItem.isActive }"
+                                >
+                                  @if (subSubItem.useImg) {
+                                    <img
+                                      src="{{ !subSubItem.isActive ? subSubItem.icon : subSubItem.iconActive }}"
+                                      alt=""
+                                    />
+                                  } @else {
+                                    <ngx-icon
+                                      name="{{ subSubItem.icon }}"
+                                      type="linear"
+                                      iconSize="24px"
+                                    ></ngx-icon>
+                                  }
+                                </div>
+                              }
+
+                              <span [ngClass]="{ active: subSubItem.isActive }">{{ subSubItem.title }}</span>
+                            </a>
+                          } @else {
+                            <a
+                              [routerLink]="subSubItem.link"
+                              class="d-flex align-items-center gap-tiny bt-3 text-onback-medium"
+                              target="_blank"
+                            >
+                              @if (subSubItem.icon) {
+                                <div
+                                  class="icon-color"
+                                  [ngClass]="{ active: subSubItem.isActive }"
+                                >
+                                  @if (subSubItem.useImg) {
+                                    <img
+                                      src="{{ !subSubItem.isActive ? subSubItem.icon : subSubItem.iconActive }}"
+                                      alt=""
+                                    />
+                                  } @else {
+                                    <ngx-icon
+                                      name="{{ subSubItem.icon }}"
+                                      type="linear"
+                                      iconSize="24px"
+                                    ></ngx-icon>
+                                  }
+                                </div>
+                              }
+                              <span [ngClass]="{ active: subSubItem.isActive }">{{ subSubItem.title }}</span>
+                            </a>
+                          }
+                        </li>
+                      </ul>
+                    }
+                  </li>
+                }
+              </ul>
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="auth bt-3 text-onback-medium d-flex align-items-center">
+        <span class="icon">
+          <a href="{{ appUrl }}">
+            <ngx-icon
+              name="person"
+              type="bold"
+              iconSize="20px"
+              class="text-onback-low"
+            ></ngx-icon>
+          </a>
+        </span>
+        <a
+          href="{{ appUrl }}"
+          class="bt-3 text-onback-medium"
+          >ورود/ثبت‌نام</a
+        >
+      </div>
+    </div>
+  </div>
+</nav>
+<header
+  class="header container surface-elevated d-flex align-items-center mt-minus mb-plus justify-content-space-between"
+  [ngClass]="{ breadcrumb: headerMode() === 'services' || headerMode() === 'stores' }"
+>
+  <div>
+    <nav class="nav-bar">
+      @for (navItem of navItems; track $index) {
+        <div
+          class="nav-item"
+          (click)="setActiveMenu(navItem)"
+        >
+          <a
+            href="{{ navItem.link }}"
+            class="icon d-flex align-items-center gap-tiny bt-3 mx-big text-onback-medium"
+          >
+            <span>
+                  <ngx-icon
+                    [type]="'bold'"
+                    [name]="navItem.icon"
+                    [iconSize]="'20px'"
+                    [ngClass]="{ 'text-onback-brand': navItem.isActive, 'text-onback-low': !navItem.isActive }"
+                  ></ngx-icon>
+            </span>
+
+            <span class="discount" *ngIf="navItem.showBadge">
+               <ngx-icon
+                 name="discount"
+                 type="bold"
+                 iconSize="16px"
+                 class="text-onback-error"
+               ></ngx-icon>
+              </span>
+            <span [ngClass]="{ 'text-onback-brand': navItem.isActive }" class="mt-tiny">{{ navItem.title }}</span>
+            @if (navItem.isActive && navItem.subMenu) {
+              <ngx-icon
+                name="arrow-2-left"
+                type="linear"
+                iconSize="20px"
+              ></ngx-icon>
+            }
+          </a>
+          @if (navItem.isActive && navItem.subMenu) {
+            <div class="breadcrumb d-flex align-items-center gap-medium bt-3 text-onback-medium">
+              @for (submenu of navItem.subMenu; track $index) {
+                <span>
+                  <a href="#"> {{ submenu }}</a>
+                </span>
+              }
+            </div>
+          }
+        </div>
+      }
+    </nav>
+  </div>
+  <div class="search-bar d-flex align-items-center d-none">
+    <span class="magnet">
+      <ngx-icon
+        name="search"
+        type="linear"
+      ></ngx-icon>
+    </span>
+    <input
+      type="text"
+      placeholder="جست‌وجو در خدمات، فروشگاه‌ها، محصولات"
+      class="b-3 text-onback-low"
+    />
+  </div>
+</header>
+
+<div
+  class="header-sticky surface-elevated px-hulk pb-plus"
+  [ngClass]="{ breadcrumb: headerMode() === 'services' || headerMode() === 'stores' }"
+>
+  <header class="header-sticky-bg container d-flex align-items-center mt-minus justify-content-space-between">
+    <div>
+      <nav class="nav-bar">
+        <div class="nav-item mt-pony">
+          <a
+            href="#"
+            class="icon d-flex align-items-center gap-tiny bt-3 mx-big"
+          >
+            <span>
+              <img
+                src="assets/images/logos/dp-logo.svg"
+                alt="دیجی پی"
+              />
+            </span>
+          </a>
+        </div>
+        @for (navItem of navItems; track $index) {
+          <div
+            class="nav-item"
+            (click)="setActiveMenu(navItem)"
+          >
+            <a
+              href="{{ navItem.link }}"
+              class="icon d-flex align-items-center gap-tiny bt-3 mx-big text-onback-medium"
+            >
+              <ngx-icon
+                [type]="'bold'"
+                [name]="navItem.icon"
+                [iconSize]="'20px'"
+                [ngClass]="{ 'text-onback-brand': navItem.isActive, 'text-onback-low': !navItem.isActive }"
+              ></ngx-icon>
+              <span class="discount" *ngIf="navItem.showBadge">
+               <ngx-icon
+                 name="discount"
+                 type="bold"
+                 iconSize="16px"
+                 class="text-onback-error"
+               ></ngx-icon>
+              </span>
+              <span [ngClass]="{ 'text-onback-brand': navItem.isActive }" class="mt-tiny">{{ navItem.title }}</span>
+              @if (navItem.isActive && navItem.subMenu) {
+                <ngx-icon
+                  name="arrow-2-left"
+                  type="linear"
+                  iconSize="20px"
+                ></ngx-icon>
+              }
+            </a>
+            @if (navItem.isActive && navItem.subMenu) {
+              <div class="breadcrumb d-flex align-items-center gap-medium bt-3 text-onback-medium">
+                @for (submenu of navItem.subMenu; track $index) {
+                  <span>
+                    <a href="#"> {{ submenu }}</a>
+                  </span>
+                }
+              </div>
+            }
+          </div>
+        }
+      </nav>
+    </div>
+    <div class="search d-flex align-items-center">
+      <div class="search-content d-none d-flex align-items-center">
+        <span class="magnet">
+          <ngx-icon
+            name="search"
+            type="linear"
+          ></ngx-icon>
+        </span>
+        <input
+          type="text"
+          placeholder="جست‌وجو در خدمات، فروشگاه‌ها، محصولات"
+          class="search-text b-3 text-onback-low"
+        />
+      </div>
+
+      <span class="icon">
+        <a href="{{ appUrl }}">
+          <ngx-icon
+            name="person"
+            type="bold"
+            iconSize="20px"
+            class="text-onback-low"
+          ></ngx-icon>
+        </a>
+      </span>
+    </div>
+  </header>
+</div>

@@ -1,0 +1,30 @@
+.flex-basis-1 {
+  flex: 1 0 0;
+}
+
+
+.img-background {
+  width: 36px;
+  height: 36px;
+  background: #fff;
+  border-radius:50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 4px 0;
+
+  .pinned-icon {
+    display: block;
+    background: var(--surface-dim-glass);
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 16px;
+    border-radius: 50%;
+
+  }
+}
+
+
+

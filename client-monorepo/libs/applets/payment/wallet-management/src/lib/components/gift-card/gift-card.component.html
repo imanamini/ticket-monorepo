@@ -1,0 +1,45 @@
+<div class="gift-card">
+  <div class="header">
+    <span class="title-wrapper"> کارت هدیه </span>
+    <ngx-button
+      [size]="'medium'"
+      [rightIcon]="{ name: 'plus' }"
+      (clickHandler)="openGiftCardBottomSheet()"
+      [style]="'tinted-on-elevated'"
+    >
+      افزودن کد هدیه
+    </ngx-button>
+  </div>
+
+  <div
+    class="voucher-list-wrapper"
+    *ngIf="vouchers().length !== 0; else NotFoundGiftCard"
+  >
+    <div
+      class="voucher-list"
+      *ngFor="let giftCard of vouchers()"
+    >
+      <wallet-mng-applet-gift-information [state]="giftCard"></wallet-mng-applet-gift-information>
+    </div>
+  </div>
+
+  <ng-template #NotFoundGiftCard>
+    <div
+      *ngIf="vouchers().length === 0 && !gettingData"
+      class="gift-card-skeleton"
+    >
+      <wallet-mng-applet-skeleton
+        *ngFor="let item of giftInformationSkeletonStyleConst"
+        [skeletonStyle]="item"
+      >
+      </wallet-mng-applet-skeleton>
+    </div>
+    <div
+      *ngIf="vouchers().length === 0 && gettingData"
+      class="empty"
+    >
+      <div class="gift-img"></div>
+      <p class="empty-text">موجودی کارت‌های هدیه این‌جا نمایش داده می‌شود</p>
+    </div>
+  </ng-template>
+</div>

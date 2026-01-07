@@ -1,0 +1,28 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  .anonymous-claim {
+    margin: auto;
+    width: 500px;
+    border: 1px solid #dee3e7;
+    border-radius: 12px;
+
+    .title {
+      margin: 35px 0;
+    }
+  }
+}
+
+@include mediaTablet() {
+  .wrapper {
+    .anonymous-claim {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+}

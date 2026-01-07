@@ -1,0 +1,119 @@
+<div class="h-100 pb-plus d-flex flex-column gap-medium surface-elevated">
+  <div class="card-container d-flex flex-column gap-small pb-minus">
+    <ngx-app-bar
+      [title]="'درخواست دیجی‌کارت'"
+      (onRightIconClick)="goBack()"
+      [rightIcon]="'arrow-right'"
+    />
+    <div class="d-flex flex-column align-items-center py-small px-plus">
+      <!-- <ngx-card
+        [cardMode]="'bank'"
+        [cardSize]="'default'"
+        [cardType]="'digipayCard'"
+        [width]="'260px'"
+        [leftDetail]="digipayCardLeft"
+        [rightDetail]="digipayCardRight"
+      ></ngx-card> -->
+      <!-- <img
+        class="digi-card"
+        src="assets/digipay-card/digi-card.png"
+      /> -->
+      <ng-lottie
+        [options]="{ path: animationPath }"
+        width="260px"
+        (animationCreated)="animationCreated($event)"
+      ></ng-lottie>
+      <ng-template #digipayCardLeft>
+        <img
+          alt="logo"
+          src="./assets/digipay-card/dpcard-sign.svg"
+        />
+      </ng-template>
+      <ng-template #digipayCardRight>
+        <img
+          alt="logo"
+          src="./assets/digipay-card/digi-card-bullet.svg"
+        />
+      </ng-template>
+    </div>
+    @if (currentPlan()?.type !== plansTypeEnum['PAY_PRO']) {
+      <div class="st-8 text-align-center text-onback-medium plan-description">
+        دریافت دیجی‌کارت، نیازمند <span class="st-7 text-onback-high">تغییر اشتراک </span>است.
+      </div>
+    }
+  </div>
+  <div class="px-plus flex-grow d-flex flex-column gap-medium">
+    <div class="d-flex gap-plus flex-column justify-content-space-between surface-back radius-big p-plus align-items-center">
+      @if (currentPlan()) {
+        <div class="d-flex justify-content-space-between align-items-center w-100">
+          <span class="bt-2 text-[#2C3544]">اشتراک فعال</span>
+          <div
+            [class]="
+              'd-flex align-items-center active-plan radius-big py-low px-small diamond-' + subscriptionClassMapper[currentPlan()!.type]
+                | lowercase
+            "
+          >
+            <div [class]="'diamond-icon d-inline-block ml-tiny'"></div>
+            <span class="c-2 text-onback-high">{{ currentPlan()?.title }}</span>
+          </div>
+        </div>
+      }
+      <ngx-divider [color]="BorderColorsEnum.Light"></ngx-divider>
+
+      @if (requiredPlans().length > 0) {
+        <div class="d-flex flex-column w-100">
+          <span class="bt-2 text-[#2C3544]">اشتراک مورد نیاز</span>
+          <div class="d-flex align-items-center gap-small mr-auto">
+            @for (plan of requiredPlans(); let index = $index; track index) {
+              <div
+                [class]="
+                  'd-flex align-items-center active-plan radius-big py-low px-small diamond-' + subscriptionClassMapper[plan.type]
+                    | lowercase
+                "
+              >
+                <div [class]="'diamond-icon d-inline-block ml-tiny'"></div>
+                <span class="c-2 text-onback-high">{{ plan.title }}</span>
+              </div>
+              @if (index == 0) {
+                <span>/</span>
+              }
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    <ngx-callout
+      [backgroundMode]="'default'"
+      [mode]="'multiple'"
+      [showTitleBlink]="false"
+      [title]="''"
+      [messages]="[
+        'با اشتراک فعلی شما، امکان دریافت دیجی‌کارت وجود ندارد.',
+        'لطفا ابتدا اشتراک فعلی خود را در صفحه مدیریت اشتراک لغو کرده و مجدد اقدام کنید.'
+      ]"
+    ></ngx-callout>
+
+    <div class="footer d-flex mt-auto justify-self-end gap-small align-items-center">
+      <ngx-button
+        [mode]="'form'"
+        [size]="'large'"
+        [style]="'tinted-on-elevated'"
+        [fullWidth]="true"
+        (clickHandler)="onCancel()"
+      >
+        انصراف
+      </ngx-button>
+      <ngx-button
+        [mode]="'form'"
+        [size]="'large'"
+        [style]="'fill'"
+        [fullWidth]="true"
+        class="manage-btn"
+        (clickHandler)="onManageSubscription()"
+      >
+        مدیریت اشتراک
+      </ngx-button>
+    </div>
+  </div>
+</div>

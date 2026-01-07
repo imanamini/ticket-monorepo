@@ -1,0 +1,86 @@
+<app-credit-app-bar
+  (onBackButtonClick)="onBack()"
+  [backButton]="true"
+  title="اعتبار اقساطی دیجی‌پی"
+></app-credit-app-bar>
+<div class="top-section">
+  <div [formGroup]="form">
+    @switch (state()) {
+      @case ('INFO_FORM') {
+        <div class="main-wrapper">
+          <div class="main-content">
+            <p>کد ملی متعلق به مالک شماره همراه زیر را وارد کنید.</p>
+            <div class="cell-number text-onback-medium">{{ cellNumber() }}</div>
+            <ui-form-field
+              (focusin)="focusOnNationalCode = true"
+              (focusout)="focusOnNationalCode = false"
+              [errorMessageMapper]="{
+                invalidNotionalCode: 'کدملی معتبر نمی‌باشد',
+              }"
+              [error]="form.controls['nationalCode'].errors"
+              [hint]="focusOnNationalCode ? 'کد ملی را بدون خط تیره و فاصله وارد کنید.' : ''"
+              [maxSize]="10"
+              formControlName="nationalCode"
+              label="کدملی"
+              type="input"
+            ></ui-form-field>
+            <ui-form-field
+              [errorMessageMapper]="{
+                lessThan18Years: 'حداقل سن مجاز ۱۸ سال می‌باشد.',
+              }"
+              [error]="form.controls['birthDate'].errors"
+              formControlName="birthDate"
+              label="تاریخ تولد"
+              type="date"
+              dateRange="past"
+            ></ui-form-field>
+          </div>
+        </div>
+        <div class="call-to-action-wrapper">
+          <div class="checkbox-wrapper">
+            <ngx-checkbox formControlName="acceptContract">
+              با
+              <span
+                (click)="openContract($event)"
+                class="link text-onback-brand"
+                >قوانین و مقررات</span
+              >
+              استفاده از این سرویس موافقم.
+            </ngx-checkbox>
+          </div>
+          <ngx-button
+            (clickHandler)="onSubmit()"
+            [disabled]="form.invalid || sendingData"
+            [fullWidth]="true"
+          >
+            {{ !sendingData ? 'ادامه' : '' }}
+            @if (sendingData) {
+              <div class="button-loading-content">
+                <span class="button-spinner">
+                  <ngx-spinner
+                    size="md"
+                    color="primary"
+                  ></ngx-spinner>
+                </span>
+                <span>در حال ارسال...</span>
+              </div>
+            }
+          </ngx-button>
+        </div>
+      }
+      @case ('ERROR') {
+        <bnpl-error-page
+          [errorType]="errorType()!"
+          (retry)="onSubmit()"
+          (changeState)="changeState('INFO_FORM')"
+        />
+      }
+      @case ('ACTIVATED') {
+        <app-bnpl-activated
+          [amount]="amount()"
+          [installmentCount]="installmentCount()"
+        ></app-bnpl-activated>
+      }
+    }
+  </div>
+</div>

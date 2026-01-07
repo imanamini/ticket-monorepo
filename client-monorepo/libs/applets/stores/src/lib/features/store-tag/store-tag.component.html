@@ -1,0 +1,41 @@
+<common-ui-components-page-layout
+  [title]="'فروشگاه‌ها'"
+  [showBorder]="true"
+  [hasBackAction]="true"
+>
+  <div
+    class="d-flex flex-column px-plus mt-plus flex-grow"
+    commonUtilitiesScrolledToEnd
+    (scrolledToEnd)="listEnded()"
+  >
+    <div class="d-flex flex-wrap justify-content-space-around">
+      @if (storeCardsSize()) {
+        @for (store of storesList(); track $index) {
+          <div class="mb-pony">
+            <common-stores-store-preview
+              [mode]="'with-details'"
+              routerLink="/stores/{{ store.trackingCode }}"
+              [size]="storeCardsSize()"
+              [store]="store"
+              [backgroundMode]="'back'"
+            ></common-stores-store-preview>
+          </div>
+        }
+      }
+    </div>
+    <div style="height: 1px; width: 1px"></div>
+
+    @if (storesLoading()) {
+      <div class="d-flex flex-wrap justify-content-space-around">
+        @for (skeleton of rangeCreator(4); track $index) {
+          <div class="mb-pony">
+            <common-stores-store-preview
+              [mode]="'with-details'"
+              [size]="storeCardsSize()"
+            ></common-stores-store-preview>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</common-ui-components-page-layout>

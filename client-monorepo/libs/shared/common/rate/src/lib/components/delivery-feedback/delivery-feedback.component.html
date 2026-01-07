@@ -1,0 +1,29 @@
+<div class="d-flex flex-column justify-content-center align-items-center gap-huge">
+  <div class="b-1 text-align-center">
+    آیا سفارش اخیر خود از این فروشگاه را،
+    <br />
+    دریافت کرده‌اید؟
+  </div>
+  <div class="d-flex gap-minus">
+    <div class="d-flex flex-column gap-tiny">
+      <ngx-button
+        [style]="activeOne() === FeedbackModel.DELIVERED ? 'fill' : 'tinted-on-elevated'"
+        [mode]="'icon-only'"
+        [size]="'large'"
+        [leftIcon]="{ name: 'thumb-like' }"
+        (click)="handleClick(FeedbackModel.DELIVERED)"
+      ></ngx-button>
+      <div class="b-2 d-flex justify-content-center">بله</div>
+    </div>
+    <div class="d-flex flex-column gap-tiny">
+      <ngx-button
+        [style]="activeOne() === FeedbackModel.NOT_DELIVERED ? 'fill' : 'tinted-on-elevated'"
+        [mode]="'icon-only'"
+        [size]="'large'"
+        [leftIcon]="{ name: 'thumb-dislike' }"
+        (click)="handleClick(FeedbackModel.NOT_DELIVERED)"
+      ></ngx-button>
+      <div class="b-2 d-flex justify-content-center">خیر</div>
+    </div>
+  </div>
+</div>

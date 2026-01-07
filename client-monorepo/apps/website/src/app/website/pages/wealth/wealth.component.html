@@ -1,0 +1,40 @@
+<app-base-layout [loaded]="loaded">
+  <ng-container *ngIf="wealthPage && wealthPage.templateData">
+    <!--    section 1-->
+    <app-credit-intro
+      *ngIf="wealthPage.templateData.sectionIntro"
+      [data]="wealthPage.templateData.sectionIntro"
+      [firstCta]="creditIntroCta.firstCta"
+      [secondCta]="creditIntroCta.secondCta"
+    ></app-credit-intro>
+
+    <!--    section 2-->
+    <app-investment-steps
+      *ngIf="wealthPage.templateData.investmentSteps"
+      [investmentStepsData]="wealthPage.templateData.investmentSteps"
+      id="investment-steps"
+    ></app-investment-steps>
+
+    <!--    section 4-->
+    <app-bourse-promotion
+      id="bourse-promotion"
+      *ngIf="wealthPage.templateData.boursePromotion"
+      [wealthMode]="true"
+      [boursePromotionData]="wealthPage.templateData.boursePromotion"
+    ></app-bourse-promotion>
+
+    <!--    section 5-->
+    <app-wealth-intrack-section></app-wealth-intrack-section>
+
+    <!--    section 6-->
+    <app-ui-section-download-banner></app-ui-section-download-banner>
+
+    <!--    section 8-->
+    <app-ui-faq
+      *ngIf="wealthPage.templateData.faq && wealthPage.templateData.faq.faqItems && wealthPage.templateData.faq.faqItems.length > 0"
+      [faqs]="wealthPage.templateData.faq.faqItems"
+      [subtitle]="wealthPage.templateData.faq.subtitle"
+      [title]="wealthPage.templateData.faq.title"
+    ></app-ui-faq>
+  </ng-container>
+</app-base-layout>

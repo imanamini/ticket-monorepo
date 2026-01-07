@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+  <title>@1xSlice</title>
+  <desc>Created with Sketch.</desc>
+  <defs>
+    <path
+      d="M12,22 C6.4771525,22 2,17.5228475 2,12 C2,6.4771525 6.4771525,2 12,2 C17.5228475,2 22,6.4771525 22,12 C22,17.5228475 17.5228475,22 12,22 Z"
+      id="path-1"></path>
+    <path
+      d="M12.630398,8.75 L15.25,11.369602 L10.1468098,16.4727922 C9.80924434,16.8103577 9.3514073,17 8.87401762,17 L7.69856054,17 L7.69856054,17 C7.31275621,17 7,16.6872438 7,16.3014395 L7,15.1259824 C7,14.6485927 7.18964231,14.1907557 7.52720779,13.8531902 L12.630398,8.75 L12.630398,8.75 Z M12.8125597,10.5833333 L8.83333333,14.5625597 L8.83333333,15.1666667 L9.43744031,15.1666667 L13.4166667,11.1874403 L12.8125597,10.5833333 Z M15.7708561,6 C15.9153531,6 16.0552187,6.04169699 16.1750154,6.13281264 L16.2443616,6.19347404 L17.8049291,7.75460941 C18.0450164,7.99478409 18.0634846,8.37138934 17.8603338,8.63255333 L17.8049291,8.69529355 L15.9175761,10.5833333 L13.4166667,8.08151383 L15.3040196,6.19347404 C15.4307324,6.06671519 15.6041288,6 15.7708561,6 Z"
+      id="path-3"></path>
+  </defs>
+  <g id="🏦-Credit" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Icon-/-Edit-/-Filled">
+      <mask id="mask-2" fill="white">
+        <use xlink:href="#path-1"></use>
+      </mask>
+      <g id="Mask"></g>
+      <g id="Color-/-Solid-/-Brand-Colors-/-Orange" mask="url(#mask-2)" fill="#FF6F26" fill-rule="evenodd">
+        <rect id="Surface" x="0" y="0" width="24" height="24"></rect>
+      </g>
+      <mask id="mask-4" fill="white">
+        <use xlink:href="#path-3"></use>
+      </mask>
+      <g id="Mask" fill-rule="nonzero"></g>
+      <g id="Color-/-Solid-/-Brand-Colors-/-White" mask="url(#mask-4)" fill="#FFFFFF" fill-rule="evenodd">
+        <rect id="Surface" x="0" y="0" width="24" height="24"></rect>
+      </g>
+    </g>
+  </g>
+</svg>

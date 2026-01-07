@@ -1,0 +1,59 @@
+<div class="w-100 d-flex flex-wrap">
+  <div class="w-100 d-grid gap-small align-items-center logo-name">
+    <div class="d-flex align-items-center justify-content-center radius-rounded border-100 border-color-light logo-container">
+      <img
+        src="./wealth-assets/svg/crowd-logo.svg"
+        [alt]="crowd()?.title"
+      />
+    </div>
+
+    <div class="d-flex flex-column">
+      <span class="c-1 text-onback-high">
+        {{ crowd().title }}
+      </span>
+      <span class="l-3 text-onback-medium"> سکوی دانایان </span>
+    </div>
+  </div>
+
+  <div class="w-100 mt-medium d-grid project-info">
+    @for (info of crowd() | crowdInfo; track info; let last = $last) {
+      <div class="d-flex align-items-center px-small flex-column justify-content-center">
+        <div class="d-flex align-items-center justify-content-center">
+          <span class="b-3 text-onback-low">
+            {{ info.key }}
+          </span>
+        </div>
+        <div class="d-flex align-items-center justify-content-center">
+          <span class="c-2 text-onback-high">
+            {{ info.value }}
+          </span>
+        </div>
+        @if (!last) {
+          <ngx-divider
+            class="h-100"
+            [color]="BorderColorsEnum.Light"
+            [orientation]="'vertical'"
+          ></ngx-divider>
+        }
+      </div>
+    }
+  </div>
+
+  <app-project-status-detail
+    class="w-100"
+    [crowd]="crowd()"
+  />
+
+  <div class="w-100 mt-big">
+    <ngx-button
+      (clickHandler)="goToDetail()"
+      [style]="'tinted-on-elevated'"
+      [mode]="'section'"
+      [size]="'small'"
+      [fullWidth]="true"
+      [buttonId]="'CROWD_DETAIL'"
+    >
+      {{ actionLabel() }}
+    </ngx-button>
+  </div>
+</div>

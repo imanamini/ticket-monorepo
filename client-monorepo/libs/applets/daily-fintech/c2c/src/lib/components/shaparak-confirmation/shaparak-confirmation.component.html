@@ -1,0 +1,57 @@
+<div class="header d-flex justify-content-space-between align-items-center border-b-100 border-color-light px-plus py-small pt-medium">
+  <span class="header-title st-6">ثبت کارت در سیستم شاپرک</span>
+</div>
+<div class="dialog-content p-plus">
+  <div class="animation d-flex justify-content-center mb-minus">
+    <ng-lottie
+      [options]="{ path: animationPath }"
+      width="240px"
+    ></ng-lottie>
+  </div>
+
+  <div class="b-2">
+    {{ shaparakConfig()?.description }}
+  </div>
+
+  <daily-bank-card-preview
+    [config]="{
+      cardNumber: cardInfo().pan,
+      ownerName: cardInfo().cardHolder,
+      isMinimized: true,
+      classes: 'pt-minus pb-huge',
+    }"
+  ></daily-bank-card-preview>
+  <div class="actions d-flex justify-content-space-between gap-small">
+    <ngx-button
+      class="ignore"
+      (clickHandler)="cancel()"
+      *ngIf="!shaparakConfig()?.forcible"
+      [size]="'medium'"
+      [style]="'tinted-on-elevated'"
+    >
+      فعلا نه
+    </ngx-button>
+
+    <ngx-button
+      class="ignore"
+      (clickHandler)="close()"
+      *ngIf="shaparakConfig()?.forcible"
+      [size]="'medium'"
+      [style]="'tinted-on-elevated'"
+    >
+      انصراف
+    </ngx-button>
+
+    <ngx-button
+      (clickHandler)="continue()"
+      [disabled]="registerSpinner()"
+      [isLoading]="registerSpinner()"
+      [fullWidth]="true"
+      [size]="'medium'"
+      class="save"
+    >
+      <span> ثبت کارت </span>
+      <span *ngIf="shaparakConfig()?.forcible"> و ادامه </span>
+    </ngx-button>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="plp-edit-information">
+  <insurance-tabs [tabs]="tabs"
+                  [activeTab]="activeTab"
+                  (activeTabChange)="handleChangeTab(+$event)"></insurance-tabs>
+
+  <div class="box-center">
+    <p class="center-text">
+      {{ activeTab === 1 ? 'مشخصات خودرو را بررسی و یا ویرایش کنید:' : 'اطلاعات بیمه نامه قبلی را بررسی و یا ویرایش کنید:' }}
+    </p>
+
+    @if (this.plate !== null && activeTab === 1) {
+      <div class="center-plate">
+        <ngx-plate
+                type="car"
+                [size]="'small'"
+                [plate]="plate"
+                [readonly]="true"
+        ></ngx-plate>
+      </div>
+    }
+
+    <div class="center-content">
+      <car-info-form [(showError)]="showError"
+                     [carInfoForm]="carInfoForm"
+                     [style.display]="activeTab === 1 ? 'inline' : 'none'">
+      </car-info-form>
+      <div class="information-ex-insurer"
+           [style.display]="activeTab === 2 ? 'flex' : 'none'">
+        <div class="ex-insurer-section">
+          <p class="section-title">اطلاعات بیمه‌نامه قبلی</p>
+          <div class="section-form">
+            <ex-insurer-form class="ex-insurer"
+                             [showError]="showError"
+                             [exInsurerForm]="exInsurerForm"></ex-insurer-form>
+            @if (exInsurerForm?.controls.name.value !== extraInsurerForm.NewCar && exInsurerForm?.controls.name.value !== extraInsurerForm.NoInsurance) {
+              <ex-insurer-date-form class="ex-insurer-date"
+                                    [showError]="showError"
+                                    [exInsurerDateForm]="exInsurerDateForm">
+              </ex-insurer-date-form>
+            }
+          </div>
+        </div>
+        @if (showExInsurerForms()) {
+          <div class="ex-insurer-section">
+            <p class="section-title">تعویض پلاک / تغییر مالکیت</p>
+            <div class="section-form radio-button">
+              <ownership-changed-form
+                      [showError]="showError"
+                      [ownershipChangedForm]="ownershipChangedForm"></ownership-changed-form>
+            </div>
+          </div>
+
+          @if (showDiscountForm()) {
+            <div class="ex-insurer-section">
+              <p class="section-title">وضعیت تخفیفات عدم خسارت بیمه نامه قبلی</p>
+              <div class="section-form radio-button">
+                <discount-form
+                        [showError]="showError"
+                        class="discount-form" [discountForm]="discountForm"></discount-form>
+              </div>
+            </div>
+          }
+
+          @if (showDiscountDetailForm()) {
+            <div class="ex-insurer-section">
+              <p class="section-title">میزان تخفیفات همین پلاک</p>
+              <div class="section-form">
+                <discount-detail-form class="discount-detail"
+                                      [showError]="showError"
+                                      [discountForm]="discountDetailForm">
+                </discount-detail-form>
+              </div>
+            </div>
+          }
+
+          <div class="ex-insurer-section">
+            <p class="section-title">خسارت بیمه نامه قبلی</p>
+            <div class="section-form radio-button">
+              <claim-form
+                      [showError]="showError"
+                      [claimForm]="claimForm"></claim-form>
+            </div>
+          </div>
+
+          @if (claimForm?.controls.claim?.value) {
+            <div class="ex-insurer-section">
+              <p class="section-title">تعداد دفعات دریافت هزینه خسارت</p>
+              <div class="section-form">
+                <claim-detail-form class="claim-detail"
+                                   [showError]="showError"
+                                   [claimDetailForm]="claimDetailForm"></claim-detail-form>
+              </div>
+            </div>
+          }
+        }
+      </div>
+    </div>
+  </div>
+
+  <action-buttons (deActiveButtonClicked)="handleDeActiveButtonClicked()"
+                  (activeButtonClicked)="handleActiveButtonClicked()"
+                  backgroundMode="gray"
+                  activeButtonText="اعمال تغییرات"
+                  deActiveButtonText="انصراف"></action-buttons>
+
+</div>

@@ -1,0 +1,121 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+:host {
+  height: 100%;
+
+  ::ng-deep {
+    ui-form-field .dg-form-field .dg-hint-message {
+      display: none;
+    }
+  }
+}
+
+.container-get-policy-method {
+  @include flex-column();
+  align-items: center;
+  height: 100%;
+
+  &-content {
+    @include flex-column();
+    width: 100%;
+    max-width: 360px;
+    gap: 16px;
+    flex: 1;
+    overflow: auto;
+    padding: 0 16px;
+
+    .content-text {
+      padding: 8px 0;
+      font-size: 16px;
+      line-height: 28px;
+      color: #2c3544;
+    }
+  }
+
+  .content-plate {
+    display: flex;
+    justify-content: center;
+  }
+
+  #wrapper-description-policy {
+    & > p {
+      @include flex-center-start;
+      font-size: 14px;
+      font-weight: 700;
+
+      span {
+        color: #2c3544;
+        margin-right: 6px;
+      }
+    }
+
+    & > div {
+      margin-top: 24px;
+      @include flex-column();
+      gap: 16px;
+      background-color: #f2f5f8;
+      border-radius: 12px;
+      padding: 16px;
+
+      & > div {
+        @include flex-row();
+
+        & > div {
+          margin-right: 8px;
+          flex: 1;
+          font-size: 14px;
+          line-height: 24px;
+
+          b {
+            font-weight: 700;
+            color: #2c3544;
+          }
+
+          p {
+            font-weight: 400;
+            margin-top: 8px;
+            color: #424c5c;
+          }
+        }
+
+        &:last-child {
+          border-radius: 20px;
+          background-color: #DEEDFF;
+          padding: 12px;
+
+          p {
+            line-height: 20px;
+            font-size: 12px;
+            font-weight: 400;
+            flex: 1;
+            margin-right: 6px;
+          }
+        }
+      }
+    }
+
+  }
+
+  #wrapper-email-box {
+    & > div {
+      @include flex-center;
+      border-radius: 12px;
+      border: 1px solid #dee3e7;
+      margin-bottom: 16px;
+      padding: 16px;
+
+      p {
+        flex: 1;
+        color: #3c6dff;
+        font-size: 14px;
+        font-weight: 700;
+        margin-right: 8px;
+      }
+    }
+
+    ui-form-field.email-input {
+      height: 80px;
+      display: block;
+    }
+  }
+}

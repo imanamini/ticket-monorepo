@@ -1,0 +1,44 @@
+<div
+  [ngClass]="{ row: displayStyle === 'ROW', column: displayStyle === 'COLUMN' }"
+  class="recommendation-list-box"
+>
+  <h4
+    *ngIf="boxTitle"
+    class="title"
+  >
+    {{ boxTitle }}
+  </h4>
+  <div class="items">
+    <swiper-container
+      appSwiper
+      #swiper
+      class="button-group"
+      [config]="config"
+      (slidechange)="slideChange($event)"
+    >
+      <swiper-slide *ngFor="let recommendation of recommendations">
+        <app-ui-recommendation-item
+          (clicked)="onItemClick(recommendation)"
+          [imageId]="recommendation.imageId"
+          [imageSize]="31"
+          [mainText]="recommendation.title"
+          class="item"
+        ></app-ui-recommendation-item>
+      </swiper-slide>
+    </swiper-container>
+
+    <!--    <swiper [config]="config" class="button-group">-->
+    <!--      <ng-container *ngFor="let recommendation of recommendations">-->
+    <!--        <ng-template swiperSlide>-->
+    <!--          <ui-recommendation-item-->
+    <!--            (clicked)="onItemClick(recommendation)"-->
+    <!--            [imageId]="recommendation.imageId"-->
+    <!--            [imageSize]="31"-->
+    <!--            [mainText]="recommendation.title"-->
+    <!--            class="item"-->
+    <!--          ></ui-recommendation-item>-->
+    <!--        </ng-template>-->
+    <!--      </ng-container>-->
+    <!--    </swiper>-->
+  </div>
+</div>

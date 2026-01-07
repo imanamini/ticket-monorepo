@@ -1,0 +1,23 @@
+<div class="expiration-gift-card-container">
+  <div class="title-container">
+    <span class="title-wrapper">انقضای کارت هدیه</span>
+    <span class="description">مهلت استفاده از این کارت هدیه به پایان رسیده است و از لیست حذف خواهد شد.</span>
+  </div>
+
+  <div class="gift-card-info-wrapper">
+    <div
+      class="gift-card-info"
+      *ngFor="let state of bottomSheetState"
+    >
+      <span class="title-wrapper">اعتبار هدیه</span>
+      <span class="date">تاریخ انقضا:&nbsp;{{ state?.expirationDate | jalaliDate }}</span>
+      <span class="serial-number"> شماره سریال {{ state?.serial }}</span>
+    </div>
+  </div>
+
+  <ngx-button
+    [style]="'tinted-on-elevated'"
+    (clickHandler)="close()"
+    >متوجه شدم</ngx-button
+  >
+</div>

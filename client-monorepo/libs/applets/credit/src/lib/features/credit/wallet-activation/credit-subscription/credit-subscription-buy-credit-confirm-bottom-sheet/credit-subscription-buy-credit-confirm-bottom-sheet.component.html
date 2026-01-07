@@ -1,0 +1,57 @@
+<div class="d-flex flex-column flex-grow rtl gap-plus">
+  <div class="d-flex flex-column w-100 gap-small px-plus pt-plus">
+    <span class="w-100 st-3 text-onback-high text-align-right"> آیا تمایل دارید هزینه اشتراک از وام شما کسر شود؟ </span>
+    <span class="w-100 b-2 text-onback-medium text-align-right">
+      در این روش پرداخت اشتراک به‌صورت خودکار از وام انجام می‌شود و مبلغ باقی‌مانده به کیف پول شما واریز خواهدشد.
+    </span>
+  </div>
+  <div class="d-flex flex-row align-items-center px-plus">
+    <div class="d-flex flex-column w-100 surface-back radius-plus px-medium py-plus">
+      <div class="d-flex flex-row justify-content-space-between align-items-center mb-tiny">
+        <span class="b-3 text-onback-high">وام درخواستی</span>
+        <span class="st-8 text-onback-high"
+          >{{ subscriptionDetails()?.initialBalance | IRR: 'hideRial' }}<span class="b-2 mr-tiny is-currency">ریال</span></span
+        >
+      </div>
+      <div class="d-flex flex-row justify-content-space-between align-items-center mb-minus">
+        <span class="b-3 text-onback-error">هزینه اشتراک</span>
+        <span class="st-8 text-onback-error"
+          >{{ subscriptionDetails()?.amount | IRR: 'hideRial' }}-<span class="b-2 mr-tiny is-currency">ریال</span></span
+        >
+      </div>
+      <ngx-divider
+        [color]="BorderColorsEnum.Tint"
+        class="w-100"
+        dividerStyle="dashed"
+        orientation="horizontal"
+      >
+      </ngx-divider>
+      <div class="d-flex flex-row justify-content-space-between align-items-center mt-minus">
+        <span class="b-3 text-onback-high">مبلغ وام پس از کسر اشتراک</span>
+        <span class="st-5 text-onback-high"
+          >{{ subscriptionDetails()?.initialBalance - subscriptionDetails()?.amount | IRR: 'hideRial'
+          }}<span class="st-6 mr-tniy is-currency">ریال</span></span
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-row align-items-center px-plus pb-plus gap-small">
+    <ngx-button
+      (clickHandler)="closeBottomSheet()"
+      [fullWidth]="true"
+      [style]="'tinted-on-elevated'"
+      ngxTrackableId
+      trackerId="subscriptionBuyLoanCancelButton"
+      >خیر
+    </ngx-button>
+    <ngx-button
+      (clickHandler)="onConfirm()"
+      [fullWidth]="true"
+      [style]="'fill'"
+      ngxTrackableId
+      trackerId="subscriptionBuyLoanConfirmButton"
+      >بله
+    </ngx-button>
+  </div>
+</div>

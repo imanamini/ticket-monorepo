@@ -1,0 +1,52 @@
+
+.response-output {
+  background: #fff5ee;
+  border: 1px solid #E6E6E6;
+  border-radius: 12px;
+  color: #061962;
+  font-size: 14px;
+  gap: 12px;
+  line-height: 1.5;
+  align-items: center;
+  padding: 16px;
+  display: flex;
+  transition: .4s;
+  margin: 20px 5px 10px;
+}
+
+app-ui-button {
+  display: block !important;
+}
+
+.custom-input input {
+  margin: 0 10px;
+}
+
+.registration-form {
+  margin: auto;
+  width: 870px;
+}
+
+
+@media screen and (max-width: 1280px) {
+  .registration-form {
+    width: 650px;
+  }
+}
+
+
+@media screen and (max-width: 744px) {
+  .registration-form {
+    width: 360px;
+  }
+
+  .merchant-register {
+    padding: 0;
+  }
+
+  .sm-block {
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+

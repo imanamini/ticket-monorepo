@@ -1,0 +1,15 @@
+<div class="filter-button cursor-pointer"
+     [ngClass]="{selected:selectedInsuranceCompanies() && selectedInsuranceCompanies().length > 0}"
+     (click)="filterClicked()">
+  @if (selectedInsuranceCompanies() && selectedInsuranceCompanies().length > 0) {
+    <ins-icon [name]="IconEnum.FilterBlue" [width]="16" [height]="16"></ins-icon>
+    <span>{{ selectedInsuranceCompanies()[ 0 ].name }}</span>
+    @if (selectedInsuranceCompanies().length > 1) {
+      <span>و {{ selectedInsuranceCompanies().length - 1 }} شرکت دیگر</span>
+    }
+    <ins-icon (click)="deleteSelectedFilters($event)" [name]="IconEnum.CloseBlue" [width]="16" [height]="16"></ins-icon>
+  } @else {
+    <ins-icon [name]="IconEnum.Filter" [width]="16" [height]="16"></ins-icon>
+    <span>فیلتر</span>
+  }
+</div>

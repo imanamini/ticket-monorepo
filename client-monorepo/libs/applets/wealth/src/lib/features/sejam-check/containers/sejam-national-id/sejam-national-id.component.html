@@ -1,0 +1,54 @@
+<div class="sejam-national-id-container">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'بررسی حساب سجام'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="national-id-content">
+    <div class="national-id-form">
+      <div class="national-id-description">
+        <span> کد ملی مالک شماره {{ user()?.phoneNumber }} را وارد کنید. </span>
+      </div>
+      <div
+        [formGroup]="form"
+        class="national-id-input"
+      >
+        <ui-form-field
+          label="کد ملی"
+          [isNumericKeyboard]="true"
+          [maxSize]="10"
+          formControlName="nationalId"
+          [error]="form.controls['nationalId'].errors ?? {}"
+          [showError]="showError"
+          [readonly]="isInputDisabled()"
+        ></ui-form-field>
+        @if (this.showError === 'show' && form.invalid) {
+          <div class="error-message">
+            <span>کد ملی نامعتبر است</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="national-code-modal-button">
+      <ngx-button
+        buttonId="SEJAM_CONFIRM_NATIONAL_ID"
+        [style]="'fill'"
+        size="medium"
+        [fullWidth]="true"
+        [isLoading]="isLoading()"
+        (clickHandler)="onNationalCodeSubmit()"
+        [disabled]="this.form.controls['nationalId']?.value.length < 10"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+.divider {
+  height: 1px;
+}
+.filters-box {
+  max-height: 200px;
+  overflow-y: auto;
+}
+.btn {
+  &-first {
+    width: 120px;
+    max-width: 50%;
+  }
+  &-second {
+    flex-grow: 1;
+  }
+}
+.search {
+  &-selector {
+    &-item {
+      flex-grow: 1;
+    }
+  }
+}

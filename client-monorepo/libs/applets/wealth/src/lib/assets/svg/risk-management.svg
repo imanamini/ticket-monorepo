@@ -1,0 +1,17 @@
+<!-- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group">
+<path id="Path" d="M12 3H16C18.7614 3 21 5.23858 21 8V14.9289C21 16.255 20.4732 17.5268 19.5355 18.4645L18.4645 19.5355C17.5268 20.4732 16.255 21 14.9289 21H8C5.23858 21 3 18.7614 3 16V12" stroke="#6E798D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_2" d="M12 8H16" stroke="#6E798D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_3" d="M8 12H16" stroke="#6E798D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_4" d="M8 16H10" stroke="#6E798D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg> -->
+
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group">
+<path id="Path" d="M16 4H21.3333C25.0152 4 28 6.98477 28 10.6667V19.9052C28 21.6734 27.2976 23.3691 26.0474 24.6193L24.6193 26.0474C23.3691 27.2976 21.6734 28 19.9052 28H10.6667C6.98477 28 4 25.0152 4 21.3333V16" stroke="#3C6DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_2" d="M16 10.6667H21.3333" stroke="#3C6DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_3" d="M10.6667 16H21.3334" stroke="#3C6DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_4" d="M10.6667 21.3333H13.3334" stroke="#3C6DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

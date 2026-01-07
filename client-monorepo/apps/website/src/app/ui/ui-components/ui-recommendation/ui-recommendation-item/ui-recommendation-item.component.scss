@@ -1,0 +1,32 @@
+@import "globals";
+
+.recommendation-item {
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  border: 1px solid #d3dbe1;
+  padding: 12px;
+  background: #fff;
+  color: #2c3544;
+  border-radius: 12px;
+  cursor: pointer;
+
+  .image {
+    flex: 0 0;
+    margin-left: 8px;
+  }
+
+  .text {
+    .title {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      margin: 12px 0 0;
+      font-size: rem(10, 16);
+      font-weight: 500;
+      color: $swatch_steel_500;
+    }
+  }
+}

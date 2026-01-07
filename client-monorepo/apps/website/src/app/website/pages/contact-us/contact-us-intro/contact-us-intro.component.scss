@@ -1,0 +1,224 @@
+@import "../../../../style/globals";
+
+:host ::ng-deep {
+  section.intro-contactUs {
+    margin-bottom: 170px !important;
+
+  }
+
+  .intro-contactUs > .container {
+    padding-bottom: 30px;
+  }
+
+  .intro-contactUs__img {
+    width: 90px;
+    height: 90px;
+    margin: auto;
+    overflow: hidden;
+
+    > img {
+      width: 100%;
+      height: 100%;
+      -o-object-fit: contain;
+      object-fit: contain;
+    }
+  }
+
+  .digipay-services-contain {
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 10px 50px -10px rgb(6 25 98 / 15%);
+    /*-webkit-backdrop-filter: blur(20px);*/
+    /*backdrop-filter: blur(20px);*/
+    margin-bottom: -200px;
+    padding: 40px 0 70px;
+    overflow: hidden;
+  }
+
+  .digipay-services__desc {
+    max-width: 720px;
+    margin: auto;
+    padding-bottom: 50px;
+  }
+
+  .digipay-services__desc > p {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    text-align: center;
+    max-width: 720px;
+  }
+
+  .digipay-services__container {
+    width: Calc(100% - 12vw);
+    margin: auto;
+  }
+
+  .digipay-services__container .digipay-services__items.swiper-container {
+    overflow: visible;
+  }
+
+  .digipay-services__items .swiper-wrapper {
+    padding-right: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+
+  ::ng-deep swiper-slide .digipay-services__item {
+    padding: 0 12px;
+    min-width: 134px;
+    max-width: 175px;
+  }
+
+  .digipay-services__contain {
+    padding-top: 100%;
+    position: relative;
+    width: 100%;
+    border-radius: 25px;
+    border: 1px solid #e7ecfd;
+  }
+
+  .digipay-services__contain a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+  }
+
+  .digipay-services__contain > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .digipay-services__item-icon {
+    width: 40%;
+    height: 40%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+
+  .digipay-services__item-icon img {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    /*display: flex;*/
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    max-height: 100%;
+    max-width: 100%;
+    -o-object-fit: contain;
+    object-fit: contain;
+  }
+
+  .digipay-services__item-title {
+    margin-top: 20px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .digipay-services__item-title > span {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 15px;
+  }
+
+  swiper-slide.swiper-slide-active {
+    z-index: 2;
+  }
+
+  @media (max-width: 1280px) {
+    .digipay-services__container {
+      width: Calc(100% - 140px);
+    }
+    .digipay-services__desc {
+      /*width: 100%;*/
+      padding: 0 70px 45px;
+    }
+  }
+
+  @media (max-width: 744px) {
+    .intro-contactUs__img {
+      margin-bottom: 40px;
+    }
+    .intro-contactUs .intro-title.reverse {
+      margin-bottom: 80px;
+    }
+    .intro-title.reverse .subtitle > span {
+      font-size: 20px;
+    }
+    .digipay-services__desc {
+      padding: 0 40px 30px 40px;
+    }
+    .digipay-services__container {
+      width: Calc(100% - 130px);
+    }
+    .digipay-services__item-icon {
+      width: 40%;
+      height: 35%;
+    }
+    .intro-contactUs__img {
+      margin-bottom: 40px;
+    }
+    .digipay-services-contain {
+      padding: 40px 0 50px;
+    }
+    .digipay-services__desc {
+      padding: 0 30px 35px;
+    }
+    .digipay-services__desc > p {
+      font-size: 16px;
+    }
+    .digipay-services__container {
+      width: Calc(100% - 15vw);
+    }
+    li.digipay-services__item {
+      min-width: auto;
+      /*padding: 0 2vw;*/
+      font-size: 3vw;
+    }
+    .digipay-services__contain {
+      border-radius: 4.5vw;
+    }
+    .digipay-services__item-title {
+      margin-top: 4.5vw;
+    }
+    .digipay-services__item-title > span {
+      font-size: 12px;
+    }
+  }
+}

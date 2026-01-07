@@ -1,0 +1,44 @@
+<div class="action-container">
+  <p class="action-title">اقدامات</p>
+  <div class="action-section">
+    @for (service of services; track service) {
+      <div class="action-section-item">
+        @switch (service.type) {
+          @case (SERVICES_TYPE.DPCARD_ISUUANCE) {
+            <subscription-applet-section-title
+              (nextActionClicked)="onNextActionClicked($event)"
+              [nextActionUrl]="'card/issuance?src=subscription-mng'"
+              [hasDescription]="true"
+              [hasAction]="true"
+              [status]="service.status"
+              [type]="service.type"
+            >
+              <div class="next-section">
+                <p class="next-description text-onback-brand">صدور کارت</p>
+                <span class="next-icon"></span>
+              </div>
+            </subscription-applet-section-title>
+          }
+          @default {
+            <subscription-applet-section-title
+              (nextActionClicked)="onNextActionClicked($event)"
+              [nextActionUrl]="service.nextAction?.nextUrl"
+              [hasDescription]="true"
+              [hasAction]="!!service.nextAction?.nextUrl"
+              [description]="service.nextAction?.description"
+              [status]="service.status"
+              [type]="service.type"
+            >
+              <div class="next-section">
+                <p class="next-description">
+                  {{ service?.type === SERVICES_TYPE.CREDIT ? 'دریافت وام' : service?.nextAction?.title }}
+                </p>
+                <span class="next-icon"></span>
+              </div>
+            </subscription-applet-section-title>
+          }
+        }
+      </div>
+    }
+  </div>
+</div>

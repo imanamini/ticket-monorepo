@@ -1,0 +1,71 @@
+@if (submitRate()) {
+  <div class="text-align-center">
+    <img
+      src="assets/images/success-result.png"
+      alt="success"
+    />
+    <p class="st-6 mt-huge mb-small">تجربه شما ثبت شد</p>
+    <p class="b-2 text-onback-low mb-big">از بازخورد شما متشکریم؛ ما در دیجی‌پی همواره در تلاشیم تا تجربه شما را بهبود ببخشیم.</p>
+    <ngx-button
+      [mode]="'section'"
+      [size]="'large'"
+      [style]="'tinted-on-elevated'"
+      [fullWidth]="true"
+      (clickHandler)="navigateToOrders()"
+    >
+      اتمام فرآیند
+    </ngx-button>
+  </div>
+} @else {
+  <div>
+    <p class="st-8">تجربه شما برای ما مهم است.</p>
+    <p class="b-3 text-onback-low mt-small">
+      از اعتماد و خرید شما متشکریم. لطفا تجربه خریدتان را با انتخاب یک گزینه با ما به اشتراک بگذارید.
+    </p>
+    <div class="d-flex gap-small justify-content-space-between my-medium">
+      @for (rate of rates(); track $index) {
+        <div
+          class="d-flex justify-content-center surface-back p-minus radius-medium"
+          [ngClass]="{
+            'border-color-brand': selectedRate()?.score === rate.score,
+            'surface-brand-tint': selectedRate()?.score === rate.score,
+          }"
+          (click)="selectRate(rate.score)"
+        >
+          <img
+            [src]="rate.img"
+            [alt]="rate.score"
+            width="28"
+            height="28"
+          />
+        </div>
+      }
+    </div>
+    <p class="st-8">{{ selectedRate()?.title }}</p>
+    <p class="b-3 text-onback-low mt-minus">اگر نظر دیگری دارید لطفا برای ما بنویسید.</p>
+
+    <div
+      [formGroup]="ratingForm"
+      class="mt-medium"
+    >
+      <ui-form-field
+        [formControlName]="'description'"
+        [label]="'توضیحات (اختیاری)'"
+        [inputType]="'text'"
+        [error]="ratingForm.controls['description'].errors ?? {}"
+        [errorMessageMapper]="{ maxLength: 'حداکثر 255 کاراکتر' }"
+        [multiLine]="true"
+      ></ui-form-field>
+
+      <ngx-button
+        [mode]="'form'"
+        [size]="'large'"
+        [style]="'fill'"
+        [fullWidth]="true"
+        (clickHandler)="submitRatingForm(ratingForm)"
+      >
+        تایید
+      </ngx-button>
+    </div>
+  </div>
+}

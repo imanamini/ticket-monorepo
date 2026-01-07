@@ -1,0 +1,72 @@
+<div class="pt-big d-flex flex-column gap-medium floki-container-prepayment-modal">
+  <div class="px-big st-8 wrapper-title d-flex flex-row align-items-center  gap-small">
+    <img width="16" height="16" [alt]="product().name" [lazy-load-image]="product().insurerImageName" [application-form-id]="draftData().applicationFormId" src="assets/icons/zomorod-plan.svg">
+
+    <p class="st -6">{{ draftData()?.insurerPartyName }}</p>
+  </div>
+  <div class="px-big">
+    <div
+      class="d-flex flex-row align-items-center justify-content-space-between py-small border-color-air border-b-100">
+      <p class="b-2 text-onback-disabled">ارزش گوشی</p>
+      <p class="bt-2 text-onback-low">{{ draftData()?.assetPrice | number }}&nbsp;ریال</p>
+    </div>
+    <div
+      class="d-flex flex-row align-items-center justify-content-space-between py-small border-color-air border-b-100">
+      <p class="b-2 text-onback-disabled">نام طرح</p>
+      <p class="bt-2 text-onback-low">{{ draftData()?.productName }}</p>
+    </div>
+    @if (draftData()?.commitmentDuration) {
+      <div class="d-flex flex-row align-items-center justify-content-space-between py-small">
+        <p class="b-2 text-onback-disabled">مدت اعتبار</p>
+        <p class="bt-2 text-onback-low">{{ draftData()?.commitmentDuration }}</p>
+      </div>
+    }
+  </div>
+  <div class="px-big surface-glass pb-mega">
+    <div class="price-section mb-minus">
+      @if (draftData()?.discountCode) {
+        <div class="show-message-discount surface-success-tint radius-plus d-flex align-items-center	p-minus">
+          <ngx-icon name="info"
+                    iconSize="16px"
+                    type="linear">
+          </ngx-icon>
+          <span class="mr-low bt-3 text-onback-medium" [textContent]="(draftData().discountAmount | number) + ' ریال از مبلغ پرداختی شما کسر شد.'"></span>
+        </div>
+      }
+
+      <div class="d-flex flex-row align-items-center justify-content-space-between pt-big py-small mb-small">
+        <p class="b-2 text-onback-high">مبلغ پرداختی</p>
+        @if (draftData()?.discountCode) {
+          <p class="bt-2 text-oninvert-error d-flex text-onback-brand gap-tiny cursor-pointer">
+            <span class="">{{ draftData().discountCode }} </span>
+            <ngx-icon
+              (click)="confirmRemoveDiscount($event)"
+              class="icon"
+              name="delete"/>
+          </p>
+        } @else {
+          <p (click)="onOpenDiscountModal()" class="bt-2  d-flex text-onback-brand gap-tiny cursor-pointer">
+            <img src="assets/floki/icons/plus-icon.svg">
+            <span>کد تخفیف</span>
+          </p>
+        }
+      </div>
+
+      @if (draftData()?.discountCode) {
+        <del class="b-1">{{ draftData().priceBeforeDiscount | number }}ریال</del>
+      }
+      <p class="t-7 text-onback-medium">
+        {{ draftData()?.price | number:'1.0-0' }} ریال
+      </p>
+    </div>
+    <ngx-button
+      (click)="sendToPayment()"
+      [brandButton]="true"
+      [fullWidth]="true"
+      [size]="'large'"
+      [disabled]="isDisable()"
+      [style]="'fill'">
+      تایید و پرداخت
+    </ngx-button>
+  </div>
+</div>

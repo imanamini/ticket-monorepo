@@ -1,0 +1,13 @@
+<div class="error-container d-flex h-100 align-items-center px-plus">
+  <common-ui-components-error-result
+    [title]="'دسترسی به حساب تا ' + resetTime() + ' دقیقه مسدود است.'"
+    [description]="'به دلیل تلاش‌های ناموفق زیاد برای دسترسی به حساب، موقتا دسترسی امکان‌پذیر نیست. لطفا دقایقی دیگر دوباره امتحان کنید.'"
+  >
+    <ng-container status-image>
+      <img
+        src="assets/error-triangle-white.svg"
+        alt="error"
+      />
+    </ng-container>
+  </common-ui-components-error-result>
+</div>

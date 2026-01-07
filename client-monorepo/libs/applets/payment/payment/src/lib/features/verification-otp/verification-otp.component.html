@@ -1,0 +1,100 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  title="کد احراز هویت"
+>
+  <div class="d-flex flex-column align-items-center h-100 p-big">
+    <div class="d-flex align-items-center">
+      <span class="text-onback-medium st-2 ml-minus h-24">{{ cellNumber }}</span>
+    </div>
+    <p class="text-onback-medium b-1 mb-big">کد فعالسازی ارسال شده را وارد کنید.</p>
+
+    <div
+      class="otp"
+      [ngClass]="{ 'otp-err': invalidOtpError }"
+      [formGroup]="otpForm"
+    >
+      <input
+        id="otp1"
+        [maxlength]="1"
+        class="digit"
+        type="tel"
+        (keyup)="nextInput('otp2', $event)"
+        formControlName="otp1"
+        autocomplete="one-time-code"
+      />
+      <input
+        id="otp2"
+        [maxlength]="1"
+        class="digit"
+        type="tel"
+        (keyup)="nextInput('otp3', $event)"
+        formControlName="otp2"
+        autocomplete="one-time-code"
+      />
+      <input
+        id="otp3"
+        [maxlength]="1"
+        class="digit"
+        type="tel"
+        (keyup)="nextInput('otp4', $event)"
+        formControlName="otp3"
+        autocomplete="one-time-code"
+      />
+      <input
+        id="otp4"
+        [maxlength]="1"
+        type="tel"
+        class="digit"
+        (keyup)="nextInput('otp5', $event)"
+        formControlName="otp4"
+        autocomplete="one-time-code"
+      />
+      <input
+        id="otp5"
+        [maxlength]="1"
+        class="digit"
+        type="tel"
+        (keyup)="nextInput('otp6', $event)"
+        formControlName="otp5"
+        autocomplete="one-time-code"
+      />
+      <input
+        id="otp6"
+        [maxlength]="1"
+        class="digit"
+        type="tel"
+        (keyup)="nextInput('submit', $event)"
+        formControlName="otp6"
+        autocomplete="one-time-code"
+      />
+      <span
+        *ngIf="invalidOtpError"
+        class="text-onback-error l-3 w-100 rtl text-align-center mh-25"
+        >کد وارد شده صحیح نمی باشد</span
+      >
+    </div>
+
+    <div class="d-flex gap-medium mt-mega w-100">
+      <ngx-button
+        class="flex-grow timer-btn"
+        [style]="'tinted-on-elevated'"
+        [size]="'large'"
+        [fullWidth]="true"
+        [disabled]="!timeIsOver"
+        (clickHandler)="receiveNewCode()"
+      >
+        {{ timeIsOver ? 'ارسال دوباره' : second + ' : ' + minute }}
+      </ngx-button>
+      <ngx-button
+        class="flex-grow digipay-btn login-btn"
+        [disabled]="isSubmitting || otpForm.invalid"
+        (clickHandler)="onSubmit()"
+        [size]="'large'"
+        [fullWidth]="true"
+        [isLoading]="isSubmitting"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  </div>
+</common-ui-components-page-layout>

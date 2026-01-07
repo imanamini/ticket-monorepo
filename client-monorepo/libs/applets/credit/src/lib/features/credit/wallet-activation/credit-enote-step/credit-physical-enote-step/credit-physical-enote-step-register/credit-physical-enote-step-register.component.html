@@ -1,0 +1,49 @@
+<app-credit-app-bar
+  (onBackButtonClick)="prevStep.emit()"
+  (onTextClick)="changeNoteTypeClicked.emit()"
+  [actionText]="switchTypePossible() ? 'تغییر نوع سفته' : null!"
+  [backButton]="true"
+  [actionImage]="switchTypePossible() ? 'edit-square' : undefined"
+  title="اطلاعات سفته"
+>
+</app-credit-app-bar>
+<div class="main-section flex-full-height">
+  <div class="top-section">
+    <app-credit-scrollable-view>
+      <div class="page-content">
+        <div
+          [formGroup]="form"
+          class="form-wrapper"
+        >
+          <label class="cheque-id-label"> اطلاعات سفته را وارد کنید: </label>
+          <ui-form-field
+            [error]="form.controls['treasuryNumber'].errors"
+            [isNumericKeyboard]="true"
+            formControlName="treasuryNumber"
+            label="شماره خزانه‌داری"
+          ></ui-form-field>
+
+          <app-credit-note-serial-input
+            [error]="form.controls['series'].errors"
+            [userErrorMapper]="{
+              bothEmpty: 'حداقل یکی از بخش‌ها باید انتخاب شود',
+            }"
+            formControlName="series"
+          >
+          </app-credit-note-serial-input>
+          <div class="cheque-image"></div>
+        </div>
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+  <div class="bottom-section">
+    <ngx-button
+      (clickHandler)="onSubmit()"
+      [disabled]="form.invalid || showLoading()"
+      [isLoading]="showLoading()"
+      [fullWidth]="true"
+    >
+      تایید و ادامه
+    </ngx-button>
+  </div>
+</div>

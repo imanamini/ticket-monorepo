@@ -1,0 +1,78 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  title="کرایه تاکسی"
+  *ngIf="!isError() && !isLoading()"
+>
+  <form
+    [formGroup]="taxiPayForm"
+    class="taxi-pay"
+  >
+    <div class="taxi-container">
+      <div class="taxi-driver"></div>
+      <div class="taxi-info">
+        <taxi-applet-info
+          [taxiData]="taxiData"
+          [taxiInfo]="taxiData.carInfo"
+        ></taxi-applet-info>
+      </div>
+      <ui-form-field
+        [errorMessageMapper]="errorMessageMapper"
+        [type]="'large-amount'"
+        [maxAmount]="maxAmount"
+        [minAmount]="minAmount"
+        class="amount-input"
+        [formControlName]="'amount'"
+        [maxSize]="maxAmount.toString().length + 1"
+      ></ui-form-field>
+
+      <taxi-applet-recommendation-amount
+        (amountClickedNumber)="selectedNumberClicked($event)"
+        [amounts]="amounts"
+      >
+      </taxi-applet-recommendation-amount>
+    </div>
+    <div class="pay-info">
+      <div class="passengers">
+        <p class="passengers-title">تعداد مسافران:</p>
+        <taxi-applet-passenger-counter
+          [minPassenger]="1"
+          (passengerNumberClicked)="passengerNumberClicked($event)"
+          [maxPassenger]="taxiData!.carInfo.maxPassengerCount"
+        ></taxi-applet-passenger-counter>
+      </div>
+      <div class="pay-desc">
+        <div class="amount">
+          <div class="total-text">مبلغ پرداختی :</div>
+          <div
+            class="total-amount"
+            *ngIf="totalAmount"
+          >
+            {{ totalAmount | thousands }}ریال
+          </div>
+        </div>
+        <ngx-button
+          [mode]="'form'"
+          [size]="'large'"
+          [brandButton]="true"
+          [style]="'fill'"
+          [disabled]="!taxiPayForm.value"
+          (clickHandler)="navigateToConfirm()"
+        >
+          ادامه
+        </ngx-button>
+      </div>
+    </div>
+  </form>
+</common-ui-components-page-layout>
+<taxi-applet-error-page
+  *ngIf="isError() && !isLoading()"
+  [title]="apiErrorMessage.title"
+  [description]="apiErrorMessage.description"
+>
+  <div
+    image
+    [ngClass]="apiErrorMessage.errorImageClass"
+  ></div>
+</taxi-applet-error-page>
+
+<taxi-applet-main-skeleton *ngIf="isLoading()" />

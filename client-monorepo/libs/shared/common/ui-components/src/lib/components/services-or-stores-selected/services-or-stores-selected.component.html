@@ -1,0 +1,11 @@
+<div class="surface-elevated radius-medium p-tiny d-flex flex-column align-items-center px-plus py-medium w-100">
+  <div class="d-flex flex-column justify-content-center align-items-center w-100">
+    <common-ui-components-list-categories-header
+      [forceNewVersion]="true"
+      [config]="header()"
+    ></common-ui-components-list-categories-header>
+    @for (section of services(); track section.title) {
+      <common-ui-components-item-overview [item]="section"></common-ui-components-item-overview>
+    }
+  </div>
+</div>

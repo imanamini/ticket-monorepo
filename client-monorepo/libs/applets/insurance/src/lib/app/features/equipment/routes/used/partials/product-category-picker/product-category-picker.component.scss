@@ -1,0 +1,50 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.product-category-picker {
+  @include flex-column;
+  @include flex-center;
+  gap: 56px;
+
+  .picker-hint {
+    font-size: 14px;
+    color: #6e798d;
+  }
+
+  .picker-categories {
+    @include flex-row;
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: 32px;
+
+    .category-item {
+      @include flex-column;
+      @include flex-center;
+      gap: 24px;
+
+      &.active {
+        .item-image-wrapper {
+          border: 2px solid #0040ff;
+          background-color: #f0f5ff;
+        }
+
+        .item-title {
+          color: #0040ff;
+          font-weight: 700;
+        }
+      }
+
+      .item-image-wrapper {
+        @include flex-center;
+        border: 1px solid #dee3e7;
+        border-radius: 100%;
+        width: 120px;
+        height: 120px;
+      }
+
+      .item-title {
+        color: #6e798d;
+        font-weight: 400;
+      }
+    }
+  }
+}

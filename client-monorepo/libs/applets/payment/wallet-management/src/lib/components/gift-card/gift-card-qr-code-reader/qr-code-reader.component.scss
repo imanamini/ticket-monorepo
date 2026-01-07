@@ -1,0 +1,59 @@
+@import "@digipay/base-style/mixins/responsive";
+
+.access-denied {
+  text-align: center;
+  direction: rtl;
+  position: absolute;
+  line-height: 1.5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.gift-card-qr-code-container {
+  height: 100%;
+
+  ::ng-deep zxing-scanner {
+    height: 100%;
+
+    video {
+      height: 100%;
+    }
+  }
+}
+
+.header {
+  background-color: white;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: flex-end;
+  padding: 10px 16px;
+
+  .exit {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    background: url("../../../../../../../../../apps/dpx/src/assets/wallet-management/gift-card-close.svg") no-repeat center center;
+    background-size: contain;
+  }
+}
+
+
+@include small_screen() {
+  .gift-card-qr-code-container {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: relative;
+
+    zxing-scanner {
+      ::ng-deep video {
+        height: 100vh !important;
+      }
+    }
+  }
+}
+

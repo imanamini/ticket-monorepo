@@ -1,0 +1,44 @@
+@import "@digipay/base-style/swatch";
+
+:host {
+  display: flex;
+  padding: 0 1rem;
+}
+
+.sort-container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $swatch_steel_100;
+  }
+
+  .purchase-price-form {
+    margin-top: 0.5rem;
+    width: 100%;
+
+    .mat-radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      user-select: none;
+
+      .mat-radio-button {
+        width: fit-content;
+      }
+    }
+
+    .mat-mdc-radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+}

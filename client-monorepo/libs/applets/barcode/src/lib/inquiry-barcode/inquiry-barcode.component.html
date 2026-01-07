@@ -1,0 +1,60 @@
+<div class="d-flex flex-column h-100 justify-content-space-between">
+  <div class="content-container">
+    <div class="d-flex flex-column gap-medium">
+      <span class="d-flex fw-bold fs-16 gap-small align-items-center">
+        <common-icon-dp-icon
+          [icon]="'bag'"
+          [iconType]="'linear'"
+        ></common-icon-dp-icon>
+        بررسی اطلاعات خرید
+      </span>
+
+      <div class="d-flex flex-column gap-small">
+        <div class="d-flex justify-content-space-between align-items-center pb-small">
+          <p class="b-3 text-onback-low">فروشگاه</p>
+          <p class="b-1 text-onback-low">{{ data.merchantName }}</p>
+        </div>
+        <div class="d-flex p-minus flex-row align-items-start radius-minus surface-dim-level-0 gap-small mb-small">
+          <common-icon-dp-icon
+            [class]="'text-onback-brand'"
+            [icon]="'info-circle'"
+            iconType="due"
+            iconSize="24"
+          ></common-icon-dp-icon>
+
+          <span class="fs-14 text-onback-medium">در صورت تایید اطلاعات، خرید شما نهایی خواهد شد و قابل انصراف نیست.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-huge">
+    <div class="actions-container">
+      <div class="d-flex justify-content-space-between align-items-center pb-small">
+        <p class="b-3 text-onback-low">مبلغ درخواستی فروشگاه</p>
+        <p class="b-1 text-onback-low">{{ data.amount | iranianRials }}</p>
+      </div>
+      <div class="d-flex gap-small">
+        <ngx-button
+          [mode]="'form'"
+          [size]="'large'"
+          [style]="'tinted-on-elevated'"
+          [fullWidth]="true"
+          (clickHandler)="handleClickCancel()"
+        >
+          انصراف
+        </ngx-button>
+        <ngx-button
+          [mode]="'form'"
+          [size]="'large'"
+          [style]="'fill'"
+          [brandButton]="true"
+          [fullWidth]="true"
+          (clickHandler)="handleClickSubmit()"
+        >
+          تایید و پرداخت
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+</div>

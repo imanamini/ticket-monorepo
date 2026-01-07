@@ -1,0 +1,15 @@
+<common-ui-components-horizontal-scroll [classes]="'py-medium pr-plus'">
+  @for (filter of messageFilterItems(); track filter) {
+    <ngx-chip
+      [id]="filter.id"
+      [label]="filter.label"
+      [leadingIcon]="filter?.icon"
+      [classes]="'surface-back'"
+      [disableAnimations]="true"
+      [pressed]="filter.pressed"
+      [size]="'LARGE'"
+      (click)="onFilterClicked(filter)"
+      [disableClick]="filter.clickDisabled"
+    ></ngx-chip>
+  }
+</common-ui-components-horizontal-scroll>

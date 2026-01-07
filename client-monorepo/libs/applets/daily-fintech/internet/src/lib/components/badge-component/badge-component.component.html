@@ -1,0 +1,10 @@
+<div class="bundle-times">
+  <div
+    *ngFor="let title of packageTitles()"
+    [ngClass]="{ selected: selectedItem() === title }"
+    (click)="onClick(title)"
+    class="time"
+  >
+    {{ title }}
+  </div>
+</div>

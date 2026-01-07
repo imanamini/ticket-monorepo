@@ -1,0 +1,18 @@
+<div class="d-flex flex-column gap-small">
+  <common-ui-components-title-summary
+    [title]="title()"
+    class="px-plus"
+    [showButton]="false"
+    [wrapperClasses]="'overflow-hidden'"
+  ></common-ui-components-title-summary>
+  <div class="w-100">
+    <common-social-posts-grid
+      [disablePagination]="false"
+      [showNoItems]="false"
+      [gridMode]="'RECTANGLE'"
+      [searchText]="searchText()"
+      [pageSize]="12"
+      (onEmpty)="handleEmptyPost()"
+    ></common-social-posts-grid>
+  </div>
+</div>

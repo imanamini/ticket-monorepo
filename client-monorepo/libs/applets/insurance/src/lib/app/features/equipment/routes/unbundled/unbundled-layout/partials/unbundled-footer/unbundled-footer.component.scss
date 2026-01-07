@@ -1,0 +1,255 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.ub-footer {
+  background: #f6f8ff;
+
+  .inner-footer {
+    width: 90%;
+    margin: 0 auto;
+    height: 100%;
+    padding: 20px 0;
+
+    .footer-license-container {
+      margin-bottom: 40px;
+      @include flex-center-start;
+
+      .describe-company {
+        font-weight: 400;
+        color: rgba(6, 25, 98, 0.5);
+        line-height: 1.7;
+        margin-right: 50px;
+        font-size: 12px;
+      }
+
+      .footer-license-list {
+        @include flex-center-start;
+
+        .footer-license-item {
+          border-radius: 15px;
+          border: 1px solid #D0D9F5;
+          width: 75px;
+          height: 75px;
+          padding: 19px;
+          margin: 0 10px;
+        }
+      }
+    }
+
+
+    .nav-list {
+      @include flex-center-start;
+
+      .nav-list-item {
+        color: #061962;
+        padding: 0 20px;
+        transition: .2s ease-out all;
+
+        &:hover {
+          transform: scale(1.1);
+          font-weight: 500;
+          text-shadow: 1px 0 1px #CCCCCC,
+          0 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC,
+          2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC,
+          4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC;
+        }
+      }
+    }
+
+    .about-company {
+      margin: 40px 0;
+      padding: 20px;
+      @include flex-center-between;
+      width: 100%;
+      height: 121px;
+      background: #e7ecfd;
+      border-radius: 12px;
+
+      .contact {
+        @include flex-center-start;
+        color: #061962;
+
+        .mobile {
+          @include flex-center-start;
+
+          .icon {
+            cursor: pointer;
+            background-image: url("/insurance-assets/icons/call.svg");
+            width: 29px;
+            height: 29px;
+            display: block;
+            background-repeat: no-repeat;
+            background-size: contain;
+            padding: 0 25px;
+          }
+
+          .cell-phone {
+            color: #061962;
+            font-size: 16px;
+            font-weight: 600;
+            border-left: 2px solid rgba(6, 25, 98, 0.5);
+            padding: 0 15px;
+            margin-left: 15px;
+          }
+        }
+
+        .address {
+          font-size: 13px;
+          color: #061962;
+        }
+      }
+    }
+
+    .head, .foot {
+      @include flex-center-between;
+
+      &::after {
+        content: '';
+        border-bottom: 1px solid #d0d9f5;
+        width: 45%;
+      }
+
+      &::before {
+        content: '';
+        border-bottom: 1px solid #d0d9f5;
+        width: 45%;
+      }
+    }
+
+    .head {
+      .icon {
+        width: 39px;
+        height: 58px;
+        background: url("/insurance-assets/images/logos/digipay-logo-dark.svg") no-repeat;
+        padding: 0 22px;
+      }
+    }
+
+    .foot {
+      .text {
+        font-size: 12px;
+        color: rgba(6, 25, 98, 0.5);
+        font-weight: 500;
+        white-space: nowrap;
+        padding: 0 30px;
+      }
+    }
+  }
+}
+
+.social-media {
+  @include flex-center-end;
+
+  .social-media-item {
+    width: 29px;
+    height: 29px;
+    display: block;
+    background-repeat: no-repeat;
+    padding: 0 25px;
+    transition: .2s ease-out all;
+
+    &:hover {
+      transform: scale(1.15);
+    }
+
+    &.twitter {
+      background-image: url("/assets/icons/twitter.svg");
+    }
+
+    &.linkedin {
+      background-image: url("/assets/icons/linkedin.svg");
+    }
+
+    &.aparat {
+      background-image: url("/assets/icons/aparat.svg");
+    }
+
+    &.instagram {
+      background-image: url("/assets/icons/instagram.svg");
+    }
+  }
+}
+
+@include mediaTablet() {
+  .social-media {
+    justify-content: center;
+    margin-bottom: 15px;
+
+    .social-media-item {
+      padding: 0 35px;
+
+      &:first-child {
+        padding: 0;
+      }
+    }
+
+  }
+  .ub-footer {
+    .inner-footer {
+      .about-company {
+        .contact {
+          justify-content: space-between;
+          width: 100%;
+
+          .mobile {
+            margin-bottom: 10px;
+
+            .cell-phone {
+              border: none;
+            }
+          }
+        }
+      }
+
+      .footer-license-container {
+        flex-direction: column;
+
+        .footer-license-list {
+          order: 2;
+        }
+
+        .describe-company {
+          margin: 20px 0;
+        }
+      }
+
+      .nav-list {
+        justify-content: center;
+        margin-top: 15px;
+
+        .nav-list-item {
+          font-size: 12px;
+          padding: 0 8px;
+        }
+      }
+
+      .foot {
+        &::after, &::before {
+          display: none;
+        }
+
+        .text {
+          white-space: initial;
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+
+@include mediaMobile() {
+  .social-media {
+    justify-content: space-around;
+
+  }
+  .ub-footer {
+    .inner-footer {
+      .about-company {
+        .contact {
+          margin: auto;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+
+}

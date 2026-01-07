@@ -1,0 +1,90 @@
+@if (services().length > 0) {
+  <ng-container>
+    @if (title()) {
+      <p class="st-8 text-onback-high pb-minus">{{ title() }}</p>
+    }
+    <div class="surface-elevated radius-medium p-medium">
+      @for (service of services(); track service) {
+        <div
+          class="ui-plan-service"
+          [ngClass]="{ 'management-space': isManagementSection() }"
+        >
+          @if (service?.merchantCashbackList && service?.merchantCashbackList.length === 1) {
+            <ui-api-image
+              [imageId]="service?.icon ?? ''"
+              [width]="isManagementSection() ? '56px' : '32px'"
+              [height]="isManagementSection() ? '56px' : '32px'"
+            ></ui-api-image>
+          } @else {
+            <span
+              class="image"
+              [ngClass]="{ 'management-icon': isManagementSection() }"
+              [style.background-image]="'url(' + service?.icon + ')'"
+            ></span>
+          }
+          <div class="ui-plan-service-data border-b-100 border-color-light pb-small">
+            <div class="ui-plan-service-title">
+              <p class="title-wrapper">
+                <span
+                  class="c-1"
+                  [ngClass]="service?.isComing ? 'text-onback-low' : 'text-onback-high'"
+                  >{{ service?.title }}</span
+                >
+              </p>
+              @if (service?.hasDetail && showDetails() && !isManagementSection()) {
+                <span
+                  class="ui-plan-service-details l-1 text-onback-low d-flex align-items-center gap-micro cursor-pointer"
+                  (click)="clickServiceDetail(service)"
+                  >جزییات
+                </span>
+              }
+              @if (service.badge) {
+                <ngx-badge
+                  [status]="service.badge.status"
+                  [mode]="service.badge.mode"
+                  [size]="'tiny'"
+                  class="text-no-wrap"
+                >
+                  {{ service.badge.content }}
+                </ngx-badge>
+              }
+            </div>
+            @if (isManagementSection() && service?.merchantCashbackList) {
+              @if (service?.managementDescription && service?.merchantCashbackList?.length === 1) {
+                <div
+                  highlightKeywords
+                  [baseText]="service?.managementDescription?.text"
+                  [keywords]="service?.managementDescription?.keywords"
+                  class="c-2 pt-tiny text-onback-low"
+                ></div>
+              }
+              @if (isManagementSection() && service?.merchantCashbackList.length > 1) {
+                <div
+                  highlightKeywords
+                  [baseText]="service?.managementDescription?.text"
+                  [keywords]="service?.managementDescription?.keywords"
+                  class="c-2 pt-tiny text-onback-low"
+                ></div>
+              }
+              @if (service?.managementDescriptionDetail) {
+                <div
+                  highlightKeywords
+                  [baseText]="service?.managementDescriptionDetail?.text"
+                  [keywords]="service?.managementDescriptionDetail?.keywords"
+                  class="c-2 pt-tiny text-onback-low"
+                ></div>
+              }
+            } @else {
+              <div
+                highlightKeywords
+                [baseText]="service?.description?.text"
+                [keywords]="service?.description?.keywords"
+                class="c-2 pt-tiny text-onback-low"
+              ></div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </ng-container>
+}

@@ -1,0 +1,52 @@
+@if (loading$| async) {
+  <ui-loading-spinner></ui-loading-spinner>
+} @else {
+  <div class="pricing-wrapper">
+    <div class="pricing">
+<!--      @defer {-->
+<!--        <used-suggested-price-card-->
+<!--          (selectedChange)="handleActiveCard($event)"-->
+<!--          [isActive]="selectedCard === UsedSelectedCardTypeModel.NotManual"-->
+<!--          [uniqueCode]="uniqueCode"-->
+<!--          [model]="orderInfo?.productModel"-->
+<!--          [suggestedPrice]="suggestedPrice">-->
+<!--        </used-suggested-price-card>-->
+<!--      }-->
+<!--      @defer {-->
+<!--        <ins-alert [size]="AlertSizeEnum.Small"-->
+<!--                   [hasIcon]="true"-->
+<!--                   [color]="selectedColor()"-->
+<!--                   [text]="setTextAlert()"-->
+<!--                   (linkButtonClicked)="linkButtonClicked()">-->
+<!--        </ins-alert>-->
+<!--      }-->
+      @defer {
+        <used-manual-pricing
+          [uniqueCode]="uniqueCode"
+          (activeChanged)="handleActiveCard($event)"
+          (priceChange)="handleManualPriceValueChange($event)"
+          (isPriceValid)="isManualPriceValid.set($event)"
+          [announcedPrice]="this.orderInfo?.announcedPrice"
+          [isActive]="true">
+        </used-manual-pricing>
+      }
+      @defer {
+        <ins-alert [size]="AlertSizeEnum.Small"
+                   [hasIcon]="true"
+                   [color]="AlertColorEnum.Yellow"
+                   [actionButton]="{type: AlertActionButtonTypeEnum.Link ,
+                   text :'راهنمای ارزش‌گذاری دستگاه' , align: AlertActionButtonAlignEnum.Start }"
+                   (linkButtonClicked)="linkButtonClicked()"
+                   text="توجه داشته باشید در زمان بروز حادثه، خسارت پرداختی براساس ارزش واقعی دستگاه در زمان خرید بیمه محاسبه می‌شود. بنابراین برای پوشش کامل در تعیین ارزش واقعی دستگاه خود دقت کنید.">
+        </ins-alert>
+      }
+    </div>
+    <journey-buttons
+      (nextClicked)="goToNextStep()"
+      [disableNext]="this.selectedCard === UsedSelectedCardTypeModel.NotManual ? !this.suggestedPrice : this.selectedCard === UsedSelectedCardTypeModel.Manual ? !disabledButton() : true"
+      [hideBackBtn]="true"
+      [idValue]="'used-pricing'"
+      nextText="تایید و ادامه">
+    </journey-buttons>
+  </div>
+}

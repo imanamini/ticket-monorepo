@@ -1,0 +1,23 @@
+.finalPlanView {
+  display: flex;
+  flex-direction: column;
+  border-radius: 17px;
+  width: 100%;
+  height: 200px;
+  gap: 35px;
+  padding: 30px;
+  background-image: url('../assets/credit_card_pattern_light.svg');
+  color: #fff;
+  background-color: #6a20ff;
+
+  .creditAmount {
+    display: flex;
+    justify-content: center;
+  }
+
+  .installmentCount {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

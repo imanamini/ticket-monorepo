@@ -1,0 +1,22 @@
+<ui-form-field
+  [label]="'تعیین پارتیشن'"
+  [inputType]="'tel'"
+  [isNumericKeyboard]="true"
+  [(ngModel)]="partition"
+  [convertNonEnglishDigits]="true"
+  [hint]="'بین ۱ تا ۳۰'"
+>
+</ui-form-field>
+<div class="d-flex gap-medium">
+  <ngx-button
+    [destructive]="true"
+    (clickHandler)="removePartition()"
+    >پاک کردن
+  </ngx-button>
+  <ngx-button
+    [fullWidth]="true"
+    [disabled]="+partition() < 1 || +partition() > 30"
+    (clickHandler)="updatePartition()"
+    >ثبت
+  </ngx-button>
+</div>

@@ -1,0 +1,87 @@
+<div
+  *ngIf="planDetail"
+  class="right-side"
+>
+  <div class="top-section">
+    <app-ui-scrollable-view>
+      <div
+        *ngIf="planDetail.header"
+        [innerHTML]="planDetail.header | safeHtml"
+        class="plan-desc-header"
+      ></div>
+      <div *ngFor="let item of planDetail.receiptItems">
+        <app-pre-registration-group-detail-toggles
+          [description]="item.description"
+          [openMode]="true"
+          [title]="item.title"
+          [value]="item.value"
+        ></app-pre-registration-group-detail-toggles>
+      </div>
+      <div *ngFor="let item of planDetail.descriptionItems">
+        <app-pre-registration-group-detail-toggles
+          [description]="item.description"
+          [openMode]="true"
+          [title]="item.title"
+          [value]="''"
+        ></app-pre-registration-group-detail-toggles>
+      </div>
+    </app-ui-scrollable-view>
+  </div>
+
+  <div class="ctas">
+    <app-ui-button
+      (click)="back()"
+      appearance="FLAT-BLUE"
+    >
+      <ngx-icon
+        [iconSize]="'24'"
+        [name]="'arrow-2-right'"
+        class="text-onback-brand"
+      ></ngx-icon>
+      قبلی
+    </app-ui-button>
+    <app-ui-button
+      (click)="next()"
+      class="w-40"
+    >
+      تایید و ادامه
+      <span
+        appUiIcon
+        icon="icon-charon-left-white"
+        size="24"
+      ></span>
+    </app-ui-button>
+  </div>
+</div>
+
+<div
+  *ngIf="planDetail"
+  class="left-side"
+>
+  <div class="card-holder">
+    <app-credit-card
+      [color]="planDetail.card.color"
+      [leftLabel]="planDetail.card.installmentCount ? planDetail.card.installmentCount + ' قسط' : ''"
+      [logo]="planDetail.card.icon"
+      [rightLabel]="step.info.collateral.name ? 'با ' + step.info.collateral.name : ''"
+      [title]="planDetail.card.title"
+    >
+      <div class="credit-wallet-card-price">
+        <ng-container *ngIf="planDetail.card?.planRuleType === PlanRuleEnum.DYNAMIC; else defaultPrice">
+          <span>{{
+            planDetail.card?.balanceRange?.min!
+              | numberToString: isOrderedByMagnitude(planDetail.card?.balanceRange?.max!, planDetail.card?.balanceRange?.min!)
+          }}</span>
+          تا
+          <span>{{ planDetail.card?.balanceRange?.max! | numberToString }}</span>
+          <small> ریال</small>
+        </ng-container>
+      </div>
+    </app-credit-card>
+  </div>
+</div>
+
+<app-credit-page-loading [active]="showLoading"></app-credit-page-loading>
+<ng-template #defaultPrice>
+  {{ planDetail.card.description }}
+</ng-template>

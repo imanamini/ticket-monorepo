@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="sale-promotion d-flex justify-content-center align-items-center">
+    <div class="content d-flex flex-column gap-plus">
+      <div class="title text-onback-medium" [innerHTML]="templateData?.promotionSection?.title">
+      </div>
+      <div class="subtitle text-onback-medium b-1" [innerHTML]="templateData?.promotionSection?.subtitle">
+      </div>
+    </div>
+    <div class="image">
+      <img src="{{templateData?.promotionSection?.desktopImage.url}}" alt="" class="desktop">
+      <img src="{{templateData?.promotionSection?.mobileImage.url}}" alt="" class="mobile">
+
+      <div class="subtitle text-oninvert-medium b-2" [innerHTML]="templateData?.promotionSection?.subtitle">
+      </div>
+      <div class="action d-flex flex-column gap-small">
+        @if (templateData?.promotionSection?.primaryCta?.title) {
+          <span>
+           <ngx-button
+             [size]="'medium'"
+             [style]="'tinted-on-back'"
+             [mode]="'form'"
+             (click)="openLink(templateData?.promotionSection?.primaryCta?.link)"
+           >
+              {{ templateData?.promotionSection?.primaryCta?.title }}
+            </ngx-button>
+        </span>
+        }
+        @if (templateData?.promotionSection?.secondaryCta?.title) {
+          <span>
+           <ngx-button
+             [size]="'medium'"
+             [style]="'fill'"
+             [mode]="'form'"
+             (click)="openLink(templateData?.promotionSection?.secondaryCta?.link)"
+           >
+              {{ templateData?.promotionSection?.secondaryCta?.title }}
+            </ngx-button>
+        </span>
+        }
+
+      </div>
+
+    </div>
+  </div>
+</div>

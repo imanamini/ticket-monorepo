@@ -1,0 +1,47 @@
+<!-- Title Bar -->
+<div class="align-items-center pr-plus py-medium position-relative mt-medium">
+  <div class="s-t-6">فیلترها</div>
+  <ngx-button
+    class="delete-filters"
+    [style]="'link'"
+    (click)="deleteAllFilters()"
+  >
+    حذف فیلترها
+  </ngx-button>
+</div>
+<!-- End Title Bar -->
+
+<div class="h-100 d-flex flex-column justify-content-space-between px-plus pt-medium">
+  <!-- Filters -->
+  <div class="d-flex flex-column">
+    <ngx-accordion [configs]="accordionConfigs()"></ngx-accordion>
+  </div>
+  <!-- End Filters -->
+
+  <!-- Buttons -->
+  <div class="buttons-wrapper d-flex flex-row surface-elevated gap-small py-big">
+    <div class="single-button">
+      <ngx-button
+        id="dismiss-store-filters-btn"
+        [style]="'link'"
+        [fullWidth]="true"
+        [size]="'large'"
+        (click)="dismissFilters()"
+      >
+        انصراف
+      </ngx-button>
+    </div>
+    <div class="single-button">
+      <ngx-button
+        id="submit-store-filters-btn"
+        [style]="'fill'"
+        [size]="'large'"
+        [fullWidth]="true"
+        (clickHandler)="submitFilters()"
+      >
+        ثبت و تایید
+      </ngx-button>
+    </div>
+  </div>
+</div>
+<!-- End Buttons -->

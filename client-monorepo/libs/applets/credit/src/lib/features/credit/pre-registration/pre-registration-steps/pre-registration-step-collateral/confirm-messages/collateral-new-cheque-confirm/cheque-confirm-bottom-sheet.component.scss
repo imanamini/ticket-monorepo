@@ -1,0 +1,37 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.cheque-image {
+  max-width: 312px;
+  height: 176px;
+  position: relative;
+
+  .cheque{
+    aspect-ratio: 1.75;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    &.cheque-purple{
+    background-image: url("../../../../../assets/images/credit-purple-cheque.png");
+    }
+    &.cheque-not-acceptable{
+      background-image: url("../../../../../assets/images/credit-cheque-not-accept.png");
+    }
+  }
+
+}
+
+.skeleton {
+  max-width: 312px;
+}
+
+.collateral-confirm-bottom-sheet {
+  flex-grow: 1;
+  overflow-y: auto;
+  direction: rtl;
+}

@@ -1,0 +1,50 @@
+<div class="header">
+  <ngx-button
+    class="ml-small"
+    [mode]="'icon-only'"
+    [style]="'neutral-link'"
+    (clickHandler)="close()"
+    [size]="'tiny'"
+    [leftIcon]="{
+      name: 'close',
+    }"
+  >
+  </ngx-button>
+
+  <div class="title">پرداخت تجمیعی</div>
+</div>
+
+<app-credit-scrollable-view [fullHeightContent]="true">
+  <p class="description">از بین بدهی‌های سررسید شده، اقساط مورد نظر را انتخاب و پرداخت کنید.</p>
+
+  @for (installment of installments(); track installment) {
+    <label
+      [for]="installment.trackingCode + installment.order"
+      [ngClass]="['wrapper-card', installmentStates()[installment.trackingCode + installment.order] ? 'selected' : '']"
+    >
+      <app-credit-checkbox
+        [id]="installment.trackingCode + installment.order"
+        [type]="'primary'"
+        [isLocked]="!!installment?.penaltyAmount"
+        (lockedClick)="handleLockedClick()"
+        [checked]="installmentStates()[installment.trackingCode + installment.order]"
+        (checkedChange)="handleCheckbox($event, installment)"
+      >
+      </app-credit-checkbox>
+      <app-credit-installment-item
+        class="wrapper-installment"
+        [installment]="installment"
+        [withoutCard]="true"
+      >
+      </app-credit-installment-item>
+    </label>
+  }
+</app-credit-scrollable-view>
+
+<app-credit-aggregation-bottom
+  (actionClicked)="onSubmit()"
+  [aggregationTotalAmount]="totalAmount()!"
+  actionTitle="تایید و پرداخت"
+  amountTitle="مجموع انتخاب شده"
+>
+</app-credit-aggregation-bottom>

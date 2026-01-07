@@ -1,0 +1,11 @@
+<div class="sort-button cursor-pointer" [ngClass]="{selected: selectedSortMethod() != null}" (click)="sortClicked()">
+  @if (selectedSortMethod() != null) {
+    <ins-icon [name]="IconEnum.SortBlue" [width]="16" [height]="16"></ins-icon>
+    <span>{{ SORT_METHOD_TRANSLATIONS[ selectedSortMethod() ] }}</span>
+    <ins-icon (click)="deleteSelectedSortMethod($event)" [name]="IconEnum.CloseBlue" [width]="16"
+              [height]="16"></ins-icon>
+  } @else {
+    <ins-icon [name]="IconEnum.Sort" [width]="16" [height]="16"></ins-icon>
+    <span>مرتب‌سازی</span>
+  }
+</div>

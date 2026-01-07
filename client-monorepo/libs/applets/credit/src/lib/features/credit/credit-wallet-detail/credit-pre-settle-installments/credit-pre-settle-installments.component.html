@@ -1,0 +1,99 @@
+<div class="header">
+  <div (click)="dismissDialog()">
+    <ngx-icon
+      class="cursor-pointer"
+      [name]="'close'"
+      [iconSize]="'24px'"
+    ></ngx-icon>
+  </div>
+  تسویه بدهی
+</div>
+<ngx-tabs class="tabs">
+  <ngx-tab
+    class="d-flex"
+    [style]="selectedTabIndex() === TabEnum.Some ? 'height: 100%' : ''"
+    [label]="nextInstallmentTabLabel()"
+    [state]="selectedTabIndex() === TabEnum.Some ? 'selected' : 'enabled'"
+    (stateChange)="calculatedPayableAmount(TabEnum.Some, $event)"
+  >
+    <div class="body">
+      @if (!DueInstallmentExists()) {
+        <div class="description">درحال حاضر قسط سررسید شده‌ ندارید. اما می‌توانید قسط بعدی خود را پرداخت کنید.</div>
+      }
+
+      @if (installments()?.length > 1) {
+        @for (installment of installments(); track installment.order; let i = $index) {
+          <app-credit-installment-item-select
+            [installment]="installment"
+            [checked]="installmentsStates()[installment.order]"
+            (checkedChange)="onCheckedChange($event)"
+            [isLocked]="i !== 0 && installmentsStates()[installments()[i - 1].order] === false"
+            (lockedClick)="onLocked()"
+          >
+          </app-credit-installment-item-select>
+        }
+      } @else if (installments() && installments()[0]) {
+        <app-credit-installment-item
+          class="wrapper-installment"
+          [installment]="installments()[0]"
+          [whiteBackground]="true"
+        >
+        </app-credit-installment-item>
+      }
+    </div>
+  </ngx-tab>
+  <ngx-tab
+    class="d-flex"
+    [label]="'مجموع بدهی'"
+    [state]="selectedTabIndex() === TabEnum.All ? 'selected' : 'enabled'"
+    (stateChange)="calculatedPayableAmount(TabEnum.All, $event)"
+  >
+    <div class="body">
+      @if (data()?.discountAmount) {
+        <div class="hint">
+          <div class="hint-icon"></div>
+          <div>با تسویه مجموع بدهی، سود کمتری پرداخت کنید!</div>
+        </div>
+      }
+
+      <div class="box total">
+        <div class="row">
+          <div class="row-title">مجموع بدهی</div>
+
+          <div>
+            <span class="number">{{ data()?.clearAmount + data()?.discountAmount | IRR: 'hideRial' }}</span>
+            <span class="unit is-currency">ریال</span>
+          </div>
+        </div>
+
+        @if (data()?.discountAmount) {
+          <div class="row teal">
+            <div class="row-title">سود بخشیده شده</div>
+            <div>
+              <span class="number">{{ data()?.discountAmount | IRR: 'hideRial' }} -</span>
+              <span class="unit is-currency">ریال</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </ngx-tab>
+</ngx-tabs>
+
+<div class="footer">
+  <div>
+    <div class="footer-title">مبلغ قابل پرداخت</div>
+
+    <div>
+      <span class="number">{{ payableAmount() | IRR: 'hideRial' }}</span>
+      <span class="unit is-currency">ریال</span>
+    </div>
+  </div>
+
+  <ngx-button
+    (clickHandler)="onActionClick()"
+    [disabled]="payableAmount() === 0"
+  >
+    تایید و پرداخت
+  </ngx-button>
+</div>

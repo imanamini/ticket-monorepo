@@ -1,0 +1,42 @@
+COMMIT_MSG_FILE=$1
+
+BLUE="\033[34m"
+GREEN="\033[32m"
+RED="\033[31m"
+CYAN="\033[36m"
+RESET="\033[0m"
+
+run_command() {
+    printf "%bExecuting: %s%b\n" "$BLUE" "$1" "$RESET"
+    sh -c "$1" || {
+        printf "%bError: Command failed - %s%b\n" "$RED" "$1" "$RESET"
+        exit 1
+    }
+}
+
+if [ -z "$COMMIT_MSG_FILE" ] || [ ! -f "$COMMIT_MSG_FILE" ]; then
+    printf "%bError: Commit message file not found!%b\n" "$RED" "$RESET"
+    exit 1
+fi
+
+FIRST_LINE=$(head -n 1 "$COMMIT_MSG_FILE")
+
+PATTERN="^(Fix:|Feature:|Epic:|Improvement:|Change:|Refactor:|Revert|Merge|Test)"
+
+echo "$FIRST_LINE" | grep -Eq "$PATTERN"
+if [ $? -ne 0 ]; then
+    printf "%bError: Commit message must start with one of the allowed prefixes.%b\n" "$RED" "$RESET"
+    printf "%bAllowed prefixes: Fix:, Feature:, Epic:, Improvement:, Change:, Refactor:, Revert, Merge%b\n" "$CYAN" "$RESET"
+    exit 1
+fi
+
+BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "unknown")
+printf "%bCurrent branch: %s%b\n" "$GREEN" "$BRANCH_NAME" "$RESET"
+
+printf "%bChecking out and pulling staging branch for all submodules...%b\n" "$GREEN" "$RESET"
+run_command 'git submodule foreach --recursive "git checkout staging && git pull --rebase origin staging"'
+
+printf "%bSubmodule operations completed successfully.%b\n" "$GREEN" "$RESET"
+printf "%bCommit message validated successfully.%b\n" "$GREEN" "$RESET"
+
+exit 0

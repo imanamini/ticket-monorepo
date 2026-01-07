@@ -1,0 +1,84 @@
+<common-ui-components-page-layout
+  [stickyHeader]="false"
+  [ngClass]="{ support: isSupport() }"
+>
+  <div id="qr-scanner">
+    @if (isSupport()) {
+      <div
+        class="wrapper"
+        [ngStyle]="{ visibility: hasPermission() ? 'visible' : 'hidden' }"
+      >
+        <zxing-scanner
+          (permissionResponse)="permissionHandler($event)"
+          [formats]="scanFormats()"
+          (scanSuccess)="scanSuccessHandler($event)"
+        >
+        </zxing-scanner>
+
+        <div class="mask">
+          <div class="icon">
+            <span class="icon-rounded"></span>
+            <div class="hole"></div>
+          </div>
+          <div class="footer">
+            <ngx-button
+              (clickHandler)="acceptorClicked()"
+              class="footer-button"
+              [mode]="'form'"
+              [size]="'large'"
+              [style]="'tinted-on-elevated'"
+              [fullWidth]="true"
+            >
+              کد پذیرنده
+            </ngx-button>
+            <ngx-button
+              class="footer-button"
+              (clickHandler)="showMyBarcode()"
+              [mode]="'form'"
+              [size]="'large'"
+              [style]="'fill'"
+              [rightIcon]="{
+                name: 'scan',
+                type: 'linear',
+              }"
+              [fullWidth]="true"
+            >
+              بارکد من
+            </ngx-button>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <div class="show-qr">
+        @if (!gettingBarcodeImage()) {
+          <div
+            [ngClass]="{ visible: !isSupport() }"
+            [ngStyle]="avatarStyles"
+            class="qr-code"
+          ></div>
+        }
+        <ngx-button
+          class="scanner-button"
+          (clickHandler)="showScanner()"
+          [mode]="'form'"
+          [size]="'large'"
+          [style]="'fill'"
+          [rightIcon]="{
+            name: 'scan',
+            type: 'linear',
+          }"
+          [fullWidth]="true"
+        >
+          بارکد خوان
+        </ngx-button>
+      </div>
+    }
+    @if (!hasPermission() && !isLoading()) {
+      <scanner-applet-permission-denied
+        (nativePermissionResult)="permissionHandler($event)"
+        class="has-permission-style"
+      >
+      </scanner-applet-permission-denied>
+    }
+  </div>
+</common-ui-components-page-layout>

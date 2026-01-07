@@ -1,0 +1,40 @@
+<div class="d-flex flex-column surface-high-contrast cashin-container">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'واریز به کیف ثروت'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="w-100 d-flex flex-wrap align-items-center justify-content-center px-plus content-container">
+    <img
+      src="./wealth-assets/images/wallet-cutoff.png"
+      alt="cutoff"
+    />
+
+    <div class="w-100 mt-big">
+      <p class="text-align-center st-8 text-onback-high">درگاه بانکی کیف ثروت دقایقی دیگر باز می‌شود</p>
+      <p class="text-align-center b-2 text-onback-medium mt-pony">
+        {{ state().cutoffMessage }}
+      </p>
+    </div>
+
+    <div class="w-100 button-container px-plus">
+      <ngx-button
+        [buttonId]="'WALLET_CUTOFF_DETAIL_CONFIRM'"
+        [style]="'fill'"
+        [fullWidth]="true"
+        [mode]="'form'"
+        size="medium"
+        (clickHandler)="onBackHandler()"
+      >
+        متوجه شدم
+      </ngx-button>
+    </div>
+  </div>
+</div>

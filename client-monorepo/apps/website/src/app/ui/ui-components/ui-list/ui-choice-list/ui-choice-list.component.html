@@ -1,0 +1,15 @@
+<p
+  *ngIf="description"
+  class="text"
+>
+  {{ description }}
+</p>
+<ul class="options">
+  <li
+    (click)="optionClick(option)"
+    *ngFor="let option of options"
+    class="option"
+  >
+    {{ option.label }}
+  </li>
+</ul>

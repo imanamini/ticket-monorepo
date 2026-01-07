@@ -1,0 +1,15 @@
+<pay-club-applet-ui-content-card cardTitle="قرعه‌کشی‌ها">
+  @if (!isLoading) {
+    <div class="pr-plus">
+      <common-ui-components-horizontal-scroll>
+        @for (lottery of lotteries; track lottery) {
+          <pay-club-applet-ui-draw-card
+            [lottery]="lottery"
+            (click)="selectDraw(lottery)"
+          >
+          </pay-club-applet-ui-draw-card>
+        }
+      </common-ui-components-horizontal-scroll>
+    </div>
+  }
+</pay-club-applet-ui-content-card>

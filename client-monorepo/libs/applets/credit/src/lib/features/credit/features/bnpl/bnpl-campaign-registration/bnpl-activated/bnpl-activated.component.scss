@@ -1,0 +1,63 @@
+:host {
+  direction: rtl;
+}
+
+.wrapper {
+  height: 100%;
+  flex-grow: 1;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex-grow: 1;
+}
+
+.body {
+  direction: rtl;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.body-box {
+  background-color: #fff;
+  border: 1px solid #d5dde6;
+  border-radius: 24px;
+  padding: 24px;
+  width: 100%;
+
+  .logo {
+    height: 58px;
+    width: 58px;
+    border-radius: 16px;
+    margin: auto;
+    background-image: url("../assets/bnpl-mini-app-log.svg");
+    background-position: center;
+    background-color: #f2f0ff;
+  }
+
+  .title {
+    text-align: center;
+    margin: 24px 0 32px;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .row-right {
+    color: #6e798d;
+  }
+
+  .actions {
+    margin-top: 34px;
+    display: flex;
+  }
+}

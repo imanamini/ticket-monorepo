@@ -1,0 +1,179 @@
+@import "@digipay/base-style/styleguide";
+
+.bnpl-plans {
+  position: relative;
+
+  .title {
+    width: 540px;
+    text-align: center;
+
+    .thin-text {
+      color: #000;
+      text-align: center;
+      font-feature-settings: 'liga' off, 'clig' off;
+      font-size: 26px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 32px; /* 123.077% */
+    }
+
+    .bold-text {
+      color: #000;
+      text-align: center;
+      font-feature-settings: 'liga' off, 'clig' off;
+      font-size: 46px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 67px; /* 145.652% */
+    }
+  }
+
+  .plans {
+    .plan-card-wrapper {
+      width: 588px;
+      height: 446px;
+      position: relative;
+      transform-style: preserve-3d; // important
+      transition: transform 0.8s ease-in-out;
+      cursor: pointer;
+      border-radius: map-get($spacing-sizes, 'huge');
+      perspective: 1500px;
+
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          transform: rotateY(180deg);
+        }
+      }
+      &.flipped {
+        transform: rotateY(180deg);
+      }
+
+      .plan-card-front {
+        position: relative;
+        border-right: inherit;
+
+        &::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          padding: 3px;
+          border-radius: inherit;
+          background: linear-gradient(223.86deg, #fff, transparent);
+          -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        .title {
+          color: #000;
+          text-align: center;
+          font-feature-settings: 'liga' off, 'clig' off;
+          font-size: 32px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 67px; /* 209.375% */
+        }
+
+        .image {
+          img {
+            width: 72px;
+            height: 72px;
+          }
+
+        }
+
+        .description {
+          text-align: center;
+        }
+      }
+
+      .plan-card-front,
+      .plan-card-back {
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        backface-visibility: hidden; // hide when facing away
+        background: rgba(242, 243, 246, 0.40);
+        width: 100%;
+      }
+
+      .plan-card-back {
+        transform: rotateY(180deg); // flipped initially
+        img {
+          width: 588px;
+          height: 446px;
+        }
+      }
+
+
+    }
+  }
+}
+
+
+@media (max-width: 1280px) {
+  .bnpl-plans {
+    gap: map-get($spacing-sizes, 'big') !important;
+
+    .title {
+      width: 100%;
+      gap: map-get($spacing-sizes, 'pony') !important;
+
+      .thin-text {
+        font-size: 14px;
+      }
+
+      .bold-text {
+        font-size: 22px;
+        line-height: 32px !important;
+      }
+
+      .subtitle {
+        font-size: 12px !important;
+        font-weight: 370 !important;
+      }
+    }
+
+    .plans {
+      flex-direction: column;
+
+      .plan-card-wrapper {
+        width: 335px;
+        height: 360px;
+
+        .plan-card-back {
+          img {
+            width: 335px;
+            height: 360px;;
+          }
+        }
+
+        .plan-card-front {
+
+          .title {
+            font-size: 22px;
+          }
+
+          .subtitle {
+            font-size: 14px !important;
+          }
+
+          .image {
+            img {
+              width: 52px;
+              height: 52px;
+            }
+          }
+
+          .description {
+            font-size: 12px !important;
+          }
+        }
+
+      }
+    }
+  }
+}

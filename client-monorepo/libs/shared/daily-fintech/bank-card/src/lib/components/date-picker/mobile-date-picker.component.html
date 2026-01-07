@@ -1,0 +1,27 @@
+<div class="date-picker">
+  <div class="header">
+    <ngx-button
+      (clickHandler)="confirmDateSelection()"
+      [size]="'tiny'"
+      class="confirm-selection"
+    >
+      تایید
+    </ngx-button>
+    <span (click)="hideDatePicker()">انصراف</span>
+  </div>
+  <div class="selects">
+    <ui-form-field
+      type="wheel-select"
+      label="ماه"
+      [(ngModel)]="month"
+      [options]="monthOptions"
+    ></ui-form-field>
+
+    <ui-form-field
+      type="wheel-select"
+      label="سال"
+      [(ngModel)]="year"
+      [options]="yearOptions"
+    ></ui-form-field>
+  </div>
+</div>

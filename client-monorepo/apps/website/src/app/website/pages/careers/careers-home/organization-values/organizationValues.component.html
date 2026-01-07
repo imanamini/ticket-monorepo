@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="organization-values d-flex flex-column align-items-center justify-content-center">
+    <div class="title mb-large">{{organizationValue()?.title}}</div>
+    <div class="subtitle b-1 mb-mega">
+      {{organizationValue()?.subtitle}}
+    </div>
+    <div class="gallery d-flex flex-wrap justify-content-center gap-plus">
+        @for (item of organizationValue()?.values ; track $index) {
+          <div
+            class="gallery-item d-flex flex-column justify-content-center align-items-center radius-big"
+          [ngStyle]="{
+              'background-color':  colorList()[$index],
+            }">
+
+            <div class="gallery__image mb-large">
+              <img src="{{item?.icon?.url}}" alt="">
+            </div>
+            <div class="gallery__title mb-small t-5">
+              {{item?.title}}
+            </div>
+            <div class="gallery__subtitle b-2"  [ngStyle]="{
+              'width':  widthList()[$index],
+            }">
+             {{item?.description}}
+            </div>
+          </div>
+        }
+    </div>
+  </div>
+</div>

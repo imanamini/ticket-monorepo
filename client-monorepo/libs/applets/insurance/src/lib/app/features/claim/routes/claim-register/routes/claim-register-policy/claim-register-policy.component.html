@@ -1,0 +1,49 @@
+<div class="claim-register-policy d-flex flex-column h-100">
+  @if (loading$ | async) {
+    <div class="loader-container">
+      <ui-loading-spinner></ui-loading-spinner>
+    </div>
+  } @else {
+    @if (policies?.length > 0) {
+      <div class="claim-register-policy-content p-plus d-flex flex-column gap-medium">
+        <p class="st-8">
+          بیمه‌نامه‌ای که قصد ثبت خسارت برای آن دارید را انتخاب کنید.
+        </p>
+        <div class="policies-container d-flex flex-column gap-small">
+          @for (policy of policies; track i; let i = $index) {
+            <div (click)="clickHandler(i)">
+              <card [title]="policy?.electronicEquipment?.model"
+                    [subTitle]="policy?.policyDraftNo"
+                    [isChecked]="i === this.selectedPolicyIndex"
+                    (radioButtonClicked)="onChecked($event,i,policy);"
+                    [radioButtonPosition]="'right'"
+              ></card>
+            </div>
+          }
+        </div>
+      </div>
+      <action-buttons (activeButtonClicked)="onSave()"
+                      (deActiveButtonClicked)="handleDeActiveButtonClicked()"
+                      [backgroundMode]="'gray'"
+                      activeButtonText="تایید و ادامه"
+                      deActiveButtonText="بازگشت"
+      ></action-buttons>
+    } @else {
+      <div style="flex: 1" class="align-items-center justify-content-center d-flex flex-column gap-huge">
+        <empty-result title="بیمه‌نامه‌ای با امکان ثبت خسارت یافت نشد."
+                      description="می‌توانید با خرید بیمه‌ برای تجهیزات دیجیتال خود اقدام به ثبت درخواست جبران خسارت بر اساس پوشش بیمه‌نامه آنها نمایید.">
+        </empty-result>
+        @if (!isDigikala()) {
+          <ins-button
+                  [style]="InsButtonStyleEnum.Fill"
+                  [mode]="InsButtonModeEnum.Section"
+                  [size]="InsButtonSizeEnum.Large"
+                  [rightIcon]="{name:'docuemnt-file',type:'linear'}"
+                  (clickHandler)="goToUsed()"
+                  text="خرید بیمه">
+          </ins-button>
+        }
+      </div>
+    }
+  }
+</div>

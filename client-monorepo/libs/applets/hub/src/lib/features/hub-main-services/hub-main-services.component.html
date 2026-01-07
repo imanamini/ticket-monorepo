@@ -1,0 +1,69 @@
+<common-ui-components-page-layout [title]="'همه‌ی خدمات'">
+  <div class="d-flex flex-column gap-medium">
+    <div class="px-plus d-flex flex-column gap-medium">
+      <ngx-search-box
+        [mode]="'section'"
+        [placeHolder]="'جست‌وجو'"
+        (clicked)="gotoSearch()"
+      ></ngx-search-box>
+      <common-ui-components-filter
+        [size]="'MEDIUM'"
+        [noPadding]="true"
+        [hasIcon]="false"
+        [classes]="'pb-atom'"
+        [isActive]="!selectedFilter()"
+        [isActiveDefault]="true"
+        (toggleFilter)="onAllServicesClicked()"
+        #filterComponent
+        buttonLabel="همه‌ی خدمات"
+      >
+        <div class="d-flex flex-row gap-low">
+          @for (filter of sortedFilterCategoryItems(); track filter) {
+            <ngx-chip
+              [id]="filter.id"
+              [label]="filter.label"
+              [disableAnimations]="true"
+              [pressed]="selectedFilter()?.id === filter.id"
+              [size]="'MEDIUM'"
+              (click)="onFilterClicked(filter)"
+              [disableClick]="false"
+            ></ngx-chip>
+          }
+        </div>
+      </common-ui-components-filter>
+    </div>
+    @if (!this.selectedFilter()) {
+      <div class="px-plus d-flex flex-column gap-medium pb-huge">
+        @for (item of categoryList(); track item.category) {
+          <common-app-services-categorized-service-builder
+            [services]="allServices()"
+            [bills]="item.category === AppServiceCategoryNamesEnum.BILL ? recommendedBills() : []"
+            [isLoading]="billsLoading()"
+            (clickOnService)="onServiceClicked($event)"
+            [category]="appServicesCategoriesConst[item.category]"
+            [serviceType]="item.category === AppServiceCategoryNamesEnum.BILL ? 'bill' : 'service'"
+            [iconColor]="item.iconColor"
+          >
+          </common-app-services-categorized-service-builder>
+        }
+      </div>
+    } @else if (this.filteredServices()) {
+      <div class="px-plus">
+        <p class="st-8 pb-small">فیلتر: “{{ selectedFilter()?.label }}”</p>
+        <div class="d-flex flex-wrap gap-minus">
+          <common-app-services-categorized-service-builder
+            [iconSize]="64"
+            [hasTitle]="false"
+            [services]="filteredServices()"
+            [bills]="selectedFilter()?.id === AppServiceCategoryNamesEnum.BILL ? recommendedBills() : []"
+            [isLoading]="isLoading() || (selectedFilter()?.id === AppServiceCategoryNamesEnum.BILL && billsLoading())"
+            [category]="appServicesCategoriesConst[selectedFilter()?.id]"
+            [iconColor]="selectedFilter()?.iconColor || '#4657C3'"
+            [serviceType]="selectedFilter()?.id === AppServiceCategoryNamesEnum.BILL ? 'bill' : 'service'"
+            (clickOnService)="onServiceClicked($event)"
+          ></common-app-services-categorized-service-builder>
+        </div>
+      </div>
+    }
+  </div>
+</common-ui-components-page-layout>

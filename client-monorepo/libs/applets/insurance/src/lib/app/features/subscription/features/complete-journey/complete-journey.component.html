@@ -1,0 +1,9 @@
+<div class="d-flex h-100 w-100 align-items-center justify-content-center">
+  @if (!isLoading()) {
+    <export-insurance
+            [subscriptionInfo]="subscriptionInfo()">
+    </export-insurance>
+  } @else {
+    <ngx-spinner size="xl"></ngx-spinner>
+  }
+</div>

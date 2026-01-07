@@ -1,0 +1,21 @@
+<app-credit-app-bar
+  (onBackButtonClick)="close.emit()"
+  [backButton]="true"
+  title="امضای اسناد"
+></app-credit-app-bar>
+<div class="d-flex flex-column justify-content-center align-items-center flex-grow p-plus rtl">
+  <ngx-status-result
+    (finished)="getData()"
+    [description]="'لطفا تا دریافت نتیجه از این صفحه خارج نشوید'"
+    [timer]="time()!"
+    [title]="title"
+  >
+    <ng-container status-image>
+      <ngx-waiting-stepper
+        [state]="WaitingStepperStateEnum.PROGRESS"
+        [isSelfProgress]="true"
+        [timerDeadline]="time()?.timeInSeconds"
+      ></ngx-waiting-stepper>
+    </ng-container>
+  </ngx-status-result>
+</div>

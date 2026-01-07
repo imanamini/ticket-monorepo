@@ -1,0 +1,16 @@
+.payment-methods {
+  position: absolute;
+  display: flex;
+  gap: 2px;
+  bottom: 7px;
+  right: 7px;
+
+  &-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 2px 2px 4px;
+    gap: 2px;
+    border-radius: 100px;
+  }
+}

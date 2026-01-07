@@ -1,0 +1,61 @@
+<ng-container *ngIf="!link; else anchorTag">
+  <button
+    (click)="onClick($event, link)"
+    [attr.disabled]="disabled ? 'disabled' : null"
+    [id]="id ? id : ''"
+    [ngClass]="appearance.toLowerCase() + ' ' + size.toLowerCase() + ' ' + classes"
+    [ngStyle]="appearance === 'CUSTOM' ? { color: color, backgroundColor: backgroundColor, border: border } : ''"
+    class="button"
+  >
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+
+    <app-ui-spinner
+      *ngIf="showSpinner"
+      class="spinner"
+    ></app-ui-spinner>
+  </button>
+</ng-container>
+<ng-template #anchorTag>
+  <a
+    (click)="onClick($event, link)"
+    *ngIf="!useRouterLink && !withoutHref"
+    [attr.disabled]="disabled ? 'disabled' : null"
+    [attr.href]="link"
+    [attr.target]="linkTarget"
+    [id]="id ? id : ''"
+    [ngClass]="appearance.toLowerCase() + ' ' + size.toLowerCase() + ' ' + classes"
+    [ngStyle]="appearance === 'CUSTOM' ? { color: color, backgroundColor: backgroundColor, border: border } : ''"
+    class="button"
+  >
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+  </a>
+
+  <a
+    (click)="onClick($event, link)"
+    *ngIf="useRouterLink && !withoutHref"
+    [attr.disabled]="disabled ? 'disabled' : null"
+    [id]="id ? id : ''"
+    [ngClass]="appearance.toLowerCase() + ' ' + size.toLowerCase() + ' ' + classes"
+    [ngStyle]="appearance === 'CUSTOM' ? { color: color, backgroundColor: backgroundColor, border: border } : ''"
+    [queryParams]="routerLinkQueryParams"
+    [routerLink]="link"
+    class="button"
+  >
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+  </a>
+  <a
+    (click)="onClick($event, link)"
+    *ngIf="withoutHref"
+    [attr.disabled]="disabled ? 'disabled' : null"
+    [id]="id ? id : ''"
+    [ngClass]="appearance.toLowerCase() + ' ' + size.toLowerCase() + ' ' + classes"
+    [ngStyle]="appearance === 'CUSTOM' ? { color: color, backgroundColor: backgroundColor, border: border } : ''"
+    class="button"
+  >
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+  </a>
+</ng-template>
+
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>

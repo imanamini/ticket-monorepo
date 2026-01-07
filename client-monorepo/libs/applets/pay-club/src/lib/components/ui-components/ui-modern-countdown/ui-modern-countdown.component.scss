@@ -1,0 +1,78 @@
+@import '@digipay/base-style/styleguide';
+
+.parts {
+  display: flex;
+  direction: ltr;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 36px;
+}
+
+.part {
+  border-radius: 0.22em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 1em;
+  height: 1em;
+  position: relative;
+
+  span {
+    display: block;
+    text-align: center;
+  }
+
+  .label {
+    font-size: 0.28em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .value {
+    font-size: 0.3em;
+    font-weight: 600;
+  }
+}
+
+.colon {
+  font-size: 0.5em;
+}
+
+.theme-simple {
+  .part {
+    background: #f2f5f8;
+
+    .value {
+      color: var(--text-onback-high);
+    }
+
+    .label {
+      color: var(--text-onback-low);
+    }
+  }
+}
+
+.theme-dark {
+  .part {
+    background: linear-gradient(180deg, #000 0%, #000 54%);
+    box-shadow: 0 2px 0 0 #ff5353;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0;
+      top: 50%;
+      width: 100%;
+      opacity: 0.2;
+      background-color: var(--surface-elevated);
+      border-radius: 16px;
+    }
+
+    .value,
+    .label {
+      color: var(--text-oninvert-high);
+    }
+  }
+}

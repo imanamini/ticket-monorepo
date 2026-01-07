@@ -1,0 +1,28 @@
+<div class="container">
+  <!-- ? icon -->
+  <div class="icon-container">
+    <img
+      src="./wealth-assets/svg/user-exist-error.svg"
+      alt="error"
+    />
+  </div>
+
+  <!-- ? title and description -->
+  <div class="text-container">
+    <!-- ? Title -->
+    <p class="description">این کد ملی قبلا با شماره {{ phoneNumber }} ثبت‌نام شده است. لطفا با آن شماره وارد اپلیکیشن دیجی‌پی شوید.</p>
+  </div>
+
+  <!-- ? Actions -->
+  <div class="actions-container">
+    <ngx-button
+      [style]="'tinted-on-elevated'"
+      [fullWidth]="true"
+      size="medium"
+      [brandButton]="true"
+      (clickHandler)="onClose()"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

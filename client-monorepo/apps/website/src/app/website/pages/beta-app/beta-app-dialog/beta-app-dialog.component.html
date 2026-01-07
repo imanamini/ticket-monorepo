@@ -1,0 +1,59 @@
+<div class="za-modal za-modalWindow">
+  <div class="za-modal-inset za-modal-content">
+    <div
+      (click)="closeDialog()"
+      class="za-button za-closeBtn"
+    >
+      <ngx-icon
+        [name]="'close'"
+        classes="text-onback-high cursor-pointer"
+      ></ngx-icon>
+    </div>
+    <div class="za-modal-body za-modalWrapper">
+      <div class="za-modal-header">
+        <div class="za-download-app">
+          <label>
+            <input
+              type="text"
+              value="android"
+            />
+            <span class="font-ss-med active">اندروید</span>
+          </label>
+          <label>
+            <input
+              type="text"
+              value="apple"
+            />
+            <span class="font-ss-med">اپل(به زودی)</span>
+          </label>
+        </div>
+      </div>
+      <div class="za-modal-img">
+        <i>
+          <img
+            *ngIf="templateData && templateData.modal && templateData.modal.artwork"
+            [src]="templateData.modal.artwork.url"
+            alt="دیجی‌پی بتا"
+          />
+        </i>
+      </div>
+      <div class="za-modal-text">
+        <p
+          *ngIf="templateData && templateData.modal"
+          class="font-sm-bold"
+        >
+          {{ templateData.modal.title }}
+        </p>
+        <span
+          *ngIf="templateData && templateData.modal"
+          class="font-s-med text-align-center"
+          >{{ templateData.modal.desc }}</span
+        >
+      </div>
+      <div class="za-modal-button">
+        <app-ui-button [link]="templateData.modal.downloadUrl">{{ templateData.modal.downloadBtnText }}</app-ui-button>
+      </div>
+    </div>
+  </div>
+  <div class="za-modal-overlay za-modal"></div>
+</div>

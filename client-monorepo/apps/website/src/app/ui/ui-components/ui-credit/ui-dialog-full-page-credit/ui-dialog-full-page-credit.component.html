@@ -1,0 +1,120 @@
+<div class="modal-full-page">
+  <div class="intro-section">
+    @if (templateData()?.sectionIntro?.title) {
+      <div class="title">
+        {{ templateData().sectionIntro.title }}
+      </div>
+    }
+    <div
+      (click)="closeDialog()"
+      class="close"
+    >
+      <ngx-icon
+        [name]="'close'"
+        classes="text-onback-high cursor-pointer"
+      ></ngx-icon>
+    </div>
+  </div>
+  <div class="container">
+    <div class="intro-box">
+      @if (templateData()?.sectionIntro?.text) {
+        <div class="text">
+          {{ templateData().sectionIntro.text }}
+        </div>
+      }
+      @if (templateData()?.sectionIntro?.firstCta?.title) {
+        <app-ui-button
+          [link]="templateData().sectionIntro.firstCta.link"
+          linkTarget="_blank"
+          size="SMALL"
+        >
+          {{ templateData().sectionIntro.firstCta.title }}
+        </app-ui-button>
+      }
+    </div>
+    <div class="intro-info">
+      <div class="image">
+        <img
+          [src]="product()?.images?.main?.url[0]"
+          alt=""
+        />
+      </div>
+      <div class="content">
+        <div class="titles">
+          <div>
+            <div class="title">
+              {{ product().title_fa }}
+            </div>
+            @if (product()?.default_variant?.price?.selling_price) {
+              <div class="price">
+                <span>{{ rialToToman(product().default_variant.price.selling_price) | thousands }}</span>
+                <span>  تومان</span>
+              </div>
+            }
+          </div>
+          @if (templateData()?.sectionProduct?.firstCta?.title) {
+            <app-ui-button
+              appearance="BLUE-TEXT"
+              class="cta desktop"
+              appScrollToAnchor="credit-calculator"
+            >
+              {{ templateData().sectionProduct.firstCta.title }}
+              <img
+                alt=""
+                height="17"
+                ngSrc="../../../../../assets/images/icons/icon-left.svg"
+                width="17"
+              />
+            </app-ui-button>
+          }
+        </div>
+        <hr />
+        <div class="digikala-cta">
+          @if (product()?.url?.uri) {
+            <a
+              [href]="'https://www.digikala.com' + product().url.uri"
+              target="_blank"
+            ></a>
+          }
+          <img
+            alt=""
+            height="22"
+            ngSrc="../../../../../assets/images/logos/digikala.svg"
+            width="22"
+          />
+          <div class="text">مشاهده کالا در دیجی کالا</div>
+        </div>
+        @if (templateData()?.sectionProduct?.firstCta?.title) {
+          <div class="cta mobile">
+            <app-ui-button
+              appearance="BLUE-TEXT"
+              class="cta"
+              appScrollToAnchor="credit-calculator"
+            >
+              {{ templateData().sectionProduct.firstCta.title }}
+              <img
+                alt=""
+                height="17"
+                ngSrc="../../../../../assets/images/icons/icon-left.svg"
+                width="17"
+              />
+            </app-ui-button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+  @if (config()?.shortFlow?.steps?.length > 0) {
+    <app-swiper-continuous-content
+      [data]="config().shortFlow.steps"
+      [subtitle]="config().shortFlow.subtitle"
+      [title]="config().shortFlow.title"
+    ></app-swiper-continuous-content>
+  }
+  <section class="container">
+    <app-credit-calculator-v3
+      [title]="'طرح‌های اعتباری و اقساط آن'"
+      class="calculator"
+    ></app-credit-calculator-v3>
+  </section>
+</div>

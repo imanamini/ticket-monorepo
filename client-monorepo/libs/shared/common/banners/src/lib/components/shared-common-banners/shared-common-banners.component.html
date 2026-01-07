@@ -1,0 +1,238 @@
+@if (bannersToShow() && bannersToShow().length) {
+  <div
+    class="d-flex flex-column"
+    [ngClass]="gapClass() ?? 'gap-plus'"
+  >
+    @for (banner of bannersToShow(); track banner.uuid) {
+      <div [class]="'banner-wrapper' + (nothingToShow()[$index] ? ' d-none' : '')">
+        @switch (banner.type) {
+          @case ('Third-Party-Carousel') {
+            <common-stores-third-party-carousel
+              [storeName]="banner.extractedConfig.storeName"
+              [title]="banner.extractedConfig.title"
+              [subtitle]="banner.extractedConfig.subtitle"
+              [url]="banner.extractedConfig.url"
+              [shouldCautiousAboutPerformance]="bannerRoute() === 'stores'"
+              (removeFromDom)="increaseNumberOfRemovedBanners()"
+            ></common-stores-third-party-carousel>
+          }
+          @case ('Selected-Merchants') {
+            <common-stores-all-stores-section
+              [selectedStores]="banner.extractedConfig.stores"
+              [type]="banner.extractedConfig.type"
+              [title]="banner.extractedConfig.title"
+              [gaps]="banner.extractedConfig.gap ?? 'normal'"
+              [isSocialStores]="categoryToShow() && categoryToShow()!.startsWith('STORE_SOCIAL')"
+            ></common-stores-all-stores-section>
+          }
+          @case ('Section-Banner') {
+            <common-app-banners-section-type-banner [bannerData]="banner"></common-app-banners-section-type-banner>
+          }
+          @case ('Partial-View-Carousel') {
+            <common-app-banners-partial-view-carousel-banner
+              [banner]="banner"
+              [categoryToShow]="categoryToShow()"
+              (clickedItem)="handleSlideClick($event.action, $event.slide, banner)"
+            ></common-app-banners-partial-view-carousel-banner>
+          }
+          @case ('Promotion-Carousel') {
+            @if (banner?.extractedConfig.promotionGroupUuid) {
+              <common-promotions-promotion-list
+                (nothingToShow)="handleNothingToShow($event, $index)"
+                [promotionGroupId]="banner.extractedConfig.promotionGroupUuid"
+                [showInstallment]="banner.extractedConfig.showInstallmentAmount"
+                [shouldCautiousAboutPerformance]="bannerRoute() === 'stores'"
+              ></common-promotions-promotion-list>
+            }
+          }
+          @case ('Promotion-List') {
+            @if (banner?.extractedConfig.promotionGroupUuid) {
+              <common-promotions-promotion-list
+                (nothingToShow)="handleNothingToShow($event, $index)"
+                [promotionGroupId]="banner.extractedConfig.promotionGroupUuid"
+                [showInstallment]="banner.extractedConfig.showInstallmentAmount"
+                [promotionMode]="banner.extractedConfig.promotionMode"
+                [shouldCautiousAboutPerformance]="bannerRoute() === 'stores' && banner.extractedConfig.promotionMode !== 'GRID_2X2'"
+              ></common-promotions-promotion-list>
+            }
+          }
+          @case ('Merchant-Carousel') {
+            <common-stores-category-stores
+              [title]="banner?.extractedConfig.title"
+              [storeType]="banner?.extractedConfig.storeType"
+              [category]="banner?.extractedConfig.category"
+              [searchKeyword]="banner?.extractedConfig.searchKeyword"
+            ></common-stores-category-stores>
+          }
+          @case ('Grid-Image') {
+            <div class="d-flex gap-plus px-plus">
+              @for (slide of banner.slides; track slide.uuid) {
+                @if (slide.extractedData.image) {
+                  <div
+                    class="flex-grow"
+                    #trackerBanner
+                    [attr.data-id]="banner.uuid + '|' + slide.uuid"
+                  >
+                    <ui-api-image
+                      width="100%"
+                      [classes]="'radius-plus'"
+                      [imageId]="slide.extractedData.image"
+                      [width]="'100%'"
+                      [height]="'auto'"
+                      [showLoading]="loadingEffect()"
+                      [skeletonHeight]="'114px'"
+                      (click)="handleSlideClick(slide.extractedAction, slide, banner)"
+                    ></ui-api-image>
+                  </div>
+                }
+              }
+            </div>
+          }
+          @case ('Horizontal-Medium-Carousel') {
+            <div class="px-plus">
+              <common-ui-components-title-summary
+                [title]="banner.title"
+                [showButton]="false"
+                [wrapperClasses]="'mb-small'"
+              ></common-ui-components-title-summary>
+            </div>
+            <common-ui-components-horizontal-scroll [classes]="'pr-plus'">
+              @for (slide of banner.slides; track slide.uuid) {
+                @if (slide.extractedData.image) {
+                  <div
+                    #trackerBanner
+                    [attr.data-id]="banner.uuid + '|' + slide.uuid"
+                  >
+                    <ui-api-image
+                      [classes]="'radius-plus'"
+                      [imageId]="slide.extractedData.image"
+                      [width]="banner.extractedConfig.width ? banner.extractedConfig.width + 'px' : '156px'"
+                      [height]="banner.extractedConfig.width ? banner.extractedConfig.height + 'px' : '114px'"
+                      [skeletonHeight]="banner.extractedConfig.width ? banner.extractedConfig.height + 'px' : '114px'"
+                      [showLoading]="loadingEffect()"
+                      (click)="handleSlideClick(slide.extractedAction, slide, banner)"
+                      [lazy]="true"
+                      [lazyConfig]="{ root: '.dpx-main-layout-body' }"
+                    ></ui-api-image>
+                  </div>
+                }
+              }
+            </common-ui-components-horizontal-scroll>
+          }
+          @case ('Mall-Carousel') {
+            <common-app-banners-mall-carousel-banner
+              [banner]="banner"
+              (nothingToShow)="handleNothingToShow($event, $index)"
+              (slideClick)="handleSlideClick($event.slide.extractedAction, $event.slide, banner)"
+            >
+            </common-app-banners-mall-carousel-banner>
+          }
+          @case ('Voucher-Carousel') {
+            <common-vouchers-voucher-carousel (nothingToShow)="handleNothingToShow($event, $index)"></common-vouchers-voucher-carousel>
+          }
+          @case ('Top-Merchant-Carousel') {
+            <common-app-banners-top-merchant-carousel
+              (nothingToShow)="handleNothingToShow($event, $index)"
+              [banner]="banner"></common-app-banners-top-merchant-carousel>
+          }
+          @case ('Most-Visited-Post') {
+            <common-social-popular-posts
+              [postIds]="banner?.extractedConfig.posts"
+              [title]="banner.title"
+            ></common-social-popular-posts>
+          }
+          @case ('Timer-Banner') {
+            <div class="px-plus">
+              <common-app-banners-timer-banner
+                [targetTimeStamp]="banner?.extractedConfig?.targetTimeStamp"
+                [imageId]="banner?.extractedConfig?.image"
+              ></common-app-banners-timer-banner>
+            </div>
+          }
+          @case ('Post-Carousel') {
+            <common-app-banners-post-carousel-banner
+              [banner]="banner"
+              (nothingToShow)="handleNothingToShow($event, $index)"
+            ></common-app-banners-post-carousel-banner>
+          }
+          @case ('Newest-Merchant-Instagram') {
+            <common-social-new-stores
+              [storeTrackingCodes]="banner.extractedConfig.trackingCodes"
+              [title]="banner.title"
+            ></common-social-new-stores>
+          }
+          @case ('Last-Recently-Views') {
+            <div class="px-plus">
+              <common-stores-recently-viewed (nothingToShow)="handleNothingToShow($event, $index)"></common-stores-recently-viewed>
+            </div>
+          }
+          @case ('Most-Valuable-Products') {
+            <common-stores-stand-alone-product-list [title]="banner.title"></common-stores-stand-alone-product-list>
+          }
+          @default {
+            @if (banner.slides.length === 1) {
+              @if (banner.slides[0].extractedData.image) {
+                <div
+                  #trackerBanner
+                  [attr.data-id]="banner.uuid + '|' + banner.slides[0].uuid"
+                  [class]="singleBannerClasses()"
+                >
+                  <ui-api-image
+                    width="100%"
+                    [imageId]="banner.slides[0].extractedData.image"
+                    (click)="handleSlideClick(banner.slides[0]?.extractedAction, banner.slides[0], banner)"
+                    [skeletonHeight]="'144px'"
+                    [showLoading]="loadingEffect()"
+                    [lazy]="true"
+                    [lazyConfig]="{ root: '.dpx-main-layout-body' }"
+                  ></ui-api-image>
+                </div>
+              }
+            } @else if (banner.slides.length > 1) {
+              <ngx-dp-carousel
+                [mode]="'CARD'"
+                [visibleItemCount]="1"
+                [index]="0"
+                [centerMode]="true"
+                [showNavigation]="true"
+                [showButtons]="false"
+                [isFixedGap]="true"
+                [fixedGap]="carouselGap()"
+                [changeStepThresholdPercentage]="20"
+                [swipeThreshold]="100"
+                [disableNavigationDots]="true"
+                [disableScaling]="true"
+                [enableAutoPlay]="true"
+                [autoPlayDurationMillis]="5000"
+                (singleTapped)="handleSlideClick(banner.slides[carouselIndex()]?.extractedAction, banner.slides[carouselIndex()], banner)"
+                (indexChange)="handleCarouselIndexChange($event)"
+                (isAnimationRunning)="handleAnimationRunning($event)"
+              >
+                @for (slide of banner.slides; track slide.uuid) {
+                  <ng-template ngxDpCarouselSlide>
+                    <div
+                      class="d-flex justify-content-center align-items-center w-100"
+                      #trackerBanner
+                      [attr.data-id]="banner.uuid + '|' + slide.uuid"
+                    >
+                      @if (banner.slides[0].extractedData.image) {
+                        <ui-api-image
+                          width="100%"
+                          [imageId]="slide.extractedData.image"
+                          [skeletonHeight]="'144px'"
+                          [showLoading]="loadingEffect()"
+                          [lazy]="true"
+                          [lazyConfig]="{ root: '.dpx-main-layout-body' }"
+                        ></ui-api-image>
+                      }
+                    </div>
+                  </ng-template>
+                }
+              </ngx-dp-carousel>
+            }
+          }
+        }
+      </div>
+    }
+  </div>
+}

@@ -1,0 +1,132 @@
+<common-ui-components-page-layout
+  [showBorder]="true"
+  [hasBackAction]="false"
+  [title]="'مدیریت کیف پول'"
+  (onBackAction)="onBack()"
+>
+  <div class="wallet-management-container">
+    <div class="title-wrapper">
+      <div class="title">
+        جزئیات موجودی
+        <div
+          class="blue-info"
+          (click)="showDescription()"
+        ></div>
+      </div>
+      <div class="title-information">جزئیات موجودی باقی‌مانده در کیف‌پول دیجی‌پی</div>
+    </div>
+
+    <div class="chart">
+      <wallet-mng-applet-donut-chart
+        *ngIf="balanceInformation(); else DonutSkeleton"
+        [balanceInformation]="balanceInformation()"
+      >
+      </wallet-mng-applet-donut-chart>
+      <ng-template #DonutSkeleton>
+        <div class="skeleton-chart">
+          <wallet-mng-applet-skeleton [skeletonStyle]="donutSkeletonStyle">
+            <div class="rounded-circle"></div>
+          </wallet-mng-applet-skeleton>
+        </div>
+      </ng-template>
+    </div>
+
+    <div
+      class="dashed-line"
+      [ngClass]="{
+        'hide-wallet-description': descriptionsWasRead,
+        'un-visible': descriptionsAlreadyRead,
+      }"
+    ></div>
+
+    <div
+      class="chart-labels"
+      [class.mt-24px]="descriptionsWasRead"
+    >
+      <wallet-mng-applet-chart-label
+        *ngIf="balanceInformation(); else Skeleton"
+        [balanceInformation]="balanceInformation()"
+      >
+      </wallet-mng-applet-chart-label>
+      <ng-template #Skeleton>
+        <div class="skeleton-chart-label">
+          <wallet-mng-applet-skeleton [skeletonStyle]="ChartLabelSkeletonStyleConst"></wallet-mng-applet-skeleton>
+        </div>
+      </ng-template>
+    </div>
+
+    <div
+      [ngClass]="{
+        'hide-wallet-description': descriptionsWasRead,
+        'display-none': descriptionsAlreadyRead,
+      }"
+      class="dashed-line"
+    ></div>
+
+    <div
+      [ngClass]="{
+        'hide-wallet-description': descriptionsWasRead,
+        'display-none': descriptionsAlreadyRead,
+      }"
+      class="arrow-down-wallet-mng"
+    ></div>
+
+    <div
+      [ngClass]="{
+        'hide-hint-with-animation': descriptionsWasRead,
+        'display-none': descriptionsAlreadyRead,
+      }"
+      class="hint"
+    >
+      <ng-container *ngIf="balanceInformation(); else Skeleton">
+        <wallet-mng-applet-description-stepper
+          [class]="descriptionTheme.NORMAL_THEME"
+          (readAll)="onHintWasRead()"
+          [config]="descriptionConfig"
+        ></wallet-mng-applet-description-stepper>
+      </ng-container>
+      <ng-template #Skeleton>
+        <div class="skeleton-description">
+          <wallet-mng-applet-skeleton [skeletonStyle]="descriptionStepperSkeletonStyleConst"></wallet-mng-applet-skeleton>
+        </div>
+      </ng-template>
+    </div>
+
+    <ng-container *ngIf="blockDescriptionConfig">
+      <div class="hint hint-block">
+        <wallet-mng-applet-description-stepper
+          [class]="descriptionTheme.BLOCK_THEME"
+          (readAll)="onHintWasRead()"
+          [config]="blockDescriptionConfig"
+        ></wallet-mng-applet-description-stepper>
+      </div>
+    </ng-container>
+
+    <div class="wallet-action-button">
+      <wallet-mng-applet-action-buttons></wallet-mng-applet-action-buttons>
+    </div>
+
+    @if (showDirectDebit) {
+      <wallet-mng-applet-direct-debit-card></wallet-mng-applet-direct-debit-card>
+    }
+
+    @if (cashbackVouchersBalanceSum() > 0) {
+      <div class="title-wrapper">
+        <div class="title">جایزه</div>
+      </div>
+
+      <div class="title-wrapper mt-atom">
+        <wallet-mng-applet-cashback-action-card [vouchers]="cashbackVouchers()"></wallet-mng-applet-cashback-action-card>
+        <div class="d-flex">
+          <div class="py-small title-information">
+            موجودی کش بک مجموع موجودی کش بک‌های فروشگاه‌های مختلف است. برای دیدن جزئیات وارد بخش کش بک شوید
+          </div>
+        </div>
+      </div>
+    }
+
+    <div class="gift-card-container">
+      <wallet-mng-applet-gift-card [vouchers]="unexpiredVouchers()"></wallet-mng-applet-gift-card>
+    </div>
+  </div>
+</common-ui-components-page-layout>

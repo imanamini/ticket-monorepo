@@ -1,0 +1,10 @@
+<div class="amounts-container">
+  <div
+    *ngFor="let amount of amounts; let i = index"
+    class="amount"
+    (click)="amountClicked(amount)"
+    [ngClass]="{ 'selected-item': selectedItem === amount }"
+  >
+    {{ amount?.amount | thousands }} ریال
+  </div>
+</div>

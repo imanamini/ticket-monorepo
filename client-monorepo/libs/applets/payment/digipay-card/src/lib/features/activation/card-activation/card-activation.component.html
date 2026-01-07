@@ -1,0 +1,11 @@
+<common-ui-components-page-layout
+  [showBorder]="true"
+  bodyClasses="surface-elevated"
+  [title]="'فعال سازی دیجی‌کارت'"
+>
+  <digipay-card-applet-card-info-form
+    [loading]="loading()"
+    (onSubmit)="submit($event)"
+  >
+  </digipay-card-applet-card-info-form>
+</common-ui-components-page-layout>

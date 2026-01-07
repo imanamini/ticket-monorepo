@@ -1,0 +1,11 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.buttons {
+  width: 400px;
+  margin: 40px auto;
+  @include flex-center;
+
+  ui-button {
+    margin-left: 10px;
+  }
+}

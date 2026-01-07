@@ -1,0 +1,48 @@
+.details-container {
+  gap: 16px;
+
+  .details {
+    cursor: pointer;
+    width: 100%;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+
+    .bank-name {
+      white-space: pre-wrap;
+    }
+
+    .item-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      justify-content: flex-end;
+      align-items: flex-end;
+
+      .amount {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 4px;
+      }
+    }
+  }
+
+  .no-data {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+
+    .no-data-image {
+      width: 160px;
+      height: 122px;
+      background: url(".././assets/check-credit-file-failed-no-data.svg")
+        no-repeat center center;
+      background-size: contain;
+      margin-bottom: 24px;
+    }
+  }
+}

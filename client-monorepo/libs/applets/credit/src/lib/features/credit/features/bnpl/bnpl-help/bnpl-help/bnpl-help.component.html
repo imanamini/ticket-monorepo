@@ -1,0 +1,16 @@
+@if (!isInApp()) {
+  <div class="bnpl-help-header">
+    <div class="bnpl-help-page-title">{{ data().pageTitle }}</div>
+  </div>
+}
+<div class="bnpl-help">
+  <ui-bnpl-help-menu [data]="data()"></ui-bnpl-help-menu>
+  @for (section of data().sections; track $index) {
+    <div class="section-wrapper">
+      <ui-bnpl-help-section
+        [id]="'bnpl-help-' + $index"
+        [section]="section"
+      ></ui-bnpl-help-section>
+    </div>
+  }
+</div>

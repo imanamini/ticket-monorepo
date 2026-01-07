@@ -1,0 +1,17 @@
+<div class="stepper">
+  <div class="stepper-content">
+    <strong class="step-name">
+      {{ stepName() }}
+      :
+    </strong>
+    <h2 class="title">
+      {{ title() }}
+    </h2>
+    <div class="step">{{ totalSteps() }}/{{ currentStep() }}</div>
+  </div>
+  <div class="stepper-progress-bar"
+       [ngClass]="{'background-white':backgroundGray()}">
+    <div [style.width]="(currentStep() * 100/totalSteps()) + '%'"
+         class="active"></div>
+  </div>
+</div>

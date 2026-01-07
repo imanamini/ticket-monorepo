@@ -1,0 +1,45 @@
+<div [ngClass]="{'active':isActive  , 'disabled': !isActive}"
+     class="pricing-wrapper surface-high-contrast ">
+  <div class="device-info">
+    <div class="detail">
+      <p class="title">{{ modelInfoArray[ 0 ] }}</p>
+      <p class="sub-title">{{ modelInfoArray[ 1 ] }}</p>
+    </div>
+    @if (suggestedPrice()) {
+      <div class="selected-card">
+        <div class="radio"></div>
+      </div>
+    }
+  </div>
+  <div class="suggested-card">
+    <div class="pricing-row">
+      <div class="title">
+        ارزش تقریبی دستگاه
+      </div>
+      <div class="value">
+        @if (suggestedPrice()) {
+          <span>
+             {{ ( suggestedPrice() / 10 ) | thousands }}
+          </span>
+        } @else {
+          <span class="not-exist">
+           پیدا نشد
+          </span>
+        }
+        @if (suggestedPrice()) {
+          <span class="unit">
+            تومان
+          </span>
+        }
+      </div>
+    </div>
+    @if (suggestedPrice()) {
+      <insurance-premium-card
+        [wageAmount]="campaignItem()?.wageAmount"
+        [campaignDiscountAmount]="campaignItem()?.campaignDiscount"
+        [campaignWageAmount]="campaignItem()?.campaignWageAmount"
+      >
+      </insurance-premium-card>
+    }
+  </div>
+</div>

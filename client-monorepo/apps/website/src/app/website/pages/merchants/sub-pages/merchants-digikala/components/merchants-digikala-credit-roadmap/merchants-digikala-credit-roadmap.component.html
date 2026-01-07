@@ -1,0 +1,129 @@
+<section class="merchants-digikala-credit-roadmap">
+  <div class="container">
+    <h2
+      *ngIf="creditRoadmapData.title"
+      class="centered-text"
+    >
+      {{ creditRoadmapData.title }}
+    </h2>
+    <div class="installment-purchase-steps-desktop">
+      <swiper-container
+        appSwiper
+        #swiper="appSwiper"
+        [config]="swiperConfig"
+        class="swiper"
+      >
+        <swiper-slide
+          *ngFor="let step of creditRoadmapData.installmentPurchaseSteps; let idx = index"
+          class="swiperSlide swiper-slide"
+        >
+          <div class="swiper-slide-container">
+            <div class="step">
+              <div class="icon">
+                <img
+                  *ngIf="step.icon && step.icon.url"
+                  [ngSrc]="step.icon.url"
+                  height="24"
+                  width="24"
+                />
+              </div>
+              <div class="titles">
+                <div class="title">{{ step.title }}</div>
+                <div class="subtitle">{{ step.subtitle }}</div>
+              </div>
+            </div>
+            <div
+              [ngClass]="idx === creditRoadmapData.installmentPurchaseSteps.length - 1 ? 'last' : ''"
+              class="delimiter"
+            >
+              <div class="dotted-line"></div>
+              <span
+                icon="icon-charon-left-blue"
+                appUiIcon
+              ></span>
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+      <!--      <swiper [config]="swiperConfig">-->
+      <!--        <ng-container-->
+      <!--          *ngFor="-->
+      <!--            let step of creditRoadmapData.installmentPurchaseSteps;-->
+      <!--            let idx = index-->
+      <!--          "-->
+      <!--        >-->
+      <!--          <ng-template swiperSlide>-->
+      <!--            <div class="swiper-slide-container">-->
+      <!--              <div class="step">-->
+      <!--                <div class="icon">-->
+      <!--                  <img-->
+      <!--                    *ngIf="step.icon && step.icon.url"-->
+      <!--                    [ngSrc]="step.icon.url"-->
+      <!--                    height="24"-->
+      <!--                    width="24"-->
+      <!--                  />-->
+      <!--                </div>-->
+      <!--                <div class="titles">-->
+      <!--                  <div class="title">{{ step.title }}</div>-->
+      <!--                  <div class="subtitle">{{ step.subtitle }}</div>-->
+      <!--                </div>-->
+      <!--              </div>-->
+      <!--              <div-->
+      <!--                [ngClass]="-->
+      <!--                  idx === creditRoadmapData.installmentPurchaseSteps.length - 1-->
+      <!--                    ? 'last'-->
+      <!--                    : ''-->
+      <!--                "-->
+      <!--                class="delimiter"-->
+      <!--              >-->
+      <!--                <div class="dotted-line"></div>-->
+      <!--                <span icon="icon-charon-left-blue" appUiIcon></span>-->
+      <!--              </div>-->
+      <!--            </div>-->
+      <!--          </ng-template>-->
+      <!--        </ng-container>-->
+      <!--      </swiper>-->
+      <app-ui-button
+        [link]="creditRoadmapData.firstCta.link"
+        class="desktop-cta"
+        >{{ creditRoadmapData.firstCta.title }}
+      </app-ui-button>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="installment-purchase-steps-mobile">
+      <div class="steps-container">
+        <ng-container *ngFor="let step of creditRoadmapData.installmentPurchaseSteps; let idx = index">
+          <div class="step">
+            <div class="icon">
+              <img
+                *ngIf="step.icon && step.icon.url"
+                [ngSrc]="step.icon.url"
+                height="24"
+                width="24"
+              />
+            </div>
+            <div class="titles">
+              <div class="title">{{ step.title }}</div>
+              <div class="subtitle">{{ step.subtitle }}</div>
+            </div>
+          </div>
+          <div
+            [ngClass]="idx === creditRoadmapData.installmentPurchaseSteps.length - 1 ? 'last' : ''"
+            class="delimiter"
+          >
+            <div class="dotted-line"></div>
+            <span
+              icon="icon-charon-left-blue"
+              appUiIcon
+            ></span>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <app-ui-button
+      [link]="creditRoadmapData.firstCta.link"
+      class="mobile-cta"
+      >{{ creditRoadmapData.firstCta.title }}
+    </app-ui-button>
+  </div>
+</section>

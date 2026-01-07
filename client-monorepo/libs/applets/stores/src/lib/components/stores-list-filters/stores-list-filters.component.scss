@@ -1,0 +1,14 @@
+.buttons-wrapper {
+  position: sticky;
+  bottom: 0;
+
+  .single-button {
+    flex: 1;
+  }
+}
+
+:host ::ng-deep .delete-filters {
+  position: absolute;
+  left: -10px;
+  top: 0;
+}

@@ -1,0 +1,39 @@
+<div
+  class="w-100 surface-elevated radius-giant pr-minus pl-medium d-flex align-items-center gap-minus cursor-pointer no-select promotion-carousel-wrapper"
+  (click)="handleCta()"
+>
+  <div class="promotion-carousel">
+    <div
+      class="d-flex flex-column promotion-track"
+      [style.animation-play-state]="isPaused() ? 'paused' : 'running'"
+    >
+      @for (promotion of displayPromotions(); track promotion.type) {
+        <div class="d-flex align-items-center py-medium promotion-card">
+          <div class="d-flex align-items-center gap-small">
+            <div class="d-flex radius-rounded">
+              <img
+                [src]="promotion.icon"
+                alt="promotion.title"
+                class="promotion-image"
+              />
+            </div>
+            <div class="d-flex flex-column flex-grow gap-tiny text-onback-high">
+              <p class="c-1">{{ promotion?.title }}</p>
+              <p class="subtitle l-3">{{ promotion?.description }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="fixed-button">
+    <ngx-button
+      [size]="'small'"
+      [style]="'fill'"
+      [mode]="'section'"
+    >
+      دریافت فوری
+    </ngx-button>
+  </div>
+</div>

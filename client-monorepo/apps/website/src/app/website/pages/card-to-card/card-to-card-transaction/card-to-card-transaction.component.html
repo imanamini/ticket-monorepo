@@ -1,0 +1,85 @@
+<section class="section-transaction">
+  <div class="container">
+    <h2
+      *ngIf="title"
+      class="text-align-center"
+    >
+      {{ title }}
+    </h2>
+    <div class="subtitle">{{ subtitle }}</div>
+    <div class="content-segment">
+      <app-ui-animated-switch
+        (changed)="onChange($event)"
+        [options]="options"
+        [selectedOption]="selectedOption"
+      ></app-ui-animated-switch>
+      <div class="items">
+        <div
+          [ngStyle]="{ height: expand ? 'auto' : '195px' }"
+          class="box"
+        >
+          <ng-container *ngIf="selectedOption.value === 'fee'">
+            <ng-container *ngFor="let item of sectionBankTransaction.fee.amounts">
+              <div class="fee-item">
+                <div
+                  *ngIf="item.period"
+                  class="period"
+                >
+                  {{ item.period }}
+                </div>
+                <div
+                  *ngIf="item.amount"
+                  class="amount"
+                >
+                  {{ item.amount | thousands }}
+                  <span class="currency is-currency"> ریال </span>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="selectedOption.value === 'transactionLimit'">
+            <ng-container *ngFor="let item of sectionBankTransaction.transactionLimit.banks">
+              <div class="transition-item">
+                <div
+                  *ngIf="item.logo && item.logo.url"
+                  class="logo"
+                >
+                  <img
+                    [src]="item.logo.url"
+                    alt=""
+                  />
+                </div>
+                <div
+                  *ngIf="item.name"
+                  class="name"
+                >
+                  {{ item.name }}
+                </div>
+                <div
+                  *ngIf="item.amount"
+                  class="amount"
+                >
+                  {{ item.amount | thousands }}
+                  <span class="currency is-currency"> ریال </span>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+        <div
+          (click)="expandTable()"
+          [ngClass]="expand ? 'circle-up' : 'circle-down'"
+        ></div>
+      </div>
+
+      <ul
+        *ngIf="sectionBankTransaction[selectedOption.value].notice"
+        class="notices"
+      >
+        <li>
+          {{ sectionBankTransaction[selectedOption.value].notice }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

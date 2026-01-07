@@ -1,0 +1,12 @@
+<app-base-layout [loaded]="loaded">
+  <ng-container *ngFor="let post of posts">
+    <section>
+      <div class="container">
+        <app-blog-post
+          [post]="post"
+          [showFull]="true"
+        ></app-blog-post>
+      </div>
+    </section>
+  </ng-container>
+</app-base-layout>

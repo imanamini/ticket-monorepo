@@ -1,0 +1,79 @@
+@import "globals";
+
+.feature-card {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: flex-start;
+  border-radius: 1rem;
+  text-align: justify;
+  height: 100%;
+  margin: 0.5rem 1rem;
+  padding: 1.5rem;
+  cursor: default;
+}
+
+.feature-card-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 4rem;
+  height: 4rem;
+  padding: 1rem;
+  background-color: #d0d9f5;
+  border-radius: 1rem;
+}
+
+.feature-card-icon > img {
+  object-fit: contain;
+  object-position: center;
+  width: 100%;
+  max-height: 100%;
+}
+
+.feature-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #001a66;
+  padding-right: 1.5rem;
+}
+
+.feature-card-content > strong {
+  color: $text-color;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  line-height: normal;
+}
+
+.feature-card-content > span {
+  color: $text-color;
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.feature-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.feature-cards > li {
+  flex: 0 0 calc(50% - 2rem);
+}
+
+@media (max-width: 1280px) {
+  .feature-cards > li {
+    flex: 0 0 calc(50% - 2rem);
+  }
+}
+
+@media (max-width: 744px) {
+  .feature-cards > li {
+    flex: 1 1 100%;
+  }
+  .feature-card-content > strong {
+    font-size: 16px;
+  }
+}

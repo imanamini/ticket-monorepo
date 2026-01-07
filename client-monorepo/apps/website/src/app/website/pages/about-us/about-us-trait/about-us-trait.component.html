@@ -1,0 +1,34 @@
+<section class="about-trait">
+  <div class="container">
+    <div class="trait-content">
+      <ul *ngIf="templateData && templateData.mainTrait">
+        <li
+          *ngFor="let item of templateData.mainTrait"
+          class="trait-item"
+        >
+          <div>
+            <div class="item-content">
+              <div class="item-title">
+                <h2>{{ item.title }}</h2>
+              </div>
+              <div class="item-description">
+                <p>
+                  {{ item.description }}
+                </p>
+              </div>
+            </div>
+            <div class="item-image">
+              <div class="art">
+                <img
+                  *ngIf="item.image"
+                  [src]="item.image.url"
+                  alt="تیمی منسجم با پشتوانه‌ای قوی"
+                />
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

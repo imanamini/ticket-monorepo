@@ -1,0 +1,10 @@
+<div class="container border-100 border-color-light">
+  @for (cap of CAPS; track cap) {
+    <div class="cap-row">
+      <span class="title">{{ cap.title }}:</span>
+      <p class="value">
+        حداکثر <strong>{{ cap.times }} بار</strong> در {{ cap.unit }}
+      </p>
+    </div>
+  }
+</div>

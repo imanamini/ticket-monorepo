@@ -1,0 +1,102 @@
+.sale-promotion {
+  gap: 110px;
+
+  .content {
+    padding-right: 80px;
+
+    .title {
+      font-size: 22px;
+      font-weight: 400;
+    }
+
+    .subtitle {
+      display: block;
+    }
+  }
+
+  .image {
+    position: relative;
+
+    .subtitle {
+      display: none;
+    }
+
+    img {
+      width: 332px;
+      height: 433px;
+      flex-shrink: 0;
+      aspect-ratio: 62/79;
+    }
+
+    .desktop {
+      display: block;
+    }
+
+    .mobile {
+      display: none;
+    }
+
+
+    ::ng-deep {
+      ngx-button {
+        button {
+          min-width: 157px;
+        }
+      }
+    }
+
+    .action {
+      position: absolute;
+      bottom: 17%;
+      left: 0;
+      transform: translateX(90px);
+    }
+  }
+}
+
+
+@media (max-width: 1280px) {
+
+  .sale-promotion {
+    flex-direction: column !important;
+    gap: 32px;
+
+    .content {
+      padding: 0 20px 20px;
+      text-align: center;
+
+
+      .subtitle {
+        display: none;
+      }
+    }
+
+    .image {
+
+      img {
+        width: 320px;
+        height: 543px;
+      }
+
+      .desktop {
+        display: none;
+      }
+
+      .mobile {
+        display: block;
+      }
+
+      .action {
+        bottom: 5%;
+      }
+
+      .subtitle {
+        display: block;
+        position: absolute;
+        bottom: 34%;
+        padding: 0 35px;
+        text-align: justify;
+      }
+    }
+  }
+}

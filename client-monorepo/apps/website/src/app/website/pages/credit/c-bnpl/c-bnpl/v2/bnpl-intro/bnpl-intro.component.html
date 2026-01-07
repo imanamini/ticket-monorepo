@@ -1,0 +1,70 @@
+<div class="bnpl-intro-section d-flex justify-content-center flex-column align-items-center">
+  @if (introSection()?.sectionTextual) {
+    <div class="content d-flex flex-column align-items-center justify-content-center">
+      @if (introSection()?.sectionTextual?.blackTitle) {
+        <div class="black-title">{{ introSection()?.sectionTextual?.blackTitle }}</div>
+      }
+      @if (introSection()?.sectionTextual?.blueTitle) {
+        <div class="blue-title mb-minus">{{ introSection()?.sectionTextual?.blueTitle }}</div>
+      }
+      @if (introSection()?.sectionTextual?.subtitle) {
+        <div class="subtitle mb-big st-4 text-onback-medium">{{ introSection()?.sectionTextual?.subtitle }}</div>
+      }
+
+      <div class="cta mb-giant">
+        @if (introSection()?.sectionTextual?.ctaPrimary?.title) {
+          <ngx-button
+            [size]="deviceDetector.isMobileDevice() ? 'medium' : 'large' "
+            [style]="'fill'"
+            [fullWidth]="deviceDetector.isMobileDevice()"
+            [mode]="'section'"
+            [leftIcon]="{ name: 'arrow-2-left', type: 'linear' }"
+            (click)="openLink(introSection().sectionTextual.ctaPrimary.link)"
+          >
+            {{ introSection()?.sectionTextual?.ctaPrimary.title }}
+          </ngx-button>
+        }
+        @if (deviceDetector.isMobile()) {
+          <div class="mt-small">
+            <ngx-button
+              [size]="'medium'"
+              [style]="'tinted-on-back'"
+              [fullWidth]="true"
+              [mode]="'section'"
+              appScrollToAnchor="bnpl-usage"
+              behavior="smooth">
+              محل خرج اعتبار دیجی‌پی
+            </ngx-button>
+          </div>
+        }
+      </div>
+
+
+    </div>
+  }
+  @if (introSection().sectionSlider) {
+    <div class="slider">
+      @if (!deviceDetector.isMobile()) {
+        <div class="slider-section slider-section-desktop">
+          <img src="{{introSection().sectionSlider?.desktopImageSlider?.url}}" alt="">
+          @for (item of introSection().sectionSlider.desktopImageLabels; track item; let index = $index) {
+            <span class="image discount{{index + 1}}"><img src="{{item?.labelImage?.url}}" alt=""></span>
+          }
+        </div>
+      } @else {
+        <div class="slider-section slider-section-mobile">
+          <div class="slider-inner"
+               [style.transform]="'translateX(' + currentIndex * 100 + '%)'">
+            @for (item of introSection().sectionSlider.mobileSlider; track $index) {
+              <div class="slide">
+                <img src="{{item?.image?.url}}" alt="">
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+
+</div>

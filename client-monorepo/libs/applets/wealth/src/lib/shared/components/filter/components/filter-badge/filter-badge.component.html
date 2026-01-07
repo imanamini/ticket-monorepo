@@ -1,0 +1,17 @@
+<div
+  class="filter-badge"
+  (click)="selectFilter()"
+  [ngClass]="{ 'selected border-color-brand surface-brand-tint': filter().active }"
+>
+  @if (icon()) {
+    <ngx-icon
+      class="icon"
+      [name]="icon()"
+      iconSize="14px"
+      type="bold"
+    />
+  }
+  <span class="title">
+    {{ filter().title }}
+  </span>
+</div>

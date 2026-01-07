@@ -1,0 +1,65 @@
+<app-base-layout
+  [loaded]="loaded"
+  *ngIf="CBnplPageData && CBnplPageData.templateData"
+>
+  <!--  section 1-->
+  <app-c-bnpl-intro
+    *ngIf="CBnplPageData.templateData.cBnplIntro"
+    [cBnplData]="CBnplPageData.templateData"
+    [isForBaniMode]="isFromBaniMode"
+  >
+  </app-c-bnpl-intro>
+
+  <!--  section 2-->
+  <app-value-proposition
+    *ngIf="CBnplPageData.templateData.valueProposition"
+    [valuePropositionData]="CBnplPageData.templateData.valueProposition"
+  ></app-value-proposition>
+
+  <!--  section 3-->
+  <app-c-bnpl-types [cBnplTypes]="CBnplPageData.templateData.cBnplTypes"></app-c-bnpl-types>
+
+  <!--  section 4-->
+  <app-c-bnpl-promotion-banner
+    [promotionBanner]="CBnplPageData.templateData.promotionBanner"
+    [requestBnplFormId]="CBnplPageData.templateData.cBnplIntro.requestBnplFormId"
+    [isForBaniMode]="isFromBaniMode"
+    [intro]="CBnplPageData.templateData.cBnplIntro"
+  ></app-c-bnpl-promotion-banner>
+
+  <!--  section 5-->
+  <!--  <app-c-bnpl-stores-->
+  <!--    *ngIf="CBnplPageData.templateData.cBnplStores"-->
+  <!--    [cBnplStores]="CBnplPageData.templateData.cBnplStores"-->
+  <!--    id="stores-component"-->
+  <!--  ></app-c-bnpl-stores>-->
+
+  <!--  section 6-->
+  <app-bnpl-usage-tutorial
+    *ngIf="CBnplPageData.templateData.bnplUsageTutorial"
+    [bnplUsageTutorialData]="CBnplPageData.templateData.bnplUsageTutorial"
+  ></app-bnpl-usage-tutorial>
+
+  <!--  section 7-->
+  <app-promotion
+    *ngIf="CBnplPageData.templateData.appPromotion"
+    [appPromotionData]="CBnplPageData.templateData.appPromotion"
+  ></app-promotion>
+
+  <!--  section 8-->
+  <app-c-bnpl-vouchers [vouchers]="CBnplPageData.templateData.vouchers"></app-c-bnpl-vouchers>
+
+  <!--  section 9-->
+  <app-ui-seo
+    *ngIf="CBnplPageData.templateData.sectionSeoContent && CBnplPageData.templateData.sectionSeoContent.title"
+    [seoContent]="CBnplPageData.templateData.sectionSeoContent"
+  ></app-ui-seo>
+
+  <!--  section 10-->
+  <app-ui-faq
+    *ngIf="CBnplPageData.templateData.faq && CBnplPageData.templateData.faq.faqItems && CBnplPageData.templateData.faq.faqItems.length > 0"
+    [faqs]="CBnplPageData.templateData.faq.faqItems"
+    [subtitle]="CBnplPageData.templateData.faq.subtitle"
+    [title]="CBnplPageData.templateData.faq.title"
+  ></app-ui-faq>
+</app-base-layout>

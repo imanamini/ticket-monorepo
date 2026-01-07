@@ -1,0 +1,40 @@
+<div class="bnpl-allocation-request-guide-bottom-sheet">
+  <div class="d-flex flex-column align-items-center justify-content-center pr-plus pl-plus pb-plus">
+    <div class="text-onback-low b-2">کدملی و تاریخ تولد واردشده باید متعلق به صاحب شماره موبایلی باشد که با آن وارد حساب
+      کاربری دیجی‌پی شده‌اید.
+    </div>
+    @if (form()) {
+      <div class="inputs mt-big w-100" [formGroup]="form()">
+        <ui-form-field
+                [convertNonEnglishDigits]="true"
+                [errorMessageMapper]="errorMapper()"
+                [error]="form()?.controls?.nationalCode?.errors"
+                [isNumericKeyboard]="true"
+                [maxSize]="10"
+                [hasHintStar]="showErrors().nationalCode && showHintStar().nationalCode"
+                [showError]="showErrors().nationalCode ? 'show':'hidden'"
+                formControlName="nationalCode"
+                type="input"
+                label="کد ملی"
+                placeholder="مثال: ۰۰۷۹۹۹۹۹۹۹ "
+                inputType="text"></ui-form-field>
+        <ui-form-field
+                label="تاریخ تولد"
+                placeholder="مثال: ۱۳۶۰/۰۴/۲۶"
+                dateRange="past"
+                [errorMessageMapper]="errorMapper()"
+                [error]="form()?.controls?.birthDate?.errors"
+                [hasHintStar]="showErrors().birthDate && showHintStar().birthDate"
+                [showError]="showErrors().birthDate ? 'show' : 'hidden'"
+                formControlName="birthDate"
+                datePickerMode="auto"
+                [customDateRange]="[-1539506197000, currentDate()]"
+                type="date"></ui-form-field>
+      </div>
+    }
+    <div class="ctas d-flex flex-row gap-small w-100">
+      <ngx-button [fullWidth]="true" [style]="'tinted-on-elevated'" (clickHandler)="cancel()">بازگشت</ngx-button>
+      <ngx-button [fullWidth]="true" [size]="'large'" (clickHandler)="confirm()">ثبت</ngx-button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+@import "globals";
+
+.inquiry-method-select {
+  .top-bar {
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $swatch_steel_200;
+    padding: 14px 48px;
+  }
+
+  .inquiry-method-select-body {
+    padding: 24px 48px;
+  }
+
+  .title {
+    color: $swatch_steel_700;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .inquiry-methods {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 12px;
+    padding: 24px;
+    background-color: $swatch_steel_100;
+
+    .title {
+      color: $swatch_blue_900;
+      font-size: 14px;
+      font-weight: 400;
+      text-align: right;
+    }
+  }
+
+  .ctas {
+    margin-top: 16px;
+
+    .submit-btn {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .inquiry-method-select {
+    .inquiry-method-select-body,
+    .top-bar {
+      padding: 16px;
+    }
+
+    .title {
+      font-size: 16px;
+    }
+
+    .inquiry-methods {
+      background-color: #fff;
+      padding: 0;
+    }
+
+    .ctas {
+      margin-top: 40px;
+    }
+  }
+}

@@ -1,0 +1,118 @@
+import { PromotionItemInterface } from '../models/promotion-item.interface';
+
+export const promotionItemsMock: Array<PromotionItemInterface> = [
+  {
+    uuid: 'sdfdsfdsfsdfsdf',
+    groupUID: '123456789',
+    startTime: 1730665800,
+    endTime: 1730838599,
+    product: {
+      documentId: 'afaa2628aac65fd18be1b1dcf6bb6718',
+      hostName: 'digikala.com',
+      title: 'گوشی <em>موبایل</em> سامسونگ مدل Galaxy S24 Ultra دو سیم کارت ظرفیت 256 گیگابایت و رم 12 گیگابایت',
+      url: 'https://www.digikala.com/product/dkp-16226123/گوشی-موبایل-سامسونگ-مدل-galaxy-s24-ultra-دو-سیم-کارت-ظرفیت-256-گیگابایت-و-رم-12-گیگابایت',
+      price: '60990000',
+      mainCategory: 'موبایل',
+      categories: ['گوشی موبایل'],
+      image:
+        'https://dkstatics-public.digikala.com/digikala-products/69027dbe87ada42777e540e7cb97a47d5f3e0ec5_1726492229.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80',
+      storeLogoImageId: 'store-d8b76b37-bfa1-4a43-aeaf-bfcfbb51ea72',
+      storeName: 'دیجی کالا',
+    },
+  },
+  {
+    uuid: 'sdfdsfdsfsdfsdf',
+    groupUID: '123456789',
+    startTime: 1730665800,
+    endTime: 1730838599,
+    product: {
+      documentId: 'afaa2628aac65fd18be1b1dcf6bb6718',
+      hostName: 'digikala.com',
+      title: 'گوشی <em>موبایل</em> سامسونگ مدل Galaxy S24 Ultra دو سیم کارت ظرفیت 256 گیگابایت و رم 12 گیگابایت',
+      url: 'https://www.digikala.com/product/dkp-16226123/گوشی-موبایل-سامسونگ-مدل-galaxy-s24-ultra-دو-سیم-کارت-ظرفیت-256-گیگابایت-و-رم-12-گیگابایت',
+      price: '60990000',
+      mainCategory: 'موبایل',
+      categories: ['گوشی موبایل'],
+      image:
+        'https://dkstatics-public.digikala.com/digikala-products/69027dbe87ada42777e540e7cb97a47d5f3e0ec5_1726492229.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80',
+      storeLogoImageId: 'store-d8b76b37-bfa1-4a43-aeaf-bfcfbb51ea72',
+      storeName: 'دیجی کالا',
+    },
+  },
+  {
+    uuid: 'sdfdsfdsfsdfsdf',
+    groupUID: '123456789',
+    startTime: 1730665800,
+    endTime: 1730838599,
+    product: {
+      documentId: 'afaa2628aac65fd18be1b1dcf6bb6718',
+      hostName: 'digikala.com',
+      title: 'گوشی <em>موبایل</em> سامسونگ مدل Galaxy S24 Ultra دو سیم کارت ظرفیت 256 گیگابایت و رم 12 گیگابایت',
+      url: 'https://www.digikala.com/product/dkp-16226123/گوشی-موبایل-سامسونگ-مدل-galaxy-s24-ultra-دو-سیم-کارت-ظرفیت-256-گیگابایت-و-رم-12-گیگابایت',
+      price: '60990000',
+      mainCategory: 'موبایل',
+      categories: ['گوشی موبایل'],
+      image:
+        'https://dkstatics-public.digikala.com/digikala-products/69027dbe87ada42777e540e7cb97a47d5f3e0ec5_1726492229.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80',
+      storeLogoImageId: 'store-d8b76b37-bfa1-4a43-aeaf-bfcfbb51ea72',
+      storeName: 'دیجی کالا',
+    },
+  },
+  {
+    uuid: 'sdfdsfdsfsdfsdf',
+    groupUID: '123456789',
+    startTime: 1730665800,
+    endTime: 1730838599,
+    product: {
+      documentId: 'afaa2628aac65fd18be1b1dcf6bb6718',
+      hostName: 'digikala.com',
+      title: 'گوشی <em>موبایل</em> سامسونگ مدل Galaxy S24 Ultra دو سیم کارت ظرفیت 256 گیگابایت و رم 12 گیگابایت',
+      url: 'https://www.digikala.com/product/dkp-16226123/گوشی-موبایل-سامسونگ-مدل-galaxy-s24-ultra-دو-سیم-کارت-ظرفیت-256-گیگابایت-و-رم-12-گیگابایت',
+      price: '60990000',
+      mainCategory: 'موبایل',
+      categories: ['گوشی موبایل'],
+      image:
+        'https://dkstatics-public.digikala.com/digikala-products/69027dbe87ada42777e540e7cb97a47d5f3e0ec5_1726492229.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80',
+      storeLogoImageId: 'store-d8b76b37-bfa1-4a43-aeaf-bfcfbb51ea72',
+      storeName: 'دیجی کالا',
+    },
+  },
+  {
+    uuid: 'sdfdsfdsfsdfsdf',
+    groupUID: '123456789',
+    startTime: 1730665800,
+    endTime: 1730838599,
+    product: {
+      documentId: 'afaa2628aac65fd18be1b1dcf6bb6718',
+      hostName: 'digikala.com',
+      title: 'گوشی <em>موبایل</em> سامسونگ مدل Galaxy S24 Ultra دو سیم کارت ظرفیت 256 گیگابایت و رم 12 گیگابایت',
+      url: 'https://www.digikala.com/product/dkp-16226123/گوشی-موبایل-سامسونگ-مدل-galaxy-s24-ultra-دو-سیم-کارت-ظرفیت-256-گیگابایت-و-رم-12-گیگابایت',
+      price: '60990000',
+      mainCategory: 'موبایل',
+      categories: ['گوشی موبایل'],
+      image:
+        'https://dkstatics-public.digikala.com/digikala-products/69027dbe87ada42777e540e7cb97a47d5f3e0ec5_1726492229.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80',
+      storeLogoImageId: 'store-d8b76b37-bfa1-4a43-aeaf-bfcfbb51ea72',
+      storeName: 'دیجی کالا',
+    },
+  },
+  {
+    uuid: 'sdfdsfdsfsdfsdf',
+    groupUID: '123456789',
+    startTime: 1730665800,
+    endTime: 1730838599,
+    product: {
+      documentId: 'afaa2628aac65fd18be1b1dcf6bb6718',
+      hostName: 'digikala.com',
+      title: 'گوشی <em>موبایل</em> سامسونگ مدل Galaxy S24 Ultra دو سیم کارت ظرفیت 256 گیگابایت و رم 12 گیگابایت',
+      url: 'https://www.digikala.com/product/dkp-16226123/گوشی-موبایل-سامسونگ-مدل-galaxy-s24-ultra-دو-سیم-کارت-ظرفیت-256-گیگابایت-و-رم-12-گیگابایت',
+      price: '60990000',
+      mainCategory: 'موبایل',
+      categories: ['گوشی موبایل'],
+      image:
+        'https://dkstatics-public.digikala.com/digikala-products/69027dbe87ada42777e540e7cb97a47d5f3e0ec5_1726492229.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80',
+      storeLogoImageId: 'store-d8b76b37-bfa1-4a43-aeaf-bfcfbb51ea72',
+      storeName: 'دیجی کالا',
+    },
+  },
+];

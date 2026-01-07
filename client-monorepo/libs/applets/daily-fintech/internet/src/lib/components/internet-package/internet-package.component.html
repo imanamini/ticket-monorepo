@@ -1,0 +1,13 @@
+<div class="packages-container">
+  <div *ngFor="let item of package()">
+    <ng-container *ngFor="let bundleSection of item.bundleSections">
+      <div *ngFor="let cards of bundleSection.bundles">
+        <p class="packages-title">{{ bundleSection.title }}</p>
+        <internet-applet-card
+          [cards]="cards.internetPackages"
+          [packageTitles]="package()[0]"
+        ></internet-applet-card>
+      </div>
+    </ng-container>
+  </div>
+</div>

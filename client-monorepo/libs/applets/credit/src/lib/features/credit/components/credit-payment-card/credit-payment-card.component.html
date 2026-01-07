@@ -1,0 +1,41 @@
+<div class="credit-payment-card">
+  <div class="card-header">
+    <div class="card-image">
+      <credit-digipay-image
+        [imageId]="imageId()"
+        [styles]="{ borderRadius: '50%' }"
+        width="100%"
+      ></credit-digipay-image>
+    </div>
+    <div class="card-header-content">
+      <h2 class="card-title">{{ title() }}</h2>
+      <div class="amount">
+        <span class="currency">{{ amount() | IRR: 'hideRial' }} <span class="unit is-currency">ریال</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div>
+      @if (details() && details().length) {
+        <div class="cost-details">
+          <h5 class="label">{{ detailsTitle() }}</h5>
+          <ul class="costs">
+            @for (d of details(); track d; let i = $index) {
+              <li>
+                <span>{{ d }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+    <div>
+      @if (leftLabel()) {
+        <div class="left-detail">
+          <div class="left-detail-label">{{ leftLabel()?.title }}</div>
+          <div class="left-detail-value">{{ leftLabel()?.value }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.store-bottom-sheet {
+  direction: rtl;
+
+  .call-to-actions {
+    flex-grow: 0;
+  }
+}
+
+.top-section {
+  flex-grow: 1;
+  overflow: auto;
+}

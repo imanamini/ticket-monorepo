@@ -1,0 +1,140 @@
+@import "globals";
+
+
+.faq-search {
+  display: flex;
+  position: relative;
+}
+
+.input-wrapper {
+  flex: 1 0 auto;
+  margin-left: 16px;
+}
+
+input,
+.search-btn {
+  height: 56px;
+  border-radius: 12px;
+}
+
+input {
+  width: 100%;
+  background: #fff url('./icons/faq-search-icon-gray.svg') no-repeat right 12px center;
+  border: none;
+  padding: 12px 40px 12px;
+  font-size: 14px;
+  font-weight: 400;
+
+  &:focus,
+  &:focus-visible {
+    box-shadow: none;
+    outline: none;
+    background: #f0f5ff url('./icons/faq-search-icon.svg') no-repeat right 12px center;
+  }
+}
+
+.search-btn {
+  flex: 0 0 160px;
+  color: #424c5c;
+  text-align: center;
+  background: $swatch_yellow_500;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.results {
+  position: absolute;
+  top: 110%;
+  background: #fff;
+  width: 100%;
+  right: 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px 0 rgba(168, 168, 168, 0.25);
+}
+
+.entry {
+  position: relative;
+  padding: 12px 24px;
+  color: #061962;
+  text-align: right;
+  cursor: pointer;
+
+  &:hover {
+    color: $swatch_blue_500;
+  }
+
+  .icon {
+    font-size: 32px;
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    background: no-repeat 0 0/100% 100%;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 4px;
+  }
+
+  .content {
+    width: 100%;
+    padding: 0 48px 0 0;
+
+    p {
+      padding: 2px 1px; // fixes some display issues
+      color: inherit;
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .category-name {
+    font-size: 12px;
+    color: #6e798d;
+    display: block;
+    margin: 12px 0 0;
+  }
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.clear-icon {
+  background: url('./icons/faq-input-clear.png') no-repeat 0 0/100%;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  left: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+@media (max-width: 1280px) {
+  .search-btn {
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 744px) {
+  .search-btn {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .faq-search {
+    flex-direction: column;
+  }
+  .input-wrapper {
+    margin: 0 0 12px 0;
+  }
+  .search-btn {
+    flex: 0 0 auto;
+  }
+  .results {
+    top: 60px;
+  }
+}

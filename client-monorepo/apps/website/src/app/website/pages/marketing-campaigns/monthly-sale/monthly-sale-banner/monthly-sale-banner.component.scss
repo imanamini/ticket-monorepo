@@ -1,0 +1,72 @@
+
+@import "@digipay/base-style/styleguide";
+
+
+.monthly-sale-banner {
+  background: linear-gradient(90deg, rgba(230, 164, 10, 0.10) 0%, rgba(133, 100, 22, 0.10) 100%);
+
+  .banner-item {
+    height: 220px;
+    width: 373px;
+
+    .title {
+      color: var(--text-icon-on-back-high, #000);
+      text-align: center;
+      font-feature-settings: 'liga' off, 'clig' off;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 32px; /* 80% */
+    }
+    .secondary-title{
+      color: var(--text-icon-on-back-high, #000);
+      text-align: center;
+
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 36.8px; /* 124.324% */
+    }
+
+    .subtitle {
+      color: var(--text-icon-on-back-high, #000);
+      font-feature-settings: 'liga' off, 'clig' off;
+      font-size: 19.2px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 32px;
+    }
+  }
+
+  .divider {
+    width: 2px;
+    height: 70px;
+    background: #B4B7BD;
+
+  }
+}
+
+
+@media (max-width: 1280px) {
+
+  .monthly-sale-banner {
+    gap: 20px !important;
+
+    .banner-item {
+      height: 100%;
+      width: inherit;
+
+      .title {
+        font-size: 26px;
+      }
+
+      .secondary-title {
+        font-size: 16px;
+        line-height: 24px;
+      }
+      .subtitle {
+        font-size: 12px;
+      }
+    }
+  }
+}

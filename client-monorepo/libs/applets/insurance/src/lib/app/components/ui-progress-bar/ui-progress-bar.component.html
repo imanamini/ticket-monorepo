@@ -1,0 +1,15 @@
+<div
+  [ngStyle]="{
+    'min-width': width,
+    'max-width': width,
+    'height': height + 'px',
+    'border-radius': (height / 2 + 'px'),
+    'direction': direction()
+  }"
+  class="progress-bar-wrapper"
+>
+  <div
+    [ngStyle]="{width: percent + '%'}"
+    class="bar"
+  ></div>
+</div>

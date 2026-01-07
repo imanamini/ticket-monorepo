@@ -1,0 +1,29 @@
+<div class="w-100 d-flex flex-column">
+  <p class="st-8 text-onback-high">جزییات بازدهی</p>
+
+  <div class="w-100 d-flex mt-medium">
+    <ngx-segmented-control
+      [mode]="'SECTION_SEGMENT'"
+      [options]="tabOptions()"
+      [selectedOption]="tabOptions()[selectedTab]"
+      (change)="updateTab($event.id)"
+      class="w-100"
+    />
+  </div>
+
+  <div class="w-100 d-flex mt-medium">
+    @if (selectedTab === 0) {
+      <wealth-applet-wallet-fixed-income-plan-yield-details
+        class="w-100"
+        [wallet]="fxWallet()"
+        [skeleton]="skeleton()"
+        [annualProfit]="annualProfit()"
+      />
+    } @else if (selectedTab === 1) {
+      <wealth-applet-wallet-gold-plan-yield-details
+        [wallet]="goldWallet()"
+        class="w-100"
+      />
+    }
+  </div>
+</div>

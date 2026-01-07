@@ -1,0 +1,18 @@
+<div class="d-flex flex-column gap-small px-plus py-medium">
+  @for (item of PurchaseStatusList; track item.id) {
+    <div
+      class="w-100 d-flex justify-content-space-between align-items-center pb-medium pt-pony cursor-pointer"
+      (click)="handlePurchaseStatusClick(item)"
+    >
+      <div class="c-1 text-onback-high">{{ item.title }}</div>
+      <ngx-icon
+        [name]="'arrow-left'"
+        [iconSize]="'20px'"
+        classes="text-onback-high"
+      ></ngx-icon>
+    </div>
+    @if (!$last) {
+      <ngx-divider></ngx-divider>
+    }
+  }
+</div>

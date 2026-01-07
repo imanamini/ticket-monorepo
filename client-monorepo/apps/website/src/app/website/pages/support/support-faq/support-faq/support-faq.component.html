@@ -1,0 +1,44 @@
+<app-base-layout [loaded]="true">
+  <app-faq-header></app-faq-header>
+  <div class="select-category">
+    <app-faq-categories
+      (childrenListEvent)="onHandleChildren($event)"
+      *ngIf="parentList"
+      [isFirstTime]="isFirstTime"
+      id="body-start"
+    >
+    </app-faq-categories>
+    <app-faq-children
+      (childrenListEvent)="backToParents($event)"
+      *ngIf="childrenList"
+      [category]="category"
+      id="child-start"
+    >
+    </app-faq-children>
+  </div>
+  <div class="support-faq">
+    <div
+      class="container"
+      id="body-container"
+    >
+      <ng-container *ngIf="searchTitle && !loadingEntries">
+        <h2 class="text-align-center">{{ searchTitle }}</h2>
+        <h5 class="text-align-center">پاسخ ما به سوالات</h5>
+      </ng-container>
+      <app-ui-faq
+        (itemOpened)="onItemOpen($event)"
+        *ngIf="!loadingEntries"
+        [faqs]="faqItems"
+        idKey="itemId"
+      ></app-ui-faq>
+      <ng-container *ngIf="faqItems.length === 0 && !loadingEntries">
+        <p>موردی یافت نشد</p>
+      </ng-container>
+      <app-ui-spinner
+        *ngIf="loadingEntries"
+        [size]="48"
+        subtitle="در حال بارگذاری نتایج"
+      ></app-ui-spinner>
+    </div>
+  </div>
+</app-base-layout>

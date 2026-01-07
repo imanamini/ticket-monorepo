@@ -1,0 +1,107 @@
+<ngx-bottom-sheet-header
+  [showResizable]="false"
+  [closeIcon]="true"
+  [customCloseIconName]="'close'"
+  (closeClicked)="close()"
+  [title]="title()"
+></ngx-bottom-sheet-header>
+<div class="d-flex flex-column w-100 gap-big p-plus rtl">
+  <div class="d-flex flex-column w-100">
+    <span class="bt-1 text-onback-high">انتخاب روز</span>
+    <credit-horizontal-scroll>
+      <div class="w-100 d-flex align-items-center gap-minus pt-minus">
+        @defer (when !loading()) {
+          @for (item of reshapedDates(); track $index) {
+            <div
+              (click)="selectDate(item)"
+              [class]="item.classSignal()"
+              class="date-item position-relative d-flex flex-column align-items-center justify-content-center p-mediumm radius-medium border-300"
+            >
+              @if (item.disabled) {
+                <ngx-badge
+                  class="disabled-badge w-100 d-flex justify-content-center"
+                  status="neutral"
+                  size="tiny"
+                  mode="outline"
+                  [circularIcon]="true"
+                >
+                  <span class="flex-shrink-0">تکمیل ظرفیت</span>
+                </ngx-badge>
+              }
+              <span
+                [class]="item.disabled ? 'text-onback-disabled' : 'text-onback-high'"
+                class="b-3 mb-micro"
+              >
+                {{ item.date | creditPersianDate: 'weekday' }}
+              </span>
+              <span
+                [class]="item.disabled ? 'text-onback-disabled' : 'text-onback-high'"
+                class="st-1 text-onback-high"
+                >{{ item.date | creditPersianDate: 'day' }}
+              </span>
+              <span
+                [class]="item.disabled ? 'text-onback-disabled' : 'text-onback-low'"
+                class="b-3"
+                >{{ item.date | creditPersianDate: 'month' }}</span
+              >
+            </div>
+          }
+        } @placeholder {
+          @for (item of [].constructor(5); track $index) {
+            <lib-ngx-skeleton-loading
+              [height]="'106px'"
+              [width]="'84px'"
+              [borderRadius]="'16px'"
+            ></lib-ngx-skeleton-loading>
+          }
+        }
+      </div>
+    </credit-horizontal-scroll>
+  </div>
+  <div class="d-flex flex-column w-100">
+    <span class="bt-1 text-onback-high">انتخاب بازه زمانی</span>
+    <div class="w-100 d-flex align-items-center gap-minus pt-minus">
+      @defer (when !loading()) {
+        @for (item of reshapedTimeSlots(); track $index) {
+          <div
+            (click)="selectTimeSlot(item)"
+            [class]="item.classSignal()"
+            class="time-item position-relative p-medium radius-medium d-flex justify-content-center align-items-center border-300"
+          >
+            @if (item.disabled) {
+              <ngx-badge
+                class="disabled-badge w-100 d-flex justify-content-center"
+                status="neutral"
+                size="tiny"
+                mode="outline"
+                [circularIcon]="true"
+              >
+                <span class="flex-shrink-0">تکمیل ظرفیت</span>
+              </ngx-badge>
+            }
+            <span class="b-2 text-onback-high">{{ item.title }}</span>
+          </div>
+        }
+      } @placeholder {
+        <credit-horizontal-scroll>
+          @for (item of [].constructor(3); track $index) {
+            <lib-ngx-skeleton-loading
+              [height]="'56px'"
+              [width]="'154px'"
+              [borderRadius]="'16px'"
+            ></lib-ngx-skeleton-loading>
+          }
+        </credit-horizontal-scroll>
+      }
+    </div>
+  </div>
+  <ngx-button
+    (clickHandler)="confirm()"
+    [disabled]="!selectedDate() || !selectedTime() || loading()"
+    [fullWidth]="true"
+    [style]="'fill'"
+    ngxTrackableId
+    trackerId="chequeDeliveryDateTimeConfirmButton"
+    >تایید و ادامه
+  </ngx-button>
+</div>

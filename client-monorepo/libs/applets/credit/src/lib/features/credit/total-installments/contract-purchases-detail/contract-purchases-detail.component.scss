@@ -1,0 +1,121 @@
+@import "@digipay/base-style/swatch";
+
+.wrapper {
+  background-color: $swatch_steel_100;
+  border-radius: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  cursor: pointer;
+
+  &.loading {
+    pointer-events: none;
+    justify-content: center;
+    height: 32px;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+
+    .main {
+      font-size: 18px;
+      line-height: 32px;
+      color: $swatch_steel_900;
+      font-weight: 500;
+    }
+
+    .sub {
+      font-size: 12px;
+      line-height: 20px;
+      color: $swatch_steel_500;
+      margin-right: 6px;
+    }
+  }
+}
+
+.body {
+  padding: 0 24px;
+  height: 0;
+  overflow: hidden;
+
+  &.isOpen {
+    //height: 400px;
+    height: auto;
+  }
+
+  .item {
+    padding-bottom: 20px;
+    border-bottom: 1px solid $swatch_steel_200;
+    margin-bottom: 16px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .purchase {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .content {
+        flex-grow: 1;
+
+        .top {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          color: $swatch_steel_900;
+
+          .right {
+            font-size: 14px;
+            line-height: 24px;
+            font-weight: 500;
+          }
+
+          .left {
+            font-size: 12px;
+            line-height: 20px;
+            display: flex;
+            align-items: center;
+
+            .icon {
+              background-image: url("./icons/calendar-16-16.svg");
+              background-position: center;
+              background-repeat: no-repeat;
+              width: 16px;
+              height: 16px;
+              margin-left: 4px;
+            }
+          }
+        }
+
+        .bottom {
+          font-size: 12px;
+          line-height: 20px;
+          color: $swatch_steel_500;
+          margin-top: 6px;
+        }
+      }
+    }
+
+    .refund {
+      margin-top: 12px;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-radius: 16px;
+
+      .refund-title {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}

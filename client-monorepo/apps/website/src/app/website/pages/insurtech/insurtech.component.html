@@ -1,0 +1,85 @@
+<app-base-layout [loaded]="loaded()">
+  @if (insurtechPage() && insurtechPage()?.templateData) {
+    <!-- section 1 -->
+    <app-insurtech-intro [templateData]="insurtechPage()?.templateData ?? null"></app-insurtech-intro>
+
+    <!-- section 2 -->
+    @if (
+      insurtechPage() &&
+      insurtechPage()?.templateData &&
+      insurtechPage()?.templateData.sectionRecoverableDamages &&
+      insurtechPage()?.templateData.sectionRecoverableDamages.title
+    ) {
+      <app-insurtech-recoverable-damages
+        [recoverableDamages]="insurtechPage()?.templateData.sectionRecoverableDamages"
+      ></app-insurtech-recoverable-damages>
+    }
+
+    <!-- section 3 -->
+    @if (
+      insurtechPage() &&
+      insurtechPage()?.templateData &&
+      insurtechPage()?.templateData.sectionInsuranceBenefits &&
+      insurtechPage()?.templateData.sectionInsuranceBenefits.items.length > 0
+    ) {
+      <app-ui-section-benefits [benefits]="insurtechPage()?.templateData.sectionInsuranceBenefits"></app-ui-section-benefits>
+    }
+
+    <!-- section 4 -->
+    @if (
+      insurtechPage() &&
+      insurtechPage()?.templateData &&
+      insurtechPage()?.templateData.sectionInsuranceServicesProcesses &&
+      insurtechPage()?.templateData.sectionInsuranceServicesProcesses.tabs.length > 0
+    ) {
+      <app-insurtech-services-processes
+        [insuranceServicesProcesses]="insurtechPage()?.templateData.sectionInsuranceServicesProcesses"
+      ></app-insurtech-services-processes>
+    }
+
+    <!-- section 5 -->
+    @if (
+      insurtechPage() &&
+      insurtechPage()?.templateData &&
+      insurtechPage()?.templateData.sectionInsuranceInquiry &&
+      insurtechPage()?.templateData.sectionInsuranceInquiry.title
+    ) {
+      <app-insurtech-inquiry [insuranceInquiry]="insurtechPage()?.templateData.sectionInsuranceInquiry"></app-insurtech-inquiry>
+    }
+
+    <!-- section 6 -->
+    @if (
+      insurtechPage() &&
+      insurtechPage()?.templateData &&
+      insurtechPage()?.templateData.sectionPastInsurance &&
+      insurtechPage()?.templateData.sectionPastInsurance.items.length > 0
+    ) {
+      <app-ui-similar-services
+        [data]="insurtechPage()?.templateData.sectionPastInsurance"
+      ></app-ui-similar-services>
+    }
+
+    <!-- section 7 -->
+    @if (insurtechPage()?.templateData.sectionSeoContent) {
+      <app-ui-seo [seoContent]="insurtechPage()?.templateData.sectionSeoContent"></app-ui-seo>
+    }
+
+    <!-- section 8 -->
+    @if (insurtechPage() && insurtechPage()?.templateData && insurtechPage()?.templateData.faq && faqItems().length > 0) {
+      <app-ui-faq
+        [faqs]="faqItems()"
+        [subtitle]="insurtechPage()?.templateData.faq.subtitle"
+        [title]="insurtechPage()?.templateData.faq.title"
+      ></app-ui-faq>
+    }
+
+    <!-- section 9 -->
+    @if (insurtechPage() && insurtechPage()?.templateData && insurtechPage()?.templateData.relatedPosts && posts().length > 0) {
+      <app-blog-cards
+        [blogPosts]="posts()"
+        [subtitle]="insurtechPage()?.templateData.relatedPosts.subtitle"
+        [title]="insurtechPage()?.templateData.relatedPosts.title"
+      ></app-blog-cards>
+    }
+  }
+</app-base-layout>

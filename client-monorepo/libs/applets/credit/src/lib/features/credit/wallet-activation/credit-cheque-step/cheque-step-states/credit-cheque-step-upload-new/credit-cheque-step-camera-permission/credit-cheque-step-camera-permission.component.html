@@ -1,0 +1,11 @@
+<div class="flex-grow justify-content-center">
+  <ngx-status-result
+    (clicked)="accessRequest.emit()"
+    [buttons]="buttons"
+    description="در ادامه، برای ثبت تصویر چک، دسترسی به دوربین از شما گرفته می‌شود."
+    title="دسترسی به دوربین"
+    [iconState]="'info'"
+    [type]="'Status'"
+  >
+  </ngx-status-result>
+</div>

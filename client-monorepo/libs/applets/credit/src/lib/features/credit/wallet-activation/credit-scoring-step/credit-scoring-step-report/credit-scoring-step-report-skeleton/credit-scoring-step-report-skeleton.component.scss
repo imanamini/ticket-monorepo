@@ -1,0 +1,46 @@
+.loading-skeleton {
+  direction: rtl;
+
+  .placeholder {
+    background: #edebeb;
+    border-radius: 8px;
+
+    &.is-report-box {
+      height: 158px;
+      margin-bottom: 40px;
+    }
+
+    &.is-title {
+      height: 20px;
+      width: 120px;
+      margin-bottom: 14px;
+    }
+
+    &.is-loan {
+      height: 64px;
+      margin-bottom: 8px;
+    }
+  }
+
+  .detail-placeholders {
+    margin-bottom: 40px;
+
+    > div {
+      display: flex;
+      margin-bottom: 12px;
+    }
+
+    .placeholder {
+      height: 16px;
+      margin-left: 8px;
+
+      &:first-child {
+        width: 72px;
+      }
+
+      &:last-child {
+        width: 120px;
+      }
+    }
+  }
+}

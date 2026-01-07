@@ -1,0 +1,39 @@
+<div class="house-incidents-plp d-flex flex-column justify-content-start h-100">
+  <main-header title="انتخاب بیمه"
+               (rightIconClicked)="backButtonClicked()"
+               leftIconName="headphone"
+               [faqCategory]="FaqCategoryTypeEnum.HOUSE_INCIDENTS"
+               leftIconType="linear"
+  ></main-header>
+  <house-incidents-stepper class="pt-small px-medium"></house-incidents-stepper>
+  <div class="content-container d-flex flex-column" style="flex: 1 1 auto;">
+    <div class="mb-medium st-8 px-medium text-onback-high mt-medium">
+      لطفا بیمه‌نامه مورد نظر خود را انتخاب کنید.
+    </div>
+    <div class="product-cards d-flex px-medium flex-column gap-medium">
+      @defer (when productCards().length > 0) {
+        @for (productCard of productCards(); track $index) {
+          <product-card
+                  (onOrderProductClick)="orderProduct($event)"
+                  (onCoverageDetailButtonClick)="productCardCoverageDetailClicked($event)"
+                  [productCardDetail]="productCard"></product-card>
+        }
+      } @placeholder {
+        <lib-ngx-skeleton-loading
+                width="100%"
+                height="210px"
+        ></lib-ngx-skeleton-loading>
+      } @error {
+        <div class="error-defer-load"></div>
+      }
+    </div>
+    <insurance-promotion
+      title="بیمهٔ خانه دیجی‌پی"
+      firstSubtitle="خرید اعتباری بیمه خانه با پوشش جنگ و بمباران"
+      secondSubtitle="آرامش خاطر واقعی برای‌ شما"
+      [promotions]="promotions()"
+      class="px-medium pt-giant pb-big"
+      style="height: auto !important; flex: 1 1 auto;"
+    ></insurance-promotion>
+  </div>
+</div>

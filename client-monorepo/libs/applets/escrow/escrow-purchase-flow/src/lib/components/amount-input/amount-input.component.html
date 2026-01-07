@@ -1,0 +1,18 @@
+<div>
+  <p class="c-1 px-micro py-low mt-medium mb-small text-onback-medium">مبلغ توافق شده را وارد کنید</p>
+  <ng-container [formGroup]="amountFormGroup">
+    <ui-form-field
+      [type]="'large-amount'"
+      [unitCurrency]="'rial'"
+      [maxAmount]="UPGMaxAmount"
+      [maxSize]="15"
+      [minAmount]="order()?.minimumAmount"
+      [label]="'مبلغ را وارد کنید'"
+      [formControlName]="'amount'"
+      [error]="amountFormGroup.controls['amount'].errors ?? {}"
+      [errorMessageMapper]="errorMessageMapper"
+      (keydown)="checkKeyCode($event)"
+    >
+    </ui-form-field>
+  </ng-container>
+</div>

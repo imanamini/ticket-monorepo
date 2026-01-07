@@ -1,0 +1,30 @@
+@if (tacResponse() && !showLoading()) {
+  <app-credit-app-bar
+    [buttonLink]="creditHomeUrl()!"
+    [title]="tacResponse()?.title"
+    [backButton]="true"
+  ></app-credit-app-bar>
+  <div class="wrapper d-flex flex-column p-plus">
+    <span class="st-4 mb-medium text-onback-high text-align-right">شرایط استفاده از خدمات پرداخت اعتباری دیجی‌پی</span>
+    <div class="iframe-container d-flex flex-column surface-back radius-big">
+      @if (_html() && !gettingContent()) {
+        <div
+          class="html-content"
+          [innerHTML]="_html()"
+        ></div>
+      }
+    </div>
+  </div>
+  @if (shouldAcceptTac()) {
+    <div class="confirm w-100 p-big text-align-center">
+      <ngx-button
+        (clickHandler)="onConfirm()"
+        [style]="'fill'"
+        [fullWidth]="true"
+        [mode]="'section'"
+        >تایید قوانین و مقررات
+      </ngx-button>
+    </div>
+  }
+}
+<credit-page-loading [active]="!tacResponse() || showLoading()!"></credit-page-loading>

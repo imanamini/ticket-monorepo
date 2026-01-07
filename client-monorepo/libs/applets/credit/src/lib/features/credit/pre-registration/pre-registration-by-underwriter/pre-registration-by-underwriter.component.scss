@@ -1,0 +1,64 @@
+@import "@digipay/base-style/styleguide";
+
+
+
+.step-base-header {
+  position: relative;
+  flex-grow: 0;
+
+  * {
+    transition: all 0.3s;
+  }
+
+  .selectors-title {
+    max-height: 48px;
+    opacity: 1;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    height: #{map-get($spacing-sizes, "medium")};
+    border-radius: #{map-get($spacing-sizes, "medium")}
+      #{map-get($spacing-sizes, "medium")} #{map-get($spacing-sizes, "atom")}
+      #{map-get($spacing-sizes, "atom")};
+    background-color: #{map-get($surface-colors, "back")};
+  }
+
+  &.base-collapsed {
+    .selectors-title {
+      max-height: 0;
+      margin-bottom: #{map-get($spacing-sizes, "atom")};
+      opacity: 0;
+    }
+
+    .amount-selector {
+      margin: #{map-get($spacing-sizes, "plus")} 0
+        #{map-get($spacing-sizes, "mega")};
+    }
+
+    .button-select {
+      margin-top: #{map-get($spacing-sizes, "medium")} !important;
+    }
+
+    .installment-count-selector {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.result-cards-section {
+  direction: rtl;
+
+  .fund-provider-selector-title {
+    direction: rtl;
+  }
+}
+
+.amount-slide {
+  direction: rtl;
+}

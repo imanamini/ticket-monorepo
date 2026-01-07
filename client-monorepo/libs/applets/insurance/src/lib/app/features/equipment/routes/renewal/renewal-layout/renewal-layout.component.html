@@ -1,0 +1,101 @@
+<location-trap
+  [canBack]="canBack()"
+  [canExit]="true"
+>
+</location-trap>
+<ng-container *ngIf="!showHealthCheck">
+  <div class="renewal-layout">
+    <!-- header -->
+    <div class="header">
+      <renewal-header
+        (backClicked)="handleBackClick()"
+        (profileClicked)="handleProfileClick()"
+        [isMobile]="isMobile"
+        [journey]="JourneyNamesModel.RENEWAL"
+        [showBackBtn]="activeStepIndex < 3"
+      >
+      </renewal-header>
+    </div>
+    <!-- end header -->
+
+    @if (errorPageText()) {
+      <div
+        class="error-container d-flex flex-column align-items-center justify-content-center gap-minus"
+        style="height: 80vh"
+      >
+        <div class="error-content">
+          <img
+            class="illustration"
+            src="insurance-assets/images/error-transfer-detail.png"
+          />
+          <p class="error-title">مشکلی رخ داده‌است!</p>
+          <p class="error-description">{{ errorPageText() }} لطفا با پشتیبانی برای پیگیری وضعیت تماس بگیرید.</p>
+          <p class="call-center">۰۲۱ - 53924000</p>
+          <div class="button-wrapper">
+            <ui-button
+              (click)="goToBack()"
+              appearance="BLUE-TEXT"
+            >
+              بازگشت به صفحه اصلی
+            </ui-button>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <!-- renewal-stepper -->
+      <ng-container *ngIf="showStepper()">
+        <div
+          [ngClass]="{ mobile: isMobile }"
+          class="stepper"
+        >
+          <renewal-stepper [iconSet]="stepsIconSet"> </renewal-stepper>
+        </div>
+      </ng-container>
+      <!-- end renewal-stepper -->
+
+      <div
+        [ngClass]="{ mobile: isMobile }"
+        class="renewal-content"
+      >
+        <!-- Steps -->
+        <ng-container *ngIf="!showPaymentResult && (state$ | async)">
+          <ng-container [ngSwitch]="stateData[activeStepIndex]?.state">
+            <renewal-order-info *ngSwitchCase="1"> </renewal-order-info>
+            <renewal-pricing
+              *ngSwitchCase="2"
+              [journey]="JourneyNamesModel.RENEWAL"
+            >
+            </renewal-pricing>
+            <renewal-pre-payment
+              *ngSwitchCase="3"
+              [journey]="JourneyNamesModel.RENEWAL"
+            >
+            </renewal-pre-payment>
+            <renewal-payment-result
+              *ngSwitchCase="4"
+              [journey]="JourneyNamesModel.RENEWAL"
+            >
+            </renewal-payment-result>
+            <renewal-complete-information *ngSwitchCase="5"></renewal-complete-information>
+            <renewal-issue-policy
+              *ngSwitchCase="6"
+              [journey]="JourneyNamesModel.RENEWAL"
+            >
+            </renewal-issue-policy>
+          </ng-container>
+        </ng-container>
+        <!-- End Steps -->
+
+        <ng-container *ngIf="showPaymentResult">
+          <renewal-payment-result [journey]="JourneyNamesModel.RENEWAL"></renewal-payment-result>
+        </ng-container>
+      </div>
+    }
+  </div>
+</ng-container>
+
+<ng-container *ngIf="showHealthCheck">
+  <div class="health-check">
+    <health-check [journey]="JourneyNamesModel.RENEWAL"></health-check>
+  </div>
+</ng-container>

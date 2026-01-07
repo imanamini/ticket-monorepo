@@ -1,0 +1,47 @@
+<common-ui-components-page-layout
+  [showBorder]="true"
+  [title]="'مبلغ انتقال'"
+>
+  <div
+    class="wallet-amount-wrapper"
+    *ngIf="initialized()"
+  >
+    <cash-out-applet-account-owner-info
+      [userDetail]="targetUserDetails"></cash-out-applet-account-owner-info>
+    <form
+      [formGroup]="walletForm"
+      autocomplete="off"
+    >
+      <div class="transferable-amount-box">
+        <div class="transferable-amount-hint">
+          <div class="transferable-amount-content">
+            <span class="transferable-amount-content_amount">{{ transferProperty.remainingCap | thousands }}</span>
+            <span class="transferable-amount-content_currency">ریال</span>
+          </div>
+          <div>موجودی قابل انتقال</div>
+        </div>
+        <div class="amount-input-area">
+          <ui-form-field
+            [type]="'large-amount'"
+            [maxAmount]="transferProperty.maxAmount"
+            [minAmount]="transferProperty.minAmount"
+            [formControlName]="'amount'"
+            (change)="onInputError($event)"
+            [isNumericKeyboard]="true"
+          >
+          </ui-form-field>
+        </div>
+        <div class="wallet-continue">
+          <ngx-button
+            (click)="onSubmit()"
+            [disabled]="walletForm.invalid || isSubmitting()"
+            [isLoading]="isSubmitting()"
+            [brandButton]="true"
+            [size]="'medium'"
+            >ادامه
+          </ngx-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</common-ui-components-page-layout>

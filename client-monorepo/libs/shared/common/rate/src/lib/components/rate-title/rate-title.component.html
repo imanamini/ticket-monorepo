@@ -1,0 +1,12 @@
+<div class="d-flex flex-column gap-minus justify-content-center align-items-center">
+  <div class="title-image d-flex justify-content-center align-items-center p-medium radius-rounded surface-back">
+    <ui-api-image
+      width="32px"
+      height="32px"
+      [imageId]="titleImage() ?? ''"
+      [skeletonHeight]="'80px'"
+      fallbackImage="'assets/fallback/digipay-logo-32x32-fallback.svg'"
+    ></ui-api-image>
+  </div>
+  <div class="st-6">{{ title() }}</div>
+</div>

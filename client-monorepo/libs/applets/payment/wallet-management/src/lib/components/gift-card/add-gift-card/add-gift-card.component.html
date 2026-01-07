@@ -1,0 +1,41 @@
+<div class="add-gift-card-container">
+  <p class="title-wrapper">افزودن کد هدیه</p>
+
+  <form
+    [formGroup]="form"
+    class="add-serial"
+  >
+    <ui-form-field
+      label="کد هدیه خود را وارد کنید*"
+      formControlName="voucherCode"
+      [error]="form.controls['voucherCode'].errors"
+      [hasCleaner]="true"
+      wallet-mng-applet-uppercase
+    ></ui-form-field>
+
+    <div class="or">
+      <div class="line"></div>
+      <div class="text">یا</div>
+      <div class="line"></div>
+    </div>
+
+    <div
+      (click)="navigateToQrCodeReader()"
+      class="scan light-blue"
+    >
+      اسکن کد با دوربین &nbsp;
+      <div class="icon-scan"></div>
+    </div>
+
+    <ngx-button
+      [isLoading]="loadingApi()"
+      [brandButton]="true"
+      size="medium"
+      [fullWidth]="true"
+      [disabled]="!form.controls['voucherCode'].value || loadingApi()"
+      (clickHandler)="onSubmit()"
+    >
+      بررسی و تایید
+    </ngx-button>
+  </form>
+</div>

@@ -1,0 +1,16 @@
+@if (!hasBnpl()) {
+  <ngx-callout
+    [title]="'اعتبار فعال ندارید'"
+    [showTitleIcon]="true"
+    [message]="'برای خرید از این فروشگاه‌ها لازم است اعتبار دیجی‌پی را دریافت کنید.'"
+    [cta]="'دریافت'"
+    (ctaClick)="goToBnblPage()"
+  ></ngx-callout>
+}
+
+<common-ui-components-services-or-stores-slider
+  [items]="stores()"
+  [imageType]="'logo'"
+  [itemPerSlide]="hasBnpl() ? 12 : 8"
+  (indexChanged)="removeAllFaked()"
+></common-ui-components-services-or-stores-slider>

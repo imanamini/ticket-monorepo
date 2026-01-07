@@ -1,0 +1,27 @@
+<div
+  class="credit-list w-100 pt-huge pb-medium px-medium onelevated-shade-100 align-items-center d-flex flex-column justify-content-flex-start text-align-center"
+>
+  <div class="wrapper">
+    @defer (when wallets() && wallets()!.length > 0) {
+      @for (wallet of wallets(); track wallet) {
+        <app-credit-wallet-card-v2
+          class="cursor-pointer"
+          (cardClick)="clicked($event)"
+          [wallet]="wallet"
+        ></app-credit-wallet-card-v2>
+      }
+    } @placeholder (minimum 2s) {
+      <lib-ngx-skeleton-loading
+        [height]="'169px'"
+        [width]="'280px'"
+        class="pt-huge"
+        classes="mx-auto mb-pony"
+      ></lib-ngx-skeleton-loading>
+      <lib-ngx-skeleton-loading
+        [height]="'169px'"
+        [width]="'280px'"
+        classes="mx-auto"
+      ></lib-ngx-skeleton-loading>
+    }
+  </div>
+</div>

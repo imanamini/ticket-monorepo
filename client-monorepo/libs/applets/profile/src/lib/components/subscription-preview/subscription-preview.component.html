@@ -1,0 +1,49 @@
+<div class="card">
+  @if (initialized()) {
+    <profile-applet-subscription-bg [bgColor]="bgColor"></profile-applet-subscription-bg>
+
+    <div class="main-container">
+      <profile-applet-circle-progress-bar
+        [size]="40"
+        [progress]="75"
+        [progressColor]="progressColor"
+      >
+        <profile-applet-applet-diamond [color]="diamondColor"></profile-applet-applet-diamond>
+      </profile-applet-circle-progress-bar>
+
+      <div class="content">
+        <span class="title-wrapper">اشتراک فعال</span>
+        <span class="description">{{ contentDescription }}</span>
+      </div>
+
+      <div class="subscription-btn">
+        {{ btnText }}
+        <div class="arrow-left"></div>
+      </div>
+    </div>
+  } @else {
+    <div class="main-container">
+      <lib-ngx-skeleton-loading
+        width="40px"
+        height="40px"
+        [classes]="'radius-rounded'"
+      ></lib-ngx-skeleton-loading>
+
+      <div class="content">
+        <lib-ngx-skeleton-loading
+          width="80px"
+          height="44px"
+          [classes]="'radius-minus'"
+        ></lib-ngx-skeleton-loading>
+      </div>
+
+      <div class="subscription-btn">
+        <lib-ngx-skeleton-loading
+          width="80px"
+          height="22px"
+          [classes]="'radius-minus'"
+        ></lib-ngx-skeleton-loading>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,75 @@
+<div
+  [ngClass]="{ disabled: disabled }"
+  class="vehicle-plate"
+>
+  <div
+    [formGroup]="form"
+    [ngClass]="{ inverted: invertColor, disabled: disabled }"
+    [ngStyle]="{
+      color: textColor || null,
+      backgroundColor: bgColor || null,
+    }"
+    class="car-plate-layout"
+  >
+    <div class="flag"></div>
+    <div class="digits">
+      <div class="inline-item">
+        <input
+          (keyup)="leftNumbersKeyUp($event)"
+          [formControlName]="'part1'"
+          [readonly]="readonly"
+          autocomplete="off"
+          maxlength="2"
+          numpad
+          placeholder="23"
+          type="text"
+        />
+      </div>
+      <div class="inline-item">
+        <div
+          (click)="openSelectPlateLetterDialog()"
+          *ngIf="!form.value.part2"
+          class="letter-placeholder"
+        >
+          <app-ui-vehicle-plate-letter
+            class="inline-item plate-letter"
+            letterNo="23"
+          ></app-ui-vehicle-plate-letter>
+        </div>
+        <app-ui-vehicle-plate-letter
+          (click)="openSelectPlateLetterDialog()"
+          *ngIf="form.value.part2"
+          [invertColor]="true"
+          [letterNo]="form.value.part2"
+          class="inline-item plate-letter"
+        ></app-ui-vehicle-plate-letter>
+      </div>
+
+      <div class="inline-item">
+        <input
+          #part3Input
+          [formControlName]="'part3'"
+          [readonly]="readonly"
+          autocomplete="off"
+          class="part3-input"
+          maxlength="3"
+          numpad
+          placeholder="456"
+          type="text"
+        />
+      </div>
+    </div>
+    <div class="province">
+      <input
+        #part4Input
+        [formControlName]="'part4'"
+        [readonly]="readonly"
+        autocomplete="off"
+        maxlength="2"
+        numpad
+        placeholder="77"
+        type="text"
+      />
+    </div>
+  </div>
+</div>

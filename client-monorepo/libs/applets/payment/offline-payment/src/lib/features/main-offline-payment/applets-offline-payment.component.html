@@ -1,0 +1,55 @@
+@if (!gettingData()) {
+  <common-ui-components-page-layout
+    [stickyHeader]="true"
+    title="فاکتور پرداخت"
+  >
+    <div class="invoice">
+      <div class="invoice-info">
+        <div class="info-title">
+          <div class="text-onback d-flex gap-small align-items-center">
+            <common-icon-dp-icon
+              [icon]="'receipt-bill'"
+              [iconSize]="'24'"
+            ></common-icon-dp-icon>
+            <div class="st-6">{{ items.creditorName }}</div>
+          </div>
+          <div class="time">
+            <span>زمان: {{ date }}</span> - <span>ساعت {{ time }} </span>
+          </div>
+        </div>
+      </div>
+      <div class="tracking-code">
+        <p>
+          <span>{{ items.trackingCode }}</span>
+        </p>
+      </div>
+      <div class="invoice-detail">
+        <div
+          class="detail"
+          *ngFor="let item of items.extraInfo"
+        >
+          <p class="b-2 text-onback-disabled">{{ item.key }}</p>
+          <p class="b-2 text-onback-disabled">{{ item.value }}</p>
+        </div>
+      </div>
+      <div class="invoice-price">
+        <p class="text-onback bt-2">مبلغ قابل پرداخت</p>
+        <p class="text-onback st-6">{{ items.totalAmount | thousands }} <span class="is-currency"> ريال</span></p>
+      </div>
+      <div class="invoice-pay">
+        <ngx-button
+          (clickHandler)="pay()"
+          [mode]="'form'"
+          [size]="'large'"
+          [style]="'fill'"
+          [fullWidth]="true"
+        >
+          پرداخت فاکتور
+        </ngx-button>
+      </div>
+    </div>
+    <div class="logo">
+      <div class="logo-img"></div>
+    </div>
+  </common-ui-components-page-layout>
+}

@@ -1,0 +1,59 @@
+@if (!showLoading()) {
+  @switch (state()) {
+    @case ('FORM') {
+      <app-credit-enote-step-info
+        [switchTypePossible]="switchTypePossible()!"
+        (changeNoteTypeClicked)="onChangeEnoteType()"
+        (back)="closeStep()"
+        (finish)="reloadStatus()"
+        (goToSana)="goToSana()"
+        [creditId]="creditId()!"
+        [fieldErrors]="fieldErrors()!"
+        class="d-flex flex-column flex-grow"
+      >
+      </app-credit-enote-step-info>
+    }
+    @case ('IN_PROGRESS') {
+      <app-credit-enote-step-in-progress
+        (finish)="reloadStatus()"
+        (close)="closeStep()"
+        class="d-flex flex-column flex-grow"
+      ></app-credit-enote-step-in-progress>
+    }
+    @case ('WAITING') {
+      <app-credit-enote-step-waiting
+        [switchTypePossible]="switchTypePossible()!"
+        (changeNoteTypeClicked)="onChangeEnoteType()"
+        (finish)="closeStep()"
+        class="d-flex flex-column flex-grow"
+      ></app-credit-enote-step-waiting>
+    }
+    @case ('PAYMENT') {
+      <app-credit-enote-step-payment
+        (back)="closeStep()"
+        [creditId]="creditId()!"
+        [fundProviderCode]="fundProviderCode()!"
+        class="d-flex flex-column flex-grow"
+      ></app-credit-enote-step-payment>
+    }
+    @case ('RESULT') {
+      <app-credit-enote-step-result
+        (back)="closeStep()"
+        (finish)="nextStep()"
+        [data]="resultData()!"
+        class="d-flex flex-column flex-grow"
+      >
+      </app-credit-enote-step-result>
+    }
+    @default {
+      @if (state() === 'EXPIRED' || state() === 'NO_SERVICE' || state() === 'SANA_NOT_REGISTERED' || state() === 'ENOTE_ERROR') {
+        <app-credit-enote-step-error
+          [state]="state()"
+          (goToSana)="goToSana()"
+          (submitted)="redirectToGateway()"
+        ></app-credit-enote-step-error>
+      }
+    }
+  }
+}
+<credit-page-loading [active]="showLoading()!"></credit-page-loading>

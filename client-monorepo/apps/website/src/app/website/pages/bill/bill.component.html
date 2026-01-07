@@ -1,0 +1,74 @@
+<app-base-layout [loaded]="loaded">
+  <ng-container *ngIf="billPage && billPage.templateData">
+    <!--  section 1-->
+    <app-ui-introduction-default
+      *ngIf="billPage.templateData.introArtwork && billPage.templateData.introType"
+      [heroImage]="billPage.templateData.introArtwork"
+      [introductionType]="billPage.templateData.introType"
+    >
+      <div>
+        <h1>
+          {{ billPage?.templateData?.introTitle }} <br />
+          {{ billPage?.templateData?.introSubtitle }}
+        </h1>
+        <div class="subtitle">{{ billPage?.templateData?.introSubtitle2 }}</div>
+        <app-ui-button
+          *ngIf="billPage.templateData.introFirstCta.link"
+          [linkTarget]="'_blank'"
+          [link]="billPage.templateData.introFirstCta.link"
+        >
+          <i> </i>
+          <span>
+            {{ billPage.templateData.introFirstCta.title }}
+          </span>
+        </app-ui-button>
+      </div>
+    </app-ui-introduction-default>
+
+    <!--section 2-->
+    <app-bill-bills
+      *ngIf="billPage.templateData.sectionBills && billPage.templateData.sectionBills.bills.length > 0"
+      [bills]="billPage.templateData.sectionBills.bills"
+      [subtitle]="billPage.templateData.sectionBills.subtitle"
+      [title]="billPage.templateData.sectionBills.title"
+    ></app-bill-bills>
+
+    <!--  section 3-->
+    <app-bill-benefit
+      *ngIf="billPage.templateData.sectionBenefits && billPage.templateData.sectionBenefits.benefits.length > 0"
+      [benefits]="billPage.templateData.sectionBenefits.benefits"
+      [subtitle]="billPage.templateData.sectionBenefits.subtitle"
+      [title]="billPage.templateData.sectionBenefits.title"
+    ></app-bill-benefit>
+
+    <!--    section 4-->
+    <app-ui-seo
+      *ngIf="billPage.templateData.sectionSeoContent"
+      [seoContent]="billPage.templateData.sectionSeoContent"
+    ></app-ui-seo>
+
+    <!--  section 5-->
+    <app-ui-faq
+      *ngIf="billPage.templateData.faq && billPage.templateData.faq.faqItems && billPage.templateData.faq.faqItems.length > 0"
+      [faqs]="billPage.templateData.faq.faqItems"
+      [subtitle]="billPage.templateData.faq.subtitle"
+      [title]="billPage.templateData.faq.title"
+    >
+    </app-ui-faq>
+
+    <!--  section 6-->
+    <app-blog-cards
+      *ngIf="billPage.templateData.relatedPosts && posts.length > 0"
+      [blogPosts]="posts"
+      [subtitle]="billPage.templateData.relatedPosts.subtitle"
+      [title]="billPage.templateData.relatedPosts.title"
+    >
+    </app-blog-cards>
+
+    <!--  section 7-->
+    <app-ui-similar-services
+      *ngIf="billPage.templateData.similar && billPage.templateData.similar.items && billPage.templateData.similar.items.length > 0"
+      [data]="billPage.templateData.similar"
+    ></app-ui-similar-services>
+  </ng-container>
+</app-base-layout>

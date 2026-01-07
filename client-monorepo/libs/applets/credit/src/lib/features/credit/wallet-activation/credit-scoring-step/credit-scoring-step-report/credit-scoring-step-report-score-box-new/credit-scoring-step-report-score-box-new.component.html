@@ -1,0 +1,47 @@
+<div class="gauge-container mx-auto">
+  <svg
+    [attr.width]="(radius + strokeWidth) * 2"
+    [attr.height]="(radius + strokeWidth) * 1.2"
+  >
+    @for (segment of segments(); track segment; let i = $index) {
+      <path
+        [attr.d]="generateArc(getCurrentPercentage(i), getCurrentPercentage(i + 1))"
+        [attr.stroke]="segment.color | rgbColor"
+        [attr.stroke-width]="strokeWidth"
+        fill="none"
+        stroke-linecap="round"
+      />
+    }
+
+    <circle
+      [attr.cx]="valueX()"
+      [attr.cy]="valueY()"
+      [attr.r]="strokeWidth / 1.5"
+      fill="white"
+      [attr.stroke]="spectrum()?.color | rgbColor"
+      [attr.stroke-width]="circleStrokeWidth"
+    />
+  </svg>
+
+  <div class="value-labels d-flex justify-content-space-between px-small">
+    <span class="c-3 text-onback-high">{{ max() }}</span>
+    <span class="c-3 text-onback-high">{{ min() }}</span>
+  </div>
+
+  <div class="current-value-container d-flex flex-column w-100 text-align-center">
+    <span class="value">{{ value() }}</span>
+    <div class="d-flex flex-row gap-tiny text-align-center justify-content-center">
+      <ngx-button
+        ngxTrackableId
+        trackerId="storeReportDetailsButtonClick"
+        (clickHandler)="clicked.emit()"
+        [mode]="'form'"
+        [size]="'small'"
+        [style]="'link'"
+        [rightIcon]="{ name: 'question-mark-circle' }"
+      >
+        {{ spectrum()?.riskDesk || '' }}
+      </ngx-button>
+    </div>
+  </div>
+</div>

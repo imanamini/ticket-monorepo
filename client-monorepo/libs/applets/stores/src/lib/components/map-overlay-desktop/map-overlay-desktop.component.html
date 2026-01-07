@@ -1,0 +1,103 @@
+@if (selectedBranch()) {
+  <!-- Branch Details -->
+  <div class="list-section w-100 radius-big surface-elevated shadow p-plus">
+    <!-- Title Section -->
+    <div class="d-flex flex-row gap-giant py-minus px-medium border-color-light border-b-100 align-items-center mb-minus">
+      <common-icon-dp-icon
+        class="cursor-pointer"
+        [classes]="'text-onback-brand'"
+        [icon]="'arrow-right'"
+        [iconType]="'linear'"
+        [iconSize]="'20'"
+        (click)="handleGoBackClick()"
+      ></common-icon-dp-icon>
+      <div class="flex w-100 justify-content-center st-6 flex-nowrap">اطلاعات فروشگاه</div>
+    </div>
+    <!-- END Title Section -->
+    <!-- Branch Details -->
+    <stores-applet-map-branch-details [selectedBranch]="selectedBranch()!"></stores-applet-map-branch-details>
+    <!-- End Branch Details -->
+  </div>
+} @else {
+  @if (branchesToShow()) {
+    <div class="list-section d-flex flex-column w-100 radius-big surface-elevated shadow">
+      <!-- Title Section -->
+      <div class="d-flex flex-row gap-mega py-minus px-medium border-color-light border-b-100 align-items-center mb-minus">
+        <common-icon-dp-icon
+          class="cursor-pointer"
+          [classes]="'text-onback-brand'"
+          [icon]="'arrow-right'"
+          [iconType]="'linear'"
+          [iconSize]="'20'"
+          (click)="handleGoBackClick()"
+        ></common-icon-dp-icon>
+        <div class="flex w-100 justify-content-center st-6 flex-nowrap">فروشگاه‌های حضوری</div>
+      </div>
+      <!-- END Title Section -->
+      <stores-applet-map-header-mobile
+        [searchbarMode]="'section'"
+        [filterClasses]="'px-plus'"
+        [searchBarClasses]="'px-plus'"
+      ></stores-applet-map-header-mobile>
+      @if (showSearchResults()) {
+        <stores-applet-map-search-result (branchSelected)="handleSearchResultBranchSelect($event)"></stores-applet-map-search-result>
+      } @else {
+        <!--  SKELETON -->
+        @if (loadingMode()) {
+          <div class="d-flex flex-column gap-medium mt-medium px-plus">
+            <div class="d-flex justify-content-center">
+              <lib-ngx-skeleton-loading
+                [height]="'20px'"
+                [width]="'120px'"
+                [classes]="'radius-minus'"
+              ></lib-ngx-skeleton-loading>
+            </div>
+            @for (i of rangeCreator(6); track $index) {
+              <lib-ngx-skeleton-loading
+                [height]="'73px'"
+                [width]="'100%'"
+                [classes]="'radius-minus'"
+              ></lib-ngx-skeleton-loading>
+            }
+          </div>
+          <!--  END SKELETON -->
+        } @else {
+          <!-- Show Branches -->
+          @if (branchesToShow()!.length) {
+            <div class="d-flex justify-content-center c-2 px-plus text-onback-high mt-plus">
+              {{ totalAvailableStores() }} فروشگاه در این ناحیه پیدا شد
+            </div>
+            @if (selectedCategory()) {
+              <div class="d-flex justify-content-start px-plus mt-medium st-8 text-onback-high">{{ categoryTitle() }}</div>
+            }
+            <div class="branches-list px-plus mt-medium">
+              @for (branch of branchesToShow(); track $index) {
+                @defer (on viewport) {
+                  <common-ui-components-item-overview
+                    [mixedBlendModeEnabled]="true"
+                    [item]="branch.item"
+                    [enableSingleLineMode]="true"
+                    [hideSubtitleBold]="true"
+                    [hideButton]="true"
+                    [disableTopPadding]="$first"
+                    (click)="handleBranchClicked(branch.branch)"
+                  ></common-ui-components-item-overview>
+                } @placeholder {
+                  <common-ui-components-item-overview [item]="undefined"></common-ui-components-item-overview>
+                }
+              }
+            </div>
+            <!-- END Show Stores -->
+          } @else {
+            <!-- No Stores Available -->
+            <div class="pb-medium">
+              <stores-applet-map-empty-result></stores-applet-map-empty-result>
+            </div>
+            <!-- END No Stores Available -->
+          }
+          <!-- End Show Branches -->
+        }
+      }
+    </div>
+  }
+}

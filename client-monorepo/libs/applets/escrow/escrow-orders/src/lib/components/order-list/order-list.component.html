@@ -1,0 +1,32 @@
+@if (isLoading()) {
+  <div class="d-flex justify-content-center align-items-center w-100 mt-huge">
+    <ngx-spinner></ngx-spinner>
+  </div>
+} @else {
+  @if (orders().length === 0) {
+    <div class="d-flex flex-column justify-content-center h-50vh">
+      <img
+        src="assets/images/empty.png"
+        alt="empty"
+      />
+      <p class="st-8 text-onback-high text-align-center mt-medium">سفارشی ندارید</p>
+    </div>
+  } @else {
+    <div class="pb-hulk">
+      <div class="d-flex justify-content-space-between align-items-center mb-minus mt-plus">
+        <p class="st-8">لیست سفارش‌ها</p>
+      </div>
+
+      @for (order of orders(); track $index) {
+        <escrow-orders-applet-order-summary
+          [image]="order.image"
+          [linkText]="'جزییات'"
+          [announcementTitle]="order.announcementTitle"
+          [price]="order.price"
+          [deliveryType]="order.type || ''"
+          (linkAction)="openOrderDetailBottomSheet(order)"
+        ></escrow-orders-applet-order-summary>
+      }
+    </div>
+  }
+}

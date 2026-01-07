@@ -1,0 +1,37 @@
+<div class="w-100 d-flex flex-wrap surface-elevated">
+  <ngx-app-bar
+    class="w-100"
+    [title]="title()"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="w-100 mt-medium px-plus">
+    <ngx-segmented-control
+      [mode]="'SECTION_SEGMENT'"
+      [options]="options()"
+      [selectedOption]="options()[0]"
+      class="segment-style"
+      (change)="handleActiveSection($event)"
+    />
+
+    @if (!getProfit()) {
+      <wealth-applet-credit-guid-steper
+        [steps]="definitionItems()"
+        [headerImage]="'./wealth-assets/images/guids/stores.png'"
+        [headerAlt]="'فروشگاه‌ها'"
+      />
+    } @else {
+      <wealth-applet-credit-guid-steper
+        [steps]="profitItems()"
+        [headerImage]="'./wealth-assets/images/guids/credit-request.png'"
+        [headerAlt]="'دریافت اعتبار'"
+      />
+    }
+  </div>
+</div>

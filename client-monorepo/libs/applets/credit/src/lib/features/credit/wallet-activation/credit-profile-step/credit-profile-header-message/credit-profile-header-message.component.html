@@ -1,0 +1,12 @@
+@if (headerMessage()) {
+  <div
+    [style]="{
+      backgroundColor: headerMessage()?.bgColor,
+      borderColor: headerMessage()?.strokeColor,
+      color: headerMessage()?.color,
+    }"
+    class="credit-profile-message surface-elevated text-onback-warning border-color-warning border-100"
+  >
+    {{ headerMessage()?.content }}
+  </div>
+}

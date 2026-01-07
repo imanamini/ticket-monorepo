@@ -1,0 +1,37 @@
+<section class="vacation">
+  <div class="container">
+    <div class="section-title text-align-center">
+      <h2>{{ templateData?.mainVacations?.title }}</h2>
+      <div class="subtitle">
+        <span *ngIf="templateData && templateData.mainVacations">
+          {{ templateData.mainVacations.description }}
+        </span>
+      </div>
+    </div>
+    <div class="digipay__date-container">
+      <div class="digipay__backSquare">
+        <div class="za-digipay__date-item"><i></i></div>
+        <div class="vacation__items">
+          <ul *ngIf="templateData && templateData.mainVacations">
+            <li
+              *ngFor="let item of templateData.mainVacations.vacation"
+              class="vacation__item"
+            >
+              <div class="vacation__item-contain">
+                <div>
+                  <div class="vacation__item-header">
+                    <span>{{ item.day }}</span>
+                    <span>{{ item.month }}</span>
+                  </div>
+                  <div class="vacation__item-footer bg-white">
+                    <span>{{ item.reason }}</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

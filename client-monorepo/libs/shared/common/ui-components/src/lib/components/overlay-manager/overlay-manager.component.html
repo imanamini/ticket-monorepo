@@ -1,0 +1,27 @@
+<div
+  class="overlay-wrapper d-flex"
+  [ngClass]="{
+    visible: isVisible(),
+  }"
+>
+  <div
+    class="overlay-container d-flex flex-column"
+    [ngClass]="{
+      'error-type': config()?.type === 'error',
+    }"
+  >
+    <div class="overlay-header d-flex justify-content-space-between px-plus py-pony w-100">
+      <common-icon-dp-icon
+        (click)="handleBackAction()"
+        [icon]="'Arrow-Right'"
+        [iconSize]="'24'"
+        [iconType]="'linear'"
+        [classes]="config()?.type === 'error' ? 'text-oninvert-high' : 'text-onback-brand'"
+        class="cursor-pointer py-low"
+      ></common-icon-dp-icon>
+    </div>
+    <div class="overlay-content h-100">
+      <ng-container *ngComponentOutlet="component()"></ng-container>
+    </div>
+  </div>
+</div>

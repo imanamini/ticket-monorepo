@@ -1,0 +1,53 @@
+@import "insurance/src/lib/app/style/once/global";
+
+.filter-bottom-sheet {
+  .title {
+    padding: 16px 16px 8px 16px;
+    font-size: 16px;
+    font-weight: 445;
+  }
+
+  .search-box {
+    padding: 8px 16px 0 16px;
+    @include flex-center;
+
+    .brand-input {
+      width: 100%;
+    }
+  }
+
+  .insurers-list {
+    @include flex-column;
+    overflow-y: auto;
+    margin-top: -12px;
+    height: 55vh;
+
+    .single-insurer {
+      @include flex-center-start;
+      padding: 16px;
+      gap: 12px;
+      color: #6e798d;
+      font-size: 14px;
+      font-weight: 400;
+      border-bottom: 1px solid #dee3e7;
+
+      &:last-child {
+        border: none;
+      }
+    }
+  }
+
+  .cta {
+    padding: 8px 8px 16px 8px;
+    @include flex-center;
+  }
+}
+
+
+@media(max-width: 340px) {
+  .filter-bottom-sheet {
+    .insurers-list {
+      max-height: 280px;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+::ng-deep app-credit-score-circle {
+  text-align: center;
+}
+
+.score-circle {
+  position: relative;
+  display: inline-block;
+
+  .circle-content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    span {
+      display: block;
+      text-align: center;
+    }
+
+    .score {
+      font-size: 32px;
+      direction: ltr;
+    }
+
+    .subtitle {
+      color: #4c4c4c;
+      font-size: 10px;
+    }
+  }
+
+  .icon {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    display: block;
+    transform: translateX(-50%);
+  }
+
+  &.is-warning {
+    .icon {
+      background: url("score-warning-orange.svg") no-repeat 0 0/100%;
+    }
+  }
+
+  &.is-success {
+    .icon {
+      background: url("score-checkbox-green.svg") no-repeat 0 0/100%;
+    }
+  }
+}
+
+:host circle-progress {
+  display: inline-block;
+}

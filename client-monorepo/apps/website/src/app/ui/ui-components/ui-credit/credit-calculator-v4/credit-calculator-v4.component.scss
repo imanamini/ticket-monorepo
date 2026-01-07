@@ -1,0 +1,408 @@
+@import "globals";
+@import "@digipay/base-style/styleguide";
+
+
+.merchant-logo-list {
+  display: flex;
+  flex-direction: row-reverse;
+
+  .merchant-logo-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 47px;
+    height: 47px;
+    border-radius: 50%;
+    border: 2px solid #FFF;
+    background-color: blue;
+    margin-right: -12px;
+    position: relative;
+  }
+}
+
+.c-cal-row {
+  display: flex;
+  height: 365px;
+
+  .c-cal-col.right-side {
+    width: 485px;
+  }
+
+  .c-cal-col.left-side {
+    width: 571px;
+  }
+}
+
+
+.no-plan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 128px 64px;
+  margin-top: 64px;
+  border-radius: 24px;
+  background: #fff;
+
+  .artwork {
+    background: url('./icon-no-plan.svg') center center/cover no-repeat;
+    width: 555px;
+    height: 296px;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .no-plan-title {
+    margin-top: 40px;
+    color: $swatch_steel_700;
+    font-size: 32px;
+    font-weight: 900;
+  }
+
+  .no-plan-subtitle {
+    margin-top: 24px;
+    color: $swatch_steel_500;
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+    max-width: 575px;
+  }
+}
+
+.plans {
+  border-radius: 24px;
+  background: #fff;
+  padding-top: 64px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+
+  &.with-plan-id {
+    border-radius: unset;
+    padding: unset;
+  }
+
+  .title {
+    font-size: 27px;
+    font-weight: 950;
+    color: $swatch_steel_700;
+  }
+
+
+  .plans-types-amounts {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .credit-plans-next,
+  .credit-plans-prev {
+    position: absolute;
+    z-index: 5;
+    cursor: pointer;
+
+    &.swiper-button-disabled {
+      opacity: 0.3;
+      cursor: unset;
+    }
+  }
+
+  .credit-plans-next {
+    left: 0;
+  }
+
+  .credit-plans-prev {
+    right: 0;
+  }
+
+  .plans-swiper {
+    margin: 16px 0;
+    width: 100%;
+    border-radius: 12px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  ::ng-deep {
+    .swiper-button-prev,
+    .swiper-button-next {
+      background-color: $swatch_blue_100;
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      border: 2px solid $swatch_blue_500;
+      top: 40px;
+
+      &:after {
+        content: '';
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    swiper-slide {
+      opacity: 0.5;
+      display: flex;
+      justify-content: center;
+      transition: opacity 0.3s;
+      overflow: hidden;
+
+      .plan-amount {
+        font-size: 14px;
+        font-weight: 600;
+        transition: font-size 10ms, font-weight 10ms;
+        cursor: pointer;
+        max-width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+
+        span {
+          margin-right: 4px;
+          font-size: 12px;
+          font-weight: 370;
+        }
+      }
+
+      &.swiper-slide-active {
+        opacity: 1;
+
+        .plan-amount {
+          color: $swatch_steel_900;
+          font-size: 24px;
+          font-weight: 600;
+
+          span {
+            font-size: 16px;
+            font-weight: 370;
+          }
+        }
+      }
+    }
+  }
+
+  .plans-details {
+    width: 100%;
+    margin-top: 12px;
+
+    .plan-details {
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 16px;
+
+      &.working-capital {
+        min-height: unset;
+      }
+
+      .fund-provider-groups {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .plan-detail {
+    width: 100%;
+
+    .detail-title {
+      margin-top: 64px;
+      color: $swatch_steel_900;
+      font-size: 24px;
+      font-weight: 700;
+    }
+  }
+}
+
+swiper-container {
+  width: 100% !important;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+  z-index: 1;
+  display: block;
+
+  swiper-slide {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+    font-size: 26px;
+    font-weight: 500;
+    transition: font-size 10ms, font-weight 10ms;
+    cursor: pointer;
+  }
+}
+
+
+@media (max-width: 1280px) {
+  .c-cal-row {
+    flex-direction: column;
+    height: auto;
+    gap: 20px !important;
+
+    .c-cal-col {
+      flex: 0 0 auto;
+      width: 100% !important;
+
+      .funder {
+        flex-direction: column;
+        margin-bottom: 0 !important;
+      }
+    }
+  }
+  .no-plan {
+    padding: 68px 24px;
+
+    .artwork {
+      width: 515px;
+      height: 294px;
+    }
+
+    .no-plan-title {
+      margin-top: 32px;
+    }
+  }
+
+  .plans {
+    padding: map-get($spacing-sizes, 'large') map-get($spacing-sizes, 'medium') map-get($spacing-sizes, 'big') map-get($spacing-sizes, 'medium') !important;
+
+
+    .detail-title {
+      font-size: 16px;
+    }
+
+    .title {
+      font-size: 18px !important;
+      margin-bottom: 24px;
+    }
+
+    .plans-list {
+      padding: 0;
+    }
+
+    .credit-plans-next,
+    .credit-plans-prev {
+      width: 48px;
+      height: 48px;
+    }
+
+    .plans-swiper {
+      padding: 0;
+    }
+
+    ::ng-deep {
+      .swiper {
+        .swiper-slide {
+          width: 220px;
+        }
+      }
+    }
+
+    .plans-details {
+      margin-top: 0;
+    }
+
+    .plan-payments {
+      gap: 10px;
+
+      .payment-duration {
+        padding: 10px 16px;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 744px) {
+
+
+  .no-plan {
+    border-radius: 20px;
+    padding: 32px 10px;
+    margin-top: 32px;
+
+    .artwork {
+      width: 270px;
+      height: 151px;
+    }
+
+    .no-plan-title {
+      font-size: 18px;
+    }
+
+    .no-plan-subtitle {
+      margin-top: 8px;
+      font-size: 16px;
+      max-width: 272px;
+    }
+
+    .plans {
+      padding: 8px;
+      width: 100%;
+      margin-top: 32px;
+      padding-top: 32px;
+
+      .title {
+        font-size: 20px;
+      }
+
+      .plans-swiper {
+        padding: 16px;
+      }
+
+      ::ng-deep {
+        .swiper {
+          .swiper-button-prev,
+          .swiper-button-next {
+            width: 48px;
+            height: 48px;
+            top: 30px;
+          }
+
+          .swiper-slide {
+            width: 166px;
+
+            .plan-amount {
+              font-size: 16px;
+
+              span {
+                font-size: 8px;
+              }
+            }
+
+            &.swiper-slide-active {
+              .plan-amount {
+                font-size: 16px;
+
+                span {
+                  font-size: 13px;
+                  margin-right: 5px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .detail-title {
+        font-size: 13px;
+      }
+
+    }
+  }
+}

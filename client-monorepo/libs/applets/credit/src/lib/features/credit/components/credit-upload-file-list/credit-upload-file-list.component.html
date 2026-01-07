@@ -1,0 +1,12 @@
+<div class="file-upload-list">
+  @for (child of step()?.child; track child) {
+    <div class="file-upload-item">
+      <app-upload-file-tile
+        (uploadSuccess)="uploadSucceed()"
+        [creditWallet]="wallet()"
+        [maxUploadSize]="maxUploadSize()"
+        [step]="child"
+      ></app-upload-file-tile>
+    </div>
+  }
+</div>

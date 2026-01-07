@@ -1,0 +1,40 @@
+@if (category()) {
+  <div
+    [class]="
+      'd-flex flex-row flex-nowrap surface-elevated justify-content-space-between px-minus radius-medium gap-small ' +
+      generatedStyles().wrapperClasses
+    "
+    [ngClass]="{ 'border-color-brand surface-brand-tint': isChecked() }"
+    (click)="check(category().id)"
+  >
+    <!-- Picture -->
+    @if (category().image) {
+      <div class="d-flex justify-content-center align-items-center">
+        <img
+          [ngSrc]="category().image"
+          [width]="generatedStyles().imageSize"
+          [height]="generatedStyles().imageSize"
+          [alt]="category().subtitle"
+        />
+      </div>
+    }
+    <!-- End Picture -->
+
+    <!-- Body -->
+    <div class="category-title d-flex flex-row justify-content-start align-items-center flex-1 c-2">
+      {{ storeCategoryTitleMapper[category().title] }}
+    </div>
+    <!-- End Body -->
+
+    <!-- Check Box -->
+    @if (size() === 'MEDIUM') {
+      <div class="d-flex justify-content-center align-items-center">
+        <ngx-radio-button
+          [size]="20"
+          [checked]="isChecked()"
+        ></ngx-radio-button>
+      </div>
+    }
+    <!-- End Check Box -->
+  </div>
+}

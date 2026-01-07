@@ -1,0 +1,30 @@
+<ngx-bottom-sheet-header [title]="'خروج از حساب کاربری'"> </ngx-bottom-sheet-header>
+<div class="d-flex flex-column align-items-center p-minus gap-big">
+  <common-icon-dp-icon
+    [icon]="'info-circle'"
+    [iconSize]="'100'"
+    [classes]="'text-onback-brand'"
+  ></common-icon-dp-icon>
+  <span class="text-onback-high b-2 text-align-center"
+    >با خروج از حساب کاربری، به اطلاعات خود دسترسی نخواهید داشت، هروقت بخواهید می‌توانید دوباره وارد شوید.</span
+  >
+  <div class="d-flex gap-medium">
+    <ngx-button
+      [mode]="'form'"
+      [size]="'large'"
+      [style]="'link'"
+      (clickHandler)="closeLogoutBottomSheet()"
+    >
+      انصراف
+    </ngx-button>
+    <ngx-button
+      [mode]="'form'"
+      [size]="'large'"
+      [style]="'tinted-on-elevated'"
+      [destructive]="true"
+      (clickHandler)="orderToLogout()"
+    >
+      خروج
+    </ngx-button>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.rtl {
+  direction: rtl;
+
+  * {
+    direction: rtl;
+  }
+}
+
+.status-image{
+  width:96px;
+  height:96px;
+  background: url("../../assets/upload-cheque-icon.svg") no-repeat center center;
+  background-size: contain;
+}
+
+

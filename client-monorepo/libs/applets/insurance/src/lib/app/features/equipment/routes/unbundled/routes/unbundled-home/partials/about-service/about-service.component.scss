@@ -1,0 +1,176 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.wrapper {
+  width: 100%;
+  background-color: #F4F6FC;
+}
+
+.inner {
+  display: flex;
+  margin: auto;
+  width: 75%;
+  padding: 100px 0;
+  border-top: 2px solid #dee3e7;
+
+  .content {
+    text-align: end;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+
+.header {
+  font-size: 20px;
+  color: #001A66;
+
+  .main-header {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.5;
+    margin: 20px 0;
+  }
+
+  .third-header {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+}
+
+
+.wrapper-item {
+  width: 50%;
+}
+
+
+.image {
+  display: inline-flex;
+}
+
+.image-source {
+  margin: 0 auto;
+  width: 400px;
+  height: 685px;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.icon {
+  width: 48px;
+  height: 46px;
+}
+
+.item {
+  margin-top: 10px;
+}
+
+.main-content .item .top .title {
+  font-weight: 600;
+  color: #061962;
+  margin: 5px 0 10px 0;
+  text-align: center;
+}
+
+.main-content .item .description {
+  color: #828CB1;
+  font-weight: 400;
+  font-size: .98rem;
+  margin-top: 5px;
+  line-height: 1.5;
+}
+
+.cards {
+  background-color: #F4F6FC;
+  padding: 40px 0;
+
+  .header {
+    text-align: center;
+    font-weight: 800;
+    font-size: 2rem;
+    margin-bottom: 50px;
+  }
+
+  .card-list {
+    width: 75%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    grid-gap: 20px;
+
+    .card-item {
+      background: #ffffff;
+      color: #061962;
+      box-shadow: 0 1px 1px #828CB1;
+      padding: 60px 30px;
+      display: flex;
+      border-radius: 12px;
+      width: 350px;
+      justify-content: center;
+      align-items: center;
+
+      .title {
+        display: flex;
+        margin: auto 15px;
+        font-size: 1.2rem;
+
+        &::before {
+          content: "";
+          border-color: transparent #FFD500;
+          border-style: solid;
+          border-width: 6px 8px 6px 0;
+          display: block;
+          width: 0;
+          height: 0;
+        }
+      }
+    }
+  }
+}
+
+@include mediaTablet {
+  .inner {
+    width: 90%;
+
+    .image {
+      display: none;
+    }
+
+    .content {
+      width: 100%;
+
+      .header {
+        font-size: 18px;
+
+        .main-header {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+
+  .card-list {
+    flex-direction: column;
+
+    .card-item {
+      margin: auto;
+      width: 300px !important;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+}
+
+@include mediaMobile {
+  .card-list {
+    width: 95% !important;
+  }
+}

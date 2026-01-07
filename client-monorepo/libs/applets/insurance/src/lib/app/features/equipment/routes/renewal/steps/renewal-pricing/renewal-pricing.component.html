@@ -1,0 +1,33 @@
+<div class="pricing-wrapper">
+  <div class="pricing">
+    <div [ngClass]="{'mobile':isMobile}"
+         class="pricing-description">
+      لطفا ارزش فعلی دستگاه خود را وارد فرمایید و یا از مقادیر پیش فرض انتخاب نمایید.
+    </div>
+    <renewal-pricing-input
+            (priceSelected)="handlePriceSelection($event)"
+            [placeholder]="'0'"
+            [preSelected]="selectedPrice"
+            [saleChannel]="journey"
+            hint="مبلغ باید بیش از 1,000,000 تومان باشد">
+    </renewal-pricing-input>
+
+    <journey-info-box
+            [description]="'ارزشی که شما برای دستگاه خود اعلام میکنید ارتباط مستقیمی با حق بیمه قابل پرداخت و پرداخت خسارت در صورت بروز حادثه دارد و به منظور دریافت خسارت متناسب با ارزش واقعی دستگاه، قیمت حال حاضر دستگاه را وارد کنید.'"
+            [title]="'توجه داشته باشید'">
+    </journey-info-box>
+
+    <div class="buttons">
+      <journey-buttons
+              (backClicked)="goToPreviousStep()"
+              (nextClicked)="goToNextStep()"
+              [disableBack]="loading$ | async"
+              [disableNext]="!selectedInputPrice?.validity || (loading$ | async)"
+              [idValue]="'renewal-pricing-10'"
+              [isReversed]="false"
+              backText="بازگشت به مرحله قبل"
+              nextText="تایید و ثبت اطلاعات">
+      </journey-buttons>
+    </div>
+  </div>
+</div>

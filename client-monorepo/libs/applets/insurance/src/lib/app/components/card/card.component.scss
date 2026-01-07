@@ -1,0 +1,55 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.card-container {
+  height: 100%;
+  background-color: $color-light;
+  border-radius: 16px;
+  @include column-start-between;
+
+  .header {
+    display: flex;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid $light-blue-gray-1;
+    width: 100%;
+
+    .icon {
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      background-repeat: no-repeat;
+      display: inline-block;
+      margin-left: 16px;
+
+      &.close-icon {
+        background: url("/insurance-assets/icons/icon-general-close.svg");
+      }
+
+      &.back {
+        background-image: url("/insurance-assets/icons/icon-general-back.svg");
+        transform: rotateY(180deg);
+      }
+
+      &.no-icon {
+        display: none;
+      }
+    }
+
+    .title {
+      color: #6e798d;
+      font-size: 15px;
+      font-weight: 500;
+    }
+  }
+
+  .content {
+    height: 100%;
+    overflow: auto;
+    width: 100%;
+    @extend %custom-scrollbar;
+  }
+
+  .footer {
+    width: 100%;
+  }
+}

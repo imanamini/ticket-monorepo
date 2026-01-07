@@ -1,0 +1,142 @@
+@import '@digipay/base-style/swatch';
+
+.profile-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 2rem;
+  color: #45474a;
+}
+
+.profile-asset-list-container {
+  border-radius: 2rem;
+  background: $swatch_white_900;
+  padding: 1.3rem;
+}
+
+.empty-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+  background: $swatch_white_900;
+  padding: 2rem;
+  gap: 1.3rem;
+}
+
+.balance-profile-asset {
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 3;
+  color: $swatch_steel_900;
+}
+
+.rial {
+  font-weight: 400 !important;
+}
+
+.border-bottom {
+  background-image: linear-gradient(to right, #dfe1e5 70%, rgba(255, 255, 255, 0) 0%);
+  background-position: bottom;
+  background-size: 13px 1px;
+  background-repeat: repeat-x;
+}
+
+.items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item-logo {
+  width: 3rem;
+  min-width: 3rem;
+  height: 3rem;
+  border: 1px #f2f5f8 solid;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.gap-8 {
+  gap: 0.8rem;
+}
+
+.gap-7 {
+  gap: 0.6rem;
+}
+
+.item-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.6rem;
+  color: #45474a;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 15rem;
+  cursor: pointer;
+
+  @media screen and (max-width: 557px) {
+    max-width: 10rem;
+  }
+  @media screen and (min-width: 558px) {
+    max-width: 22rem;
+  }
+}
+
+.item-date {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.3rem;
+  color: #74777c;
+}
+
+.item-price {
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  color: #45474a;
+  text-align: left;
+}
+
+.item-rial {
+  font-weight: 400 !important;
+}
+
+.items-divider {
+  border: 1px solid #f2f5f8;
+}
+
+.h-40 {
+  height: 40dvh;
+}
+
+.detail-link {
+  display: flex;
+  flex-direction: row;
+  color: #1159fc;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  gap: 0.4rem;
+}
+
+.line-h-3 {
+  line-height: 3;
+}
+
+.h-6 {
+  height: 6dvh;
+}
+
+.mt-3 {
+  margin-top: 2rem;
+}

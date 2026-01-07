@@ -1,0 +1,28 @@
+.file-upload-list {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.file-upload-item {
+  border-bottom: 1px solid #e6e6e6;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.activation-btn {
+  height: 40px;
+  border-radius: 16px;
+  background-color: #e5e5e5;
+  width: 80%;
+  margin: 10px auto 5px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    color: #b2b2b2;
+  }
+}

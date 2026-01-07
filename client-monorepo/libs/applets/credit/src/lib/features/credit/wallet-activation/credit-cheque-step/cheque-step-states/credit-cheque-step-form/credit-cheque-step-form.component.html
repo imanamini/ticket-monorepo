@@ -1,0 +1,10 @@
+<app-credit-app-bar
+  (onBackButtonClick)="goBack()"
+  [backButton]="true"
+  title="ثبت اطلاعات مالک چک"
+></app-credit-app-bar>
+<app-credit-cheque-step-form-basic
+  (next)="onBasicFormSubmit($event)"
+  [initialData]="data()"
+  class="main-section d-flex flex-column flex-grow"
+></app-credit-cheque-step-form-basic>

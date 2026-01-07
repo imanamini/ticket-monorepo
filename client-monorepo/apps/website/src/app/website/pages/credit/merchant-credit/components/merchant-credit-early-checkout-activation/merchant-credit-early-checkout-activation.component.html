@@ -1,0 +1,52 @@
+<section class="merchant-credit-early-checkout">
+  <div class="container">
+    @if (MerchantCreditEarlyCheckoutActivationData()?.artwork?.url) {
+      <div class="artwork">
+        <video
+          controls
+          preload="metadata"
+        >
+          <source
+            [src]="MerchantCreditEarlyCheckoutActivationData().artwork.url + '#t=0.5'"
+            type="video/mp4"
+          />
+        </video>
+      </div>
+    }
+    <div class="content">
+      @if (MerchantCreditEarlyCheckoutActivationData()?.title) {
+        <h2 class="title">
+          {{ MerchantCreditEarlyCheckoutActivationData().title }}
+        </h2>
+      }
+      @if (MerchantCreditEarlyCheckoutActivationData()?.subtitle) {
+        <div class="subtitle">
+          {{ MerchantCreditEarlyCheckoutActivationData().subtitle }}
+        </div>
+      }
+      @if (MerchantCreditEarlyCheckoutActivationData()?.description) {
+        <div class="description">
+          {{ MerchantCreditEarlyCheckoutActivationData().description }}
+        </div>
+      }
+      @if (MerchantCreditEarlyCheckoutActivationData()?.support?.description) {
+        <div class="support">
+          <div class="description">
+            {{ MerchantCreditEarlyCheckoutActivationData().support.description }}
+          </div>
+          <div>
+            <span class="support-tel-title">{{ MerchantCreditEarlyCheckoutActivationData().support.supportTelTitle }}</span>
+            @if (MerchantCreditEarlyCheckoutActivationData()?.support?.supportTel) {
+              <app-ui-button
+                [link]="handleSupportTell(MerchantCreditEarlyCheckoutActivationData().support.supportTel)"
+                appearance="FLAT-BLUE"
+                class="cta ltr"
+                >{{ MerchantCreditEarlyCheckoutActivationData().support.supportTel }}</app-ui-button
+              >
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+<pay-club-applet-ui-content-card
+  cardTitle="هدیه‌ها"
+  [hasCardAction]="true"
+  cardActionText="همه"
+  (onActionClick)="onActionClicked()"
+>
+  @if (!isLoading) {
+    <div class="pr-plus">
+      <common-ui-components-horizontal-scroll>
+        @for (voucher of vouchers | slice: 0 : 5; track voucher) {
+          <pay-club-applet-ui-ticket-card
+            [voucher]="voucher"
+            (click)="selectTicket(voucher)"
+          ></pay-club-applet-ui-ticket-card>
+        }
+      </common-ui-components-horizontal-scroll>
+    </div>
+  }
+</pay-club-applet-ui-content-card>

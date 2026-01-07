@@ -1,0 +1,26 @@
+<div class="w-100 d-flex flex-column justify-content-center align-items-center">
+  <div class="w-100 d-flex flex-column flex-no-wrap">
+    <div class="w-100 d-flex flex-row gap-medium px-plus justify-content-center">
+      @for (button of buttons(); track button.id) {
+        <button
+          (click)="goTo(button.route)"
+          class="h-100 p-atom d-flex flex-column align-items-center knowledge-btn cursor-pointer"
+          [id]="'HOME_INFO_' + button.id + '_WRAPPER'"
+        >
+          <img
+            class="surface-elevated radius-medium"
+            [src]="button.icon"
+            [id]="'HOME_INFO_' + button.id + '_IMAGE'"
+            [alt]="button.id"
+          />
+          <p
+            class="b-3 text-onback-high mt-small"
+            [id]="'HOME_INFO_' + button.id + '_TEXT'"
+          >
+            {{ button.title }}
+          </p>
+        </button>
+      }
+    </div>
+  </div>
+</div>

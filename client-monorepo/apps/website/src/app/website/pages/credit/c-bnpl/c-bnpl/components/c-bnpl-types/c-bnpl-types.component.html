@@ -1,0 +1,95 @@
+<section>
+  <div class="container">
+    <div class="title">انواع سرویس های اعتباری دیجی‌پی</div>
+    <div class="content">
+      <div class="types">
+        <div
+          class="type"
+          *ngFor="let cBnplType of cBnplTypes; let index = index"
+          (click)="onSelectBnplType(index)"
+          [ngClass]="selectedBnplTypeIndex !== index ? ' gray-scale' : ''"
+        >
+          <div
+            class="icon"
+            [ngClass]="selectedBnplTypeIndex !== index ? ' gray-scale' : ''"
+          >
+            <img
+              [ngSrc]="cBnplType.icon.url"
+              width="24"
+              height="24"
+              alt=""
+            />
+          </div>
+          <div class="name">
+            {{ cBnplType.title }}
+          </div>
+          <div
+            class="select-icon"
+            *ngIf="selectedBnplTypeIndex !== index"
+          >
+            <ngx-icon
+              [name]="'arrow-2-left'"
+              class="text-onback-brand"
+            ></ngx-icon>
+          </div>
+        </div>
+        <swiper-container
+          appSwiper
+          #swiper="appSwiper"
+          *ngIf="cBnplTypes && cBnplTypes.length > 0"
+          [config]="cBnplSwiperConfig"
+        >
+          <swiper-slide *ngFor="let cBnplType of cBnplTypes; let index = index">
+            <div
+              class="type"
+              (click)="onSelectBnplType(index)"
+              [ngClass]="selectedBnplTypeIndex !== index ? ' gray-scale' : ''"
+            >
+              <div
+                class="icon"
+                [ngClass]="selectedBnplTypeIndex !== index ? ' gray-scale' : ''"
+              >
+                <img
+                  [ngSrc]="cBnplType.icon.url"
+                  width="24"
+                  height="24"
+                  alt=""
+                />
+              </div>
+              <div class="name">
+                {{ cBnplType.title }}
+              </div>
+              <div
+                class="select-icon"
+                *ngIf="selectedBnplTypeIndex !== index"
+              >
+                <ngx-icon
+                  [name]="'arrow-2-left'"
+                  class="text-onback-brand"
+                ></ngx-icon>
+              </div>
+            </div>
+          </swiper-slide>
+        </swiper-container>
+      </div>
+      <div class="image">
+        <img
+          [src]="cBnplTypes[selectedBnplTypeIndex].creditImage.url"
+          width="292"
+          alt=""
+        />
+        <app-ui-button
+          class="details-button"
+          appearance="BLUE-TEXT"
+          (clicked)="openDialog()"
+        >
+          <span class="text">جزییات این اعتبار</span>
+          <ngx-icon
+            [name]="'arrow-left'"
+            class="text-onback-brand"
+          ></ngx-icon>
+        </app-ui-button>
+      </div>
+    </div>
+  </div>
+</section>

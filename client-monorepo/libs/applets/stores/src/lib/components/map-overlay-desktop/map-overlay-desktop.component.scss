@@ -1,0 +1,21 @@
+.list-section {
+  flex-grow: 0;
+  max-height: calc(100vh - 48px);
+  max-width: 324px;
+  min-width: 324px;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  top: 24px;
+  z-index: 99;
+
+  .branches-list {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    max-height: 100%;
+  }
+}
+
+.shadow {
+  box-shadow: 0 12px 40px 6px rgb(16 17 19 / 16%);
+}

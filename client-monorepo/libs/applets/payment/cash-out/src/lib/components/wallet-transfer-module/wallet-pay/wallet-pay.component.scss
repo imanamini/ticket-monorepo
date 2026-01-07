@@ -1,0 +1,17 @@
+.button-container {
+  margin-top: 24px;
+}
+.page-content {
+  min-width: 270px;
+  padding: 24px;
+}
+
+@media (min-width: 480px){
+  .page-content {
+    min-width: 400px;
+  }
+  .button-container {
+   display: flex;
+    justify-content: center;
+  }
+}

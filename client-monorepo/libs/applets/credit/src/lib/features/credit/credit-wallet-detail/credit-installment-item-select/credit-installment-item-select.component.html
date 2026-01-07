@@ -1,0 +1,21 @@
+<label
+  [for]="uniqId()"
+  [ngClass]="['wrapper-card surface-elevated border-300 border-color-tint', checked() ? 'border-color-brand' : '']"
+>
+  <app-credit-checkbox
+    (checkedChange)="handleCheckbox($event)"
+    (lockedClick)="handleLockedClick()"
+    [checked]="checked()"
+    [id]="uniqId()"
+    [isLocked]="isLocked()"
+    [type]="'primary'"
+  >
+  </app-credit-checkbox>
+
+  <app-credit-installment-item
+    [installment]="installment()!"
+    [withoutCard]="true"
+    class="wrapper-installment"
+  >
+  </app-credit-installment-item>
+</label>

@@ -1,0 +1,10 @@
+<div class="d-grid align-items-center gap-small justify-content-space-between">
+  <div class="w-100 d-flex position-relative surface-back radius-plus bar-container">
+    <div
+      class="h-100 radius-plus surface-brand"
+      [style.width]="barPercentage() + '%'"
+    ></div>
+  </div>
+
+  <span class="text-align-end text-onback-low l-2"> % {{ barPercentage() | number: '1.0-0' }} </span>
+</div>

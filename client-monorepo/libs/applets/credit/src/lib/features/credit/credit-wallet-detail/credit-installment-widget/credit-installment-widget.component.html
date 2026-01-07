@@ -1,0 +1,52 @@
+<div class="surface-back radius-medium py-medium px-minus d-flex align-items-center justify-content-space-between gap-tiny">
+  <div class="d-flex align-items-center gap-small">
+    <div
+      class="radius-rounded p-small d-flex align-items-center justify-content-center"
+      [class.surface-error]="state() === 'DueWithPenalty'"
+      [class.surface-warning]="state() === 'Due'"
+      [class.text-oninvert-high]="state() === 'DueWithPenalty'"
+    >
+      <ngx-icon name="info-circle" />
+    </div>
+    <div>
+      @switch (state()) {
+        @case ('Due') {
+          @if (mode() === 'single') {
+            <div>
+              <span class="c-1 text-onback-medium">قسط اعتبار:</span>
+              <span class="c-1 mr-tiny">{{ amount() | thousands }}</span>
+              <span class="c-1 is-currency mr-tiny">ریال</span>
+            </div>
+            <div class="text-onback-low l-2">
+              <span>تاریخ سررسید:</span>
+              <span class="mr-tiny">{{ singleInstallmentDueDateTitle() }}</span>
+            </div>
+          } @else {
+            <div class="c-1 text-onback-medium">
+              {{ count() + ' قسط سررسید شده' }}
+            </div>
+            <div>
+              <span class="text-onback-low l-2">مجموع:</span>
+              <span class="mr-tiny c-1">{{ amount() | thousands }}</span>
+              <span class="mr-tiny c-1">ریال</span>
+            </div>
+          }
+        }
+        @case ('DueWithPenalty') {
+          <div class="text-onback-error c-1">در حال جریمه</div>
+          <div>
+            <span class="l-2 text-onback-low">{{ mode() === 'multi' ? 'مجموع' : 'قسط اعتبار' }}:</span>
+            <span class="c-1 mr-tiny">{{ amount() | thousands }}</span>
+            <span class="c-1 is-currency mr-tiny">ریال</span>
+          </div>
+        }
+      }
+    </div>
+  </div>
+  <ngx-button
+    [size]="'small'"
+    (clickHandler)="ctaClicked.emit()"
+  >
+    {{ ctaText() }}
+  </ngx-button>
+</div>

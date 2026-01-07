@@ -1,0 +1,124 @@
+.page-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom-section {
+  flex-grow: 0;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.top-section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .form-section {
+    padding: 16px;
+  }
+}
+
+.fixed-bottom-section {
+  flex-grow: 0;
+  position: sticky;
+  bottom: 0;
+  padding-bottom: 34px;
+  padding-inline: 20px;
+  z-index: 1000;
+
+  .blur-background {
+    height: 80%;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    z-index: 1001;
+
+    /* Combined backdrop and regular filter for better cross-browser effect */
+    filter: blur(20px);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) -150%,
+        rgba(0, 0, 0, 0.22) 67.45%
+    );
+  }
+
+  .confirm-button {
+    .primary-action {
+      width: 100%;
+    }
+
+    &.multi-buttons {
+      display: flex;
+      align-items: center;
+
+      .primary-action {
+        flex: 0 0 50%;
+        width: 50%;
+        padding-right: 8px;
+      }
+
+      .secondary-action {
+        flex: 0 0 50%;
+        width: 50%;
+        padding-left: 8px;
+      }
+    }
+  }
+}
+
+.activate-button {
+  margin: 24px 0 0;
+}
+
+:host app-credit-info-card {
+  margin: 88px 0 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.steps-section {
+  flex-grow: 1;
+}
+
+.info-section {
+  flex-grow: 0;
+  z-index: 99999;
+  position: relative;
+
+  .disable {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+}
+
+.button-section {
+  flex-grow: 0;
+}
+
+.step-cta-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+@media (max-width: 578px) {
+  .fixed-bottom-section {
+    width: 100%;
+    min-width: unset;
+  }
+}

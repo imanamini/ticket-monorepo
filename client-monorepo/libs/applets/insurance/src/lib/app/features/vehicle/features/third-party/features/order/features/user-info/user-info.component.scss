@@ -1,0 +1,36 @@
+:host {
+  height: 100%;
+}
+
+.user-info {
+  height: 100%;
+  align-items: center;
+
+  &-content {
+    overscroll-behavior: none;
+    width: 100%;
+    max-width: 360px;
+    gap: 16px;
+    flex: 1;
+    overflow: auto;
+    padding: 0 16px;
+
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
+
+    .content-text {
+      padding: 8px 16px;
+      font-size: 16px;
+      line-height: 28px;
+    }
+
+    .center-content {
+      flex: 1 1 auto;
+      padding: 0 16px;
+    }
+  }
+}

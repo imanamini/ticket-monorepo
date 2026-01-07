@@ -1,0 +1,29 @@
+<app-credit-app-bar
+  (onCloseButtonClick)="closeService()"
+  [closeButton]="true"
+  [title]="'وام‌ها'"
+></app-credit-app-bar>
+<div class="d-flex flex-column flex-grow">
+  <div class="flex-grow justify-content-center">
+    @if (volunteerTypeState() && !pageLoading()) {
+      <ngx-status-result
+        (clicked)="closeService()"
+        [buttons]="[
+          {
+            style: 'tinted-on-elevated',
+            fullWidth: true,
+            id: 'secondary',
+            mode: 'form',
+            label: dataMapper[volunteerTypeState()].ctaLabel,
+          },
+        ]"
+        [description]="dataMapper[volunteerTypeState()].description"
+        [title]="dataMapper[volunteerTypeState()].title"
+        [type]="'Status'"
+        [iconState]="dataMapper[volunteerTypeState()].imageType"
+      >
+      </ngx-status-result>
+    }
+  </div>
+</div>
+<credit-page-loading [active]="pageLoading()"></credit-page-loading>

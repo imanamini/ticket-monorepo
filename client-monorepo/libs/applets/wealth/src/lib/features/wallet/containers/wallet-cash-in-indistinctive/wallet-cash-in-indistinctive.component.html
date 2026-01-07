@@ -1,0 +1,25 @@
+<div class="w-100 d-flex flex-wrap">
+  <div class="w-100 d-flex flex-wrap px-plus justify-content-center contect-container">
+    <img
+      src="./wealth-assets/svg/cash-in-indistinctive.svg"
+      alt="cash-in-indistinctive"
+    />
+
+    <div class="w-100 d-flex flex-wrap justify-content-center mt-big">
+      <p class="w-100 text-align-center st-7 text-onback-high">واریز نامشخص است</p>
+      <p class="w-100 text-align-center mt-small bt-2 text-onback-low">
+        تا ۱ ساعت آینده وضعیت واریز شما در قسمت تراکنش‌ها مشخص خواهد شد. اگر تراکنش ثبت شده نداشتید، ظرف ۷۲ ساعت مبلغ واریزی به حسابتان
+        بازگشت داده می‌شود.
+      </p>
+    </div>
+  </div>
+  <div class="w-100 px-plus">
+    <ngx-button
+      [buttonId]="'WALLET_CASHIN_INDISTINCTIVE'"
+      [fullWidth]="true"
+      (clickHandler)="backToWallet()"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

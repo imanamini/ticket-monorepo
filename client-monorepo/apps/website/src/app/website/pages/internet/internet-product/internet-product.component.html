@@ -1,0 +1,43 @@
+<section class="section-internet-product">
+  <div class="container">
+    <div class="content">
+      <h1 *ngIf="internetProductData.title">
+        {{ internetProductData.title }}
+      </h1>
+      <div
+        *ngIf="internetProductData.subtitle"
+        class="subtitle"
+      >
+        {{ internetProductData.subtitle }}
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="internetProductData"
+    class="internet-box"
+  >
+    <div
+      *ngIf="internetProductData.box"
+      class="internet"
+    >
+      <app-internet-initial [internetBoxData]="internetProductData.box"></app-internet-initial>
+    </div>
+    <div
+      *ngIf="internetProductData.providers.length > 0"
+      class="providers"
+    >
+      <ng-container *ngFor="let provider of internetProductData.providers; let idx = index">
+        <img
+          (mouseenter)="providerHoverIndex = idx"
+          (mouseleave)="providerHoverIndex = -1"
+          *ngIf="provider.image && provider.image.url"
+          [alt]="provider.title"
+          [src]="!(providerHoverIndex === idx) ? provider.image.url : provider.imageHover.url"
+          [title]="provider.title"
+          height="28"
+          width="80"
+        />
+      </ng-container>
+    </div>
+  </div>
+</section>

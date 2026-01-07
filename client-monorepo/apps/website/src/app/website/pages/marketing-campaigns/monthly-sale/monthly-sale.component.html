@@ -1,0 +1,98 @@
+@if (creditCampaignPage && creditCampaignPage.templateData) {
+  <app-base-layout [loaded]="loaded">
+    @if (creditCampaignPage.templateData?.introSection) {
+      <div>
+        <app-campaign-timer [templateData]="creditCampaignPage.templateData?.introSection"></app-campaign-timer>
+      </div>
+    }
+    @if (creditCampaignPage.templateData?.valuePropositionSection) {
+      <div class="my-mega">
+        <app-monthly-sale-banner [templateData]="creditCampaignPage.templateData"></app-monthly-sale-banner>
+      </div>
+    }
+    @if (creditCampaignPage?.templateData?.prizeSection) {
+      <div class="my-mega container chances-container pt-mega d-flex flex-column gap-medium">
+        <div class="d-flex gap-pony align-items-center justify-content-center chance-section">
+        <span class="text-onback-high d-flex align-items-center titr gap-small"
+              [innerHTML]="sanitize(creditCampaignPage?.templateData?.prizeSection?.titleText)">
+        </span>
+          <span class="text-onback-high st-1">{{ creditCampaignPage?.templateData?.prizeSection?.badge }}</span>
+        </div>
+        <div class="d-flex justify-content-center chance-section-2">
+        <span class="text-onback-medium"
+              [innerHTML]="sanitize(creditCampaignPage?.templateData?.prizeSection?.subtitleText)">  </span>
+        </div>
+
+        @if (creditCampaignPage?.templateData?.prizeSection?.cta?.title) {
+          <div class="action d-flex justify-content-center mt-plus mb-huge"
+          >
+            <ngx-button
+              [brandButton]="true"
+              [fullWidth]="isMobileMode"
+              [size]="'medium'"
+              [style]="'fill'"
+              [mode]="'form'"
+              [leftIcon]="{ name: 'arrow-2-left', type: 'linear' }"
+              (click)="openLink(creditCampaignPage?.templateData?.prizeSection?.cta.link)"
+            >
+              {{ creditCampaignPage?.templateData?.prizeSection?.cta?.title }}
+            </ngx-button>
+          </div>
+        }
+
+      </div>
+    }
+    @if (creditCampaignPage.templateData?.discounts) {
+      <div class="my-mega">
+        <app-hot-sales [templateData]="creditCampaignPage.templateData"></app-hot-sales>
+      </div>
+    }
+    @if (creditCampaignPage.templateData?.registrationForm) {
+      <div class="my-mega">
+        <app-sales-form [templateData]="creditCampaignPage.templateData"></app-sales-form>
+      </div>
+    }
+    @if (creditCampaignPage.templateData?.promotionSection) {
+      <div class="my-mega">
+        <app-sale-promotion [templateData]="creditCampaignPage.templateData"></app-sale-promotion>
+      </div>
+    }
+    @if (creditCampaignPage.templateData?.goldenTextSection && creditCampaignPage.templateData?.goldenTextSection.title) {
+      <div class="my-mega ghorekeshi d-flex flex-column justify-content-center align-items-center gap-medium">
+        <span class="title text-oninvert-high">{{ creditCampaignPage.templateData?.goldenTextSection?.title }}</span>
+        <span class="subtitle t-6 text-oninvert-medium"
+              [innerHTML]="sanitize(creditCampaignPage.templateData?.goldenTextSection?.text)"></span>
+      </div>
+    }
+    @if (creditCampaignPage.templateData?.finalSection?.firstTitle || creditCampaignPage.templateData?.finalSection?.secondTitle) {
+      <div
+        class="javayez my-mega py-mega container d-flex flex-column gap-huge justify-content-center align-items-center">
+        <div class="d-flex flex-column gap-plus w-100 text-align-center">
+          <span class="title text-onback-high">{{ creditCampaignPage.templateData?.finalSection?.firstTitle }}</span>
+          <span
+            class="subtitle text-onback-medium st-3">{{ creditCampaignPage.templateData?.finalSection?.firstSubtitle }}</span>
+        </div>
+        <div class="d-flex flex-column gap-plus w-100 text-align-center">
+          <span class="title text-onback-high">{{ creditCampaignPage.templateData?.finalSection?.secondTitle }}</span>
+          <span
+            class="subtitle text-onback-medium st-3">{{ creditCampaignPage.templateData?.finalSection?.secondSubtitle }}</span>
+        </div>
+        <div class="action" *ngIf="creditCampaignPage.templateData?.finalSection?.lastCta.title">
+          <ngx-button
+            [brandButton]="true"
+            [fullWidth]="isMobileMode"
+            [size]="'large'"
+            [style]="'fill'"
+            [mode]="'form'"
+            [leftIcon]="{ name: 'arrow-2-left', type: 'linear' }"
+            (click)="openLink(creditCampaignPage.templateData?.finalSection?.lastCta.link)"
+          >
+            {{ creditCampaignPage.templateData?.finalSection?.lastCta.title }}
+          </ngx-button>
+        </div>
+      </div>
+    }
+  </app-base-layout>
+}
+
+

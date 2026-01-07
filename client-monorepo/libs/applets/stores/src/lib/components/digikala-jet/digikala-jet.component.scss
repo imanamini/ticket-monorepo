@@ -1,0 +1,32 @@
+.promotion-carousel {
+  position: relative;
+
+  &-top-bar {
+    position: relative;
+    z-index: 1;
+
+    &-timer {
+      &-item {
+        height: 32px;
+        width: 32px;
+      }
+    }
+  }
+
+  &-item {
+    width: 156px;
+    min-width: 156px;
+
+    &-more {
+      &-img {
+        height: 120px;
+        width: 100%;
+        background-image: url('libs/shared/common/assets/src/lib/images/promotion-more.png');
+      }
+
+      &-body {
+        flex-grow: 1;
+      }
+    }
+  }
+}

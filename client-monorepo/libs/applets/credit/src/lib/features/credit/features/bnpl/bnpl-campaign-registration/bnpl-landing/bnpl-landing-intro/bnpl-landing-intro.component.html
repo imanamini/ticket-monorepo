@@ -1,0 +1,41 @@
+<section class="section-with-padding">
+  <div class="container">
+    <div class="banner">
+      <div>
+        <div class="titles">
+          <div class="titles-container">
+            <div class="title">
+              <h1>اعتبار اقساطی دیجی‌پی</h1>
+            </div>
+            <div class="subtitle">
+              <span>امکان خرید از ۵۰+ فروشگاه</span>
+            </div>
+          </div>
+          <div class="desktop-ctas">
+            <ngx-button
+              (click)="goToActivation()"
+              [mode]="'section'"
+              [style]="'tinted-on-elevated'"
+            >
+              دریافت اعتبار اقساطی
+            </ngx-button>
+          </div>
+        </div>
+        <div
+          (click)="scrollToElement('guide-section')"
+          class="bottom-cta"
+        >
+          <div class="dent-image"></div>
+          <ngx-icon
+            [name]="'arrow-2-down'"
+            [type]="'linear'"
+            [iconSize]="'37px'"
+          ></ngx-icon>
+        </div>
+      </div>
+      <div class="artwork">
+        <div class="qr-code-image"></div>
+      </div>
+    </div>
+  </div>
+</section>

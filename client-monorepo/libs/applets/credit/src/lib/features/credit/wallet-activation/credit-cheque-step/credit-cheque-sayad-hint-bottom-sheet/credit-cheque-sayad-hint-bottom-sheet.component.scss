@@ -1,0 +1,40 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+$icons: (
+  refah,
+  resalat,
+  shahr,
+  mehr,
+  pasargad,
+  mellat,
+  melli,
+  post,
+  sepah,
+  aap,
+  saderat
+);
+
+.icon-container{
+  overflow: hidden;
+
+  .bank-icon{
+    width: 56px;
+    height: 56px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+
+    @each $icon in $icons {
+      &.#{$icon} {
+        background-image: url("../assets/bank-icons/#{$icon}.svg");
+      }
+    }
+  }
+}
+

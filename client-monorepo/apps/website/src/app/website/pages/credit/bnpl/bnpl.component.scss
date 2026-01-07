@@ -1,0 +1,64 @@
+::ng-deep {
+  .bnpl-intro-section section {
+    background: -webkit-linear-gradient(
+      top,
+      #e7ecfd 0%,
+      rgba(231, 236, 253, 0) 100%
+    );
+    background: linear-gradient(
+      180deg,
+      #e7ecfd 0%,
+      rgba(231, 236, 253, 0) 100%
+    );
+    overflow: hidden;
+  }
+
+  .digipay-contact-form {
+    background-color: #7381ab;
+    padding-bottom: 128px;
+
+    h2 {
+      color: #fff;
+    }
+
+    .submit-button button {
+      background-color: #001a66;
+      border-color: #001a66;
+    }
+  }
+
+  .introduction-booklet > .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .introduction-booklet > .container > div > h1 {
+    color: #183ff5;
+  }
+
+  .introduction-booklet .anchor-button-default-icon {
+    display: inline-flex;
+  }
+
+  .introduction-booklet > .container > div:first-child {
+    max-width: 46%;
+  }
+
+  .introduction-booklet > .container > div:last-child {
+    max-width: 54%;
+  }
+
+  .introduction-booklet > .container > div img {
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 1280px) {
+    .introduction-booklet .container div {
+      &:first-child img {
+        max-width: 80%;
+      }
+    }
+  }
+}

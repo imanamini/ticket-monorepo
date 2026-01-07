@@ -1,0 +1,76 @@
+<div
+  [class]="mode()"
+  [style]="{ backgroundColor: color() }"
+  class="wallet-detail-header-wrapper"
+>
+  @if ((title() && !hideTitle()) || showMenuButton()) {
+    <div class="page-title-bar">
+      @if (showMenuButton()) {
+        <div
+          (click)="openMenu()"
+          class="left-action"
+        >
+          <ngx-icon
+            class="icon-white"
+            [name]="'info-menu'"
+          ></ngx-icon>
+        </div>
+      }
+      <div class="title invert-text">
+        @if (!hideTitle()) {
+          <div>{{ title() }}</div>
+        }
+      </div>
+      @if (!hideTitle()) {
+        <div
+          (click)="onCloseClick()"
+          class="right-action"
+        >
+          <ngx-icon
+            class="icon-white"
+            [name]="'arrow-right'"
+          ></ngx-icon>
+        </div>
+      }
+    </div>
+  }
+  <div
+    [class]="{ 'collapse-mode': collapse() }"
+    class="wallet-detail-header"
+  >
+    <div class="wallet-detail-header-price--label">موجودی {{ serviceTypeName() }}</div>
+    <div class="wallet-detail-header-price--value">
+      @if (balance() === null || balance() === undefined) {
+        <div class="price">-</div>
+      }
+      @if (balance() !== null && balance() !== undefined) {
+        <div class="price">
+          {{ balance() | IRR: 'hideRial' }}
+        </div>
+      }
+      <div class="currency is-currency">ریال</div>
+    </div>
+    <div class="wallet-detail-header-state_time">
+      @if (rightLabel()) {
+        <div class="wallet-detail-header-state_time--state wallet-detail-header-right-label">
+          <div class="wallet-detail-header-state_time--state-top">
+            {{ rightLabel() }}
+          </div>
+          <div class="wallet-detail-header-state_time--state-bottom">
+            {{ rightValue() }}
+          </div>
+        </div>
+      }
+      @if (leftLabel()) {
+        <div class="wallet-detail-header-state_time--time wallet-detail-header-left-label">
+          <div class="wallet-detail-header-state_time--time-top">
+            {{ leftLabel() }}
+          </div>
+          <div class="wallet-detail-header-state_time--time-bottom">
+            {{ leftValue() }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

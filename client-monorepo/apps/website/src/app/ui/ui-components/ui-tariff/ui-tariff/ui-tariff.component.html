@@ -1,0 +1,34 @@
+<section class="tariffs">
+  <div class="container">
+    <h2
+      *ngIf="title"
+      class="text-align-center"
+    >
+      {{ title }}
+    </h2>
+    <span *ngIf="subtitle">{{ subtitle }}</span>
+    <div class="wrapper">
+      <div class="key-value-pair">
+        <ng-container *ngIf="input && input.length > 0">
+          <div
+            *ngFor="let row of input"
+            class="key-value-pair-row"
+          >
+            <div class="key-value-pair-key">{{ row.key }}</div>
+            <div class="key-value-pair-value">{{ row.value }}</div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <span
+      *ngIf="description"
+      class="tariffs-description"
+      >{{ description }}</span
+    >
+    <span
+      *ngIf="notice"
+      class="tariffs-notice"
+      >{{ notice }}</span
+    >
+  </div>
+</section>

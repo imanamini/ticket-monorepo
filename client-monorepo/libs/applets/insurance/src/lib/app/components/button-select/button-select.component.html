@@ -1,0 +1,21 @@
+<div
+  [ngClass]="{'surface-brand-tint border-color-brand selected':selectedItem() && selectedItem().length}"
+  class="button-select d-flex flex-row align-items-center py-tiny px-small border-300 border-color-light radius-giant surface-elevated cursor-pointer"
+  (click)="handleClicked()">
+  @if (iconName()) {
+    <ngx-icon [name]="iconName()"
+              iconSize="16px"
+              type="linear">
+    </ngx-icon>
+  }
+
+  <span [textContent]="displayTitle()"
+        [ngClass]="{'text-onback-brand':selectedItem() && selectedItem().length}"
+        class="c-2 text-onback-high px-tiny"></span>
+
+  @if (selectedItem()?.length) {
+    <ngx-icon (click)="handleClearClicked($event)"
+              iconSize="16px"
+              name="close"></ngx-icon>
+  }
+</div>

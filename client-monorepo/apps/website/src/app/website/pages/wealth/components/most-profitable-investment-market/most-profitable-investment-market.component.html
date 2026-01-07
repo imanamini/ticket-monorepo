@@ -1,0 +1,117 @@
+<div class="most-profitable-investment-market">
+  <div class="container">
+    <h2 class="title">{{ compareMarketsData.title }}</h2>
+    <div class="subtitle">
+      {{ compareMarketsData.description }}
+    </div>
+    <div class="box">
+      <div
+        class="right"
+        [formGroup]="inputForm"
+      >
+        <div class="invest-amount">
+          <div class="title">
+            <span
+              appUiIcon
+              icon="icon-wealth-invest-amount"
+              size="24"
+            ></span>
+            مبلغ سرمایتون رو به ریال وارد کنید.
+          </div>
+          <div class="">
+            <ui-form-field
+              class="invest-input"
+              [autoFocus]="false"
+              formControlName="investAmount"
+              type="large-amount"
+              minAmount="10000000"
+              maxAmount="10000000000"
+            ></ui-form-field>
+          </div>
+        </div>
+        <div class="invest-date">
+          <div class="title">
+            <span
+              appUiIcon
+              icon="icon-wealth-invest-time"
+              size="24"
+            ></span>
+            بازه زمانی سرمایه گذاری رو رو مشخص کنید.
+          </div>
+          <div
+            class="date-selects"
+            formGroupName="dateBounds"
+          >
+            <ui-form-field
+              [options]="startYearsList"
+              formControlName="startYear"
+              type="select"
+              class="select-input"
+              label="از تاریخ"
+            ></ui-form-field>
+            <ui-form-field
+              [options]="endYearsList"
+              formControlName="endYear"
+              type="select"
+              class="select-input"
+              label="تا تاریخ"
+            ></ui-form-field>
+          </div>
+        </div>
+        <app-ui-button
+          (clicked)="submitInput()"
+          size="BIG"
+          class="cta"
+        >
+          محاسبه کن
+          <span
+            appUiIcon
+            icon="icon-arrow-left-white"
+            size="24"
+          ></span>
+        </app-ui-button>
+      </div>
+      <div class="left">
+        <div class="hint">
+          <ul>
+            <li>
+              بازده سرمایه گذاری {{ investAmount / 10 | numberToString }} تومانی از سال {{ startYear }} الی {{ endYear }} در بازار های مختلف
+            </li>
+          </ul>
+        </div>
+        <div class="most-profitable-hint">
+          <ul>
+            <li>
+              <span
+                appUiIcon
+                icon="icon-hints-green"
+              ></span>
+              بازار {{ MARKET_TRANSLATOR[mostProfitableMarket.name] }} با بازده {{ mostProfitableMarket.benefit.toFixed(1) }}% بیشترین سود
+              را داشت
+            </li>
+          </ul>
+        </div>
+        <div
+          class="chart"
+          *ngIf="chartOptions"
+        >
+          <apx-chart
+            [series]="chartOptions.series"
+            [chart]="chartOptions.chart"
+            [xaxis]="chartOptions.xaxis"
+            [yaxis]="chartOptions.yaxis"
+            [title]="chartOptions.title"
+            [tooltip]="chartOptions.tooltip"
+            [fill]="chartOptions.fill"
+            [plotOptions]="chartOptions.plotOptions"
+            [dataLabels]="chartOptions.dataLabels"
+            [grid]="chartOptions.grid"
+            [states]="chartOptions.states"
+            [responsive]="chartOptions.responsive"
+          ></apx-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cool-background"></div>
+</div>

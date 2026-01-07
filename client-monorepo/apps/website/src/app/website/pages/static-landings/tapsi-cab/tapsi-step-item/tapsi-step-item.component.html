@@ -1,0 +1,74 @@
+<div class="about-us-history-item d-flex justify-content-space-between align-items-center">
+  <div class="d-flex justify-content-space-between w-100 title-wrapper">
+    <div class="item-title st-4 cursor-pointer d-flex align-items-center gap-pony"
+         [ngClass]="{'text-onback-high':isActive() , 'text-onback-disabled':!isActive()}">
+      <span class="number"> {{ number() }}</span>
+      <span>{{ historyItem().title }}</span>
+    </div>
+
+    <div class="galley-mobile-arrow">
+      @if (isActive()) {
+        <div class="item-arrow-">
+          <ngx-icon
+            [type]="'linear'"
+            [name]="'arrow-up'"
+            [iconSize]="'20px'"
+            class="text-onback-high"
+          ></ngx-icon>
+        </div>
+
+      } @else {
+        <div class="item-arrow-">
+          <ngx-icon
+            [type]="'linear'"
+            [name]="'arrow-down'"
+            [iconSize]="'20px'"
+            class="text-onback-disabled"
+          ></ngx-icon>
+        </div>
+      }
+    </div>
+
+  </div>
+  <div class="galley-mobile radius-medium">
+    <div class="galley-mobile-content" [ngClass]="{'d-block':isActive(), 'd-none':!isActive()}">
+      @if (historyItem()?.mobileImage?.url) {
+        <img
+          [src]="historyItem().mobileImage.url"
+          alt="history-image"
+          class="radius-medium history-img"
+        />
+      }
+      @if (historyItem()?.subtitle) {
+        <span class="year st-6">{{ historyItem().subtitle }}</span>
+      }
+      @if (historyItem()?.description) {
+        <span class="description b-2 text-oninvert-high"
+              [innerHTML]="historyItem().description"></span>
+      }
+    </div>
+  </div>
+  <div class="desktop">
+    @if (isActive()) {
+      <div class="item-arrow-">
+        <ngx-icon
+          [type]="'linear'"
+          [name]="'arrow-left'"
+          [iconSize]="'32px'"
+          class="text-onback-high"
+        ></ngx-icon>
+      </div>
+
+    } @else {
+      <div class="item-arrow-">
+        <ngx-icon
+          [type]="'linear'"
+          [name]="'arrow-up-left'"
+          [iconSize]="'32px'"
+          class="text-onback-disabled"
+        ></ngx-icon>
+      </div>
+
+    }
+  </div>
+</div>

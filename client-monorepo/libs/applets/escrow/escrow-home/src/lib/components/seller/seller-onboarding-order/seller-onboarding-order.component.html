@@ -1,0 +1,57 @@
+@if (showDeliveryMessageBottomSheet()) {
+  <div class="text-align-center">
+    <img
+      src="assets/images/basket.png"
+      alt="basket"
+      width="175"
+      height="195"
+    />
+    <p class="t-6 mb-small">لطفا محصول را به موقع ارسال کنید!</p>
+    <p class="b-2 mb-huge">
+      برای ارسال محصولات، کافیه به بخش سفارش‌ها مراجعه و محصولات را از طریق (پست ایران یا پیک) ارسال کنید. لطفا توجه فرمایید از زمان تایید
+      سفارش تنها ۱ روز کاری برای ارسال فرصت دارید.
+    </p>
+    <div class="d-flex gap-medium">
+      <ngx-button
+        [mode]="'section'"
+        [size]="'large'"
+        [style]="'tinted-on-elevated'"
+        [fullWidth]="true"
+        (clickHandler)="setShowDeliveryMessageBottomSheet()"
+      >
+        قبلی
+      </ngx-button>
+      <ngx-button
+        [mode]="'section'"
+        [size]="'large'"
+        [style]="'fill'"
+        [fullWidth]="true"
+        (clickHandler)="closeOnboarding()"
+      >
+        متوجه شدم
+      </ngx-button>
+    </div>
+  </div>
+} @else {
+  <div class="text-align-center">
+    <img
+      src="assets/icons/onboarding/lock.svg"
+      alt="lock"
+      width="190"
+      height="190"
+    />
+    <p class="t-6 mb-small">لطفا با خریدار هماهنگ باشید!</p>
+    <p class="b-2 mb-huge">
+      برای فروش محصول لطفا در چت دیوار با خریدار سر مبلغ محصول به توافق برسید. عدم هماهنگی با خریدار جهت فروش باعث تجربه بدی می‌شود.
+    </p>
+    <ngx-button
+      [mode]="'section'"
+      [size]="'large'"
+      [style]="'fill'"
+      [fullWidth]="true"
+      (clickHandler)="setShowDeliveryMessageBottomSheet()"
+    >
+      بعدی
+    </ngx-button>
+  </div>
+}

@@ -1,0 +1,101 @@
+<form
+  [formGroup]="form"
+  class="add-card pt-huge px-medium"
+>
+  <div class="w-100 d-flex align-items-center justify-content-center">
+    <daily-bank-card-preview [config]="cardData()"></daily-bank-card-preview>
+  </div>
+  <div
+    class="mt-big"
+    *ngIf="viewMode() !== 'edit'"
+  >
+    @if (!isLoading()) {
+      <ui-form-field
+        *ngIf="!isLoading()"
+        [errorMessageMapper]="{
+          invalidCardNumber: 'لطفا یک شماره کارت معتبر وارد نمایید',
+        }"
+        [error]="form.controls.cardNumber.errors ?? {}"
+        [formControlName]="'cardNumber'"
+        [label]="'شماره کارت'"
+        [disabled]="form.controls.cardNumber.disabled"
+        [type]="'card-number'"
+      ></ui-form-field>
+    } @else {
+      <lib-ngx-skeleton-loading [height]="'54px'"></lib-ngx-skeleton-loading>
+    }
+  </div>
+  <div
+    class="mt-big d-flex justify-content-center gap-small add-card-dates"
+    *ngIf="mode() === 'source'"
+  >
+    <div class="add-card-dates-item">
+      @if (!isLoading()) {
+        <ui-form-field
+          [errorMessageMapper]="{
+            min: 'مقدار این فیلد باید بین 01 تا 12 باشد ',
+            max: 'مقدار این فیلد باید بین 01 تا 12 باشد ',
+          }"
+          [error]="form.controls.cardExpMonth.errors ?? {}"
+          [formControlName]="'cardExpMonth'"
+          [label]="'تاریخ انقضا - ماه'"
+          [disabled]="form.controls.cardExpMonth.disabled"
+          [type]="'input'"
+          [isNumericKeyboard]="true"
+          [maxSize]="2"
+        ></ui-form-field>
+      } @else {
+        <lib-ngx-skeleton-loading [height]="'54px'"></lib-ngx-skeleton-loading>
+      }
+    </div>
+    <div class="add-card-dates-item">
+      @if (!isLoading()) {
+        <ui-form-field
+          id="card-exp-year"
+          [errorMessageMapper]="{
+            min: 'مقدار این فیلد باید بین 03 تا 99 باشد ',
+            max: 'مقدار این فیلد باید بین 03 تا 99 باشد ',
+          }"
+          [error]="form.controls.cardExpYear.errors ?? {}"
+          [formControlName]="'cardExpYear'"
+          [label]="'تاریخ انقضا - سال'"
+          [disabled]="form.controls.cardExpYear.disabled"
+          [type]="'input'"
+          [isNumericKeyboard]="true"
+          [maxSize]="2"
+        ></ui-form-field>
+      } @else {
+        <lib-ngx-skeleton-loading [height]="'54px'"></lib-ngx-skeleton-loading>
+      }
+    </div>
+  </div>
+  <div class="mt-big">
+    @if (!isLoading()) {
+      <ui-form-field
+        [formControlName]="'cardTitle'"
+        [error]="form.controls.cardTitle.errors ?? {}"
+        [disabled]="form.controls.cardTitle.disabled"
+        [hint]="'درصورت پرنکردن این بخش، نام بانک برای عنوان کارت قرار می‌گیرد.'"
+        [label]="'عنوان کارت(اختیاری)'"
+        [type]="'input'"
+      ></ui-form-field>
+    } @else {
+      <lib-ngx-skeleton-loading [height]="'54px'"></lib-ngx-skeleton-loading>
+    }
+  </div>
+  <div class="mt-big">
+    @if (!isLoading()) {
+      <ngx-button
+        [isLoading]="isSubmitting()"
+        [style]="'fill'"
+        [disabled]="!form.valid || !currentBank()"
+        (clickHandler)="submitForm()"
+        [fullWidth]="true"
+      >
+        ذخیره کارت
+      </ngx-button>
+    } @else {
+      <lib-ngx-skeleton-loading [height]="'56px'"></lib-ngx-skeleton-loading>
+    }
+  </div>
+</form>

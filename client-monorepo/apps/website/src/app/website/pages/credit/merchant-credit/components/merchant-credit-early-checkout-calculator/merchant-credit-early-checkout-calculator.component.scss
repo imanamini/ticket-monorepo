@@ -1,0 +1,497 @@
+@import "globals";
+
+section {
+  background-color: #f6f8ff;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+
+  .content {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .title {
+      color: #061962;
+      font-size: 36px;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      color: #061962;
+      font-size: 24px;
+      font-weight: 300;
+    }
+
+    .cta {
+      margin-top: 20px;
+    }
+  }
+
+  .calculator {
+    width: 70%;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 0 80px 0 rgba(159, 176, 253, 0.25);
+
+    .calculator-container {
+      padding: 48px;
+      display: flex;
+
+      .inputs {
+        width: 40%;
+
+        .recipe-amount {
+          .label {
+            color: #061962;
+            text-align: right;
+            font-feature-settings: 'clig' off, 'liga' off;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 40px;
+            margin-bottom: 8px;
+          }
+
+          .insert {
+            display: flex;
+            justify-content: space-between;
+
+            input {
+              border: unset;
+              font-size: 24px;
+              font-weight: 300;
+              width: 85%;
+
+              &:focus-visible {
+                outline: unset;
+              }
+            }
+          }
+
+          .irr {
+            color: #000;
+            text-align: right;
+            font-feature-settings: 'clig' off, 'liga' off;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 40px;
+          }
+        }
+
+        .h-divider {
+          border-top: 1px solid $swatch_steel_200;
+          height: 1px;
+          width: 100%;
+          margin: 4px 0 26px;
+        }
+
+        .day-picker {
+          margin: 26px 0;
+
+          .time {
+            display: flex;
+            justify-content: space-between;
+
+            .title,
+            .amount {
+              color: #061962;
+              text-align: right;
+              font-feature-settings: 'clig' off, 'liga' off;
+              font-size: 20px;
+              font-style: normal;
+              font-weight: 600;
+              line-height: 32px;
+            }
+
+            .early {
+              color: $swatch_steel_500;
+              font-feature-settings: 'clig' off, 'liga' off;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 40px;
+              margin-right: 2px;
+            }
+          }
+
+          .slider-section {
+            color: silver;
+          }
+        }
+
+        .inputs-footer {
+          margin-top: 26px;
+        }
+
+        .providers-label {
+          color: #061962;
+          text-align: right;
+          font-feature-settings: 'clig' off, 'liga' off;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 32px;
+        }
+
+        .providers {
+          margin-top: 16px;
+          display: flex;
+
+          .bank-icon {
+            border-radius: 12px;
+            border: 1px solid $swatch_blue_500;
+            background: $swatch_blue_100;
+            padding: 12px;
+            margin-left: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            height: fit-content;
+          }
+
+          .deselect {
+            border: 1px solid $swatch_steel_200;
+            background-color: #fff;
+          }
+        }
+      }
+
+      .divider {
+        border-right: 1px solid $swatch_steel_200;
+        margin: 0 40px;
+        width: 1px;
+      }
+
+      .results {
+        width: 60%;
+
+        .provider {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 27px;
+          flex-direction: column;
+          align-items: center;
+
+          .icon {
+            border: 1px solid $swatch_steel_200;
+            border-radius: 50%;
+            display: flex;
+            padding: 2px;
+          }
+
+          .name {
+            color: $swatch_steel_700;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 16px;
+          }
+
+          .description {
+            color: $swatch_steel_400;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+          }
+        }
+
+        .final-amounts {
+          display: flex;
+          padding: 16px;
+          flex-direction: column;
+          justify-content: center;
+          gap: -2px;
+          align-self: stretch;
+          border-radius: 16px;
+          background: $swatch_steel_100;
+          margin-bottom: 27px;
+
+          .payable {
+            display: flex;
+            justify-content: space-between;
+
+            .title {
+              color: $swatch_steel_900;
+              text-align: right;
+              font-feature-settings: 'clig' off, 'liga' off;
+              font-size: 20px;
+              font-style: normal;
+              font-weight: 600;
+              line-height: 40px; /* 200% */
+            }
+
+            .amount {
+              color: $swatch_steel_900;
+              font-feature-settings: 'clig' off, 'liga' off;
+              font-size: 24px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+
+              .irr {
+                color: #000;
+                text-align: right;
+                font-feature-settings: 'clig' off, 'liga' off;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 800;
+                line-height: normal;
+                margin-right: 4px;
+              }
+            }
+          }
+
+          .decrease {
+            display: flex;
+            justify-content: space-between;
+
+            .title {
+              color: $swatch_steel_700;
+              text-align: right;
+              font-feature-settings: 'clig' off, 'liga' off;
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+            }
+
+            .amount {
+              color: $swatch_red_500;
+              font-feature-settings: 'clig' off, 'liga' off;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+            }
+          }
+        }
+
+        .total-wage-and-profit {
+          margin-bottom: 24px;
+          display: flex;
+          flex-direction: column;
+
+          .wage,
+          .profit {
+            display: flex;
+            justify-content: space-between;
+
+            .title {
+              color: $swatch_steel_500;
+              text-align: right;
+              font-feature-settings: 'clig' off, 'liga' off;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 28px;
+            }
+
+            .amount {
+              color: $swatch_steel_900;
+              font-feature-settings: 'clig' off, 'liga' off;
+
+              font-size: 18px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: 32px;
+
+              .irr {
+                color: $swatch_steel_500;
+                text-align: right;
+                font-feature-settings: 'clig' off, 'liga' off;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                margin-right: 6px;
+              }
+            }
+          }
+        }
+      }
+
+      .mobile-ctas {
+        .second-cta-button {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .container {
+    max-width: 92%;
+    flex-direction: column;
+
+    .calculator {
+      width: fit-content;
+      margin: auto;
+
+      .calculator-container {
+        .results {
+          .final-amounts {
+            .payable {
+              .title {
+                font-size: 16px;
+                font-weight: 600;
+              }
+
+              .amount {
+                font-size: 20px;
+                font-weight: 400;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .content {
+      width: 100%;
+      align-items: center;
+      margin: 0 0 32px 0;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .container {
+    width: 100%;
+    max-width: 100%;
+
+    .content {
+      .title {
+        font-size: 20px;
+        font-weight: 900;
+      }
+
+      .subtitle {
+        font-size: 14px;
+        font-weight: 300;
+      }
+
+      .cta.first {
+        display: none;
+      }
+    }
+
+    .calculator {
+      width: 100%;
+      border-radius: 0;
+
+      .calculator-container {
+        flex-direction: column;
+        padding: 16px;
+
+        .inputs {
+          width: 100%;
+
+          .recipe-amount {
+            .label {
+              font-size: 16px;
+            }
+
+            .insert {
+              input {
+                font-size: 24px;
+
+                &:focus-visible {
+                  outline: unset;
+                }
+              }
+            }
+          }
+
+          .day-picker {
+            .time {
+              .title {
+                font-size: 16px;
+              }
+
+              .amount {
+                font-size: 14px;
+
+                .early {
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+
+          .inputs-footer {
+            margin-top: 8px;
+
+            .providers-label {
+              font-size: 16px;
+            }
+          }
+        }
+
+        .divider {
+          border-top: 1px solid $swatch_steel_200;
+          margin: 24px -16px;
+          width: calc(100% + 32px);
+        }
+
+        .results {
+          width: 100%;
+          margin: auto;
+
+          .final-amounts {
+            padding: 12px 16px;
+            margin-bottom: 14px;
+
+            .payable {
+              .amount {
+                .irr {
+                  font-size: 12px;
+                  font-weight: 800;
+                }
+              }
+            }
+
+            .decrease {
+              .title {
+                font-size: 12px;
+              }
+
+              .amount {
+                font-size: 14px;
+              }
+            }
+          }
+
+          .total-wage-and-profit {
+            margin: 0 16px 24px 16px;
+
+            .wage,
+            .profit {
+              .amount {
+                font-weight: 600;
+              }
+
+              .title {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+
+        .mobile-ctas {
+          .second-cta-button {
+            display: flex;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<div class="guide-card">
+  <img [alt]="config()?.text"
+       [src]="config()?.src"
+       class="card-image"
+  >
+  <div class="card-detail">
+    <p class="detail-text">{{ config()?.text }}</p>
+    <img (click)="previewImageLarge()"
+         alt="icon"
+         class="detail-icon"
+         height="24 "
+         src="insurance-assets/icons/eye-black-view.svg"
+         width="24">
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<section class="section-app-promotion">
+  <div class="container">
+    <div class="content">
+      <h2
+        class="title"
+        *ngIf="appPromotionData.title"
+      >
+        {{ appPromotionData.title }}
+      </h2>
+      <div
+        class="subtitle"
+        *ngIf="appPromotionData.subtitle"
+      >
+        {{ appPromotionData.subtitle }}
+      </div>
+      <div class="ctas">
+        <app-ui-button
+          appearance="OUTLINE-BLUE"
+          *ngIf="appPromotionData.firstCta && appPromotionData.firstCta.title && appPromotionData.firstCta.link"
+          [link]="appPromotionData.firstCta.link"
+          size="BIG"
+          class="cta"
+          [linkTarget]="'_blank'"
+          >{{ appPromotionData.firstCta.title }}
+        </app-ui-button>
+        <app-ui-button
+          *ngIf="appPromotionData.secondCta && appPromotionData.secondCta.title"
+          appDownloadAppLink
+          size="BIG"
+          class="cta"
+        >
+          {{ appPromotionData.secondCta.title }}
+          <span
+            appUiIcon
+            icon="icon-arrow-left-white"
+            size="24"
+          ></span>
+        </app-ui-button>
+      </div>
+    </div>
+    <div class="artwork">
+      <img
+        *ngIf="appPromotionData.artwork && appPromotionData.artwork.url"
+        [ngSrc]="appPromotionData.artwork.url"
+        width="586"
+        height="336"
+        alt=""
+      />
+    </div>
+  </div>
+</section>

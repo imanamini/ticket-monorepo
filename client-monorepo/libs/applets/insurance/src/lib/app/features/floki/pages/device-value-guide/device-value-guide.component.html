@@ -1,0 +1,26 @@
+<div class="d-flex flex-column gap-medium ">
+  <div class="px-plus pt-small pb-minus st-6 border-color-light border-b-100">
+    <p>راهنمای ارزش‌گذاری</p>
+  </div>
+  <div class="p-plus">
+    <ngx-callout [messages]="[
+       'در صورتی که گوشی خود را به تازگی خریداری کرده‌اید، مبلغ درج شده در فاکتور خرید ارزش فعلی دستگاه شما را نشان می‌دهد.' ,
+        'در صورتی که مدتی از خرید شما می‌گذرد یا قصد تمدید بیمه‌نامه خود را دارید، سایت‌هایی مانند دیجی‌کالا، ترب و... می‌توانند مرجع مناسبی برای اطلاع از ارزش فعلی دستگاه شما باشند.',
+      ]"
+                 [mode]="'multiple'"
+                 [showTitleBlink]="false"
+                 [showTitleIcon]="false"
+                 [title]="''">
+
+    </ngx-callout>
+  </div>
+  <div class="bottom-container p-plus">
+    <ngx-button
+      (clickHandler)="closeBottomSheet()"
+      [fullWidth]="true"
+      [size]="'large'"
+      [style]="'fill'">
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

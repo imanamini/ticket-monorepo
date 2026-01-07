@@ -1,0 +1,21 @@
+@use 'sass:map';
+@import '@digipay/base-style/styleguide';
+
+.detail-section {
+  &:not(:last-child) {
+    padding-bottom: map.get($spacing-sizes, 'pony');
+    border-bottom: 1px solid map.get($border-colors, 'air');
+  }
+}
+
+.payment-detail-container {
+  background: map.get($shade-colors, onback-shade-99);
+}
+
+.ltr-direction {
+  direction: ltr;
+}
+
+.no-wrap-space {
+  white-space: nowrap;
+}

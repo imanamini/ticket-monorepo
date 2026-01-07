@@ -1,0 +1,77 @@
+<div class="w-100 h-100 d-flex flex-column surface-elevated">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'سفارش‌های درانتظار'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="d-flex flex-column px-plus transactions-container">
+    <div class="w-100 mt-big d-flex flex-wrap segment-container">
+      <ngx-segmented-control
+        [mode]="'SECTION_SEGMENT'"
+        [options]="options"
+        [selectedOption]="options[activeSegmentIndex()]"
+        (change)="updateFilter($event); activeSegment.set($event.id)"
+        class="w-100"
+      >
+      </ngx-segmented-control>
+      <div
+        class="w-100 d-flex flex-wrap segment-content"
+        [ngClass]="{ 'align-content-center': transactions()?.length <= 0 }"
+      >
+        @if (loadingTransactions()) {
+          <app-spinner></app-spinner>
+        } @else {
+          @if (transactions()?.length > 0) {
+            @if (activeSegment() === 'Buy') {
+              <ngx-alert
+                [size]="'sm'"
+                class="w-100 my-medium"
+                [color]="'gray'"
+                [text]="'این مبالغ در کل دارایی شما محاسبه نمی‌شود.'"
+                [hasCloseIcon]="false"
+              />
+            }
+            <div class="w-100 d-flex flex-wrap mt-medium justify-content-end">
+              <p class="st-6 text-onback-high mb-small">
+                <span>{{ activeSegment() === 'Sell' ? (totalUnits() | number) : (totalAmount() | thousands) }}</span>
+                <span class="mr-tiny">{{ activeSegment() === 'Sell' ? 'واحد' : 'ریال' }}</span>
+              </p>
+              <ngx-divider
+                class="w-100"
+                [color]="BorderColorsEnum.Air"
+              ></ngx-divider>
+            </div>
+            <div class="w-100 d-flex flex-wrap mt-medium">
+              @for (transaction of transactions(); track $index; let last = $last) {
+                <wealth-applet-pending-transaction-card
+                  class="w-100"
+                  [transaction]="transaction"
+                  [canSee]="true"
+                  [from]="'pendingTransactions'"
+                />
+                @if (!last) {
+                  <ngx-divider
+                    class="w-100 my-minus"
+                    [color]="BorderColorsEnum.Air"
+                  ></ngx-divider>
+                }
+              }
+            </div>
+          } @else {
+            <wealth-applet-pending-transaction-empty
+              [state]="state()"
+              class="w-100 segment-content align-content-center"
+            />
+          }
+        }
+      </div>
+    </div>
+  </div>
+</div>

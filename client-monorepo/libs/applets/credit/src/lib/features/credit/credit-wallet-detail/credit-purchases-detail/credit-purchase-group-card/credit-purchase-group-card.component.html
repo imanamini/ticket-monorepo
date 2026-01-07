@@ -1,0 +1,27 @@
+<div class="credit-purchase-group-card">
+  <div class="icon-col">
+    <credit-digipay-image
+      [imageId]="imageId()"
+      width="32px"
+    ></credit-digipay-image>
+  </div>
+  <div class="content-col">
+    <div class="content-main-row">
+      <div class="group-title-box">
+        <div class="group-title-box-text">{{ merchantName().text }}</div>
+        <div class="group-title-box-value">{{ merchantName().value }}</div>
+      </div>
+      <div>
+        <ngx-icon
+          name="arrow-2-left"
+          type="linear"
+          iconSize="20px"
+        ></ngx-icon>
+      </div>
+    </div>
+    <div class="content-detail-row">
+      <div class="content-detail-text">{{ totalAmount().text }}</div>
+      <div class="content-detail-value">{{ totalAmount().value }}</div>
+    </div>
+  </div>
+</div>

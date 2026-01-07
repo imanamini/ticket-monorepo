@@ -1,0 +1,42 @@
+<div
+  class="w-100 d-flex flex-column p-medium align-items-center justify-content-center radius-big card-container gap-small surface-high-contrast">
+  <div class=" d-flex flex-column gap-small justify-content-space-between w-100 ">
+    <div class="d-flex w-100 gap-small justify-content-space-between align-items-center">
+      <div class="d-flex  gap-small flex-1" style="flex: 1">
+        <img alt="" src="assets/icons/claim.svg">
+        <div class="flex-column w-100">
+          <p class="bt-2 title-wrapper">
+            تجهیزات دیجیتال
+          </p>
+          <p class="c-3">
+            {{ claim()?.selectedCover?.title }}
+          </p>
+        </div>
+      </div>
+      <ngx-badge size="md" [status]="statusColor()" mode="fill" [hasIcon]="true"
+                 type="text">{{ claim().claimStatus.stepTitle }}
+      </ngx-badge>
+    </div>
+    <!--for detail -->
+    <div class="d-flex flex-column radius-big surface-back pt-small p-b-small gap-tiny  detail-container">
+      <div class="list d-flex w-100 justify-content-space-between align-items-center  pr-small   pl-small">
+        <span class="title d-inline-block d-inline b-2">
+شماره پرونده خسارت
+        </span>
+        <span class="value d-inline-block d-inline bt-2">
+                  {{ claim().claimCaseNo }}
+        </span>
+      </div>
+      <div class="list d-flex w-100 justify-content-space-between align-items-center pr-small  pl-small">
+        <span class="title d-inline-block  d-inline b-2">
+          تاریخ آخرین تغییرات
+        </span>
+        <span class="value d-inline-block d-inline bt-2">
+          {{ lastChangedAt }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+

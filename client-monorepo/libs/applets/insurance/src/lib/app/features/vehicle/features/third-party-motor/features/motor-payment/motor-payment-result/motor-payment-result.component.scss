@@ -1,0 +1,107 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+
+.payment-result {
+  @include column-center;
+  height: 100%;
+}
+
+
+.result-wrapper, .loading {
+  max-width: 360px;
+  height: 100%;
+  position: relative;
+  width: 100%;
+  padding: 0 16px 30px 16px;
+  overflow-y: auto;
+
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+
+  &::-webkit-scrollbar {
+    display: none !important;
+  }
+}
+
+.loading {
+  @include flex-center;
+}
+
+.result-error {
+  @include column-center;
+  margin-top: 5vh;
+
+  & > * {
+    width: fit-content;
+  }
+
+  .result-message {
+    margin-top: 16px;
+    color: #2c3544;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 32px;
+  }
+
+  .description {
+    color: #6e798d;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 24px 0 80px 0;
+  }
+}
+
+.follow-up-number {
+  margin-bottom: 48px;
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid #c0f4d7;
+
+  .data-row {
+    @include flex-center-between;
+    padding: 24px 0;
+    gap: 8px;
+
+    &:first-child {
+      padding-top: 0;
+      border-bottom: 1px solid #dee3e7;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+
+      .data-value {
+        direction: ltr;
+        text-align: left;
+      }
+    }
+
+    .data-title {
+      color: #6e798d;
+      font-size: 14px;
+      font-weight: 390;
+      line-height: 24px;
+      white-space: nowrap;
+    }
+
+    .data-value {
+      color: #2c3544;
+      font-size: 14px;
+      font-weight: 390;
+      line-height: 24px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      min-width: 120px;
+      text-align: end;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .follow-up-number {
+    margin-bottom: 32px;
+  }
+}

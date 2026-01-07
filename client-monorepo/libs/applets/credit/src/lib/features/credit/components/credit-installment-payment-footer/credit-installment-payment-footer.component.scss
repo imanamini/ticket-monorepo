@@ -1,0 +1,16 @@
+.detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  margin-bottom: 0;
+
+  &.isOpen {
+    grid-template-rows: 1fr;
+    margin-bottom: 12px;
+  }
+
+  > * {
+    min-height: 0;
+  }
+}

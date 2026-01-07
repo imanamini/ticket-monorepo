@@ -1,0 +1,26 @@
+<div class="surface-elevated d-flex flex-wrap">
+  <ngx-app-bar
+    class="w-100"
+    [title]="pageTitle()"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="w-100 pdf-container p-medium">
+    @if (loading()) {
+      <app-spinner />
+    }
+    <pdf-viewer
+      [src]="pdfBlob() || pdfSrc()"
+      [original-size]="false"
+      (after-load-complete)="loading.set(false)"
+      (error)="showError()"
+      style="width: 100%; height: 100%"
+    ></pdf-viewer>
+  </div>
+</div>

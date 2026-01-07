@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-around;
+}
+
+.skeleton-chart-label{
+  width: 100%;
+}
+
+.wallet-types {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  color: #6E798D;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+
+  .point {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+}
+

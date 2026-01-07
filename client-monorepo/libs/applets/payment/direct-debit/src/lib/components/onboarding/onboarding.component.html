@@ -1,0 +1,77 @@
+<div class="d-flex flex-column gap-minus direct-debit-onboarding-container">
+  <div class="d-flex justify-content-center">
+    <img
+      [src]="'assets/direct-debit/onboarding-dd.svg'"
+      alt="Onboarding Direct Debit"
+    />
+  </div>
+  <div class="d-flex flex-column gap-small">
+    <h1 class="st-3 text-align-center">پرداخت مستقیم</h1>
+    <p class="text-onback-medium c-3">
+      با فعال‌سازی این روش، تراکنش‌ها سریع‌تر و بدون نیاز به وارد کردن اطلاعات کارت در هر پرداخت انجام می‌شود.
+    </p>
+  </div>
+  <div class="d-flex flex-column gap-tiny">
+    <div class="d-flex">
+      <common-icon-dp-icon
+        [icon]="'calendar-time'"
+        [iconType]="'due'"
+        class="text-onback-error"
+      ></common-icon-dp-icon>
+      <hgroup class="d-flex flex-column">
+        <h3 class="st-6 pr-tiny pt-tiny">مدیریت مالی</h3>
+        <p class="p-small c-3 text-onback-medium">در پرداخت‌های با کیف‌پول، کسری موجودی به صورت خودکار از حساب بانکی شما تامین می‌شود.</p>
+      </hgroup>
+    </div>
+
+    <div class="d-flex">
+      <img
+        height="24" 
+        src="assets/direct-debit/bank-markazi.svg"
+        alt="bank Markazi Logo"
+      />
+      <hgroup class="d-flex flex-column">
+        <h3 class="st-6 pr-small">نظارت بانک مرکزی</h3>
+        <p class="p-small c-3 text-onback-medium">
+          خدمات، تحت نظارت بانک مرکزی اجرا شده و همه تراکنش‌ها در بازه تعیین‌شده توسط شما انجام می‌شوند.
+        </p>
+      </hgroup>
+    </div>
+
+    <div class="d-flex">
+      <common-icon-dp-icon
+        [icon]="'shield-lock'"
+        [iconType]="'due'"
+        class="text-onback-success"
+      ></common-icon-dp-icon>
+      <hgroup class="d-flex flex-column">
+        <h3 class="st-6 pt-tiny pr-tiny">کنترل و امنیت</h3>
+        <p class="p-small c-3 text-onback-medium">شما در هر زمان امکان لغو یا غیرفعال‌سازی پرداخت مستقیم را دارید.</p>
+      </hgroup>
+    </div>
+
+    <div class="d-flex">
+      <common-icon-dp-icon
+        [icon]="'wallet'"
+        [iconType]="'bold'"
+        class="text-onback-brand"
+      ></common-icon-dp-icon>
+      <hgroup class="d-flex flex-column">
+        <h3 class="st-6 pt-tiny pr-tiny">کیف‌پول</h3>
+        <p class="p-small c-3 text-onback-medium">بعد از فعال‌سازی پرداخت‌سریع، می‌توانید کیف پول خود را به صورت خودکار شارژ نمایید.</p>
+      </hgroup>
+    </div>
+  </div>
+
+  <ngx-button
+    class="actions"
+    [mode]="'section'"
+    [size]="'large'"
+    [style]="'fill'"
+    [leftIcon]="{ name: 'arrow-2-left', type: 'linear' }"
+    [fullWidth]="true"
+    (clickHandler)="onClose()"
+  >
+    شروع
+  </ngx-button>
+</div>

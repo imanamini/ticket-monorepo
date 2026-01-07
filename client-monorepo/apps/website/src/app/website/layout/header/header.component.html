@@ -1,0 +1,568 @@
+<header
+  [ngClass]="{
+    'side-nav-open': sideNavOpen,
+    'show-backdrop': sideNavOpen || megaMenuOpenForIndex !== null,
+    'header-box-shadow': fadeInNavbarData,
+    'top-fixed': !fadeInNavbarData && topBanner,
+  }"
+>
+  <div
+    (click)="hideBackdrop()"
+    id="navbar-overlay"
+  ></div>
+  <nav
+    [ngClass]="{
+      'disappear fixed-mode': fadeInNavbarData,
+      'fade-in-white': megaMenuOpenForIndex !== null || fadeInNavbarData || sideNavOpen,
+      'fade-out-white': !fadeInNavbarData && megaMenuOpenForIndex === null && !sideNavOpen,
+    }"
+  >
+    <ng-container *ngIf="topBanner">
+      <app-ui-banner
+        [banner]="topBanner"
+        [modalBanner]="modalBanner"
+      ></app-ui-banner>
+    </ng-container>
+
+    <!-- navigation for large screens -->
+    <div
+      (mouseleave)="displayMegaMenu(0, null, false, true, false)"
+      class="container"
+      id="navbar"
+    >
+      <ng-container *ngIf="!justShowLogo">
+        <app-ui-hamburger-icon
+          (clicked)="sideNavOpen = !sideNavOpen"
+          [isActive]="sideNavOpen"
+          id="hamburger-menu"
+        ></app-ui-hamburger-icon>
+      </ng-container>
+
+      <a
+        [ngClass]="{ 'm-auto': justShowLogo === true }"
+        id="header-navbar-logo"
+        routerLink="/"
+      >
+        <img
+          alt="دیجی‌پی"
+          height="33"
+          ngSrc="assets/images/logos/mydigipay-fa.svg"
+          width="65"
+        />
+      </a>
+
+      <ng-container *ngIf="!justShowLogo">
+        <div id="navbar-menu-items">
+          <ul>
+            <ng-container *ngFor="let menu of topMenuItems.children; let itemIndex = index">
+              <li
+                (click)="displayMegaMenu(itemIndex, menu, true, false, false)"
+                class="navbar-menu-item"
+              >
+                <span
+                  (mouseenter)="displayMegaMenu(itemIndex, menu, true, true, false)"
+                  (click)="displayMegaMenu(itemIndex, menu, true, false, false)"
+                  [ngClass]="{ active: megaMenuOpenForIndex === itemIndex }"
+                  class="title"
+                  >{{ menu.title }}</span
+                >
+                <div
+                  [ngClass]="{ visible: megaMenuOpenForIndex === itemIndex }"
+                  class="navbar-menu-subitems"
+                >
+                  <ng-container>
+                    <div
+                      [ngClass]="{
+                        visible: megaMenuOpenForIndex === itemIndex,
+                      }"
+                      class="content"
+                    >
+                      <div
+                        *ngIf="menu.menu.menuStyle !== 'NONE'"
+                        class="subitem-selectors"
+                      >
+                        <div
+                          *ngIf="menu.menu.title"
+                          class="title"
+                        >
+                          {{ menu.menu.title }}
+                        </div>
+                        <ul *ngIf="menu.menu.menuItems && menu.menu.menuItems.length > 0">
+                          <li
+                            (click)="displayGrandChild(childIndex, $event, menu, child, false, true)"
+                            (mouseenter)="displayGrandChild(childIndex, $event, menu, child, false, true)"
+                            *ngFor="let child of menu.menu.menuItems; let childIndex = index"
+                            [ngClass]="{
+                              active: childIndex === grandChildIndex,
+                              list: menu.menu.menuStyle === 'LIST',
+                              'vertical-tab': menu.menu.menuStyle === 'VERTICAL_TAB',
+                            }"
+                            class="subitem-selector"
+                          >
+                            <div class="title">
+                              {{ child.title }}
+                              <img
+                                [src]="
+                                  menu.menu.menuStyle === 'LIST'
+                                    ? 'assets/images/icons/icon-charon-left.svg'
+                                    : 'assets/images/icons/icon-left.svg'
+                                "
+                                alt=""
+                              />
+                            </div>
+                            <div class="description">
+                              {{ child.subtitle }}
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="subitems-body">
+                        <ng-container *ngIf="menu.groups && menu.groups.length > 0">
+                          <ng-container *ngFor="let child of menu.groups; let childIndex = index">
+                            <ul
+                              *ngIf="child.displayMode === 'FEATURE_LIST'"
+                              [ngClass]="{
+                                active: childIndex === grandChildIndex,
+                              }"
+                              class="subitems-indices"
+                            >
+                              <li
+                                (mouseout)="grandChild.isHovered = false"
+                                (mouseover)="grandChild.isHovered = true"
+                                *ngFor="let grandChild of child.items"
+                                class="subitems-index"
+                              >
+                                <a [attr.href]="grandChild.url"></a>
+                                <div
+                                  [ngStyle]="{ background: grandChild.color }"
+                                  class="icon"
+                                >
+                                  <img
+                                    *ngIf="grandChild.imagePath"
+                                    [alt]="grandChild.title"
+                                    [src]="grandChild.imagePath.url"
+                                  />
+                                </div>
+                                <div style="min-width: fit-content">
+                                  <div class="grandchild-link title">
+                                    {{ grandChild.title }}
+                                  </div>
+                                  <div class="grandchild-link description">
+                                    {{ grandChild.subtitle }}
+                                  </div>
+                                </div>
+                                <i
+                                  [ngClass]="grandChild.isHovered ? 'active' + ' color' + grandChild.color : ' color' + grandChild.color"
+                                  class="icon-left"
+                                ></i>
+                              </li>
+                            </ul>
+                            <div
+                              *ngIf="child.displayMode === 'JUMBOTRON'"
+                              [ngClass]="{
+                                active: childIndex === grandChildIndex,
+                              }"
+                              class="jumbotron"
+                            >
+                              <div>
+                                <div
+                                  *ngIf="child.items[0] && child.items[0].title"
+                                  class="title"
+                                >
+                                  {{ child.items[0].title }}
+                                </div>
+                                <div
+                                  *ngIf="child.items[0] && child.items[0].subtitle"
+                                  class="description"
+                                >
+                                  {{ child.items[0].subtitle }}
+                                </div>
+                                <div>
+                                  <app-ui-button
+                                    *ngIf="child.items[0] && child.items[0].url && child.items[0].ctaText"
+                                    [link]="child.items[0].url"
+                                    appearance="BLUE-TEXT"
+                                    class="cta"
+                                    size="SMALL"
+                                  >
+                                    {{ child.items[0].ctaText }}
+                                    <img
+                                      alt=""
+                                      src="assets/images/icons/icon-left.svg"
+                                    />
+                                  </app-ui-button>
+                                </div>
+                              </div>
+                              <div class="image">
+                                <img
+                                  *ngIf="child.items[0] && child.items[0].imagePath"
+                                  [src]="child.items[0].imagePath.url"
+                                  alt=""
+                                />
+                              </div>
+                            </div>
+                            <ul
+                              *ngIf="child.displayMode === 'THUMBNAIL_LIST'"
+                              [ngClass]="{
+                                active: childIndex === grandChildIndex,
+                              }"
+                              class="thumbnail-list"
+                            >
+                              <ng-container *ngIf="child.items.length > 0; else loading">
+                                <li
+                                  *ngFor="let grandChild of child.items"
+                                  class="subitems-index"
+                                >
+                                  <a
+                                    [attr.href]="'/mag/' + grandChild.category.slug + '/' + grandChild.slug"
+                                    target="_blank"
+                                  >
+                                  </a>
+                                  <div
+                                    [ngStyle]="{ background: grandChild.color }"
+                                    class="icon"
+                                  >
+                                    <img
+                                      *ngIf="grandChild.image"
+                                      [alt]="grandChild.title"
+                                      [src]="grandChild.image.url"
+                                    />
+                                  </div>
+                                  <div>
+                                    <div class="grandchild-link title">
+                                      {{ grandChild.title }}
+                                    </div>
+                                    <div class="grandchild-link description">
+                                      <i class="icon-calendar-gray"></i>
+                                      {{ grandChild.createdAtAgo }}
+                                    </div>
+                                  </div>
+                                </li>
+                              </ng-container>
+                              <ng-template #loading>
+                                <div class="loading-state">
+                                  <app-ui-spinner></app-ui-spinner>
+                                </div>
+                              </ng-template>
+                            </ul>
+                          </ng-container>
+                        </ng-container>
+                      </div>
+                    </div>
+                    <div
+                      *ngIf="topMenuItems.banner"
+                      class="banner"
+                    >
+                      <div>
+                        <div class="title">
+                          {{
+                            topMenuItems.children[megaMenuOpenForIndex || 0].groups[grandChildIndex > -1 ? grandChildIndex : 0].banner
+                              .title ||
+                              topMenuItems.banner.title ||
+                              ''
+                          }}
+                        </div>
+                        <div
+                          *ngIf="topMenuItems.banner && topMenuItems.banner.subtitle"
+                          class="subtitle"
+                        >
+                          {{
+                            topMenuItems.children[megaMenuOpenForIndex || 0].groups[grandChildIndex > -1 ? grandChildIndex : 0].banner
+                              .subtitle ||
+                              topMenuItems.banner.subtitle ||
+                              ''
+                          }}
+                        </div>
+                      </div>
+                      <div class="cta">
+                        <app-ui-button
+                          [link]="topMenuItems.banner.firstCta.link"
+                          appearance="BLUE-TEXT"
+                          linkTarget="_blank"
+                          size="SMALL"
+                        >
+                          <ng-container
+                            *ngIf="
+                              (topMenuItems.children[megaMenuOpenForIndex || 0].groups[grandChildIndex > -1 ? grandChildIndex : 0] &&
+                                topMenuItems.children[megaMenuOpenForIndex || 0].groups[grandChildIndex > -1 ? grandChildIndex : 0].banner
+                                  .firstCta.title) ||
+                              topMenuItems.banner.firstCta.title
+                            "
+                          >
+                            {{
+                              topMenuItems.children[megaMenuOpenForIndex || 0].groups[grandChildIndex > -1 ? grandChildIndex : 0].banner
+                                .firstCta.title || topMenuItems.banner.firstCta.title
+                            }}
+                          </ng-container>
+                          <ngx-icon
+                            [iconSize]="'24'"
+                            [name]="'arrow-2-left'"
+                            class="text-onback-brand"
+                          ></ngx-icon>
+                        </app-ui-button>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+        <div class="left-section">
+          <div
+            class="header-download-btn"
+            appDownloadAppLink
+            id="header-download-btn"
+          >
+            <span class="header-download-btn">دانلود اپلیکیشن</span>
+            <img
+              alt="دانلود"
+              class="header-download-btn"
+              height="20"
+              ngSrc="assets/header/download.svg"
+              width="20"
+            />
+          </div>
+          <div class="v-divider"></div>
+          <div class="login-dropdown">
+            <div
+              (click)="toggleLoginDropDown()"
+              class="dropdown-button"
+            >
+              <i [ngClass]="cellNumber === '' ? 'icon-user' : 'icon-user-after-login'"></i>
+              <ngx-icon
+                [name]="'arrow-2-down'"
+                class="text-onback-brand"
+              ></ngx-icon>
+            </div>
+            <div
+              *ngIf="showLoginDropdown"
+              class="dropdown-menu"
+            >
+              <ng-container *ngIf="cellNumber === ''; else login">
+                <img
+                  alt=""
+                  height="51"
+                  ngSrc="assets/login/user.svg"
+                  width="52"
+                />
+                <div
+                  (click)="openLoginDialog()"
+                  class="text"
+                >
+                  <i class="icon-login"></i>
+                  ورود به دیجی پی
+                </div>
+              </ng-container>
+              <ng-template #login>
+                <div class="user-is-login">
+                  <div class="icon">
+                    <span class="icon-user-circle-gray"></span>
+                  </div>
+                  <div class="user-brief">
+                    <div class="cell-number-title">
+                      <ng-container *ngIf="username === ''; else hasUsername"> شماره موبایل شما</ng-container>
+                      <ng-template #hasUsername>
+                        {{ username }}
+                      </ng-template>
+                    </div>
+                    <div class="cell-number">
+                      {{ cellNumber }}
+                    </div>
+                  </div>
+                  <div
+                    [routerLink]="['/profile']"
+                    class="profile-cta d-flex align-items-center"
+                  >
+                    <div class="text">پروفایل</div>
+                    <ngx-icon
+                      [name]="'arrow-2-left'"
+                      class="text-onback-brand charon-icon"
+                    ></ngx-icon>
+                  </div>
+                </div>
+                <div class="ctas d-flex align-items-center">
+                  <div
+                    (click)="logout()"
+                    class="text logout"
+                  >
+                    <i class="icon-login logout"></i>
+                    <ng-container *ngIf="isWebView; else notWebView">بازگشت به اپلیکشین</ng-container>
+                    <ng-template #notWebView>خروج از دیجی پی</ng-template>
+                  </div>
+                  <app-ui-button
+                    [routerLink]="['/profile']"
+                    appearance="FLAT-BLUE"
+                    class="profile-cta"
+                    >پروفایل
+                  </app-ui-button>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <!-- navigation for small screens -->
+    <ng-container *ngIf="!justShowLogo">
+      <div
+        [ngClass]="{ 'no-top-banner': fadeInNavbarData }"
+        id="sidenav"
+      >
+        <ul id="sidenav-menu-items">
+          <ng-container *ngFor="let menu of topMenuItems.children; let menuItemIndex = index">
+            <li
+              (click)="toggleSideNavChild(menuItemIndex)"
+              [ngClass]="{
+                active: expandedChildIndex === menuItemIndex,
+                list: menu.menu.menuStyle === 'LIST',
+              }"
+              class="sidenav-menu-item has-subitems collapsible"
+            >
+              <a
+                (click)="!menu.url ? $event.preventDefault() : null"
+                [href]="menu.url ? menu.url : null"
+                [ngClass]="{
+                  list: menu.menu.menuStyle === 'LIST',
+                  active: expandedChildIndex === menuItemIndex,
+                }"
+                [target]="menu.url ? '_blank' : ''"
+              >
+                <div
+                  [ngClass]="{ active: expandedChildIndex === menuItemIndex }"
+                  class="title"
+                >
+                  {{ menu.title }}
+                </div>
+                <app-collapsible-plus-sign
+                  *ngIf="!menu.url && menu.title !== 'مجله اینترنتی دیجی پی'"
+                  [isOpen]="expandedChildIndex === menuItemIndex"
+                ></app-collapsible-plus-sign>
+              </a>
+              <ng-container *ngIf="menu.menu.menuItems && menu.menu.menuItems.length > 0">
+                <div
+                  *ngFor="let child of menu.menu.menuItems; let menuIndex = index"
+                  [ngClass]="{
+                    list: menu.menu.menuStyle === 'LIST',
+                    active: expandedChildIndex === menuItemIndex,
+                  }"
+                  class="sidenav-menu-group"
+                >
+                  <div
+                    (click)="displayGrandChild(menuIndex, $event, menu, child, true, true)"
+                    class="position-relative"
+                  >
+                    <div>
+                      <div class="child-link title">{{ child.title }}</div>
+                      <div class="child-link subtitle">
+                        {{ child.subtitle }}
+                      </div>
+                    </div>
+                    <a
+                      *ngIf="child.url"
+                      [attr.href]="child.url"
+                      class="child-link link"
+                      target="_blank"
+                    ></a>
+                    <a
+                      *ngIf="child.slug"
+                      [attr.href]="'/mag/' + child.slug"
+                      class="child-link link"
+                      target="_blank"
+                    ></a>
+                    <app-collapsible-plus-sign
+                      *ngIf="menu.menu.menuStyle !== 'LIST'"
+                      [isOpen]="menuIndex === grandChildIndex"
+                    ></app-collapsible-plus-sign>
+                  </div>
+                  <ng-container *ngFor="let grandChild of menu.groups; let childIndex = index">
+                    <div
+                      *ngIf="grandChild.displayMode === 'FEATURE_LIST'"
+                      [ngClass]="{
+                        active: childIndex === grandChildIndex && menuIndex === grandChildIndex,
+                      }"
+                      class="sidenav-group-item"
+                    >
+                      <ul
+                        [ngClass]="{ active: childIndex === grandChildIndex }"
+                        class="subitems-indices"
+                      >
+                        <li
+                          *ngFor="let grandChild2 of grandChild.items"
+                          class="subitems-index"
+                        >
+                          <a [attr.href]="grandChild2.url"></a>
+                          <div
+                            [ngStyle]="{ background: grandChild2.color }"
+                            class="icon"
+                          >
+                            <img
+                              *ngIf="grandChild2.imagePath"
+                              [alt]="grandChild2.title"
+                              [src]="grandChild2.imagePath.url"
+                            />
+                          </div>
+                          <div>
+                            <div class="grandchild-link title">
+                              {{ grandChild2.title }}
+                            </div>
+                            <div class="grandchild-link description">
+                              {{ grandChild2.subtitle }}
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </ng-container>
+                </div>
+              </ng-container>
+            </li>
+          </ng-container>
+        </ul>
+        <div
+          *ngIf="checkedMenu"
+          class="banner"
+        >
+          <div>
+            <div class="title">
+              {{
+                topMenuItems.children[megaMenuOpenForIndex || 0].groups[grandChildIndex > -1 ? grandChildIndex : 0].banner.title ||
+                  topMenuItems.banner.title ||
+                  ''
+              }}
+            </div>
+            <div class="subtitle">
+              {{
+                topMenuItems.children[megaMenuOpenForIndex || 0].groups[grandChildIndex > -1 ? grandChildIndex : 0].banner.subtitle ||
+                  topMenuItems.banner.subtitle ||
+                  ''
+              }}
+            </div>
+          </div>
+          <div class="cta">
+            <app-ui-button
+              [link]="
+                topMenuItems.children[megaMenuOpenForIndex || 0].groups[grandChildIndex > -1 ? grandChildIndex : 0].banner.firstCta.link ||
+                topMenuItems.banner.firstCta.link
+              "
+              appearance="BLUE-TEXT"
+              linkTarget="_blank"
+              size="SMALL"
+            >
+              {{
+                topMenuItems.children[megaMenuOpenForIndex || 0].groups[grandChildIndex > -1 ? grandChildIndex : 0].banner.firstCta.title ||
+                  topMenuItems.banner.firstCta.title ||
+                  ''
+              }}
+              <ngx-icon
+                [iconSize]="'24'"
+                [name]="'arrow-2-left'"
+                class="text-onback-brand"
+              ></ngx-icon>
+            </app-ui-button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </nav>
+</header>

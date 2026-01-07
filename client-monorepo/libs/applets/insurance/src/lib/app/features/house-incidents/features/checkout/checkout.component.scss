@@ -1,0 +1,30 @@
+.detail-value {
+  max-width: 200px;
+}
+
+.house-incidents-checkout {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+
+  .content-container {
+    overflow-y: auto;
+    padding-bottom: 28px;
+    height: calc(100% - 377px);
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .discounted-amount {
+    text-decoration: line-through;
+  }
+}
+
+.payment-info {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+}

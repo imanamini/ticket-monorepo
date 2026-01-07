@@ -1,0 +1,15 @@
+<div class="container">
+  <section>
+    <div class="digipayServices">
+      <div class="title fs-l-24 fs-s-18">
+        {{b2eServices.title }}
+      </div>
+      <div class="content d-flex flex-wrap justify-content-center gap-plus mt-huge">
+        @for (item of b2eServices.items; track $index){
+          <app-service-item [item]="item"></app-service-item>
+        }
+      </div>
+    </div>
+  </section>
+</div>
+

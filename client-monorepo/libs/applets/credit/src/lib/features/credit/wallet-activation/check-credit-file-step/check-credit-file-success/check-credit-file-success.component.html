@@ -1,0 +1,13 @@
+<div class="d-flex flex-column flex-grow">
+  <div class="flex-grow justify-content-center pb-plus">
+    <ngx-status-result
+      (clicked)="onFinish()"
+      [buttons]="buttons"
+      [description]="description"
+      [title]="title"
+      [iconState]="'done'"
+      [type]="'Status'"
+    >
+    </ngx-status-result>
+  </div>
+</div>

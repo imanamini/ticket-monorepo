@@ -1,0 +1,247 @@
+@if (!loading() && profileFields()) {
+  <div class="main-section flex-full-height">
+    <div class="top-section">
+      <app-credit-scrollable-view [fullHeightContent]="true">
+        <div
+          [formGroup]="form"
+          class="form-section"
+          id="info-form"
+        >
+          @if (showBirthPlace()) {
+            <div class="form-message">اطلاعات محل تولد</div>
+            @if (
+              profileFields()['birthPlaceProvince'].option === CREDIT_PROFILE_RULE.MANDATORY ||
+              profileFields()['birthPlace'].option === CREDIT_PROFILE_RULE.MANDATORY
+            ) {
+              <ui-form-field
+                [required]="true"
+                [errorMessageMapper]="{
+                  required: 'استان را انتخاب کنید.',
+                  serverError: parentErrors()['birthPlaceProvince'] || 'استان وارد شده معتبر نیست.',
+                }"
+                [error]="form.controls['birthPlaceProvince'].errors"
+                [hasCleaner]="true"
+                [options]="birthProvinceOptions()"
+                formControlName="birthPlaceProvince"
+                [label]="'استان' + (profileFields()['birthPlace'].option === 0 ? ' (اختیاری) ' : '')"
+                type="select"
+                [showError]="showError()"
+                [selectOpenType]="'auto'"
+              ></ui-form-field>
+            }
+            @if (profileFields()['birthPlace'].option === CREDIT_PROFILE_RULE.MANDATORY) {
+              <ui-form-field
+                [required]="true"
+                [errorMessageMapper]="{
+                  required: 'شهر را انتخاب کنید.',
+                  serverError: parentErrors()['birthPlace'] || 'شهر وارد شده معتبر نیست.',
+                }"
+                [error]="form.controls['birthPlace'].errors"
+                [hasCleaner]="true"
+                [options]="birthCityOptions()"
+                formControlName="birthPlace"
+                [label]="'شهر' + (profileFields()['birthPlace'].option === 0 ? ' (اختیاری) ' : '')"
+                type="select"
+                [showError]="showError()"
+                [selectOpenType]="'auto'"
+              ></ui-form-field>
+            }
+          }
+          <div class="form-message">اطلاعات محل سکونت</div>
+          <app-credit-profile-header-message [headerMessage]="headerMessage()!"></app-credit-profile-header-message>
+          @if (
+            profileFields()['provinceUid'].option === CREDIT_PROFILE_RULE.MANDATORY ||
+            profileFields()['cityUid'].option === CREDIT_PROFILE_RULE.MANDATORY
+          ) {
+            <ui-form-field
+              [required]="true"
+              [errorMessageMapper]="{
+                required: 'استان را انتخاب کنید.',
+                serverError: parentErrors()['provinceUid'] || 'استان وارد شده معتبر نیست.',
+              }"
+              [error]="form.controls['provinceUid'].errors"
+              [hasCleaner]="true"
+              [options]="provinceOptions()"
+              formControlName="provinceUid"
+              [label]="'استان' + (profileFields()['provinceUid'].option === 0 ? ' (اختیاری) ' : '')"
+              [showError]="showError()"
+              type="select"
+              [selectOpenType]="'auto'"
+            ></ui-form-field>
+          }
+          @if (profileFields()['cityUid'].option === CREDIT_PROFILE_RULE.MANDATORY) {
+            <ui-form-field
+              [required]="true"
+              [errorMessageMapper]="{
+                required: 'شهر را انتخاب کنید.',
+                serverError: parentErrors()['cityUid'] || 'شهر وارد شده معتبر نیست.',
+              }"
+              [error]="form.controls['cityUid'].errors"
+              [hasCleaner]="true"
+              [options]="cityOptions()"
+              formControlName="cityUid"
+              [label]="'شهر' + (profileFields()['cityUid'].option === 0 ? ' (اختیاری) ' : '')"
+              type="select"
+              [showError]="showError()"
+              [selectOpenType]="'auto'"
+            ></ui-form-field>
+          }
+
+          @if (profileFields()['address'].option === CREDIT_PROFILE_RULE.MANDATORY) {
+            <ui-form-field
+              [required]="true"
+              [allowedKeyDown]="stopEnterKeyboard"
+              [errorMessageMapper]="{
+                required: 'آدرس را وارد کنید.',
+                minlength: 'آدرس وارد شده کوتاه است',
+                serverError: parentErrors()['address'] || 'آدرس وارد شده معتبر نیست.',
+              }"
+              [error]="form.controls['address'].errors"
+              [maxSize]="200"
+              [multiLine]="true"
+              [readonly]="!profileFields()['address'].editable"
+              formControlName="address"
+              [label]="'آدرس محل سکونت' + (profileFields()['address'].option === 0 ? ' (اختیاری) ' : '')"
+              [showError]="showError()"
+            ></ui-form-field>
+          }
+
+          <div class="form-row">
+            @if (profileFields()['addressNo'].option === CREDIT_PROFILE_RULE.MANDATORY) {
+              <div class="form-column">
+                <ui-form-field
+                  [required]="true"
+                  [errorMessageMapper]="{
+                    required: 'پلاک را وارد کنید.',
+                    serverError: parentErrors()['addressNo'] || 'پلاک وارد شده معتبر نیست.',
+                  }"
+                  [error]="form.controls['addressNo'].errors"
+                  [hasCleaner]="profileFields()['addressNo'].editable"
+                  [maxSize]="8"
+                  [readonly]="!profileFields()['addressNo'].editable"
+                  formControlName="addressNo"
+                  [label]="'پلاک' + (profileFields()['addressNo'].option === 0 ? ' (اختیاری) ' : '')"
+                  [isNumericKeyboard]="true"
+                  [showError]="showError()"
+                ></ui-form-field>
+              </div>
+            }
+            @if (profileFields()['addressUnit'].option === CREDIT_PROFILE_RULE.MANDATORY) {
+              <div class="form-column">
+                <ui-form-field
+                  [required]="true"
+                  [errorMessageMapper]="{
+                    required: 'واحد را وارد کنید.',
+                    serverError: parentErrors()['addressUnit'] || 'واحد وارد شده معتبر نیست.',
+                  }"
+                  [error]="form.controls['addressUnit'].errors"
+                  [hasCleaner]="profileFields()['addressUnit'].editable"
+                  [maxSize]="8"
+                  [readonly]="!profileFields()['addressUnit'].editable"
+                  formControlName="addressUnit"
+                  [label]="'واحد' + (profileFields()['addressUnit'].option === 0 ? ' (اختیاری) ' : '')"
+                  [isNumericKeyboard]="true"
+                  [showError]="showError()"
+                ></ui-form-field>
+              </div>
+            }
+          </div>
+          @if (profileFields()['postalCode'].option === CREDIT_PROFILE_RULE.MANDATORY) {
+            <div class="field-wrapper">
+              <ui-form-field
+                [required]="true"
+                [errorMessageMapper]="{
+                  required: 'کدپستی را وارد کنید.',
+                  serverError: parentErrors()['postalCode'] || 'کدپستی وارد شده معتبر نیست.',
+                }"
+                [error]="form.controls['postalCode'].errors"
+                [hasCleaner]="profileFields()['postalCode'].editable"
+                [isNumericKeyboard]="true"
+                [label]="'کدپستی' + (profileFields()['postalCode'].option === 0 ? ' (اختیاری) ' : '')"
+                [maxSize]="10"
+                [readonly]="!profileFields()['postalCode'].editable"
+                formControlName="postalCode"
+                [showError]="showError()"
+              ></ui-form-field>
+            </div>
+          }
+          @if (profileFields()['phoneNumber'].option === CREDIT_PROFILE_RULE.MANDATORY) {
+            <div class="field-wrapper">
+              <ui-form-field
+                [required]="true"
+                [errorMessageMapper]="{
+                  required: 'شماره ثابت را وارد کنید.',
+                  pattern: 'شماره تلفن معتبر وارد کنید',
+                  serverError: parentErrors()['phoneNumber'] || 'شماره خود را کامل و با کد شهر وارد کنید، مثال: 02153924000',
+                }"
+                [error]="form.controls['phoneNumber'].errors"
+                [hasCleaner]="profileFields()['phoneNumber'].editable"
+                [isNumericKeyboard]="true"
+                [maxSize]="11"
+                [readonly]="!profileFields()['phoneNumber'].editable"
+                formControlName="phoneNumber"
+                hint="شماره خود را کامل و با کد شهر وارد کنید، مثال: 02153924000"
+                [label]="'شماره ثابت' + (profileFields()['phoneNumber'].option === 0 ? ' (اختیاری) ' : '')"
+                [showError]="showError()"
+              ></ui-form-field>
+            </div>
+          }
+          @if (showEducationAndJob()) {
+            @if (profileFields()['education'].option === CREDIT_PROFILE_RULE.MANDATORY) {
+              <div class="field-wrapper">
+                <ui-form-field
+                  [required]="true"
+                  [errorMessageMapper]="{
+                    required: 'انتخاب تحصیلات اجباری است',
+                    serverError: parentErrors()['education'] || 'تحصیلات وارد شده معتبر نیست.',
+                  }"
+                  [error]="form.controls['education'].errors"
+                  [options]="educationOptions()"
+                  formControlName="education"
+                  [label]="'تحصیلات' + (profileFields()['education'].option === 0 ? ' (اختیاری) ' : '')"
+                  type="select"
+                  [hasCleaner]="true"
+                  [showError]="showError()"
+                  [selectOpenType]="'bottomSheet'"
+                  [searchable]="false"
+                ></ui-form-field>
+              </div>
+            }
+            @if (profileFields()['job'].option === CREDIT_PROFILE_RULE.MANDATORY) {
+              <div class="field-wrapper">
+                <ui-form-field
+                  [required]="true"
+                  [errorMessageMapper]="{
+                    required: 'انتخاب شغل اجباری است',
+                    serverError: parentErrors()['job'] || 'شغل وارد شده معتبر نیست.',
+                  }"
+                  [error]="form.controls['job'].errors"
+                  [options]="jobOptions()"
+                  formControlName="job"
+                  [label]="'شغل' + (profileFields()['job'].option === 0 ? ' (اختیاری) ' : '')"
+                  type="select"
+                  [hasCleaner]="true"
+                  [showError]="showError()"
+                  [selectOpenType]="'bottomSheet'"
+                  [searchable]="false"
+                ></ui-form-field>
+              </div>
+            }
+          }
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+    <div class="call-to-actions-section">
+      <ngx-button
+        (clickHandler)="submitForm()"
+        [fullWidth]="true"
+        [isLoading]="ctaLoading()"
+        [disabled]="ctaLoading()"
+        [style]="'fill'"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  </div>
+}
+<credit-page-loading [active]="loading()!"></credit-page-loading>

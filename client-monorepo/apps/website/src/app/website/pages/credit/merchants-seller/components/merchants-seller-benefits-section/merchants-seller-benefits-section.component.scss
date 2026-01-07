@@ -1,0 +1,128 @@
+.section-benefits {
+  h2 {
+    margin-bottom: 32px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 450;
+    line-height: 40px;
+    color: #000d33;
+  }
+
+  .feature-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    .feature-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: default;
+      background-color: #f9f9fb;
+      border-radius: 16px;
+      padding: 24px;
+      width: 390px;
+    }
+  }
+
+  .feature-card-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f2f3f6;
+    border-radius: 12px;
+    margin-bottom: 32px;
+    padding: 12px;
+
+    img {
+      object-fit: contain;
+      object-position: center;
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .feature-card-content {
+    text-align: center;
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 725;
+      line-height: 24px;
+      margin-bottom: 8px;
+      color: #2c3544;
+    }
+
+    .card-description {
+      color: #45474a;
+      font-size: 12px;
+      font-weight: 370;
+      line-height: 20px;
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .section-benefits {
+    h2 {
+      font-size: 16px;
+    }
+
+    .feature-cards {
+      .feature-card {
+        width: 195px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .section-benefits {
+    padding: 32px 0;
+
+    h2 {
+      font-size: 18px;
+      font-weight: 450;
+      line-height: 32px;
+    }
+
+    .feature-cards {
+      justify-content: space-around;
+
+      .feature-card {
+        padding: 16px;
+        width: 288px !important;
+
+        .feature-card-content {
+          .card-title {
+            font-size: 14px;
+            font-weight: 725;
+            line-height: 24px;
+          }
+
+          .card-description {
+            font-size: 12px;
+            font-weight: 370;
+            line-height: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .feature-card-icon {
+    margin-bottom: 16px;
+  }
+
+  .feature-card-content > span {
+    font-size: 12px;
+  }
+
+  .feature-card-content > .card-title {
+    //font-weight: 800;
+    font-size: 12px;
+  }
+}

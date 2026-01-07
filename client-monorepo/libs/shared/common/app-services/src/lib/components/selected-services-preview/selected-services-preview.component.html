@@ -1,0 +1,31 @@
+@if (isLoading() || selectedServices().length) {
+  <div
+    id="hub-walkthrough"
+    class="selected-services"
+  >
+    <common-ui-components-title-summary
+      [title]="'پرکاربرد‌های من'"
+      [showButton]="true"
+      [buttonTrackerId]="'edit'"
+      [buttonTitle]="'ویرایش'"
+      [buttonIcon]="'Edit-square'"
+      [navigationLink]="'/hub/services'"
+      [isLoading]="isLoading()"
+      [wrapperClasses]="'mb-small'"
+    ></common-ui-components-title-summary>
+    <div class="w-100 py-big px-plus surface-elevated d-flex align-items-start justify-content-center gap-medium radius-big">
+      @if (!isLoading()) {
+        @for (service of selectedServices(); track $index) {
+          <common-app-services-frequent-services-preview
+            [isInvert]="service.status !== AppServiceStatusEnum.DISABLED"
+            [frequentService]="service"
+          ></common-app-services-frequent-services-preview>
+        }
+      } @else {
+        @for (item of rangeCreator(4); track $index) {
+          <common-app-services-frequent-services-preview [isLoading]="true"></common-app-services-frequent-services-preview>
+        }
+      }
+    </div>
+  </div>
+}

@@ -1,0 +1,23 @@
+<section class="section-download-intro">
+  <div>
+    <div class="logo">
+      <img
+        alt=""
+        height="68"
+        ngSrc="/assets/logo/digipay-bg-blue.svg"
+        width="68"
+      />
+    </div>
+    <div class="titles">
+      <h1 *ngIf="downloadSectionData && downloadSectionData.downloadTitle">
+        {{ downloadSectionData.downloadTitle }}
+      </h1>
+      <div
+        *ngIf="downloadSectionData && downloadSectionData.downloadSubtitle"
+        class="subtitle"
+      >
+        {{ downloadSectionData.downloadSubtitle }}
+      </div>
+    </div>
+  </div>
+</section>

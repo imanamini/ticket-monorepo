@@ -1,0 +1,41 @@
+@import "@digipay/base-style/swatch";
+
+.amount-info {
+  background-image: url("../../../../../../../../apps/dpx/src/assets/cash-in/wallet-info-bg.svg");
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: default;
+  direction: ltr;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  padding: 16px;
+
+  .amount-value {
+    direction: rtl;
+    color: $swatch_steel_900;
+    font-weight: 600;
+  }
+
+  .title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .text {
+      font-size: .9rem;
+      font-weight: 500;
+    }
+
+    .logo {
+      width: 24px;
+      height: 24px;
+      background-image: url("../../../../../../../../apps/dpx/src/assets/cash-in/digipay.svg");
+      margin-right: 4px;
+      background-repeat: no-repeat;
+    }
+  }
+}

@@ -1,0 +1,97 @@
+.credit-installment-card {
+  padding: 6px 12px 12px;
+  background: #1f3799;
+  color: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  direction: rtl;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+
+  .pattern {
+    background: url("../../assets/icons/credit-pattern.svg") repeat;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .card-content {
+    z-index: 1;
+    position: relative;
+  }
+
+  .icon {
+    background: #fff;
+    border-radius: 50% 0 0 50%;
+    margin: 0 -13px 0 16px;
+    flex-grow: 0;
+    width: 44px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    padding-left: 2px;
+
+    credit-digipay-image {
+      width: 40px;
+      height: 40px;
+      box-sizing: border-box;
+      padding: 5px;
+      overflow: hidden;
+    }
+  }
+
+  .card-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 8px;
+
+    .card-title {
+      display: flex;
+      flex-direction: row;
+      font-weight: 200;
+      align-items: center;
+    }
+
+    .amount {
+      font-size: 14px;
+
+      .unit {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+
+    .left-col {
+      text-align: left;
+    }
+
+    .label {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 200;
+    }
+
+    .value {
+      margin: 8px 0 0;
+      font-size: 14px;
+
+      .unit {
+        font-size: 12px;
+      }
+    }
+  }
+}

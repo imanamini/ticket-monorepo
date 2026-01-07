@@ -1,0 +1,11 @@
+:host ::ng-deep {
+  .basic-segment-verso .container {
+    background-color: #fafbff;
+    border-radius: 20px;
+    padding: 50px;
+  }
+
+  .basic-segment-recto .container {
+    padding: 50px;
+  }
+}

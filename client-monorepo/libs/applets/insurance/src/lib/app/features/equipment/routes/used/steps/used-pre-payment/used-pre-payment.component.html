@@ -1,0 +1,72 @@
+@if (loading$ | async) {
+  <ui-loading-spinner></ui-loading-spinner>
+} @else {
+  <div class="pre-payment">
+    <div [ngClass]="{'mobile':isMobile}"
+         class="payment-details">
+      @defer {
+        <used-device-payment-info
+                [listItems]="secondListData"
+                [price]="prePaymentData?.announcedPrice">
+        </used-device-payment-info>
+      }
+      <!-- second column -->
+      <div class="details-second details-item">
+        <ng-container [ngTemplateOutlet]="discountCode ? discount_code_temp : input_discount_temp"></ng-container>
+      </div>
+      <!-- end second column -->
+    </div>
+
+    <!-- payable price -->
+    @if (!isMobile) {
+      <div class="payment-payable-price">
+        <div class="price-title">
+          مبلغ قابل پرداخت:
+        </div>
+        <div class="price-amount">
+          {{ prePaymentData?.payableAmount | thousands }} تومان
+        </div>
+      </div>
+    }
+    <journey-buttons
+            (backClicked)="goToPreviousStep()"
+            (nextClicked)="handleGoToNextStep()"
+            [disableNext]="isRequesting"
+            [extraContent]="(prePaymentData?.payableAmount | thousands) + ' تومان'"
+            [hasBorder]="true"
+            [hideBackBtn]="true"
+            [idValue]="'used-pre-payment'"
+            [isReversed]="false"
+            [showExtra]=true
+            backText="بازگشت"
+            extraLabel="مبلغ قابل پرداخت"
+            nextText="تایید و پرداخت">
+      <p terms-condition class="b-3 pt-minus pb-low mb-minus text-onback-high">تایید و پرداخت به معنای موافقت با <span
+              (click)="openConditionTerms()" class="text-onback-brand">شرایط و مقررات بیمه دیجی‌پی</span> است.</p>
+    </journey-buttons>
+  </div>
+}
+
+<ng-template #discount_code_temp>
+  <div class="discount-code-container">
+    <div><img src="insurance-assets/icons/ins-icon-percent-green.svg" width="24" height="24"></div>
+    <span [textContent]="discountCode"></span>
+    <img (click)="reverseDiscount()" [style.opacity.%]="isSubmitting() ? 50 : 100"
+         src="insurance-assets/icons/ins-icon-trash-red.svg" width="24" height="24">
+  </div>
+</ng-template>
+
+<ng-template #input_discount_temp>
+  <div class="discount-code" id="used-discount-code">
+    <ui-button (clicked)="showDiscountBottomSheet()"
+               [appearance]="'BLUE-TEXT'"
+               [background-color]="'#fff'"
+               [disabled]="isSubmitting()">
+      <div class="d-flex flex-row align-items-center justify-content-center">
+        <img src="insurance-assets/icons/icon-general-plus-blue.svg"/>
+        &nbsp;
+        <span>افزودن کد تخفیف</span>
+      </div>
+    </ui-button>
+  </div>
+</ng-template>

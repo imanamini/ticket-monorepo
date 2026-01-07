@@ -1,0 +1,78 @@
+@if (state.symbol) {
+  <ngx-app-bar
+    class="w-100"
+    [title]="'اطلاعات درخواست'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+  <div class="d-flex flex-wrap w-100 container">
+    <div class="detail mt-big px-medium">
+      <div class="w-100">
+        <p>اطلاعات درخواست دهنده:</p>
+      </div>
+
+      <div class="w-100 mt-medium">
+        <ui-form-field
+          [label]="'نام و نام‌خانوادگی'"
+          [type]="'input'"
+          [readonly]="fullNameController.disabled"
+          [formControl]="fullNameController"
+        ></ui-form-field>
+      </div>
+
+      <div class="w-100">
+        <ui-form-field
+          [label]="'کدملی'"
+          [type]="'input'"
+          [readonly]="true"
+          [formControl]="nationalIdController"
+        ></ui-form-field>
+      </div>
+
+      <div class="w-100 mt-big">
+        <p>چه مقدار از دارایی خود در این صندوق را وثیقه می‌کنید؟</p>
+      </div>
+
+      <div class="w-100">
+        <ui-form-field
+          [label]="'تعداد واحد'"
+          [hasCleaner]="true"
+          [formControl]="unitsController"
+          [isNumericKeyboard]="true"
+          [type]="'input'"
+          [showError]="this.unitsController.touched && this.unitsController.invalid ? 'show' : 'hidden'"
+          [errorMessage]="'تعداد واحد باید بین ' + state.data.minUnits + ' تا ' + state.data.maxUnits + ' باشد.'"
+        ></ui-form-field>
+      </div>
+
+      <div class="w-100 mt-big">
+        <ngx-callout
+          [title]="'نکات مهم'"
+          [mode]="'multiple'"
+          [messages]="calloutMessages"
+        />
+      </div>
+    </div>
+
+    <div class="button-container mt-medium">
+      <div class="w-100 px-medium">
+        <ngx-button
+          [style]="'fill'"
+          [fullWidth]="true"
+          (clickHandler)="continue()"
+          [size]="'medium'"
+          [buttonId]="'CONFIRM_COLLATERAL_INFO'"
+          [disabled]="unitsController.invalid || fullNameController.invalid || isLoading"
+          [isLoading]="isLoading"
+        >
+          تایید و ادامه
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+}

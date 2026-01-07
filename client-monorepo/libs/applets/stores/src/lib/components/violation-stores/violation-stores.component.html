@@ -1,0 +1,74 @@
+<div class="stores-wrapper d-flex flex-column px-plus gap-medium h-100">
+  <ngx-search-box
+    [placeHolder]="'جست‌وجو در نام فروشگاه‌ها'"
+    (searchTextChange)="doSearch($event ?? '')"
+    (submitted)="doSearch($event)"
+    [(searchText)]="searchText"
+    [mode]="'section'"
+    [height]="'40px'"
+    [autoFocus]="false"
+  ></ngx-search-box>
+
+  <common-ui-components-title-summary
+    [title]="'خریدهای اخیر شما'"
+    [mode]="'SECTION_TITLE'"
+    [showButton]="false"
+  ></common-ui-components-title-summary>
+
+  <!-- Stores list -->
+  @if (storesToShow().length) {
+    <div
+      class="d-flex flex-column stores-list"
+      commonUtilitiesScrolledToEnd
+      (scrolledToEnd)="handleNextPage()"
+    >
+      @for (store of storesToShow(); track store.id) {
+        <common-ui-components-item-overview
+          [item]="store"
+          [mixedBlendModeEnabled]="true"
+          [enableSingleLineMode]="true"
+          [hideSubtitleBold]="true"
+          [hideButton]="true"
+          [disableTopPadding]="$first"
+          [showRadioButton]="true"
+          [radioChecked]="selectedStore()?.id === store.id"
+          (clicked)="handleStoreSelect(store)"
+        >
+        </common-ui-components-item-overview>
+      }
+      @if (storesLoading()) {
+        @for (_ of rangeCreator(4); track $index) {
+          <common-ui-components-item-overview [item]="undefined"></common-ui-components-item-overview>
+        }
+      }
+    </div>
+    <!-- Button -->
+    <div class="submit-button p-plus surface-elevated">
+      <ngx-button
+        [fullWidth]="true"
+        [mode]="'form'"
+        [size]="'large'"
+        [disabled]="!selectedStore()"
+        (clickHandler)="handleContinueClick()"
+        >ادامه
+      </ngx-button>
+    </div>
+    <!-- End Button -->
+  } @else {
+    @if (storesLoading()) {
+      <div class="d-flex flex-column">
+        @for (_ of rangeCreator(4); track $index) {
+          <common-ui-components-item-overview [item]="undefined"></common-ui-components-item-overview>
+        }
+      </div>
+    } @else {
+      <common-ui-components-no-item
+        [header]="'فروشگاه مورد نظر یافت نشد'"
+        [description]="'متاسفانه خریدی در ۳۰ روز گذشته در فروشگاه مدنظر یافت نشده است.'"
+        [imageSrc]="'assets/shared/stores/violation/violation-stores-empty.svg'"
+        [imageWidth]="'120px'"
+      ></common-ui-components-no-item>
+    }
+  }
+  <!-- End Stores list -->
+</div>

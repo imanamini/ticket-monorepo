@@ -1,0 +1,30 @@
+@import "globals";
+
+:host {
+  display: block;
+}
+
+.card {
+  direction: ltr;
+  border: 1px solid $swatch_steel_200;
+  padding: 24px;
+  color: #061962;
+  border-radius: 16px;
+
+  &:hover {
+    cursor: pointer;
+    border-color: $swatch_blue_500;
+  }
+
+  .card-subtitle {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .card-title {
+    font-size: 20px;
+    font-weight: 700;
+    padding-right: 32px;
+    background: url('./job-chevron.svg') no-repeat right center/32px;
+  }
+}

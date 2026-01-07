@@ -1,0 +1,51 @@
+<div class="modal-simple">
+  <div
+    (click)="closeDialog()"
+    class="close mb-small"
+  >
+    <ngx-icon
+      class="cursor-pointer"
+      [name]="'close'"
+      [iconSize]="'24px'"
+    ></ngx-icon>
+  </div>
+  <div class="dialog-body">
+    <div
+      class="details-box"
+      *ngFor="let section of templateData"
+    >
+      <div class="top-part">
+        <div class="icon">
+          <span
+            appUiIcon
+            icon="icon-question-mark-in-dashed-box"
+            size="24"
+          ></span>
+        </div>
+        <div class="title">{{ section.title }}</div>
+      </div>
+      <div class="subtitle">
+        <span
+          appUiIcon
+          icon="icon-curved-arrow-left"
+          size="24"
+          class="icon"
+        ></span>
+        <div>{{ section.subtitle }}</div>
+      </div>
+      <div class="items">
+        <div
+          class="item"
+          *ngFor="let descItem of section.description"
+        >
+          <img
+            [ngSrc]="descItem.type === 'red' ? '/assets/images/c-bnpl-v2/red-warning-info.svg' : '/assets/images/c-bnpl-v2/blue-lamp.svg'"
+            width="24"
+            height="24"
+          />
+          <div>{{ descItem.text }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

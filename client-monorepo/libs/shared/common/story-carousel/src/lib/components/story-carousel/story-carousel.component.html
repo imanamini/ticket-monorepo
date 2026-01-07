@@ -1,0 +1,57 @@
+@if (stories().length > 0) {
+  <div class="story-container d-flex flex-column w-100 h-100 surface-back">
+    <div class="w-100 story-background">
+      <div
+        class="story-background-base"
+        [ngStyle]="backgroundStyle()"
+      ></div>
+      <div class="story-background-fade"></div>
+      @if (showImage()) {
+        <img
+          [src]="activeStory().image"
+          [class.visible]="showImage()"
+          [alt]=""
+          class="story-background-illumination"
+        />
+      }
+    </div>
+    <div class="d-flex flex-column h-100 w-100 story-content-wrapper">
+      <div class="d-flex flex-column align-items-center story-content-top px-plus">
+        <!-- Progress bars -->
+        <div class="progress-container w-100 d-flex gap-tiny pt-medium pb-huge">
+          @for (story of stories(); let i = $index; track story.title) {
+            <div class="progress-bar-wrapper surface-glass-onelevated radius-huge">
+              <div
+                class="progress-bar"
+                [class.active]="i === currentIndex()"
+                [class.completed]="i < currentIndex()"
+                [style.width]="getProgressWidth(i) + '%'"
+              ></div>
+            </div>
+          }
+        </div>
+
+        <!-- Story content -->
+        <div class="story-title st-3 text-oninvert-high pb-small">
+          {{ activeStory().title }}
+        </div>
+        <div class="story-subtitle c-3 text-oninvert-medium pb-small text-align-center">
+          {{ activeStory().subtitle }}
+        </div>
+      </div>
+      <div class="story-content-bottom">
+        <ng-content select="[story-content]"></ng-content>
+      </div>
+
+      <!-- Navigation areas -->
+      <div
+        class="nav-right"
+        (click)="previousStory()"
+      ></div>
+      <div
+        class="nav-left"
+        (click)="nextStory()"
+      ></div>
+    </div>
+  </div>
+}

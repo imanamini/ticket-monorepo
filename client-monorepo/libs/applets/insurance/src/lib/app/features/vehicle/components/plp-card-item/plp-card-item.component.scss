@@ -1,0 +1,205 @@
+@import "../../../../style/once/global";
+
+#card-container {
+  margin: 16px 0;
+  position: relative;
+
+  #info-card-wrapper {
+    .tag {
+      width: fit-content;
+    }
+
+    #header-insurance {
+      @include flex-row;
+      justify-content: start;
+      padding: 16px 0 16px 16px;
+
+      #insurance-title {
+        @include flex-column;
+        justify-content: space-around;
+        align-items: start;
+
+        p {
+          font-size: 14px;
+          font-weight: 700;
+          color: #2c3544;
+        }
+      }
+    }
+
+    #info-insurance {
+      @include flex-column;
+      background-color: #f2f5f8;
+      border-radius: 8px;
+      padding: 8px;
+
+      #info-items {
+        width: 100%;
+        @include flex-row;
+        justify-content: space-between;
+
+        li {
+          line-height: 25px;
+
+          p {
+            color: #6e798d;
+          }
+
+          b {
+            color: #2c3544;
+          }
+        }
+      }
+
+      #gift-card-item {
+        @include flex-row;
+        @include flex-start;
+        align-items: center;
+        background-color: #ffffff;
+        padding: 12px;
+        border-radius: 8px;
+
+        p {
+          font-size: 12px;
+          font-weight: 400;
+          color: #6e798d;
+          margin-right: 8px;
+        }
+      }
+    }
+
+    #gift-digipay-container {
+      margin: 16px 0 0;
+
+      li {
+        @include flex-row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        border: 1px solid #b4f3f4;
+        border-radius: 8px;
+
+        & + li {
+          margin-top: 8px;
+        }
+
+        &:nth-child(odd) {
+          background-color: #f0ffff;
+        }
+
+        &:nth-child(even) {
+          background-color: #78e7ea;
+        }
+
+        & > div {
+          @include flex-row;
+          align-items: center;
+
+          p {
+            margin-right: 8px;
+            color: #3c6dff;
+            font-weight: 700;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+
+  #price-card-wrapper {
+    .info-price-item {
+      border-radius: 8px;
+      padding: 12px;
+      @include flex-center-between;
+
+      &.without-late-fees {
+        background-color: #eefff6;
+
+        span {
+          color: #00cc6d;
+        }
+      }
+
+      &.with-late-fees {
+        background-color: #ffeef3;
+
+        & > span {
+          color: #ff2638;
+          @include flex-center-between;
+          width: 100%;
+
+          span:last-child {
+            font-size: 14px;
+            font-weight: 700;
+          }
+        }
+      }
+
+      span {
+        font-weight: 500;
+        font-size: 12px;
+        margin-right: 4px;
+      }
+    }
+
+    #price-item {
+      margin: 12px 0;
+
+      & > p {
+        padding: 4px 0;
+      }
+
+      #price-discount {
+        font-weight: 700;
+        justify-content: end;
+        align-items: center;
+
+        span:last-child {
+          font-size: 14px;
+          color: #afb9c5;
+          text-decoration: line-through;
+        }
+
+        span:first-child {
+          margin-left: 16px;
+          padding: 8px 12px;
+          font-size: 12px;
+          color: #ffffff;
+          background-color: #ff2638;
+          border-radius: 50px;
+        }
+      }
+
+      p {
+        font-weight: 700;
+        @include flex-row;
+        justify-content: space-between;
+
+        span:first-child {
+          font-size: 14px;
+          color: #6e798d;
+        }
+
+        span:last-child {
+          font-size: 18px;
+          color: #2c3544;
+        }
+      }
+    }
+  }
+}
+
+.container-border-dashed {
+  position: relative;
+  height: 2px;
+
+  .line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 98%;
+    height: 100%;
+    background-image: linear-gradient(to right, transparent 50%, #ffffff 50%);
+    background-size: 16px 100%;
+  }
+}

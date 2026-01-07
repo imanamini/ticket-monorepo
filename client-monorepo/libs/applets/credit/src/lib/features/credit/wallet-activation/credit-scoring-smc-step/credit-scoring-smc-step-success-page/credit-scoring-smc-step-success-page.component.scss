@@ -1,0 +1,173 @@
+.main-section {
+  box-sizing: border-box;
+  direction: rtl;
+  background: #f0f5ff;
+
+  * {
+    box-sizing: border-box;
+    direction: rtl;
+  }
+
+  .top-section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    .page-content {
+      flex-grow: 1;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+  }
+
+  .call-to-actions-section {
+    flex-grow: 0;
+    padding: 16px;
+  }
+}
+
+.call-to-action-section {
+  flex-grow: 0;
+  padding: 24px;
+}
+.card {
+  width: 100%;
+}
+.purchase-section {
+  padding: 16px 20px;
+  background: white;
+  border-radius: 16px;
+  width: 100%;
+
+  .purchase-title {
+    font-weight: 800;
+    color: #2c3544;
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .purchase-items {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .item {
+      display: flex;
+      align-items: center;
+
+      .item-icon {
+        height: 26px;
+        width: 26px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+
+        &.icon-first-pay {
+          background-image: url("./assets/icon-first-pay.svg");
+        }
+
+        &.icon-second-pay {
+          background-image: url("./assets/icon-second-pay.svg");
+        }
+
+        &.icon-third-pay {
+          background-image: url("./assets/icon-third-pay.svg");
+        }
+
+        &.icon-fourth-pay {
+          background-image: url("./assets/icon-fourth-pay.svg");
+        }
+      }
+
+      .item-title {
+        color: #6e798d;
+        font-size: 14px;
+        font-weight: 500;
+        margin-right: 12px;
+      }
+
+      .item-subtitle {
+        margin-right: auto;
+        color: #2c3544;
+        font-size: 14px;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.stores-section {
+  padding: 12px 20px;
+  background: white;
+  border-radius: 16px;
+  width: 100%;
+
+  .stores-title {
+    font-weight: 800;
+    color: #2c3544;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .stores {
+    display: flex;
+    justify-content: center;
+
+    .more-stores {
+      display: flex;
+      justify-content: center;
+      padding: 8px;
+    }
+
+    .more-stores-image {
+      border-radius: 16px;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 6px;
+      background: #f2f3f6;
+    }
+  }
+}
+
+.recharge-section {
+  padding: 12px 20px;
+  background: white;
+  display: flex;
+  align-items: center;
+  border-radius: 16px;
+  width: 100%;
+
+  .icon {
+    margin-left: 12px;
+    height: 32px;
+    width: 32px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url("./assets/icon-recharge.svg");
+  }
+
+  .title {
+    font-weight: 640;
+    color: #2c3544;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    color: #6e798d;
+    font-size: 10px;
+    font-weight: 524;
+  }
+}
+@media (max-width: 614px) {
+  .list-wrapper {
+    height: unset;
+  }
+}

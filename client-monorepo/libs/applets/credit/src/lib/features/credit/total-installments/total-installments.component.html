@@ -1,0 +1,22 @@
+<app-credit-app-bar
+  (onBackButtonClick)="back()"
+  [backButton]="true"
+  [title]="'پرداخت اقساط'"
+/>
+
+<div class="flex-full-height">
+  @switch (status()) {
+    @case (statusEnum.SUCCESS) {
+      <app-total-installment-list [installments]="formattedInstallments()!" />
+    }
+    @case (statusEnum.LOADING) {
+      <app-total-installments-skeleton />
+    }
+    @case (statusEnum.EMPTY) {
+      <app-total-installments-empty />
+    }
+    @case (statusEnum.ERROR) {
+      <app-total-installments-error (onRetry)="getData()" />
+    }
+  }
+</div>

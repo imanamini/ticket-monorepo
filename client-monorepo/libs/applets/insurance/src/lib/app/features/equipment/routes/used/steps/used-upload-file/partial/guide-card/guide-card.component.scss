@@ -1,0 +1,26 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.guide-card {
+  @include flex-column();
+  flex-wrap: wrap;
+  gap: 8px;
+
+  .card-image {
+    width: 148px;
+    height: 148px;
+    object-fit: cover;
+  }
+
+  .card-detail {
+    @include flex-start-between();
+
+    .detail-text {
+      max-width: 122px;
+      font-size: 12px;
+      line-height: 20px;
+      font-weight: 500;
+    }
+
+  }
+
+}

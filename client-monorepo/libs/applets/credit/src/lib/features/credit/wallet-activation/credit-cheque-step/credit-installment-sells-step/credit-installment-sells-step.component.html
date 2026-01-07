@@ -1,0 +1,100 @@
+@if (!showLoading()) {
+  @if (states[stateIndex] === 'ON_BOARDING') {
+    <app-credit-cheque-step-on-boarding
+      (nextStep)="nextState($event)"
+      (prevStep)="prevState()"
+      [creditId]="creditId()!"
+      [isInstallment]="true"
+      [data]="onboardingData"
+      [fundProviderCode]="fundProviderCode()!"
+      [stepCode]="step()! && step()?.code"
+      class="d-flex flex-column flex-grow"
+    ></app-credit-cheque-step-on-boarding>
+  }
+  @if (states[stateIndex] === 'NOTICES') {
+    <app-credit-cheque-step-notices
+      (nextStep)="nextState($event)"
+      (prevStep)="prevState()"
+    >
+    </app-credit-cheque-step-notices>
+  }
+  @if (states[stateIndex] === 'HOME_UPLOAD') {
+    <app-credit-cheque-step-home-upload
+      (cheque)="goToRegister($event)"
+      (chequeId)="setChequeId($event)"
+      (close)="closeStep()"
+      (nextStep)="afterHomeUpload()"
+      (openNotices)="openNotices()"
+      [creditId]="creditId()!"
+    >
+    </app-credit-cheque-step-home-upload>
+  }
+  @if (states[stateIndex] === 'CHEQUE_ID') {
+    <app-credit-cheque-step-cheque-id
+      (nextStep)="nextState($event)"
+      (prevStep)="prevState()"
+      [chequeId]="chequeId()!"
+      [chequeOrder]="chequeOrder()!"
+      [creditId]="creditId()!"
+    >
+    </app-credit-cheque-step-cheque-id>
+  }
+  @if (states[stateIndex] === 'GUIDE') {
+    <app-credit-cheque-step-guide
+      (nextStep)="nextState($event)"
+      (openNotices)="openNotices()"
+      (prevStep)="prevState()"
+      [chequeOrder]="chequeOrder()!"
+      [creditId]="creditId()!"
+    >
+    </app-credit-cheque-step-guide>
+  }
+  @if (states[stateIndex] === 'UPLOAD') {
+    <app-credit-cheque-step-upload-new
+      (finish)="goToStep('SAYAD')"
+      (goToStep)="goToStep($event)"
+      (nextStep)="nextState($event)"
+      (prevStep)="prevState()"
+      [chequeOrder]="chequeOrder()!"
+      [creditId]="creditId()!"
+      [maxUploadSize]="config()?.maxUploadSize"
+      [step]="step()!"
+      [wallet]="wallet()!"
+    >
+    </app-credit-cheque-step-upload-new>
+  }
+  @if (states[stateIndex] === 'SAYAD') {
+    <app-credit-cheque-step-sayad
+      (prevStep)="prevState()"
+      (submit)="uploadChequeConfirm($event)"
+      [creditId]="creditId()!"
+      [loading]="loadingApi()"
+      [chequeOrder]="chequeOrder()!"
+    >
+    </app-credit-cheque-step-sayad>
+  }
+  @if (states[stateIndex] === 'SAYAD_ERROR') {
+    <app-credit-cheque-step-sayad-error
+      [alertMessage]="sayadErrorAlertMessage()"
+      (close)="goToStep('HOME_UPLOAD')"
+    ></app-credit-cheque-step-sayad-error>
+  }
+  @if (states[stateIndex] === 'RESERVE_CONFIRM') {
+    <app-credit-cheque-reserve-confirm
+      [creditId]="creditId()!"
+      (close)="goToStep('HOME_UPLOAD')"
+      (nextStep)="uploadChequeConfirm()"
+    ></app-credit-cheque-reserve-confirm>
+  }
+  @if (states[stateIndex] === 'ERROR') {
+    <app-credit-cheque-step-error
+      (close)="closeStep()"
+      (goToStep)="goToStep($event)"
+      (openNotices)="openNotices()"
+      (setErrorType)="setErrorType($event)"
+      [document]="cheque()!"
+    >
+    </app-credit-cheque-step-error>
+  }
+}
+<credit-page-loading [active]="showLoading()!"></credit-page-loading>

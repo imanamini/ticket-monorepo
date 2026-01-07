@@ -1,0 +1,168 @@
+<app-base-layout>
+  <div class="wrapper-container" >
+    <div class="surface-brand title">
+      <div class="container text-white py-huge py-lg-0">
+        <div class="bg-path">
+          <div class="header-title-font-size fw-extra-black mb-medium">دریافت چک</div>
+          <div class="header-subtitle-font-size fw-black">با تکمیل اطلاعات، چک خود را دریافت کنید.</div>
+        </div>
+      </div>
+    </div>
+      <div class="container d-flex flex-column main-content">
+      <div class="card bg-white radius-big shadow mb-huge" [ngClass]="!initiated() ? 'flex-grow': ''">
+        <div class="card-body py-big px-giant">
+
+          @if(!initiated()) {
+           <div class="d-flex justify-content-center mt-huge">
+             <ngx-spinner size="xl" color="primary" ></ngx-spinner>
+           </div>
+
+          } @else {
+            <ngx-stepper
+              [steps]="steps()"
+              [fullSize]="true"
+              [currentStep]="currentStep() + 1"
+              type="linear"
+              class="mb-big d-block"
+            ></ngx-stepper>
+
+            <div class="mb-medium flex-row-reverse d-l-flex justify-content-space-between">
+              <div class="d-flex justify-content-end mb-medium mb-l-atom btn-back">
+                @if (currentStep() > 0) {
+                  <ngx-button
+                    (clickHandler)="previousStep()"
+                    [mode]="'section'"
+                    [style]="'neutral-link'"
+                    [size]="'tiny'"
+                    [leftIcon]="{ name: 'arrow-2-left' }"
+                  >
+                    مرحله قبل
+                  </ngx-button>
+                }
+              </div>
+              <div class="fs-16 fw-bold text-align-justify">
+                {{ currentTitle() }}
+              </div>
+            </div>
+            <div class="d-l-flex align-items-center justify-content-space-between">
+              <div class="mb-medium mb-l-atom fs-20 fw-bold">
+                {{ verifyOtpModel?.customer.fullName }}
+              </div>
+
+              <div class="fs-14 text-onback-low text-align-left">
+                {{ verifyOtpModel?.customer.mobileNumber }}
+              </div>
+            </div>
+
+            <ngx-divider
+              class="my-big d-block"
+              color="tint"
+              orientation="horizontal"
+            ></ngx-divider>
+
+            <form [formGroup]="form">
+              @if (currentStep() === 0) {
+                <div class="d-l-flex gap-l-big">
+                  <div class="w-l-50 w-100">
+                    <ui-form-field
+                      formControlName="province"
+                      type="select"
+                      [overflowToContainer]="true"
+                      [label]="'استان'"
+                      [placeholder]="'استان را انتخاب نمایید'"
+                      [multiSelect]="false"
+                      [selectOpenType]="'dropDown'"
+                      [isDividerOptions]="false"
+                      [showRadioOptions]="false"
+                      [dropdownPosition]="'bottom'"
+                      [hasSelectAll]="false"
+                      [selectBottomSheetCloseBtn]="false"
+                      [required]="true"
+                      [options]="provincesOption"
+                      [searchable]="true"
+                      [selectBottomSheetMaxHeight]="0"
+                    ></ui-form-field>
+                  </div>
+                  <div class="w-l-50 w-100">
+                    <ui-form-field
+                      formControlName="cityId"
+                      type="select"
+                      [overflowToContainer]="true"
+                      [label]="'شهر'"
+                      [placeholder]="'شهر را انتخاب نمایید'"
+                      [multiSelect]="false"
+                      [selectOpenType]="'dropDown'"
+                      [isDividerOptions]="false"
+                      [showRadioOptions]="false"
+                      [dropdownPosition]="'bottom'"
+                      [hasSelectAll]="false"
+                      [selectBottomSheetCloseBtn]="false"
+                      [required]="true"
+                      [options]="citiesOption"
+                      [searchable]="true"
+                      [selectBottomSheetMaxHeight]="0"
+                    ></ui-form-field>
+                  </div>
+                </div>
+
+                <ngx-divider
+                  class="d-block mb-big"
+                  orientation="horizontal"
+                  color="tint"
+                ></ngx-divider>
+
+                <ui-form-field
+                  formControlName="deliveryMethod"
+                  type="select"
+                  [overflowToContainer]="true"
+                  [label]="'روش دریافت'"
+                  [placeholder]="'روش دریافت را انتخاب نمایید'"
+                  [multiSelect]="false"
+                  [selectOpenType]="'dropDown'"
+                  [isDividerOptions]="false"
+                  [showRadioOptions]="false"
+                  [dropdownPosition]="'bottom'"
+                  [hasSelectAll]="false"
+                  [selectBottomSheetCloseBtn]="false"
+                  [required]="true"
+                  [options]="methodsOption"
+                  [searchable]="true"
+                  [selectBottomSheetMaxHeight]="0"
+                ></ui-form-field>
+
+                <ngx-button
+                  [disabled]="form.invalid"
+                  (clickHandler)="nextStep()"
+                  [fullWidth]="true"
+                  [isLoading]="loading()"
+                  [mode]="'form'"
+                  [style]="'fill'"
+                  [brandButton]="true"
+                  [size]="'large'"
+                >
+                  تایید و ادامه
+                </ngx-button>
+              } @else {
+                <app-delivery-in-person
+                  (onFormSubmit)="handleFormInPersonSubmit($event)"
+                  [cityId]="form.controls.cityId.value"
+                  *ngIf="deliveryMethod() === deliveryMethodEnum.DeliveryInPerson"
+                ></app-delivery-in-person>
+                <app-delivery-by-post
+                  [cityId]="form.controls.cityId.value"
+                  (onFormSubmit)="handleFormPostSubmit($event)"
+                  *ngIf="deliveryMethod() === deliveryMethodEnum.DeliveryByPost"
+                ></app-delivery-by-post>
+                <app-delivery-by-courier
+                  [cityId]="form.controls.cityId.value"
+                  (onFormSubmit)="handleFormCourierSubmit($event)"
+                  *ngIf="deliveryMethod() === deliveryMethodEnum.DeliveryByCourier"
+                ></app-delivery-by-courier>
+              }
+            </form>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</app-base-layout>

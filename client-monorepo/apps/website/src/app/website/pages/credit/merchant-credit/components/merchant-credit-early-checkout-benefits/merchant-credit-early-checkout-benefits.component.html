@@ -1,0 +1,20 @@
+<section class="section-benefits">
+  <div class="container">
+    @if (earlyCheckoutBenefits()?.benefitsTitle) {
+      <h2 class="text-align-center">
+        {{ earlyCheckoutBenefits().benefitsTitle }}
+      </h2>
+    }
+    @if (earlyCheckoutBenefits()?.benefitsSubtitle) {
+      <div class="text-align-center subtitle">
+        {{ earlyCheckoutBenefits().benefitsSubtitle }}
+      </div>
+    }
+    @if (features().length > 0) {
+      <app-ui-value-simple
+        [features]="features()"
+        class="items"
+      ></app-ui-value-simple>
+    }
+  </div>
+</section>

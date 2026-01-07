@@ -1,0 +1,117 @@
+@if (templateData() && templateData()?.steps && screenWidth() < 577) {
+  <section
+    class="container"
+    id="steps"
+  >
+    @for (step of templateData().steps; track step; let stepIndex = $index) {
+      <div
+        [ngClass]="{
+          collapse: stepIndex !== selectedStep(),
+          show: stepIndex === selectedStep(),
+        }"
+        class="section-how"
+      >
+        <div class="tab-group">
+          <button
+            (click)="changeStep(stepIndex)"
+            [ngClass]="{ active: stepIndex === selectedStep() }"
+            class="collapsible-selector--arrow"
+          >
+            {{ step.name }}
+          </button>
+        </div>
+        @if (selectedStep() > -1 && templateData()?.steps?.[selectedStep()]) {
+          <div class="content">
+            <h2 class="text-align-center">
+              {{ templateData().steps[selectedStep()].title }}
+            </h2>
+            @if (templateData()?.steps?.[selectedStep()]?.tabs?.length > 1) {
+              <swiper-container
+                appSwiper
+                #swiper
+                [config]="configTabs"
+                (slidechange)="changeTab($event[0].activeIndex)"
+                class="button-group"
+              >
+                @for (tab of templateData().steps[selectedStep()].tabs; track tab; let tabIndex = $index) {
+                  <swiper-slide>
+                    <button
+                      (click)="changeTab(tabIndex)"
+                      [ngClass]="{ active: tabIndex === selectedTab() }"
+                      class="ui-curve-button"
+                    >
+                      {{ tab.title }}
+                    </button>
+                  </swiper-slide>
+                }
+              </swiper-container>
+            }
+            @if (templateData()?.steps?.[selectedStep()]?.tabs?.[selectedTab()]?.items) {
+              <app-ui-horizontal-flow [steps]="templateData().steps[selectedStep()].tabs[selectedTab()].items"></app-ui-horizontal-flow>
+            }
+            @if (templateData()?.steps?.[selectedStep()]?.tabs?.[selectedTab()]?.notice?.text) {
+              <div class="notice">
+                <div class="inner-notice">
+                  <div class="text">
+                    {{ templateData().steps[selectedStep()].tabs[selectedTab()].notice.text }}
+                  </div>
+                  <app-ui-button [link]="templateData().steps[selectedStep()].tabs[selectedTab()].notice.cta.link">
+                    {{ templateData().steps[selectedStep()].tabs[selectedTab()].notice.cta.text }}
+                  </app-ui-button>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
+  </section>
+} @else {
+  <section class="section-how">
+    <div class="tab-group">
+      @if (templateData()?.steps) {
+        @for (step of templateData().steps; track step; let stepIndex = $index) {
+          <button
+            (click)="changeStep(stepIndex)"
+            [ngClass]="{ active: stepIndex === selectedStep() }"
+          >
+            {{ step.name }}
+          </button>
+        }
+      }
+    </div>
+    @if (templateData()?.steps?.[selectedStep()]?.tabs?.length > 0) {
+      <h2 class="text-align-center">
+        {{ templateData().steps[selectedStep()].title }}
+      </h2>
+      <div class="button-group">
+        @if (templateData()?.steps?.[selectedStep()]?.tabs?.length > 1) {
+          @for (tab of templateData().steps[selectedStep()].tabs; track tab; let tabIndex = $index) {
+            <button
+              (click)="changeTab(tabIndex)"
+              [ngClass]="{ active: tabIndex === selectedTab() }"
+              class="ui-curve-button"
+            >
+              {{ tab.title }}
+            </button>
+          }
+        }
+      </div>
+      @if (templateData()?.steps?.[selectedStep()]?.tabs?.[selectedTab()]?.items) {
+        <app-ui-horizontal-flow [steps]="templateData().steps[selectedStep()].tabs[selectedTab()].items"></app-ui-horizontal-flow>
+      }
+      @if (templateData()?.steps?.[selectedStep()]?.tabs?.[selectedTab()]?.notice?.text) {
+        <div class="notice">
+          <div class="inner-notice">
+            <div class="text">
+              {{ templateData().steps[selectedStep()].tabs[selectedTab()].notice.text }}
+            </div>
+            <app-ui-button [link]="templateData().steps[selectedStep()].tabs[selectedTab()].notice.cta.link">
+              {{ templateData().steps[selectedStep()].tabs[selectedTab()].notice.cta.text }}
+            </app-ui-button>
+          </div>
+        </div>
+      }
+    }
+  </section>
+}

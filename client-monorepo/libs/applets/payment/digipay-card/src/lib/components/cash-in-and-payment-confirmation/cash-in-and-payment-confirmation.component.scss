@@ -1,0 +1,15 @@
+.separator {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    width: calc(100% + 32px);
+    height: 0;
+    right: -20px;
+    border-bottom: 1px solid transparent;
+    border-color: inherit;
+  }
+}
+.payable-amount {
+  min-width: 134px;
+}

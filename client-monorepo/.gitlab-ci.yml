@@ -1,0 +1,14 @@
+---
+include:
+  - local: ".ci/${TRIGGER_REFERER}.yml"
+    rules:
+      - if: '$TRIGGER_REFERER != "" && $TRIGGER_REFERER != null'
+  - local: ".ci/default.yml"
+    rules:
+      - if: '$TRIGGER_REFERER == "" || $TRIGGER_REFERER == null'
+  - component: ${CI_SERVER_FQDN}/cicd/components/angular/default-mono@$DP_CI_ANGULAR_COMPONENTS_VERSION
+  - component: ${CI_SERVER_FQDN}/cicd/components/gitops/default-mono@$DP_CI_GITOPS_COMPONENTS_VERSION
+
+stages:
+  - build
+  - deploy

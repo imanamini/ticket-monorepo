@@ -1,0 +1,6 @@
+@import "@digipay/base-style/styleguide";
+
+.bottom-line {
+  height: 6px;
+  background-color: map-get($shade-colors, onelevated-shade-80);
+}

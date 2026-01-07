@@ -1,0 +1,33 @@
+<section class="section-benefits">
+  <div class="container">
+    <h2 class="text-align-center">
+      {{ benefits()?.benefitsTitle }}
+    </h2>
+    @if (features().length > 0) {
+      <ul class="feature-cards">
+        @for (item of features(); track item) {
+          <li class="feature-card">
+            <div class="feature-card-icon">
+              @if (item.featureIcon?.url) {
+                <img
+                  [src]="item.featureIcon.url"
+                  [alt]="item.featureTitle || ''"
+                />
+              }
+            </div>
+            <div class="feature-card-content">
+              @if (item.featureTitle) {
+                <div class="card-title">
+                  {{ item.featureTitle }}
+                </div>
+              }
+              @if (item.featureText) {
+                <span class="card-description">{{ item.featureText }}</span>
+              }
+            </div>
+          </li>
+        }
+      </ul>
+    }
+  </div>
+</section>

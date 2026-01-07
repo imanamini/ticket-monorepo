@@ -1,0 +1,43 @@
+<div class="d-flex flex-column gap-small px-plus py-minus border-100 border-color-light surface-back radius-plus m-medium">
+  <div
+    [ngClass]="{ 'pb-tiny': directDebitContractActive()?.length }"
+    class="d-flex justify-content-space-between align-items-center w-100"
+  >
+    <div class="d-flex gap-medium align-items-center">
+      <ngx-icon
+        [iconSize]="'32px'"
+        [name]="'bank-card-send'"
+        type="bold"
+        class="text-onback-brand"
+      ></ngx-icon>
+      <div class="d-flex flex-column">
+        <span class="fs-14 fw-bold">پرداخت مستقیم</span>
+        <span class="fs-10">انجام تراکنش‌ها تنها با یک کلیک</span>
+      </div>
+    </div>
+    <ngx-button
+      [mode]="'section'"
+      [size]="'small'"
+      [style]="'fill'"
+      (clickHandler)="directDebitContract()?.length === 0 ? navigateToDirectDebitCreate() : navigateToDirectDebitList()"
+    >
+      {{ directDebitContract()?.length === 0 ? 'فعالسازی' : 'مدیریت' }}
+    </ngx-button>
+  </div>
+  @if (directDebitContractActive()?.length) {
+    <div class="d-flex justify-content-space-between pt-minus border-t-100 border-color-tint align-items-center">
+      <span class="b-2 text-onback-medium">شارژ خودکار کیف پول</span>
+
+      <ngx-button
+        [mode]="'section'"
+        [size]="'small'"
+        [style]="'link'"
+        [isLoading]="loading()"
+        [leftIcon]="{ name: 'arrow-2-left', type: 'linear' }"
+        (clickHandler)="navigateToAutoCashIn()"
+      >
+        {{ config() == null || !config()?.active ? 'فعال‌سازی' : 'ویرایش' }}
+      </ngx-button>
+    </div>
+  }
+</div>

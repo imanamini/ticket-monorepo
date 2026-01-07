@@ -1,0 +1,54 @@
+.hot-sales {
+
+  .hot-sales-header {
+    border-radius: 24px 24px 0 0;
+    background: linear-gradient(90deg, #EAC936 0%, #D4A40D 100%);
+    padding: 16px 20px;
+  }
+
+  .hot-sales-content {
+    border-radius: 0 0 24px 24px;
+    background: linear-gradient(90deg, rgba(230, 164, 10, 0.10) 0%, rgba(133, 100, 22, 0.10) 100%);
+
+    .hot-sales-item {
+      width: 240px;
+      height: 243px;
+      flex-shrink: 0;
+      border-radius: 24px;
+      background: #FFF;
+
+      img {
+        width: 240px;
+        height: 243px;
+        object-fit: cover;
+        border-radius: 24px;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 1280px) {
+  .hot-sales {
+
+
+    .hot-sales-content {
+
+      gap: 22px !important;
+      padding: 18px 12px !important;
+
+      .hot-sales-item {
+
+        width: 142px;
+        height: 144px;
+        border-radius: 16px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 16px;
+        }
+      }
+    }
+  }
+}

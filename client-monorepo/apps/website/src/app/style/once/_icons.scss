@@ -1,0 +1,348 @@
+*[class^='icon-'] {
+  position: relative;
+}
+
+.icon-circle-download::before {
+  content: url('/assets/images/icons/icon-circle-download.svg');
+  margin-left: 8px;
+  height: 25px;
+  width: 25px;
+  margin-top: 0;
+}
+
+.icon-square-download {
+  display: block;
+  content: url('/assets/images/icons/icon-square-download.svg');
+  margin: 0;
+  height: 30px;
+  width: 30px;
+}
+
+.icon-instagram::before {
+  display: block;
+  content: url('/assets/images/icons/icon-instagram.svg');
+  margin: 0;
+  height: 30px;
+  width: 28px;
+}
+
+.icon-twitter::before {
+  display: block;
+  content: url('/assets/images/icons/icon-twitter.svg');
+  margin: 0;
+  height: 30px;
+  width: 28px;
+}
+
+.icon-linkedin::before {
+  display: block;
+  content: url('/assets/images/icons/icon-linkedin.svg');
+  margin: 0;
+  height: 30px;
+  width: 28px;
+}
+
+.icon-aparat::before {
+  display: block;
+  content: url('/assets/images/icons/icon-aparat.svg');
+  margin: 0;
+  height: 30px;
+  width: 28px;
+}
+
+.icon-logo::before {
+  display: block;
+  content: url('/assets/images/icons/icon-logo.svg');
+  margin: 0;
+  height: 58px;
+  width: 39px;
+}
+
+.icon-square-call::before {
+  display: block;
+  content: url('/assets/images/icons/icon-square-call.svg');
+  margin: 0;
+  height: 40px;
+  width: 40px;
+}
+
+.icon-saramad::before {
+  display: block;
+  content: url('/assets/images/icons/icon-saramad.svg');
+  margin: 0;
+  height: 39px;
+  width: 28px;
+}
+
+.icon-enamad::before {
+  display: block;
+  content: url('/assets/images/icons/icon-enamad.svg');
+  margin: 0;
+  height: 32px;
+  width: 40px;
+}
+
+.icon-samandehi::before {
+  display: block;
+  content: url('/assets/images/icons/icon-samandehi.svg');
+  margin: 0;
+  height: 35px;
+  width: 35px;
+}
+
+.icon-square-left::before {
+  display: block;
+  content: url('/assets/images/icons/icon-square-left.svg');
+  margin: 0;
+  height: 32px;
+  width: 32px;
+}
+
+.icon-square-right::before {
+  display: block;
+  content: url('/assets/images/icons/icon-square-right.svg');
+  margin: 0;
+  height: 32px;
+  width: 32px;
+}
+
+.icon-left::before {
+  display: block;
+  content: url('/assets/images/icons/icon-left.svg');
+  margin: 0;
+  height: 24px;
+  width: 24px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.icon-apple::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-apple.svg');
+  background-position: center center;
+  margin: 0;
+  height: 24px;
+  width: 20px;
+}
+
+.icon-android::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-android.svg');
+  background-position: center center;
+  margin: 0;
+  height: 24px;
+  width: 16px;
+}
+
+.icon-web::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-web.svg');
+  background-position: center center;
+  margin: 0;
+  height: 22px;
+  width: 22px;
+}
+
+.icon-white-filter {
+  filter: invert(97%) sepia(100%) saturate(12%) hue-rotate(244deg)
+    brightness(102%) contrast(100%);
+  -webkit-filter: invert(97%) sepia(100%) saturate(12%) hue-rotate(244deg)
+    brightness(102%) contrast(100%);
+  -moz-filter: invert(97%) sepia(100%) saturate(12%) hue-rotate(244deg)
+    brightness(102%) contrast(100%);
+  -o-filter: invert(97%) sepia(100%) saturate(12%) hue-rotate(244deg)
+    brightness(102%) contrast(100%);
+  //transition: all 1s;
+}
+
+.icon-digipay-footer::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-digipay-footer.svg');
+  background-position: center center;
+  margin: 0;
+  height: 58px;
+  width: 39px;
+}
+
+.icon-check-yellow::before {
+  display: block;
+  height: 16px;
+  width: 16px;
+  margin-left: 0;
+  content: '';
+  background-image: url('/assets/images/icons/icon-check-yellow.svg');
+}
+
+.icon-arrow-down-yellow::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-arrow-down-yellow.svg');
+  background-position: center center;
+  margin: 0;
+  height: 11px;
+  width: 12px;
+}
+
+.icon-info-green::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-info-green.svg');
+  background-position: center center;
+  margin: 0;
+  height: 24px;
+  width: 24px;
+}
+
+.icon-info::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/info-circle.svg');
+  background-position: center center;
+  margin: 0;
+  height: 20px;
+  width: 20px;
+}
+
+.icon-location::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-location.svg');
+  background-position: center center;
+  margin: 0;
+  height: 34px;
+  width: 34px;
+}
+
+.icon-info-square::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-info-square.svg');
+  background-position: center center;
+  margin: 0;
+  height: 22px;
+  width: 22px;
+}
+
+.icon-check-green-fill::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-check-green-fill.svg');
+  background-position: center center;
+  margin: 0;
+  height: 18px;
+  width: 18px;
+}
+
+.icon-check-blue-fill::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-check-blue-fill.svg');
+  background-position: center center;
+  margin: 0;
+  height: 18px;
+  width: 18px;
+}
+
+.icon-calendar-gray::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-calendar-gray.svg');
+  background-position: center center;
+  margin: 0;
+  height: 19px;
+  width: 19px;
+}
+
+.icon-hamburger::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-hamburger.svg');
+  background-position: center center;
+  margin: 0;
+  height: 32px;
+  width: 34px;
+}
+
+.icon-plus-circle::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-plus-circle.svg');
+  background-position: center center;
+  margin: 0;
+  height: 24px;
+  width: 24px;
+}
+
+.icon-plus::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-plus.svg');
+  background-position: center center;
+  margin: 0;
+  height: 24px;
+  width: 24px;
+}
+
+.icon-charon-left-long::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-charon-left-long.svg');
+  background-position: center center;
+  margin: 0;
+  height: 7px;
+  width: 53px;
+}
+
+.icon-check-big-green::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-check-big-green.svg');
+  background-position: center center;
+  margin: 0;
+  height: 49px;
+  width: 51px;
+}
+
+.icon-line::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-line.svg');
+  background-position: center center;
+  margin: 0;
+  height: 0;
+  width: 48px;
+}
+
+.icon-edit::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-edit.svg');
+  background-position: center center;
+  margin: 0;
+  height: 18px;
+  width: 18px;
+}
+
+.icon-login::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-login.svg');
+  background-position: center center;
+  margin: 0;
+  height: 22px;
+  width: 22px;
+}
+
+.icon-question-circle::before {
+  display: block;
+  content: '';
+  background-image: url('/assets/images/icons/icon-question-circle.svg');
+  background-position: center center;
+  margin: 0;
+  height: 18px;
+  width: 18px;
+}

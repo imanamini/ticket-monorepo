@@ -1,0 +1,84 @@
+<div class="claim-list w-100 d-flex flex-column align-items-center h-100">
+  @if (headerService.isShowHeader()) {
+    <main-header (rightIconClicked)="backButtonClicked()"
+                 leftIconName="headphone"
+                 leftIconType="linear"
+                 [hide-icon-right]="hideIconRight()"
+                 [faqCategory]="FaqCategoryTypeEnum.EQUIPMENT"
+                 class="w-100" title="بیمه"></main-header>
+  }
+  <div class="claim-list-content w-100 flex-grow d-flex flex-column align-items-center justify-content-center"
+       scrollDirection
+       [throttleMs]="1"
+       (scrolled)="onScroll($event)">
+    @if (!isLoggedIn) {
+      <div class="h-100 d-flex justify-content-center align-items-center px-plus">
+        <empty-result [actionButton]="true"
+                      (actionButtonClicked)="handleLoginClicked()"
+                      icon="not-login"
+                      title="ورود به حساب کاربری"
+                      description="برای مشاهده لیست بیمه‌های خود وارد حساب کاربری خود شوید."
+                      actionButtonText="ورود / ثبت‌نام"
+                      actionButtonIcon="login"></empty-result>
+      </div>
+    } @else {
+      @if (loading$ | async) {
+        <div class="d-flex justify-content-center align-items-center loading-container">
+          <ui-loading-spinner></ui-loading-spinner>
+        </div>
+      } @else {
+        @if (!hasClaimList) {
+          <div class="h-100 d-flex justify-content-center align-items-center px-plus">
+            <empty-result [actionButton]="true"
+                          (actionButtonClicked)="goToRegisterClaim()"
+                          icon="empty-result"
+                          actionButtonIcon="plus"
+                          actionButtonText="ثبت خسارت"
+                          title="درخواست خسارتی ثبت نشده است"
+                          description="در هر زمان می‌توانید درخواست خود را ثبت و در کمتر از ۴۸ ساعت از نتیجه آن آگاه شوید.">
+            </empty-result>
+          </div>
+        } @else {
+          <div class="h-100 w-100">
+            @if (claimList.activeClaims.length > 0) {
+              <div class="w-100 text-align-right st-8 text-onback-high px-plus pt-big">
+                پرونده‌ در جریان
+              </div>
+              <div class="d-flex w-100 align-items-start justify-content-start pt-small">
+                <current-claim-list
+                  [claims]="claimList.activeClaims"
+                ></current-claim-list>
+              </div>
+            }
+            @if (claimList.notActiveClaims.length > 0) {
+              <p class="w-100 text-align-right st-8 text-onback-high px-plus pt-pony">
+                تاریخچه خسارت
+              </p>
+              <div class="history-list w-100 px-plus pt-small">
+                <div class="p-tiny w-100 surface-high-contrast radius-medium mb-small">
+                  <history-claim-list
+                    [claims]="claimList.notActiveClaims"
+                  ></history-claim-list>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      }
+    }
+    @if (claimList.activeClaims.length > 0 || claimList.notActiveClaims.length  ) {
+      <div class="footer-fab p-medium d-flex align-items-center justify-content-end"
+           [ngStyle]="{width: isAtPageEnd() ? '100%': '190px'}">
+        <ins-button
+          [text]="'ثبت خسارت'"
+          [mode]="InsButtonModeEnum.Section"
+          [brandButton]="false"
+          [fullWidth]="isAtPageEnd()"
+          [style]="InsButtonStyleEnum.Fill"
+          [rightIcon]="{name: 'plus' , type:'linear'}"
+          (click)="goToRegisterClaim()">
+        </ins-button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,104 @@
+@import "@digipay/base-style/swatch";
+@import "@digipay/base-style/mixins/responsive";
+
+.wrapper{
+  background-color: white;
+}
+.page-content {
+  padding: 24px 16px !important;
+}
+
+.cash-in-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 105px);
+
+  .action-button{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .content{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+}
+
+:host ::ng-deep input{
+  background-color: transparent;
+}
+
+.modifier {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.form-primary-text {
+  justify-content: center;
+  color: $swatch_steel_900;
+  display: flex;
+}
+
+.blue-info {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background-image: url("../../../../../../../../apps/dpx/src/assets/cash-in/blue-info.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 4px;
+}
+
+.amount-suggestions {
+  margin: 12px 0;
+}
+
+.primary-action {
+  display: block;
+  margin: 24px 0 0;
+}
+
+.field-messages {
+  position: relative;
+  top: -16px;
+}
+
+.hint {
+  background-color: #f2f5f8;
+  border-radius: 12px;
+  height: 176px;
+  margin: 0 0 24px 0;
+}
+
+.hide-hint {
+  transition: 1s ease all;
+  height: 0 !important;
+  padding: 0 !important;
+  transform: scale(0);
+}
+
+.secondary-actions {
+  margin: 32px 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.action {
+  color: $swatch_blue_500;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.amount-input {
+  margin: 0;
+}
+
+@include small_screen{
+  .gift-button{
+    margin-bottom: 24px;
+  }
+}

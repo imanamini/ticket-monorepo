@@ -1,0 +1,20 @@
+<div class="slider-vertical">
+  <div class="credit__intro-art">
+    <ul *ngIf="images">
+      <li
+        *ngFor="let item of images; let artIndex = index"
+        [ngClass]="{ act: activeArtIndex == artIndex }"
+        class="credit-product__intro-art-item"
+      >
+        <div class="credit-product__intro-art-item--p">
+          <img
+            [src]="item.image.url"
+            alt="خرید اقساطی"
+          />
+        </div>
+        <div class="credit-product__intro-art-item--b"></div>
+        <div class="credit-product__intro-art-item--sh"></div>
+      </li>
+    </ul>
+  </div>
+</div>

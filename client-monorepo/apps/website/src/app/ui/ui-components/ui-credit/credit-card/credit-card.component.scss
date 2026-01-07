@@ -1,0 +1,103 @@
+.credit-wallet-card-wrapper {
+  //position: relative;
+  width: 100%;
+  height: 100%;
+  //padding-top: 55%;
+}
+
+.credit-wallet-card {
+  //position: absolute;
+  //top: 0;
+  //left: 0;
+  //right: 0;
+  //bottom: 0;
+  width: 100%;
+  height: 100%;
+  direction: rtl;
+  padding: 16px;
+  border-radius: 16px;
+  background-size: cover;
+  color: #ffffff;
+  margin: 0 auto;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+
+  &.light {
+    background-image: url('./assets/credit_card_pattern_light.svg');
+  }
+
+  &.dark {
+    background-image: url('./assets/credit_card_pattern_dark.svg');
+  }
+
+  .credit-card-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 0 0 auto;
+
+    &--logo {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 0 0 32px;
+    }
+
+    &--title {
+      flex: 1 1 auto;
+      font-weight: 700;
+      font-size: 18px;
+      padding-right: 4px;
+    }
+  }
+
+  .credit-card-body {
+    flex: 1 1 auto;
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .credit-card-footer {
+    flex: 0 0 auto;
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+
+    credit-digipay-image {
+      margin-left: 4px;
+    }
+  }
+
+  &--badge {
+    height: 24px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 8px;
+  }
+}
+
+@media (max-width: 744px) {
+  .credit-wallet-card {
+    .credit-card-body {
+      font-size: 18px;
+    }
+
+    .credit-card-footer {
+      font-size: 12px;
+    }
+
+    .credit-card-header {
+      font-size: 14px;
+    }
+  }
+}

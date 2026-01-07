@@ -1,0 +1,28 @@
+@import "globals";
+
+.merchants-digikala-credit-promotion {
+  overflow: hidden;
+  background-color: $swatch_steel_100;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 128px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .merchants-digikala-credit-promotion {
+    .container {
+      gap: 64px;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .merchants-digikala-credit-promotion {
+    .container {
+      gap: 32px;
+    }
+  }
+}

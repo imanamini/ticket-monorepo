@@ -1,0 +1,143 @@
+<script src="warranty-intro.component.spec.ts"></script>
+<section
+  *ngIf="data && data.templateData"
+  class="section-warranty-intro"
+>
+  <div class="container">
+    <h1
+      *ngIf="data.templateData.introTitle"
+      class="text-align-center"
+    >
+      {{ data.templateData.introTitle }}
+    </h1>
+    <div
+      *ngIf="data.templateData.introSubtitle"
+      class="text-align-center subtitle"
+    >
+      {{ data.templateData.introSubtitle }}
+    </div>
+    <div class="blog-category__contain">
+      <div class="blog-category">
+        <swiper-container
+          *ngIf="showSwiper"
+          appSwiper
+          #swiper="appSwiper"
+          [config]="configCategories"
+          class="button-group"
+        >
+          <swiper-slide *ngFor="let category of data.templateData.tabs; let categoryIndex = index">
+            <div
+              (click)="changeTab(categoryIndex)"
+              [id]="category.id"
+              [ngClass]="selectedTab === categoryIndex ? 'active' : ''"
+              class="links__item"
+            >
+              <button
+                [disabled]="data.templateData.tabs[categoryIndex].flows.length < 1"
+                [ngClass]="{ active: categoryIndex === selectedTab }"
+                class="ui-curve-button"
+              >
+                <span
+                  *ngIf="category.tabType === 'soon'"
+                  class="badge"
+                  >بزودی</span
+                >
+                {{ category.tabTitle }}
+              </button>
+            </div>
+          </swiper-slide>
+        </swiper-container>
+      </div>
+    </div>
+
+    <swiper-container
+      *ngIf="showSwiper"
+      appSwiper
+      #swiper="appSwiper"
+      [config]="config"
+    >
+      <swiper-slide *ngFor="let item of data.templateData.tabs[selectedTab].flows; let itemIndex = index">
+        <div class="content">
+          <div class="right-side">
+            <h3>
+              {{ data.templateData.tabs[selectedTab].title }}
+            </h3>
+            <div class="header">
+              <div class="title">
+                {{ item.title }}
+              </div>
+              <div class="navigation">
+                <app-ui-button
+                  [appearance]="'BLUE-TEXT'"
+                  class="warranty-flow-button-prev"
+                  (clicked)="swiper.slidePrev()"
+                >
+                  <span
+                    [size]="24"
+                    icon="icon-charon-right"
+                    appUiIcon
+                  ></span>
+                  قبلی
+                </app-ui-button>
+
+                <hr class="vertical" />
+
+                <app-ui-button
+                  [appearance]="'BLUE-TEXT'"
+                  class="warranty-flow-button-next"
+                  (clicked)="swiper.slideNext()"
+                >
+                  بعدی
+                  <ngx-icon
+                    [iconSize]="'24'"
+                    [name]="'arrow-2-left'"
+                    class="text-onback-brand"
+                  ></ngx-icon>
+                </app-ui-button>
+              </div>
+            </div>
+
+            <div
+              [innerHTML]="item.description"
+              class="description"
+            ></div>
+            <app-ui-button
+              *ngIf="item.firstCta && item.firstCta.link && item.firstCta.title"
+              [appearance]="'SECONDARY'"
+              [linkTarget]="'_blank'"
+              [link]="item.firstCta.link"
+            >
+              {{ item.firstCta.title }}
+            </app-ui-button>
+            <div
+              *ngIf="item.notices && item.notices.length > 0"
+              class="notice-card"
+            >
+              <div class="notice-title">
+                <i class="icon-info-square"></i>
+                <div class="text">توجه داشته باشید</div>
+              </div>
+              <ul class="items">
+                <li *ngFor="let text of item.notices">
+                  <div class="outside-circle">
+                    <div class="inside-circle"></div>
+                  </div>
+                  <span class="text">
+                    {{ text.text }}
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="left-side">
+            <img
+              *ngIf="item.image && item.image.url"
+              [src]="item.image.url"
+              alt=""
+            />
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+</section>

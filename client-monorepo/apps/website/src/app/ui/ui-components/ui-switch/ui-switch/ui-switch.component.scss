@@ -1,0 +1,30 @@
+@import "globals";
+
+.switch {
+  font-size: 8px;
+  width: 5em;
+  height: 3em;
+  padding: em(8, 4);
+  border-radius: 2em;
+  direction: rtl;
+  background: rgb(180, 189, 199);
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &.is-on {
+    background: $primary-blue;
+
+    .circle {
+      margin-right: 2em;
+    }
+  }
+
+  .circle {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    background: #fff;
+    display: inline-block;
+    transition: margin-right 0.2s;
+  }
+}

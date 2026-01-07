@@ -1,0 +1,50 @@
+@import "@digipay/base-style/swatch";
+:host {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 1.666rem;
+    background-color: $swatch_white_900;
+    height: 100dvh;
+}
+
+.container {
+    background-color: $swatch_white_900;
+    width: 27rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+    margin: 0 auto;
+}
+
+.text-container {
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    flex-wrap: wrap;
+}
+
+.description {
+    width: 100%;
+    text-align: center;
+    font-size: 1.16rem;
+    // font-weight: 640;
+    margin-top: 0.5rem;
+}
+
+.actions-container {
+    width: 26rem;
+    position: absolute;
+    bottom: 1rem;
+    grid-template-columns: auto auto;
+    justify-content: center;
+
+    @media screen and (max-width: 600px) {
+        width: 100%;
+    }
+}

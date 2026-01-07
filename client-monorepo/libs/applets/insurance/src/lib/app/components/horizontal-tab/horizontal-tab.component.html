@@ -1,0 +1,21 @@
+<div (window:resize)="getButtonBarWidth()" [attr.style]="'--width-per-step: ' + widthPerStep+'px'"
+     class="horizontal-steps">
+  <div class="wrapper">
+    <horizontal-swiper>
+      <div
+              [attr.style]="'--button-bar-position: ' + currentStepIndex"
+              class="items"
+              id="button-bar-horizontal-tab">
+        <div
+                (click)="changeStepCall(step.index)" *ngFor="let step of steps"
+                class="item">
+          <p
+                  [class.selected]="currentStepIndex === step.index"
+                  class="text">
+            {{ step.title }}
+          </p>
+        </div>
+      </div>
+    </horizontal-swiper>
+  </div>
+</div>

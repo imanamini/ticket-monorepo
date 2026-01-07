@@ -1,0 +1,116 @@
+section {
+  overflow: hidden;
+
+  .container {
+    border-bottom: 1px solid #e9e9e9;
+    padding-bottom: 24px;
+  }
+
+  .item {
+    height: 66px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 32px;
+      height: 32px;
+    }
+
+    span {
+      margin-top: 15px;
+      width: 100%;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 500;
+      color: #6e798d;
+      display: block;
+    }
+  }
+
+  ::ng-deep {
+    .swiper {
+      overflow: visible;
+      align-items: center;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: #fff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+      &::after {
+        display: none;
+      }
+
+      &.swiper-button-disabled {
+        display: none;
+      }
+    }
+
+    .swiper-button-next {
+      background: #fff url('/apps/website/src/assets/images/icons/icon-charon-left.svg')
+        no-repeat center center;
+      top: 23px;
+      left: 0;
+    }
+
+    .swiper-button-prev {
+      background: #fff url('/apps/website/src/assets/images/icons/icon-charon-right.svg')
+        no-repeat center center;
+      top: 23px;
+      left: 0;
+    }
+
+    .swiper-slide {
+      opacity: 0.5;
+      width: auto;
+      display: flex;
+    }
+
+    .swiper-slide {
+      transition: opacity 0.5s;
+    }
+
+    .swiper-slide-visible {
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  section {
+    .container {
+      overflow: visible;
+      padding-bottom: 16px;
+    }
+
+    .item {
+      img {
+        width: 24px;
+        height: 24px;
+      }
+
+      span {
+        font-size: 12px;
+        margin-top: 4px;
+      }
+    }
+
+    ::ng-deep {
+      .swiper {
+        .swiper-button-next,
+        .swiper-button-prev {
+          display: none;
+        }
+
+        .swiper-slide {
+          height: 46px;
+        }
+      }
+    }
+  }
+}

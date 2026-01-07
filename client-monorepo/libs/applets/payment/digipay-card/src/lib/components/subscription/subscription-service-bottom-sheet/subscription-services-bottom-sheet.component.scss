@@ -1,0 +1,35 @@
+:host {
+  position: relative;
+  .container {
+    padding-top: 124px;
+  }
+  header {
+    height: 148px;
+    position: absolute;
+    right: -20px;
+    left: -20px;
+    top: -32px;
+    overflow: hidden;
+    &.pay-pro {
+      background: linear-gradient(262deg, #5cadff -1.08%, #acbee2 93.42%);
+      .icon {
+        background-image: url('/assets/digipay-card/pay-pro.png');
+        width: 205px;
+        height: 135px;
+        background-size: cover;
+        margin-left: 20px;
+        position: absolute;
+        top: 13px;
+      }
+    }
+    &.pay-plus {
+      background: linear-gradient(262deg, #fb5b70 -1.08%, #fdc3cb 93.42%);
+      .icon {
+        width: 158px;
+        background-image: url('/assets/digipay-card/pay-plus.png');
+        background-size: cover;
+        margin-left: 20px;
+      }
+    }
+  }
+}

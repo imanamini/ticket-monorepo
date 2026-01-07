@@ -1,0 +1,25 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.get-phone-number-wrapper {
+  @include flex-column;
+  gap: 16px;
+  padding: 24px;
+
+  .image {
+    @include flex-row;
+    @include flex-center;
+  }
+
+  .hint {
+    @include flex-center-start;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 28px;
+    color: #2c3544;
+  }
+
+  .inputs-wrapper {
+    @include flex-column;
+    gap: 24px;
+  }
+}

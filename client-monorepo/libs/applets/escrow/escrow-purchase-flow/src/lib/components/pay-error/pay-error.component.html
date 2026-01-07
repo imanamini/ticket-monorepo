@@ -1,0 +1,15 @@
+<div class="pay-error d-flex flex-column w-100 justify-content-center align-items-center inverted">
+  <ngx-status-result
+    [title]="'مشکلی پیش آمده است.'"
+    [description]="'متاسفانه، لطفا دقایق دیگر دوباره امتحان کنید.'"
+    [subDescription]="'شما در حال انتقال به دیوار هستید'"
+    [loading]="true"
+  >
+    <ng-container status-image>
+      <img
+        src="assets/icons/no-service.svg"
+        alt="خطا"
+      />
+    </ng-container>
+  </ngx-status-result>
+</div>

@@ -1,0 +1,41 @@
+.top-section {
+  flex-grow: 1;
+  padding: 24px;
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+}
+
+.cta-wrapper {
+  flex-grow: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.score-gauge-image {
+  width: 164px;
+  height: 164px;
+  background-image: url("../assets/scoring-gauge.svg");
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.score-subtitle {
+  font-size: 14px;
+  margin: 8px 0 24px;
+}
+
+.error-title {
+  font-size: 16px;
+  margin: 16px 0;
+  line-height: 1.7;
+  text-align: right;
+  font-weight: 600;
+}
+
+@media (min-width: 727px) {
+  .top-section {
+    padding: 48px;
+  }
+}

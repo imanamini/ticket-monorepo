@@ -1,0 +1,9 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+:host {
+  width: 100%;
+}
+
+.header-title {
+  flex: 1 1 auto;
+}

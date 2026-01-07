@@ -1,0 +1,8 @@
+<div class="le-text-card-steps">
+  @for (step of payload()?.steps; track $index) {
+    <div class="le-text-card">
+      <div class="le-index">{{ $index + 1 }}</div>
+      <div class="le-description">{{ step.description }}</div>
+    </div>
+  }
+</div>

@@ -1,0 +1,10 @@
+<ui-form-field
+  uppercase
+  dataType="TEXT"
+  [(ngModel)]="code"
+  (ngModelChange)="onCodeChange($event)"
+  [hasCleaner]="true"
+  (keydown)="inputKeyDown($event)"
+  label="کد هدیه"
+>
+</ui-form-field>

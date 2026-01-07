@@ -1,0 +1,19 @@
+<div class="ui-input">
+  <label
+    [class.title-move]="inputFocused"
+    [style.color]="grayLabel ? '#6e798d' : '#0040ff'"
+    class="title"
+    for="input"
+    >{{ placeHolder }}</label
+  >
+  <input
+    #input
+    (focus)="onFocus(true)"
+    (focusout)="onFocus(false)"
+    (input)="change($event)"
+    class="input"
+    id="input"
+    type="tel"
+  />
+  <div class="hint">{{ hint ? hint : '' }}</div>
+</div>

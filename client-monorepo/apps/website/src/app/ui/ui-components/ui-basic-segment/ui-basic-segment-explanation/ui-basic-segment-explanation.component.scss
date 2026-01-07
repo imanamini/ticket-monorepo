@@ -1,0 +1,144 @@
+:host ::ng-deep {
+  .basic-segment-recto {
+    .container {
+      gap: unset !important;
+    }
+
+    .title-mobile {
+      order: 2;
+    }
+
+    > .container > .basic-segment-figure {
+      width: 50% !important;
+    }
+  }
+
+  .basic-segment-verso {
+    .container {
+      gap: unset !important;
+    }
+
+    .title-mobile {
+      order: 2;
+    }
+
+    > .container > .basic-segment-figure {
+      width: 50% !important;
+    }
+  }
+
+  .basic-segment-content {
+    .values {
+      display: flex;
+      gap: 24px;
+      flex-direction: column;
+      margin: 48px 0;
+
+      .value {
+        display: flex;
+        gap: 18px;
+
+        .icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 8px;
+          width: 48px;
+          height: 48px;
+          background: rgba(6, 25, 98, 0.06);
+          border: transparent;
+          border-radius: 12px;
+          flex: 0 0 48px;
+
+          img {
+            width: 24px;
+            height: 24px;
+          }
+        }
+
+        .title {
+          color: #2c3544;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 1.5;
+        }
+
+        .description {
+          color: #2c3544;
+          line-height: 1.5;
+          font-weight: 400;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .basic-segment-subtitle {
+    font-weight: 900;
+    font-size: 20px;
+  }
+
+  .basic-segment-description {
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .ctas {
+    .cta {
+      display: block;
+    }
+
+    .cta-icon {
+      margin-left: 8px;
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .basic-segment-recto .container .basic-segment-figure img {
+      max-height: 306px !important;
+    }
+    .basic-segment-description,
+    .basic-segment-subtitle {
+      text-align: center;
+    }
+    .basic-segment-content {
+      .ctas {
+        text-align: center;
+      }
+    }
+
+    .basic-segment-content .values {
+      margin-right: auto;
+      margin-left: auto;
+      width: 50%;
+    }
+  }
+
+  @media (max-width: 744px) {
+    .basic-segment-description {
+      font-size: 12px;
+    }
+    .basic-segment-content {
+      .values {
+        gap: 12px;
+        margin-top: 12px;
+        width: 90%;
+
+        .value {
+          .icon {
+            min-width: 58px;
+            height: 51px;
+          }
+
+          .title {
+            font-size: 14px;
+          }
+
+          .description {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}

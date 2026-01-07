@@ -1,0 +1,57 @@
+<div class="top-section d-flex flex-column pt-plus px-plus flex-grow">
+  <app-credit-scrollable-view [fullHeightContent]="true">
+    <div class="form-section d-flex flex-column w-100 flex-grow">
+      <div
+        [formGroup]="form"
+        class="w-100 d-flex flex-column gap-minus flex-grow">
+        <p class="b-2 mb-minus text-onback-high">اطلاعات مالک چک ضمانت را وارد کنید.</p>
+        <ui-form-field
+          [errorMessageMapper]="{
+            required: 'کدملی مالک چک را وارد کنید.',
+            invalidNotionalCode: 'کدملی وارد شده معتبر نیست.',
+          }"
+          [error]="form.controls['ownerNationalCode'].errors"
+          [isNumericKeyboard]="true"
+          [maxSize]="10"
+          formControlName="ownerNationalCode"
+          label="کدملی مالک چک"
+          type="input"
+        ></ui-form-field>
+
+        <ui-form-field
+          [errorMessageMapper]="{
+            required: 'تاریخ تولد را انتخاب کنید.',
+            invalidBirthDate: 'تاریخ تولد معتبر نیست.',
+          }"
+          [error]="form.controls['ownerBirthDate'].errors"
+          formControlName="ownerBirthDate"
+          label="تاریخ تولد مالک چک"
+          type="date"
+        ></ui-form-field>
+        <ui-form-field
+          [errorMessageMapper]="{
+            required: 'شماره همراه را وارد کنید.',
+            invalidCellNumber: 'شماره همراه وارد شده معتبر نیست.',
+          }"
+          [error]="form.controls['ownerCellNumber'].errors"
+          [isNumericKeyboard]="true"
+          [maxSize]="11"
+          formControlName="ownerCellNumber"
+          label="شماره همراه مالک چک"
+        ></ui-form-field>
+      </div>
+    </div>
+  </app-credit-scrollable-view>
+</div>
+<div class="call-to-actions-section p-plus">
+  <ngx-button
+    (clickHandler)="onSubmit()"
+    [disabled]="submitSpinner() || !form.valid"
+    [fullWidth]="true"
+    [isLoading]="submitSpinner()"
+    [style]="'fill'"
+    ngxTrackableId
+    trackerId="chequeFromBasicSubmitButtonClick"
+    >تایید و ادامه
+  </ngx-button>
+</div>

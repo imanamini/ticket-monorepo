@@ -1,0 +1,40 @@
+<div
+  (click)="onClick()"
+  *ngIf="package"
+  [ngClass]="{
+    'is-mtn': operatorIds.MTN === carrier,
+    'is-rightel': operatorIds.RIGHTEL === carrier,
+    'is-mci': operatorIds.MCI === carrier,
+  }"
+  class="internet-package"
+>
+  <div class="body">
+    <div class="spec">
+      <app-ui-carrier-icon
+        [carrier]="carrier"
+        [round]="true"
+        [size]="32"
+      ></app-ui-carrier-icon>
+      <!--      <span class="usage-limit spec-heading">200</span>-->
+      <!--      <span class="detail-text">مگابایت</span>-->
+    </div>
+    <!--    <div class="spec time-spec">-->
+    <!--      <span class="days spec-heading">{{package.durationTranslation}}</span>-->
+    <!--      &lt;!&ndash;      <span class="detail-text nightly-text">۲-۷ صبح</span>&ndash;&gt;-->
+    <!--    </div>-->
+  </div>
+  <div class="more-details">
+    <!--<span class="detail-text nightly-text">۲-۷ صبح</span>
+    <span class="detail-text gift-text">۲۰۰ مگابایت هدیه</span>-->
+    <span class="detail-text">
+      {{ package.description }}
+    </span>
+  </div>
+  <div class="footer">
+    <app-ui-currency
+      [fontWeight]="'700'"
+      [value]="package.amount"
+    ></app-ui-currency>
+    <span class="chevron"></span>
+  </div>
+</div>

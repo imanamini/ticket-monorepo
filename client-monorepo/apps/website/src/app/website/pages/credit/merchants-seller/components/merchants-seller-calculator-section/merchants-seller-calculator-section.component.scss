@@ -1,0 +1,463 @@
+@import "globals";
+
+.section-calculator {
+  background-color: #1159fc;
+  padding: 64px 32px;
+
+  .top-section {
+    text-align: center;
+    margin-bottom: 24px;
+
+    .calculator-title {
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 40px;
+      color: #ffffff;
+    }
+
+    .calculator-subTitle {
+      font-size: 12px;
+      font-weight: 370;
+      line-height: 20px;
+      color: #ffffff;
+    }
+  }
+
+  .bottom-section {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    max-width: 1200px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 20px;
+    gap: 32px;
+
+    .action-area {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 50%;
+
+      .recipe {
+        padding: 12px;
+
+        .recipe-wrapper {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          color: #000000;
+          padding-bottom: 12px;
+          margin-bottom: 12px;
+          border-bottom: 1px solid #dfe1e5;
+
+          .recipe-title {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 24px;
+          }
+
+          .recipe-default-amount {
+            font-size: 12px;
+            font-weight: 370;
+            line-height: 20px;
+          }
+        }
+
+        .amount-wrapper {
+          display: flex;
+          flex-direction: column;
+
+          .title {
+            font-size: 10px;
+            font-weight: 600;
+            line-height: 16px;
+            color: #74777c;
+          }
+
+          .amount {
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 370;
+            line-height: 28px;
+            color: #000000;
+          }
+
+          .progress {
+            padding: 16px 0;
+            color: silver;
+
+            ::ng-deep {
+              .slider.slider-horizontal {
+                width: 100%;
+
+                .slider-track {
+                  width: 100%;
+                  height: 13px;
+                  flex-shrink: 0;
+                  border-radius: 48px;
+                  background: #f9f9fb;
+                  box-shadow: none;
+
+                  .slider-track-low,
+                  .slider-selection.tick-slider-selection {
+                    border-radius: 6px;
+                    background: #1159fc;
+                  }
+
+                  .slider-selection {
+                    border-radius: 6px;
+                    background: #1159fc;
+                  }
+                }
+
+                .slider-tick-container {
+                  display: none;
+                }
+
+                .slider-handle.min-slider-handle.round {
+                  background-color: #1159fc;
+                  border: 5px solid #deedff;
+                  width: 24px;
+                  height: 24px;
+                  top: -1px;
+                  background-image: none;
+                }
+
+                .slider-tick-label-container {
+                  margin: 15px 10px !important;
+                  display: flex;
+                  justify-content: space-between;
+
+                  .slider-tick-label.label-in-selection {
+                    width: 0 !important;
+                  }
+
+                  .slider-tick-label {
+                    margin-right: -10px;
+                    width: 0 !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .installment-count-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .installment-count-title {
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 24px;
+        }
+
+        .installment-count-month {
+          display: flex;
+          flex-direction: row;
+          gap: 8px;
+
+          span {
+            font-size: 14px;
+            font-weight: 450;
+            line-height: 24px;
+            color: #000000;
+            border-radius: 8px;
+            border: 1px solid #dfe1e5;
+            padding: 2px 8px;
+          }
+
+          .installment-selected {
+            border: 1px solid #1159fc;
+          }
+        }
+      }
+
+      .action-provider-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .provider-title {
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 24px;
+        }
+
+        .provider-icon {
+          display: flex;
+          flex-direction: row;
+          gap: 8px;
+
+          div {
+            border: 1px solid #dfe1e5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 48px;
+            padding: 12px;
+
+            img {
+              object-fit: contain;
+              object-position: center;
+              width: 24px;
+              max-height: 24px;
+            }
+          }
+
+          .provider-selected {
+            border: 1px solid #1159fc;
+            background-color: #deedff;
+          }
+        }
+      }
+
+      .action-hint-wrapper {
+        display: flex;
+        flex-direction: row;
+        border-radius: 8px;
+        padding: 8px;
+        background-color: #f2f3f6;
+        gap: 4px;
+
+        span {
+          font-size: 12px;
+          font-weight: 370;
+          line-height: 20px;
+        }
+
+        .hint-icon {
+          background-image: url('../../images/info-circle.svg');
+          background-position: center;
+          background-size: cover;
+          width: 16px;
+          height: 16px;
+          color: #000000;
+        }
+      }
+    }
+
+    .calculate-area {
+      width: 50%;
+      border-radius: 20px;
+      padding: 20px 24px;
+      background-color: #ffffff;
+      box-shadow: 0 0 60px 0 rgba(129, 165, 191, 0.1);
+
+      .calculate-provider-wrapper-desktop {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        color: #000000;
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+        border-bottom: 1px solid #dfe1e5;
+
+        .provider {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 16px;
+
+          .provider-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 48px;
+            padding: 12px;
+            background-color: #f2f3f6;
+
+            img {
+              object-fit: contain;
+              object-position: center;
+              width: 24px;
+              max-height: 24px;
+            }
+          }
+        }
+      }
+
+      .calculate-provider-wrapper-mobile {
+        display: none;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        color: #000000;
+        padding: 8px 0;
+
+        li {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+
+          span {
+            font-size: 12px;
+            font-weight: 370;
+            line-height: 20px;
+          }
+
+          .tooltip {
+            display: flex;
+
+            .tool-tips {
+              margin: 0 4px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .calculate-hint-wrapper {
+    display: none;
+  }
+}
+
+@media (max-width: 744px) {
+  .section-calculator {
+    padding: 24px 16px;
+
+    .top-section {
+      text-align: right;
+      margin-bottom: 16px;
+
+      .calculator-title {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 40px;
+        color: #ffffff;
+      }
+
+      .calculator-subTitle {
+        font-size: 12px;
+        font-weight: 370;
+        line-height: 20px;
+        color: #ffffff;
+      }
+    }
+
+    .bottom-section {
+      flex-direction: column !important;
+      margin: 0;
+      padding: 20px 12px;
+      gap: 0;
+
+      .action-area {
+        width: 100% !important;
+        border-bottom: 1px solid #dfe1e5;
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+
+        .recipe {
+          padding: 8px;
+        }
+
+        .action-hint-wrapper {
+          display: none;
+        }
+      }
+
+      .calculate-area {
+        width: 100% !important;
+        margin-bottom: 16px;
+        padding: 12px 6px;
+
+        .calculate-provider-wrapper-desktop {
+          display: none;
+        }
+
+        .calculate-provider-wrapper-mobile {
+          display: flex;
+          flex-direction: column;
+          //align-items: center;
+          color: #000000;
+          gap: 16px;
+          padding-bottom: 12px;
+          margin-bottom: 12px;
+          border-bottom: 1px solid #dfe1e5;
+
+          .provider-icon {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+
+            div {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 48px;
+              padding: 12px;
+              background-color: #f2f3f6;
+
+              img {
+                object-fit: contain;
+                object-position: center;
+                width: 24px;
+                max-height: 24px;
+              }
+            }
+          }
+
+          .provider {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 16px;
+
+            span {
+              font-size: 14px;
+              font-weight: 600;
+              line-height: 24px;
+            }
+          }
+        }
+
+        ul {
+          gap: 12px;
+
+          li {
+            span {
+              font-size: 12px;
+              font-weight: 370;
+              line-height: 20px;
+            }
+          }
+        }
+      }
+
+      .calculate-hint-wrapper {
+        display: flex;
+        flex-direction: row;
+        border-radius: 8px;
+        padding: 8px;
+        background-color: #f2f3f6;
+        gap: 4px;
+
+        span {
+          font-size: 12px;
+          font-weight: 370;
+          line-height: 20px;
+        }
+
+        .hint-icon {
+          background-image: url('../../images/info-circle.svg');
+          background-position: center;
+          background-size: cover;
+          width: 16px;
+          height: 16px;
+          color: #000000;
+        }
+      }
+    }
+  }
+}

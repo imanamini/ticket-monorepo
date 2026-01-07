@@ -1,0 +1,8 @@
+@import "@digipay/base-style/styleguide";
+.group-card-item {
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+.surface-brand-inverted{
+  background-color: #{map-get($blue, "tint-60")};
+}

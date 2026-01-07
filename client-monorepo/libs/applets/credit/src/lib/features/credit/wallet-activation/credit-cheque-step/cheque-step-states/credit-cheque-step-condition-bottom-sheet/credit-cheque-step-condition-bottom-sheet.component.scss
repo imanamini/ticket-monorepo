@@ -1,0 +1,52 @@
+@import "@digipay/base-style/styleguide";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.cheque-condition-bottom-sheet {
+  flex-grow: 1;
+  overflow-y: auto;
+  direction: rtl;
+
+  .cheque-image {
+    width: 100%;
+    aspect-ratio: 2.03;
+
+    &.purple-cheque {
+      background: url("../../assets/cheque.webp") no-repeat center center;
+      background-size: cover;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+
+    li {
+      text-indent: -5px;
+
+      &::before {
+        content: "• ";
+        color: #{map-get($blue, "tint-50")};
+        font-weight: bold;
+        display: inline-block;
+        font-size: 20px;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cheque-image {
+    width: 100%;
+    aspect-ratio: 2.03;
+
+    &.purple-cheque {
+      background-size: cover;
+    }
+  }
+}

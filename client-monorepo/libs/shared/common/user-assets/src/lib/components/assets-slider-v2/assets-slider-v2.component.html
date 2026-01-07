@@ -1,0 +1,138 @@
+@if (userAssets().length > 0) {
+  <div class="assets-slider">
+    <!-- Tabs Carousel -->
+    <div class="tabs-container mb-tiny">
+      @if (userAssets().length > 1) {
+        <ngx-dp-carousel
+          [mode]="'CARD'"
+          [changeStepThresholdPercentage]="10"
+          [visibleItemCount]="1"
+          [index]="activeAssetIndex() ?? 0"
+          [centerMode]="true"
+          [showNavigation]="false"
+          [showButtons]="false"
+          [isFixedGap]="true"
+          [fixedGap]="16"
+          [isFixedWidth]="true"
+          [fixedWidth]="90"
+          [swipeThreshold]="60"
+          [disableScaling]="false"
+          [loopMode]="false"
+          (indexChange)="onAssetIndexChange($event)"
+        >
+          @for (asset of userAssets(); let i = $index; track trackByAssetType(i, asset)) {
+            <ng-template ngxDpCarouselSlide>
+              <div
+                class="d-flex align-items-center tab-title title"
+                [ngClass]="getTabTitleClass(i)"
+              >
+                <span
+                  (click)="onAssetIndexChange(i)"
+                  class="c-1 text-oninvert-high white-space-no-wrap"
+                >
+                  {{ asset.title }}
+                </span>
+                <!-- Hide/unHide asset value -->
+                <div
+                  class="p-tiny"
+                  (click)="toggleHideAsset($event, asset)"
+                >
+                  <ngx-icon
+                    [name]="assetsHideState() && assetsHideState()[asset.type] ? 'hide' : 'eye'"
+                    [type]="'linear'"
+                    [iconSize]="'16px'"
+                    [classes]="'text-oninvert-high'"
+                  />
+                </div>
+              </div>
+            </ng-template>
+          }
+        </ngx-dp-carousel>
+      } @else {
+        <div class="w-100 d-flex align-items-center justify-content-center">
+          <div class="tab-title title c-1 text-oninvert-high white-space-no-wrap">{{ userAssets()[0].title }}</div>
+          <div
+            class="p-tiny"
+            (click)="toggleHideAsset($event, userAssets()[0])"
+          >
+            <ngx-icon
+              [name]="assetsHideState() && assetsHideState()[userAssets()[0].type] ? 'hide' : 'eye'"
+              [type]="'linear'"
+              [iconSize]="'16px'"
+              [classes]="'text-oninvert-high'"
+            />
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Main Assets Carousel -->
+    @if (userAssets().length > 1) {
+      <ngx-dp-carousel
+        [mode]="'CARD'"
+        [changeStepThresholdPercentage]="20"
+        [index]="activeAssetIndex() ?? 0"
+        [visibleItemCount]="1"
+        [centerMode]="true"
+        [showNavigation]="userAssets().length > 1"
+        [navigationMode]="'CHEVRONS'"
+        [showButtons]="false"
+        [isFixedGap]="true"
+        [fixedGap]="16"
+        [isFixedWidth]="false"
+        [swipeThreshold]="60"
+        [disableScaling]="true"
+        [loopMode]="false"
+        (indexChange)="onAssetIndexChange($event)"
+      >
+        <ngx-icon
+          navLeft
+          [name]="'arrow-2-left'"
+          [type]="'linear'"
+          [class]="navLeftClass()"
+        ></ngx-icon>
+        <ngx-icon
+          navRight
+          [name]="'arrow-2-right'"
+          [type]="'linear'"
+          [class]="navRightClass()"
+        ></ngx-icon>
+        @for (asset of userAssets(); let i = $index; track trackByAssetType(i, asset)) {
+          <ng-template ngxDpCarouselSlide>
+            <common-user-assets-asset-preview-v2
+              [asset]="asset"
+              [isNewUser]="isNewUser()"
+              [assetIsHidden]="assetsHideState()[asset.type]"
+              (clicked)="onAssetPreviewClick($event)"
+            />
+          </ng-template>
+        }
+      </ngx-dp-carousel>
+    } @else {
+      <div class="w-100 d-flex align-items-center justify-content-center">
+        <common-user-assets-asset-preview-v2
+          [asset]="userAssets()[0]"
+          [isNewUser]="isNewUser()"
+          [assetIsHidden]="assetsHideState()[userAssets()[0].type]"
+          [showInfoIcon]="mode() === 'SUMMARY'"
+          (clicked)="onAssetPreviewClick($event)"
+        />
+      </div>
+    }
+
+    <!-- Detail Button -->
+    @if (showDetailButton() && activeAsset() && mode() === 'FULL') {
+      <div class="detail-button-container d-flex justify-content-center mt-pony">
+        <ngx-button
+          (clickHandler)="onAssetPreviewClick(activeAsset()!)"
+          [size]="'tiny'"
+          [style]="'neutral-link'"
+          [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+          class="dark"
+        >
+          جزییات
+        </ngx-button>
+      </div>
+    }
+  </div>
+}

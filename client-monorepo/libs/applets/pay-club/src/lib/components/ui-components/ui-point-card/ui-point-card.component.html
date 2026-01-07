@@ -1,0 +1,21 @@
+<div
+  class="d-flex flex-column justify-content-center align-items-center text-align-center cursor-pointer point-card py-minus px-small radius-minus surface-elevated"
+  (click)="onClick()"
+>
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <div class="linear-bg">
+        <common-icon-dp-icon
+          [icon]="iconName()"
+          [iconSize]="'40'"
+        ></common-icon-dp-icon>
+      </div>
+      <span class="c-1 pt-minus">{{ title() }}</span>
+      <span class="l-3 pt-low">{{ description() }}</span>
+    </div>
+    <div class="d-flex align-items-center mt-minus gap-micro radius-small py-micro pl-small pr-low surface-brand-tint">
+      <span class="icon-coin"></span>
+      <span class="c-1 coin-text">{{ points() }} سکه</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.model-card {
+  @include flex-row;
+  @include flex-start-between;
+  gap: 8px;
+  padding: 16px;
+  background: white;
+  border: 1px solid #dee3e7;
+  border-radius: 16px;
+
+  .card-text {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #2c3544;
+    text-align: right;
+  }
+
+  .card-check-box {
+    width: 24px;
+    min-width: 24px;
+    max-width: 24px;
+    height: 24px;
+    min-height: 24px;
+    max-height: 24px;
+    background: url("/insurance-assets/images/check-box-empty.svg");
+  }
+
+  &.active {
+    border: 1px solid #0040ff;
+
+    .card-check-box {
+      background: url("/insurance-assets/images/check-box-filled.svg") !important;
+    }
+  }
+}

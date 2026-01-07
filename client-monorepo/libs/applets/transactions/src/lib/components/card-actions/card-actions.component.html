@@ -1,0 +1,66 @@
+@if (isCardsCarouselVisible()) {
+  <ngx-app-bar
+    [title]="titleNames().now"
+    (onRightButtonClick)="handleTitleBtnClick('prev')"
+    (onLeftButtonClick)="handleTitleBtnClick('next')"
+    [rightButton]="rightButton()"
+    [leftButton]="leftButton()"
+  ></ngx-app-bar>
+
+  <ngx-dp-carousel
+    class="carousel"
+    [mode]="'CARD'"
+    [visibleItemCount]="1.5"
+    [index]="carouselActiveIndex()"
+    carouselPadding="50px 8px 0 8px"
+    [scaleAmount]="0.9"
+    [centerMode]="false"
+    [showNavigation]="false"
+    [showButtons]="false"
+    [isFixedGap]="true"
+    [fixedGap]="16"
+    [isFixedWidth]="true"
+    [fixedWidth]="216"
+    [swipeThreshold]="20"
+    [isSlideOverflowVisible]="true"
+    [disableScaling]="false"
+    [scalingTransformOrigin]="'center 167px'"
+    (isSwiping)="handleCarouselSwiping($event)"
+    (indexChange)="handleCarouselActiveIndexChange($event)"
+  >
+    @for (item of allCardsArray(); track $index) {
+      <ng-template ngxDpCarouselSlide>
+        <transactions-applet-cards-slider
+          [cards]="item.cards"
+          [disableVerticalScroll]="item.cards.length === 1"
+          [cardsType]="item.cardsType"
+          [isCollapsed]="isCardSliderCollapsed(item)"
+          (isAnimationRunning)="handleCardsAnimationRunning($event)"
+          (activeIndexChanged)="handleCardsActiveIndexChange($event)"
+          (cardClicked)="handleCardClick(item.cards[cardsActiveIndex()], item)"
+        ></transactions-applet-cards-slider>
+      </ng-template>
+    }
+  </ngx-dp-carousel>
+  <transactions-applet-cards-cta [ctaItems]="cardCtaItems()"></transactions-applet-cards-cta>
+} @else {
+  <div class="cards-skeleton d-flex flex-column px-big justify-content-space-between gap-medium mt-big">
+    <lib-ngx-skeleton-loading
+      height="60px"
+      [classes]="'radius-big w-100'"
+    ></lib-ngx-skeleton-loading>
+    <lib-ngx-skeleton-loading
+      height="200px"
+      [classes]="'radius-big w-100'"
+    ></lib-ngx-skeleton-loading>
+    <div class="d-flex gap-pony justify-content-space-between">
+      @for (item of rangeCreator(4); track $index) {
+        <lib-ngx-skeleton-loading
+          width="71px"
+          height="75px"
+          [classes]="'radius-big'"
+        ></lib-ngx-skeleton-loading>
+      }
+    </div>
+  </div>
+}

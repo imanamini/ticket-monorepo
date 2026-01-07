@@ -1,0 +1,13 @@
+:host {
+  height: 100dvh;
+}
+
+.content-container {
+  height: calc(100dvh - 10rem);
+  align-content: center;
+}
+
+.button-container {
+  position: sticky;
+  bottom: 0;
+}

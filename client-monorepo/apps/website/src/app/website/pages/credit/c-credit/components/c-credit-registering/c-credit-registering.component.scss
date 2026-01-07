@@ -1,0 +1,125 @@
+@import "../../../../../../style/globals";
+
+.section-registering {
+  width: 100%;
+
+  .animated-switch {
+    height: 70px;
+    border-radius: 16px;
+    border: 2px solid $swatch_steel_200;
+    padding: 8px;
+    background-color: #fff;
+
+    ::ng-deep {
+      .switch {
+        background-color: #fff;
+
+        .switch-options {
+          background-color: #fff;
+
+          .option {
+            color: $swatch_steel_400;
+            font-size: 17px;
+            font-weight: 700;
+          }
+
+          .option.selected {
+            color: $swatch_blue_500;
+            border-radius: 12px;
+            font-weight: 700;
+          }
+
+          .selected-option-highlight {
+            border: 2px solid;
+            border-radius: 12px;
+          }
+        }
+      }
+    }
+  }
+
+  .register-benefits {
+    width: 100%;
+  }
+
+  .online-register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .calculator {
+      width: 100%;
+    }
+  }
+
+  .in-person-register {
+    background: #ffffff;
+    margin-top: 32px;
+    width: 100%;
+    display: flex;
+    padding: 48px;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    border-radius: 24px;
+
+    h2.title {
+      font-size: 32px;
+      font-weight: 1000;
+      color: #424c5c;
+    }
+  }
+}
+
+:host,
+.accordions {
+  width: 100%;
+  margin-top: 64px;
+}
+
+@media (max-width: 1280px) {
+  .accordions {
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 744px) {
+  .accordions {
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .section-registering {
+    .animated-switch {
+      height: 64px;
+
+      ::ng-deep .switch .switch-options {
+        .option,
+        .option.selected {
+          font-size: 13px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .section-registering {
+    .animated-switch {
+      height: 53px;
+      padding: 4px 0;
+      border-radius: 10px;
+
+      ::ng-deep .switch .switch-options {
+        .option,
+        .option.selected {
+          border-radius: 8px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

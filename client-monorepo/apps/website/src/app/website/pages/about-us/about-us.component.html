@@ -1,0 +1,22 @@
+<div id="about-us-page">
+  <app-base-layout [loaded]="loaded">
+
+    <!--  section 1-->
+    <app-about-us-intro [templateData]="aboutUsPage ? aboutUsPage.templateData : null"></app-about-us-intro>
+
+    <!--  section 2-->
+    <app-about-us-history [templateData]="aboutUsPage ? aboutUsPage.templateData : null"></app-about-us-history>
+
+    <!--  section 3-->
+    <app-about-us-vision [templateData]="aboutUsPage ? aboutUsPage.templateData : null"></app-about-us-vision>
+
+    <!--  section 4-->
+    <app-about-us-app-services
+      [templateData]="aboutUsPage? aboutUsPage.templateData : null"></app-about-us-app-services>
+
+    <!--  section 5-->
+    <app-about-us-honors [templateData]="aboutUsPage? aboutUsPage.templateData : null"></app-about-us-honors>
+
+
+  </app-base-layout>
+</div>

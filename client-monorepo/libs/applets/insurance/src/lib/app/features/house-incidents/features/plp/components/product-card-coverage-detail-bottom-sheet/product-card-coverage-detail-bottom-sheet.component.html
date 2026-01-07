@@ -1,0 +1,31 @@
+<div class="d-flex flex-column">
+  <div class="st-6 py-small px-plus border-b-200 border-color-light">
+    {{ 'پوشش‌های طرح ' + coverageDetail().title }}
+  </div>
+  <div class="sections d-flex flex-column p-plus">
+    @for (section of coverageDetail().sections; track $index) {
+      <div class="section pb-medium border-b-200 border-color-tint d-flex flex-column mb-medium">
+        <div class="pb-pony st-8">{{ section.title }}</div>
+        <div class="details d-flex flex-column gap-small">
+          @for (detail of section.details; track $index) {
+            <div class="d-flex align-items-start justify-content-space-between gap-small">
+              <div class="b-2 flex-shrink">{{ detail.title }}</div>
+              @if (detail.value) {
+                <div class="value b-2 flex-shrink">{{ detail.value }}</div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+  <div class="px-plus pb-plus">
+    <ins-button
+            text="متوجه شدم"
+            [style]="InsButtonStyleEnum.Fill"
+            [fullWidth]="true"
+            (clickHandler)="close()"
+            [size]="InsButtonSizeEnum.Large"
+    ></ins-button>
+  </div>
+</div>

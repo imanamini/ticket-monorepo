@@ -1,0 +1,23 @@
+.main-section {
+  box-sizing: border-box;
+  direction: rtl;
+
+  * {
+    box-sizing: border-box;
+    direction: rtl;
+  }
+
+  .page-content {
+    padding: 24px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bottom-section {
+    flex-grow: 0;
+    padding: 24px;
+  }
+}

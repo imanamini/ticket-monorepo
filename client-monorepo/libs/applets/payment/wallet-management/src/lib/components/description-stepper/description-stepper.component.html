@@ -1,0 +1,41 @@
+@if (configValue) {
+  <div class="description-content">
+    <div class="point"></div>
+    <div class="text">
+      <span class="wallet-inventory-text">{{ configValue.headerTitle }}</span>
+      <p class="description">
+        {{ description }}
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="footer"
+    *ngIf="configValue.status === 'normal'"
+  >
+    <div
+      *ngIf="description !== configValue.descriptionEnum[0]"
+      (click)="previous()"
+      class="link-button back"
+    >
+      <div class="icon arrow-left"></div>
+      قبلی
+    </div>
+    <div
+      *ngIf="description !== configValue.descriptionEnum[configValue.descriptionEnum.length - 1]"
+      (click)="next()"
+      class="link-button next"
+    >
+      بعدی
+      <div class="icon arrow-left"></div>
+    </div>
+    <div
+      *ngIf="description === configValue.descriptionEnum[configValue.descriptionEnum.length - 1]"
+      (click)="done()"
+      class="link-button next"
+    >
+      متوجه شدم
+      <div class="icon check-mark"></div>
+    </div>
+  </div>
+}

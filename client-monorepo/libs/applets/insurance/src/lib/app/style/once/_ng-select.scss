@@ -1,0 +1,15 @@
+.ng-select.dg-select {
+  .ng-select-container {
+    cursor: pointer !important;
+
+    .ng-value-container {
+      .ng-value {
+        padding-right: 3px;
+      }
+
+      .ng-input > input {
+        cursor: pointer !important;
+      }
+    }
+  }
+}

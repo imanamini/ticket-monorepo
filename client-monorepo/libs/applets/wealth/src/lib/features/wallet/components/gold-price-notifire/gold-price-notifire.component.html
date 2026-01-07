@@ -1,0 +1,12 @@
+<div class="w-100 d-flex align-items-center">
+  <div class="d-flex justify-content-center align-items-center blinker-container">
+    <div class="surface-warning radius-rounded shadow-box"></div>
+  </div>
+
+  <span class="l-2 text-oninvert-warning d-flex align-items-center">
+    <span class="d-flex align-items-center justify-content-center timer">
+      {{ (walletService.goldPricingPublisher$ | async)?.sec }}
+    </span>
+    ثانیه تا به روز رسانی قیمت طلای 24 عیار</span
+  >
+</div>

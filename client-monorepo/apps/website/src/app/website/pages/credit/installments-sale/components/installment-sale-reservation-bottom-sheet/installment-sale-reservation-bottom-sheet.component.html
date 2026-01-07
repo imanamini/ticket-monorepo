@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="header">
+    <span
+      (click)="closeBottomSheet()"
+      class="close-icon"
+    ></span>
+  </div>
+  <div class="icon"></div>
+  <div class="title">
+    <span class="main">
+      <span>رزرو سبد خرید</span>
+      در دیجی‌کالا
+    </span>
+    <span class="subtitle">{{ data.hours }} ساعت</span>
+  </div>
+  <div class="description">
+    سبد خرید شما در دیجی‌کالا به مدت {{ data.hours }} ساعت برای نوشتن چک‌های اقساطی رزرو شده است. برای جلوگیری از ناموجود شدن کالاها و لغو
+    سفارش، لطفاً هرچه سریع‌تر فرایند دریافت وام را تکمیل کنید.
+  </div>
+  <app-ui-button
+    (click)="closeBottomSheet()"
+    class="w-100"
+  >
+    متوجه شدم
+  </app-ui-button>
+</div>

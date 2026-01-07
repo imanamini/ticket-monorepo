@@ -1,0 +1,10 @@
+.detail{
+  min-height: calc(100dvh - 21.6rem) !important;
+  overflow-y: auto;
+}
+
+.footer{
+  position: sticky;
+  bottom: 0;
+  margin-top: 2rem;
+}

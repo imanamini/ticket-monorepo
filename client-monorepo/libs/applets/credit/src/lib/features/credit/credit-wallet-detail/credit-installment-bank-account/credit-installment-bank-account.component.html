@@ -1,0 +1,35 @@
+@if (!gettingData()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="goBack()"
+    [backButton]="true"
+    [title]="pageInformation()?.title"
+  ></app-credit-app-bar>
+  <div class="wrapper">
+    <div class="description">{{ pageInformation()?.message }}</div>
+    <div class="details">
+      <div class="logo">
+        <ui-api-image
+          [imageId]="iconImageId()"
+          width="60px"
+          height="60px"
+        ></ui-api-image>
+      </div>
+      <div class="amount">
+        {{ pageInformation()?.amount | IRR }}
+      </div>
+      <div class="name">{{ pageInformation()?.name }}</div>
+      <div class="account">
+        <span>{{ pageInformation()?.accountNumberLabel }}</span>
+        <span>{{ pageInformation()?.accountNumber }}</span>
+      </div>
+    </div>
+    <ngx-button
+      [fullWidth]="true"
+      [disabled]="gettingTicket()"
+      (clickHandler)="onConfirm()"
+    >
+      افزایش موجودی حساب
+    </ngx-button>
+  </div>
+}
+<credit-page-loading [active]="gettingData()!"></credit-page-loading>

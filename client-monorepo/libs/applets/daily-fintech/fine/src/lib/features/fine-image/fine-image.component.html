@@ -1,0 +1,41 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  [title]="'تصویر گزارش خلافی'"
+  [hasBackAction]="true"
+  [showBorder]="true"
+  [bodyClasses]="'surface-back'"
+  [headerClasses]="'surface-back'"
+>
+  <ng-container *ngIf="!isLoading() && !isError()">
+    <div class="image-wrapper">
+      <img [src]="imageSrc()" />
+    </div>
+  </ng-container>
+
+  <lib-ngx-skeleton-loading
+    *ngIf="isLoading()"
+    [height]="'150px'"
+    [width]="'100%'"
+    [classes]="'radius-tiny mt-large'"
+  ></lib-ngx-skeleton-loading>
+
+  <div
+    class="container-error"
+    *ngIf="!isLoading() && isError()"
+  >
+    <div class="image-error"></div>
+    <div class="title-error">دریافت تصویر خلافی دچار مشکل شد.</div>
+    <ngx-button
+      class="button-retry"
+      [mode]="'section'"
+      [size]="'medium'"
+      [style]="'tinted-on-elevated'"
+      [rightIcon]="{
+        name: 'refresh',
+      }"
+      (clickHandler)="retry()"
+    >
+      تلاش دوباره
+    </ngx-button>
+  </div>
+</common-ui-components-page-layout>

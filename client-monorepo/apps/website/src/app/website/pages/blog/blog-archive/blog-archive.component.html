@@ -1,0 +1,55 @@
+<app-base-layout [loaded]="true">
+  <div class="blog-archive">
+    <div class="container">
+      <div class="breadcrumbs desktop">
+        <a href="/mag/"><span>مجله اینترنتی دیجی‌پی</span></a>
+        <span class="separator">/</span>
+        آرشیو
+      </div>
+      <div class="archive-content">
+        <div class="filters">
+          <app-category-filter
+            (selectCategoryId)="categoryClicked($event)"
+            *ngIf="archiveFilters"
+            [filters]="archiveFilters"
+            [selectedCategoryId]="selectedCategoryId.getValue()"
+            class="desktop"
+          ></app-category-filter>
+          <div
+            (click)="openFiltersDialog()"
+            class="mobile"
+          >
+            <span
+              icon="icon-hamburger-menu"
+              size="32"
+              appUiIcon
+            ></span>
+            <div class="title">فیلتر ها</div>
+          </div>
+        </div>
+        <div class="blog-posts">
+          <ng-container *ngIf="isLoading; else posts">
+            <app-ui-spinner size="52"></app-ui-spinner>
+          </ng-container>
+          <ng-template #posts>
+            <div
+              *ngIf="blogArchiveData && blogArchiveData.items"
+              class="posts"
+            >
+              <app-ui-post-card
+                *ngFor="let post of blogArchiveData.items"
+                [post]="post"
+                class="post"
+              ></app-ui-post-card>
+            </div>
+            <app-blog-archive-pagination
+              *ngIf="totalPages && currentPage"
+              [currentIndex]="currentPage"
+              [totalPages]="totalPages"
+            ></app-blog-archive-pagination>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-base-layout>

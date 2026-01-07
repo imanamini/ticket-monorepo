@@ -1,0 +1,55 @@
+@import '@digipay/base-style/swatch';
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr 2fr;
+  align-items: center;
+
+  .logo-container {
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+    min-height: 3rem;
+    border: 1px solid $swatch_steel_100;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .pend-icon {
+      position: absolute;
+      top: -0.5rem;
+      left: -0.333rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  .title {
+    color: #45474a;
+    font-size: 1rem;
+    font-weight: 450;
+  }
+
+  .amount-date {
+    text-align: left;
+    .transaction-amount {
+      color: #45474a;
+      font-size: 1rem;
+      font-weight: 370;
+    }
+
+    .transaction-date {
+      font-size: 0.833rem;
+      font-weight: 370;
+      color: #b4b7bd;
+      margin-top: 0.333rem;
+    }
+  }
+}

@@ -1,0 +1,54 @@
+@import "globals";
+
+.blog-archive-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+
+  .square-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid $swatch_steel_200;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .previous-btn,
+  .next-btn {
+    &.not-active {
+      border-radius: 4px;
+      border: 1px solid $swatch_steel_200;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+  }
+
+  .indices {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+
+    .before-dots,
+    .after-dots {
+      display: none;
+
+      &.show {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .index {
+      &.selected {
+        border: 1px solid $swatch_blue_500;
+        background-color: $swatch_blue_200;
+      }
+    }
+  }
+}

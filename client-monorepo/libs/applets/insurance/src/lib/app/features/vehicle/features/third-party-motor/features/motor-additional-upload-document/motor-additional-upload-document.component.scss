@@ -1,0 +1,26 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.upload-document {
+  height: 100%;
+  @include flex-column;
+
+  .documents {
+    flex: 1;
+    overflow: auto;
+  }
+
+  .loading {
+    @include column-center;
+    height: 100%;
+  }
+
+  .upload-item-container {
+    flex: 1;
+    max-height: 80%;
+  }
+
+  #uploaded-item-container {
+    max-height: 90%;
+    overflow-y: auto;
+  }
+}

@@ -1,0 +1,34 @@
+<ng-container>
+  @switch (emptyMode()) {
+    @case ('empty') {
+      <div class="d-flex flex-column justify-content-center align-items-center h-100">
+        <ngx-status-result
+          [title]="'پیامی دریافت نکرده‌اید'"
+          [buttons]="buttons()"
+          [description]="'درحال حاضر صندوق پیام شما خالی است. به امید پیام‌های خوب برای شما...'"
+          [type]="'Illustration'"
+          (clicked)="goBack()"
+        >
+          <ngx-illustration-icon
+            status-image
+            [icon]="'message'"
+            [mode]="'neutral'"
+          />
+        </ngx-status-result>
+      </div>
+    }
+    @case ('no-filter-result') {
+      <ngx-status-result
+        [title]="'پیامی دریافت نکرده‌اید'"
+        [description]="'در فیلتر انتخابی پیامی یافت نشد'"
+        [type]="'Illustration'"
+      >
+        <ngx-illustration-icon
+          status-image
+          [icon]="'message'"
+          [mode]="'neutral'"
+        />
+      </ngx-status-result>
+    }
+  }
+</ng-container>

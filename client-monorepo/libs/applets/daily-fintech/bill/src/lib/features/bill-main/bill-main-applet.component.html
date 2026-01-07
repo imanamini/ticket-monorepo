@@ -1,0 +1,51 @@
+<common-ui-components-page-layout
+  [stickyHeader]="false"
+  [showBorder]="false"
+  title="پرداخت قبض"
+>
+  @if (isLoading()) {
+    <bill-applet-main-skeleton />
+  } @else {
+    <div class="page-content py-big px-medium">
+      <daily-fintech-touch-point></daily-fintech-touch-point>
+      <span class="header-content b-2 px-plus">نوع قبض را برای استعلام یا پرداخت بدهی انتخاب کنید.</span>
+      <div class="icon-container">
+        @for (item of billTypes(); track $index) {
+          @if (item.type > 0 && item.type !== 10) {
+            <common-ui-components-framed-icon
+              (click)="billItemClicked(item)"
+              class="framed-icon mt-plus"
+              [size]="'MEDIUM'"
+              [showText]="true"
+              [enableMixedBlendMode]="true"
+              [type]="imageType()"
+              [text]="item.title"
+              [showBadge]="false"
+              [icon]="item.imageId"
+              [trackerIdPrefix]="item.imageId"
+            ></common-ui-components-framed-icon>
+          }
+        }
+      </div>
+
+      <ngx-button
+        class="button-text d-flex mt-plus justify-content-left"
+        (clickHandler)="billItemClicked(otherBills())"
+        [mode]="'section'"
+        [size]="'medium'"
+        [style]="'link'"
+        [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+      >
+        {{ otherBills()?.title }}
+      </ngx-button>
+
+      <daily-fintech-recommendation-list
+        [hasSpinner]="[]"
+        (handleClick)="recommendationItemClicked($event)"
+        [itemType]="RECOMMENDATION_TYPES.BILL"
+        title="قبض‌های من"
+      >
+      </daily-fintech-recommendation-list>
+    </div>
+  }
+</common-ui-components-page-layout>

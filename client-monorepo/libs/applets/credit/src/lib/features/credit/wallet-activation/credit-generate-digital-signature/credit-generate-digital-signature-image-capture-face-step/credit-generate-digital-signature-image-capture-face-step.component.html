@@ -1,0 +1,29 @@
+@switch (state()) {
+  @case ('PERMISSION') {
+    <app-credit-generate-digital-signature-permission
+      (back)="backToStepper()"
+      (changeState)="changeState($event)"
+      class="flex-full-height"
+    />
+  }
+  @case ('FAILED') {
+    <app-credit-generate-digital-signature-permission-failed
+      (back)="backToStepper()"
+      class="flex-full-height"
+    />
+  }
+  @case ('CAPTURE') {
+    <app-credit-generate-digital-signature-capture-face
+      [creditId]="creditId()!"
+      [fundProviderCode]="fundProviderCode()!"
+      [type]="type()"
+      (back)="backToStepper()"
+    />
+  }
+  @case ('UPDATE_IOS') {
+    <app-credit-generate-digital-signature-update-ios
+      (next)="changeState('PERMISSION')"
+      (back)="backToStepper()"
+    />
+  }
+}

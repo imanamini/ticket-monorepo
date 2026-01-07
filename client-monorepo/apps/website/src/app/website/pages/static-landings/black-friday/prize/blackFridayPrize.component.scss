@@ -1,0 +1,33 @@
+@import "@digipay/base-style/styleguide";
+
+.black-friday-prize {
+
+  .title {
+    color: #FFF;
+    text-align: center;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px; /* 123.077% */
+  }
+
+  .desktop-image {
+    margin-top: 0;
+
+    img {
+      width: 100%;
+
+    }
+  }
+}
+
+
+@media (max-width: 1280px) {
+  .black-friday-prize {
+    .mobile-image {
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

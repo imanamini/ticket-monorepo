@@ -1,0 +1,16 @@
+<section class="about-intro mb-massive">
+  <div class="container">
+    @if (templateData) {
+      <div class="intro d-flex flex-column justify-content-center align-items-center gap-minus">
+        <div class="title"> {{ templateData.introSection?.title }}</div>
+        <div class="subtitle"> {{ templateData.introSection?.subtitle }}</div>
+        <div class="description st-4"> {{ templateData.introSection?.description }}
+        </div>
+      </div>
+      <div class="image mt-medium d-flex justify-content-center align-content-center">
+        <img src="assets/images/about/gooshi.webp" class="desktop" alt="">
+        <img src="assets/images/about/PhoneMobileVer2.webp" class="mobile" alt="">
+      </div>
+    }
+  </div>
+</section>

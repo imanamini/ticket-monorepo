@@ -1,0 +1,58 @@
+<div class="credit-wallet-card-wrapper">
+  <div
+    [ngClass]="mode"
+    [ngStyle]="{ 'background-color': color }"
+    class="credit-wallet-card"
+  >
+    <div class="credit-card-header">
+      <div class="credit-card-header--logo">
+        <ui-api-image
+          *ngIf="logo"
+          [imageId]="logo"
+          height="100%"
+          width="100%"
+        ></ui-api-image>
+      </div>
+      <div class="credit-card-header--title">{{ title }}</div>
+    </div>
+    <div
+      class="credit-card-body"
+      dir="ltr"
+    >
+      <div class="credit-wallet-card-price">
+        <ng-content></ng-content>
+      </div>
+    </div>
+    <div class="credit-card-footer">
+      <div class="right-label">
+        <span
+          [ngClass]="{ 'credit-wallet-card--badge': !!rightLabelBg }"
+          [style.background]="rightLabelBg ? rightLabelBg : 'transparent'"
+        >
+          <ui-api-image
+            *ngIf="rightLabelIcon"
+            [imageId]="rightLabelIcon"
+            height="16px"
+            width="16px"
+          ></ui-api-image>
+          {{ rightLabel }}
+        </span>
+      </div>
+      <div class="left-label">
+        <span
+          *ngIf="leftLabel"
+          [ngClass]="{ 'credit-wallet-card--badge': !!leftLabelBg }"
+          [style.background]="leftLabelBg ? leftLabelBg : 'transparent'"
+        >
+          <ui-api-image
+            *ngIf="leftLabelIcon"
+            [imageId]="leftLabelIcon"
+            height="16px"
+            width="16px"
+          ></ui-api-image>
+          {{ leftLabel }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

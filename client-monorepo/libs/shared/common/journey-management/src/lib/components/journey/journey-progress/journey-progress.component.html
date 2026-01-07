@@ -1,0 +1,14 @@
+@if (mode() === 'full') {
+  <div class="journey-progress w-100 d-flex align-items-center justify-content-space-between gap-minus">
+    <div class="flex-grow">
+      <common-ui-components-progressbar [percent]="config().data.stepper.percentage"></common-ui-components-progressbar>
+    </div>
+    <div class="l-1 text-onback-medium">
+      {{ config().data.stepper?.title }}
+    </div>
+  </div>
+} @else {
+  <div class="l-1 text-onback-low">
+    {{ config().data.stepper?.title }}
+  </div>
+}

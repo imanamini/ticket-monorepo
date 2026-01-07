@@ -1,0 +1,35 @@
+<div *ngIf="pageLinks?.length > 0"
+     class="pagination-items-wrapper">
+  <!-- Prev Btn -->
+  <div (click)="changePageToPrev($event)"
+       class="pagination-item btn">
+    <img *ngIf="isFirstPage()"
+         alt="prev"
+         src="insurance-assets/icons/arrow-right-gray.svg">
+    <img *ngIf="!isFirstPage()"
+         alt="prev"
+         src="insurance-assets/icons/arrow-right.svg">
+  </div>
+  <!-- End Prev Btn -->
+
+  <!-- Page Numbers -->
+  <div (click)="onPageLinkClick($event, page-1)"
+       *ngFor="let page of pageLinks"
+       [ngClass]="{'active': page === currentPage()}"
+       class="pagination-item">
+    {{ page }}
+  </div>
+  <!-- End Page Numbers -->
+
+  <!-- Next Btn -->
+  <div (click)="changePageToNext($event)"
+       class="pagination-item btn">
+    <img *ngIf="isLastPage()"
+         alt="next"
+         src="assets/icons/arrow-left-gray.svg">
+    <img *ngIf="!isLastPage()"
+         alt="next"
+         src="assets/icons/arrow-left.svg">
+  </div>
+  <!-- End Next Btn -->
+</div>

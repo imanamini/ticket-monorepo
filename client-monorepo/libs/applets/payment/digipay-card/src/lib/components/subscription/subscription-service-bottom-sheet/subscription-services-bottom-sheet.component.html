@@ -1,0 +1,20 @@
+<div class="container d-flex flex-column">
+  <header [class]="'d-flex justify-content-end ' + subscriptionClassMapper[plan()?.type] | lowercase">
+    <div class="icon"></div>
+  </header>
+  <div class="d-flex flex-column detail py-pony">
+    <div class="title st-3 text-align-center">اشتراک {{ plan()?.title }}</div>
+    <div class="px-medium py-small">
+      @if (plan()) {
+        <digipay-card-applet-plan-services [plan]="plan()!" />
+      }
+    </div>
+    <ngx-button
+      [fullWidth]="true"
+      [style]="'fill'"
+      (clickHandler)="onClose()"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

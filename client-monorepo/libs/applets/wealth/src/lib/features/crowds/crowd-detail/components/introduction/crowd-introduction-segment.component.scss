@@ -1,0 +1,20 @@
+.description {
+  height: 120px;
+  overflow: hidden;
+
+  .load-more-container {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(0deg, rgb(255, 255, 255) 10%, rgba(255, 255, 255, 0.6) 60%, rgba(255, 255, 255, 0) 100%);
+    min-height: 50px;
+  }
+}
+
+.overflow-visible {
+  height: calc(100% + 5rem);
+  overflow: visible;
+
+  .load-more-container {
+    position: relative;
+  }
+}

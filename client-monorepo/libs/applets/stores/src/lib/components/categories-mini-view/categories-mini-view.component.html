@@ -1,0 +1,91 @@
+@if (mode() === 'old') {
+  <div class="px-plus">
+    <common-ui-components-title-summary
+      [title]="'دسته‌بندی‌ها'"
+      [buttonIcon]="'Arrow-2-Left'"
+      [buttonTitle]="'همه'"
+      [buttonTrackerId]="'show-all'"
+      [buttonIconReversed]="true"
+      [navigationLink]="'/stores/all-categories'"
+      [wrapperClasses]="'mb-small'"
+    ></common-ui-components-title-summary>
+  </div>
+  <common-ui-components-horizontal-scroll [classes]="'pr-plus'">
+    <div class="categories gap-small">
+      @if (categories()) {
+        @for (category of categories(); track $index) {
+          <div
+            class="category radius-medium px-small gap-small cursor-pointer {{ backgroundClass() }}"
+            (click)="gotoFiltersBasedOnCategory(category.title)"
+          >
+            <common-ui-components-category-image [image]="category.image"></common-ui-components-category-image>
+            <span class="c-2 text-onback-high">{{ storeCategoryTitleMapper[category.title] }}</span>
+          </div>
+        }
+      } @else {
+        @for (skeleton of rangeCreator(4); track $index) {
+          <div class="category radius-medium px-small gap-small surface-elevated">
+            <lib-ngx-skeleton-loading
+              [width]="'48px'"
+              [height]="'48px'"
+              [borderRadius]="'50%'"
+            ></lib-ngx-skeleton-loading>
+            <lib-ngx-skeleton-loading
+              [width]="'100px'"
+              [height]="'16px'"
+            ></lib-ngx-skeleton-loading>
+          </div>
+        }
+      }
+    </div>
+  </common-ui-components-horizontal-scroll>
+} @else {
+  <common-ui-components-horizontal-scroll [classes]="'pr-plus'">
+    <div class="d-flex gap-small">
+      @if (categories()) {
+        @for (category of categories(); track $index) {
+          <div class="d-flex flex-column gap-small">
+            <div
+              class="category-box radius-medium p-pony cursor-pointer {{ backgroundClass() }}"
+              (click)="gotoFiltersBasedOnCategory(category.title)"
+            >
+              @if (auctionMode && storeCategoryDiscountMapper[category.title]) {
+                <ngx-badge
+                  size="tiny"
+                  status="error"
+                  mode="bold"
+                  type="text"
+                >
+                  {{ storeCategoryDiscountMapper[category.title] }}%
+                </ngx-badge>
+              }
+              <common-ui-components-category-image
+                [size]="'84'"
+                [image]="category.image"
+              ></common-ui-components-category-image>
+            </div>
+            <span class="l-2 text-onback-high text-align-center w-100">{{ storeCategoryTitleMapper[category.title] }}</span>
+          </div>
+        }
+      } @else {
+        @for (skeleton of rangeCreator(6); track $index) {
+          <div class="d-flex flex-column gap-small">
+            <div class="radius-medium p-pony surface-elevated">
+              <lib-ngx-skeleton-loading
+                [width]="'84px'"
+                [height]="'84px'"
+                [borderRadius]="'50%'"
+              ></lib-ngx-skeleton-loading>
+            </div>
+            <div class="w-100 d-flex justify-content-center">
+              <lib-ngx-skeleton-loading
+                [width]="'84px'"
+                [height]="'16px'"
+              ></lib-ngx-skeleton-loading>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  </common-ui-components-horizontal-scroll>
+}

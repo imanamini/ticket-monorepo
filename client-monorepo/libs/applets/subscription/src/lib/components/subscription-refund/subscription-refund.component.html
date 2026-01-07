@@ -1,0 +1,58 @@
+<subscription-applet-ui-dialog-btm-sheet
+  title="لغو اشتراک"
+  [titleRight]="true"
+  [closeable]="true"
+>
+  <ng-container body>
+    <div class="d-flex flex-column align-items-center p-big">
+      <div class="image"></div>
+      <p class="st-8 text-onback-high mt-big mb-small">{{ content().title }}</p>
+      <p class="c-3 text-onback-low mb-medium text-align-center">
+        {{ content().description }}
+      </p>
+      <div class="d-flex w-100 flex-column border-100 border-color-light px-minus py-medium radius-medium">
+        @if (plan()?.refundDetail?.isRefundable) {
+          <div class="amount-row">
+            <span class="row-title">مبلغ قابل بازگشت:</span>
+            <span class="row-value">{{ plan()?.refundDetail?.amount | thousands }}</span>
+          </div>
+        } @else if (plan()?.refundDetail?.isClosable) {
+          @for (service of services(); track $index) {
+            <div class="d-flex pb-minus c-2 text-onback-medium justify-content-space-between align-items-center">
+              <div class="d-flex gap-small">
+                <div class="d-flex justify-content-center align-items-center p-low">
+                  <img [src]="service.icon" />
+                </div>
+                <div class="d-flex justify-content-start align-items-center">
+                  {{ service.title }}
+                </div>
+              </div>
+              <div>
+                <!--                {{ service.amount | thousands }}-->
+              </div>
+            </div>
+          }
+        }
+        @if (content()?.footnote) {
+          <div class="divider border-b-100 border-color-light"></div>
+          <p class="description">
+            {{ content().footnote }}
+          </p>
+        }
+      </div>
+    </div>
+  </ng-container>
+  <ng-container footer>
+    <ngx-button
+      [style]="'tinted-on-elevated'"
+      [mode]="'form'"
+      [classNames]="['surface-error-tint']"
+      [fullWidth]="true"
+      [disabled]="isLoading()"
+      (clickHandler)="confirmRefund()"
+      [isLoading]="isLoading()"
+    >
+      <span class="text-onback-error">لغو اشتراک</span>
+    </ngx-button>
+  </ng-container>
+</subscription-applet-ui-dialog-btm-sheet>

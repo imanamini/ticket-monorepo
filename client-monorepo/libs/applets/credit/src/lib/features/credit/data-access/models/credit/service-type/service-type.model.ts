@@ -1,0 +1,11 @@
+export enum SERVICE_TYPE {
+  BNPL,
+  CREDIT,
+  INSTALLMENT_SALE,
+}
+
+export const SERVICE_TYPE_TRANSLATION = {
+  [SERVICE_TYPE.BNPL]: 'اعتبار',
+  [SERVICE_TYPE.CREDIT]: 'وام',
+  [SERVICE_TYPE.INSTALLMENT_SALE]: 'چک اقساط',
+};

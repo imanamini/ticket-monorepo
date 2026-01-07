@@ -1,0 +1,27 @@
+@if (isOpen()) {
+  <div class="d-flex flex-column gap-small pt-minus filters-container">
+    @for (category of categories(); track $index) {
+      <stores-applet-stores-category
+        [size]="'MEDIUM'"
+        [category]="category"
+        [isChecked]="isSelected(category.title)"
+        (checkChanged)="handleCheckChanged($event)"
+      ></stores-applet-stores-category>
+    }
+  </div>
+} @else {
+  @if (selectedFilter()?.id) {
+    <div class="category-chips d-flex flex-row gap-small">
+      <ngx-chip
+        [id]="String(selectedFilter().id)"
+        [size]="'MEDIUM'"
+        [pressed]="true"
+        [disableClick]="true"
+        [disableAnimations]="true"
+        [label]="selectedFilter().label"
+        [trailingIcon]="'close'"
+        (trailingIconClicked)="handleTrailingIconClicked(selectedFilter())"
+      ></ngx-chip>
+    </div>
+  }
+}

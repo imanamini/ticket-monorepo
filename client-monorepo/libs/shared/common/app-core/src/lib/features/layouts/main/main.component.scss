@@ -1,0 +1,80 @@
+@import "base-style/styleguide";
+
+:host {
+  @include flex-full-center;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+  }
+}
+
+.main {
+  &-layout {
+    margin: auto auto;
+    display: flex;
+    flex-direction: column;
+    padding: env(safe-area-inset-top) env(safe-area-inset-top) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    width: 100%;
+    height: var(--full-height);
+    --container-width-large: 552px;
+    --container-height-large: 100vh;
+    max-width: min(map-get($container-width, 'large'), var(--full-width));
+    max-height: min(map-get($container-height, 'large'), var(--full-height));
+    overflow: auto;
+    position: relative;
+    @include medium_screen {
+      max-width: min(map-get($container-width, 'medium'), var(--full-width));
+      max-height: min(map-get($container-height, 'medium'), var(--full-height));
+      border: none !important;
+    }
+    @include small_screen {
+      max-width: min(map-get($container-width, 'small'), var(--full-width));
+      max-height: min(map-get($container-height, 'small'), var(--full-height));
+    }
+
+    &-header {
+      flex: 0 0 auto;
+    }
+
+    &-body {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: auto;
+      flex: 1 1 auto;
+
+      &-container {
+        flex-grow: 1;
+        width: 100%;
+
+        .support-messenger-button-mobile {
+          position: fixed;
+          left: 0;
+          bottom: 100px;
+          width: 40px;
+          height: 40px;
+          border: none;
+          background-color: #b4c7ff;
+          background-image: url("apps/dpx/src/assets/icon-general-support.svg");
+          background-repeat: no-repeat;
+          background-position: center center;
+          border-top-right-radius: 12px;
+          border-bottom-right-radius: 12px;
+          cursor: pointer;
+          z-index: 9999999;
+        }
+      }
+    }
+
+    &-navigation {
+      flex: 0 0 auto;
+    }
+  }
+}

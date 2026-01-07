@@ -1,0 +1,18 @@
+:host::ng-deep{
+    .otp-input-container {
+        width: 100% !important;
+        min-width: 200px;
+
+    }
+
+    .otp-input-container > input:focus, .otp-input-container > input.has-value {
+        background-color: var(--surface-brand-tint);
+        border-color: var(--border-brand)!important;
+    }
+
+    .otp-container{
+        width: 100%;
+        max-width: 250px;
+    }
+
+}

@@ -1,0 +1,31 @@
+.health-check-wrapper {
+  height: 100vh;
+}
+
+.info-container {
+  flex: 1;
+  overflow: {
+    x: hidden;
+    y: auto;
+  };
+}
+
+.header-container {
+  height: 32px;
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.header {
+  height: 56px;
+}
+
+::ng-deep {
+  .file-wrapper {
+    .dg-file-uploader-wrapper {
+      width: 100% !important;
+    }
+  }
+}

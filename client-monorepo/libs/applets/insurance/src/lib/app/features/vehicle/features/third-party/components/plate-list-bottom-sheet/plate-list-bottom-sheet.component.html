@@ -1,0 +1,12 @@
+<div class="plate-list-bottom-sheet">
+  <div class="bottom-sheet-title surface-elevated">
+    <p>پلاک مورد نظر خود را انتخاب کنید</p>
+    <ngx-divider class="bottom-sheet-divider" [color]="BorderColorsEnum.Light" orientation="horizontal"></ngx-divider>
+  </div>
+  <div class="plate-list-bottom-sheet-plates pt-massive">
+    @defer {
+      <my-plates [simple]="true"
+        (selectPlate)="handleSelectPlate($event)"></my-plates>
+    }
+  </div>
+</div>

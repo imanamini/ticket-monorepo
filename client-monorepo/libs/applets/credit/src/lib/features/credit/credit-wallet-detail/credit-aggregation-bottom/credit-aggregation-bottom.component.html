@@ -1,0 +1,22 @@
+<div [class]="['aggregation', surpassPadding() ? 'surpass' : '']">
+  <div>
+    <div class="aggregation-title">{{ amountTitle() }}</div>
+    <div class="aggregation-price">
+      {{ aggregationTotalAmount() | IRR: 'hideRial' }}
+      <span class="aggregation-currency is-currency">ریال</span>
+    </div>
+  </div>
+  <div class="aggregation-button">
+    <ngx-button
+      (clickHandler)="onActionClick()"
+      (mouseenter)="showAggregationTooltip.set(true)"
+      (mouseleave)="showAggregationTooltip.set(false)"
+      [disabled]="aggregationTotalAmount()! <= 0"
+    >
+      {{ actionTitle() }}
+    </ngx-button>
+    @if (tooltipEnabled()) {
+      <div [class]="['aggregation-tooltip', showAggregationTooltip() ? 'show' : 'hide']">می‌توانید مجموع بدهی‌ها را یک جا تسویه کنید</div>
+    }
+  </div>
+</div>

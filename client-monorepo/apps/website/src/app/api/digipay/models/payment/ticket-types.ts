@@ -1,0 +1,12 @@
+export enum TicketTypes {
+  TOP_UPS = 8,
+  INTERNET_PACKAGE = 14,
+  BILL = 15,
+  TAXI = 16,
+  DONATION = 17,
+  TOLL = 18,
+  TRAFFIC_FINE = 19,
+  TRAFFIC_FINE_INQUIRY = 20,
+  CONGESTION = 21,
+  DIGITAL_SIGNATURE = 22,
+}

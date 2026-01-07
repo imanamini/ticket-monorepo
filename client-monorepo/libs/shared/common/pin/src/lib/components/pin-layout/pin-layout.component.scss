@@ -1,0 +1,31 @@
+@use 'sass:map';
+@import '@digipay/base-style/styleguide';
+
+.pin-layout-wrapper {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all 0.7s ease-in-out;
+  justify-content: center;
+
+  .pin-layout-container {
+    position: absolute;
+    max-width: map.get($container-width, 'large');
+    height: 100%;
+    width: 100%;
+    top: 0;
+    overflow: hidden;
+  }
+
+  &.in-page {
+    position: static;
+    background: transparent !important;
+
+    .pin-layout-container {
+      position: static;
+    }
+  }
+}

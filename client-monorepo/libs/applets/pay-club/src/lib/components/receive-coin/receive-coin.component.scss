@@ -1,0 +1,29 @@
+.background-coin {
+  width: 161px;
+  height: 46px;
+  background: url('pics/coin-background.svg') no-repeat center;
+}
+
+.icon-coin {
+  width: 32px;
+  height: 32px;
+  background: url('apps/dpx/src/assets/pay-club/coin.svg') no-repeat center;
+  margin-left: 4px;
+}
+
+.coin-value {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.description {
+  max-width: 168px;
+}
+
+.background-color {
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  background: rgb(255 250 235 / 40%);
+}

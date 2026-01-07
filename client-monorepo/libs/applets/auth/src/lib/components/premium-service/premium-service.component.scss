@@ -1,0 +1,12 @@
+
+.box {
+  border: 1px solid transparent;
+}
+.box-unselected {
+  border-bottom: 1px solid var(--border-air);
+}
+
+.box-selected {
+  border: 1px solid var(--border-brand);
+  border-radius: 16px;
+}

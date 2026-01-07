@@ -1,0 +1,1 @@
+export type OriginType = 'wealth' | 'dgp' | 'localhost' | 'express';

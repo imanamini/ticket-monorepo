@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center mt-plus">
+  @defer (when imagesLoaded()) {
+    @if (banners().length > 1) {
+      <ngx-dp-carousel
+        [mode]="'CARD'"
+        [visibleItemCount]="1"
+        [index]="0"
+        [centerMode]="true"
+        [showNavigation]="true"
+        [showButtons]="false"
+        [isFixedGap]="true"
+        [fixedGap]="20"
+        [changeStepThresholdPercentage]="20"
+        [swipeThreshold]="100"
+        [disableNavigationDots]="true"
+        [disableScaling]="true"
+        [enableAutoPlay]="true"
+        [autoPlayDurationMillis]="5000"
+      >
+        @for (banner of banners(); track $index) {
+          <ng-template ngxDpCarouselSlide>
+            <div class="d-flex justify-content-center align-items-center w-100">
+              <img
+                (click)="openInvestments(banner)"
+                [src]="banner.iconPath"
+                width="100%"
+                [id]="'BANNER_' + banner?.title"
+                alt="banner"
+              />
+            </div>
+          </ng-template>
+        }
+        >
+      </ngx-dp-carousel>
+    } @else {
+      <img
+        (click)="openInvestments(banners()[0])"
+        [src]="banners()[0].iconPath"
+        width="100%"
+        [id]="'BANNER_' + banners()[0].title"
+        alt="banner"
+      />
+    }
+  } @placeholder {
+    <lib-ngx-skeleton-loading
+      class="w-100 skeleton mb-medium"
+      [height]="'160px'"
+      [width]="'100%'"
+      [borderRadius]="'32px'"
+    ></lib-ngx-skeleton-loading>
+  }
+</div>

@@ -1,0 +1,201 @@
+<div *ngIf="post">
+  <div class="non-mobile">
+    <div class="image">
+      <img
+        *ngIf="post.image && post.image.url && post.image.url.search('.mp4') === -1; else noImage"
+        [ngSrc]="post.image.url"
+        height="257"
+        width="384"
+      />
+      <ng-template #noImage>
+        <img
+          alt=""
+          height="257"
+          ngSrc="/assets/blog/default-post-cover.svg"
+          width="384"
+        />
+      </ng-template>
+    </div>
+    <div class="content">
+      <div class="details">
+        <div class="stats">
+          <div
+            *ngIf="post.commentCount"
+            [ngClass]="post.updatedAt ? 'margin-left' : ''"
+            class="comment"
+          >
+            <img
+              alt=""
+              class="icon"
+              height="24"
+              ngSrc="/assets/blog/eye.svg"
+              width="24"
+            />
+            {{ post.commentCount }}
+          </div>
+          <div
+            *ngIf="post.viewCount"
+            [ngClass]="post.updatedAt ? 'margin-left' : ''"
+            class="view"
+          >
+            <img
+              alt=""
+              class="icon"
+              height="24"
+              ngSrc="/assets/blog/eye.svg"
+              width="24"
+            />
+            {{ post.viewCount }}
+          </div>
+          <div
+            *ngIf="post.updatedAt"
+            class="date"
+          >
+            {{ post.updatedAt.formatted }}
+            <img
+              alt=""
+              class="icon"
+              height="24"
+              ngSrc="/assets/blog/clock.svg"
+              width="24"
+            />
+          </div>
+        </div>
+        <div
+          (click)="goToCategory(post.category)"
+          *ngIf="post.category && post.category.title"
+          class="category"
+        >
+          {{ post.category.title }}
+        </div>
+      </div>
+      <div class="h-divider"></div>
+      <span
+        *ngIf="post.category && post.category.slug && title"
+        class="title"
+      >
+        <a
+          [attr.href]="'/mag/' + post.category.slug + '/' + post.slug + '/'"
+          target="_blank"
+          >{{ title }}</a
+        >
+      </span>
+
+      <div class="description">
+        {{ description }}
+      </div>
+
+      <div
+        (click)="goToBlogPost(post)"
+        class="read-more"
+      >
+        مطالعه بیشتر
+        <ngx-icon
+          [name]="'arrow-2-left'"
+          class="text-onback-brand"
+        ></ngx-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile">
+    <div class="details">
+      <div class="stats">
+        <div
+          *ngIf="post.commentCount"
+          [ngClass]="post.updatedAt ? 'margin-left' : ''"
+          class="comment"
+        >
+          <img
+            alt=""
+            class="icon"
+            height="24"
+            ngSrc="/assets/blog/eye.svg"
+            width="24"
+          />
+          {{ post.commentCount }}
+        </div>
+        <div
+          *ngIf="post.viewCount"
+          [ngClass]="{ 'margin-left': post.updatedAt }"
+          class="view"
+        >
+          <img
+            alt=""
+            class="icon"
+            height="24"
+            ngSrc="/assets/blog/eye.svg"
+            width="24"
+          />
+          {{ post.viewCount }}
+        </div>
+        <div
+          *ngIf="post.updatedAt"
+          class="date"
+        >
+          {{ post.updatedAt.formatted }}
+          <img
+            alt=""
+            class="icon"
+            height="24"
+            ngSrc="/assets/blog/clock.svg"
+            width="24"
+          />
+        </div>
+      </div>
+      <div
+        (click)="goToCategory(post.category)"
+        *ngIf="post && post.category && title"
+        class="category"
+      >
+        {{ post.category.title }}
+      </div>
+    </div>
+    <div class="h-divider"></div>
+
+    <div class="content">
+      <div class="image">
+        <img
+          *ngIf="post.image && post.image.url && post.image.url.search('.mp4') === -1; else noImage"
+          [ngSrc]="post.image.url"
+          height="257"
+          width="384"
+        />
+        <ng-template #noImage>
+          <img
+            height="257"
+            src="/assets/blog/default-post-cover.svg"
+            width="384"
+          />
+        </ng-template>
+      </div>
+      <div class="info">
+        <span
+          *ngIf="post && post.category && post.category.slug && title"
+          class="title"
+        >
+          <a
+            [attr.href]="'/mag/' + post.category.slug + '/' + post.slug + '/'"
+            target="_blank"
+            >{{ title }}</a
+          >
+        </span>
+
+        <div class="description">
+          {{ description }}
+        </div>
+
+        <div
+          (click)="goToBlogPost(post)"
+          class="read-more"
+        >
+          مطالعه
+          <ngx-icon
+            [name]="'arrow-2-left'"
+            class="text-onback-brand"
+          ></ngx-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

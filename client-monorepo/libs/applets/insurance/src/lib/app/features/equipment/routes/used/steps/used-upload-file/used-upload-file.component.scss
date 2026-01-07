@@ -1,0 +1,39 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.upload-file-wrapper {
+  .title {
+    font-weight: 700;
+    color: #2c3544;
+    padding-top: 8px;
+  }
+
+  .tab-container {
+    @include flex-column;
+    padding-top: 16px;
+
+    .card-container {
+      padding: 16px 0;
+    }
+
+    .tab-title {
+      font-weight: 700;
+      color: #2c3544;
+      padding: 8px 0;
+    }
+  }
+
+  .back-phone {
+    padding: 16px 0;
+  }
+}
+
+.used-device-layout .used-device-content {
+  margin: 20px 0 90px 0;
+  padding: 0 24px;
+  width: 100%;
+  overflow: scroll;
+  height: calc(100% - 160px);
+}
+
+
+

@@ -1,0 +1,30 @@
+.ex-insurer-motor-info {
+  .d-flex {
+    display: flex;
+  }
+
+  .flex-column {
+    flex-direction: column;
+  }
+
+  .gap-medium {
+    gap: 1rem;
+  }
+
+  .pb-medium {
+    padding-bottom: 1rem;
+  }
+
+  .st-8 {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .text-onback-high {
+    color: var(--text-onback-high, #1a1a1a);
+  }
+
+  .discount-detail, .claim-detail {
+    display: block;
+  }
+}

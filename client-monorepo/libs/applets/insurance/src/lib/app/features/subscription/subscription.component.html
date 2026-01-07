@@ -1,0 +1,36 @@
+<div class="subscription w-100 h-100 d-flex flex-column align-items-center justify-content-start">
+  @if (isLoading()) {
+    <div class="w-100 h-100 d-flex align-items-center justify-content-center">
+      <ngx-spinner size="xl"></ngx-spinner>
+    </div>
+  } @else {
+    <div class="w-100 h-100">
+      @if (showError()) {
+        <div
+          class="error-container d-flex flex-column align-items-center justify-content-center gap-minus"
+          style="height: 80vh"
+        >
+          <div class="error-content">
+            <img
+              class="illustration"
+              src="insurance-assets/images/error-transfer-detail.png"
+            />
+            <p class="error-title">مشکلی رخ داده‌است!</p>
+            <p class="error-description">لطفا با پشتیبانی برای پیگیری وضعیت تماس بگیرید.</p>
+            <p class="call-center">۰۲۱ - 53924000</p>
+            <div class="button-wrapper">
+              <ui-button
+                (click)="goToBack()"
+                appearance="BLUE-TEXT"
+              >
+                بازگشت به صفحه اصلی
+              </ui-button>
+            </div>
+          </div>
+        </div>
+      } @else {
+        <router-outlet></router-outlet>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,90 @@
+<div class="h-100 pb-plus d-flex flex-column gap-medium surface-elevated">
+  <div class="card-container d-flex flex-column gap-small pb-minus">
+    <ngx-app-bar
+      [title]="'درخواست دیجی‌کارت'"
+      (onRightIconClick)="goBack()"
+      [rightIcon]="'arrow-right'"
+    />
+    <div class="d-flex mt-giant flex-column align-items-center py-small px-plus">
+      <!-- <img
+        class="digi-card"
+        src="assets/digipay-card/digi-card.png"
+      /> -->
+
+      <ng-lottie
+        [options]="{ path: animationPath }"
+        width="260px"
+       (animationCreated)="animationCreated($event)"
+
+      ></ng-lottie>
+
+      <!-- <ngx-card
+        [cardMode]="'bank'"
+        [cardSize]="'default'"
+        [cardType]="'digipayCard'"
+        [width]="'260px'"
+        [leftDetail]="digipayCardLeft"
+        [rightDetail]="digipayCardRight"
+      ></ngx-card> -->
+
+      <ng-template #digipayCardLeft>
+        <img
+          alt="logo"
+          src="./assets/digipay-card/dpcard-sign.svg"
+        />
+      </ng-template>
+      <ng-template #digipayCardRight>
+        <img
+          alt="logo"
+          src="./assets/digipay-card/digi-card-bullet.svg"
+        />
+      </ng-template>
+    </div>
+  </div>
+  <div class="px-plus flex-grow d-flex mt-auto justify-content-end flex-column gap-medium">
+    <div class="d-flex gap-medium flex-column justify-content-space-between surface-back radius-big p-plus align-items-center">
+      @if (currentPlan()) {
+        <div class="d-flex justify-content-space-between align-items-center w-100">
+          <span class="bt-2 text-[#2C3544]">اشتراک فعال</span>
+          <div
+            [class]="
+              'd-flex align-items-center active-plan radius-big p-small diamond-' + subscriptionClassMapper[currentPlan()!.type] | lowercase
+            "
+          >
+            <div [class]="'diamond-icon d-inline-block ml-tiny'"></div>
+            <span class="c-2">{{ currentPlan()?.title }}</span>
+          </div>
+        </div>
+        <div class="d-flex justify-content-space-between align-items-center w-100">
+          <span class="b-3 text-onback-low">هزینه صدور و ارسال</span>
+          <span class="c-3 text-onback-medium">رایگان</span>
+        </div>
+      }
+    </div>
+
+    <ngx-callout
+      [backgroundMode]="'default'"
+      [mode]="'multiple'"
+      [showTitleBlink]="false"
+      [title]="''"
+      [messages]="[
+        'با دریافت دیجی‌کارت، علاوه بر بهره بردن از امکانات کیف‌پول می‌توانید به صورت حضوری از فروشگاه‌های سراسر کشور خرید کنید.',
+        'توصیه می‌شود قبل از ادامه‌ی مراحل، قوانین و مقررات مربوط به دیجی‌کارت را مطالعه فرمایید.'
+      ]"
+    ></ngx-callout>
+    <div>
+      <digipay-card-applet-terms-box (onApproveTerms)="approveTerms($event)" />
+    </div>
+    <div class="footer">
+      <ngx-button
+        [disabled]="!termsAccepted()"
+        [size]="'large'"
+        [style]="'fill'"
+        [fullWidth]="true"
+        (clickHandler)="approvePlan()"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  </div>
+</div>

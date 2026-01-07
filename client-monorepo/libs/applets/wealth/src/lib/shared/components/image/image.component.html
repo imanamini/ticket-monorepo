@@ -1,0 +1,14 @@
+@if (needSkeleton() && isLoading()) {
+  <lib-ngx-skeleton-loading
+    class="image-skeleton"
+    [height]="'100%'"
+    [width]="'100%'"
+  ></lib-ngx-skeleton-loading>
+} @else {
+  <img
+    [src]="svgUrl()"
+    [draggable]="false"
+    [alt]="alt()"
+    [onErrorSrc]="defaultImage()"
+  />
+}

@@ -1,0 +1,21 @@
+@if (!gettingData()) {
+  @if (steps()[activeStep()] === 'EDIT_AMOUNT') {
+    <app-credit-installment-edit-amount
+      (changeAmount)="setAmount($event)"
+      (nextStep)="nextStep()"
+      (prevStep)="prevStep()"
+      [amount]="amount()"
+      [installmentPayConfig]="installmentPayConfig()"
+    ></app-credit-installment-edit-amount>
+  }
+  @if (steps()[activeStep()] === 'PAYMENT_DETAIL') {
+    <app-credit-installment-payment-detail
+      (nextStep)="nextStep()"
+      (prevStep)="prevStep()"
+      [amount]="amount()!"
+      [installmentPayConfig]="installmentPayConfig()"
+      [paying]="paying()"
+    ></app-credit-installment-payment-detail>
+  }
+}
+<credit-page-loading [active]="gettingData()"></credit-page-loading>

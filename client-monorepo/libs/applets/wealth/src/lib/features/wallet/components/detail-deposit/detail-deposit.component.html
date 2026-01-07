@@ -1,0 +1,35 @@
+<div class="w-100 d-flex flex-column">
+  <div class="w-100 d-flex gap-small align-items-center">
+    <img
+      [src]="walletLogo()"
+      [attr.alt]="walletTitle()"
+    />
+    <div
+      class="d-flex flex-column"
+      [ngClass]="{ 'gap-tiny': !!walletDescriptions() }"
+    >
+      <p class="st-8 text-onback-high">{{ walletTitle() }}</p>
+      @if (walletDescriptions()) {
+        <p class="b-3 text-onback-low">{{ walletDescriptions() }}</p>
+      }
+    </div>
+  </div>
+
+  <div class="w-100 d-flex align-items-center justify-content-space-between mt-medium">
+    <p class="c-3 text-onback-medium">موجودی</p>
+
+    <p class="st-8 text-onback-medium">
+      {{ walletBalance() | thousands }}
+      <span class="is-currency"> ریال </span>
+    </p>
+  </div>
+  @if (walletName() === 'WALLET_GOLD' && goldPricePerGram() !== undefined) {
+    <div class="w-100 mt-minus d-flex align-items-center justify-content-space-between">
+      <p class="c-3 text-onback-medium">نرخ لحظه‌ای ۱ گرم طلا ۲۴ عیار</p>
+      <p class="c-3 text-onback-medium">
+        {{ goldPricePerGram() | thousands }}
+        <span class="is-currency"> ریال </span>
+      </p>
+    </div>
+  }
+</div>

@@ -1,0 +1,14 @@
+<div [ngStyle]="{'width':canvasSize + 'px' , 'height':canvasSize + 'px'}"
+     class="canvas-wrap">
+
+  <canvas [ngStyle]="{'background-color':backGroundColor , 'border-radius':canvasBorderRadius + 'px'}"
+          height="{{canvasSize}}" id="circle-progress-canvas"
+          width="{{canvasSize}}">
+  </canvas>
+
+  <span [ngStyle]="{'font-size': labelFontSize + 'px' , 'color' : labelColor}"
+        id="circle-progress-percent">
+    {{ percent }}
+  </span>
+
+</div>

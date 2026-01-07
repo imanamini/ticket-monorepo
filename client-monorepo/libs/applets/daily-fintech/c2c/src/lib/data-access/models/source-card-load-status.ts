@@ -1,0 +1,5 @@
+export enum SOURCE_CARD_LOAD_STATUS {
+  LOADING = 0,
+  SUCCESS = 1,
+  FAILED = 2,
+}

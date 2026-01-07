@@ -1,0 +1,89 @@
+<digipay-card-applet-page-loading></digipay-card-applet-page-loading>
+<div class="h-100 pb-plus d-flex flex-column gap-medium surface-elevated">
+  <ngx-app-bar
+    [title]="'درخواست دیجی‌کارت'"
+    (onRightIconClick)="goBack()"
+    [rightIcon]="'close'"
+  />
+  <div class="h-100 p-plus d-flex flex-column pt-medium gap-big justify-content-space-between">
+    <div class="d-flex flex-column gap-minus">
+      <div class="st-8">تکمیل اطلاعات</div>
+
+      <form [formGroup]="form">
+        <ui-form-field
+          [formControlName]="'nationalCode'"
+          label="کد ملی"
+          [maxSize]="10"
+          [required]="true"
+          [showError]="'auto'"
+          [isNumericKeyboard]="true"
+          [readonly]="true"
+          [errorMessageMapper]="{
+            required: 'کد ملی را وارد کنید.',
+            invalidNationalCode: 'کد ملی وارد شده معتبر نیست.'
+          }"
+          [error]="form.controls.nationalCode.errors ?? {}"
+        ></ui-form-field>
+
+        <ui-form-field
+          [errorMessageMapper]="{
+            required: 'تاریخ تولد را انتخاب کنید.',
+            invalidBirthDate: 'تاریخ تولد معتبر نیست.'
+          }"
+          [error]="form.controls['birthDate'].errors ?? {}"
+          [type]="'date'"
+          [required]="true"
+           [readonly]="birthdateIsReadonly()"
+          [hasCleaner]="true"
+          dateRange="past"
+          formControlName="birthDate"
+          [showError]="'auto'"
+          label="تاریخ تولد"
+        ></ui-form-field>
+        <ui-form-field
+          [error]="form.controls['postalCode'].errors ?? {}"
+          [formControlName]="'postalCode'"
+          [label]="'کد پستی'"
+          [required]="true"
+          [inputType]="'text'"
+          [isNumericKeyboard]="true"
+          [maxSize]="10"
+          [convertNonEnglishDigits]="true"
+          [showError]="'auto'"
+          [errorMessageMapper]="{
+            minlength: 'کد پستی باید ۱۰ رقم باشد. ',
+            maxlength: 'کد پستی باید ۱۰ رقم باشد.',
+            pattern: 'کد پستی فقط باید شامل اعداد باشد.',
+            unknownPostalCode: 'کدپستی یافت نشد.'
+          }"
+          [type]="'input'"
+          [hasCleaner]="true"
+        ></ui-form-field>
+      </form>
+    </div>
+    <div class="d-flex flex-column gap-big">
+      <ngx-callout
+        [backgroundMode]="'default'"
+        [mode]="'multiple'"
+        [showTitleBlink]="false"
+        [title]="''"
+        [messages]="[
+          'دیجی کارت به کدپستی وارد شده ارسال می‌شود.',
+          'پیش از استعلام، از صحت اطلاعات مطمئن شوید، در صورت استعلام بیش از حد، هزینه مجدد از کیف‌پول شما کسر خواهد شد.'
+        ]"
+      ></ngx-callout>
+      <div class="footer">
+        <ngx-button
+          [mode]="'form'"
+          [disabled]="!form.valid || pageLoadingService.loading()"
+          [size]="'large'"
+          [style]="'fill'"
+          [fullWidth]="true"
+          (clickHandler)="onSubmitForm()"
+        >
+          استعلام
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+</div>

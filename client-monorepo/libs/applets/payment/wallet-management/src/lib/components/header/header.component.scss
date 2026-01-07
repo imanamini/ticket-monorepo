@@ -1,0 +1,39 @@
+@import "@digipay/base-style/swatch";
+
+.fix-header {
+  background-color: white;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 18px;
+  color: $swatch_steel_500;
+  font-weight: 500;
+
+  .blue-info {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    background-image: url("../../../../../../../../apps/dpx/src/assets/wallet-management/blue-info.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-right: 4px;
+  }
+
+  .back {
+    width: 24px;
+    height: 24px;
+    margin-left: 16px;
+    cursor: pointer;
+    background-image: url("../../../../../../../../apps/dpx/src/assets/wallet-management/gift-card-back.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: rotate(180deg);
+  }
+
+}

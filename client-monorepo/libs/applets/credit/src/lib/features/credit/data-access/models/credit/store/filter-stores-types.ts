@@ -1,0 +1,6 @@
+export enum FILTER_STORES_TYPES {
+  CATEGORY = 0,
+  BRAND = 1,
+  STORE_TYPE = 2,
+  PROVIDER = 3,
+}

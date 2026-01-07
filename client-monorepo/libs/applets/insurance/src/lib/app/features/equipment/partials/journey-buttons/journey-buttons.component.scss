@@ -1,0 +1,113 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.journey-buttons {
+  width: 100%;
+
+  .wrapper-button {
+    @include flex-row();
+    @include flex-center();
+    gap: 20px;
+  }
+
+  &.has-border {
+    border: 1px solid #dee3e7 !important;
+    border-radius: 20px 20px 0 0 !important;
+  }
+
+  &.mobile {
+    @include flex-column();
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 2;
+    border-radius: 20px 20px 0 0;
+    padding: 16px 24px;
+
+    .btn-next {
+      flex: 1 !important;
+      width: 100%;
+    }
+  }
+
+  &.reversed {
+    @include flex-column-reverse();
+  }
+
+  &.no-background {
+    background: white;
+    border: unset;
+  }
+
+  &.extra-mobile {
+    @include flex-row;
+    background: white;
+
+    .extra {
+      .extra-label {
+        color: #6e798d;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+      }
+
+      .extra-content {
+        color: #2c3544;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 32px;
+      }
+    }
+  }
+
+  .extra {
+    @include flex-column();
+    @include flex-start-center();
+    flex: 1;
+
+    .extra-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #6e798d;
+      line-height: 20px;
+    }
+
+    .extra-content {
+      font-size: 18px;
+      line-height: 32px;
+      font-weight: 500;
+      color: #2c3544;
+    }
+  }
+
+  .btn-next {
+    flex: 2;
+
+    .next-content {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 24px;
+    }
+  }
+
+  .btn-previous {
+    flex: 1;
+
+    &.btn-previous-mobile {
+      width: 100%;
+    }
+
+    .previous-content {
+      @include flex-row();
+      @include flex-center();
+      gap: 8px;
+      color: #0040ff;
+      font-weight: 700;
+      line-height: 24px;
+      font-size: 14px;
+    }
+  }
+}

@@ -1,0 +1,68 @@
+@import "../../style/once/global";
+
+.header {
+  padding: 10px 16px 12px 24px;
+  border-bottom: 1px solid #dee3e7;
+  @include flex-center-start;
+
+  .back-icon {
+    margin-left: 5px;
+    background-image: url('/insurance-assets/icons/icon-general-back.svg');
+    transform: rotateY(180deg);
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .header-content {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #6e798d;
+  }
+
+  .logo {
+    margin-right: auto;
+    background-image: url("/insurance-assets/images/logos/logo-digipay-sign.svg");
+    width: 32px;
+    height: 32px;
+  }
+
+}
+
+.content {
+  padding: 20px;
+  margin-top: 20px;
+
+  .title {
+    color: #2c3544;
+    padding-bottom: 15px;
+  }
+
+  .law {
+    @include flex-center-start;
+    margin-top: 18px;
+    cursor: pointer;
+
+    input[type='checkbox'] {
+      width: 17px;
+      height: 17px;
+      margin-left: 7px;
+      filter: brightness(.9) hue-rotate(366deg) invert(1%);
+    }
+
+    .text {
+      font-size: .9rem;
+      color: #6e798d;
+
+      a {
+        color: $primary-blue;
+      }
+    }
+  }
+}
+
+.footer {
+  padding: 20px;
+  @include flex-center-end;
+}

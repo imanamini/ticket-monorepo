@@ -1,0 +1,78 @@
+<div class="w-100 d-flex flex-wrap container">
+  <div class="w-100 d-flex flex-wrap align-items-center justify-content-space-between">
+    <p class="st-8 text-onback-high">دارایی‌های درانتظار</p>
+  </div>
+
+  <div class="w-100 mt-small d-flex flex-wrap">
+    <ngx-segmented-control
+      [mode]="'PAGE_SEGMENT'"
+      [options]="options()"
+      [selectedOption]="options()[0]"
+      (change)="updateFilterHandler($event); activeSegment.set($event.id)"
+      class="w-100 segment-style"
+    >
+    </ngx-segmented-control>
+    <div class="w-100 d-flex flex-wrap mt-medium p-medium pb-atom align-content-start radius-big surface-elevated segment-content min-h-72">
+      @if (loadingTransactions()) {
+        <app-spinner />
+      } @else {
+        @if (transactions().length > 0) {
+          <ngx-alert
+            [size]="'sm'"
+            class="w-100 mb-medium"
+            [color]="'yellow'"
+            [text]="alertText()"
+            [hasCloseIcon]="false"
+          />
+          <div class="w-100 d-flex justify-content-end">
+            <p class="st-6 text-onback-high">
+              {{ type() === 'Sell' ? (totalUnits() | number) : (totalAmount() | thousands) }}
+              <span class="b-1">
+                {{ type() === 'Sell' ? 'واحد' : 'ریال' }}
+              </span>
+            </p>
+          </div>
+
+          <ngx-divider
+            [color]="BorderColorsEnum.Air"
+            orientation="horizontal"
+            [dividerStyle]="'dashed'"
+          />
+
+          <div class="w-100 d-flex flex-wrap transactions-container">
+            @for (transaction of transactions() | slice: 0 : 3; track $index; let last = $last) {
+              <wealth-applet-pending-transaction-card
+                class="w-100 mt-medium pb-medium"
+                [ngClass]="{ 'border-b-100 border-color-air': !last }"
+                [transaction]="transaction"
+                [canSee]="canSee()"
+                [from]="'portfo'"
+              />
+            }
+          </div>
+
+          @if (transactions().length > 3) {
+            <div class="w-100 d-flex justify-content-center">
+              <ngx-button
+                [style]="'link'"
+                [size]="'small'"
+                [leftIcon]="{
+                  name: 'arrow-2-left',
+                  type: 'linear',
+                }"
+                (clickHandler)="goToTransactionsHandler()"
+              >
+                بیشتر
+              </ngx-button>
+            </div>
+          }
+        } @else {
+          <wealth-applet-pending-transaction-empty
+            [state]="state()"
+            class="w-100 min-h-72"
+          />
+        }
+      }
+    </div>
+  </div>
+</div>

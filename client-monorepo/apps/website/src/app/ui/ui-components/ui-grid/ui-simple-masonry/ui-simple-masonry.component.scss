@@ -1,0 +1,12 @@
+.masonry {
+  display: flex;
+  align-items: flex-start;
+
+  .col {
+    flex-grow: 0;
+  }
+
+  .col:last-child {
+    margin-left: 0 !important;
+  }
+}

@@ -1,0 +1,23 @@
+<div class="chart">
+  <canvas
+    *ngIf="balanceInformation()?.balance; else empty"
+    baseChart
+    [data]="chartData"
+    [options]="options"
+    [legend]="false"
+    [type]="'doughnut'"
+  >
+  </canvas>
+
+  <ng-template #empty>
+    <div class="empty-balance">
+      <div class="empty-balance-hole"></div>
+    </div>
+  </ng-template>
+
+  <div class="gift-card-chart-detail">
+    <div class="total-text">کل موجودی</div>
+    <div class="amount">{{ balanceInformation()?.balance | thousands }}</div>
+    <div class="rial-text">ریال</div>
+  </div>
+</div>

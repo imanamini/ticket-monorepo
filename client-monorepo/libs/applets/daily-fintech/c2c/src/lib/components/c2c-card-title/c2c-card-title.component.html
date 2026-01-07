@@ -1,0 +1,35 @@
+<div
+  class="d-flex align-items-center justify-content-space-between w-100"
+  [ngClass]="hasLeftLine() ? 'py-low' : 'py-tiny'"
+>
+  <div [ngClass]="{ 'd-flex align-items-center gap-small w-50': hasLeftLine() }">
+    <span
+      class="st-8 text-onback-medium"
+      [class]="titleClass()"
+      >{{ titleText() }}</span
+    >
+    @if (hasLeftLine()) {
+      <span class="flex-grow d-flex border-b-100 border-color-tint"></span>
+    }
+  </div>
+  @if (hasButton()) {
+    <ngx-button
+      [style]="'link'"
+      [size]="'small'"
+      [leftIcon]="{ name: buttonIconName() }"
+      (clickHandler)="onActionClicked()"
+    >
+      {{ buttonText() }}
+    </ngx-button>
+  }
+  @if (hasInfo()) {
+    <span class="c-3"> {{ infoText() }}</span>
+  }
+</div>
+@if (hasSubTitle()) {
+  <span
+    class="c-3 pt-low"
+    [class]="subtitleClass()"
+    >{{ subTitleText() }}
+  </span>
+}

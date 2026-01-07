@@ -1,0 +1,13 @@
+<div class="wrapper px-plus pt-medium w-100">
+  <div class="container d-flex flex-column align-items-center surface-brand-tint">
+    <h2 class="heading my-small">
+      <span class="st-6 text-onback-brand">تا شروع اولین قرعه‌کشی</span>
+    </h2>
+    <div class="countdown-wrapper">
+      <pay-club-applet-ui-modern-countdown
+        theme="DARK"
+        [seconds]="lottery.info.remainingTimeExecution || 0"
+      ></pay-club-applet-ui-modern-countdown>
+    </div>
+  </div>
+</div>

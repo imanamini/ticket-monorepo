@@ -1,0 +1,69 @@
+<ng-container *ngIf="(state$ | async)">
+  <div *ngIf="isMobile || showMobileMode"
+       class="stepper-mobile-title">
+    <div class="title-wrapper">
+      <div class="step">
+        {{ stepNames[ activeIndex ] }}
+      </div>
+      <div class="title">
+        {{ steps[ activeIndex ]?.title }}
+      </div>
+    </div>
+    <div class="steps-indicator">
+      {{ activeIndex ? ( activeIndex + 1 ) : 0 }}/{{ steps ? steps.length : 0 }}
+    </div>
+  </div>
+  <div [ngClass]="{mobile:isMobile || showMobileMode}" class="renewal-stepper">
+    <ng-container *ngFor="let node of steps; let index = index">
+      <div [ngClass]="{
+         'mobile': isMobile || showMobileMode,
+         'regular':node.state === stepStates.NOTREACHED,
+         'reached':node.state === stepStates.REVIEWED || node.state === stepStates.COMPLETED
+         }"
+           class="line">
+      </div>
+      <div (click)="handleNodeClick(node)"
+           [ngClass]="{
+         mobile: isMobile || showMobileMode,
+         pointer: node.state === stepStates.REVIEWED || node.state === stepStates.COMPLETED
+         }"
+           class="node-wrapper">
+        <div [ngClass]="{
+           'mobile': isMobile || showMobileMode,
+           'active':node.state === stepStates.COMPLETED,
+           'regular':node.state === stepStates.NOTREACHED,
+           'reached':node.state === stepStates.REVIEWED}"
+             class="node">
+          <div *ngIf="!isMobile && !showMobileMode"
+               [ngClass]="{
+             'active':node.state === stepStates.COMPLETED,
+             'regular':node.state === stepStates.NOTREACHED,
+             'reached':node.state === stepStates.REVIEWED
+           }"
+               class="node-icon">
+            <img
+                    [alt]="node.title"
+                    [src]="(node.state === stepStates.REVIEWED || node.state === stepStates.COMPLETED)? node.activeIcon : node.deActiveIcon">
+          </div>
+        </div>
+        <div *ngIf="!isMobile && !showMobileMode"
+             [ngClass]="{
+           'active':node.state === stepStates.COMPLETED,
+           'regular':node.state === stepStates.NOTREACHED,
+           'reached':node.state === stepStates.REVIEWED
+         }"
+             class="title">
+          {{ node.title }}
+        </div>
+      </div>
+      <div *ngIf="index === (steps.length - 1)"
+           [ngClass]="{
+         'mobile': isMobile || showMobileMode,
+         'regular':node.state === stepStates.NOTREACHED,
+         'reached':node.state === stepStates.REVIEWED || node.state === stepStates.COMPLETED
+         }"
+           class="line">
+      </div>
+    </ng-container>
+  </div>
+</ng-container>

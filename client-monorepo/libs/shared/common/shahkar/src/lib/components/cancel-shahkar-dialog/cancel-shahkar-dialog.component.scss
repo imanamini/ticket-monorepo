@@ -1,0 +1,19 @@
+:host {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(7.5px);
+  background: var(--surface-dim-glass);
+}
+
+.border-radius {
+  &-circle {
+    border-radius: 50%;
+  }
+
+  &-big {
+    border-radius: 24px;
+  }
+}

@@ -1,0 +1,70 @@
+<div class="merchant-purchase-info-dialog">
+  <div class="top-part">
+    <div></div>
+  </div>
+  <div
+    class="onsite-info"
+    *ngIf="merchantInfo.addresses && merchantInfo.addresses.length > 0"
+  >
+    <div class="title">
+      <img
+        [ngSrc]="environment.appUrl + '/mini-app/stores/' + merchantInfo.imageId"
+        width="23"
+        height="23"
+      />
+      آدرس شعب خرید حضوری از{{ ' ' + merchantInfo.title }}
+    </div>
+    <div class="addresses-info">
+      <div class="addresses-container">
+        <div class="scrollable">
+          <div
+            class="address"
+            *ngFor="let address of merchantInfo.addresses; let idx = index"
+          >
+            <div>
+              <div class="idx">{{ idx + 1 }}</div>
+              <div class="text">{{ address.address }}</div>
+            </div>
+            <div
+              class="cta"
+              (click)="locationClicked(address)"
+            >
+              <span
+                appUiIcon
+                icon="icon-location-blue"
+                size="20"
+                class="cta-icon"
+              ></span>
+              <span class="text">مسیریابی</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="online-info"
+    *ngIf="merchantInfo.website"
+  >
+    <div class="title">آدرس وب‌سایت</div>
+    <app-ui-button
+      appearance="BLUE-TEXT"
+      [link]="merchantInfo.website"
+      linkTarget="_blank"
+    >
+      مشاهده
+      <span
+        appUiIcon
+        icon="icon-arrow-left"
+        size="20"
+      ></span>
+    </app-ui-button>
+  </div>
+  <app-ui-button
+    class="close-cta"
+    appearance="FLAT-BLUE"
+    (clicked)="close()"
+    size="BIG"
+    >بستن</app-ui-button
+  >
+</div>

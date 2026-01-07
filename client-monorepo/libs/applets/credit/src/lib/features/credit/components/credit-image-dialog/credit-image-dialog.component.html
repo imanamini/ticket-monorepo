@@ -1,0 +1,22 @@
+<app-credit-digipay-dialog (close)="dialogClose($event)">
+  <div class="image">
+    @if (imageId() && !fileImageSrc()) {
+      <credit-digipay-image
+        [imageId]="imageId()!"
+        [styles]="{
+          maxWidth: '100%',
+          maxHeight: '100vh',
+        }"
+        apiEndpoint="CREDIT"
+        width="100%"
+      ></credit-digipay-image>
+    }
+
+    @if (fileImageSrc()) {
+      <img
+        [src]="fileImageSrc()"
+        alt="image"
+      />
+    }
+  </div>
+</app-credit-digipay-dialog>

@@ -1,0 +1,20 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.health-check-succeed {
+  @include flex-column();
+  @include flex-center();
+  gap: 16px;
+  padding: 16px;
+
+  .succeed-title {
+    font-weight: bold;
+    color: #00cc6d;
+    line-height: 24px;
+  }
+
+  .succeed-text {
+    font-weight: normal;
+    color: #2c3544;
+    line-height: 24px;
+  }
+}

@@ -1,0 +1,16 @@
+@import "@digipay/base-style/styleguide";
+@import "@digipay/base-style/base/colors";
+
+.rtl {
+  direction: rtl;
+}
+
+.step-progress-background {
+  height: 6px;
+  background-color: #{map-get($titanium, "shade-80")};
+}
+
+.step-progress-bar {
+  height: 6px;
+  transition: width 0.3s ease-out;
+}

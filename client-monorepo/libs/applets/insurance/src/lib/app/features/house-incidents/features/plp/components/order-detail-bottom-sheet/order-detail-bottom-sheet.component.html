@@ -1,0 +1,95 @@
+<div class="d-flex flex-column">
+  <div class="header d-flex flex-row align-items-center gap-small px-plus pt-plus">
+    <ins-icon
+      [name]="orderDetail()?.data.insurerParty.logo"
+      [height]="32"
+      [width]="32"
+    ></ins-icon>
+    <div class="st-6 text-onback-high">
+      {{ 'بیمه ' + orderDetail().data.insurerParty.name }}
+    </div>
+  </div>
+  <div class="detail mt-small px-plus pb-pony border-b-300 border-color-air d-flex flex-column mt-small">
+    <div class="d-flex py-medium border-b-300 border-color-air justify-content-space-between">
+      <div class="b-2 text-onback-disabled">نام طرح</div>
+      <div class="bt-2 text-onback-low">{{ orderDetail().data.title }}</div>
+    </div>
+    <div class="d-flex py-minus justify-content-space-between">
+      <div class="b-2 text-onback-disabled">مدت اعتبار</div>
+      <div class="bt-2 text-onback-low">{{ orderDetail().data.duration }}</div>
+    </div>
+  </div>
+  <div class="pt-plus px-plus d-flex flex-column gap-small">
+    @if (orderDetail()?.price?.totalDiscountAmount > 0) {
+      <ngx-alert
+        [color]="'green'"
+        [hasCloseIcon]="false"
+        [text]="(orderDetail().price.totalDiscountAmount | thousands) + ' ریال از مبلغ پرداخی شما کسر شد.'"
+        title=""
+      ></ngx-alert>
+    }
+    <div class="py-tiny d-flex flex-row align-items-center justify-content-space-between">
+      <div class="bt-2 text-onback-high">مبلغ پرداختی</div>
+      <div>
+        @if (orderDetail()?.price?.totalDiscountAmount > 0) {
+          <ngx-button
+            [destructive]="true"
+            [style]="InsButtonStyleEnum.Fill"
+            [brandButton]="true"
+            [mode]="InsButtonModeEnum.Form"
+            [size]="InsButtonSizeEnum.Small"
+            (clickHandler)="deleteVoucher()"
+          >
+            <div class="d-flex gap-tiny text-onback-error">
+              {{ orderDetail().price.discountCode }}
+              <ngx-icon
+                name="delete"
+                classes="text-onback-error"
+                iconSize="20px"
+              ></ngx-icon>
+            </div>
+          </ngx-button>
+        } @else {
+          <ins-button
+            [rightIcon]="{ name: 'plus', type: 'linear' }"
+            text="کد تخفیف"
+            [style]="InsButtonStyleEnum.TintedOnBack"
+            [size]="InsButtonSizeEnum.Small"
+            (clickHandler)="openVoucherBottomSheet()"
+          ></ins-button>
+        }
+      </div>
+    </div>
+    <div class="text-onback-medium">
+      @if (orderDetail()?.price?.totalDiscountAmount > 0) {
+        <div class="discounted-amount text-onback-low b-1">
+          {{ (orderDetail().price.providerPrice | thousands) + ' ریال' }}
+        </div>
+      }
+      <div class="t-7">
+        {{
+          ((orderDetail().price && orderDetail().price.payableAmount ? orderDetail().price.payableAmount : orderDetail().data.payableAmount)
+            | thousands) + ' ریال'
+        }}
+      </div>
+    </div>
+  </div>
+  <div class="pt-minus pb-mega px-plus">
+    <p class="b-3 pt-minus pb-low mb-minus text-onback-high">
+      تایید و پرداخت به معنای موافقت با
+      <span
+        (click)="openConditionTerms()"
+        class="cursor-pointer text-onback-brand"
+        >شرایط و مقررات بیمه دیجی‌پی</span
+      >
+      است.
+    </p>
+    <ins-button
+      (clickHandler)="confirmOrder()"
+      [fullWidth]="true"
+      [brandButton]="true"
+      [size]="InsButtonSizeEnum.Large"
+      text="تایید و پرداخت"
+    ></ins-button>
+  </div>
+</div>

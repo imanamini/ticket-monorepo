@@ -1,0 +1,13 @@
+<div class="insurance-app">
+  @if (isLoading()) {
+    <div class="w-100 h-100 d-flex align-items-center justify-content-center">
+      <ngx-spinner size="xl"></ngx-spinner>
+    </div>
+  } @else {
+    @if (hasPinCodeError()) {
+      <error-state-digikala-pin-code></error-state-digikala-pin-code>
+    } @else {
+      <router-outlet></router-outlet>
+    }
+  }
+</div>

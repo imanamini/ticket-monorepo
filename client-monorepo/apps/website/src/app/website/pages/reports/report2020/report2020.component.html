@@ -1,0 +1,590 @@
+<app-base-layout [loaded]="true">
+  <section class="header-report bg-blue">
+    <div class="nav-report">
+      <div class="container">
+        <div class="report__container">
+          <div class="report__logo">
+            <a href="https://www.mydigipay.com"
+              ><img
+                alt=""
+                src="/apps/website/src/assets/images/report2020/logo-header.svg"
+            /></a>
+          </div>
+          <div class="report__button-bordered">
+            <a
+              href="https://www.mydigipay.com/api/website/proxy/get-file/public/2024/08/dp-report-2020.pdf"
+              target="_blank"
+              title="دانلود نسخه کامل گزارش"
+              ><i></i><span>دانلود نسخه کامل گزارش</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="report__header-content">
+        <div class="report__header-logo">
+          <img
+            alt=""
+            src="/apps/website/src/assets/images/report2020/i-logo-sign.svg"
+          />
+        </div>
+        <div class="report__header-title">
+          <img
+            alt=""
+            src="/apps/website/src/assets/images/report2020/logo-top.svg"
+          />
+        </div>
+        <div class="report__header-arrow">
+          <a (click)="scrollToElement(about)">
+            <div class="report__header-arrow__background">
+              <i></i>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="report__liveBanner">
+    <div class="container">
+      <div class="report__liveBanner_banner">
+        <div class="report__liveBanner_banner_desktop">
+          <a href=""
+            ><img
+              alt=""
+              src=""
+          /></a>
+        </div>
+        <div class="report__liveBanner_banner_mobile">
+          <a href=""
+            ><img
+              alt=""
+              src=""
+          /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    #about
+    class="report__about"
+  >
+    <div class="container">
+      <div class="report__container">
+        <div class="report__title-section">
+          <span class="bg-blue"></span>
+          <p>درباره گزارش دیجی‌پی</p>
+        </div>
+        <div class="report__content-section text-black">
+          دیجی‌پی از سال ۱۳۹۷ به عنوان بازوی فناوری مالی (Fintech) فعالیت خود را در گروه دیجی‌کالا، بزرگ‌ترین کسب و کار تجارت الکترونیک کشور
+          آغاز کرده است و در سه حوزه، به گروه‌های مختلف کاربران خدمات ارایه می‌دهد:
+        </div>
+        <div class="report__vectors">
+          <ul class="report__vectors__wrapper">
+            <li class="report__vectors-item">
+              <div class="report__vectors-item__img">
+                <i class="super-app"></i>
+              </div>
+              <span>سوپر اپلیکیشن و پلتفرم خدمات</span>
+            </li>
+            <li class="report__vectors-item">
+              <div class="report__vectors-item__img">
+                <i class="loan-services"></i>
+              </div>
+              <span>خدمات پرداخت اعتباری</span>
+            </li>
+            <li class="report__vectors-item">
+              <div class="report__vectors-item__img">
+                <i class="wallet-transaction"></i>
+              </div>
+              <span>خدمات پرداخت و کیف پول</span>
+            </li>
+          </ul>
+        </div>
+        <div class="report__content-section text-black">
+          این گزارش، نخستین گزارش رسمی و عمومی دیجی‌پی به شمار می‌آید که به بررسی عملکرد این شرکت در سال ۲۰۲۰ میلادی می‌پردازد و با هدف
+          ایجاد شفافیت در وضعیت عملکرد این مجموعه تهیه شده است.
+          <br />
+          امیدواریم مطالعه جزییات ارایه شده به ایجاد دیدی جامع‌تر از وضعیت فعالیت‌ها، علاقه‌مندی‌ها و الگوهای رفتاری مالی کاربران در داخل
+          کشور کمک کند.
+        </div>
+        <div class="report__notice">
+          <i></i>
+          <span
+            >تمام اطلاعات ارایه شده در این گزارش، بر اساس عملکرد دیجی پی در بازه زمانی <b> ۱ دی ٩٨ تا ٣۰ آذر ٩٩ </b> و مبنای رشد خدمات، در
+            قیاس با مدت مشابه گذشته است.</span
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="report__inOneView">
+    <div class="container">
+      <div class="report__container">
+        <div class="report__title-section">
+          <span class="bg-blue"></span>
+          <p>دیجی پی در سالی که گذشت</p>
+        </div>
+        <div class="report__inOneView-items">
+          <ul class="report__card-content">
+            <li class="report__card-item">
+              <div class="report__card-item__content">
+                <div class="report__card-item-icon">
+                  <i class="user-active"></i>
+                </div>
+                <div class="report__card-item__detail">
+                  <b class="number-medium--gray"
+                    >+
+                    <div class="counter">1,000,000</div>
+                  </b>
+                  <span>تعداد نصب فعال سوپراپلیکیشن</span>
+                </div>
+              </div>
+            </li>
+            <li class="report__card-item">
+              <div class="report__card-item__content">
+                <div class="report__card-item-icon">
+                  <i class="services-app"></i>
+                </div>
+                <div class="report__card-item__detail">
+                  <b class="number-medium--gray">
+                    <div class="counter">15</div>
+                  </b>
+                  <span>تعداد خدمات سوپراپلیکیشن</span>
+                </div>
+              </div>
+            </li>
+            <li class="report__card-item">
+              <div class="report__card-item__content">
+                <div class="report__card-item-icon">
+                  <i class="transaction-user"></i>
+                </div>
+                <div class="report__card-item__detail">
+                  <b class="number-medium--gray"
+                    >+
+                    <div class="counter">23,000,000</div>
+                  </b>
+                  <span>تعداد کل تراکنش های کیف پول و درگاه پرداخت هوشمند</span>
+                </div>
+              </div>
+            </li>
+            <li class="report__card-item">
+              <div class="report__card-item__content">
+                <div class="report__card-item-icon">
+                  <i class="User-credentials"></i>
+                </div>
+                <div class="report__card-item__detail">
+                  <b class="number-medium--gray with-l">
+                    <div>
+                      +
+                      <div class="counter">3,300</div>
+                    </div>
+                    <div>میلیارد ریال</div>
+                  </b>
+                  <span>میزان کل اعتبار تخصیص یافته به کاربران</span>
+                </div>
+              </div>
+            </li>
+            <li class="report__card-item">
+              <div class="report__card-item__content">
+                <div class="report__card-item-icon">
+                  <i class="user-register"></i>
+                </div>
+                <div class="report__card-item__detail">
+                  <b class="number-medium--gray"
+                    >+
+                    <div class="counter">422,000</div>
+                  </b>
+                  <span>تعداد ثبت‌نام برای دریافت اعتبار خرید اقساطی </span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="install__active">
+    <div class="container">
+      <div class="install__content">
+        <div class="report__title-section">
+          <span class="bg-blue"></span>
+          <p>تعداد کل نصب فعال سوپر‌اپلیکیشن دیجی‌پی:</p>
+        </div>
+        <div class="install__active__section">
+          <ul class="install__logo-icon">
+            <li class="install_logo-item"><i class="logo-overlap"></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i class="logo-overlap"></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i class="logo-overlap"></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i class="logo-overlap"></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i class="logo-overlap"></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i class="logo-overlap"></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i class="logo-overlap"></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i class="logo-overlap"></i></li>
+            <li class="install_logo-item"><i></i></li>
+            <li class="install_logo-item"><i></i></li>
+          </ul>
+          <div class="install__bordered-contain">
+            <div class="install__bordered">
+              <span class="number-xl text-green"
+                >+
+                <div class="counter">1,000,000</div></span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="report__notice">
+          <i></i>
+          <span>
+            میزان رشد نصب سوپراپلیکیشن:
+            <b class="number-medium--gray">
+              <div>%</div>
+              98/7
+            </b></span
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="cash-back">
+    <div class="container">
+      <div class="cash-back__header">
+        <div class="report__title-section">
+          <span class="bg-blue"></span>
+          <p>مبلغ کش بک</p>
+        </div>
+      </div>
+      <div class="cash-back__content">
+        <div class="cash-back__des">مبلغ کل کش‌بک پرداخت شده به کاربران سوپراپلیکیشن:</div>
+        <div class="cash-back__number text-blue">
+          <b> <div class="counter">28,496,599,270</div> </b>ریال
+        </div>
+        <div class="cash-back__notice">
+          <b>* بازپرداخت بخشی از وجه پرداخت شده به کاربر</b>
+        </div>
+      </div>
+      <div class="cash-back__component">
+        <ul class="cash-back__component-content">
+          <li class="cash-back__component__item">
+            <div class="cash-back__component__item__container">
+              <div class="cash-back__component-icon">
+                <i></i>
+              </div>
+              <div class="cash-back__component-text">
+                <span>بیش‌ترین مبلغ کش‌بک برای یک کاربر:</span>
+                <div class="counter font-weight-bold">110,722,972</div>
+                ریال
+              </div>
+            </div>
+          </li>
+          <li class="cash-back__component__item">
+            <div class="cash-back__component__item__container">
+              <div class="cash-back__component__header">
+                <p>
+                  تعداد کش‌بک‌های پرداخت شده در کیف پول کاربران دیجی‌پی تاکنون ۸/۵ میلیون بوده که برابر با مجموع جمعیت شهر‌های مشهد، اصفهان،
+                  شیراز و اهواز بوده است.
+                </p>
+              </div>
+              <div class="cash-back__component__city">
+                <div class="cash-back__icon-group"></div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="Authentication">
+    <div class="container">
+      <div class="authentication__header">
+        <div class="report__title-section">
+          <span class="bg-blue"></span>
+          <p>پشتیبانی کاربران و عملیات احراز هویت</p>
+        </div>
+      </div>
+      <div class="authentication-section">
+        <ul class="report__card-content">
+          <li class="report__card-item">
+            <div class="report__card-item__content">
+              <div class="report__card-item-icon">
+                <i class="headphone"></i>
+              </div>
+              <div class="report__card-item__detail">
+                <b>مجموع تماس های ورودی کاربران:</b>
+                <p class="number-medium text-green">
+                  +
+                  <span class="counter">670,000</span>
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="report__card-item">
+            <div class="report__card-item__content">
+              <div class="report__card-item-icon">
+                <i class="phone-wave"></i>
+              </div>
+              <div class="report__card-item__detail">
+                <b>مجموع تماس های پاسخ داده شده:</b>
+                <p class="number-medium text-green">+<span class="counter">630,000</span></p>
+              </div>
+            </div>
+          </li>
+          <li class="report__card-item">
+            <div class="report__card-item__content">
+              <div class="report__card-item-icon">
+                <i class="phone-up"></i>
+              </div>
+              <div class="report__card-item__detail">
+                <b>نرخ پاسخگویی به تماس‌های کاربران:</b>
+                <p class="number-medium text-green"><span class="counter">94</span>%</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="authentication-section__text">
+          <span
+            >هدف مرکز پشتیبانی و عملیات دیجی‌پی، ایجاد تجربه‌ای کاملا آنلاین برای کاربران خدمات پرداخت اعتباری است. این تیم در تلاش است تا
+            کاربران بتوانند فرآیند خرید اقساطی را به دور از پیچیدگی‌های معمول، همچون فرآیند خرید نقدی از فروشگاه‌های آنلاین انجام
+            دهند.</span
+          >
+        </div>
+        <ul class="report__card-content">
+          <li class="report__card-item">
+            <div class="report__card-item__content">
+              <div class="report__card-item-icon">
+                <i class="up-ticks"></i>
+              </div>
+              <div class="report__card-item__detail">
+                <b>تعداد کاربرانی که رتبه اعتباری آن ‌ها، بصورت آنلاین بررسی شده است:</b>
+                <p class="number-medium text-green">+<span class="counter">210,000</span></p>
+              </div>
+            </div>
+          </li>
+          <li class="report__card-item">
+            <div class="report__card-item__content">
+              <div class="report__card-item-icon">
+                <i class="document-tick"></i>
+              </div>
+              <div class="report__card-item__detail">
+                <b>تعداد کاربرانی که مدارک آن‌ها بررسی و احراز هویت (KYC) شده‌اند:</b>
+                <p class="number-medium text-green">+<span class="counter">140,000</span></p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="demand-credit">
+    <div class="container">
+      <div class="demand-credit__header">
+        <div class="report__title-section">
+          <span class="bg-blue"></span>
+          <p>تعداد کالاهایی که کاربران اعتباری خریده اند</p>
+        </div>
+      </div>
+      <div class="demand-credit__content">
+        <div class="demand-icon__container">
+          <ul class="demand-icon__content">
+            <li class="demand-icon__item">
+              <div class="demand__item">
+                <img
+                  alt=""
+                  src="/apps/website/src/assets/images/report2020/i-buy-mbile.svg"
+                />
+              </div>
+            </li>
+            <li class="demand-icon__item">
+              <div class="demand__item">
+                <img
+                  alt=""
+                  src="/apps/website/src/assets/images/report2020/i-shoes.svg"
+                />
+              </div>
+            </li>
+            <li class="demand-icon__item">
+              <div class="demand__item">
+                <img
+                  alt=""
+                  src="/apps/website/src/assets/images/report2020/i-buy-accesory.svg"
+                />
+              </div>
+            </li>
+            <li class="demand-icon__item">
+              <div class="demand__item">
+                <img
+                  alt=""
+                  src="/apps/website/src/assets/images/report2020/gaming.svg"
+                />
+              </div>
+            </li>
+          </ul>
+          <ul class="demand-icon__content">
+            <li class="demand-icon__item">
+              <div class="demand__item">
+                <img
+                  alt=""
+                  src="/apps/website/src/assets/images/report2020/i-mobile.svg"
+                />
+              </div>
+            </li>
+            <li class="demand-icon__item-big">
+              <div class="demand__item">
+                <div class="cash-back__number">
+                  +
+                  <div class="counter">270,000</div>
+                </div>
+              </div>
+            </li>
+            <li class="demand-icon__item">
+              <div class="demand__item">
+                <img
+                  alt=""
+                  src="/apps/website/src/assets/images/report2020/i-washer.svg"
+                />
+              </div>
+            </li>
+          </ul>
+          <ul class="demand-icon__content">
+            <li class="demand-icon__item">
+              <div class="demand__item">
+                <img
+                  alt=""
+                  src="/apps/website/src/assets/images/report2020/i-laptop.svg"
+                />
+              </div>
+            </li>
+            <li class="demand-icon__item">
+              <div class="demand__item">
+                <img
+                  alt=""
+                  src="/apps/website/src/assets/images/report2020/i-tv.svg"
+                />
+              </div>
+            </li>
+            <li class="demand-icon__item">
+              <div class="demand__item">
+                <img
+                  alt=""
+                  src="/apps/website/src/assets/images/report2020/i-monitor.svg"
+                />
+              </div>
+            </li>
+            <li class="demand-icon__item">
+              <div class="demand__item">
+                <img
+                  alt=""
+                  src="/apps/website/src/assets/images/report2020/i-hard.svg"
+                />
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="report__notice">
+          <i></i>
+          <span
+            >در حال حاضر <b> دیجی‌کالا </b> تامین و ارسال‌کننده کالاهایی است که به صورت اعتباری خریداری می‌شوند و به زودی فروشگاه‌های دیگر
+            نیز اضافه خواهند شد.</span
+          >
+          <img
+            alt=""
+            src="/apps/website/src/assets/images/report2020/suplier-sending.svg"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="footer">
+    <div class="container">
+      <div class="footer-section">
+        <div class="report__title-footer">
+          <p>دانلود نسخه کامل</p>
+          <span>گـــزارش ســـال ۲۰۲۰</span>
+        </div>
+        <div class="report__download-button">
+          <a
+            href="https://www.mydigipay.com/api/website/proxy/get-file/public/2024/08/dp-report-2020.pdf"
+            target="_blank"
+            title="دانلود نسخه کامل گزارش"
+            ><i></i><span>دانلود نسخه کامل گزارش</span></a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</app-base-layout>

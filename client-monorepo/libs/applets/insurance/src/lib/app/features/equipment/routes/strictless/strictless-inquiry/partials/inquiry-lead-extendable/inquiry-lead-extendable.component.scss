@@ -1,0 +1,105 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.extendable {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 32px;
+  width: 620px;
+
+  .describe {
+    .title {
+      font-size: 1.2rem;
+      color: #6e798d;
+    }
+
+    .description {
+      line-height: 1.7;
+      color: #2c3544;
+      font-size: .95rem;
+      padding: 20px 0;
+      border-bottom: 1px solid #dee3e7;
+    }
+  }
+
+  .policy-detail {
+    padding: 15px 0;
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #dee3e7;
+
+    .device-name {
+      width: 100%;
+
+      .value {
+        width: 100%;
+      }
+    }
+
+    .device-buyer, .buy-date {
+      display: flex;
+      align-items: center;
+      flex: 1 1 50%
+    }
+
+    .device-name, .device-buyer, .buy-date {
+      padding: 10px 0;
+
+      .title {
+        padding: 10px 5px;
+        font-size: .9rem;
+        color: #6e798d;
+      }
+
+      .value {
+        color: #2c3544;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .call-detail {
+    display: flex;
+    padding: 28px;
+
+    .call, .email {
+      flex: 1 1 50%;
+
+      .title {
+        color: #2c3544;
+      }
+
+      .value {
+        color: $primary-blue;
+        font-size: 1.2rem;
+        padding-top: 10px;
+        cursor: pointer;
+        display: block;
+      }
+    }
+  }
+
+  .hint {
+    margin: 15px 0;
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.4;
+    background: #fff5ee;
+    border-radius: 8px;
+    padding: 8px;
+
+    .img {
+      padding-left: 8px;
+    }
+
+    .hint-message {
+      align-self: center;
+      font-size: .95rem;
+    }
+  }
+}
+
+@include mediaTablet {
+  .extendable {
+    width: 100%;
+  }
+}

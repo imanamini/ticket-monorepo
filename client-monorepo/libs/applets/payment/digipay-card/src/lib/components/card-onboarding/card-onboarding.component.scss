@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  height: 100%;
+  position: relative;
+  background-color: var(--surface-elevated);
+}
+
+.calc-mh {
+  height: calc(100% - 130px);
+  overflow: auto;
+}
+
+.issue-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+}
+
+.dg-onboarding-callout ::ng-deep ngx-callout :first-child {
+  padding: 0 !important;
+}

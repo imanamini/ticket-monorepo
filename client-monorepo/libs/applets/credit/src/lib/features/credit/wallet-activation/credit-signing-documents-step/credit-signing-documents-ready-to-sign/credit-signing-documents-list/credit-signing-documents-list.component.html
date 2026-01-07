@@ -1,0 +1,38 @@
+<app-credit-app-bar
+  (onBackButtonClick)="onBack()"
+  [backButton]="true"
+  [title]="'امضای آنلاین اسناد'"
+></app-credit-app-bar>
+@if (!gettingData) {
+  <div class="main-section d-flex flex-column flex-grow rtl">
+    <div class="d-flex flex-column flex-grow">
+      <app-credit-scrollable-view [fullHeightContent]="true">
+        <div class="page-content pt-plus px-plus d-flex flex-column justify-content-center align-items-center flex-grow rtl">
+          <credit-common-ui-components-tab-group [tabs]="tabs()"></credit-common-ui-components-tab-group>
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+    <div class="d-flex px-plus pb-plus pt-medium rtl">
+      @if (activeTab() === 'waiting') {
+        <ngx-button
+          ngxTrackableId
+          trackerId="signingDocumentListCheckoutButtonClick"
+          (clickHandler)="submit()"
+          [fullWidth]="true"
+        >
+          بررسی و امضا اسناد در انتظار
+        </ngx-button>
+      } @else if (docGroup()?.signedDocs?.length) {
+        <ngx-button
+          ngxTrackableId
+          trackerId="signingDocumentListDownloadButtonClick"
+          (clickHandler)="downloadAllDocs.emit(docGroup()?.signedDocs!)"
+          [fullWidth]="true"
+          [rightIcon]="{ name: 'download' }"
+        >
+          ذخیره اسناد امضا شده
+        </ngx-button>
+      }
+    </div>
+  </div>
+}

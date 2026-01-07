@@ -1,0 +1,17 @@
+@if (data()) {
+  @switch (data().type) {
+    @case (NextActionType.SIMPLE) {
+      <common-journey-management-simple
+        [data]="data()"
+        [jmMode]="mode()"
+      >
+      </common-journey-management-simple>
+    }
+    @case (NextActionType.UPCOMING) {
+      <common-journey-management-upcoming
+        [data]="data()"
+        [jmMode]="mode()"
+      ></common-journey-management-upcoming>
+    }
+  }
+}

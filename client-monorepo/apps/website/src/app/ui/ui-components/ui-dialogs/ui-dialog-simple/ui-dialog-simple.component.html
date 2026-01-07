@@ -1,0 +1,53 @@
+<div class="modal-simple">
+  <div
+    (click)="closeDialog()"
+    class="close"
+  >
+    <ngx-icon
+      class="cursor-pointer"
+      [name]="'close'"
+      [iconSize]="'24px'"
+    ></ngx-icon>
+  </div>
+  <div class="dialog-body">
+    <div
+      *ngIf="!hideIcon"
+      class="image"
+    >
+      <img
+        height="122"
+        ngSrc="/assets/images/success-modal.svg"
+        width="160"
+      />
+    </div>
+    <div class="title">
+      <span>
+        {{ templateData.title }}
+      </span>
+    </div>
+    <div
+      [innerHTML]="templateData.description"
+      class="description"
+    ></div>
+  </div>
+  <div class="ctas">
+    <app-ui-button
+      *ngIf="templateData.secondCta && templateData.secondCta.link && templateData.secondCta.title"
+      [appearance]="'BLUE-TEXT'"
+      [linkTarget]="'_blank'"
+      [link]="templateData.secondCta.link"
+      >{{ templateData.secondCta.title }}
+    </app-ui-button>
+    <app-ui-button
+      *ngIf="templateData.firstCta && templateData.firstCta.link && templateData.firstCta.title"
+      [linkTarget]="'_blank'"
+      [link]="templateData.firstCta.link"
+      >{{ templateData.firstCta.title }}
+    </app-ui-button>
+    <app-ui-button
+      (click)="closeDialog()"
+      *ngIf="!templateData.firstCta && !templateData.secondCta"
+      >متوجه شدم</app-ui-button
+    >
+  </div>
+</div>

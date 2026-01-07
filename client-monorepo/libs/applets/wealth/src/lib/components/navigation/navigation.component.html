@@ -1,0 +1,53 @@
+<div
+  class="navigation surface-back border-t-300 border-color-t-light"
+  [ngClass]="{ expanded: expanded() }"
+>
+  <div class="navigation-list py-medium px-big">
+    @for (item of navigationItems; track $index) {
+      <div
+        (click)="navigate(item)"
+        class="navigation-list-item"
+      >
+        @if (item.icon) {
+          <div class="navigation-list-item-icon mb-tiny">
+            <common-icon-dp-icon
+              [classes]="item.isActive ? 'text-onback-brand' : 'text-onback-disabled'"
+              [iconSize]="'32'"
+              [icon]="item.icon"
+            ></common-icon-dp-icon>
+          </div>
+        }
+        <div
+          class="navigation-list-item-title mt-tiny fs-12"
+          [ngClass]="item.isActive ? 'text-onback-brand' : 'text-onback-disabled'"
+        >
+          {{ item.text }}
+        </div>
+      </div>
+    }
+  </div>
+  @if (activeNavigationItem && activeNavigationItem.subMenus && expanded()) {
+    <div
+      class="navigation-bubble radius-giant surface-elevated py-small px-pony mb-medium"
+      id="bubble"
+    >
+      <div class="navigation-bubble-list">
+        @for (submenuItem of activeNavigationItem.subMenus; track $index) {
+          <div class="navigation-bubble-list-item fs-12 text-onback-disabled border-radius-huge px-low py-tiny">
+            {{ submenuItem.text }}
+          </div>
+        }
+        <div
+          class="navigation-bubble-list-item radius-rounded surface-back p-tiny"
+          (click)="toggle.emit()"
+          [style]="{ height: '28px', width: '28px' }"
+        >
+          <common-icon-dp-icon
+            [classes]="'icon-color-disable fs-20'"
+            [icon]="'timer'"
+          ></common-icon-dp-icon>
+        </div>
+      </div>
+    </div>
+  }
+</div>

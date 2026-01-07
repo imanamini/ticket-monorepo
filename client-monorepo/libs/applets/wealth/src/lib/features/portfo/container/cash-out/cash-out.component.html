@@ -1,0 +1,58 @@
+<div class="w-100 d-flex flex-column surface-elevated cashout-container">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'برداشت از کیف پول ETF'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  @if (isLoading()) {
+    <app-spinner />
+  } @else {
+    <div class="d-flex surface-elevated flex-wrap align-items-start justify-content-center pt-big pb-huge px-plus">
+      <div class="surface-back radius-plus py-plus px-medium">
+        <wealth-applet-wallet-balance-info
+          [walletInfo]="walletInfo()"
+          [hasInfo]="true"
+        />
+      </div>
+
+      <wealth-applet-wallet-amount-form
+        class="w-100"
+        [minAmount]="minAmount()"
+        [maxAmount]="maxAmount()"
+        [type]="'cashOut'"
+        (amountChange)="amountChanged($event)"
+      />
+    </div>
+
+    <div class="w-100 buttons-container">
+      <div class="d-grid gap-medium px-plus">
+        <ngx-button
+          [style]="'tinted-on-elevated'"
+          [fullWidth]="true"
+          [mode]="'form'"
+          size="medium"
+          (clickHandler)="showCashoutConfirmPayment('all')"
+        >
+          برداشت تمام موجودی
+        </ngx-button>
+        <ngx-button
+          [style]="'fill'"
+          [fullWidth]="true"
+          [mode]="'form'"
+          size="medium"
+          [disabled]="!isValid()"
+          (clickHandler)="showCashoutConfirmPayment()"
+        >
+          تایید و ادامه
+        </ngx-button>
+      </div>
+    </div>
+  }
+</div>

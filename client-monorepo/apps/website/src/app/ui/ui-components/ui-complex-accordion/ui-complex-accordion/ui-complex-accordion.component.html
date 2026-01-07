@@ -1,0 +1,99 @@
+<div class="section">
+  <div class="accordion">
+    <div
+      class="accordion-item"
+      [ngClass]="{ active: accordionIndex() === activeAccordion(), disabled: isDisabled() }"
+    >
+      <div
+        class="accordion-header"
+        [ngClass]="{ 'radius-bl-atom radius-br-atom': accordionIndex() === activeAccordion() }"
+        (click)="selectAccordion(accordionIndex())"
+        [class.disabled]="isDisabled()"
+      >
+        @if (section().title) {
+          <div
+            [ngClass]="[
+              accordionIndex() === activeAccordion() ? 'active' : '',
+              type().TEXT_SIMPLE_ITEMS ? 'text-simple-items' : '',
+              !isDisabled() ? 'collapsible-selector--arrow' : '',
+            ]"
+            class="section-title"
+          >
+            @if (section().icon) {
+              <div class="icon">
+                <img
+                  [src]="section().icon.url"
+                  alt=""
+                />
+              </div>
+            }
+            {{ section().title }}
+          </div>
+        }
+      </div>
+      <div
+        class="accordion-content"
+        [ngClass]="{ expanded: accordionIndex() === activeAccordion() }"
+      >
+        @if (section().subtitle) {
+          <div
+            [innerHTML]="section().subtitle"
+            class="section-subtitle"
+          ></div>
+        }
+        @if (!type().TEXT_SIMPLE_ITEMS) {
+          <div class="title-margin-space"></div>
+        }
+        @for (element of section().items; track element; let i = $index) {
+          <div
+            [ngClass]="{ 'first-element': i === 0 }"
+            class="element-item"
+          >
+            <app-ui-landing-element
+              (showDialog)="showDialogById($event)"
+              [element]="element"
+            ></app-ui-landing-element>
+          </div>
+        }
+        @if (section().firstCta?.title || section().secondCta?.title) {
+          <div class="ctas">
+            @if (section().firstCta?.title) {
+              <div class="cta">
+                <ngx-button
+                  (clickHandler)="onClick($event, section().firstCta?.link)"
+                  [id]="section().firstCta.id"
+                  [style]="'link'"
+                  [size]="'small'"
+                >
+                  <div class="d-flex align-items-center">
+                    @if (section().ctaIcon) {
+                      <img
+                        [src]="section().ctaIcon.url"
+                        alt=""
+                        class="button-icon"
+                      />
+                    }
+                    {{ section().firstCta.title }}
+                  </div>
+                </ngx-button>
+              </div>
+            }
+            @if (section().secondCta?.title) {
+              <div class="cta">
+                <ngx-button
+                  (clickHandler)="onClick($event, section().secondCta?.link)"
+                  [id]="section().secondCta.id"
+                  [style]="'link'"
+                  [leftIcon]="{ name: 'arrow-2-left' }"
+                  [size]="'small'"
+                >
+                  {{ section().secondCta.title }}
+                </ngx-button>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

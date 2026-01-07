@@ -1,0 +1,84 @@
+<div class="w-100 d-flex flex-wrap align-content-start surface-elevated h-100 relative">
+  <div class="w-100 d-flex flex-wrap cover">
+    <img
+      class="w-100"
+      src="./wealth-assets/images/guids/purchase.png"
+      alt=""
+    />
+  </div>
+  <wealth-applet-app-bar-wrapper
+    class="w-100"
+    [title]="''"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'tinted-on-back',
+      mode: 'icon-only',
+      size: 'small',
+    }"
+    (onBack)="onBackHandler()"
+  />
+
+  <div class="w-100 d-flex flex-column relative z-10 content">
+    <p class="st-5 text-onback-high text-align-center px-huge">با دریافت اعتبار، هم قسطی خرید کنید هم سود بگیرید!</p>
+
+    <div class="w-100 mt-medium px-plus surface-elevated">
+      <ngx-segmented-control
+        [mode]="'SECTION_SEGMENT'"
+        [options]="options()"
+        [selectedOption]="options()[0]"
+        class="segment-style"
+        (change)="handleActiveSection($event)"
+      />
+
+      @if (!getProfit()) {
+        <wealth-applet-credit-guid-steper
+          [steps]="definitionItems()"
+          [headerImage]="'./wealth-assets/images/guids/stores.png'"
+          [headerAlt]="'فروشگاه‌ها'"
+        />
+      } @else {
+        <div class="w-100 d-flex flex-wrap">
+          <div class="stepper">
+            @for (item of notes(); track item; let i = $index) {
+              <div class="step">
+                <div class="circle"></div>
+                <div class="c-2 text-onback-medium">
+                  @for (part of item.parts; track part) {
+                    @if (part.type === 'link') {
+                      <span
+                        class="text-onback-brand cursor-pointer"
+                        (click)="handleClick(part)"
+                        >{{ part.value }}</span
+                      >
+                    } @else if (part.type === 'boldText') {
+                      <span
+                        class="c-1 text-onback-high"
+                        [innerText]="part.value"
+                      ></span>
+                    } @else {
+                      <span [innerText]="part.value"></span>
+                    }
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="w-100 p-big my-big d-flex justify-content-center align-items-center">
+          <ngx-icon
+            class="ml-small"
+            [name]="'headphone'"
+            [iconSize]="'20'"
+          />
+          پشتیبانی:
+          <a
+            class="c-2 text-onback-medium"
+            href="tel:02153924000"
+            >{{ supportNumber() }}</a
+          >
+        </div>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.step-two {
+
+  .header {
+    margin-bottom: 28px;
+  }
+
+  &.content {
+    flex: 1;
+    overflow: auto;
+  }
+}

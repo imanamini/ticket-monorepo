@@ -1,0 +1,113 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.wrapper {
+  width: 100%;
+  background: #e7ebfb;
+  padding: 50px 0;
+  display: flex;
+  user-select: none;
+
+  .inner {
+    z-index: 2;
+    width: 75%;
+    margin: auto;
+
+    .swiper {
+      position: relative;
+
+      &::after {
+        content: "";
+        width: 100%;
+        top: 50%;
+        position: absolute;
+        border-bottom: dotted 3px #d9e0fa;
+        z-index: 1;
+      }
+    }
+
+    .header {
+      text-align: center;
+      margin: 40px;
+      font-weight: 800;
+      font-size: 22px;
+      color: #061962;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      grid-gap: 20px;
+
+      .button {
+        min-width: 140px;
+        text-align: center;
+        color: #1c2d6f;
+        border: 1px solid #1c2d6f;
+        background: transparent;
+        border-radius: 30px;
+        padding: 10px;
+        font-size: .9rem;
+        cursor: pointer;
+        margin-bottom: 20px;
+
+        &.selected {
+          color: white;
+          background: #2d50f3;
+          border-color: #2d50f3;
+        }
+      }
+
+    }
+
+    .item {
+      min-width: 350px;
+      width: 350px;
+      padding: 0 30px;
+
+      .general {
+        display: flex;
+        align-items: center;
+
+        .img {
+        }
+
+        .left {
+          flex: 4 1;
+
+          .number {
+            color: #e7ebfb;
+            text-shadow: 0 0 3px #2d50f3;
+            font-size: 2rem;
+          }
+
+          .title {
+            color: #2d50f3;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            font-weight: 600;
+          }
+        }
+
+      }
+
+      .description {
+        margin-top: 20px;
+        line-height: 2.2;
+        color: #061962;
+        font-size: .8rem;
+      }
+    }
+  }
+}
+
+@include mediaMobile {
+  .buttons {
+    flex-direction: column;
+  }
+  .header {
+    line-height: 1.8;
+    font-size: 18px;
+    font-weight: 600;
+  }
+}

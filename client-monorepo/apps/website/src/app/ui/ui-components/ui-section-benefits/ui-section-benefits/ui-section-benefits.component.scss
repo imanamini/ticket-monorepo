@@ -1,0 +1,13 @@
+.section-benefits {
+  h2 {
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .section-benefits {
+    h2 {
+      margin-bottom: 16px;
+    }
+  }
+}

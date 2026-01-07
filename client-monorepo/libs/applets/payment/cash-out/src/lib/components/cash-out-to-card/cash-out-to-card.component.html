@@ -1,0 +1,42 @@
+@if (form) {
+  <ng-container [formGroup]="form">
+    <div class="cash-out d-flex flex-column justify-content-space-between">
+      <div class="d-flex flex-column gap-huge">
+        <cash-out-applet-cash-out-detail [data]="walletConfig()"></cash-out-applet-cash-out-detail>
+
+        <ui-form-field
+          [autoFocus]="true"
+          [formControlName]="'amount'"
+          [maxAmount]="this.walletConfig()?.maxAmount || 0"
+          [minAmount]="this.walletConfig()?.minAmount || 0"
+          [type]="'large-amount'"
+        >
+        </ui-form-field>
+
+        <ngx-button
+          class="footer-button"
+          [mode]="'form'"
+          [size]="'large'"
+          [style]="'link'"
+          [fullWidth]="true"
+          (clickHandler)="cashOutAllAmount()"
+        >
+          برداشت تمام موجودی
+        </ngx-button>
+      </div>
+      <div class="footer">
+        <ngx-button
+          [mode]="'form'"
+          [size]="'large'"
+          [style]="'fill'"
+          [fullWidth]="true"
+          [disabled]="!isAmountValid()"
+          [isLoading]="loading()"
+          (clickHandler)="storeAmount()"
+        >
+          ادامه
+        </ngx-button>
+      </div>
+    </div>
+  </ng-container>
+}

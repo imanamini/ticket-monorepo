@@ -1,0 +1,37 @@
+<div
+  [ngStyle]="{ 'aspect-ratio': ratio() }"
+  class="post-container d-flex cursor-pointer"
+>
+  @if (!loading()) {
+    @if (!imageError()) {
+      <img
+        class="w-100"
+        [src]="postData()?.downloadableThumbnailUrl"
+        (load)="onImageLoad()"
+        (error)="onImageError()"
+      />
+    } @else {
+      <img
+        class="w-100"
+        [src]="'assets/fallback/product-on-back-fallback.png'"
+      />
+    }
+  } @else {
+    <lib-ngx-skeleton-loading
+      class="w-100"
+      [width]="'100%'"
+      [height]="'100%'"
+    ></lib-ngx-skeleton-loading>
+  }
+
+  <div class="type-badge">
+    @if (postData()?.mediaType !== InstagramMediaTypes.IMAGE) {
+      <ngx-icon
+        [name]="postData()?.mediaType === InstagramMediaTypes.VIDEO ? 'play' : 'book'"
+        [type]="'bold'"
+        [classes]="'text-oninvert-medium'"
+        [iconSize]="'16px'"
+      ></ngx-icon>
+    }
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="d-flex flex-column pt-medium m-plus">
+  <img
+    class="mx-auto"
+    src="assets/shared/stores/violation/info_icon.svg"
+    [width]="96"
+  />
+  <div class="d-flex flex-column gap-low mb-giant mt-huge">
+    <div class="d-flex justify-content-center st-3 text-onback-high">انصراف از ثبت تخلف</div>
+    <div class="d-flex flex-column justify-content-center align-items-center b-2 text-onback-medium">
+      <span>در صورت انصراف، اطلاعات واردشده حذف خواهد شد.</span>
+      <span>آیا از خروج اطمینان دارید؟</span>
+    </div>
+  </div>
+  <div class="d-flex gap-minus align-items-center justify-content-center w-100">
+    <ngx-button
+      [style]="'tinted-on-elevated'"
+      [size]="'large'"
+      [mode]="'form'"
+      [fullWidth]="true"
+      (clickHandler)="handleClick(false)"
+      >خیر
+    </ngx-button>
+    <ngx-button
+      [style]="'fill'"
+      [size]="'large'"
+      [mode]="'form'"
+      [fullWidth]="true"
+      (clickHandler)="handleClick(true)"
+      >بله
+    </ngx-button>
+  </div>
+</div>

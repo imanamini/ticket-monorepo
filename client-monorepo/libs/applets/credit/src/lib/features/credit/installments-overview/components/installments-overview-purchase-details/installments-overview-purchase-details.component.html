@@ -1,0 +1,68 @@
+<div class="d-flex flex-column h-100 max-height-90vh">
+  <ngx-bottom-sheet-header
+    [title]="title()"
+    [leftButton]="true"
+  >
+    <div
+      ngxTooltip="برای مشاهده جزییات تراکنش و مرجوعی در بخش تاریخچه‌ی تراکنش‌ها، تاریخ مورد نظر را انتخاب نمایید."
+      tooltipType="click"
+    >
+      <ngx-icon
+        name="info-circle"
+        [classes]="'text-onback-brand'"
+      />
+    </div>
+  </ngx-bottom-sheet-header>
+
+  @if (gettingData()) {
+    <div class="d-flex align-items-center justify-content-center px-plus py-big">
+      <ngx-spinner
+        size="lg"
+        color="primary"
+      />
+    </div>
+  } @else {
+    <div class="px-plus pt-plus pb-minus flex-grow overflow-auto">
+      @for (purchase of formattedPurchaseData(); track purchase.trackingCode; let last = $last) {
+        <div class="d-flex align-items-center justify-content-space-between gap-small">
+          <div class="p-small radius-minus border-300 border-color-air">
+            <credit-digipay-image
+              [imageId]="purchase.businessImageId"
+              width="18px"
+              class="d-flex p-micro"
+            />
+          </div>
+          <div class="bt-2 text-onback-medium flex-grow">{{ purchase.businessName }}</div>
+          <div class="c-3 text-onback-medium">{{ purchase.purchaseDate }}</div>
+        </div>
+        <div class="d-flex align-items-center justify-content-space-between mt-small">
+          <div class="b-3 text-onback-medium">{{ purchase.purchaseTitle }}</div>
+          <div class="st-8 is-currency">{{ purchase.purchaseValue }}</div>
+        </div>
+        @if (purchase.refunds.length > 0) {
+          @for (refund of purchase.refunds; track $index) {
+            <div class="d-flex align-items-center justify-content-space-between mt-small">
+              <div class="b-3 text-onback-medium">{{ refund.title }}</div>
+              <div class="st-8 is-currency">{{ refund.value }}</div>
+            </div>
+          }
+        }
+        @if (!last) {
+          <ngx-divider
+            class="my-minus d-block"
+            [color]="BorderColorsEnum.Air"
+          />
+        }
+      }
+    </div>
+  }
+
+  <div class="px-plus pb-plus">
+    <ngx-button
+      [fullWidth]="true"
+      (clickHandler)="close()"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

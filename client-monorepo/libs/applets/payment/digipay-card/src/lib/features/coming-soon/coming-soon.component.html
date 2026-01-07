@@ -1,0 +1,25 @@
+<div class="h-100 py-plus d-flex flex-column gap-medium surface-elevated">
+  <ngx-app-bar
+    [title]="feature().pageTitle"
+    (onRightButtonClick)="goBack()"
+    [rightButton]="{ label: '', mode: 'icon-only', size: 'medium', style: 'link', icon: 'arrow-right' }"
+  />
+
+  <div class="d-flex px-plus flex-column mt-hulk align-items-center">
+    <img
+      src="./assets/digipay-card/coming-soon.svg"
+      alt=""
+    />
+    <div class="st-3 text-onback-high mt-big">{{ feature().featureTitle }}</div>
+    <div class="b-2 text-onback-medium mt-micro mb-giant">این امکان به‌زودی در دسترس قرار خواهد گرفت</div>
+    <ngx-button
+      [mode]="'section'"
+      [size]="'large'"
+      [style]="'fill'"
+      [fullWidth]="false"
+      (clickHandler)="goBack()"
+    >
+      بازگشت
+    </ngx-button>
+  </div>
+</div>

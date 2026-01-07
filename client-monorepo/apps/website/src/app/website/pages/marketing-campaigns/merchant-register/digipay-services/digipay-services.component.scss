@@ -1,0 +1,64 @@
+.digipay-services {
+
+  .title {
+    font-weight: 950;
+    text-align: center;
+  }
+
+  .services {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .services-list {
+    border-radius: 16px;
+    background: #FFF;
+    box-shadow: 0 1.5px 6px 0 rgba(0, 0, 0, 0.10);
+
+    flex: 1 1 calc(33.333% - 20px);
+    max-width: calc(33.333% - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #eaeaea;
+
+  }
+}
+
+
+@media screen and (max-width: 1280px) {
+  .digipay-services {
+    .services {
+      justify-content: center;
+    }
+
+    .services-list {
+      flex: 1 1 calc(45.333% - 20px);
+      max-width: calc(45.333% - 20px);
+    }
+
+  }
+}
+
+
+@media screen and (max-width: 744px) {
+
+  .digipay-services {
+
+    .services-list {
+
+      img {
+        width: 60px;
+        height: 60px;
+      }
+
+      span{
+        font-size: 12px;
+      }
+    }
+
+  }
+}

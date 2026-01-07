@@ -1,0 +1,25 @@
+<div class="switch">
+  <ul
+    #switchOptions
+    class="switch-options"
+  >
+    <li
+      (click)="optionClick(i, $event)"
+      *ngFor="let option of options; let i = index"
+      [innerHTML]="option.label"
+      [ngClass]="{
+        selected: selectedOption && selectedOption.value === option.value && enabled,
+      }"
+      [style.height]="height + 'px'"
+      [style.width]="100 / options.length + '%'"
+      class="option"
+    ></li>
+
+    <li
+      [ngClass]="{ hidden: !selectedOption || !enabled }"
+      [ngStyle]="styles"
+      [style.right]="highlightPosition + 'px'"
+      class="selected-option-highlight"
+    ></li>
+  </ul>
+</div>

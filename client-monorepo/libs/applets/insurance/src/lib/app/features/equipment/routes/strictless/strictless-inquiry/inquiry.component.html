@@ -1,0 +1,59 @@
+<div *ngIf="!isLoading; else lottieLoading" class="wrapper">
+  <ng-container [ngSwitch]="inquiryState">
+
+    <inquiry-register
+      (sendSms)="smsSent($event)"
+      *ngSwitchDefault
+    ></inquiry-register>
+
+    <inquiry-login
+      (backToRegisterInquiry)="backToRegisterInquiry()"
+      (leggedIn)="inquiryRequest()"
+      (sendSmsAgain)="sendLoginSms()"
+      *ngSwitchCase="policyInquiry.loginUser"
+      [mobileNo]="formData.mobileNo"
+      [userId]="userId"
+    ></inquiry-login>
+
+    <inquiry-policy-holder
+      *ngSwitchCase="policyInquiry.policyHolder"
+    ></inquiry-policy-holder>
+
+    <inquiry-policy-pure
+      (transferPurePolicy)="transferPurePolicy()"
+      *ngSwitchCase="policyInquiry.policyPure"
+    ></inquiry-policy-pure>
+
+    <inquiry-lead-has-time
+      *ngSwitchCase="policyInquiry.hasLeadHasTime"
+      [purchase]="inquiryResponse.purchases[0]"
+    ></inquiry-lead-has-time>
+
+    <inquiry-lead-extendable
+      *ngSwitchCase="policyInquiry.hasLeadRenew"
+      [purchase]="inquiryResponse.purchases[0]"
+    ></inquiry-lead-extendable>
+
+    <inquiry-lead-time-lost
+      *ngSwitchCase="policyInquiry.HasLeadTimeLost"
+    ></inquiry-lead-time-lost>
+
+    <inquiry-no-policy
+      *ngSwitchCase="policyInquiry.noPolicy"
+    ></inquiry-no-policy>
+
+    <div *ngSwitchCase="policyInquiry.registerUser" class="register">
+      <electronic-equipment-register
+        (submitted)="registerSubmitted($event)"
+      ></electronic-equipment-register>
+    </div>
+
+  </ng-container>
+</div>
+
+<ng-template #lottieLoading>
+  <div class="h-100 w-100 d-flex justify-content-center align-items-center">
+    <ui-loading-spinner [size]="32"></ui-loading-spinner>
+  </div>
+</ng-template>
+

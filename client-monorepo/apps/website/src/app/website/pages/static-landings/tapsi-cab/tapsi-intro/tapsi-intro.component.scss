@@ -1,0 +1,192 @@
+@import "@digipay/base-style/styleguide";
+
+
+.intro-section {
+  height: 460px;
+  overflow: hidden;
+
+  .content {
+    width: 540px;
+
+    .title {
+      text-align: right;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 900;
+      line-height: 67px;
+    }
+
+    .subtitle {
+      font-weight: 500 !important;
+    }
+
+    ::ng-deep {
+      ui-button {
+        .button {
+          border-radius: 100px !important;
+        }
+      }
+    }
+  }
+
+  .animation {
+    width: 600px;
+
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 668px;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity .3s ease;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        background: linear-gradient(
+            to right,
+            #F2F3F6 0%,
+            rgba(242, 243, 246, 0) 10%,
+            rgba(242, 243, 246, 0) 90%,
+            #F2F3F6 100%
+        );
+        z-index: 20;
+      }
+    }
+    .scene.loaded {
+      opacity: 1;
+    }
+
+
+    .trees {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 1751px;
+      height: 73%;
+      background-image: url('/assets/images/tapsi-cab/treees.png');
+      background-repeat: repeat-x;
+      background-size: contain;
+      animation: moveTrees 30s linear infinite;
+    }
+
+    @keyframes moveTrees {
+      from {
+        background-position-x: 0;
+      }
+      to {
+        background-position-x: -4000px
+      }
+    }
+
+    .car {
+      position: absolute;
+      bottom: -4%;
+      left: -100%; // Start off-screen
+      width: 601px;
+      height: 615px;
+      transform: translateX(-50%);
+      z-index: 10;
+      opacity: 0; // Start invisible
+
+      &.loaded {
+        opacity: 1;
+        animation: driveIn 0.8s ease-out forwards;
+      }
+    }
+  }
+
+
+  @keyframes driveIn {
+    0% {
+      left: -100%;
+      opacity: 1;
+    }
+    75% {
+      left: 55%;
+    }
+    100% {
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 1;
+    }
+  }
+}
+
+
+@media (max-width: 1280px) {
+  .intro-section {
+    flex-direction: column-reverse;
+    height: 500px;
+    justify-content: start !important;
+
+    .content {
+      width: 100%;
+      padding: 0 20px;
+
+      .title {
+        font-size: 23px;
+        margin-bottom: 0 !important;
+        text-align: center;
+      }
+
+      .cta {
+        width: 100%;
+
+        ui-button {
+          width: 100%;
+        }
+      }
+
+      .subtitle {
+        font-size: 14px !important;
+        text-align: center;
+      }
+    }
+
+    .animation {
+      height: 250px;
+      overflow: hidden;
+
+      .car {
+        width: 425px;
+        height: auto;
+        bottom: -21%;
+      }
+
+      .scene {
+        height: 120%;
+      }
+
+      .trees {
+        height: 103%;
+        width: 180%;
+      }
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .intro-section {
+    height: auto;
+
+    .animation {
+      .car {
+        width: 350px;
+      }
+
+      .trees {
+        width: 200%;
+      }
+
+      .scene {
+        height: 115%;
+      }
+    }
+  }
+}

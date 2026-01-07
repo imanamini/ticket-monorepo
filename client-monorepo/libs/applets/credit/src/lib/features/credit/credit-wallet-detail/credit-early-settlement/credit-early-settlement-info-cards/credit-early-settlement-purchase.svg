@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"
+>
+  <title>66BA182C-471B-4C19-BFA0-FB53946BCB26</title>
+  <g id="Finallllllllllll" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="BNPL---ES" transform="translate(-288.000000, -281.000000)">
+      <g id="Group-2" transform="translate(0.000000, 241.000000)">
+        <g id="Purchase" transform="translate(188.000000, 24.000000)">
+          <g id="Group" transform="translate(100.000000, 16.000000)">
+            <polyline id="Path" stroke="#0040FF" stroke-width="2.08333332" stroke-linecap="round"
+                      stroke-linejoin="round"
+                      points="28 18.6818933 26.3226667 18.6818933 24.988 25.34856 18.2613333 25.34856 17.3333333 20.6818933 25.9226667 20.6818933"></polyline>
+            <path
+              d="M26.6666667,13.34856 L26.6666667,6.68189333 C26.6666667,5.209134 25.4727593,4.01522667 24,4.01522667 L6.66666667,4.01522667 C5.19390733,4.01522667 4,5.209134 4,6.68189333 L4,25.34856 C4,26.8213193 5.19390733,28.0152267 6.66666667,28.0152267 L13.3333333,28.0152267"
+              id="Path" stroke="#0040FF" stroke-width="2.08333332" stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <line x1="9.33333333" y1="9.34856" x2="21.3333333" y2="9.34856" id="Path" stroke="#0040FF"
+                  stroke-width="2.08333332" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="9.33333333" y1="14.6818933" x2="18.6666667" y2="14.6818933" id="Path" stroke="#0040FF"
+                  stroke-width="2.08333332" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="9.33333333" y1="20.0152267" x2="12" y2="20.0152267" id="Path" stroke="#0040FF"
+                  stroke-width="2.08333332" stroke-linecap="round" stroke-linejoin="round"></line>
+            <path
+              d="M18.896,28.56828 C18.8701096,28.5943836 18.8702392,28.6365199 18.8962897,28.6624637 C18.9223402,28.6884076 18.9644766,28.6883644 18.9904738,28.6623672 C19.0164711,28.63637 19.0165143,28.5942335 18.9905704,28.568183 C18.9646266,28.5421326 18.9224903,28.542003 18.8963867,28.5678933 L18.896,28.56828"
+              id="Path" stroke="#0040FF" stroke-width="2.08333332" stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <path
+              d="M24.2666667,28.56828 C24.2407763,28.5943836 24.2409059,28.6365199 24.2669564,28.6624637 C24.2930068,28.6884076 24.3351433,28.6883644 24.3611405,28.6623672 C24.3871377,28.63637 24.3871809,28.5942335 24.3612371,28.568183 C24.3352932,28.5421326 24.2931569,28.542003 24.2670533,28.5678933 L24.2666667,28.56828"
+              id="Path" stroke="#0040FF" stroke-width="2.08333332" stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <polygon id="Path" points="32 32 0 32 0 0 32 0"></polygon>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

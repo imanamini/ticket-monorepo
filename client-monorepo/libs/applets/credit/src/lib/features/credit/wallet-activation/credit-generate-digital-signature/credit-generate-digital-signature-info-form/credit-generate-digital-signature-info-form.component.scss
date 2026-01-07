@@ -1,0 +1,35 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+* {
+  box-sizing: border-box;
+  direction: rtl;
+}
+
+.call-to-action-section {
+  flex-grow: 0;
+}
+
+.hint-img {
+  height: 80px;
+  width: 80px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+
+  &.firefox_browser{
+    background-image: url("../assets/firefox-browser.svg");
+  }
+
+  &.mi_browser{
+    background-image: url("../assets/mi-browser.svg");
+  }
+
+  &.huawei_browser{
+    background-image: url("../assets/huawei-browser.svg");
+  }
+
+}

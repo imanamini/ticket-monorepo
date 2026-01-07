@@ -1,0 +1,80 @@
+<div class="d-flex w-100 flex-column gap-big pt-huge pb-medium px-medium border-300 border-color-light radius-plus rtl">
+  <svg
+    #svgEl
+    [attr.data-progress]="value()"
+    [attr.height]="height()"
+    [attr.width]="width()"
+    aria-labelledby="title desc"
+    role="img"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      [attr.d]="pathD()"
+      [attr.stroke-width]="strokeWidth()"
+      fill="none"
+      id="track"
+      stroke-linecap="round"
+    />
+
+    <path
+      #progressPath
+      [attr.d]="pathD()"
+      [attr.stroke-width]="strokeWidth()"
+      fill="none"
+      id="progress"
+      stroke-dasharray="0 0"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <text
+      #labelText
+      [attr.font-size]="labelFontSize()"
+      [attr.x]="width() / 2"
+      [attr.y]="height() / 2 + 15"
+      font-weight="800"
+      id="amount"
+      text-anchor="middle"
+    ></text>
+    <text
+      [attr.font-size]="14"
+      [attr.x]="(width() + 68) / 2"
+      [attr.y]="height() / 2 + 38"
+      font-weight="400"
+      id="letter"
+    >
+      میلیون تومان
+    </text>
+    <text
+      [attr.font-size]="12"
+      [attr.x]="strokeWidth() / 2"
+      [attr.y]="height() - strokeWidth()"
+      class="label"
+      font-weight="500"
+    >
+      {{ minProgressValue }}
+    </text>
+    <text
+      [attr.font-size]="12"
+      [attr.x]="width()"
+      [attr.y]="height() - strokeWidth()"
+      class="label"
+      font-weight="500"
+    >
+      {{ maxProgressValue }}
+    </text>
+  </svg>
+  <div class="d-flex flex-row align-items-center justify-content-space-between">
+    <span class="st-8 text-onback-high">{{ expirationDate() | jalaliDate }}</span>
+    <ngx-button
+      (clickHandler)="report.emit()"
+      [leftIcon]="{ name: 'arrow-2-left' }"
+      [size]="'small'"
+      [style]="'link'"
+      ngxTrackableId
+      trackerId="smartScoringShowReportButtonClick"
+    >
+      گزارش اعتبارسنجی
+    </ngx-button>
+  </div>
+</div>

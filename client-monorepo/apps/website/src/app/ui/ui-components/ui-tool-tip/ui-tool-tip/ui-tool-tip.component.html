@@ -1,0 +1,9 @@
+<div class="ui-tool-tip">
+  <div
+    *ngIf="show"
+    class="tool-tip-wrapper"
+  >
+    <span [ngTemplateOutlet]="toolTip"> </span>
+  </div>
+  <ng-content></ng-content>
+</div>

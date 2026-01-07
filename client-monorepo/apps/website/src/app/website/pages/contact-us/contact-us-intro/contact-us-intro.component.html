@@ -1,0 +1,58 @@
+<section class="intro-contactUs">
+  <div class="container">
+    <div>
+      <div class="intro-contactUs__img">
+        <img
+          *ngIf="templateData.introIcon"
+          [src]="templateData?.introIcon?.url"
+          alt="تماس با دیجی‌پی"
+        />
+      </div>
+      <h2 class="text-align-center">
+        {{ templateData.introTitle }}
+      </h2>
+      <div class="text-align-center subtitle">
+        {{ templateData.introSubtitle }}
+      </div>
+      <div class="digipay-services-contain">
+        <div class="digipay-services__desc">
+          <p>
+            {{ templateData?.mainServices?.title }}
+          </p>
+        </div>
+        <div class="digipay-services__container">
+          <div
+            *ngIf="templateData.mainServices && templateData.mainServices.service"
+            class="digipay-services__items"
+          >
+            <swiper-container
+              appSwiper
+              #swiper
+              [config]="config"
+            >
+              <swiper-slide *ngFor="let serviceItem of templateData.mainServices.service">
+                <div class="digipay-services__item">
+                  <div class="digipay-services__contain">
+                    <a [attr.href]="serviceItem.link"></a>
+                    <div>
+                      <div class="digipay-services__item-icon">
+                        <img
+                          *ngIf="serviceItem.image?.url"
+                          [src]="serviceItem.image.url"
+                          alt=""
+                        />
+                      </div>
+                      <div class="digipay-services__item-title">
+                        {{ serviceItem.title }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </swiper-slide>
+            </swiper-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

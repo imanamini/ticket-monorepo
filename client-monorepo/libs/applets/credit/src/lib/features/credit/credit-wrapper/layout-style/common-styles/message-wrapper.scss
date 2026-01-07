@@ -1,0 +1,87 @@
+.credit-message-wrapper {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .message-image {
+    width: 164px;
+    height: 164px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+
+    &.image-no-service {
+      background-image: url("../../../assets/icons/public-icons/credit-warning.svg");
+    }
+
+    &.image-error {
+      background-image: url("../../../assets/icons/public-icons/credit-error-image.svg");
+    }
+
+    &.image-warning {
+      background-image: url("../../../assets/icons/public-icons/credit-error-warning-message.svg");
+    }
+
+    &.image-success {
+      background-image: url("../../../assets/icons/public-icons/credit-success-message.svg");
+    }
+
+    &.image-in-progress {
+      background-image: url("../../../assets/icons/public-icons/credit-in-progress.svg");
+    }
+
+    &.image-failed {
+      background-image: url("../../../assets/icons/public-icons/credit-enote-expired.svg");
+    }
+  }
+
+  .message-title {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    text-align: center;
+    direction: rtl;
+  }
+
+  .message-content {
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    direction: rtl;
+  }
+}
+
+.message-image {
+  width: 164px;
+  height: 164px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+
+  &.image-no-service {
+    background-image: url("../../../assets/icons/public-icons/credit-warning.svg");
+  }
+
+  &.image-error {
+    background-image: url("../../../assets/icons/public-icons/credit-error-image.svg");
+  }
+
+  &.image-warning {
+    background-image: url("../../../assets/icons/public-icons/credit-error-warning-message.svg");
+  }
+
+  &.image-success {
+    background-image: url("../../../assets/icons/public-icons/credit-success-message.svg");
+  }
+
+  &.image-in-progress {
+    background-image: url("../../../assets/icons/public-icons/credit-in-progress.svg");
+  }
+
+  &.image-failed {
+    background-image: url("../../../assets/icons/public-icons/credit-enote-expired.svg");
+  }
+}

@@ -1,0 +1,130 @@
+<div class="d-flex flex-column h-100dvh surface-elevated cashin-container position-relative">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'انتخاب مبلغ اعتبار'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="flex-1 d-flex flex-column align-items-center py-big surface-elevated p-plus">
+    <wealth-applet-detail-bnpl
+      class="w-100 surface-glass-onelevated radius-minus px-plus py-medium"
+      [walletTitle]="state()?.walletTitle ?? ''"
+      [walletBalance]="state()?.walletWithdrawableBalance ?? 0"
+      [walletName]="'WALLET_FX'"
+      [walletDescriptions]="'دریافت اعتبار تا ۱۰۰٪ موجودی'"
+    />
+
+    <div class="w-100 d-flex flex-column mt-big">
+      <span class="b-2 mb-medium">مبلغ درخواستی اعتبار</span>
+      <ui-form-field
+        [label]="'مبلغ مورد نظر'"
+        class="w-100"
+        [stepValue]="5000000"
+        [type]="'amount-chip'"
+        [maxSize]="16"
+        [formControl]="amountController"
+        [isNumericKeyboard]="true"
+        [convertNonEnglishDigits]="true"
+        [required]="true"
+        [hasCleaner]="true"
+        [error]="amountController.errors ?? {}"
+        [errorMessageMapper]="{
+          min: minAmountError(),
+          max: maxAmountError(),
+        }"
+        [hint]="!amountController.value ? 'مبلغ باید ضریبی از ' + (state()?.roundDown | thousands) + ' ریال باشد.' : ''"
+        (cleanEvent)="selectedAutoCompleteButton.set(0)"
+      ></ui-form-field>
+
+      <div class="w-100 auto-fill-container mt-small">
+        @for (button of autoCompleteButtons(); track button) {
+          <div
+            class="cursor-pointer surface-back radius-small py-tiny text-align-center d-flex align-items-center justify-content-center button"
+            (click)="handleAutoFill(button)"
+            [ngClass]="{ 'active-amount': selectedAutoCompleteButton() === button.id }"
+          >
+            <span
+              class="l-2 text-onback-high"
+              [ngClass]="{ 'text-oninvert-high': selectedAutoCompleteButton() === button.id }"
+            >
+              @if (button.id === 4 && state()?.walletWithdrawableBalance >= state()?.minBnplAmount) {
+                <span class="st-8">
+                  {{ button.label }}
+                </span>
+              } @else {
+                <span class="st-8">
+                  {{ button.amount | thousands }}
+                </span>
+                <span class="is-currency">ریال</span>
+              }
+            </span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="w-100 d-flex flex-column surface-glass-onelevated radius-medium p-plus mt-plus">
+      <div class="w-100 d-flex align-items-start justify-content-space-between">
+        <p class="b-3 text-onback-high">نیاز به افزایش موجودی</p>
+        <p class="st-7 text-onback-high">
+          {{ payableAmount() | thousands }}
+          <span class="is-currency">ریال</span>
+        </p>
+      </div>
+      <ngx-divider
+        class="w-100 my-minus"
+        [color]="BorderColorEnum.Light"
+      />
+      <div class="w-100 d-flex align-items-start justify-content-space-between gap-low">
+        <ngx-icon
+          [name]="'info-circle'"
+          [type]="'bold'"
+          class="text-onback-brand"
+        />
+        <p class="l-3 text-onback-medium">
+          اگر اعتبار درخواستی، بیشتر از موجودیتان بود، می‌توانید موجودی خود را در همین فرایند افزایش دهید.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="w-100 px-plus d-flex flex-column gap-small surface-elevated py-medium sticky-action-group">
+    @if (state()?.requireAgreement) {
+      <div class="w-100 d-flex">
+        <ngx-checkbox
+          class="align-items-center"
+          (checkedChange)="agreementChecked.set($event)"
+          [checked]="agreementChecked()"
+        >
+          <div class="d-flex gap-tiny check-box-text">
+            <span>شرایط</span>
+            <span
+              (click)="agreementView(pdfType.REGULATIONS)"
+              class="text-onback-brand"
+            >
+              قوانین و مقررات
+            </span>
+            <span>را می‌پذیرم.</span>
+          </div>
+        </ngx-checkbox>
+      </div>
+    }
+    <ngx-button
+      [buttonId]="(state()?.walletName ?? 'WALLET_FX') + '_CASH_IN'"
+      [style]="'fill'"
+      [fullWidth]="true"
+      [mode]="'form'"
+      size="medium"
+      [disabled]="amountController.invalid || btnLoading() || (state().requireAgreement && !agreementChecked())"
+      (clickHandler)="continue()"
+      [isLoading]="btnLoading()"
+    >
+      تایید و ادامه
+    </ngx-button>
+  </div>
+</div>

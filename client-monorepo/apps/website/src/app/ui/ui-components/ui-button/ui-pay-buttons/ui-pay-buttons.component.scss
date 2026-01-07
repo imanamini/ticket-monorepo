@@ -1,0 +1,28 @@
+@import "globals";
+
+:host {
+  display: flex;
+  width: 100%;
+}
+
+.ipg {
+  flex-grow: 1;
+}
+
+.wallet {
+  width: 50%;
+  margin-right: 16px;
+}
+
+@include mediaMaxWidth(370px) {
+  :host {
+    flex-direction: column;
+  }
+  .ipg,
+  .wallet {
+    width: 100%;
+  }
+  .wallet {
+    margin: 12px 0 0 0;
+  }
+}

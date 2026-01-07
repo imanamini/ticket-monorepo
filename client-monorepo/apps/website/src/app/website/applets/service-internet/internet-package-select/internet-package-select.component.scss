@@ -1,0 +1,135 @@
+@import "globals";
+
+.package-select {
+  .packages-area {
+    max-height: 310px;
+    overflow-y: auto;
+    margin-top: 16px;
+
+    .package-group {
+      padding-left: 9px;
+    }
+
+    .package-items {
+      display: grid;
+      grid-template-columns: calc((100% - 13px) / 2) calc((100% - 13px) / 2);
+      gap: 13px;
+    }
+  }
+
+  .tabs {
+    margin-bottom: 16px;
+
+    ::ng-deep {
+      .swiper-slide {
+        width: auto;
+      }
+    }
+
+    .tab {
+      padding: 8px 16px;
+      background-color: #f2f5f8;
+      border-radius: 12px;
+      color: #8d99a8;
+      cursor: pointer;
+
+      &.active {
+        color: #0040ff;
+        border: 1px solid #0040ff;
+      }
+    }
+  }
+}
+
+.warning {
+  //font-size: 14px;
+  margin: 16px 0 24px 0;
+  //margin-bottom: 24px;
+}
+
+.filters-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  > * {
+    margin-left: 16px;
+
+    &:last-child {
+      margin-left: 0;
+    }
+  }
+
+  .cell-number-field {
+    flex: 0 1 30%;
+  }
+
+  .carrier-select {
+    flex: 0 1 20%;
+  }
+
+  .sim-type-select {
+    flex: 0 1 20%;
+  }
+
+  .button {
+    flex: 0 1 30%;
+  }
+}
+
+.hr {
+  margin-left: -24px;
+  margin-right: -24px;
+}
+
+.duration-slider {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.package-group {
+  margin-bottom: 24px;
+
+  .group-title {
+    font-weight: 500;
+    color: $swatch_steel_500;
+    font-size: rem(14, 16);
+    margin-bottom: em(14, 12);
+  }
+}
+
+:host ::ng-deep {
+  ui-section.loading {
+    .body {
+      position: relative;
+
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(#fff, 0.6);
+        display: block;
+        content: ' ';
+      }
+    }
+  }
+}
+
+.page-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 744px) {
+  .package-select {
+    .packages-area {
+      max-height: unset;
+      overflow: hidden;
+    }
+  }
+}

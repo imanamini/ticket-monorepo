@@ -1,0 +1,64 @@
+@use "../../../../../../style/mixins/ios" as ios;
+@import "@digipay/base-style/styleguide";
+
+:host {
+  flex: 1;
+  overflow: auto;
+
+  .plp-edit-information .box-center {
+    @include ios.over-scroll-behavior-none-ios();
+  }
+}
+
+.plp-edit-information {
+  height: 100%;
+  @include ios.set-style-ios() {
+    height: 93%;
+  }
+  gap: 16px;
+  align-items: center;
+
+
+  .box-center {
+    width: 100%;
+    gap: 16px;
+    flex: 1;
+    overflow: auto;
+
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
+
+    .center-text {
+      padding: 8px 16px;
+      font-size: 16px;
+      line-height: 28px;
+    }
+
+    .center-content {
+      flex: 1 1 auto;
+      padding: 0 16px;
+
+      .information-ex-insurer {
+        gap: 16px;
+
+        .ex-insurer-section {
+          gap: 16px;
+
+          .section-title {
+            line-height: 24px;
+            font-weight: 700;
+            text-align: right;
+          }
+
+          .radio-button {
+            padding-bottom: 16px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+@if (!showLoading()) {
+  <app-credit-app-bar
+    (onBackButtonClick)="close.emit()"
+    [backButton]="true"
+    (onTextClick)="onActionClick()"
+    [actionImage]="'info-circle'"
+    actionText="نکات مهم"
+    title="رد ضمانت"
+  ></app-credit-app-bar>
+  <div class="main-section flex-full-height">
+    <div class="top-section">
+      <app-credit-scrollable-view>
+        <div class="page-content">
+          <div
+            (click)="openImageDialog()"
+            class="image"
+          >
+            <div class="header">ضمانت تایید نشد</div>
+            @if (document()?.imageId) {
+              <credit-digipay-image
+                [imageId]="document()?.imageId"
+                apiEndpoint="CREDIT"
+                width="100%"
+              ></credit-digipay-image>
+            }
+          </div>
+          <div class="reasons">
+            <p class="title">دلایل رد ضمانت:</p>
+            <div class="items">
+              @for (item of document()?.reasons; track item; let index = $index) {
+                <div class="item">
+                  <div class="number">
+                    {{ index + 1 }}
+                  </div>
+                  <div>
+                    @if (item.type !== 'others') {
+                      <div class="title">
+                        {{ item.title }}
+                      </div>
+                    }
+                    @if (item.description) {
+                      <div class="description">
+                        {{ item.description }}
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+    <div
+      class="bottom-section"
+
+    >
+      <ngx-callout
+        [title]="'ضمانت جدید را حتما از روی راهنمای نوشتن ضمانت بنویسید.'"
+        [mode]="'multiple'"
+      ></ngx-callout>
+      <ngx-button
+        (click)="onSubmit()"
+        [fullWidth]="true"
+      >
+        اصلاح دلایل
+      </ngx-button>
+    </div>
+  </div>
+}
+
+<credit-page-loading [active]="showLoading()!"></credit-page-loading>

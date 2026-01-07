@@ -1,0 +1,11 @@
+@import "insurance/src/lib/app/style/once/global";
+
+p {
+  display: inline-block;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  color: $swatch_white_900;
+  margin-bottom: 20px;
+}

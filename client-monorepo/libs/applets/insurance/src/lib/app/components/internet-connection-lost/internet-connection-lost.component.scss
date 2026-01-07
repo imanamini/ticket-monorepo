@@ -1,0 +1,22 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.internet-connection-lost {
+  position: fixed;
+  z-index: -9999;
+  inset: 0;
+  display: flex;
+  visibility: hidden;
+  pointer-events: none;
+
+  &.show {
+    z-index: 9999 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  .content {
+    width: 100%;
+    background-image: linear-gradient(220deg, #0E0C7C 3.65%, #89A7EC 95.95%);
+    max-width: 552px;
+  }
+}

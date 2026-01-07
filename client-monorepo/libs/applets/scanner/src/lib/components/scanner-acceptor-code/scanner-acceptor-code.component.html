@@ -1,0 +1,31 @@
+<div class="flex-grow column">
+  <div class="title-acceptor-code">کد پذیرنده</div>
+  <div class="description-acceptor-code">می‌توانید برای پرداخت کرایه تاکسی، شناسه زیر بارکد را وارد کنید.</div>
+  <form [formGroup]="form">
+    <ui-form-field
+      [errorMessageMapper]="errorMessageMapper"
+      class="input-acceptor-code"
+      [hasCleaner]="true"
+      [isNumericKeyboard]="true"
+      [error]="form.controls['acceptorCode'].errors"
+      label="شناسه"
+      [maxSize]="10"
+      formControlName="acceptorCode"
+      inputType="tel"
+      type="input"
+    >
+    </ui-form-field>
+    <ngx-button
+      class="flex-grow mt-huge"
+      (clickHandler)="onSubmit()"
+      [disabled]="form.invalid || processing()"
+      [isLoading]="processing()"
+      [mode]="'form'"
+      [size]="'large'"
+      [style]="'fill'"
+      [fullWidth]="true"
+    >
+      ادامه
+    </ngx-button>
+  </form>
+</div>

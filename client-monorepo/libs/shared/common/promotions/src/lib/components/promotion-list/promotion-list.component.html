@@ -1,0 +1,291 @@
+@if (shouldCautiousAboutPerformance() && !isInViewport()) {
+  <common-ui-components-defer-place-holder
+    [mode]="'loading'"
+    [height]="placeHolderHeight()"
+    [backgroundClass]="'surface-glass-onback'"
+  ></common-ui-components-defer-place-holder>
+} @else {
+  @if (promotionGroup() && promotionGroup()?.uuid && (isLoading() || promotionItems().length)) {
+    @if (promotionMode() === PromotionModes.CAROUSEL) {
+      <div
+        class="promotion-carousel"
+        [ngClass]="{
+          'amazing pb-big': type() === PromotionGroupTypeEnum.SIMPLE_WOW || type() === PromotionGroupTypeEnum.CIRCULAR_WOW,
+          circular: type() === PromotionGroupTypeEnum.CIRCULAR_WOW,
+          simple: type() === PromotionGroupTypeEnum.SIMPLE_WOW,
+          'is-loading': isLoading(),
+        }"
+        [ngStyle]="{
+          'background-image':
+            activeCampaign()?.promotionsBackgroundImage && type() !== PromotionGroupTypeEnum.NORMAL
+              ? activeCampaign()?.promotionsBackgroundImage
+              : null,
+        }"
+      >
+        @if (type() === PromotionGroupTypeEnum.NORMAL) {
+          @if (promotionItems().length || isLoading()) {
+            <div class="px-plus">
+              <common-ui-components-title-summary
+                [title]="promotionGroup()?.title ?? ''"
+                [isLoading]="isLoading()"
+                [buttonTitle]="'همه'"
+                [mode]="'SECTION_TITLE'"
+                [buttonIcon]="'arrow-2-left'"
+                [buttonIconReversed]="true"
+                [wrapperClasses]="'mb-small'"
+                [mustReturnAction]="true"
+                (onButtonClicked)="navigate()"
+              ></common-ui-components-title-summary>
+            </div>
+            <common-ui-components-horizontal-scroll [classes]="'pr-plus gap-small'">
+              @if (isLoading()) {
+                @for (item of rangeCreator(10); track $index) {
+                  <div
+                    [style.width]="'156px'"
+                    [style.min-width]="'156px'"
+                    [style.display]="'block'"
+                  >
+                    <common-stores-product-preview [isLoading]="true"></common-stores-product-preview>
+                  </div>
+                }
+              } @else {
+                @for (item of promotionItems(); track $index) {
+                  @if (item.product?.title && (item.product?.image || item.product?.resizedImage) && item.product?.url) {
+                    <div class="promotion-carousel-item">
+                      <common-stores-product-preview
+                        (clicked)="clickOnItem($event)"
+                        [product]="item.product!"
+                        [position]="$index + 1"
+                        [hasInstallment]="showInstallment()"
+                      ></common-stores-product-preview>
+                    </div>
+                  }
+                }
+              }
+            </common-ui-components-horizontal-scroll>
+          }
+        } @else if (type() === PromotionGroupTypeEnum.SIMPLE_WOW) {
+          @if (promotionItems().length || isLoading()) {
+            <div class="promotion-carousel-top-bar py-plus px-plus d-flex align-items-center justify-content-space-between w-100">
+              <div class="promotion-carousel-top-bar-title st-3 text-oninvert-high">
+                @if (isLoading()) {
+                  <lib-ngx-skeleton-loading
+                    [height]="'40px'"
+                    [width]="'130px'"
+                    [loadingEffect]="loadingEffect()"
+                  ></lib-ngx-skeleton-loading>
+                } @else {
+                  {{ promotionGroup()?.title }}
+                }
+              </div>
+              <div class="promotion-carousel-top-bar-timer ltr d-flex align-items-center justify-content-start gap-tiny">
+                @if (isLoading()) {
+                  <lib-ngx-skeleton-loading
+                    [height]="'40px'"
+                    [width]="'130px'"
+                    [loadingEffect]="loadingEffect()"
+                  ></lib-ngx-skeleton-loading>
+                } @else {
+                  <div
+                    class="promotion-carousel-top-bar-timer-item surface-glass radius-small b-2 text-oninvert-high d-flex align-items-center justify-content-center"
+                  >
+                    {{ time()[0] }}
+                  </div>
+                  <div class="promotion-carousel-top-bar-timer-spacer b-2 text-oninvert-high">:</div>
+                  <div
+                    class="promotion-carousel-top-bar-timer-item surface-glass radius-small b-2 text-oninvert-high d-flex align-items-center justify-content-center"
+                  >
+                    {{ time()[1] }}
+                  </div>
+                  <div class="promotion-carousel-top-bar-timer-spacer b-2 text-oninvert-high">:</div>
+                  <div
+                    class="promotion-carousel-top-bar-timer-item surface-glass radius-small b-2 text-oninvert-high d-flex align-items-center justify-content-center"
+                  >
+                    {{ time()[2] }}
+                  </div>
+                }
+              </div>
+            </div>
+            <common-ui-components-horizontal-scroll [classes]="'pr-plus gap-small'">
+              @if (isLoading()) {
+                @for (item of rangeCreator(10); track $index) {
+                  <div
+                    [style.width]="'156px'"
+                    [style.min-width]="'156px'"
+                    [style.display]="'block'"
+                  >
+                    <common-stores-product-preview [isLoading]="true"></common-stores-product-preview>
+                  </div>
+                }
+              } @else {
+                @for (item of promotionItems(); track $index) {
+                  @if (item.product?.title && (item.product?.image || item.product?.resizedImage) && item.product?.url) {
+                    <div class="promotion-carousel-item">
+                      <common-stores-product-preview
+                        (clicked)="clickOnItem($event)"
+                        [product]="item.product!"
+                        [hasInstallment]="showInstallment()"
+                        [position]="$index + 1"
+                      ></common-stores-product-preview>
+                    </div>
+                  }
+                }
+                <div
+                  class="promotion-carousel-item promotion-carousel-item-more cursor-pointer d-flex flex-column align-items-stretch justify-content-start surface-elevated radius-big px-tiny pt-tiny pb-minus"
+                  [routerLink]="promotionGroup()?.uuid ? ('/stores/promotions/' + promotionGroup()?.uuid ?? '') : ''"
+                >
+                  <div class="promotion-carousel-item-more-img radius-big"></div>
+                  <div class="promotion-carousel-item-more-body d-flex flex-column align-items-center justify-content-center gap-tiny">
+                    <div class="promotion-carousel-item-more-body-title bt-2 text-onback-medium">همه محصولات</div>
+                    <ngx-button
+                      [rightIcon]="{
+                        name: 'arrow-left',
+                      }"
+                      [style]="'fill'"
+                      [mode]="'icon-only'"
+                    ></ngx-button>
+                  </div>
+                </div>
+              }
+            </common-ui-components-horizontal-scroll>
+          }
+        } @else if (type() === PromotionGroupTypeEnum.CIRCULAR_WOW) {
+          @if (promotionItems().length || isLoading()) {
+            <div class="promotion-carousel-top-bar p-plus d-flex align-items-center gap-small w-100">
+              <span class="promotion-carousel-top-bar-title st-7 text-oninvert-high">
+                @if (isLoading()) {
+                  <lib-ngx-skeleton-loading
+                    [height]="'40px'"
+                    [width]="'130px'"
+                    [loadingEffect]="loadingEffect()"
+                  ></lib-ngx-skeleton-loading>
+                } @else {
+                  {{ promotionGroup()?.title }}
+                }
+              </span>
+              <div class="promotion-carousel-top-bar-timer ltr d-flex align-items-center justify-content-start gap-tiny">
+                @if (isLoading()) {
+                  <lib-ngx-skeleton-loading
+                    [height]="'40px'"
+                    [width]="'130px'"
+                    [loadingEffect]="loadingEffect()"
+                  ></lib-ngx-skeleton-loading>
+                } @else {
+                  <div class="d-flex gap-tiny">
+                    <div class="circular-timer text-oninvert-high">
+                      <span>{{ time()[0] }}</span>
+                    </div>
+                    <div class="promotion-carousel-top-bar-timer-spacer b-2 text-oninvert-high">:</div>
+                    <div class="circular-timer text-oninvert-high">
+                      <span>{{ time()[1] }}</span>
+                    </div>
+                    <div class="promotion-carousel-top-bar-timer-spacer b-2 text-oninvert-high">:</div>
+                    <div class="circular-timer text-oninvert-high">
+                      <span>{{ time()[2] }}</span>
+                    </div>
+                  </div>
+                }
+              </div>
+              <div class="all-promotions-circular">
+                <ngx-button
+                  [routerLink]="promotionGroup()?.uuid ? ('/stores/promotions/' + promotionGroup()?.uuid ?? '') : ''"
+                  [mode]="'form'"
+                  [style]="'link'"
+                  [size]="'medium'"
+                  [brandButton]="false"
+                  [leftIcon]="{
+                    name: 'arrow-2-left',
+                    type: 'linear',
+                  }"
+                >
+                  همه
+                </ngx-button>
+              </div>
+            </div>
+            @if (isLoading()) {
+              <div class="d-flex gap-small overflow-hidden">
+                @for (_ of rangeCreator(3); track $index) {
+                  <div
+                    [style.width]="'156px'"
+                    [style.min-width]="'156px'"
+                    [style.display]="'block'"
+                  >
+                    <common-stores-product-preview [isLoading]="true"></common-stores-product-preview>
+                  </div>
+                }
+              </div>
+            } @else {
+              <ngx-dp-carousel
+                [mode]="'CARD'"
+                [visibleItemCount]="3"
+                [index]="1"
+                [centerMode]="true"
+                [showNavigation]="false"
+                [showButtons]="false"
+                [isFixedGap]="true"
+                [changeStepThresholdPercentage]="10"
+                [swipeThreshold]="100"
+                [disableNavigationDots]="true"
+                [scalingTransformOrigin]="'center center'"
+                [disableScaling]="false"
+                [scaleAmount]="0.85"
+                [enableAutoPlay]="true"
+                [autoPlayDurationMillis]="5000"
+                [fixedWidth]="150"
+                [isFixedWidth]="true"
+                [fixedGap]="10"
+                [loopMode]="true"
+                [isSlideOverflowVisible]="true"
+                (isSwiping)="animationIsRunning($event)"
+              >
+                @for (item of promotionItems(); track $index) {
+                  <ng-template ngxDpCarouselSlide>
+                    <div class="promotion-carousel-item">
+                      <common-stores-product-preview
+                        (clicked)="clickOnItem($event)"
+                        [product]="item.product!"
+                        [position]="$index + 1"
+                        [hasInstallment]="showInstallment()"
+                        [backgroundMode]="'back'"
+                      ></common-stores-product-preview>
+                    </div>
+                  </ng-template>
+                }
+              </ngx-dp-carousel>
+            }
+          }
+        }
+      </div>
+    } @else if (promotionMode() === PromotionModes.GRID_2X2) {
+      <div class="d-flex flex-column">
+        <div class="px-plus">
+          <common-ui-components-title-summary
+            [title]="promotionGroup()?.title ?? ''"
+            [isLoading]="isLoading()"
+            [showButton]="false"
+            [mode]="'SECTION_TITLE'"
+            [buttonIcon]="'arrow-2-left'"
+            [buttonIconReversed]="true"
+            [wrapperClasses]="'mb-small'"
+            [navigationLink]="promotionGroup()?.uuid ? ('/stores/promotions/' + promotionGroup()?.uuid ?? '') : ''"
+          ></common-ui-components-title-summary>
+        </div>
+        <div class="promotion-grid px-plus">
+          @for (item of gridItems(); track $index) {
+            <div class="d-flex justify-content-center">
+              <common-stores-product-preview
+                class="w-100"
+                (clicked)="clickOnItem($event)"
+                [product]="item.product!"
+                [size]="'compact'"
+                [position]="$index + 1"
+                [hasInstallment]="showInstallment()"
+                [backgroundMode]="'back'"
+              ></common-stores-product-preview>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  }
+}

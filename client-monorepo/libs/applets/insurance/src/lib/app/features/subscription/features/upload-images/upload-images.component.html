@@ -1,0 +1,88 @@
+<div class="upload-images p-plus h-100 d-flex flex-column">
+  <div class="d-flex flex-column gap-medium">
+    <p class="title text-onback-high">
+      تصاویر صفحه نمایش و پشت گوشی خود را بارگذاری کنید.
+    </p>
+    <p class="tab-title text-onback-high">
+      تعداد صفحه نمایش گوشی
+    </p>
+    <ngx-segmented-control
+      [selectedOption]="selectedOption()"
+      [countStatus]="'bold'"
+      [options]="options()"
+      (selectedOptionChange)="changeOption($event)"
+      mode="SECTION_SEGMENT"
+    ></ngx-segmented-control>
+  </div>
+  <div class="content-wrapper flex pb-massive">
+    <div class="tab-container">
+      <div class="tab-container d-flex flex-column">
+        <div class="card-container">
+          <ui-upload-file
+            [title]="'تصویر صفحه نمایش'"
+            [uploadType]="files.get(SubscriptionUploadImageEnum.ImageFrontOne).mode"
+            (deleteFile)="deleteFile(SubscriptionUploadImageEnum.ImageFrontOne)"
+            (selectedFile)="selectedFile($event , SubscriptionUploadImageEnum.ImageFrontOne)"
+            [percent]="files.get(SubscriptionUploadImageEnum.ImageFrontOne).percent"
+            [fileUploadedName]="files.get(SubscriptionUploadImageEnum.ImageFrontOne).name"
+            (componentHasError)="uploadFileHasError(SubscriptionUploadImageEnum.ImageFrontOne , $event)"
+            [textUploaded]="( this.selectedOption().value === 'ONE_SCREEN') ?
+                        'تصویر صفحه نمایش' : 'تصویر صفحه نمایش اول' "
+            [url]="files.get(SubscriptionUploadImageEnum.ImageFrontOne).url">
+          </ui-upload-file>
+
+          @if (selectedOption().value === 'TWO_SCREEN') {
+            <ui-upload-file
+              [title]="'تصویر صفحه نمایش'"
+              [uploadType]="files.get(SubscriptionUploadImageEnum.ImageFrontTwo).mode"
+              (selectedFile)="selectedFile($event , SubscriptionUploadImageEnum.ImageFrontTwo)"
+              (deleteFile)="deleteFile(SubscriptionUploadImageEnum.ImageFrontTwo)"
+              [percent]="files.get(SubscriptionUploadImageEnum.ImageFrontTwo).percent"
+              [textUploaded]="'تصویر صفحه نمایش دوم'"
+              [fileUploadedName]="files.get(SubscriptionUploadImageEnum.ImageFrontTwo).name"
+              (componentHasError)="uploadFileHasError(SubscriptionUploadImageEnum.ImageFrontTwo , $event )"
+              [url]="files.get(SubscriptionUploadImageEnum.ImageFrontTwo).url"
+            >
+            </ui-upload-file>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="info-container">
+      <used-info-box
+        [showFooter]="true"
+        [footerText]="'مشاهده راهنمای تصویری'"
+        (footerClicked)="toggleSampleImages()"
+        [bodyText]="'توجه داشته باشید که تصویر بایستی از صفحه نمایش گوشی بصورت روشن و پس از استعلام IMEI از طریق کد دستوری *#06# گرفته شود.'">
+      </used-info-box>
+    </div>
+    <div class="back-phone">
+      <ui-upload-file
+        [title]="'تصویر پشت گوشی'"
+        [uploadType]="files.get(SubscriptionUploadImageEnum.ImageBack).mode"
+        (selectedFile)="selectedFile($event , SubscriptionUploadImageEnum.ImageBack)"
+        (deleteFile)="deleteFile(SubscriptionUploadImageEnum.ImageBack)"
+        [percent]="files.get(SubscriptionUploadImageEnum.ImageBack).percent"
+        [textUploaded]="'تصویر پشت گوشی'"
+        [fileUploadedName]="files.get(SubscriptionUploadImageEnum.ImageBack).name"
+        [url]="files.get(SubscriptionUploadImageEnum.ImageBack).url"
+      >
+      </ui-upload-file>
+    </div>
+  </div>
+  <journey-buttons
+    [nextText]="'تایید و ادامه'"
+    [hideBackBtnIcon]="true"
+    [hideBackBtn]="true"
+    [disableNext]="isFileUploaded()"
+    (nextClicked)="submit()">
+  </journey-buttons>
+</div>
+@if (showHintImage()) {
+  <div class="sample-images surface-elevated p-medium w-100 h-100">
+    <sample-images
+            (backClicked)="toggleSampleImages()"
+    ></sample-images>
+  </div>
+}

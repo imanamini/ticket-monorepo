@@ -1,0 +1,34 @@
+@import "@digipay/base-style/styleguide";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-image {
+  width: 320px;
+  height: 143px;
+  background: url("../../assets/credit-national-receipt-card.svg") no-repeat center center;
+  background-size: contain;
+}
+
+input {
+  height: 46px;
+  overflow: hidden;
+  transition: all 0.3s;
+  background: transparent;
+  padding: 0;
+  flex: 1;
+
+  &:focus {
+    outline: none;
+    border-color: #{map-get($surface-colors, "brand")};
+    background-color: #{map-get($surface-colors, "brand-tint")};
+  }
+
+  &.ng-invalid.ng-touched {
+    border-color: #{map-get($surface-colors, "error")};
+    background-color: #{map-get($surface-colors, "error-tint")};
+  }
+}

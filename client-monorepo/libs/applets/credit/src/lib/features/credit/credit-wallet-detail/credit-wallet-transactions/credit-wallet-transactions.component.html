@@ -1,0 +1,8 @@
+@if (!gettingData()) {
+  <app-credit-purchases-detail
+    (back)="goBack()"
+    [data]="data()!"
+    [pageUrl]="pageUrl()!"
+  ></app-credit-purchases-detail>
+}
+<credit-page-loading [active]="gettingData()!"></credit-page-loading>

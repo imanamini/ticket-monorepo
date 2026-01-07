@@ -1,0 +1,37 @@
+<section
+  [ngClass]="{ 'is-primary': isPageBody }"
+  class="ui-section"
+>
+  <div
+    *ngIf="sectionTitle"
+    class="header"
+  >
+    <div
+      *ngIf="headerIcons.length > 0"
+      class="icon"
+    >
+      <ng-container
+        *ngFor="let icon of headerIcons"
+        [ngTemplateOutlet]="icon.template"
+      >
+      </ng-container>
+    </div>
+    {{ sectionTitle }}
+  </div>
+  <div
+    [ngClass]="state === 1 ? 'open' : state === 2 ? 'closed' : ''"
+    class="body"
+    id="ui-section-body"
+  >
+    <ng-content></ng-content>
+  </div>
+  <div
+    *ngIf="footerItems.length > 0"
+    class="footer"
+  >
+    <ng-container
+      *ngFor="let item of footerItems"
+      [ngTemplateOutlet]="item.template"
+    ></ng-container>
+  </div>
+</section>

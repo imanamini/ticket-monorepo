@@ -1,0 +1,31 @@
+<div class="faq-limit-and-duration d-flex flex-column gap-large pt-small h-100">
+  <div class="d-flex flex-column gap-medium px-medium">
+    <span class="b-2 text-onback-medium">سقف تعهد پرداخت خسارت</span>
+    <div
+            class="d-flex flex-row align-items-center justify-content-space-around surface-back px-large py-small radius-small">
+      <div class="d-flex flex-column gap-low">
+        <span class="b-3 text-onback-medium">تعهد جانی</span>
+        <span class="c-1 text-onback-medium">2.133 میلیارد تومان</span>
+      </div>
+      <div class="d-flex flex-column gap-low">
+        <span class="b-3 text-onback-medium">تعهد راننده</span>
+        <span class="c-1 text-onback-medium">1.6 میلیارد تومان</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-medium">
+    <ins-alert [hasIcon]="true"
+               [size]="AlertSizeEnum.Small"
+               text="سطح ارائه خدمات خسارت در تمامی بیمه‌ها یکسان است.">
+
+    </ins-alert>
+  </div>
+  <div class="faq-list">
+    <accordion [accordionItems]="accordionItems"></accordion>
+  </div>
+  <action-buttons [showDeActiveButton]="false"
+                  (activeButtonClicked)="handleActiveButtonClicked()"
+                  activeButtonText="متوجه شدم"></action-buttons>
+</div>
+

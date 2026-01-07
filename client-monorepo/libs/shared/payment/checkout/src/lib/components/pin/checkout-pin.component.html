@@ -1,0 +1,54 @@
+<payment-checkout-app-card
+  [submitText]="cardConfig.submitText"
+  [submitLoading]="loadingSubmit()"
+  [disableSubmitButton]="true"
+  [headerTitle]="cardConfig.headerTitle"
+  [headerCloseButtonType]="'BACK'"
+  [hasFooter]="false"
+  [isBottomSheet]="true"
+>
+  <div
+    body
+    class="protection-container"
+  >
+    <div class="code-protection px-plus py-huge">
+      <div
+        class="amount-wrapper"
+        *ngIf="creditBalance()"
+      >
+        <payment-checkout-amount-label-bar
+          [title]="'اعتبار باقی‌مانده'"
+          [value]="creditBalance()"
+          [userFullName]="(user()?.name || '') + ' ' + (user()?.surname || '')"
+        ></payment-checkout-amount-label-bar>
+      </div>
+
+      <div class="pt-big">
+        <common-pin-user-pin
+          [pinConfig]="{
+            type: true,
+            hasBackground: false,
+            isPayType: true,
+            features: [selectedFeatureName()],
+            requestHeaders: { ticket: this.ticketInfoService.ticket() },
+          }"
+          (callbackFunction)="login($event)"
+        ></common-pin-user-pin>
+      </div>
+
+      <div
+        class="invalid-pin"
+        [ngStyle]="invalidMessage ? { visibility: 'visible' } : null"
+      >
+        {{ invalidMessage }}
+      </div>
+      <div class="pin-divider"></div>
+    </div>
+  </div>
+</payment-checkout-app-card>
+
+<ng-template #loading>
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+</ng-template>

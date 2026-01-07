@@ -1,0 +1,12 @@
+<ui-upload-image
+        [imageTitle]="uploadedImageFile().title"
+        [maxImageSizeInKB]="maxFileSize()"
+        [supportedImageTypes]="supportedOnlyAllFileTypes()"
+        [(uploadedImage)]="uploadedImageFile().file"
+        (uploadNewImage)="uploadImage($event)"
+        (deleteImage)="deleteImage($event)"
+        (cancelUpload)="cancelUpload()"
+        [mandatory]="mandatoryInputs"
+        [hasUploadError]="uploadError"
+        [file-type]="uploadedImageFile().fileType"
+></ui-upload-image>

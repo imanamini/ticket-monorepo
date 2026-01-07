@@ -1,0 +1,16 @@
+.user-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-data {
+    &-imgbox {
+      height: 48px;
+      width: 48px;
+      background-image: url("libs/shared/common/assets/src/lib/images/avatar-placeholder.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+}

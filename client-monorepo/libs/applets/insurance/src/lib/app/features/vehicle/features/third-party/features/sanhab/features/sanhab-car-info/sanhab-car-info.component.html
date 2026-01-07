@@ -1,0 +1,35 @@
+<car-info-box
+  [showPlate]="false"
+  (activeButtonClicked)="handleActiveButtonClicked()"
+  (deActiveButtonClicked)="handleDeActiveButtonClicked()"
+  activeButtonText="مقایسه بیمه‌ها"
+  class="sanhab-car-info"
+  text="مشخصات خودرو و بیمه‌نامه قبلی را بررسی کنید:"
+>
+  <div class="d-flex flex-column gap-plus">
+    @if (carInfo()) {
+      <section-card [data]="carInfo()"></section-card>
+    }
+    @if (
+      insurerInfo() &&
+      !!data()?.previousInsurance?.company.id &&
+      data()?.previousInsurance?.company.id !== extraInsurerForm.NoInsurance &&
+      data()?.previousInsurance?.company.id !== extraInsurerForm.NewCar
+    ) {
+      <section-card [data]="insurerInfo()"></section-card>
+    }
+
+    <div class="d-flex justify-content-center align-items-center">
+      <ins-button
+        data-tracking-id="btn-edit-sanhab-car-info"
+        (click)="handleEditClick(true)"
+        [fullWidth]="false"
+        [mode]="InsButtonModeEnum.Form"
+        [rightIcon]="{ name: 'edit-square', type: 'linear' }"
+        [style]="InsButtonStyleEnum.Link"
+        text="ویرایش"
+      >
+      </ins-button>
+    </div>
+  </div>
+</car-info-box>

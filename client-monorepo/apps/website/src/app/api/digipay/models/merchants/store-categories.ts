@@ -1,0 +1,33 @@
+export enum STORE_CATEGORIES {
+  DIGITAL = 0,
+  FASHION = 1,
+  HEALTH_BEAUTY = 2,
+  HOME_KITCHEN = 3,
+  PET = 4,
+  SERVICES = 5,
+  RESTAURANT_CAFE = 6,
+  TRAVEL = 7,
+  SUPERMARKET = 8,
+  JEWELRY = 9,
+  CULTURE_ART = 10,
+  STORE = 11,
+  ENTERTAINMENT = 12,
+  TRAINING = 13,
+}
+
+export const STORE_CATEGORIES_TRANSLATION = {
+  [STORE_CATEGORIES.DIGITAL]: 'کالای دیجیتال',
+  [STORE_CATEGORIES.FASHION]: 'مد و پوشاک',
+  [STORE_CATEGORIES.HEALTH_BEAUTY]: 'سلامت و زیبایی',
+  [STORE_CATEGORIES.HOME_KITCHEN]: 'خانه و آشپزخانه',
+  [STORE_CATEGORIES.PET]: 'پت شاپ و حیوانات خانگی',
+  [STORE_CATEGORIES.SERVICES]: 'خدمات',
+  [STORE_CATEGORIES.RESTAURANT_CAFE]: 'رستوران و کافه',
+  [STORE_CATEGORIES.TRAVEL]: 'سفر و گردشگری',
+  [STORE_CATEGORIES.SUPERMARKET]: 'سوپرمارکت',
+  [STORE_CATEGORIES.JEWELRY]: 'طلا و زیورآلات',
+  [STORE_CATEGORIES.CULTURE_ART]: 'فرهنگ و هنر',
+  [STORE_CATEGORIES.STORE]: 'فروشگاه',
+  [STORE_CATEGORIES.ENTERTAINMENT]: 'ورزش و سرگرمی',
+  [STORE_CATEGORIES.TRAINING]: 'یادگیری و آموزش',
+};

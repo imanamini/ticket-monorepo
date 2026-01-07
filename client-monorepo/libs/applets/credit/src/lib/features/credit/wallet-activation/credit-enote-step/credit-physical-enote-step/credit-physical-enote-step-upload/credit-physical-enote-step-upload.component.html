@@ -1,0 +1,37 @@
+@if (!showLoading()) {
+  <app-credit-app-bar
+    title="آپلود تصویر سفته"
+    (onBackButtonClick)="prevStep.emit()"
+    [backButton]="true"
+    [actionText]="switchTypePossible() ? 'تغییر نوع سفته' : null!"
+    [actionImage]="switchTypePossible() ? 'edit-square' : undefined"
+    (onTextClick)="changeNoteTypeClicked.emit()"
+  ></app-credit-app-bar>
+  <div class="main-section flex-full-height">
+    <div class="top-section">
+      <app-credit-scrollable-view>
+        <div class="page-content">
+          <p class="title">تصویر واضحی از سفته نوشته شده آپلود کنید.</p>
+          <app-credit-physical-enote-upload-file-tile
+            (uploadSuccess)="onReload()"
+            [creditId]="creditId()"
+            [maxUploadSize]="maxUploadSize()"
+            [step]="transformedStepChild()"
+            title="تصویر روی سفته"
+          ></app-credit-physical-enote-upload-file-tile>
+        </div>
+      </app-credit-scrollable-view>
+    </div>
+    <div class="bottom-section">
+      <ngx-button
+        (clickHandler)="onFinish()"
+        [disabled]="disableSubmit()"
+        [fullWidth]="true"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  </div>
+}
+
+<credit-page-loading [active]="showLoading()!"></credit-page-loading>

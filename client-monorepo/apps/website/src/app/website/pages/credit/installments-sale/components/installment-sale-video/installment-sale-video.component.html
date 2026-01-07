@@ -1,0 +1,67 @@
+<app-ui-introduction-default
+  id="section-video"
+  [introductionType]="data.type"
+>
+  <div>
+    <h1>
+      {{ data.title }} <br />
+      {{ data.subtitle }}
+    </h1>
+    <div class="subtitle">{{ data.subtitle2 }}</div>
+    <div class="cta desktop">
+      <app-ui-fly-button
+        [endFixed]="endFixedButton"
+        [startFixed]="startFixedButton"
+      >
+        <app-ui-button
+          [link]="'https://www.digikala.com/cheque/'"
+          size="BIG"
+          >{{ data.firstCta.title }}</app-ui-button
+        >
+      </app-ui-fly-button>
+    </div>
+  </div>
+  <div class="image">
+    <div>
+      <div class="video-wrapper">
+        <div
+          *ngIf="data.videoCover"
+          [style.backgroundImage]="'url(' + data.videoCover.url + ')'"
+          [style.opacity]="showCover ? 1 : 0"
+          [style.display]="showCover ? 'flex' : 'none'"
+          id="video-overlay"
+        >
+          <img
+            (click)="toggleVideo()"
+            alt=""
+            src="/apps/website/src/assets/images/play-button.svg"
+          />
+        </div>
+        <video
+          controls
+          preload="metadata"
+          width="100%"
+          #videoPlayer
+        >
+          <source
+            [src]="data.artwork?.url"
+            controls
+            type="video/mp4"
+          />
+        </video>
+      </div>
+    </div>
+  </div>
+  <div class="cta mobile">
+    <app-ui-fly-button
+      [endFixed]="endFixedButton"
+      [startFixed]="startFixedButton"
+    >
+      <app-ui-button
+        [link]="'https://www.digikala.com/cheque/'"
+        size="BIG"
+        >{{ data.firstCta.title }}</app-ui-button
+      >
+    </app-ui-fly-button>
+  </div>
+</app-ui-introduction-default>

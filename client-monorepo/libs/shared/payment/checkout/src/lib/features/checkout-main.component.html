@@ -1,0 +1,44 @@
+<div class="container d-flex flex-column surface-elevated h-100">
+  <div class="tgs-container d-flex flex-column flex-grow h-100 px-big pt-big">
+    <payment-checkout-payment-detail-card [cardData]="paymentCardData()"></payment-checkout-payment-detail-card>
+    @if (showPaymentMethod()) {
+      @if (!loadingApis()) {
+        <payment-checkout-payment-method
+          [methodStrategy]="methodStrategy"
+          (expiredTtl)="handleTtlExpiration()"
+        ></payment-checkout-payment-method>
+      } @else {
+        <payment-checkout-payment-method-skeleton></payment-checkout-payment-method-skeleton>
+      }
+    }
+  </div>
+  <div class="footer">
+    <payment-checkout-card-footer
+      [footerLoading]="footerLoading()"
+      [currencyText]="'مبلغ پرداختی'"
+      [submitText]="submitText() || 'تایید و پرداخت'"
+      [submitLoading]="loadingSubmit()"
+      [disableButton]="loadingSubmit() || isButtonDisabled()"
+      [amount]="this.payMode() === 'app-pay' ? (this.ticketInfoService?.state?.amount ?? 0) : (this.appPayFeatureBody()?.amount ?? 0)"
+      (submittedButton)="submit()"
+    ></payment-checkout-card-footer>
+  </div>
+</div>
+
+<!--This part has to exist just for redirect to ipg after icp-->
+<div
+  id="wrapper"
+  style="display: none"
+>
+  در حال انتقال به درگاه پرداخت...
+</div>
+
+<div
+  id="errorContainer"
+  style="display: none"
+>
+  <div id="dp-text-title">متاسفانه مشکلی در پردازش درخواست شما به وجود آمده است</div>
+  <div>لطفا مجددا تلاش کنید</div>
+</div>
+<!--a container to load steps after select-->
+<div #container></div>

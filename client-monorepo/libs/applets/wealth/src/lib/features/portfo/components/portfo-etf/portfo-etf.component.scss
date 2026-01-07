@@ -1,0 +1,137 @@
+@import "@digipay/base-style/swatch";
+
+:host {
+  display: flex;
+  width: 100%;
+
+  .etf-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 2rem;
+    color: #45474A;
+  }
+
+
+  .banner-etf {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    background: #12CA93;
+    height: 90px;
+    border-radius: 2rem;
+    user-select: none;
+
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0) 50%, rgba(0,0,0,0.3) 100% );
+      mix-blend-mode: multiply;
+      backdrop-filter: saturate(1.2);
+      border-radius: 2rem;
+    }
+
+  }
+
+  .banner-etf * {
+    color: $swatch_white_900;
+  }
+
+
+
+  .amount-etf {
+    position: absolute;
+    bottom: 1.33rem;
+    left: 1.33rem;
+    font-style: normal;
+    font-feature-settings: "ss01" on, "ss06" on, "ss07" on, "liga" off, "clig" off;
+    font-size: 19px;
+    font-weight: 400;
+  }
+
+  .rial {
+    font-size: 1.33rem;
+    font-weight: 300;
+  }
+
+  .icon-etf {
+    position: absolute;
+    top: 1.33rem;
+    left: 1.33rem;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .title-etf {
+    position: absolute;
+    top: 1.33rem;
+    right: 1.33rem;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.6rem;
+  }
+
+  .img-template {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 7rem;
+  }
+
+  .etf-actions {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .action-button {
+    width: 4.6rem;
+    height: 4.6rem;
+    border-radius: 1.33rem;
+    background: $swatch_white_900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .eft-active {
+    cursor: pointer;
+  }
+
+  .eft-de-active {
+    cursor: default;
+
+    ::ng-deep .icon i {
+      color: #B4B7BD;
+    }
+
+    .action-title {
+      color: #B4B7BD;
+    }
+  }
+}
+.wallet-wrapper{
+  display: flex;
+  flex-direction: column;
+}
+.etf-hint {
+  background-color: #DEEDFF;
+  border-radius: 20px;
+  display: flex;
+  padding: 1rem;
+  gap: 6px;
+  margin-top: 1rem;
+  align-items: flex-start;
+  span{
+    font-weight: 370;
+    font-size: 1.133rem;
+    color: #45474A;
+  }
+}

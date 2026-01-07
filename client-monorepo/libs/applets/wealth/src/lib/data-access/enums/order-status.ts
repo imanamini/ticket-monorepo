@@ -1,0 +1,15 @@
+export enum OrderStatus {
+  Draft = 'Draft',
+  Waiting = 'Waiting',
+  Approved = 'Approved',
+  RejectedBySystem = 'RejectedBySystem',
+  RemoteOrderStatusEnum = 'RemoteOrderStatusEnum',
+  Deleted = 'Deleted',
+  RejectedByManager = 'RejectedByManager',
+  Success = 'Success',
+  Failed = 'Failed',
+  Requested = 'Requested',
+  Completed = 'Completed',
+  Rejected = 'Rejected',
+  InProgress = 'InProgress',
+}

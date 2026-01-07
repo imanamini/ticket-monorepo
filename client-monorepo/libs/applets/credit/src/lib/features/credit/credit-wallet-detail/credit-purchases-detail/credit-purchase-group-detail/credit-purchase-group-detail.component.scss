@@ -1,0 +1,65 @@
+@import "@digipay/base-style/swatch";
+
+.purchase-group-detail-header {
+  padding: 24px;
+  background: $swatch_steel_100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .merchant-info {
+    display: flex;
+    align-items: center;
+
+    .merchant-name-box {
+      margin-right: 12px;
+
+      .merchant-name-text {
+        font-size: 12px;
+        color: $swatch_steel_500;
+        font-weight: 600;
+      }
+
+      .merchant-name-value {
+        margin-top: 4px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .total-amount-box {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+
+    .total-amount-text {
+      font-size: 12px;
+      color: $swatch_steel_500;
+      font-weight: 600;
+    }
+
+    .total-amount-value {
+      margin-top: 4px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+}
+
+.purchase-group-detail-body {
+  padding: 24px;
+
+  .purchase-item-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: $swatch_steel_500;
+    margin: 16px 0 8px 0;
+  }
+
+  .purchase-item-body {
+    .purchase-item-detail {
+      margin-bottom: 12px;
+    }
+  }
+}

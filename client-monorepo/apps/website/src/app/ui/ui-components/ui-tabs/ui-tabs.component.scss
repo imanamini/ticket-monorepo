@@ -1,0 +1,325 @@
+:host ::ng-deep {
+  .swiper {
+    overflow: visible;
+  }
+
+  .navigation {
+    //width: 350px;
+    width: 100%;
+    height: 100%;
+
+    .swiper-wrapper {
+      :last-child {
+        & > div {
+          margin-bottom: 0 !important;
+        }
+      }
+
+      .swiper-slide {
+        position: relative;
+      }
+    }
+  }
+}
+
+@media (min-width: 1281px) {
+  .business-content {
+    display: flex;
+    align-items: center;
+    //height: 50vw;
+  }
+  .swiper-wrapper {
+    transform: unset !important;
+    height: auto !important;
+  }
+
+  .business-services__nav-item.active > div {
+    background-color: #fff !important;
+    border: 1px solid #d0d9f5;
+  }
+  .business-services__nav-item > div.active {
+    background-color: #fff !important;
+    border: 1px solid #d0d9f5;
+  }
+
+  .business-services__blocks > div > .swiper-container > ul > li {
+    background-color: #fff;
+    opacity: 0 !important;
+    visibility: hidden;
+  }
+
+  .business-services__blocks > div > .swiper-container > ul > li.active {
+    opacity: 1 !important;
+    visibility: visible;
+    pointer-events: all;
+  }
+
+  .business-services__nav-item > div.active {
+    border: 1px solid #f8d748;
+
+    &:before {
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .swiper {
+    height: auto;
+    //margin: 0 -1em;
+    overflow: visible;
+
+    ::ng-deep {
+      .swiper-wrapper {
+        //margin-right: 0%;
+      }
+    }
+  }
+
+  .business-services__contain > div {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  .business-services__block-bottom {
+    position: static;
+  }
+
+  .business-services__blocks:before {
+    position: absolute;
+    width: 81px;
+    height: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -16px;
+    //background-image: url(../img/sign-active-bordered-light-gray.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: '';
+    border-bottom: 2px solid #f8d748;
+    z-index: 1;
+  }
+
+  .swiper-slide.business-services__nav-item > div:before {
+    display: none;
+  }
+
+  .business-services > div {
+    overflow: hidden;
+  }
+
+  .business-services__nav-item > div * {
+    opacity: 0.5;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+  }
+
+  .swiper-slide-active.business-services__nav-item > div {
+    border: 1px solid #f8d748;
+    background-color: #fff;
+  }
+
+  .business-services__nav-item.swiper-slide-visible > div * {
+    opacity: 1;
+  }
+
+  .business-services__block-mid .paragraph {
+    width: 60%;
+  }
+
+  .business-services__block-top > div {
+    width: 60%;
+  }
+
+  .business-services__block-mid .artwork {
+    width: 40%;
+  }
+
+  .navigation {
+    width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+  }
+
+  .business-services__blocks {
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .business-services__contain > div {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  .navigation > div {
+    height: auto;
+    margin: 0 -10px;
+    overflow: visible;
+  }
+
+  .business-services__nav-item {
+    height: 100%;
+    padding-bottom: 0;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 47%;
+  }
+  .business-services__block-mid > div {
+    position: relative;
+  }
+
+  .business-services__block-top > div {
+    width: 100%;
+  }
+
+  .business-services__block-top .seg-title {
+    text-align: center;
+  }
+
+  .business-services__block-mid .paragraph {
+    width: 50%;
+  }
+
+  .business-services__block-mid .artwork {
+    width: 50%;
+  }
+
+  .business-services__block-bottom > div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+
+  .business-services__blocks > div {
+    padding: 50px 40px;
+  }
+
+  .business-services-option::after {
+    content: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .business-services__block-mid > div {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+  }
+
+  .business-services__block-mid .paragraph {
+    width: 100%;
+  }
+
+  .business-services__block-mid .artwork {
+    width: 100%;
+    padding-right: 0;
+    position: static;
+    padding: 0 50px;
+    margin-bottom: 20px;
+  }
+
+  .business-services__nav-item {
+    width: 50%;
+  }
+
+  .swiper-slide.business-services__nav-item > div {
+    padding: 20px 25px 20px 10px;
+  }
+
+  .business-services__nav-title span {
+    font-size: 14px;
+  }
+
+  .business-services__nav-subtitle span {
+    font-size: 12px;
+  }
+
+  .business-services__nav-title {
+  }
+
+  .business-services__nav-icon > div {
+    width: 50px;
+    height: 50px;
+  }
+
+  .business-services__nav-titles {
+    padding-right: 15px;
+  }
+
+  .swiper-slide.business-services__nav-item > div {
+    border-radius: 13px;
+  }
+  ul.business-services-features > li {
+    width: 100%;
+    padding: 1rem;
+  }
+
+ .swiper-slide{
+    width: 206px !important;
+
+   .item{
+     width: 206px !important;
+     padding: 33px 24px !important;
+     margin-left: 16px;
+   }
+  }
+
+  section .container .tabs .item{
+    width: 206px !important;
+  }
+}
+
+@media (max-width: 577px) {
+  .business-services__nav-item {
+    padding-right: 7px;
+    min-width: 270px;
+    padding-left: 7px;
+  }
+
+  .navigation {
+    margin-bottom: 25px;
+  }
+
+  .business-services__blocks > div {
+    padding: 30px 20px;
+  }
+
+  .business-services__block-mid .artwork {
+    padding: 0 10vw;
+  }
+}
+
+@media (max-width: 1000px) {
+  .business-services-content > article {
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .business-services-content > article > div {
+    flex: 0 1 300px !important;
+  }
+
+  .business-services-content > article > img {
+    padding: 0;
+    max-width: 240px !important;
+  }
+
+  .business-services-content .anchor-button-default {
+    right: 50%;
+    transform: translateX(50%);
+    min-width: 100%;
+  }
+
+  .business-services-content > article > div > h3 {
+    line-height: 1.5;
+    margin: 1rem 0;
+  }
+}

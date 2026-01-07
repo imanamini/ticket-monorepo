@@ -1,0 +1,80 @@
+<section [ngClass]="'introduction-' + introductionType">
+  <div class="container">
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+    <div
+      *ngIf="heroImage || (sliderImages && sliderImages.length > 0)"
+      class="image"
+    >
+      <div>
+        <video
+          *ngIf="isVideo; else image"
+          controls
+          preload="metadata"
+          width="100%"
+        >
+          <source
+            [src]="heroImage?.url + '#t=0.5'"
+            type="video/mp4"
+          />
+        </video>
+        <ng-template #image>
+          <img
+            *ngIf="heroImage"
+            [attr.alt]="ctaText"
+            [ngSrc]="heroImage.url"
+            height="100"
+            priority
+            width="100"
+          />
+        </ng-template>
+        <app-image-slider-vertical
+          *ngIf="sliderImages && sliderImages.length > 0"
+          [images]="sliderImages"
+        ></app-image-slider-vertical>
+      </div>
+      <div *ngIf="(features && features.length > 0) || titleTemplate">
+        <div
+          *ngIf="titleTemplate"
+          class="title"
+        >
+          <ng-container [ngTemplateOutlet]="titleTemplate"></ng-container>
+        </div>
+        <div *ngIf="features && features.length > 0">
+          <!--          <app-ui-value-simple [features]="features"></app-ui-value-simple>-->
+          <ul class="feature-cards">
+            <li
+              *ngFor="let item of features"
+              class="feature-card"
+            >
+              <div class="feature-card-icon">
+                <img
+                  *ngIf="item.featureIcon"
+                  [src]="item.featureIcon.url"
+                  alt="{{ item.featureTitle }}>"
+                />
+              </div>
+              <div class="feature-card-content">
+                <div
+                  *ngIf="item.featureTitle"
+                  class="card-title"
+                >
+                  {{ item.featureTitle }}
+                </div>
+                <span
+                  *ngIf="item.featureText"
+                  class="card-description"
+                  >{{ item.featureText }}</span
+                >
+              </div>
+            </li>
+          </ul>
+          <ng-container [ngTemplateOutlet]="buttons"></ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>

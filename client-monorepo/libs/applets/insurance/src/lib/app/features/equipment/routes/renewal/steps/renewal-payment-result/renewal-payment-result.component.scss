@@ -1,0 +1,14 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.payment-result {
+  @include flex-column();
+  @include flex-center();
+  gap: 24px;
+  padding: 24px;
+
+  .button {
+    width: 100%;
+    margin-top: 16px;
+  }
+}
+

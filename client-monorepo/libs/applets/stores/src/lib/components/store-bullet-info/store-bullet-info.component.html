@@ -1,0 +1,26 @@
+@if (isOpen()) {
+  <div class="py-minus">
+    <ngx-callout
+      [mode]="'multiple'"
+      [showTitleBlink]="false"
+      [showTitleIcon]="false"
+      [title]="''"
+      [backgroundMode]="'elevated'"
+      [messages]="bullets()"
+    ></ngx-callout>
+
+    <!-- Button -->
+    <div class="d-flex justify-content-end">
+      <ngx-button
+        [brandButton]="true"
+        [size]="'small'"
+        [mode]="'section'"
+        [rightIcon]="buttonIcon()"
+        (clickHandler)="clickHandler()"
+      >
+        {{ buttonText() }}
+      </ngx-button>
+    </div>
+    <!-- End Button -->
+  </div>
+}

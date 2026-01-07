@@ -1,0 +1,28 @@
+@if (!hasRetry()) {
+  <div class="user-address d-flex flex-column h-100">
+    <div class="user-address-content">
+      <p class="content-text">
+        آدرس و کدپستی مورد نظر جهت درج بر روی بیمه‌نامه را وارد کنید: </p>
+
+      <div class="content-plate">
+        <ngx-plate
+                type="motorcycle"
+                size="small"
+                [plate]="plate()"
+                [readonly]="true"
+        ></ngx-plate>
+      </div>
+
+      <motor-address-form [addressForm]="addressForm()"
+                          [showError]="showError()"
+                          [address]="address()"></motor-address-form>
+    </div>
+    <action-buttons (activeButtonClicked)="onActiveButton()"
+                    (deActiveButtonClicked)="onDeActiveButton()"
+                    backgroundMode="gray"
+                    deActiveButtonText="بازگشت"
+                    activeButtonText="تایید و ادامه"></action-buttons>
+  </div>
+} @else {
+  <retry-error (retryButtonClicked)="getAddressInfo()"></retry-error>
+}

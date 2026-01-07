@@ -1,0 +1,28 @@
+<section class="credit-form-section">
+  <div class="container">
+    <div>
+      <h2>{{ title }}</h2>
+      <div class="subtitle">{{ subtitle }}</div>
+      <div class="segment-content">
+        <div
+          class="form"
+          role="form"
+        >
+          <div class="description">
+            {{ description }}
+          </div>
+          <app-contact-form
+            *ngIf="contactForm"
+            [contactFormDefinition]="contactForm"
+          ></app-contact-form>
+        </div>
+      </div>
+    </div>
+    <div class="image">
+      <img
+        [attr.alt]="title"
+        [src]="image?.url"
+      />
+    </div>
+  </div>
+</section>

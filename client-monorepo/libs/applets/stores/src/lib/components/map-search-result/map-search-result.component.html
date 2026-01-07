@@ -1,0 +1,46 @@
+<div class="d-flex flex-column search-result-container w-100 h-100 surface-high-contrast">
+  <ngx-app-bar
+    [title]="'جستجو در نقشه'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="goBack()"
+  ></ngx-app-bar>
+  <ngx-search-box
+    class="w-100 px-plus"
+    (searchTextChange)="handleSearchTextChange($event ?? '')"
+    [(searchText)]="searchText"
+    [mode]="'section'"
+    [placeHolder]="'جست وجو در نقشه'"
+    #searchComponent
+  ></ngx-search-box>
+
+  <!-- Branches List -->
+  <div class="branches-list d-flex flex-column pt-plus px-plus">
+    @if (!loadingBranches()) {
+      @if (branchesToShow()?.length) {
+        @for (branch of branchesToShow(); track branch.branch.branchId) {
+          @defer (on viewport) {
+            <common-ui-components-item-overview
+              [mixedBlendModeEnabled]="true"
+              [item]="branch.item"
+              [enableSingleLineMode]="true"
+              [hideSubtitleBold]="true"
+              [hideButton]="true"
+              (click)="handleBranchClick(branch.branch)"
+              [disableTopPadding]="$first"
+            ></common-ui-components-item-overview>
+          } @placeholder {
+            <common-ui-components-item-overview [item]="undefined"></common-ui-components-item-overview>
+          }
+        }
+      } @else {
+        <stores-applet-map-empty-result class="mt-plus"></stores-applet-map-empty-result>
+      }
+    }
+  </div>
+  <!-- End Branches List -->
+</div>

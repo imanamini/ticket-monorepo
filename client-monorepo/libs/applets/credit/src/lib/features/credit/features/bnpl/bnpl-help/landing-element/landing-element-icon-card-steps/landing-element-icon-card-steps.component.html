@@ -1,0 +1,18 @@
+<div class="le-icon-card-step-list-container">
+  <div class="le-icon-card-step-list">
+    @for (step of payload()?.steps; track step; let i = $index) {
+      <div class="le-icon-card-step-item-wrapper">
+        <div class="le-icon-card-step-item">
+          <div class="le-step-index">{{ i + 1 }}</div>
+          <div class="le-step-icon">
+            <img
+              [src]="step.icon"
+              [alt]="step.title"
+            />
+          </div>
+          <div class="le-step-title">{{ step.title }}</div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

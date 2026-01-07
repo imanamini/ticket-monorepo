@@ -1,0 +1,16 @@
+.last-inquiry-report {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 48px;
+}
+
+.cta {
+  display: block;
+}
+
+@media (max-width: 744px) {
+  .last-inquiry-report {
+    padding: 16px;
+  }
+}

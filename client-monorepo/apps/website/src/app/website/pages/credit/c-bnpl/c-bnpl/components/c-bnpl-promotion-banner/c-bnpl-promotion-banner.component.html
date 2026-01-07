@@ -1,0 +1,31 @@
+<section *ngIf="!isForBaniMode && showSection && promotionBanner.link">
+  <div
+    class="promotion-banner"
+    (click)="requestCredit()"
+    *ngIf="promotionBanner[this.screenDeviceType].url"
+  >
+    <img
+      [src]="promotionBanner[this.screenDeviceType].url"
+      alt=""
+    />
+  </div>
+</section>
+
+<div
+  *ngIf="isForBaniMode"
+  class="container"
+>
+  <div class="video">
+    <video
+      *ngIf="intro.video"
+      controls
+      preload="metadata"
+      width="100%"
+    >
+      <source
+        [src]="intro.video.url + '#t=0.3'"
+        type="video/mp4"
+      />
+    </video>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="pay-method-picker">
+  <h3 class="picker-title">شیوه پرداخت خود را انتخاب کنید</h3>
+  <ul class="options-list">
+    @if (status().WALLET) {
+      <li
+        class="option"
+        (click)="itemClick('WALLET')"
+        [class.is-disabled]="this.balance() < this.amount()"
+      >
+        پرداخت با کیف پول
+      </li>
+    }
+    @if (status().IPG) {
+      <li
+        class="option"
+        (click)="itemClick('IPG')"
+      >
+        پرداخت با کارت بانکی
+      </li>
+    }
+    @if (status().DPG) {
+      <li
+        class="option"
+        (click)="itemClick('DPG')"
+      >
+        پرداخت درون برنامه‌ای
+      </li>
+    }
+  </ul>
+</div>

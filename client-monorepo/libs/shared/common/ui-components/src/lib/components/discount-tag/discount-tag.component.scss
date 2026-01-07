@@ -1,0 +1,59 @@
+.discount-container {
+  background-color: var(--surface-brand);
+  color: var(--text-oninvert-high);
+  min-height: 72px;
+  overflow: hidden;
+
+  .title {
+    overflow: hidden;
+    text-wrap: wrap;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+  }
+
+  .mw-50 {
+    min-width: 50%;
+    width: 100%;
+  }
+
+  .divider {
+    height: calc(100% - 6px);
+    flex-shrink: 0;
+    stroke: var(--border-air);
+    opacity: 0.3;
+    border-left: 1px dashed var(--border-air);
+    transform: translateX(5px);
+  }
+
+  .circle {
+    width: 10px;
+    height: 10px;
+    min-height: 10px;
+    border-radius: 100%;
+    background-color: var(--surface-elevated);
+
+    &:first-child {
+      transform: translateY(-50%);
+    }
+
+    &:last-child {
+      transform: translateY(-100%);
+    }
+  }
+
+  .voucher-container {
+    width: 100px !important;
+
+    .voucher-code {
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .voucher-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

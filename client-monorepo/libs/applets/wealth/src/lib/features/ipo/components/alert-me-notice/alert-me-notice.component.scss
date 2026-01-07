@@ -1,0 +1,7 @@
+.buttons-container {
+  display: grid;
+  gap: 1.1666rem;
+  grid-template-columns: 1fr 1.5fr;
+  position: sticky;
+  bottom: 0;
+}

@@ -1,0 +1,16 @@
+ <div class="info-box-container">
+  @if (icon()) {
+    <div id="icon-section">
+      <div>
+        <ins-icon
+          [name]="icon().name"
+          [width]="icon().width"
+          [height]="icon().height"
+        ></ins-icon>
+      </div>
+    </div>
+  }
+  <div id="message-section">
+    <p [class]="textColor()" [textContent]="message()"></p>
+  </div>
+</div>

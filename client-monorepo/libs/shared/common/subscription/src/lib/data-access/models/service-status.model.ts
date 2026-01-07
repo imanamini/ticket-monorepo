@@ -1,0 +1,6 @@
+export enum SERVICE_STATUS {
+  INITIATED,
+  IN_PROGRESS,
+  USED,
+  REJECTED,
+}

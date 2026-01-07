@@ -1,0 +1,33 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+:host {
+  height: 100%;
+  width: 100%;
+  @include flex-center;
+}
+
+.error-wrapper {
+  @include flex-center;
+  @include flex-column();
+  gap: 16px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 700;
+
+  .message {
+    line-height: 24px;
+    text-align: center;
+    color: #2c3544;
+  }
+
+  & > div {
+    @include flex-center;
+    gap: 8px;
+    color: #0040ff;
+    cursor: pointer;
+
+    span {
+      text-shadow: -3px 2px 3px #afb9c5;
+    }
+  }
+}

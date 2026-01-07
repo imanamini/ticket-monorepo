@@ -1,0 +1,21 @@
+<div class="funds-unavailable-container">
+  <div class="funds-unavailable-description">
+    <span>
+      در حال حاضر دارایی نمایش داده شده تنها شامل صندوق های ETF می‌باشد. لطفا برای خرید و فروش و مشاهده دارایی خود در دیگر صندوق ها به
+      وب‌سایت هر صندوق مراجعه کنید.
+    </span>
+  </div>
+  <div class="funds-unavailable-button-container">
+    <div class="funds-unavailable-button">
+      <ngx-button
+        [style]="'tinted-on-back'"
+        size="small"
+        [mode]="'section'"
+        [fullWidth]="true"
+        (clickHandler)="openBottomSheet()"
+      >
+        <span class="label-text"> مشاهده وبسایت صندوق‌ها </span>
+      </ngx-button>
+    </div>
+  </div>
+</div>

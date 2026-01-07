@@ -1,0 +1,25 @@
+<app-credit-app-bar
+  (onCloseButtonClick)="onClose()"
+  [closeButton]="true"
+  [title]="dataMapper[type()!].pageTitle"
+></app-credit-app-bar>
+<div class="main-section d-flex flex-column">
+  <div class="top-section flex-grow d-flex flex-column">
+    <app-credit-scrollable-view [fullHeightContent]="true">
+      <div
+        class="page-content d-flex flex-column align-items-center justify-content-center flex-grow p-big"
+      >
+        <ngx-status-result
+          (clicked)="onButtonClick($event)"
+          [buttons]="buttons()"
+          [description]="dataMapper[type()!].description"
+          [title]="dataMapper[type()!].title"
+        >
+          <ng-container status-image>
+            <div [class]="'message-image image-' + dataMapper[type()!].imageType"></div>
+          </ng-container>
+        </ngx-status-result>
+      </div>
+    </app-credit-scrollable-view>
+  </div>
+</div>

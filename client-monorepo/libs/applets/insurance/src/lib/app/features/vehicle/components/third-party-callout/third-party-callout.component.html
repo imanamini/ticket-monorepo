@@ -1,0 +1,19 @@
+<div class="third-party-callout">
+  <div class="callout-title">
+    <bullet [diameter]="8"
+            [border]="6"></bullet>
+    <span class="title-text st-8 text-onback-high">{{ title() }}</span>
+  </div>
+
+  <div class="callout-items">
+    @for (item of items(); track item; let i = $index) {
+      <div class="callout-item">
+        <div class="item-right">
+          <bullet></bullet>
+        </div>
+
+        <div class="item-text b-3 text-onback-medium" [ngClass]="{dashed:i !== items().length-1}">{{ item }}</div>
+      </div>
+    }
+  </div>
+</div>

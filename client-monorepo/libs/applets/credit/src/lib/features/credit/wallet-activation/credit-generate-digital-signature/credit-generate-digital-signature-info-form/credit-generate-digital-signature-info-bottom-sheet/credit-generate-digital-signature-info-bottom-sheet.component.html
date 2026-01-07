@@ -1,0 +1,27 @@
+<div class="d-flex flex-column w-100">
+  <ngx-bottom-sheet-header
+    [showResizable]="true"
+    [title]="title()"
+  ></ngx-bottom-sheet-header>
+  <ngx-callout
+    class="mb-plus mt-small"
+    [mode]="'multiple'"
+    [backgroundMode]="'elevated'"
+    [showTitleBlink]="false"
+    [showTitleIcon]="false"
+    [messagesDashed]="false"
+    [title]="null"
+    [messages]="descriptions()"
+  />
+
+  <div class="w-100 px-plus pb-plus">
+    <ngx-button
+      ngxTrackableId
+      trackerId="digitalSignatureCaptureInfoButton"
+      (clickHandler)="closeBottomSheet()"
+      [fullWidth]="true"
+      [style]="'fill'"
+      >متوجه شدم</ngx-button
+    >
+  </div>
+</div>

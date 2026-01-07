@@ -1,0 +1,20 @@
+<ui-special-dialog
+        (handleOnClick)="confirmTransfer()"
+        [buttonText]="'تایید و ادامه'"
+        [description]="'آیا نسبت به انتقال با مشخصات زیر مطمئن هستید؟'"
+        title="انتقال سند بیمه نامه">
+
+  <policy-general-info
+          [electronicEquipment]="policyDetailInfo.electronicEquipment"
+          [policyStatus]="policyDetailInfo.policyStatus.identifier"
+  ></policy-general-info>
+
+  <div class="row-container">
+    <div class="row-title">انتقال به</div>
+    <div class="insurer-info">
+      <span class="title">شماره همراه بیمه گزار</span>
+      <span class="text">{{ newInsurerInfo?.transferMobileNo }}</span>
+    </div>
+  </div>
+
+</ui-special-dialog>

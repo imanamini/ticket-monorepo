@@ -1,0 +1,8 @@
+.page-content {
+  padding: 24px 16px;
+  box-sizing: border-box;
+
+  &.no-padding {
+    padding: 0;
+  }
+}

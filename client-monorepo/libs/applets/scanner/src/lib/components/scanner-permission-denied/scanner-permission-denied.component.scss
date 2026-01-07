@@ -1,0 +1,39 @@
+.container {
+  direction: rtl;
+  display: flex;
+  height: 100%;
+  padding: 0 27px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.permission-denied-icon {
+  width: 160px;
+  height: 122px;
+  background: url("images/permission-denied-icon.svg") no-repeat center;
+  margin-bottom: 23px;
+}
+
+.title {
+  margin-top: 12px;
+  margin-bottom: 18px;
+  color: #2C3544FF;
+}
+
+.description {
+  &-strong {
+    color: #2C3544FF;
+    font-weight: 500;
+  }
+
+  color: #6E798DFF;
+  text-align: center;
+  line-height: 24px;
+}
+
+.permission-button {
+  margin-top: 24px;
+}

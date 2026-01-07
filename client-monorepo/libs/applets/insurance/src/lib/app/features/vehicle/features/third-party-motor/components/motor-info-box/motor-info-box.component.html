@@ -1,0 +1,21 @@
+<section class="motor-info-box h-100">
+  <div class="content h-100">
+    @if (text()) {
+      <p class="description bt-1">{{ text() }}</p>
+    }
+
+    <div class="form-content">
+      <ng-content></ng-content>
+    </div>
+
+    <div class="wrapper-action-buttons">
+      <action-buttons
+              [backgroundMode]="'gray'"
+              [activeButtonText]="activeButtonText()"
+              [deActiveButtonText]="deActiveButtonText()"
+              (activeButtonClicked)="onNext('')"
+              (deActiveButtonClicked)="onPrevious()">
+      </action-buttons>
+    </div>
+  </div>
+</section>

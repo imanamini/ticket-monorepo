@@ -1,0 +1,50 @@
+<div
+  [style.backgroundColor]="color()"
+  class="credit-installment-card"
+>
+  <div class="card-content">
+    <div class="card-header">
+      <h4 class="card-title">
+        <span class="icon">
+          @if (this.imageId()) {
+            <credit-digipay-image
+              [imageId]="imageId()"
+              width="100%"
+            ></credit-digipay-image>
+          }
+        </span>
+        {{ title() }}
+      </h4>
+      <span class="amount">{{ amount() | IRR: 'hideRial' }} <span class="unit is-currency">ریال</span></span>
+    </div>
+    <div class="card-footer">
+      <div>
+        @if (penaltyAmount() && netAmount()) {
+          <div class="data">
+            <span class="label">مبلغ اصل قسط</span>
+            <div class="value">
+              {{ netAmount() | IRR: 'hideRial' }}
+              <span class="unit is-currency">ریال</span>
+            </div>
+          </div>
+        }
+        @if (penaltyAmount()) {
+          <div class="data">
+            <span class="label">جریمه دیرکرد</span>
+            <div class="value">
+              {{ penaltyAmount() | IRR: 'hideRial' }}
+              <span class="unit is-currency">ریال</span>
+            </div>
+          </div>
+        }
+      </div>
+      <div class="left-col">
+        <div class="data">
+          <span class="label">تاریخ سررسید</span>
+          <div class="value">{{ date() }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="pattern"></span>
+</div>

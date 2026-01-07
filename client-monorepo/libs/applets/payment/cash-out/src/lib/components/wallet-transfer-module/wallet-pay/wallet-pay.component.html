@@ -1,0 +1,20 @@
+<common-ui-components-page-layout
+  [showBorder]="true"
+  [title]="'پرداخت با کیف پول'"
+>
+  <div
+    class="page-content"
+    *ngIf="!gettingBalance"
+  >
+    <ui-wallet-card [balance]="balance"></ui-wallet-card>
+    <div class="button-container">
+      <ngx-button
+        (clickHandler)="pay()"
+        [brandButton]="true"
+        [size]="'medium'"
+      >
+        پرداخت
+      </ngx-button>
+    </div>
+  </div>
+</common-ui-components-page-layout>

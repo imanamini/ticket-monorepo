@@ -1,0 +1,243 @@
+@import "globals";
+
+:host {
+  display: inline-block;
+}
+
+.spinner {
+  color: white !important;
+}
+
+.button {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: rem(14, 16);
+  padding: 12px 24px;
+  min-width: 180px;
+  font-weight: 700;
+  border: 1px solid $swatch_blue_500;
+  background: $swatch_blue_500;
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &.default {
+    &[disabled] {
+      background: #e6e6e6;
+      border-color: #e6e6e6;
+      color: #b2b2b2;
+    }
+  }
+
+  &.secondary {
+    background: #b4c7ff;
+    color: $swatch_blue_500;
+    border: unset;
+  }
+
+  &.dark-blue {
+    background: #061962;
+    color: #fff;
+    border: unset;
+  }
+
+  &.small-cta {
+    height: 24px;
+    padding: 0 8px;
+    font-size: 10px;
+    background: #b4c7ff;
+    color: $swatch_blue_500;
+    border: unset;
+    min-width: unset;
+  }
+
+  &.outline-blue {
+    background: transparent;
+    color: $swatch_blue_500;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.flat-blue {
+    background: #fff;
+    color: $swatch_blue_500;
+    border: none;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.outline-steel {
+    background: transparent;
+    color: $swatch_steel_900;
+    border-color: $swatch_steel_500;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.blue-text {
+    color: $swatch_blue_500;
+    background: transparent;
+    border-color: transparent;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.gray-text {
+    color: $swatch_steel_500;
+    background: transparent;
+    border-color: transparent;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.green-text {
+    color: $swatch_green_700;
+    background: transparent;
+    border-color: transparent;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.red-text {
+    color: $swatch_red_500;
+    background: transparent;
+    border-color: transparent;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.green {
+    background: $swatch_green_500;
+    color: #fff;
+    border-color: $swatch_green_500;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.outline-green {
+    background: transparent;
+    color: $swatch_green_500;
+    border-color: $swatch_green_500;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.just-icon {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    min-width: unset;
+  }
+
+  &.yellow {
+    background: $swatch_yellow_700;
+    color: #fff;
+    border-color: $swatch_yellow_700;
+    border-radius: 100px;
+  }
+
+  &.outline-yellow {
+    background: transparent;
+    color: $swatch_yellow_700;
+    border-color: $swatch_yellow_700;
+    border-radius: 100px;
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+
+  &.border-space {
+    outline-offset: 4px;
+    outline: #061962 solid 1px;
+    background: #061962;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
+  &.rounded {
+    border-radius: 100px;
+  }
+
+  &.extra-small {
+    font-size: 10px;
+  }
+
+  &.small {
+    min-width: unset;
+    padding: 12px;
+    font-size: 11px;
+  }
+
+  &.medium {
+    min-width: 120px;
+    padding: 16px;
+    font-size: 12px;
+  }
+
+  &.big {
+    height: 56px;
+    min-width: unset;
+    padding: 16px 24px;
+    font-size: 13px;
+  }
+}
+
+a.button {
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ::ng-deep span {
+    line-height: 1.5;
+    font-family: $primary-font;
+  }
+}
+
+@media (max-width: 1280px) {
+  .button {
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 744px) {
+  .button {
+    min-width: 100px;
+    font-size: 12px;
+  }
+}

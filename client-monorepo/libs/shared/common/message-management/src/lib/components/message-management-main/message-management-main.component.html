@@ -1,0 +1,10 @@
+<ng-container>
+  @switch (viewMode()) {
+    @case (MessageViewEnum.MESSAGE) {
+      <common-message-management-message [message]="message()"></common-message-management-message>
+    }
+    @case (MessageViewEnum.POP_UP) {
+      <common-message-management-popup [message]="message()"></common-message-management-popup>
+    }
+  }
+</ng-container>

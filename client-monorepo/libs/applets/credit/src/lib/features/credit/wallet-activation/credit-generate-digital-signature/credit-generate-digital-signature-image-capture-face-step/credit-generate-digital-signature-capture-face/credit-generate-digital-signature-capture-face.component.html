@@ -1,0 +1,129 @@
+@if (!uploadingData()) {
+  @if (!error()) {
+    <app-credit-app-bar
+      (onBackButtonClick)="onBackClick()"
+      [backButton]="true"
+      title="امضای دیجیتال"
+    ></app-credit-app-bar>
+    <app-credit-stepper
+      [currentStep]="creditGenerateDigitalSignatureService.currentStep()"
+      [steps]="creditGenerateDigitalSignatureService.totalSteps"
+      [title]="type() === 'PHOTO' ? 'ثبت عکس' : 'ضبط ویدئو'"
+    ></app-credit-stepper>
+
+    @if (!loadingMedia()) {
+      <div class="w-100 d-flex flex-column flex-grow">
+        <app-credit-scrollable-view [fullHeightContent]="true">
+          <div class="d-flex flex-grow">
+            <ng-template #templateReadVideo>
+              <span id="face-detection-text-to-read">
+                {{ textToRead() }}
+              </span>
+            </ng-template>
+            <ngx-face-detection
+              (isEnableBtn)="statusChange($event)"
+              (capturedFile)="onSaveCapturedFile($event)"
+              [enabledHighlightText]="true"
+              [behaviorCapture]="type()"
+              [captureStatus]="captureStatus()"
+              [processTimerRecordingVideo]="inputTimer()"
+              [templateReadVideo]="templateReadVideo"
+            />
+          </div>
+        </app-credit-scrollable-view>
+
+        <div class="capture-btn-action d-flex justify-content-center px-plus flex-row gap-small align-items-center">
+          @if (preCapture()) {
+            <div
+              ngxTrackableId
+              trackerId="digitalSignatureRecordButton"
+              class="record-btn"
+              (click)="doCapture()"
+              [ngxTooltip]="'باید نوار دور تصویر سبز شود تا دکمه فعال شود'"
+              [class]="{ disable: btnDisable() }"
+            ></div>
+          } @else {
+            @if (type() === 'PHOTO') {
+              <ngx-button
+                ngxTrackableId
+                trackerId="digitalSignatureCaptureImageButton"
+                (clickHandler)="submit()"
+                [fullWidth]="true"
+                [disabled]="!capturedFile() || uploadingData()"
+                [isLoading]="!capturedFile() || uploadingData()"
+              >
+                تایید عکس
+              </ngx-button>
+              <ngx-button
+                ngxTrackableId
+                trackerId="digitalSignatureRecaptureImageButton"
+                (clickHandler)="reCapture()"
+                [fullWidth]="true"
+                [style]="'tinted-on-elevated'"
+              >
+                عکس دوباره
+              </ngx-button>
+            }
+            @if (type() === 'VIDEO') {
+              @switch (captureState()) {
+                @case ('READY_FOR_CAPTURE_VIDEO') {
+                  <div
+                    class="stop-btn"
+                    ngxTrackableId
+                    trackerId="digitalSignatureCancelRecordButton"
+                    (click)="cancelRecordingVideo()"
+                  ></div>
+                }
+                @case ('START_CAPTURE_VIDEO') {
+                  <div
+                    class="stop-btn"
+                    ngxTrackableId
+                    trackerId="digitalSignatureStopRecordButton"
+                    (click)="stopCaptureVideoFunc()"
+                    [class]="{ disable: disableStopRecordingButton() }"
+                  ></div>
+                }
+                @case ('STOP_CAPTURE_VIDEO') {
+                  <ngx-button
+                    ngxTrackableId
+                    trackerId="digitalSignatureCaptureVideoButton"
+                    (clickHandler)="submit()"
+                    [fullWidth]="true"
+                    [disabled]="!capturedFile() || uploadingData()"
+                    [isLoading]="!capturedFile() || uploadingData()"
+                  >
+                    تایید ویدئو
+                  </ngx-button>
+                  <ngx-button
+                    ngxTrackableId
+                    trackerId="digitalSignatureRecaptureIVideoButton"
+                    (clickHandler)="reCapture(true)"
+                    [fullWidth]="true"
+                    [style]="'link'"
+                  >
+                    ضبط دوباره
+                  </ngx-button>
+                }
+              }
+            }
+          }
+        </div>
+      </div>
+    } @else {
+      <credit-page-loading [active]="true"></credit-page-loading>
+    }
+  } @else {
+    <app-credit-generate-digital-signature-media-error
+      [type]="error()!"
+      [step]="creditGenerateDigitalSignatureService.currentStep()"
+      [totalSteps]="creditGenerateDigitalSignatureService.totalSteps"
+      (back)="error() === RESPONSE_ERROR_TYPE.PHOTO_COMPARE_ERROR ? resetDigitalSignatureToken() : backToStart()"
+      (takeAgain)="error() === RESPONSE_ERROR_TYPE.PHOTO_COMPARE_ERROR ? resetDigitalSignatureToken() : backToStart()"
+    ></app-credit-generate-digital-signature-media-error>
+  }
+} @else {
+  <app-credit-generate-digital-signature-media-check
+    [mediaType]="type()"
+    (back)="backToStart()"
+  ></app-credit-generate-digital-signature-media-check>
+}

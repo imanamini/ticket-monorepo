@@ -1,0 +1,134 @@
+<lib-barcode-loading></lib-barcode-loading>
+<ngx-app-bar
+  [title]="'بارکد خرید'"
+  (onRightButtonClick)="navigation()"
+  [rightButton]="{ label: referrer() ? '' : 'پرداخت', mode: 'form', size: 'tiny', style: 'link', icon: 'arrow-right' }"
+>
+</ngx-app-bar>
+<div class="barcode-container">
+  @if ((creditTypesLoading() || providersData().length) && !barcodeData()) {
+    <div class="barcode-content">
+      <lib-barcode-provider-list
+        [loading]="creditTypesLoading()"
+        (selectCredit)="handleSelectCredit($event)"
+        [data]="providersData()"
+      ></lib-barcode-provider-list>
+    </div>
+  } @else if (barcodeData() && providersData().length) {
+    <div class="barcode-content">
+      <div class="d-flex justify-content-space-between flex-column h-100">
+        <div>
+          <div class="ticket mt-medium">
+            <div class="ticket-header gap-small">
+              <span class="b-6 text-oninvert-high"> بارکد خرید {{ barcodeData()?.title }} </span>
+              <span class="b-3 text-oninvert-high">
+                موجودی: <span class="fw-bold"> {{ barcodeData()?.balance | number }} </span> ريال
+              </span>
+            </div>
+
+            <div
+              class="ticket-barcode border-color-light d-flex flex-column justify-content-space-between align-items-center surface-back radius-medium gap-medium p-medium"
+            >
+              <div [class.expired-barcode]="barcodeExpired()">
+                <ngx-barcode6
+                  [bc-format]="'CODE128'"
+                  [bc-width]="2"
+                  [bc-height]="60"
+                  [bc-value]="barcodeData()?.barcodeNumber || ''"
+                  [bc-display-value]="true"
+                  [bc-background]="'#F2F3F6'"
+                  [bc-font]="'iranyekan'"
+                  [bc-font-size]="15"
+                  [bc-text-position]="'top'"
+                >
+                </ngx-barcode6>
+                <lib-barcode-remaining-time
+                  #timer
+                  class="mt-small"
+                  (finished)="handleBarcodeExpiration()"
+                  [timestamp]="barcodeData()?.ttl || 0"
+                  [timeType]="'MILLI_SECOND'"
+                  [hasDescription]="false"
+                  (returnRemainingTime)="remainingTime.set($event >= 0 ? $event : 0)"
+                >
+                </lib-barcode-remaining-time>
+              </div>
+              @if (!barcodeExpired()) {
+                <span class="text-align-center fs-12 fw-normal fw-bold text-onback-medium">
+                  برای پرداخت فاکتور از صندوقدار بخواهید بارکد را اسکن کند.
+                </span>
+              } @else {
+                <div class="d-flex p-minus flex-row align-items-start radius-plus surface-error-tint gap-small">
+                  <common-icon-dp-icon
+                    class="text-oninvert-error"
+                    [icon]="'error-circle'"
+                    iconType="linear"
+                    iconSize="24"
+                  ></common-icon-dp-icon>
+
+                  <span class="fs-14 fw-semi-bold text-onback-medium"
+                    >بارکد منقضی شده است.<br />
+                    جهت خرید حضوری بارکد جدید دریافت کنید.</span
+                  >
+                </div>
+              }
+            </div>
+
+            <div class="circle circle-left"></div>
+            <div class="circle circle-right"></div>
+          </div>
+        </div>
+        <div class="d-flex flex-column gap-small mb-small">
+          @if (barcodeExpired()) {
+            <div class="d-flex p-minus flex-row align-items-start radius-minus surface-dim-level-0 gap-small mb-small">
+              <common-icon-dp-icon
+                [class]="'text-onback-brand'"
+                [icon]="'info-circle'"
+                iconType="due"
+                iconSize="24"
+              ></common-icon-dp-icon>
+
+              <span class="fs-14 text-onback-medium">
+                در صورتی که بارکد منقضی اسکن شده است از صندوقدار بخواهید بارکد جدید را اسکن کند.
+              </span>
+            </div>
+          }
+          <ngx-button
+            class="footer-button"
+            [mode]="'form'"
+            [size]="'large'"
+            [style]="'tinted-on-elevated'"
+            [fullWidth]="true"
+            (clickHandler)="openProvidersBottomSheet()"
+          >
+            تغییر شیوه پرداخت
+          </ngx-button>
+          <ngx-button
+            [mode]="'form'"
+            [size]="'large'"
+            [style]="'fill'"
+            [fullWidth]="true"
+            [disabled]="false"
+            (clickHandler)="handlePayOrRegenerateBarcode()"
+          >
+            {{ barcodeExpired() ? 'بارکد جدید' : 'ادامه' }}
+          </ngx-button>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="barcode-content">
+      <div class="d-flex gap-medium flex-column align-items-center py-huge">
+        <img
+          src="assets/scanner/barcode/provider-not-found.svg"
+          loading="lazy"
+          alt="providers not found"
+        />
+        <div class="d-flex gap-medium flex-column align-items-center">
+          <span class="text-align-center fw-bold fs-16">امکان دریافت بارکد پرداخت وجود ندارد</span>
+          <p class="text-align-center fs-14 text-onback-medium">کاربر گرامی روش پرداخت فعال برای شما یافت نشد.</p>
+        </div>
+      </div>
+    </div>
+  }
+</div>

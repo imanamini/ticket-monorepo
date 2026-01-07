@@ -1,0 +1,25 @@
+<div class="title-value-content d-flex justify-content-space-between gap-medium"
+     [ngClass]="{'align-items-center': data().ellipsis, 'align-items-start': !data().ellipsis}"
+>
+  <span [textContent]="data().title"
+        [class]="'title b-3 text-onback-medium ' + data().class"></span>
+
+  @switch (data().type) {
+    @case ('plate') {
+      <div class="b-2 text-onback-high">{{ data().value }}</div>
+    }
+    @case ('plate-motor') {
+      <ngx-plate
+              type="motorcycle"
+              [size]="'small'"
+              [plate]="data().value?.toString()"
+              [readonly]="true"
+      ></ngx-plate>
+    }
+    @default {
+      <p [textContent]="data().value"
+         [ngClass]="{'ellipsis': data().ellipsis}"
+         [class]="'value b-2 text-onback-high ' + data().class"></p>
+    }
+  }
+</div>

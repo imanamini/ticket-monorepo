@@ -1,0 +1,12 @@
+<div class="slider-container container">
+  <div class="bg-wrapper">
+        <div class="slider-inner"
+             [style.transform]="'translateX(' + currentIndex * 100 + '%)'">
+          @for (item of images(); track $index) {
+            <div class="slide">
+              <img src="{{item?.image?.url}}" alt="">
+            </div>
+          }
+        </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<ui-special-dialog
+        (handleOnClick)="submitPhoneNumber()"
+        [buttonText]="'تایید و ادامه'"
+        [description]="'لطفا شماره موبایل بیمه گزار مورد نظر خود را وارد کنید.'"
+        title="انتقال سند بیمه نامه">
+
+  <form [formGroup]="form">
+    <ui-form-field
+            formControlName="transferMobileNo"
+            label="شماره همراه"
+            type="input"
+    ></ui-form-field>
+  </form>
+
+</ui-special-dialog>

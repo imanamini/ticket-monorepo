@@ -1,0 +1,29 @@
+<div class="journey-actions w-100">
+  <div class="d-flex align-items-center justify-content-start gap-medium">
+    @if (config().data.secondaryActions) {
+      <ngx-button
+        [fullWidth]="false"
+        [mode]="'icon-only'"
+        [size]="'medium'"
+        [style]="'tinted-on-elevated'"
+        [brandButton]="false"
+        [destructive]="false"
+        [leftIcon]="{ name: 'info-menu' }"
+        (clickHandler)="secondaryClick.emit()"
+      ></ngx-button>
+    }
+    <ngx-button
+      [fullWidth]="config()?.data?.primaryAction?.fullWidth ?? true"
+      [mode]="config()?.data?.primaryAction?.mode ?? 'section'"
+      [size]="config()?.data?.primaryAction?.size ?? 'medium'"
+      [style]="config()?.data?.primaryAction?.style ?? 'fill'"
+      [brandButton]="config()?.data?.primaryAction?.brandButton ?? false"
+      [destructive]="config()?.data?.primaryAction?.destructive ?? false"
+      [rightIcon]="config()?.data?.primaryAction?.rightIcon ?? undefined"
+      [leftIcon]="config()?.data?.primaryAction?.leftIcon ?? { name: 'arrow-left' }"
+      (clickHandler)="primaryClick.emit()"
+    >
+      {{ config()?.data?.primaryAction?.text }}</ngx-button
+    >
+  </div>
+</div>

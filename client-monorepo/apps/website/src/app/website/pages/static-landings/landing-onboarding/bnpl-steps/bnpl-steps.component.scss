@@ -1,0 +1,232 @@
+@import "@digipay/base-style/styleguide";
+
+.bnpl-steps {
+
+  &.black-friday {
+    position: relative;
+    display: inline-block;
+    border-radius: 24px;
+    overflow: hidden;
+    z-index: 0;
+    width: 1200px;
+    margin-top: 120px;
+    padding: 48px 24px 16px 24px !important;
+
+
+    .title {
+      margin-bottom: 40px !important;
+
+    }
+
+
+
+    .bnpl-step-item {
+      padding: 0 !important;
+      width: 300px !important;
+
+      .title {
+        font-size: 15px !important;
+        margin-top: 20px;
+        margin-bottom: map-get($spacing-sizes, 'huge') !important;
+      }
+
+      .image-wrapper {
+        background: none !important;
+        padding: 0 !important;
+
+        img {
+          width: 300px !important;
+          height: auto !important;
+          position: relative !important;
+          transform: none !important;
+        }
+      }
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      z-index: 1;
+      background: url("../../../../../../assets/images/black-friday/ellipse.svg") no-repeat;
+      width: 100%;
+      top: 0;
+      background-size: contain;
+      height: 100%;
+      right: 50%;
+      transform: translateX(60%);
+      opacity: 0.7;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 2px;
+      border-radius: inherit;
+      background: linear-gradient(223.86deg, #fff -7.28%, #311a15 55.04%, #e0e0e080 105.44%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      z-index: 1;
+      pointer-events: none;
+    }
+  }
+
+  .title {
+    color: #000;
+    text-align: right;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px; /* 123.077% */
+  }
+
+  .subtitle {
+    width: 540px;
+    margin: 0 auto 16px;
+  }
+  .bnpl-subtitle {
+    color: #000;
+    text-align: center;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 67px; /* 209.375% */
+  }
+
+  .bnpl-step-list {
+
+    .bnpl-step-item {
+      padding: map-get($spacing-sizes, 'medium');
+      width: 332px;
+      position: relative;
+      z-index: 3;
+
+      .image-wrapper {
+        border-radius: map-get($border-radius-sizes, 'big');
+        padding: 33px 37px 0 31px;
+        overflow: hidden;
+        width: 300px;
+        height: 300px;
+        background: #F2F3F6;
+
+        img {
+          width: 227px;
+          height: 264px;
+          transition: transform .5s ease-in-out;
+          position: relative;
+          bottom: -4px;
+        }
+
+        img:hover {
+          transform: scale(1.05);
+        }
+      }
+
+      .subtitle {
+        width: 100%;
+      }
+
+      .content {
+        .description {
+          text-align: justify;
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 1280px) {
+  .bnpl-steps {
+    &.black-friday {
+      width: 100%;
+      margin-top: 48px !important;
+      padding-bottom: map-get($spacing-sizes, 'huge') !important;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .bnpl-step-list {
+        gap: 32px !important;
+      }
+
+      .title {
+        font-size: 16px !important;
+        margin-bottom: map-get($spacing-sizes, 'big') !important;
+      }
+
+      .bnpl-step-list {
+        .bnpl-step-item {
+          width: 300px !important;
+
+          .image-wrapper {
+            width: 100% !important;
+            margin-bottom: map-get($spacing-sizes, 'low') !important;
+          }
+
+          .title {
+            margin-top: map-get($spacing-sizes, 'atom');
+          }
+        }
+      }
+
+    }
+
+    padding: 32px 0 40px !important;
+
+    .title {
+      font-size: 20px;
+    }
+
+    .subtitle {
+      width: 100%;
+    }
+    .bnpl-subtitle {
+       font-size: 22px;
+      font-weight: 800;
+      line-height: 32px;
+      margin-bottom: 28px;
+    }
+
+    .bnpl-step-list {
+      flex-direction: column;
+      gap: 40px !important;
+      align-items: center !important;
+
+      .bnpl-step-item {
+        width: 320px;
+        padding: 0;
+
+        .image-wrapper {
+          width: 320px;
+          height: 320px;
+          margin-bottom: 16px !important;
+
+          img {
+            width: 242px;
+            height: 281px;
+            bottom: -6px;
+          }
+        }
+
+        .title {
+          font-size: 14px !important;
+          margin-bottom: 4px !important;
+          text-align: center;
+        }
+
+        .subtitle {
+          width: 100%;
+          font-size: 12px !important;
+          margin-bottom: 20px !important;
+        }
+      }
+    }
+
+
+  }
+}

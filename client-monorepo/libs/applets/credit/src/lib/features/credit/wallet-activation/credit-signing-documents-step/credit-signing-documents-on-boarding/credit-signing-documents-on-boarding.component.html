@@ -1,0 +1,50 @@
+@if (!errorType()) {
+  @if (!showLoading()) {
+    <app-credit-app-bar
+      (onBackButtonClick)="onBackClick()"
+      [backButton]="true"
+      [title]="'امضای دیجیتال اسناد'"
+    >
+    </app-credit-app-bar>
+    <div class="d-flex flex-column w-100 flex-grow rtl">
+      <div class="flex-grow justify-content-center rtl">
+        <ngx-status-result
+          [title]="'امضای دیجیتال اسناد'"
+          [buttons]="buttons"
+          (clicked)="onCtaClick()"
+          [description]="'در این مرحله اسناد و مدارک اعتباری را با امضای دیجیتال امضا می کنید.'"
+          [type]="'Status'"
+        >
+          <div
+            status-image
+            class="pb-medium"
+            [style]="{ height: '216px' }"
+          >
+            <ng-lottie [options]="{ animationData: onboardingAnimation, loop: false }"></ng-lottie>
+          </div>
+          <div
+            html-content
+            class="d-flex flex-column flex-grow justify-content-flex-end gap-medium"
+          >
+            <ngx-callout
+              [mode]="'multiple'"
+              [showTitleBlink]="false"
+              [messagesDashed]="true"
+              [title]="'مراحل:'"
+              [messages]="['مطالعه سند', 'امضای سند', 'بررسی و تائید سند امضا شده', 'دریافت سند']"
+            />
+          </div>
+        </ngx-status-result>
+      </div>
+    </div>
+  }
+  <credit-page-loading [active]="showLoading()!"></credit-page-loading>
+}
+
+@if (errorType()) {
+  <app-credit-signing-documents-error
+    (close)="onBackClick()"
+    [type]="errorType()"
+    class="d-flex flex-column flex-grow"
+  ></app-credit-signing-documents-error>
+}

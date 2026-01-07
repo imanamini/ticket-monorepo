@@ -1,0 +1,8 @@
+export enum LoginState {
+  PHONENUMBER,
+  OTP,
+  PIN,
+  RULES,
+  REPRESENTATIVE,
+  CHANGEPHONENUMBER,
+}

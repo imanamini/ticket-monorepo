@@ -1,0 +1,63 @@
+@import "globals";
+
+:host {
+  display: block;
+}
+
+.ui-section {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 24px;
+  padding: 0;
+
+  .header,
+  .footer,
+  .body {
+    padding: 24px 48px;
+  }
+
+  .header {
+    border-bottom: 1px solid #e6e6e6;
+    font-size: rem(24, 16);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    user-select: none;
+
+    .icon {
+      margin-left: 8px;
+    }
+  }
+
+  .body {
+    //overflow: hidden;
+    transition-timing-function: ease-in;
+    transition-duration: 0.3s;
+  }
+
+  .footer {
+    border-top: 1px solid #e6e6e6;
+    display: flex;
+  }
+}
+
+@include mediaMobile() {
+  .ui-section {
+    border: none;
+    border-radius: unset;
+
+    .body {
+      &.closed {
+        max-height: 650px;
+      }
+    }
+  }
+  .ui-section.is-primary {
+    .body {
+      padding-top: 0 !important;
+    }
+  }
+  .ui-section .body {
+    padding: 24px 16px;
+  }
+}

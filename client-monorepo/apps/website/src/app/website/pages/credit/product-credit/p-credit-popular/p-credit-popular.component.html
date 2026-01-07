@@ -1,0 +1,39 @@
+<section class="credit-product__popular-laptops">
+  <div class="container">
+    <h2
+      *ngIf="templateData && templateData.sectionBrands"
+      class="text-align-center"
+    >
+      {{ templateData.sectionBrands.title }}
+    </h2>
+    <div class="credit-product__popular--contain swiper-container">
+      <div
+        *ngIf="templateData && templateData.sectionBrands?.brands"
+        aria-live="polite"
+        class="carousel-container"
+      >
+        <owl-carousel-o [options]="customOptions">
+          <ng-container *ngFor="let item of templateData.sectionBrands.brands">
+            <ng-template carouselSlide>
+              <div
+                class="carousel-item"
+                role="group"
+              >
+                <div>
+                  <img
+                    *ngIf="item.image"
+                    [alt]="item.title"
+                    [src]="item.image.url"
+                  />
+                  <div class="item-title">
+                    {{ item.title }}
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+    </div>
+  </div>
+</section>

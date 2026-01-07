@@ -1,0 +1,85 @@
+<app-credit-app-bar
+  (onBackButtonClick)="onBack()"
+  [backButton]="true"
+  [title]="'کارت ملی'"
+></app-credit-app-bar>
+<app-credit-stepper
+  [currentStep]="step()!"
+  [steps]="totalSteps()!"
+  title="تکمیل اطلاعات"
+></app-credit-stepper>
+<div class="d-flex flex-column flex-grow">
+  <app-credit-scrollable-view
+    [fullHeightContent]="true"
+    class="flex-grow"
+  >
+    <div class="d-flex flex-column flex-grow px-plus align-items-center justify-content-flex-start rtl">
+      <div class="w-100 d-flex flex-row justify-content-center mb-plus">
+        @defer {
+          <div class="card-image radius-medium"></div>
+        } @placeholder (minimum 1s) {
+          <div class="skeleton-image">
+            <lib-ngx-skeleton-loading
+              width="320px"
+              height="193px"
+            ></lib-ngx-skeleton-loading>
+          </div>
+        }
+      </div>
+      <div class="d-flex flex-column gap-small">
+        <p class="st-8 text-onback-medium text-align-center">سریال پشت کارت ملی خود را وارد کنید</p>
+        <form
+          [formGroup]="form"
+          class="serial-form gap-small w-100 ltr d-flex flex-row justify-content-center align-items-center"
+          id="form"
+        >
+          @for (item of inputGroups; track item) {
+            <input
+              class="border-300 border-color-tint text-align-center d-flex align-items-center radius-small"
+              #inputs
+              [autocapitalize]="item.autocapitalize"
+              [class]="item.class"
+              [formControlName]="item.formControlName"
+              [maxlength]="item.maxlength"
+              [pattern]="item.pattern"
+              [attr.inputmode]="item.inputMode"
+              [placeholder]="item.placeholder"
+              [type]="item.type"
+              [readonly]="item.readonly"
+              (focus)="onOpenBottomSheetCharacters(item)"
+            />
+          }
+        </form>
+        <p
+          class="l-3 text-align-center"
+          [class.text-onback-error]="errorMessage().length"
+          [class.text-onback-brand]="!errorMessage().length"
+        >
+          {{ errorMessage() || hintMessage }}
+        </p>
+      </div>
+    </div>
+  </app-credit-scrollable-view>
+</div>
+<div class="d-flex flex-column gap-medium px-plus pt-pony pb-mega">
+  <ngx-button
+    (clickHandler)="submit()"
+    [disabled]="form.invalid || loading()"
+    [fullWidth]="true"
+    [isLoading]="loading()"
+    [style]="'fill'"
+    ngxTrackableId
+    trackerId="nationalCardConfirmButtonClick"
+  >
+    تایید سریال
+  </ngx-button>
+  <ngx-button
+    (clickHandler)="noNationalCard()"
+    [fullWidth]="true"
+    [style]="'link'"
+    ngxTrackableId
+    trackerId="nationalCardSerialButtonClick"
+  >
+    کارت ملی هوشمند ندارم
+  </ngx-button>
+</div>

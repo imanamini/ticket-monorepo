@@ -1,0 +1,55 @@
+<div class="d-flex flex-wrap surface-elevated align-content-start national-id-container">
+  <ngx-app-bar
+    class="w-100"
+    [title]="!this.state()?.walletName ? 'بررسی حساب سجام' : 'ورود اطلاعات'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  @if (loading()) {
+    <app-spinner class="h-100"></app-spinner>
+  } @else {
+    <div class="w-100 d-flex flex-column align-content-flex-start p-plus">
+      <div class="w-100 d-flex flex-wrap align-content-start national-id-form">
+        <p class="w-100 b-2 text-onback-high">کد ملی مالک شماره {{ phoneNumber() }} را وارد کنید.</p>
+        <div
+          [formGroup]="form"
+          class="w-100 mt-big"
+        >
+          <ui-form-field
+            label="ورود کد ملی"
+            [isNumericKeyboard]="true"
+            [maxSize]="10"
+            [formControlName]="'nationalCode'"
+            [hasCleaner]="true"
+            [error]="form.controls['nationalCode'].errors ?? {}"
+            [errorMessageMapper]="{
+              required: 'کد ملی را وارد کنید.',
+              invalidNationalCode: 'کد ملی وارد شده معتبر نیست.',
+              serverError: parentErrors()['nationalCode'],
+            }"
+          ></ui-form-field>
+        </div>
+      </div>
+
+      <div class="w-100">
+        <ngx-button
+          buttonId="SEJAM_CHECK"
+          [style]="'fill'"
+          size="medium"
+          [fullWidth]="true"
+          [isLoading]="isLoading()"
+          [disabled]="form.invalid"
+          (clickHandler)="onNationalCodeSubmit()"
+        >
+          {{ state().ipo ? 'بررسی حساب سجام' : 'تایید و ادامه' }}
+        </ngx-button>
+      </div>
+    </div>
+  }
+</div>

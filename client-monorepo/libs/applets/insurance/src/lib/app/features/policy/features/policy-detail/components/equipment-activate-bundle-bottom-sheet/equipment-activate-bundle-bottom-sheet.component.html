@@ -1,0 +1,33 @@
+<div class="equipment-activate-bundle-bottom-sheet p-medium st-8">
+  <div class="title">
+    برای ثبت خسارت به دستگاهتان, نیازمند آن هستید تا با وارد کردن شماره سریال (IMEI) دستگاه خود, بیمه
+    خود را فعال کنید.
+  </div>
+  @if (serialNumberForm) {
+    <div class="mt-plus" [formGroup]="serialNumberForm">
+      <ui-form-field
+              formControlName="serialNumber"
+              [showError]="showError() ? 'show' : 'hidden'"
+              [error]="serialNumberForm.controls.serialNumber.errors"
+              [errorMessageMapper]="errorMessageMapper"
+              hint="شماره سریال را بدون اسلش و فاصله وارد کنید."
+              label="شماره سریال دستگاه / IMEI">
+      </ui-form-field>
+    </div>
+  }
+  <ins-alert
+          [text]="'برای پیدا کردن شماره سریال (IMEI) دستگاه, از کد دستوری #06#* استفاده کنید'"
+          [hasIcon]="true"
+          [hasCloseIcon]="false"
+          icon="info-circle"
+  ></ins-alert>
+  <div class="mt-plus">
+    <ins-button
+            text="فعالسازی بیمه"
+            (click)="registerDeviceNumber()"
+            [fullWidth]="true"
+            [brandButton]="true"
+            [size]="InsButtonSizeEnum.Large"
+    ></ins-button>
+  </div>
+</div>

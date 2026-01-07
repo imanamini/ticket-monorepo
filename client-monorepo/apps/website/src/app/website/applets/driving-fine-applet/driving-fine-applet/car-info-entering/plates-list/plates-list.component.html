@@ -1,0 +1,33 @@
+<div class="plates">
+  <div
+    class="plates-list"
+    *ngIf="isPlatesLoaded"
+  >
+    <app-ui-vehicle-fine
+      (fineDetailsRequest)="showInquiryDetails($event)"
+      (newInquiryRequest)="newInquiry($event)"
+      *ngFor="let plate of platesList"
+      [hasInquiryOption]="true"
+      [vehiclePlate]="plate"
+    ></app-ui-vehicle-fine>
+  </div>
+  <div
+    class="loading"
+    *ngIf="!isPlatesLoaded"
+  >
+    <app-ui-spinner size="30"></app-ui-spinner>
+  </div>
+  <app-ui-button
+    (clicked)="newPlateClicked()"
+    appearance="GREEN-TEXT"
+    class="cta"
+    size="BIG"
+  >
+    پلاک جدید
+    <span
+      icon="icon-plus-green"
+      size="24"
+      appUiIcon
+    ></span>
+  </app-ui-button>
+</div>

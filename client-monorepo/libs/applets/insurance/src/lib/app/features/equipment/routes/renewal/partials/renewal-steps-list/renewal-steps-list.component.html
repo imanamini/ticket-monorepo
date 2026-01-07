@@ -1,0 +1,16 @@
+<div [ngClass]="{
+     'hide-borders':hideBorders,
+     'mobile':isMobile
+     }"
+     class="list">
+  <ng-container *ngFor="let item of listItems">
+    <div class="list-item">
+      <div class="item-name">
+        {{ item.name }}
+      </div>
+      <div class="item-value">
+        {{ item.isPrice ? ( item.value | thousands ) : item.value }}
+      </div>
+    </div>
+  </ng-container>
+</div>

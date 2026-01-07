@@ -1,0 +1,40 @@
+.draw-card {
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.detail {
+  display: flex;
+
+  &.draw-time {
+    align-items: center;
+    margin: 4px 0 24px;
+  }
+
+  &.timer {
+    flex-direction: column;
+  }
+
+  .title {
+    font-size: 12px;
+    font-weight: 700;
+    margin: 0 0 0 4px;
+  }
+
+  pay-club-applet-ui-modern-countdown {
+    margin-top: 0.8em;
+    width: 80%;
+    align-self: center;
+  }
+
+  .expiration-time {
+    margin-top: 0.8em;
+    color: #00a357;
+    line-height: 18px;
+    font-weight: 700;
+  }
+}
+
+ui-button {
+  width: 100%;
+}

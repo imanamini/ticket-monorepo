@@ -1,0 +1,117 @@
+<div
+  class="surface-elevated w-100 d-flex justify-content-space-between radius-medium border-color-light p-medium {{
+    clickable ? 'cursor-pointer' : ''
+  }}"
+  (click)="onClick()"
+>
+  <!-- ? Logo section -->
+  <div class="d-flex align-items-center justify-content-center border-color-air radius-rounded border-100 logo-container">
+    @if (transaction()?.icon) {
+      @if (transaction().instrumentInvestmentType === 'CrowdFund') {
+        <img
+          src="./wealth-assets/svg/crowd-logo.svg"
+          [alt]="transaction().title"
+        />
+      } @else {
+        <app-image
+          [imageUrl]="transaction()?.icon"
+          defaultImage="wealth-assets/icons/default-instrument.svg"
+        ></app-image>
+      }
+    } @else if (transaction().type === transactionType.EtfWalletWithdrawal || transaction().type === transactionType.EtfWalletDeposit) {
+      <img
+        src="wealth-assets/icons/wallet-transaction.svg"
+        [alt]="transaction().title"
+      />
+    }
+  </div>
+
+  <!-- ? Detail -->
+  <div class="d-flex flex-grow flex-wrap mr-tiny">
+    <!-- ? Name and Status -->
+    <div class="w-100 d-flex flex-wrap align-items-center justify-content-space-between">
+      <!-- ? Instrument Name -->
+      @if (transaction().instrumentType === 'IPO') {
+        <span class="c-1 text-onback-medium"> عرضه اولیه {{ transaction().instrumentDisplaySymbol }} </span>
+      } @else if (transaction().instrumentInvestmentType === 'CrowdFund') {
+        <span> تامین مالی جمعی </span>
+      } @else {
+        <p class="c-1 text-onback-medium">
+          @switch (transaction().type) {
+            @case (transactionType.EtfWalletWithdrawal) {
+              کیف پول صندوق‌های ETF
+            }
+            @case (transactionType.EtfWalletDeposit) {
+              کیف پول صندوق‌های ETF
+            }
+            @default {
+              {{ transaction()?.title }}
+            }
+          }
+        </p>
+      }
+
+      <!-- ? Status -->
+      <ngx-badge
+        size="md"
+        [status]="(transaction().type | transactionStatusData: transaction()?.status : transaction().instrumentType)?.status"
+        mode="outline"
+        type="text"
+        classList="p-atom"
+      >
+        {{ (transaction().type | transactionStatusData: transaction()?.status : transaction().instrumentType)?.text }}
+      </ngx-badge>
+    </div>
+
+    <div class="w-100 d-flex align-items-center justify-content-space-between mt-minus">
+      <div class="flex-grow">
+        <span class="l-1">
+          @switch (transaction()?.type) {
+            @case (transactionType.Buy) {
+              خرید
+            }
+            @case (transactionType.Sell) {
+              فروش
+            }
+            @case (transactionType.Profit) {
+              واریز سود
+            }
+            @case (transactionType.Overplus) {
+              واریز تتمه
+            }
+            @case (transactionType.EtfWalletWithdrawal) {
+              برداشت
+            }
+            @case (transactionType.EtfWalletDeposit) {
+              واریز
+            }
+          }
+          @if (transaction()?.units) {
+            {{ transaction()?.units }} واحد
+          }
+        </span>
+      </div>
+
+      <!-- ? Price -->
+      <div class="flex-grow d-flex justify-content-end">
+        @if (transaction()?.amount) {
+          <span class="c-1 text-onback-high is-currency">
+            {{ transaction()?.amount | number }}
+            ریال
+          </span>
+        } @else {
+          @if (transaction()?.status === statusType.Draft || transaction()?.status === statusType.Waiting) {
+            <span class="c-1 text-onback-high"> مبلغ در حال بررسی </span>
+          } @else {
+            <span> &mdash; </span>
+          }
+        }
+      </div>
+
+      <!-- ? Date -->
+      <div class="mr-minus d-flex justify-content-end">
+        <span class="c-1 text-onback-medium">{{ transaction()?.date }}</span>
+      </div>
+    </div>
+  </div>
+</div>

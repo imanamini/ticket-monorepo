@@ -1,0 +1,28 @@
+<div class="page-layout {{ layoutClasses() }}">
+  @if (title() || showBackIcon()) {
+    <ngx-app-bar
+      class="{{ headerClasses() }}"
+      [title]="title() ?? ''"
+      [rightButton]="rightButton() ?? {}"
+      (onRightButtonClick)="handleActionClick()"
+      [leftButton]="leftButton()"
+      (onLeftButtonClick)="onLeftButtonClick($event)"
+      [leftIcon]="leftIcon()"
+      (onLeftIconClick)="onLeftIcon($event)"
+      (onFinishRightTimer)="onFinishRightTimer.emit()"
+      (onFinishLeftTimer)="onFinishLeftTimer.emit()"
+    ></ngx-app-bar>
+  }
+
+  <div
+    id="dpx-page-layout-body"
+    class="page-layout-body d-flex flex-column {{ bodyClasses() }}"
+    #pageBody
+    [ngStyle]="bodyStyle()"
+    (scroll)="handleScroll($event)"
+    pillarDigikalaScrollTracker
+    [ngClass]="{ sticky: stickyHeader() }"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>

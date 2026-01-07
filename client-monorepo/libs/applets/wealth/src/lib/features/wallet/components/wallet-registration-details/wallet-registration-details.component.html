@@ -1,0 +1,64 @@
+@switch (wallet()?.completeRegistrationHint) {
+  @case ('InCompleterRegistration') {
+    <div class="w-100 mt-big">
+      <div class="w-100 d-flex radius-plus border-100 border-color-error gap-low p-minus surface-error-tint">
+        <ngx-icon
+          class="text-onback-error"
+          name="info-circle"
+          type="bold"
+        />
+        <div class="flex-1 d-flex flex-wrap">
+          <p class="w-100 st-8 text-onback-high">سرمایه‌گذاری شما انجام نشده است!</p>
+          <p class="w-100 b-3 text-onback-medium flex mt-tiny">
+            شما هنوز کد پستی خود را در سامانه املاک و اسکان ثبت نکرده‌اید. اگر این اقدام را انجام داده‌اید، منتظر به‌روز رسانی سامانه املاک
+            باشید.
+          </p>
+          <p
+            class="b-3 text-onback-brand cursor-pointer"
+            (click)="navigateToRealEstateSystem()"
+          >
+            ورود به سامانه املاک و اسکان
+          </p>
+          <p class="w-100 b-3 text-onback-medium">کد پستی شما: {{ wallet().postalCode }}</p>
+
+          <div class="w-100 mt-minus d-flex gap-small">
+            <ngx-button
+              [size]="'tiny'"
+              [classNames]="['text-onback-error']"
+              [style]="'tinted-on-back'"
+              [mode]="'section'"
+              (clickHandler)="registerPostalCode()"
+              [isLoading]="checkingPostalCode()"
+              [disabled]="checkingPostalCode()"
+            >
+              در سامانه ثبت کردم
+            </ngx-button>
+            <ngx-button
+              [classNames]="['text-onback-error']"
+              [size]="'tiny'"
+              [style]="'link'"
+              (clickHandler)="editPostalCode()"
+            >
+              ویرایش کد پستی
+            </ngx-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('PendingForPostalCodeVerification') {
+    <div class="w-100 mt-big">
+      <div class="w-100 d-flex radius-plus border-100 border-color-warning gap-low p-minus surface-warning-tint">
+        <ngx-icon
+          class="text-onback-warning"
+          name="info-circle"
+          type="bold"
+        />
+        <div class="flex-1 d-flex flex-wrap">
+          <p class="w-100 st-8 text-onback-high">در حال بررسی کد پستی...</p>
+          <p class="w-100 b-3 text-onback-medium flex mt-tiny">تا نهایی شدن استعلام کد پستی، سرمایه‌گذاری شما نهایی نخواهد شد.</p>
+        </div>
+      </div>
+    </div>
+  }
+}

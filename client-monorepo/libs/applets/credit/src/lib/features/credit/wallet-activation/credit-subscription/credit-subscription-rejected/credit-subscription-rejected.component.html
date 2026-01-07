@@ -1,0 +1,18 @@
+<app-credit-app-bar
+  (onBackButtonClick)="closeStep.emit()"
+  [backButton]="true"
+  title="بررسی اشتراک دیجی‌پی"
+></app-credit-app-bar>
+<div class="d-flex flex-column flex-grow">
+  <div class="flex-grow justify-content-center pb-plus">
+    <ngx-status-result
+      [description]="description"
+      [title]="title"
+      [type]="'Status'"
+      [iconState]="'error'"
+      [buttons]="buttons"
+      (clicked)="closeStep.emit()"
+    >
+    </ngx-status-result>
+  </div>
+</div>

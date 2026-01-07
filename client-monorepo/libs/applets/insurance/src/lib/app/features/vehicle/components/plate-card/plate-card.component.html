@@ -1,0 +1,42 @@
+<div class="plate-card-wrapper border-200 border-color-light d-flex flex-column align-items-center justify-content-center radius-minus">
+  <!-- Title Row -->
+  <div class="plate-card-title d-flex flex-row align-items-center justify-content-space-between">
+    <div class="text">
+      {{ plateInfo().title }}
+    </div>
+    @if (!simple()) {
+      <ins-icon
+              (click)="handleMoreIconClick($event)"
+              [name]="IconEnum.More"
+              [height]="24"
+              [width]="25">
+      </ins-icon>
+    }
+  </div>
+  <!-- End Title Row -->
+
+  <!-- Content -->
+  <div class="content w-100 d-flex flex-column align-items-center justify-content-center">
+    <!-- Plate -->
+    <ngx-plate
+      type="car"
+      [size]="'large'"
+      [plate]="plateInfo().plate"
+      [readonly]="true"
+      [scale]="0.9"
+    ></ngx-plate>
+    <!-- End Plate -->
+
+    <!-- National Code -->
+    <div class="national-code-wrapper w-100 d-flex align-items-center justify-content-space-between surface-back text-onback-medium">
+      <span class="title">
+        کدملی
+      </span>
+      <span class="value">
+        {{ plateInfo().nationalCode }}
+      </span>
+    </div>
+    <!-- End National Code -->
+  </div>
+  <!-- End Content -->
+</div>

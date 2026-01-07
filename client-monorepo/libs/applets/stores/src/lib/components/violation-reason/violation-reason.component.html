@@ -1,0 +1,96 @@
+<div class="reasons-wrapper d-flex flex-column gap-big px-plus h-100">
+  <!-- Summary -->
+  @if (summariesToShow().length) {
+    <div class="summary-box px-plus py-medium shade-99-color radius-medium">
+      @for (field of summariesToShow(); track field) {
+        <div class="d-flex align-items-center justify-content-space-between flex-basis-1 px-tiny">
+          @switch (field) {
+            @case (ViolationReasonSummaryFields.SHOP) {
+              <div [class]="summaryTitleClass">فروشگاه</div>
+              <div class="d-flex align-items-center justify-content-end gap-micro">
+                @if (reasonsSummary()?.storeImageId) {
+                  <ui-api-image
+                    [imageId]="reasonsSummary()!.storeImageId!"
+                    height="24px"
+                    width="24px"
+                  ></ui-api-image>
+                }
+                <div [class]="summaryValueClass">{{ reasonsSummary()?.store }}</div>
+              </div>
+            }
+            @case (ViolationReasonSummaryFields.REFER_METHOD) {
+              <div [class]="summaryTitleClass">نوع مراجعه</div>
+              <div [class]="summaryValueClass">{{ reasonsSummary()?.referrerMethodTitle }}</div>
+            }
+            @case (ViolationReasonSummaryFields.DATE) {
+              <div [class]="summaryTitleClass">تاریخ خرید</div>
+              <div [class]="summaryValueClass">{{ reasonsSummary()?.date | jalaliDate }}</div>
+            }
+            @case (ViolationReasonSummaryFields.PAYMENT_METHOD) {
+              <div [class]="summaryTitleClass">روش خرید</div>
+              <div [class]="summaryValueClass">{{ reasonsSummary()?.referrerMethodTitle }}</div>
+            }
+            @case (ViolationReasonSummaryFields.PRICE) {
+              <div [class]="summaryTitleClass">مبلغ خرید</div>
+              <div class="d-flex gap-tiny align-items-center justify-content-end">
+                <div [class]="summaryValueClass">{{ reasonsSummary()?.price | thousands }}</div>
+                <ngx-icon
+                  [name]="'rial'"
+                  [iconSize]="'20px'"
+                ></ngx-icon>
+              </div>
+            }
+          }
+        </div>
+        @if (!$last) {
+          <div class="my-pony px-tiny">
+            <ngx-divider></ngx-divider>
+          </div>
+        }
+      }
+    </div>
+  }
+  <!-- End Summary -->
+
+  <!-- Reasons -->
+  @if (reasonsToShow().length) {
+    <div class="reasons-list d-flex flex-column gap-medium pb-medium">
+      @for (reason of reasonsToShow(); track $index) {
+        <div class="d-flex flex-column justify-content-start gap-small">
+          <common-ui-components-title-summary
+            [title]="reason.title"
+            [rightIcon]="reason.icon ?? undefined"
+            [showButton]="false"
+          ></common-ui-components-title-summary>
+          <div class="d-flex reason-chips flex-wrap">
+            @for (chip of reason.items; track chip) {
+              <ngx-chip
+                [id]="String($index)"
+                [disableAnimations]="true"
+                [label]="chip.text"
+                [size]="'LARGE'"
+                (pressedChange)="handleChipClick($event, reason, chip)"
+                [disabled]="numberOfSelectedReasons() > 3 && !chip.clicked"
+              ></ngx-chip>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+  <!-- End Reasons -->
+
+  <!-- Submit -->
+  <div class="submit-btn p-plus surface-elevated">
+    <ngx-button
+      [fullWidth]="true"
+      [mode]="'form'"
+      [size]="'medium'"
+      [style]="'fill'"
+      [disabled]="!selectedReason()"
+      (clickHandler)="handleButtonClick()"
+      >{{ buttonText() }}
+    </ngx-button>
+  </div>
+  <!-- End Submit -->
+</div>

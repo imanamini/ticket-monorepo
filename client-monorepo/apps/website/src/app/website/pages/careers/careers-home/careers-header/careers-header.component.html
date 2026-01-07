@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="video-wrapper radius-big my-mega">
+    <div class="short-video-wrapper">
+      <video #videoPlayer
+             class="video-background"
+             muted
+             autoplay
+             loop
+             playsinline
+             preload="auto"
+             poster="/assets/images/careers/careers-video.mp4"
+             (loadedmetadata)="onLoadedMetadata(videoPlayer)">
+        >
+        <source src="{{heroSection()?.shortVideo?.url}}" type="video/mp4">
+      </video>
+      <div class="video-gradient-overlay"></div>
+    </div>
+    <div class="content d-flex flex-column justify-content-center align-items-center">
+      <h1 class="title mb-minus">{{ heroSection()?.title }}</h1>
+      <div class="subtitle st-6 mb-big text-oninvert-high">
+        {{ heroSection()?.subtitle }}
+      </div>
+      <div class="actions d-flex align-items-center gap-pony">
+        <ngx-button
+          (click)="openModal()"
+          [size]="!isMobileMode ? 'medium' : 'small'"
+          [style]="'tinted-on-elevated'"
+          [mode]="'section'"
+        >
+          تماشای ویدیو
+        </ngx-button>
+
+        @if (isModalOpen()) {
+          <div class="video-modal">
+            <div class="modal-content">
+              <button class="close-btn" (click)="closeModal()">✕</button>
+              <video
+                #fullscreenVideo
+                playsinline
+                webkit-playsinline
+                preload="auto"
+                class="fullscreen-video"
+                controls
+                (webkitendfullscreen)="closeModal()"
+                (ended)="closeModal()"
+                (loadedmetadata)="onLoadedMetadata(fullscreenVideo)">
+                <source [src]="heroSection()?.longVideo?.url" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        }
+
+        <a href="{{heroSection()?.link}}" target="_blank">
+          <ngx-button
+            [size]="!isMobileMode ? 'medium' : 'small'"
+            [style]="'fill'"
+            [mode]="'section'"
+            [brandButton]="true"
+            [leftIcon]="{ name: 'arrow-2-left', type: 'linear' }"
+          >
+            موقعیت‌های شغلی
+          </ngx-button>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

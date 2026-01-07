@@ -1,0 +1,55 @@
+@import "@digipay/base-style/styleguide";
+
+
+.bottom-navigation {
+  box-shadow: 0 6px 20px 2px #dfe1e580,0 -2px 20px 2px #f2f3f666;
+  width: 100%;
+
+  a {
+    position: relative;
+  }
+  .discount {
+    border-radius: 50%;
+    border: 1px solid #FFF;
+    width: 15px;
+    height: 14px;
+    position: absolute;
+    z-index: 1;
+    left: 5px;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .item {
+    height: 50px;
+    width: 50px;
+  }
+
+  .active {
+    position: relative;
+
+    .title-bottom-navigation {
+      color: map-get($text-colors, 'onback-brand');
+    }
+
+    .logo-bottom-navigation {
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent;
+      background: #1159FC;
+    }
+
+  }
+
+  .active:before {
+    content: '';
+    width: 8px;
+    height: 2px;
+    border-radius: 100px;
+    background: #1159FC;
+    position: absolute;
+    top: 0;
+    right: 41%;
+  }
+}

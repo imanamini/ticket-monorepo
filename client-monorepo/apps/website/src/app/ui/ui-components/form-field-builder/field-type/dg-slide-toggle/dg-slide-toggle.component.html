@@ -1,0 +1,28 @@
+<div
+  [formGroup]="form"
+  class="dg-slide-toggle-wrapper"
+>
+  <div>
+    {{ label }}
+  </div>
+  <label>
+    <input
+      [formControlName]="formControlName"
+      class="dg-slide-toggle-checkbox"
+      type="checkbox"
+    />
+    <div class="dg-slide-toggle"></div>
+  </label>
+</div>
+<div
+  *ngIf="!(form.touched && form.invalid && errorMessage) && hint"
+  class="dg-hint-message"
+>
+  {{ hint }}
+</div>
+<div
+  *ngIf="form.touched && form.invalid && errorMessage"
+  class="dg-error-message"
+>
+  {{ errorMessage }}
+</div>

@@ -1,0 +1,63 @@
+@import '../../../../style/globals';
+
+.method-container {
+  display: flex;
+  direction: rtl;
+  align-items: center;
+  border: 1px solid $swatch_steel_200;
+  border-radius: 16px;
+  padding: 16px;
+  cursor: pointer;
+  justify-content: space-between;
+  background-color: #fff;
+
+  &.selected {
+    border: 1px solid $swatch_blue_500;
+  }
+
+  .right-part {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $swatch_steel_100;
+    border-radius: 8px;
+    margin-left: 12px;
+  }
+
+  .radio {
+    width: 24px;
+    height: 24px;
+    background: url('../checked-blank.svg') no-repeat 0 0/100%;
+
+    &.selected {
+      background: url('../checked-filled.svg') no-repeat 0 0/100%;
+    }
+  }
+
+  .description {
+    width: 70%;
+    margin-left: 12px;
+    line-height: 20px;
+
+    .title {
+      color: $swatch_steel_900;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .detail {
+      color: $swatch_steel_500;
+      font-size: 11px;
+      font-weight: 250;
+    }
+  }
+}

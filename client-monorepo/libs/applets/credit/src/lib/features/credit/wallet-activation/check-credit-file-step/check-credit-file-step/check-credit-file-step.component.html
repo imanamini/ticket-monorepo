@@ -1,0 +1,46 @@
+@if (!gettingStatus()) {
+  @if (status() !== statusEnum.IN_PROGRESS) {
+    <app-credit-app-bar
+      (onBackButtonClick)="closeStep()"
+      [backButton]="true"
+      title="بررسی پرونده اعتباری"
+    ></app-credit-app-bar>
+  }
+  @switch (status()) {
+    @case (statusEnum.IN_PROGRESS) {
+      <app-check-credit-file-in-progress
+        (finishCountDown)="reloadStatus()"
+        class="d-flex flex-column flex-grow"
+      ></app-check-credit-file-in-progress>
+    }
+    @case (statusEnum.WAITING) {
+      <app-check-credit-file-no-service
+        (reloadStatus)="reloadStatus()"
+        (back)="closeStep()"
+        class="d-flex flex-column flex-grow"
+      ></app-check-credit-file-no-service>
+    }
+    @case (statusEnum.REJECTED) {
+      <app-check-credit-file-rejected
+        (close)="closeStep()"
+        [creditFileResult]="creditFileResult()!"
+        [message]="message()!"
+        class="d-flex flex-column flex-grow"
+      ></app-check-credit-file-rejected>
+    }
+    @case (statusEnum.FAILED) {
+      <app-check-credit-file-failed
+        (reloadStatus)="reloadStatus(true)"
+        [creditCheckFileDetails]="creditFileFailedResult()!"
+        class="d-flex flex-column flex-grow"
+      ></app-check-credit-file-failed>
+    }
+    @case (statusEnum.SUCCEED) {
+      <app-check-credit-file-success
+        (nextStep)="nextStep()"
+        class="d-flex flex-column flex-grow"
+      ></app-check-credit-file-success>
+    }
+  }
+}
+<credit-page-loading [active]="gettingStatus()!"></credit-page-loading>

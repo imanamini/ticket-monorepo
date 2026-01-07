@@ -1,0 +1,120 @@
+<div class="d-flex flex-column surface-elevated h-100">
+  <ngx-app-bar
+    class="w-100"
+    [title]="''"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="flex-1 w-100 d-flex flex-column px-plus pb-plus align-items-start">
+    <div class="w-100 d-flex flex-wrap p-plus detail-container radius-medium">
+      <div class="w-100 d-flex align-items-center gap-small mb-medium">
+        <ngx-icon
+          [name]="'bag-of-wealth'"
+          [type]="'bold'"
+          [iconSize]="'28px'"
+        />
+
+        <p class="st-8 text-onback-high">{{ pageTitle() }}</p>
+      </div>
+
+      @for (data of bnplMetadata(); track $index; let last = $last) {
+        <div class="w-100 d-flex flex-wrap">
+          <div class="w-100 d-flex align-items-center justify-content-space-between">
+            <span class="c-3 text-onback-low"> {{ data?.title }} </span>
+            <span
+              class="c-1 text-onback-medium"
+              [ngClass]="{ strike: data.isCommerssion && !state().hasCommission }"
+            >
+              {{ data.type === 'amount' ? (data?.value || 0 | thousands) : data.value }}
+              @if (data.type === 'amount') {
+                <span class="is-currency">ریال</span>
+              }
+            </span>
+          </div>
+          @if (data.subTitle) {
+            <p class="c-3 text-onback-low">{{ data.subTitle }}</p>
+          }
+        </div>
+        @if (!last) {
+          <ngx-divider
+            class="my-pony"
+            [color]="BorderColorsEnum.Air"
+            orientation="horizontal"
+          ></ngx-divider>
+        }
+      }
+    </div>
+    @if (state().minAmountInformationMessage) {
+      <div class="w-100 px-plus mt-minus">
+        <ngx-alert
+          [color]="'yellow'"
+          [text]="state().minAmountInformationMessage"
+          [hasCloseIcon]="false"
+        />
+      </div>
+    }
+    @if (state().maxAmountInformationMessage) {
+      <div class="w-100 px-plus mt-minus">
+        <ngx-alert
+          [color]="'yellow'"
+          [text]="state().maxAmountInformationMessage"
+          [hasCloseIcon]="false"
+        />
+      </div>
+    }
+    @if (state().walletName === 'WALLET_MIX') {
+      <div class="w-100 px-plus mt-minus">
+        <ngx-alert
+          [color]="'yellow'"
+          text="هنگام دریافت اعتبار ترکیبی، ابتدا موجودی طرح درآمد ثابت مسدود و در صورت کافی نبودن موجودی آن، از طرح طلا برای تکمیل مسدود سازی استفاده می‌شود."
+          [hasCloseIcon]="false"
+        />
+      </div>
+    }
+
+    <div class="w-100 d-flex flex-wrap mt-big">
+      <div class="w-100 px-plus">
+        <ngx-callout
+          class="w-100"
+          [title]="'نکات مهم'"
+          [mode]="'multiple'"
+          [messages]="[
+            'موجودی شما متناسب با اعتبار درخواستی مسدود خواهد شد.',
+            'در صورت داشتن اقساط پرداخت نشده، درخواست اعتبار شما رد خواهد شد.',
+            'به موجودی مسدود شده نیز سود تعلق می‌گیرد.',
+          ]"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="w-100 px-plus d-flex flex-column gap-small surface-elevated py-medium sticky-action-group">
+    <div class="w-100 d-flex flex-column">
+      <span class="bt-2 text-onback-high"> مبلغ پرداختی </span>
+      <span class="t-7 text-onback-medium is-currency"> {{ state()?.rechargeAmount | thousands }} ریال </span>
+    </div>
+
+    @if (state().walletName !== 'WALLET_FX') {
+      <wealth-applet-gold-price-notifire class="w-100 d-flex my-small" />
+    }
+
+    <ngx-button
+      [fullWidth]="true"
+      buttonId="CONFIRM_AND_CASH_OUT"
+      [style]="'fill'"
+      size="large"
+      [brandButton]="state().rechargeAmount > 0"
+      (clickHandler)="continue()"
+      [disabled]="btnLoading()"
+      [isLoading]="btnLoading()"
+    >
+      {{ state().rechargeAmount > 0 ? 'تایید و پرداخت' : 'تایید' }}
+    </ngx-button>
+  </div>
+</div>

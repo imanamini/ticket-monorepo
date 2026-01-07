@@ -1,0 +1,11 @@
+<div class="sort-bottom-sheet">
+  <div class="header">مرتب سازی بر اساس</div>
+  <div class="sort-methods">
+    @if (radioItems().length > 0) {
+      <ins-radio-button [(value)]="selectedValue"
+                        [items]="radioItems()"
+                        (click)="sortItemSelected()"
+                        [type]="InsRadioButtonType.Sticked"></ins-radio-button>
+    }
+  </div>
+</div>

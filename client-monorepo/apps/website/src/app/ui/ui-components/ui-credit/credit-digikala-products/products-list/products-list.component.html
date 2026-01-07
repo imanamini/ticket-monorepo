@@ -1,0 +1,85 @@
+<div class="product-lists__contain">
+  @if (digikalaProducts()) {
+    <div
+      class="prev-slides"
+      (click)="swiper.slidePrev()"
+    >
+      <span
+        icon="icon-charon-right"
+        size="24"
+        appUiIcon
+      ></span>
+    </div>
+    <div
+      class="next-slides"
+      (click)="swiper.slideNext()"
+    >
+      <ngx-icon
+        [iconSize]="'24'"
+        [name]="'arrow-2-left'"
+        class="text-onback-brand"
+      ></ngx-icon>
+    </div>
+
+    <swiper-container
+      appSwiper
+      #swiper="appSwiper"
+      [config]="config"
+      class="swiper"
+    >
+      @for (item of digikalaProducts()[selectedTab()].data.products; track item) {
+        <swiper-slide class="swiper-slide">
+          <div class="merchant-card-wrapper">
+            <div class="item">
+              <div class="image">
+                <img
+                  [src]="item?.images?.main?.url[0]"
+                  alt=""
+                />
+              </div>
+              <div class="product-data">
+                <div class="product-installments d-flex flex-row flex-center-between">
+                  @if (item.title_fa) {
+                    <div class="product-name b-2">
+                      {{ item.title_fa }}
+                    </div>
+                  }
+                </div>
+                <div class="product-price d-flex">
+                  <div class="price-title">
+                    <span>قیمت کالا</span>
+                  </div>
+                  @if (item?.default_variant?.price?.selling_price) {
+                    <div class="price-data">
+                      <span>{{ rialToToman(item.default_variant.price.selling_price) | thousands }}</span>
+                      <span>  تومان</span>
+                    </div>
+                  } @else {
+                    <div>
+                      <span>ناموجود</span>
+                    </div>
+                  }
+                </div>
+              </div>
+              <div class="cta">
+                <app-ui-button
+                  (click)="openProduct(item, digikalaProducts())"
+                  appearance="BLUE-TEXT"
+                  class="button"
+                >
+                  محاسبه ی اقساط
+                  <ngx-icon
+                    [name]="'arrow-left'"
+                    class="text-onback-brand"
+                  ></ngx-icon>
+                </app-ui-button>
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
+      }
+    </swiper-container>
+  } @else {
+    <app-products-list-skeleton [productSkeletonCount]="6"></app-products-list-skeleton>
+  }
+</div>

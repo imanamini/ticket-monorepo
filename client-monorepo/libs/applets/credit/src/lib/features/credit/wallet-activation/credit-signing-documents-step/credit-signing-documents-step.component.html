@@ -1,0 +1,70 @@
+@if (!showLoading() && !isExpired()) {
+  @switch (state()) {
+    @case ('ON_BOARDING') {
+      @defer {
+        <app-credit-signing-documents-on-boarding
+          (close)="closeStep()"
+          (finish)="getData()"
+          (setCountDown)="inProgressCountDown.set($event)"
+          [creditId]="creditId()!"
+          class="d-flex flex-column flex-grow"
+        ></app-credit-signing-documents-on-boarding>
+      }
+    }
+    @case ('IN_PROGRESS') {
+      <app-credit-signing-documents-in-progress
+        (finish)="getData()"
+        [time]="{
+          timeInSeconds: inProgressCountDown(),
+          timerType: 'with-badge',
+        }"
+        class="d-flex flex-column flex-grow justify-content-center"
+        (close)="closeStep()"
+      ></app-credit-signing-documents-in-progress>
+    }
+    @case ('SIGNING') {
+      <app-credit-signing-documents-ready-to-sign
+        (close)="closeStep()"
+        (signedDocument)="onSignedDocument()"
+        [continueSigning]="continueSigning()!"
+        [creditId]="creditId()!"
+        [needPassword]="needPassword()"
+        class="d-flex flex-column flex-grow"
+      ></app-credit-signing-documents-ready-to-sign>
+    }
+    @case ('PASSWORD_REVOKED') {
+      <app-credit-signing-documents-digital-signature-revoked
+        (close)="goNextStep()"
+        class="d-flex flex-column flex-grow"
+      ></app-credit-signing-documents-digital-signature-revoked>
+    }
+    @case ('NO_SERVICE') {
+      <app-credit-signing-documents-error
+        (close)="closeStep()"
+        [type]="'NO_SERVICE'"
+        class="d-flex flex-column flex-grow"
+      ></app-credit-signing-documents-error>
+    }
+    @case ('EXPIRED') {
+      <app-credit-signing-documents-error
+        (close)="closeStep()"
+        [type]="'EXPIRED'"
+        class="d-flex flex-column flex-grow"
+      ></app-credit-signing-documents-error>
+    }
+    @case ('DIGITAL_SIGNATURE_EXPIRED') {
+      <app-credit-signing-documents-error
+        (close)="closeStep()"
+        [type]="'DIGITAL_SIGNATURE_EXPIRED'"
+        class="d-flex flex-column flex-grow"
+      ></app-credit-signing-documents-error>
+    }
+  }
+}
+@if (!showLoading() && isExpired()) {
+  <app-credit-enote-step-error
+    (submitted)="rollbackAndRedirect()"
+    [state]="'EXPIRED'"
+  ></app-credit-enote-step-error>
+}
+<credit-page-loading [active]="showLoading()!"></credit-page-loading>

@@ -1,0 +1,7 @@
+<div class="motor-endorsements-bottom-sheet p-medium st-8 d-flex flex-column gap-pony">
+  @for (endorsement of endorsements(); track $index) {
+    <div class="endorsement-item cursor-pointer" (click)="downloadEndorsement(endorsement.id)">
+      <div>{{ endorsement.title }}</div>
+    </div>
+  }
+</div>

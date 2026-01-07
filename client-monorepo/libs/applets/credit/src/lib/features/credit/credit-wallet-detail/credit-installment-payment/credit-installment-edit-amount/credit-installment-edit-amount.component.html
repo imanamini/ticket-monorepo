@@ -1,0 +1,27 @@
+<app-credit-app-bar
+  (onBackButtonClick)="goBack()"
+  [backButton]="true"
+  title="مبلغ قسط"
+></app-credit-app-bar>
+<div class="full-height amount-main-content">
+  <div class="top-section">
+    <credit-ui-amount-x-large
+      (focusStateChanged)="amountFocused.set($event)"
+      (valueChanged)="setAmount($event)"
+      [autoSelect]="true"
+      [maxAmount]="installmentPayConfig().maxAmount"
+      [minAmount]="installmentPayConfig().minAmount"
+      [value]="amount()"
+      class="amount-input"
+    ></credit-ui-amount-x-large>
+  </div>
+  <div class="call-to-action-section">
+    <ngx-button
+      (clickHandler)="goForward()"
+      [disabled]="!validAmount()"
+      [fullWidth]="true"
+    >
+      ادامه
+    </ngx-button>
+  </div>
+</div>

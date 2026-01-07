@@ -1,0 +1,22 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.info-chips {
+  padding: 6px 12px;
+  border-radius: 36px;
+  border: 1px solid #dee3e7;
+  background-color: #f2f5f8;
+  cursor: pointer;
+
+  &.active {
+    background-color: #f0f5ff;
+    border: 2px solid #0040ff;
+  }
+
+  span {
+    color: #6e798d;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+  }
+}

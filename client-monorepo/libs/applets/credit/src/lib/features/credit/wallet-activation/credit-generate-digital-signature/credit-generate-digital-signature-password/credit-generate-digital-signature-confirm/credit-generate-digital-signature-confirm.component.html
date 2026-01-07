@@ -1,0 +1,86 @@
+<app-credit-app-bar
+  (onBackButtonClick)="backToStepper()"
+  [backButton]="true"
+  [title]="'امضای دیجیتال'"
+></app-credit-app-bar>
+<div class="d-flex flex-column flex-grow">
+  <app-credit-scrollable-view
+    [fullHeightContent]="true"
+    class="d-flex flex-column flex-grow"
+  >
+    <div class="d-flex flex-column flex-grow px-plus rtl">
+      <div class="pt-medium px-tiny d-flex w-100 flex-column gap-pony mb-medium">
+        <div class="w-100 d-flex flex-row justify-content-space-between b-2">
+          <span class="text-onback-low">نام و نام خانوادگی</span>
+          <span class="text-onback-high">{{ fullName() }}</span>
+        </div>
+        <ngx-divider
+          [color]="BorderColorsEnum.Air"
+          orientation="horizontal"
+        ></ngx-divider>
+        <div class="w-100 d-flex flex-row justify-content-space-between b-2">
+          <span class="text-onback-low">کد ملی</span>
+          <span class="text-onback-high">{{ signatureDetails()?.nationalCode }}</span>
+        </div>
+        <ngx-divider
+          [color]="BorderColorsEnum.Air"
+          orientation="horizontal"
+        ></ngx-divider>
+        <div class="w-100 d-flex flex-row justify-content-space-between b-2">
+          <span class="text-onback-low">شماره شناسنامه</span>
+          <span class="text-onback-high">{{ signatureDetails()?.birthCertificate }}</span>
+        </div>
+        <ngx-divider
+          [color]="BorderColorsEnum.Air"
+          orientation="horizontal"
+        ></ngx-divider>
+        <div class="w-100 d-flex flex-row justify-content-space-between b-2">
+          <span class="text-onback-low">کد پستی محل سکونت</span>
+          <span class="text-onback-high">{{ signatureDetails()?.postalCode }}</span>
+        </div>
+      </div>
+      <div
+        [class]="{ open: accordionOpened() }"
+        class="signature-validation w-100 p-big radius-plus border-300 border-color-light d-flex flex-column align-items-center justify-content-flex-start"
+      >
+        <div
+          [class.mb-medium]="!accordionOpened()"
+          class="header w-100 d-flex flex-row justify-content-space-between align-items-center pb-medium"
+        >
+          <h3 class="text-onback-high st-6">اعتبار امضای دیجیتال</h3>
+          <ngx-badge
+            class="mr-auto"
+            mode="fill"
+            size="md"
+            type="text"
+          >
+            {{ remainingDays() }} روز مانده
+          </ngx-badge>
+          <div
+            (click)="changeAccordionState()"
+            class="chevron mr-tiny"
+          ></div>
+        </div>
+        <ul class="c-3 text-onback-medium m-atom">
+          <li class="mb-medium">با امضای دیجیتال هویت شما در قراردادهای دیجیتال قابل شناسایی و تایید است.</li>
+          <li class="mb-medium">این امضا به مدت یک سال از زمان ساخت آن اعتبار دارد.</li>
+          <li class="mb-medium">
+            بعد از امضای اسناد، شما می‌توانید تصمیم بگیرید که امضا را حذف کنید یا اجازه دهید با حفظ محرمانگی نزد ما باقی بماند.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </app-credit-scrollable-view>
+</div>
+<div class="d-flex w-100 px-plus pt-huge pb-mega">
+  <ngx-button
+    (click)="submit()"
+    [disabled]="loading()"
+    [fullWidth]="true"
+    [isLoading]="loading()"
+    [style]="'fill'"
+    ngxTrackableId
+    trackerId="digitalSignaturePasswordCopyButton"
+    >تایید و ادامه
+  </ngx-button>
+</div>

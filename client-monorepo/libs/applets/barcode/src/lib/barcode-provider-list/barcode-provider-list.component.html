@@ -1,0 +1,82 @@
+<div class="d-flex flex-column h-100 justify-content-space-between py-small">
+  <div class="content-container">
+    <div class="d-flex flex-column gap-medium">
+      <span class="d-flex fw-bold fs-16 gap-small align-items-center ">
+        <common-icon-dp-icon
+          [icon]="'credit'"
+          iconType="bold"
+        ></common-icon-dp-icon>
+        <b>روش پرداخت خود را انتخاب کنید</b>
+      </span>
+      
+      @if (loading()) {
+        <div class="d-flex flex-column gap-small">
+          @for (_ of skeletonArr; track $index) {
+            <div class="border-300 radius-medium border-color-light py-medium px-plus">
+              <div class="d-flex mb-big justify-content-space-between">
+                <lib-ngx-skeleton-loading
+                  [height]="'14px'"
+                  [width]="'100px'"
+                ></lib-ngx-skeleton-loading>
+                <lib-ngx-skeleton-loading
+                  [classes]="'skeleton-dot'"
+                  [borderRadius]="'100%'"
+                  [height]="'20px'"
+                  [width]="'20px'"
+                >
+                </lib-ngx-skeleton-loading>
+              </div>
+
+              <div class="d-flex justify-content-space-between">
+                <lib-ngx-skeleton-loading
+                  [height]="'14px'"
+                  [width]="'50px'"
+                ></lib-ngx-skeleton-loading>
+                <lib-ngx-skeleton-loading
+                  [height]="'14px'"
+                  [width]="'100px'"
+                ></lib-ngx-skeleton-loading>
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="d-flex flex-column gap-small">
+          @for (item of data(); track item.creditId) {
+            <div
+              [class.border-color-brand]="item.isChecked"
+              class="border-300 radius-medium border-color-light py-medium px-plus"
+              (click)="onSelectCreditType(item)"
+            >
+              <div class="d-flex mb-small justify-content-space-between">
+                <span class="fs-16 fw-bold">{{ item.title || ' - ' }}</span>
+                <ngx-radio-button [checked]="item.isChecked"></ngx-radio-button>
+              </div>
+
+              <div class="d-flex justify-content-space-between">
+                <span class="fs-14 fw-normal text-onback-low">موجودی</span>
+                <span class="fs-16 fw-bold d-flex gap-small align-items-center"
+                  >{{ item.balance | number }}
+                  ريال
+                </span>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="mt-small actions-container">
+    <ngx-button
+      [mode]="'form'"
+      [size]="'large'"
+      [style]="'fill'"
+      [fullWidth]="true"
+      [disabled]="!loading() && disableCloseButton()"
+      (clickHandler)="getBarcode()"
+    >
+      دریافت بارکد پرداخت
+    </ngx-button>
+  </div>
+</div>

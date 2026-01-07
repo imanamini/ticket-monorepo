@@ -1,0 +1,32 @@
+<div class="w-100 mt-huge d-flex flex-wrap justify-content-center">
+  <img
+    [src]="headerImage()"
+    [alt]="headerAlt()"
+  />
+</div>
+
+<div class="w-100">
+  <div class="d-flex flex-wrap w-100 stepper">
+    @for (item of steps(); track $index) {
+      <div class="step">
+        <div class="circle"></div>
+        <div class="c-2 text-onback-medium d-flex flex-wrap justify-content-center">
+          <p class="w-100 st-8 text-onback-high">{{ item.title }}</p>
+          <p class="w-100 c-3 text-onback-medium mt-minus">{{ item.descriptions }}</p>
+          <div
+            class="w-100 d-flex justify-content-center"
+            [ngClass]="{ 'mt-giant': item.secoundImage }"
+          >
+            @if (item.image) {
+              <img
+                class="mt-giant"
+                [src]="item.image"
+                [alt]="item.title"
+              />
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,121 @@
+@import "globals";
+
+::ng-deep {
+  .mat-mdc-dialog-container {
+    padding: 16px 16px 24px 16px;
+    border-radius: 24px;
+  }
+
+  .mat-bottom-sheet-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .modal {
+    direction: rtl;
+
+    .close {
+      cursor: pointer;
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      background: $swatch_steel_100;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      margin-right: auto;
+      margin-bottom: 12px;
+
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .title {
+      font-weight: 900;
+      font-size: 20px;
+      color: #424c5c;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .description {
+      background: $swatch_steel_100;
+      border: 1px solid $swatch_steel_200;
+      border-radius: 24px;
+      padding: 16px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 2;
+      margin-bottom: 24px;
+
+      .hints-title {
+        color: $swatch_steel_900;
+        font-size: 14px;
+        font-weight: 700;
+
+        span {
+          margin-left: 6px;
+        }
+      }
+
+      .hints-items {
+        position: relative;
+
+        .dotted-line {
+          position: absolute;
+          height: calc(100% - 24px);
+          border-right: 2px dotted $swatch_blue_400;
+          right: 10px;
+          top: 12px;
+        }
+
+        li {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-start;
+          color: $swatch_steel_700;
+          font-size: 16px;
+          font-weight: 500;
+
+          .dot {
+            width: 8px;
+            height: 8px;
+            background-color: $swatch_blue_400;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 6px;
+          }
+
+          .dot-wrapper {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 2px;
+          }
+        }
+      }
+    }
+
+    .ctas {
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 744px) {
+    .modal .title {
+      font-size: 18px;
+    }
+    .modal .description .hints-items {
+      li {
+        font-size: 14px;
+      }
+    }
+  }
+}

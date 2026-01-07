@@ -1,0 +1,57 @@
+<div class="ui-merchants-filter-dialog">
+  <div class="top-part">
+    <div></div>
+  </div>
+  <div class="filters">
+    <div
+      *ngIf="selectedFilters && Object.keys(selectedFilters).length > 0"
+      class="filter-box"
+    >
+      <app-filter-chips-box
+        (deleteAll)="deleteAllFilters()"
+        (filtersChange)="filterChanged($event)"
+        [brandTitleMap]="data.brandTitleMap"
+        [selectedFilters]="selectedFilters"
+      ></app-filter-chips-box>
+    </div>
+    <div class="filter-box">
+      <app-multiple-checkbox-filters
+        (changeFilterEmitter)="filterChanged($event)"
+        [filters]="data.providerFilter"
+        [selectedFilters]="selectedFilters"
+        title="providers"
+      ></app-multiple-checkbox-filters>
+    </div>
+    <div class="filter-box">
+      <app-multiple-checkbox-filters
+        (changeFilterEmitter)="filterChanged($event)"
+        [filters]="data.typeFilter"
+        [selectedFilters]="selectedFilters"
+        title="type"
+      ></app-multiple-checkbox-filters>
+    </div>
+    <div class="filter-box">
+      <app-multiple-checkbox-filters
+        (changeFilterEmitter)="filterChanged($event)"
+        [filters]="data.categoryFilter"
+        [selectedFilters]="selectedFilters"
+        title="category"
+      ></app-multiple-checkbox-filters>
+    </div>
+    <div class="filter-box">
+      <app-searchable-checkbox-filter
+        (changeFilterEmitter)="filterChanged($event)"
+        [filterOptions]="data.brandFilter.filterOptions"
+        [selectedFilters]="selectedFilters"
+        title="brand"
+      ></app-searchable-checkbox-filter>
+    </div>
+  </div>
+  <div class="submit">
+    <app-ui-button
+      (clicked)="submitFilters()"
+      class="cta"
+      >اعمال</app-ui-button
+    >
+  </div>
+</div>

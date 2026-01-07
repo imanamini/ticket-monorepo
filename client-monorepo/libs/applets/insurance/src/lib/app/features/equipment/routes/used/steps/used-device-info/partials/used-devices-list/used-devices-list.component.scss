@@ -1,0 +1,30 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.devices-list {
+  @include flex-column;
+  gap: 16px;
+  padding-bottom: 120px;
+
+  .other-device {
+    position: fixed;
+    background-color: #f2f5f8;
+    bottom: 84px;
+    font-size: 14px;
+    font-weight: 700;
+    width: 100%;
+    color: #0040ff;
+    line-height: 24px;
+    padding: 8px 0;
+  }
+
+  .hint {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+    color: #2c3544;
+  }
+
+  .list-title {
+    padding: 0 0 8px 0;
+  }
+}

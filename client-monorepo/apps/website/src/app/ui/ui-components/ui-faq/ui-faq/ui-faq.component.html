@@ -1,0 +1,43 @@
+<section
+  id="faq"
+  class="faq"
+>
+  <div id="overlay"></div>
+  <div class="container" [ngClass]="{'blackFriday':blackFridayMode()}">
+    <h2
+      *ngIf="title"
+      class="text-align-center"
+    >
+      {{ title }}
+    </h2>
+    <div
+      *ngIf="subtitle"
+      class="subtitle text-align-center"
+    >
+      {{ subtitle }}
+    </div>
+    <ul class="faq_items d-flex flex-column">
+      <li
+        *ngFor="let item of faqs; let itemIndex = index"
+        [id]="item.itemId || 'target' + (itemIndex + 1)"
+        class="faq_item collapsible" [ngClass]="{'blackFriday':blackFridayMode()}"
+      >
+        <div
+          (click)="openItemFaq(itemIndex)"
+          class="faq_question"
+        >
+          <span>{{ item.question }}</span>
+          <div
+            [ngClass]="openItemIndex === itemIndex ? 'open' : 'plus-close'"
+            class="collapsible-sign collapsible-selector"
+          ></div>
+        </div>
+        <div
+          *ngIf="openItemIndex === itemIndex"
+          [innerHTML]="item.answer"
+          class="faq_answer"
+        ></div>
+      </li>
+    </ul>
+  </div>
+</section>

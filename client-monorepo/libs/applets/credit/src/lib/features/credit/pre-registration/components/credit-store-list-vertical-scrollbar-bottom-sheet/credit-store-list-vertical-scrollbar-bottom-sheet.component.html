@@ -1,0 +1,27 @@
+<div class="bottom-sheet-container">
+  <ngx-bottom-sheet-header
+    [showResizable]="false"
+    [title]="'از چه فروشگاه‌هایی خرید‌کنم؟'"
+  ></ngx-bottom-sheet-header>
+  <div
+    (scroll)="onScroll($event)"
+    class="store-container px-small pt-plus pb-mega d-flex align-items-center w-100"
+  >
+    <div class="d-grid py-small px-medium gap-medium grid-container">
+      @for (store of storesList(); track store.id || $index) {
+        <app-credit-store-card [storeInfo]="store"></app-credit-store-card>
+      }
+    </div>
+  </div>
+  <div class="button-section px-plus pt-big pb-plus d-flex flex-row justify-content-center align-content-center">
+    <ngx-button
+      ngxTrackableId
+      trackerId="storeListBottomSheetConfirmButtonClick"
+      (clickHandler)="onClose()"
+      [fullWidth]="true"
+      [style]="'fill'"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

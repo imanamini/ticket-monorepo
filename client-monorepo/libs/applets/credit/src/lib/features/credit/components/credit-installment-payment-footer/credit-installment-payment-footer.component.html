@@ -1,0 +1,64 @@
+<div class="p-plus surface-glass-high-contrast border-t-300 border-color-air">
+  @if (rows().length > 0) {
+    <div
+      class="detail"
+      [class.isOpen]="detailIsOpen()"
+    >
+      <div>
+        @for (row of rows(); track row.title; let last = $last) {
+          <div
+            class="d-flex align-items-center justify-content-space-between"
+            [class.mb-low]="!last"
+          >
+            <div class="b-3 text-onback-medium">{{ row.title }}</div>
+            <div
+              class="b-1 text-onback-medium"
+              [class.text-onback-error]="row.status === 'error'"
+              [class.text-onback-success]="row.status === 'success'"
+            >
+              <span>{{ row.value | thousands }}</span>
+              <span
+                class="is-currency mr-tiny"
+                [class.ml-pony]="row.type === 'default'"
+              >
+                ریال
+              </span>
+              @if (row.type === 'increase') {
+                <span>+</span>
+              }
+              @if (row.type === 'decrease') {
+                <span>-</span>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+  <div class="d-flex align-items-center justify-content-space-between mb-low gap-tiny">
+    <div class="bt-2">مبلغ پرداختی</div>
+    @if (rows().length > 0) {
+      <ngx-button
+        [size]="'small'"
+        [style]="'link'"
+        (clickHandler)="detailClickHandler()"
+      >
+        {{ detailIsOpen() ? 'بستن جزییات' : 'جزییات' }}
+      </ngx-button>
+    }
+  </div>
+  <div class="t-7 mb-minus text-onback-medium">
+    <span>{{ finalAmount() | thousands }}</span>
+    <span class="is-currency mr-tiny">ریال</span>
+  </div>
+  <ngx-button
+    [disabled]="!finalAmount() || ctaLoading()"
+    [size]="'large'"
+    [brandButton]="ctaIsBrand()"
+    [fullWidth]="true"
+    (clickHandler)="onCta()"
+    [isLoading]="ctaLoading()"
+  >
+    {{ ctaLabel() }}
+  </ngx-button>
+</div>

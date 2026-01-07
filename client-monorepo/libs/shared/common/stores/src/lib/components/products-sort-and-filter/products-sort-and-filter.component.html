@@ -1,0 +1,26 @@
+<common-ui-components-horizontal-scroll>
+  @if (sort()) {
+    <ngx-chip
+      [id]="'products-sort'"
+      [trailingIcon]="'arrow-2-down'"
+      [disableAnimations]="true"
+      [size]="'MEDIUM'"
+      [label]="sort()?.title ?? ''"
+      [pressed]="true"
+      [disableClick]="true"
+      (click)="handleClickOnSort()"
+    ></ngx-chip>
+  }
+  @if (priceFilter()) {
+    <ngx-chip
+      [id]="'products-price-filter'"
+      [trailingIcon]="'arrow-2-down'"
+      [disableAnimations]="true"
+      [size]="'MEDIUM'"
+      [label]="priceFilter()?.title || ''"
+      [pressed]="isPriceFilterModified()"
+      [disableClick]="true"
+      (click)="handleClickOnPriceRange()"
+    ></ngx-chip>
+  }
+</common-ui-components-horizontal-scroll>

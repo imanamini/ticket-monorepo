@@ -1,0 +1,105 @@
+<div class="w-100 d-flex flex-wrap">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'پروفایل مدیریت ثروت'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  @if (isLoading()) {
+    <app-spinner />
+  } @else {
+    <div class="w-100 d-flex flex-column px-plus align-items-center">
+      <!-- ? user info -->
+      @if (user().nationalId) {
+        <div class="w-100 d-flex flex-wrap mt-medium">
+          <app-user-info-card
+            class="w-100"
+            [user]="user()"
+          />
+        </div>
+      }
+
+      <!-- ? Bank account info -->
+      @if (user().bankAccounts?.length > 0) {
+        <div class="w-100 d-flex flex-wrap mt-medium">
+          <h2 class="st-8 text-onback-medium mb-small">اطلاعات حساب بانکی</h2>
+          @for (account of user().bankAccounts; track $index) {
+            @if (account.isDefault) {
+              <app-user-bank-card
+                class="w-100"
+                [bankAccountData]="account"
+              />
+            }
+          }
+        </div>
+      }
+
+      <!-- ? User Access -->
+      <div class="w-100 d-flex flex-wrap mt-medium">
+        <div class="w-100 px-small">
+          <h2 class="st-8 text-onback-medium mb-small">مدیریت حساب سرمایه‌گذاری</h2>
+        </div>
+
+        <div class="w-100 d-flex flex-wrap py-minus px-plus surface-elevated radius-medium">
+          @for (manage of manageItems(); track manage; let last = $last) {
+            @if (manage.active) {
+              <div
+                class="w-100 d-flex flex-wrap align-items-center justify-content-space-between cursor-pointer border-color-light item"
+                [ngClass]="{ 'border-b-100': !last }"
+                (click)="goto(manage.route)"
+              >
+                <div class="st-8 text-onback-medium d-flex align-items-center gap-tiny">
+                  @if (manage.iconName) {
+                    <ngx-icon [name]="manage.iconName"></ngx-icon>
+                  } @else {
+                    <img
+                      [src]="manage.icon"
+                      [alt]="manage.title"
+                    />
+                  }
+                  <span>
+                    {{ manage.title }}
+                  </span>
+                </div>
+                <div class="icon">
+                  <ngx-icon name="arrow-2-left"></ngx-icon>
+                </div>
+              </div>
+            }
+          }
+        </div>
+      </div>
+
+      <div class="w-100 mt-medium d-flex flex-column gap-medium">
+        @if (user().isSejami) {
+          <ngx-button
+            [style]="'tinted-on-back'"
+            size="medium"
+            [mode]="'form'"
+            [fullWidth]="true"
+            [isLoading]="loadingSejami()"
+            (clickHandler)="updateSejam()"
+            [disabled]="sejamRateLimit()"
+          >
+            @if (sejamRateLimit() || !timeIsOver()) {
+              <ngx-count-down
+                [timeInSeconds]="limitTime()"
+                [type]="'mm:ss'"
+                (finished)="timerFinish()"
+              ></ngx-count-down>
+              <span> تلاش دوباره </span>
+            } @else {
+              به روز رسانی اطلاعات سجام
+            }
+          </ngx-button>
+        }
+      </div>
+    </div>
+  }
+</div>

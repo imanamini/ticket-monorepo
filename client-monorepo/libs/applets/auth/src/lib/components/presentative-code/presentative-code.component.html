@@ -1,0 +1,38 @@
+<div class="d-flex flex-column mt-45 h-100">
+  <div class="d-flex flex-column mb-big">
+    <img
+      src="assets/onboarding/referal.svg"
+      width="56"
+      height="56"
+    />
+    <span class="text-onback-low b-2">در صورتیکه کد معرف دارید، وارد کنید.</span>
+  </div>
+  <div>
+    <ui-form-field
+      [(ngModel)]="code"
+      label="کد معرف"
+      inputType="text"
+    ></ui-form-field>
+  </div>
+  <div class="d-flex gap-medium mt-big w-100">
+    <div class="flex-grow">
+      <ngx-button
+        [style]="'tinted-on-elevated'"
+        [size]="'large'"
+        (click)="cancel()"
+        [fullWidth]="true"
+      >
+        ندارم
+      </ngx-button>
+    </div>
+    <div class="flex-grow">
+      <ngx-button
+        (click)="submitCode()"
+        [size]="'large'"
+        [fullWidth]="true"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  </div>
+</div>

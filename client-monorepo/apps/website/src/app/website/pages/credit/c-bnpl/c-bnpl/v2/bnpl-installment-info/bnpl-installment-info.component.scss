@@ -1,0 +1,51 @@
+@import "@digipay/base-style/styleguide";
+
+.bnpl-installment-info {
+  .content {
+    .title {
+      color: #000;
+      text-align: center;
+      font-feature-settings: 'liga' off, 'clig' off;
+      font-size: 26px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 32px; /* 123.077% */
+    }
+  }
+
+  .image {
+    img {
+      width: 550px;
+      height: 450px;
+    }
+  }
+}
+
+
+@media (max-width: 1280px) {
+  .bnpl-installment-info {
+    flex-direction: column-reverse !important;
+    gap: map-get($spacing-sizes, 'big') !important;
+
+    .content {
+      align-items: center !important;
+
+      .title {
+        font-size: 18px;
+      }
+
+      .subtitle {
+        font-size: 12px !important;
+        text-align: center;
+      }
+    }
+
+    .image {
+      img {
+        width: 100%;
+        height: inherit;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,106 @@
+<section>
+  <div class="top-posts">
+    <div class="desktop">
+      <a
+        *ngIf="mainPost && mainPost.title && mainPost.image && mainPost.image.url"
+        [href]="'/mag/' + mainPost.category.slug + '/' + mainPost.slug + '/'"
+        [style.background-image]="'linear-gradient(0deg, #061962 0%, rgba(6, 25, 98, 0.00) 60%), url(' + mainPost.image.url + ')'"
+        class="main"
+        target="_blank"
+      >
+        <div class="content">
+          <h2 class="title">
+            {{ mainPost.title | postCardShortener: 'title' }}
+          </h2>
+          <div class="description">
+            {{ mainPost.description | postCardShortener: 'description' }}
+          </div>
+        </div>
+      </a>
+      <div class="rest">
+        <div *ngFor="let post of restPosts">
+          <a
+            *ngIf="post.image && post.image.url"
+            [href]="'/mag/' + post.category.slug + '/' + post.slug + '/'"
+            [style.background-image]="'linear-gradient(0deg, #061962 0%, rgba(6, 25, 98, 0.00) 60%), url(' + post.image.url + ')'"
+            class="item"
+            target="_blank"
+          >
+            <div class="content">
+              <h2 class="title">
+                {{ post.title | postCardShortener: 'title' }}
+              </h2>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="isBrowser"
+      class="non-desktop similar-service-card swiper-container"
+    >
+      <swiper-container
+        appSwiper
+        #swiper
+        [config]="config"
+        (slidechange)="slideChange($event)"
+      >
+        <swiper-slide *ngFor="let item of topSectionPosts; let itemIndex = index">
+          <div class="similar-service-card-item">
+            <div>
+              <a
+                *ngIf="item.image && item.image.url"
+                [href]="'/mag/' + item.category.slug + '/' + item.slug + '/'"
+                [style.background-image]="'linear-gradient(0deg, #061962 0%, rgba(6, 25, 98, 0.00) 60%), url(' + item.image.url + ')'"
+                class="content-background"
+                target="_blank"
+              >
+                <div class="content">
+                  <h2 class="title">
+                    {{ item.title | postCardShortener: 'title' }}
+                  </h2>
+                  <div class="description">
+                    {{ item.description | postCardShortener: 'description' }}
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+
+      <!--      <swiper [config]="config" [pagination]="{ dynamicBullets: true }">-->
+      <!--        <ng-container-->
+      <!--          *ngFor="let item of topSectionPosts; let itemIndex = index"-->
+      <!--        >-->
+      <!--          <ng-template swiperSlide>-->
+      <!--            <div class="similar-service-card-item">-->
+      <!--              <div>-->
+      <!--                <a-->
+      <!--                  *ngIf="item.image && item.image.url"-->
+      <!--                  [href]="'/mag/' + item.category.slug + '/' + item.slug + '/'"-->
+      <!--                  [style.background-image]="-->
+      <!--                    'linear-gradient(0deg, #061962 0%, rgba(6, 25, 98, 0.00) 60%), url(' +-->
+      <!--                    item.image.url +-->
+      <!--                    ')'-->
+      <!--                  "-->
+      <!--                  class="content-background"-->
+      <!--                  target="_blank"-->
+      <!--                >-->
+      <!--                  <div class="content">-->
+      <!--                    <h2 class="title">-->
+      <!--                      {{ item.title | postCardShortener : 'title' }}-->
+      <!--                    </h2>-->
+      <!--                    <div class="description">-->
+      <!--                      {{ item.description | postCardShortener : 'description' }}-->
+      <!--                    </div>-->
+      <!--                  </div>-->
+      <!--                </a>-->
+      <!--              </div>-->
+      <!--            </div>-->
+      <!--          </ng-template>-->
+      <!--        </ng-container>-->
+      <!--      </swiper>-->
+    </div>
+  </div>
+</section>

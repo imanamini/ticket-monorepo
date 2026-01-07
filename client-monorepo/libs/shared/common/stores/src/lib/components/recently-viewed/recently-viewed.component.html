@@ -1,0 +1,62 @@
+@if (hasAnyItems()) {
+  <div class="recently-viewed-container surface-elevated">
+    <common-ui-components-title-summary
+      [title]="'بازدیدهای اخیر شما'"
+      [rightIcon]="{
+        name: 'history',
+        iconSize: '20px',
+      }"
+      [showButton]="false"
+    ></common-ui-components-title-summary>
+    <!-- Recently Viewed Products Section -->
+    @if (hasProducts()) {
+      <common-ui-components-title-summary
+        [title]="'محصولات'"
+        [description]="''"
+        [showButton]="false"
+        [hasDivider]="true"
+      />
+      <common-ui-components-horizontal-scroll>
+        @for (products of groupedRecentlyViewedProducts(); track products[0].id) {
+          <div class="d-flex flex-column gap-tiny">
+            <common-stores-product-preview
+              [product]="products[0]"
+              [mode]="'img-desc-with-store'"
+              (clicked)="goToProduct(products[0])"
+              [hasDivider]="true"
+            ></common-stores-product-preview>
+            @if (products.length > 1) {
+              <common-stores-product-preview
+                [product]="products[1]"
+                [mode]="'img-desc-with-store'"
+                (clicked)="goToProduct(products[1])"
+                [hasDivider]="false"
+              ></common-stores-product-preview>
+            }
+          </div>
+        }
+      </common-ui-components-horizontal-scroll>
+    }
+
+    <!-- Recently Viewed Stores Section -->
+    @if (hasStores()) {
+      <common-ui-components-title-summary
+        [title]="'فروشگاه‌ها'"
+        [description]="''"
+        [showButton]="false"
+        [hasDivider]="true"
+      />
+      <common-ui-components-horizontal-scroll [classes]="'pb-plus'">
+        @for (store of recentlyViewedStores(); track store.businessId) {
+          <common-stores-store-preview
+            [store]="store"
+            [mode]="'logo-only'"
+            [backgroundMode]="'back'"
+            commonUtilitiesSafePress
+            (safePress)="goToStore(store)"
+          ></common-stores-store-preview>
+        }
+      </common-ui-components-horizontal-scroll>
+    }
+  </div>
+}

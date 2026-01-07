@@ -1,0 +1,45 @@
+<div class="d-flex flex-column w-100 h-100 gap-minus surface-elevated">
+  <!-- Header -->
+  <div class="d-flex flex-column w-100 gap-small">
+    <ngx-app-bar
+      [title]="'فروشنده‌ها'"
+      (onRightButtonClick)="goBack()"
+      [rightButton]="{
+        icon: 'arrow-right',
+        style: 'neutral-link',
+        mode: 'icon-only',
+        size: 'medium',
+      }"
+    ></ngx-app-bar>
+    <ngx-search-box
+      class="px-plus"
+      [debounceTime]="300"
+      [mode]="'section'"
+      (searchTextChange)="doSearch($event)"
+      [placeHolder]="'جست‌وجو'"
+      (submitted)="handleSearchWithEnterKey()"
+    ></ngx-search-box>
+  </div>
+  <!-- End Header -->
+
+  <!-- Merchants List -->
+  <div
+    class="d-flex flex-column gap-medium px-plus pb-medium"
+    commonUtilitiesScrolledToEnd
+    (scrolledToEnd)="handleGoToNextPage()"
+  >
+    <div class="c-3 text-onback-low">{{ foundText() }}</div>
+    @if (merchantsToShow().length) {
+      @for (merchant of merchantsToShow(); track merchant.id) {
+        <common-ui-components-item-overview
+          [item]="merchant"
+          [disableTopPadding]="true"
+          (click)="handleClickOnStore(merchant.id)"
+        ></common-ui-components-item-overview>
+      }
+    } @else {
+      <common-ui-components-no-item [description]="'هیچ فروشگاهی پیدا نشد!'"></common-ui-components-no-item>
+    }
+  </div>
+  <!-- End Merchants List -->
+</div>

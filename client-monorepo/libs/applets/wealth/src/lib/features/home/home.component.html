@@ -1,0 +1,54 @@
+<div id="wealthHomeWalkThrough"></div>
+
+<div
+  class="w-100 pb-medium"
+  id="header-transactions"
+>
+  <wealth-applet-app-bar-wrapper
+    class="w-100"
+    [title]="'مدیریت ثروت'"
+    [leftIcon]="headerLeftIcon()"
+    [leftButton]="headerLeftButton()"
+    (onBack)="onBackHandler()"
+    (onLeftButton)="goToProfile()"
+    (onLeftIcon)="goToTransactions()"
+  />
+
+  <div class="px-plus mt-minus">
+    <div id="wealth-assets">
+      <wealth-applet-home-assets
+        class="d-flex position-relative"
+        [portfolio]="portfolio()"
+        [isLoading]="loadingPortfolios()"
+        [isUpdating]="updatingPortfolios()"
+        (handleUpdateData)="portfoliosHeadup()"
+      />
+    </div>
+    <wealth-applet-home-banner [banners]="isWebsite() ? wealthBanner() : dpBanners()" />
+  </div>
+  @if (isWebsite()) {
+    <div class="d-flex px-plus">
+      <wealth-applet-home-banner [banners]="wealthSecondBanner()" />
+    </div>
+  } @else {
+    <div
+      class="d-flex flex-wrap px-plus"
+      id="wealth-dashboard-categories"
+    >
+      <div [ngClass]="{ 'text-oninvert-high': walkThroughService.isWorking }">
+        <span class="st-8 text-onback-medium"> دسته‌بندی‌های سرمایه‌گذاری </span>
+      </div>
+      <wealth-applet-home-categories
+        class="w-100 mt-minus"
+        [categories]="dpSecondBanners()"
+      />
+    </div>
+  }
+
+  <div
+    id="wealth-dashboard-news"
+    class="mt-big"
+  >
+    <wealth-applet-home-news />
+  </div>
+</div>

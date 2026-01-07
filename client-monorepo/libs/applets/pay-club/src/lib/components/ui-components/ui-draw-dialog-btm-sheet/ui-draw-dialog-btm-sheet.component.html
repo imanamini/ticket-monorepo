@@ -1,0 +1,39 @@
+<pay-club-applet-ui-dialog-btm-sheet [image]="data.info.bannerImageId">
+  <ng-container body>
+    <div class="draw-card">
+      <pay-club-applet-ui-main-content [data]="data"></pay-club-applet-ui-main-content>
+      <div class="detail draw-time">
+        <h4 class="title">زمان انجام قرعه‌کشی:</h4>
+        <span>{{ data.info.formatExecutionDate }}</span>
+      </div>
+
+      @if (data.acquisitionResult.status === DrawStatus.ALLOCATE) {
+        <!--      when user hasn't enrolled-->
+        @if (!data.acquisitionResult.trackingCode) {
+          <div class="detail timer">
+            <h4 class="title">فرصت شرکت در قرعه‌کشی</h4>
+            <pay-club-applet-ui-modern-countdown [seconds]="remainingTimePurchase() || 0"></pay-club-applet-ui-modern-countdown>
+            <p class="expiration-time">تا روز قبل از انجام قرعه کشی مهلت دارید تا شانس شرکت در این قرعه کشی را بخرید</p>
+          </div>
+        }
+        <!--      when user has enrolled-->
+        @if (data.acquisitionResult.trackingCode) {
+          <div class="detail timer">
+            <h4 class="title">زمان باقی‌مانده تا انجام قرعه‌کشی</h4>
+            <pay-club-applet-ui-modern-countdown [seconds]="remainingTimeExecution() || 0"></pay-club-applet-ui-modern-countdown>
+          </div>
+        }
+      }
+    </div>
+  </ng-container>
+
+  <ng-container footer>
+    <ngx-button
+      [disabled]="buttonConfig.disabled"
+      (clickHandler)="clickDrawButton()"
+      [fullWidth]="true"
+    >
+      {{ buttonConfig?.text }}
+    </ngx-button>
+  </ng-container>
+</pay-club-applet-ui-dialog-btm-sheet>

@@ -1,0 +1,87 @@
+@if (data()) {
+  <div class="d-flex flex-column border-100 surface-back border-color-brand radius-big px-plus py-minus m-plus">
+    <div class="d-flex justify-content-space-between align-items-center w-100 pb-plus border-b-100 border-color-tint">
+      <div class="d-flex gap-small align-items-center">
+        <div class="d-flex justify-content-center align-items-center bank-icon surface-elevated radius-rounded">
+          <ui-api-image
+            [imageId]="'bank_' + data()?.bankCode"
+            height="24px"
+            width="24px"
+          ></ui-api-image>
+        </div>
+        <div class="d-flex flex-column gap-tiny">
+          <span class="bt-2">{{ bankTranslate[data()?.bankCode || '000'] }}</span>
+          <span class="c-3 text-onback-low ltr">{{ data()?.cardNumber }}</span>
+        </div>
+      </div>
+
+      @if (data()?.status === directDebitContractStatus.ACTIVE || data()?.status === directDebitContractStatus.INACTIVE) {
+        <ngx-icon
+          (click)="openManagementBottomSheet(data())"
+          [iconSize]="'24px'"
+          [name]="'info-menu'"
+          type="bold"
+        ></ngx-icon>
+      }
+    </div>
+    <div class="d-flex flex-column pt-small gap-small">
+      <div class="d-flex justify-content-space-between align-items-center">
+        <span class="c-3 text-onback-low">تاریخ اعتبار</span>
+        @if (data()?.status === directDebitContractStatus.ACTIVE) {
+          <span class="b-3 text-onback-medium">تا {{ data()?.expirationDate | persianDate | formattedDate }} </span>
+        } @else if (
+          data()?.status === directDebitContractStatus.CANCELED ||
+          data()?.status === directDebitContractStatus.EXPIRED ||
+          data()?.status === directDebitContractStatus.REVOKED ||
+          data()?.status === directDebitContractStatus.INACTIVE
+        ) {
+          <ngx-badge
+            size="tiny"
+            [status]="directDebitContractColor[data()?.status]"
+            mode="bold"
+            type="text"
+          >
+            {{ directDebitContractTranslate[data()?.status] }}
+          </ngx-badge>
+        }
+      </div>
+      <div class="d-flex justify-content-space-between align-items-center">
+        <span class="c-3 text-onback-low">سقف مبلغ هر تراکنش</span>
+        <span class="b-3 text-onback-medium">{{ data()!.maxDailyTransactionAmount / 10 | number }} تومان</span>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    @if (data()?.status === directDebitContractStatus.INACTIVE) {
+      <ngx-button
+        (clickHandler)="onChangeActiveContract()"
+        [size]="'large'"
+        ngxTrackableId
+        mode="section"
+        [style]="'fill'"
+        >فعال‌سازی مجدد
+      </ngx-button>
+    }
+
+    @if (
+      data()?.status === directDebitContractStatus.CANCELED ||
+      data()?.status === directDebitContractStatus.EXPIRED ||
+      data()?.status === directDebitContractStatus.REVOKED
+    ) {
+      <ngx-button
+        (clickHandler)="onChangeCreateNewContract()"
+        [size]="'large'"
+        ngxTrackableId
+        mode="section"
+        [style]="'fill'"
+        [rightIcon]="{ name: 'plus', type: 'linear' }"
+        >پرداخت مستقیم</ngx-button
+      >
+    }
+  </div>
+} @else {
+  <lib-ngx-skeleton-loading
+    [height]="'150px'"
+    [width]="'100%'"
+  ></lib-ngx-skeleton-loading>
+}

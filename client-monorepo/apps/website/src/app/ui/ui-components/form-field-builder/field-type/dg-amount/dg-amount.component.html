@@ -1,0 +1,42 @@
+<div
+  [ngClass]="{
+    'dg-not-empty': !!this.form.controls[formControlName].value,
+    'dg-focused': !!isFocused,
+    'dg-error': form.touched && form.invalid,
+    'dg-cleanable': hasCleaner,
+    'dg-ltr-input': ltrInput,
+    'dg-ltr-placeholder': ltrPlaceholder,
+  }"
+  class="dg-amount-input-wrapper"
+>
+  <label [htmlFor]="id">{{ label }}</label>
+  <ng-container [formGroup]="form">
+    <input
+      (focusin)="isFocused = true"
+      (focusout)="isFocused = false"
+      (keydown)="amountKeyDown($event)"
+      [formControlName]="formControlName"
+      [id]="id"
+      [placeholder]="placeholder || ''"
+      [readonly]="readonly"
+      numpad="price"
+    />
+  </ng-container>
+  <div class="dg-rial-icon"></div>
+  <div
+    (click)="clean($event)"
+    class="dg-clean-icon"
+  ></div>
+</div>
+<div
+  *ngIf="!(form.touched && form.invalid && errorMessage) && hint"
+  class="dg-hint-message"
+>
+  {{ hint }}
+</div>
+<div
+  *ngIf="form.touched && form.invalid && errorMessage"
+  class="dg-error-message"
+>
+  {{ errorMessage }}
+</div>

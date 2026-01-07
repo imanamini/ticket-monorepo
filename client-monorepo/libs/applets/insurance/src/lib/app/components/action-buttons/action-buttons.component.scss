@@ -1,0 +1,17 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+:host {
+  width: 100%;
+}
+
+@media (max-width: 399px) {
+  .deActive-button {
+    flex-grow: 1;
+    width: auto !important;
+  }
+
+  .active-button {
+    flex-grow: 1;
+    width: auto !important;
+  }
+}

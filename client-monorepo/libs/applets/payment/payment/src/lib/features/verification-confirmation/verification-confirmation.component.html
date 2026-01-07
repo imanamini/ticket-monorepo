@@ -1,0 +1,38 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  title="احراز هویت"
+>
+  <div class="verification-confirmation">
+    <div class="page-content p-medium">
+      <img
+        [ngSrc]="'assets/onboarding/bime.svg'"
+        alt="digipay"
+        class="digipay-logo"
+        height="16"
+        width="16"
+      />
+      <h2 class="cell-number">{{ cellNumber }}</h2>
+      <p class="description">
+        {{ description }}
+      </p>
+      <div class="button-container">
+        <!--        todo check with new design -->
+        <!--        <a-->
+        <!--          (click)="openConditionsDialog()"-->
+        <!--          class="condition-link"-->
+        <!--          >شرایط استفاده از دیجی‌پی</a-->
+        <!--        >-->
+
+        <ngx-button
+          (clickHandler)="accept()"
+          [disabled]="sendingSms"
+          class="page-action"
+          [isLoading]="sendingSms"
+          [size]="'medium'"
+        >
+          قبول شرایط و ادامه
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+</common-ui-components-page-layout>

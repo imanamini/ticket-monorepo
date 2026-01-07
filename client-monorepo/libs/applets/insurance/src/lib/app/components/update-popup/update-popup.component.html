@@ -1,0 +1,21 @@
+<div class="update-popup d-flex flex-column gap-plus h-100">
+  <div class="content d-flex flex-column align-items-center px-plus">
+    <img [width]="320"
+         [height]="275"
+         src="insurance-assets/new-assets/icons/png/version-update.png"
+         alt="version-update">
+    <div class="texts d-flex flex-column gap-plus">
+      <span [textContent]="'بیمه دیجی‌پی جدید اینجاست!'"
+            class="st-1 title text-align-center"></span>
+      <p [textContent]="'در نسخه جدید با حفظ امکانات قبلی، تلاش کرده‌ایم که تجربه بهتری برای شما بسازیم.'"
+         class="b-2 text-onback-high text-align-center"></p>
+      <span [textContent]="'نسخه 1.0.1'"
+            class="b-3 text-onback-low text-align-center"></span>
+    </div>
+  </div>
+  <action-buttons [showDeActiveButton]="false"
+                  [activeButtonBackground]="InsButtonStyleEnum.Fill"
+                  (activeButtonClicked)="handleActiveButtonClicked()"
+                  activeButtonText="متوجه شدم"
+                  backgroundMode="transparent"></action-buttons>
+</div>

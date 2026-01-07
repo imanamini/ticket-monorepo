@@ -1,0 +1,27 @@
+<common-ui-components-page-layout
+  [stickyHeader]="true"
+  [showBorder]="false"
+  [showBackIcon]="true"
+  [title]="'کارت به کارت'"
+  [hasBackAction]="false"
+  [leftIcon]="'question-mark-circle'"
+  (onLeftIconClick)="showBankButton() ? showBanks() : null"
+  (onBackAction)="goBack()"
+>
+  <div
+    class="h-100"
+    id="source_card_c2c_v3"
+  >
+    @switch (cardLoadingState()) {
+      @case (SOURCE_CARD_LOAD_STATUS.LOADING) {
+        <c2c-applet-source-card-skeleton></c2c-applet-source-card-skeleton>
+      }
+      @case (SOURCE_CARD_LOAD_STATUS.SUCCESS) {
+        <c2c-applet-source-stored-card></c2c-applet-source-stored-card>
+      }
+      @case (SOURCE_CARD_LOAD_STATUS.FAILED) {
+        <c2c-applet-server-error-page (try)="retry()"></c2c-applet-server-error-page>
+      }
+    }
+  </div>
+</common-ui-components-page-layout>

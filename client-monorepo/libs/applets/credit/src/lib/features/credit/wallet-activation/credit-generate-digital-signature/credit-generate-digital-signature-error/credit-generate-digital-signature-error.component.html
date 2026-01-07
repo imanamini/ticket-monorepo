@@ -1,0 +1,24 @@
+@if (type() === 'FAILED_GENERATION') {
+  <app-credit-app-bar
+    (onBackButtonClick)="onClose()"
+    [backButton]="true"
+    [title]="data().pageTitle"
+  ></app-credit-app-bar>
+}
+<div class="d-flex flex-column flex-grow w-100">
+  <div class="flex-grow justify-content-center rtl w-100">
+    @if (data()) {
+      <ngx-status-result
+        [type]="data().type"
+        [iconState]="data().stateIcon"
+        [description]="data().message"
+        [title]="data().title"
+        [buttons]="data().buttons"
+        (clicked)="reloadStatus.emit()"
+        (closed)="close.emit()"
+        [hasCloseIcon]="data().hasCloseIcon"
+      >
+      </ngx-status-result>
+    }
+  </div>
+</div>

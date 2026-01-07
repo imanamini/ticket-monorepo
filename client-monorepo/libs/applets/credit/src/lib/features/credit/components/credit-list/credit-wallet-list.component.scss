@@ -1,0 +1,18 @@
+.credit-list {
+  box-sizing: border-box;
+
+  :last-child {
+    margin-bottom: 15px;
+  }
+
+  > .wrapper {
+    width: 280px;
+    max-width: 100%;
+  }
+}
+
+:host app-credit-wallet-card-v2 {
+  margin-bottom: 10px;
+  display: block;
+  width: 100%;
+}

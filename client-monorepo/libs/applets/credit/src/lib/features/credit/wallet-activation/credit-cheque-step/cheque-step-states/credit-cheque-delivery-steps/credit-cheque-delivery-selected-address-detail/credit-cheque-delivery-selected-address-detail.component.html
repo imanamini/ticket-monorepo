@@ -1,0 +1,156 @@
+<app-credit-app-bar
+  (onBackButtonClick)="back.emit()"
+  [backButton]="true"
+  title="چک ضمانت"
+></app-credit-app-bar>
+<app-credit-stepper
+  [currentStep]="5"
+  [steps]="5"
+  [title]="'تحویل اصل چک'"
+></app-credit-stepper>
+<div class="d-flex flex-column flex-grow p-plus rtl">
+  <div class="d-flex flex-column flex-grow gap-plus">
+    <span class="st-6 text-onback-high">{{ title() }}</span>
+    @if (selectedDeliveryInfo()?.pickupAddress) {
+      <div class="radius-medium p-medium d-flex flex-column w-100 border-300 border-color-light">
+        <div class="d-flex justify-content-space-between align-items-center mb-minus">
+          <span class="st-8 text-onback-high">آدرس</span>
+          <ngx-button
+            [size]="'tiny'"
+            [style]="'link'"
+            ngxTrackableId
+            trackerId="chequeDeliveryLocationEditButton"
+            [leftIcon]="{ name: 'arrow-2-left' }"
+            (clickHandler)="editLocation()"
+            >تغییر یا ویرایش
+          </ngx-button>
+        </div>
+        <div class="d-flex flex-column gap-low">
+          <div class="d-flex flex-row gap-pony align-items-start">
+            <ngx-icon
+              classes="text-onback-disabled mt-tiny"
+              name="location"
+              type="bold"
+              iconSize="16px"
+            ></ngx-icon>
+            <span class="b-1 text-onback-medium">
+              {{ pickupFullAddress() }}
+            </span>
+          </div>
+          <div class="d-flex flex-row gap-pony align-items-start">
+            <ngx-icon
+              classes="text-onback-disabled mt-tiny"
+              name="home"
+              type="bold"
+              iconSize="16px"
+            ></ngx-icon>
+            <span class="b-1 text-onback-medium">
+              {{ pickupAddressUnitNo() }}
+            </span>
+          </div>
+        </div>
+      </div>
+    }
+    @if (selectedDeliveryInfo()?.selectedProvider) {
+      <div class="radius-medium p-medium d-flex flex-column w-100 border-300 border-color-light">
+        <div class="d-flex justify-content-space-between align-items-center mb-minus">
+          <span class="st-8 text-onback-high">{{ selectedDeliveryInfo()?.selectedProvider?.deliveryProviderName }}</span>
+        </div>
+        <div class="d-flex flex-column gap-low">
+          <div class="d-flex flex-row gap-pony align-items-start">
+            <ngx-icon
+              classes="text-onback-disabled mt-tiny"
+              name="location"
+              type="bold"
+              iconSize="16px"
+            ></ngx-icon>
+            <span class="b-1 text-onback-medium">
+              {{ selectedDeliveryInfo()?.selectedProvider?.deliveryProviderAddress?.fullAddress }}
+            </span>
+          </div>
+          @if (selectedDeliveryInfo()?.selectedProvider?.deliveryProviderAddress?.phoneNumber) {
+            <div class="d-flex flex-row gap-pony align-items-start">
+              <ngx-icon
+                classes="text-onback-disabled mt-tiny"
+                name="call"
+                type="bold"
+                iconSize="16px"
+              ></ngx-icon>
+              <span class="b-1 text-onback-medium">
+                {{ selectedDeliveryInfo()?.selectedProvider?.deliveryProviderAddress?.phoneNumber }}
+              </span>
+            </div>
+          }
+        </div>
+      </div>
+    }
+    @if (selectedDeliveryInfo()?.selectedTime) {
+      <div class="radius-medium p-medium d-flex flex-column w-100 border-300 border-color-light">
+        <div class="d-flex justify-content-space-between align-items-center mb-minus">
+          <span class="st-8 text-onback-high">زمان</span>
+          @if (editTimeEnabled()) {
+            <ngx-button
+              [size]="'tiny'"
+              [style]="'link'"
+              ngxTrackableId
+              trackerId="chequeDeliveryTimeEditButton"
+              [leftIcon]="{ name: 'arrow-2-left' }"
+              (clickHandler)="editTime()"
+              >ویرایش
+            </ngx-button>
+          }
+        </div>
+        <div class="d-flex flex-column gap-low">
+          <div class="d-flex flex-row gap-pony align-items-start">
+            <ngx-icon
+              classes="text-onback-disabled mt-tiny"
+              name="calendar"
+              type="bold"
+              iconSize="16px"
+            ></ngx-icon>
+            <span class="b-1 text-onback-medium">
+              {{
+                (selectedDeliveryInfo()?.selectedDate?.date | creditPersianDate: 'weekday') +
+                  ' ' +
+                  (selectedDeliveryInfo()?.selectedDate?.date | creditPersianDate: 'day') +
+                  ' ' +
+                  (selectedDeliveryInfo()?.selectedDate?.date | creditPersianDate: 'month')
+              }}
+            </span>
+          </div>
+          <div class="d-flex flex-row gap-pony align-items-start">
+            <ngx-icon
+              classes="text-onback-disabled mt-tiny"
+              name="circle-clock"
+              type="bold"
+              iconSize="16px"
+            ></ngx-icon>
+            <span class="b-1 text-onback-medium">
+              {{ selectedDeliveryInfo()?.selectedTime?.fromTime + ' الی ' + selectedDeliveryInfo()?.selectedTime?.toTime }}
+            </span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+  <ngx-button
+    (clickHandler)="onConfirm()"
+    [fullWidth]="true"
+    [isLoading]="loading()"
+    [disabled]="loading()"
+    [style]="'fill'"
+    ngxTrackableId
+    trackerId="chequeDeliveryLocationAndDateConfirmButton"
+  >
+    ثبت درخواست
+  </ngx-button>
+</div>
+
+<ng-template #alertContent>
+  <ngx-alert
+    color="yellow"
+    size="md"
+    text="توصیه می‌کنیم هنگام تحویل چک، شخصاً حضور داشته باشید. در صورت مغایرت یا نیاز به اصلاح، دیجی‌پی مسئولیتی نخواهد داشت."
+    [hasCloseIcon]="false"
+  ></ngx-alert>
+</ng-template>

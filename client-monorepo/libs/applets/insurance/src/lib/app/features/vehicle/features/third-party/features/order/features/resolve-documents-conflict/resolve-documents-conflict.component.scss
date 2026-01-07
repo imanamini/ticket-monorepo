@@ -1,0 +1,13 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.resolve-documents-conflict {
+
+  .documents {
+    flex: 1;
+    overflow: auto;
+  }
+
+  .loading {
+    @include column-center;
+  }
+}

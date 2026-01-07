@@ -1,0 +1,13 @@
+@import "globals";
+
+:host {
+  display: block;
+  margin: 24px 0;
+}
+
+.block {
+  height: 6px;
+  width: 100%;
+  background-color: $swatch_steel_100;
+  display: block;
+}

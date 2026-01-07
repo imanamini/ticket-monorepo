@@ -1,0 +1,93 @@
+@import "insurance/src/lib/app/style/once/variables";;
+@import "insurance/src/lib/app/style/mixins/device";;
+
+%circle {
+  border-radius: 50%;
+}
+
+%transition {
+  transition: 0.3s ease all;
+}
+
+%radius-low {
+  border-radius: 8px;
+}
+
+%radius-norm {
+  border-radius: 12px;
+}
+
+%radius-high {
+  border-radius: 16px;
+}
+
+%ellipsis {
+  display: block;
+  max-width: 95%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  line-height: 1.5;
+}
+
+%custom-scrollbar {
+  @media (min-width: 812px) {
+    scrollbar-color: #d3dbe1 transparent;
+
+    &::-webkit-scrollbar {
+      height: 14px;
+      width: 14px;
+    }
+
+    &::-webkit-scrollbar-corner {
+      border-radius: 16px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #d3dbe1;
+      border-radius: 16px;
+      border: 4px solid transparent;
+      background-clip: padding-box;
+
+      &:hover {
+        background-color: $primary-blue;
+      }
+
+      &:active {
+        background-color: $primary-blue;
+      }
+
+      &:vertical {
+        min-height: 8px;
+      }
+
+      &:horizontal {
+        min-width: 8px;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .cdk-overlay-backdrop {
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+  }
+
+  .cdk-overlay-pane {
+    max-height: 95vh;
+  }
+
+  .mat-dialog-container {
+    @extend %custom-scrollbar;
+  }
+
+  html {
+    @extend %custom-scrollbar;
+  }
+}

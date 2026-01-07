@@ -1,0 +1,15 @@
+.transaction-container {
+  overflow-y: auto;
+}
+
+.empty-state {
+  align-content: center;
+}
+
+.transaction-container:has(.empty-state) {
+  height: calc(100dvh - 2.5rem) !important;
+}
+
+.list-container:has(.empty-state) {
+  height: 100%;
+}

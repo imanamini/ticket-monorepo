@@ -1,0 +1,53 @@
+<div class="flex-layout">
+  @for (item of honors()?.slice(0, 3) || []; track $index) {
+    <div class="box box-1" [class.surface-brand]="!item?.cta?.link">
+      @if (item.title && item.description) {
+        <div class="d-flex flex-column gap-medium p-huge">
+          <span class="logo"> <img src="{{item.image.url}}" width="22px" alt=""></span>
+          <span class="title st-3 text-oninvert-high">{{ item.title }}</span>
+          <span class="subtitle c-3 text-oninvert-medium">{{ item.description }}</span>
+        </div>
+      } @else {
+        <img src="{{item.image.url}}" [ngClass]="{'grayscale' : grayscale()}"  alt="">
+      }
+    </div>
+  }
+  @if (honors()?.length || 0 > 3) {
+    <div class="box box-2b">
+      <img src="{{honors()[3].image.url}}" [ngClass]="{'grayscale' : grayscale()}"  alt="">
+    </div>
+  }
+  @if (honors()?.length || 0 > 4) {
+    <div class="box box-2a">
+      <img src="{{honors()[4].image.url}}" [ngClass]="{'grayscale' : grayscale()}"  alt="">
+    </div>
+  }
+  @for (item of honors()?.slice(5, 8) || []; track $index) {
+    <div class="box box-1" [class.surface-elevated]="!!item?.cta?.link">
+      @if (item.title && item.description) {
+        <div class="d-flex flex-column gap-medium p-huge">
+          <span class="logo"> <img src="{{item.image.url}}" [ngClass]="{'grayscale' : grayscale()}"  width="22px" alt=""></span>
+          <span class="title st-3 text-onback-high">{{ item.title }}</span>
+          <span class="subtitle c-3 text-onback-medium">{{ item.description }}</span>
+          @if (!!item?.cta?.link) {
+            <div class="d-flex justify-content-end">
+              <ngx-button
+                [size]="'medium'"
+                [style]="'fill'"
+                [mode]="'section'"
+                [brandButton]="true"
+                [leftIcon]="{ name: 'arrow-2-left', type: 'linear' }"
+                (clickHandler)="openLink(item.cta.link)"
+              >
+                {{ item.cta.title }}
+              </ngx-button>
+            </div>
+          }
+        </div>
+      } @else {
+        <img src="{{item.image.url}}" [ngClass]="{'grayscale' : grayscale()}"  alt="">
+      }
+    </div>
+  }
+
+</div>

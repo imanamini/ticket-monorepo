@@ -1,0 +1,63 @@
+<div class="wrapper">
+  <div class="anonymous-claim">
+    <app-card
+            (closeEvent)="close()"
+            cardTitle="اعلام خسارت ناشناس"
+            headerIcon="back">
+      <div card-body class="body">
+
+        <ui-animated-switch
+                (changed)="changeSwitch()"
+                [height]="40"
+                [options]="options"
+                [selectedOption]="options[0]"
+        ></ui-animated-switch>
+
+        <div class="title">
+          اطلاعات خواسته شده را وارد کنید تا بتوانید برای دستگاه خود خسارت ثبت کنید.
+        </div>
+
+
+        <form [formGroup]="form" class="form">
+          <ui-form-field
+                  [error]="form.controls.policyDraftNo.errors"
+                  formControlName="policyDraftNo"
+                  label="شماره بیمه"
+          ></ui-form-field>
+          <ui-form-field
+                  [error]="form.controls.transferMobileNo.errors"
+                  formControlName="transferMobileNo"
+                  label="شماره موبایل"
+          ></ui-form-field>
+
+          <ui-form-field
+                  *ngIf="selectedClaimWay === anonymousOptions.NationalCode"
+                  [error]="form.controls.nationalCode.errors"
+                  formControlName="nationalCode"
+                  label="کد ملی مالک"
+          ></ui-form-field>
+
+          <ui-form-field
+                  *ngIf="selectedClaimWay === anonymousOptions.SERIAL"
+                  [error]="form.controls.serialNo.errors"
+                  formControlName="serialNo"
+                  label=" سریال دستگاه / IMEI"
+          ></ui-form-field>
+          <div class="hint"> برای پیدا کردن شماره سریال (IMEI) دستگاه, از کد دستوری
+            <span class="ltr"
+                  dir="ltr">*#06#</span>
+            استفاده کنید
+          </div>
+        </form>
+
+      </div>
+      <ui-button
+              (click)="submitForm()"
+              [disabled]="!form.valid"
+              card-footer>
+        تایید و مشاهده بیمه‌نامه
+      </ui-button>
+    </app-card>
+  </div>
+
+</div>

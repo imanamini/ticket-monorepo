@@ -1,0 +1,92 @@
+@import "globals";
+
+.section-app-promotion {
+  padding-bottom: 0;
+  margin-bottom: 64px;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .content {
+      transform: translateY(-33px);
+
+      .subtitle {
+        color: $swatch_steel_500;
+        font-size: 16px;
+        font-weight: 200;
+        line-height: 200%;
+        letter-spacing: -0.48px;
+        max-width: 358px;
+      }
+
+      .ctas {
+        margin-top: 40px;
+        display: flex;
+        gap: 24px;
+        width: 435px;
+
+        .cta {
+          flex-grow: 1;
+        }
+      }
+    }
+
+    .artwork {
+      display: flex;
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .section-app-promotion {
+    .container {
+      flex-direction: column;
+
+      .content {
+        transform: unset;
+
+        .title,
+        .subtitle {
+          text-align: center;
+          max-width: unset;
+        }
+
+        .ctas {
+          width: 454px;
+          gap: 16px;
+          margin-top: 32px;
+        }
+      }
+
+      .artwork {
+        margin-top: 32px;
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .section-app-promotion {
+    margin-bottom: 32px;
+    padding-top: 32px;
+
+    .container {
+      overflow: hidden;
+
+      .content {
+        .subtitle {
+          font-size: 14px;
+          font-weight: 450;
+          line-height: 24px;
+        }
+
+        .ctas {
+          width: unset;
+          flex-direction: column-reverse;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+<div class="bnpl-payment-method-card d-flex flex-column align-items-center" (click)="openBnplAllocationRequestBottomSheet()">
+  @if (verificationState() === VerifyAllocationStateEnum.READY_TO_REQUEST_VERIFICATION ||
+  verificationState() === VerifyAllocationStateEnum.BANNED) {
+    <div class="icon-wrapper p-big surface-back">
+      <ngx-icon
+              [name]="verificationState() === VerifyAllocationStateEnum.READY_TO_REQUEST_VERIFICATION ? 'bnpl' : 'close-circle'"
+              [classes]="verificationState() === VerifyAllocationStateEnum.READY_TO_REQUEST_VERIFICATION ? 'bnpl-icon' : 'text-onback-error'"
+              type="bold"
+              iconSize="32px"></ngx-icon>
+    </div>
+  }
+  @if (verificationState() === VerifyAllocationStateEnum.VERIFYING ||
+  verificationState() === VerifyAllocationStateEnum.VERIFICATION_COMPLETED) {
+    <ngx-waiting-stepper
+            [state]="waitingStepperState()"
+            [progressPercentage]="waitingStepperProgress()"
+    ></ngx-waiting-stepper>
+  }
+  <p class="title text-onback-high mt-minus st-6 text-align-center "
+       [ngClass]="{'text-onback-error': waitingStepperState() === WaitingStepperStateEnum.FAILED}">
+    {{ title() }}
+  </p>
+  <p class="credit-description text-onback-medium bt-3 mt-minus">
+    @if (verificationState() === VerifyAllocationStateEnum.READY_TO_REQUEST_VERIFICATION) {
+      <span>
+          همین حالا اقدام کنید! تا سقف
+        </span>
+      <span class="text-onback-high st-4">۶۰ میلیون ریال </span>
+      <span>اعتبار متناسب با مبلغ بیمه‌نامه خود دریافت و در </span>
+      <span class="text-onback-high st-4">۴ قسط </span>
+      <span>پرداخت کنید</span>
+    }
+    @if (verificationState() !== VerifyAllocationStateEnum.READY_TO_REQUEST_VERIFICATION) {
+      <span>{{ description() }}</span>
+    }
+  </p>
+  @if (bnplDetail()?.showVerificationAllocationButton && verificationState() === VerifyAllocationStateEnum.READY_TO_REQUEST_VERIFICATION) {
+    <ngx-button (clickHandler)="openBnplAllocationRequestBottomSheet()" [fullWidth]="true" [style]="'fill'"
+                [mode]="'section'" class="mt-plus">
+      درخواست اعتبار آنی
+    </ngx-button>
+  }
+  @if (verificationState() === VerifyAllocationStateEnum.VERIFICATION_COMPLETED) {
+    <ngx-button (clickHandler)="retryAllocation()" [fullWidth]="true" [style]="'fill'"
+                [mode]="'section'" class="mt-plus">
+      تلاش مجدد
+    </ngx-button>
+  }
+  @if (verificationState() === VerifyAllocationStateEnum.VERIFYING) {
+    <ins-alert
+            class="mt-plus"
+            [hasIcon]="true"
+            [color]="AlertColorEnum.Yellow"
+            [icon]="'info-circle'"
+            text="فرآیند بررسی کمی زمان می‌برد. تا زمانی که نتیجه استعلام دریافت نشده است، امکان انتخاب روش پرداخت دیگر و ادامه فرآیند خرید وجود ندارد."
+    ></ins-alert>
+  }
+</div>

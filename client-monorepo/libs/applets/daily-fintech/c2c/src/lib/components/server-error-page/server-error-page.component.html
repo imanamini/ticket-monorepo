@@ -1,0 +1,15 @@
+<div class="error">
+  <div class="title-wrapper">{{ title() }}</div>
+  @if (description()) {
+    <div class="description">
+      {{ description() }}
+    </div>
+  }
+  <ngx-button
+    class="mt-large"
+    (clickHandler)="retry()"
+    [style]="'tinted-on-elevated'"
+  >
+    تلاش مجدد
+  </ngx-button>
+</div>

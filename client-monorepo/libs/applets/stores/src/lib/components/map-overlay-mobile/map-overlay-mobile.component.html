@@ -1,0 +1,96 @@
+@if (selectedBranch()) {
+  <div class="list-section radius-tr-big radius-tl-big surface-elevated">
+    <ngx-bottom-sheet-header
+      [title]="'اطلاعات فروشگاه'"
+      [closeIcon]="true"
+      [customCloseIconName]="'arrow-right'"
+      (closeClicked)="handleGoBackClick()"
+    >
+    </ngx-bottom-sheet-header>
+    <div class="p-medium">
+      <stores-applet-map-branch-details [selectedBranch]="selectedBranch()!"></stores-applet-map-branch-details>
+    </div>
+  </div>
+} @else {
+  @if (branchesToShow()) {
+    <div
+      class="list-section radius-tr-big radius-tl-big surface-elevated w-100"
+      [ngClass]="{ 'pt-small': branchesToShow()?.length, 'pt-plus': !branchesToShow()?.length }"
+      [ngStyle]="{
+        maxHeight: branchesToShow()?.length ? snaps[activeSnapIndex()] : '390px',
+        height: branchesToShow()?.length ? snaps[activeSnapIndex()] : 'auto',
+      }"
+    >
+      <!--  SKELETON -->
+      @if (loadingMode()) {
+        <div class="d-flex flex-column pb-plus px-plus">
+          <div class="d-flex justify-content-center pb-medium mt-low">
+            <lib-ngx-skeleton-loading
+              [height]="'20px'"
+              [width]="'120px'"
+              [classes]="'radius-minus'"
+            ></lib-ngx-skeleton-loading>
+          </div>
+          <div class="d-flex flex-column gap-tiny">
+            <lib-ngx-skeleton-loading
+              [height]="'73px'"
+              [width]="'100%'"
+              [classes]="'radius-minus'"
+            ></lib-ngx-skeleton-loading>
+          </div>
+        </div>
+        <!--  END SKELETON -->
+      } @else {
+        <!-- Show Branches -->
+        @if (branchesToShow()?.length) {
+          <div
+            ngxSwipeDetector
+            (swipedDown)="goToPrevSnap()"
+            (swipedUp)="goToNextSnap()"
+            [swipeThreshold]="30"
+            class="resizeable"
+          >
+            <div class="line mx-auto radius-giant surface-back"></div>
+            <div class="c-3 text-onback-high mb-medium px-plus text-align-center">
+              {{ totalAvailableStores() }} فروشگاه در ناحیه پیدا شد
+            </div>
+          </div>
+          @if (activeSnapIndex() !== 0) {
+            <div
+              #storesList
+              class="stores-list d-flex flex-column gap-tiny w-100 no-select px-plus"
+              ngxSwipeDetector
+              (swipedDown)="handleSwipeDown()"
+              (swipedUp)="handleSwipeTop()"
+              [axisToLockOn]="'X'"
+              (swiping)="handleSwipeStart($event)"
+            >
+              @for (branch of branchesToShow(); track branch.branch.branchId) {
+                @defer (on viewport) {
+                  <common-ui-components-item-overview
+                    [mixedBlendModeEnabled]="true"
+                    [item]="branch.item"
+                    [enableSingleLineMode]="true"
+                    [hideSubtitleBold]="true"
+                    [hideButton]="true"
+                    (click)="handleStoreClicked(branch.branch)"
+                    [disableTopPadding]="$first"
+                  ></common-ui-components-item-overview>
+                } @placeholder {
+                  <common-ui-components-item-overview [item]="undefined"></common-ui-components-item-overview>
+                }
+              }
+            </div>
+          }
+          <!-- END Show Branches -->
+        } @else {
+          <!-- No Stores Available -->
+          <div class="pb-medium">
+            <stores-applet-map-empty-result></stores-applet-map-empty-result>
+          </div>
+          <!-- END No Stores Available -->
+        }
+      }
+    </div>
+  }
+}

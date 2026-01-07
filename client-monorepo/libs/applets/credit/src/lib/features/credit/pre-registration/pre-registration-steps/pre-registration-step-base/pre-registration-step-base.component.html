@@ -1,0 +1,63 @@
+<app-credit-app-bar
+  (onBackButtonClick)="back()"
+  [backButton]="true"
+  title="طرح‌های اعتباری"
+></app-credit-app-bar>
+@defer {
+  <div
+    [class]="collapseHeader() ? ['base-collapsed', 'mb-atom'] : []"
+    class="step-base-header px-medium pt-medium"
+  >
+    <div class="selectors-title mb-0 st-8 text-align-center">مبلغ و تعداد اقساط را مشخص کنید</div>
+    <!-- amount -->
+    <div class="amount-selector mx-atom my-medium">
+      <app-credit-slider-select
+        (ngModelChange)="onSelectedAmountChange($event)"
+        [(ngModel)]="selectedAmount"
+        [options]="amountOptions()"
+        [version]="2"
+      ></app-credit-slider-select>
+    </div>
+
+    <ngx-divider
+      [color]="BorderColorsEnum.Air"
+      orientation="horizontal"
+    ></ngx-divider>
+
+    <!-- installment count -->
+
+    <div class="installment-count-selector mb-big mt-medium">
+      <app-credit-button-select
+        (ngModelChange)="onSelectedInstallmentCountChange($event)"
+        [(ngModel)]="selectedInstallmentCount"
+        [collapsed]="collapseHeader()"
+        [options]="installmentCountOptions()"
+      ></app-credit-button-select>
+    </div>
+  </div>
+
+  <div class="result-cards-section py-plus px-0 surface-back d-flex flex-column">
+    <app-credit-scrollable-view
+      (scroll)="onScroll($event)"
+      [hasFade]="true"
+      fadeColor="gray"
+    >
+      <app-credit-fund-provider-groups-list
+        (selectFundProvider)="selectFundProvider($event)"
+        [planGroups]="filteredPlans()"
+      ></app-credit-fund-provider-groups-list>
+    </app-credit-scrollable-view>
+  </div>
+} @placeholder (minimum 2s) {
+  <app-pre-registration-step-base-skeleton />
+  <div class="surface-back flex-grow py-plus">
+    <app-credit-fund-provider-groups-card-skeleton />
+  </div>
+}
+
+<ng-template
+  #creditAmountSlideTemplate
+  let-amount="amount"
+>
+  <div class="amount-slide st-4 text-align-right">{{ amount | creditNumberToString }}<span class="bt-1 is-currency"> ریال</span></div>
+</ng-template>

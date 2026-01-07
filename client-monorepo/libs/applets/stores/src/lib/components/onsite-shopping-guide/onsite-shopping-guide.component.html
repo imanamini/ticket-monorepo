@@ -1,0 +1,25 @@
+@if (isOpen()) {
+  <span class="b-3 text-onback-high">
+    در صورتیکه فروشگاه مورد نظر امکان پرداخت با دستگاه کارت‌خوان دیجی‌پی را دارد، می‌توانید پس از انتخاب کالا، پرداخت را از این طریق انجام
+    دهید. پیش‌نیاز این روش این است که کارت بانکی خود را از قسمت مدیریت کارت‌ها در اپلیکیشن به اعتبار دیجی‌پی متصل کنید.
+  </span>
+  <div class="my-plus d-flex justify-content-center">
+    <img
+      class="max-width-100"
+      src="assets/onsite-shopping.png"
+    />
+  </div>
+
+  <ngx-callout
+    [mode]="'multiple'"
+    [title]="'نحوه خرید و پرداخت'"
+    [messages]="messages"
+  ></ngx-callout>
+  <div class="mt-plus">
+    <ngx-callout
+      [mode]="'single-with-title'"
+      [title]="'از فروشگاه‌های حضوری با اعتبار تک قسط و یا وام دیجی‌پی می‌توان خرید کرد.'"
+      [showTitleIcon]="true"
+    ></ngx-callout>
+  </div>
+}

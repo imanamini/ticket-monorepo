@@ -1,0 +1,21 @@
+<div class="mt-huge p-huge">
+  <ngx-status-result
+    (clicked)="onClick($event)"
+    [buttons]="buttons()"
+    title="دریافت چک"
+    [description]="description()"
+    [iconState]="iconState()"
+  >
+  </ngx-status-result>
+  @if (data().status === 'success') {
+    <ngx-button
+      (clickHandler)="onClick('guide')"
+      [fullWidth]="true"
+      [mode]="'form'"
+      [style]="'tinted-on-elevated'"
+    >
+      چگونه چک را ابطال کنم؟
+    </ngx-button>
+  }
+</div>
+

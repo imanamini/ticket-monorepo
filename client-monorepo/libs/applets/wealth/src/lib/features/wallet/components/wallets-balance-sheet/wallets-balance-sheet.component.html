@@ -1,0 +1,77 @@
+<div class="w-100 d-flex flex-column">
+  <p class="st-6 text-onback-high py-minus px-plus">جزییات موجودی</p>
+  <ngx-divider
+    class="w-100"
+    [color]="BorderColorsEnum.Light"
+  >
+  </ngx-divider>
+
+  <div class="mt-huge d-flex flex-column px-plus">
+    @for (wallet of walletsBalanceInfo(); track $index; let last = $last) {
+      <div class="w-100 d-flex flex-column">
+        <div class="w-100 d-flex align-items-center justify-content-space-between">
+          <div class="d-flex gap-tiny align-items-center">
+            <span
+              class="bullet"
+              [style.background]="wallet.color"
+            ></span>
+
+            <span class="b-2 text-onback-medium">
+              {{ wallet.walletName }}
+            </span>
+          </div>
+
+          <p class="st-8 text-onback-high">
+            {{ wallet.totalBalance | thousands }}
+            <span class="is-currency"> ریال </span>
+          </p>
+        </div>
+
+        <div class="w-100 mt-medium surface-back radius-low d-flex align-items-center bar">
+          <div
+            [dir]="'ltr'"
+            class="h-100"
+            [style.background-color]="wallet.bar.color"
+            [style.width]="wallet.bar.width + '%'"
+          ></div>
+        </div>
+
+        <div class="mt-medium d-grid grid-cols-2 gap-huge">
+          @for (inventory of wallet.detailBalance; track $index) {
+            <div class="col-span-1 d-flex flex-column gap-micro pr-mega">
+              <p class="l-3 text-onback-medium d-flex flex-wrap align-items-center gap-tiny">
+                <span
+                  class="bullet"
+                  [style.background]="inventory.color"
+                ></span>
+                {{ inventory.title }}
+              </p>
+              <p class="c-2">
+                {{ inventory.value | thousands }}
+                <span class="is-currency"> ریال </span>
+              </p>
+            </div>
+          }
+        </div>
+      </div>
+
+      @if (!last) {
+        <ngx-divider
+          class="w-100 my-plus"
+          [color]="BorderColorsEnum.Air"
+        >
+        </ngx-divider>
+      }
+    }
+  </div>
+
+  <div class="w-100 px-plus my-huge">
+    <ngx-button
+      (clickHandler)="onClose()"
+      [fullWidth]="true"
+      [size]="'medium'"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

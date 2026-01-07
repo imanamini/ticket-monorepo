@@ -1,0 +1,66 @@
+<div class="onboarding-page">
+
+  <div class="paper">
+    <!-- Close -->
+    <div (click)="closeOnBoarding()" class="close">
+      <span class="close"></span>
+    </div>
+    <!-- End Close -->
+    <div class="paper-body">
+      <!-- Carousel -->
+      <owl-carousel-o #owlCarousel
+                      (changed)="changed($event)"
+                      [options]="customOptions">
+
+        <ng-container *ngFor="let page of pages; let number = index">
+          <ng-template
+                  [id]="'slide-'+number"
+                  carouselSlide>
+            <div class="slide-page-content">
+              <div class="image-wrapper">
+                <img [alt]="page.title"
+                     [src]="page.imageSrc">
+              </div>
+              <h1 *ngIf="page.title" class="slide-title">{{ page.title }}</h1>
+              <div *ngIf="page.content" [innerHTML]="page.content | safeHtml" class="slide-content"></div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+      <!-- End Carousel -->
+
+      <!-- Dots -->
+      <div class="nav-dots">
+        <div (click)="slideToIndex(i)" *ngFor="let page of pages; let i = index"
+             [ngClass]="{'is-selected': currentSlide === i}"
+             class="dot"></div>
+      </div>
+      <!-- End Dots -->
+
+      <!-- Navigation -->
+      <div class="page-nav">
+        <ui-button (click)="nextStep()"
+                   class="digipay-btn next-step">
+          <ng-container>
+            <span *ngIf="currentSlide === pages.length - 1; else next">
+            شروع مسیر
+            </span>
+            <ng-template #next>
+              <span>
+              صفحه بعد
+              </span>
+            </ng-template>
+          </ng-container>
+        </ui-button>
+
+        <ui-button (click)="prevStep()"
+                   *ngIf="currentSlide > 0"
+                   appearance="BLUE-TEXT"
+                   class="prev-page">
+          صفحه قبل
+        </ui-button>
+      </div>
+      <!-- End Navigation -->
+    </div>
+  </div>
+</div>

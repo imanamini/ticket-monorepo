@@ -1,0 +1,22 @@
+@import "@digipay/base-style/swatch";
+
+:host {
+    width: 100%;
+    margin-top: 2.666rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+
+    .title {
+        font-weight: 800;
+        font-size: 1.33rem;
+        margin-right: 1rem;
+        color: $swatch_steel_900;
+    }
+
+    img {
+        cursor: pointer;
+    }
+}

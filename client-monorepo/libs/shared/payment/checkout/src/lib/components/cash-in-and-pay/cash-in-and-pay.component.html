@@ -1,0 +1,107 @@
+<payment-checkout-app-card
+  *ngIf="info(); else loading"
+  [submitText]="cardConfig?.submitText || ''"
+  [submitLoading]="loadingSubmit()"
+  [disableSubmitButton]="loadingSubmit()"
+  [amount]="info()?.amount || 0"
+  [headerTitle]="cardConfig?.headerTitle || ''"
+  [headerCloseButtonType]="'BACK'"
+  (clickedButton)="cashIn()"
+  [isBottomSheet]="true"
+>
+  <div
+    body
+    class="cash-in-container d-flex flex-column p-huge"
+  >
+    <div
+      *ngIf="info()?.rawAmount"
+      class="cash-in"
+    >
+      <div class="content">
+        <div class="description">
+          <div class="subtitle-wrapper">
+            <div class="subtitle d-flex align-items-center justify-content-center p-small surface-back">
+              <div class="balance-wrapper">
+                <span>موجودی فعلی </span>
+                <common-icon-dp-icon
+                  [icon]="'wallet'"
+                  [iconType]="'linear'"
+                  [classes]="'text-onback-low'"
+                  [iconSize]="'20'"
+                ></common-icon-dp-icon>
+              </div>
+              <p class="bt-3 d-flex align-items-center gap-tiny">
+                <span> {{ info()?.walletBalance | thousands }}</span>
+                <span class="is-currency"> ریال </span>
+              </p>
+            </div>
+          </div>
+
+          <span
+            class="title d-flex justify-content-center align-items-center st-8 mb-small"
+            *ngIf="(info()?.rawAmount ?? 0) >= (info()?.cashInXferMin ?? 0)"
+          >
+            مبلغ افزایش موجودی موردنیاز
+            <div
+              [ngxTooltip]="cardHintText() || ''"
+              [tooltipPosition]="'bottom'"
+              [tooltipType]="'click'"
+              class="p-tiny"
+            >
+              <common-icon-dp-icon
+                [icon]="'info-circle'"
+                [iconType]="'linear'"
+                [iconSize]="'24'"
+                [classes]="'text-onback-brand'"
+              ></common-icon-dp-icon>
+            </div>
+          </span>
+
+          <payment-checkout-hint
+            *ngIf="(info()?.rawAmount ?? 0) < (info()?.cashInXferMin ?? 0)"
+            [info]="info()!"
+          ></payment-checkout-hint>
+        </div>
+
+        <div
+          class="wrapper"
+          [formGroup]="form()"
+        >
+          <ui-form-field
+            [formControlName]="'amount'"
+            [type]="'large-amount'"
+            [maxAmount]="info()?.cashInXferMax || 0"
+            [minAmount]="info()?.cashInXferMin || 0"
+            class="amount-input pb-big"
+            [readonly]="true"
+          ></ui-form-field>
+        </div>
+
+        <form
+          [action]="info()?.payUrl"
+          #redirectPaymentForm
+          method="post"
+        >
+          <input
+            type="hidden"
+            [value]="(info()?.rawAmount ?? 0) < (info()?.cashInXferMin ?? 0) ? (info()?.cashInXferMin ?? 0) : (info()?.rawAmount ?? 0)"
+            name="amount"
+          />
+        </form>
+
+        <div
+          [ngClass]="{ 'hide-hint-with-animation': userCardHintWasRead, 'display-none': userCardHintAlreadyRead }"
+          class="card-hint"
+        >
+          <payment-checkout-user-card-hint (readAll)="onHintWasRead()"></payment-checkout-user-card-hint>
+        </div>
+      </div>
+    </div>
+  </div>
+</payment-checkout-app-card>
+
+<ng-template #loading>
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+</ng-template>

@@ -1,0 +1,79 @@
+@if (showBlog) {
+  <section class="blog-post-cards-layout">
+    <div class="container">
+      <h2 class="text-align-center heading-w900">{{ title }}</h2>
+      <div class="subtitle text-align-center">{{ subtitle }}</div>
+      <div
+        *ngIf="categories && categories.length > 0 && configCategories"
+        class="category-container"
+      >
+        <div class="blog-category__contain">
+          <div class="blog-category">
+            <app-ui-carousel
+              (slideChange)="changeTab($event)"
+              [carouselConfig]="configCategories"
+              [slidesData]="categories"
+              [nextBtnRef]="blogCardsNext"
+              [prevBtnRef]="blogCardsPrev"
+            >
+              <ng-template
+                let-category="slide"
+                let-itemIndex="slideIndex"
+                let-isActive="isActive"
+              >
+                <div
+                  (click)="changeTab(itemIndex)"
+                  [ngClass]="activeIndex === itemIndex ? 'active' : ''"
+                  class="links__item"
+                >
+                  <div class="link medium black">
+                    <a>
+                      <span>{{ category.title }}</span>
+                    </a>
+                  </div>
+                </div>
+              </ng-template>
+            </app-ui-carousel>
+          </div>
+        </div>
+        <div class="blog-post-cards-navigation">
+          <div
+            class="blog-post-cards-next"
+            #blogCardsPrev
+          >
+            <i class="horizontal-flow-icon__arrow-right"></i>
+          </div>
+          <div
+            class="blog-post-cards-prev"
+            #blogCardsNext
+          >
+            <i class="horizontal-flow-icon__arrow-left"></i>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="blog-post-cards-main"
+        *ngIf="config && blogPosts.length > 0"
+      >
+        <app-ui-carousel
+          [carouselConfig]="config"
+          [slidesData]="blogPosts"
+          class="blog-post-cards-tabs"
+        >
+          <ng-template
+            let-post="slide"
+            let-isActive="isActive"
+          >
+            <app-ui-blog-post-card
+              [blogPost]="post"
+              class="post-card"
+              [ngClass]="{ active: isActive }"
+            ></app-ui-blog-post-card>
+          </ng-template>
+        </app-ui-carousel>
+      </div>
+    </div>
+  </section>
+}
+

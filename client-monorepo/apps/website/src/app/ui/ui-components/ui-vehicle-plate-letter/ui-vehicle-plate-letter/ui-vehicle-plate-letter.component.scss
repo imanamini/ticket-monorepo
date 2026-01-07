@@ -1,0 +1,58 @@
+:host {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.letter {
+  width: 1em;
+  height: 1em;
+  background: no-repeat
+    url('/assets/images/driving-fine/letters-sprite-white.png') 0/100%;
+  cursor: pointer;
+  margin: 0 auto;
+
+  &.inverted {
+    background-image: url('/assets/images/driving-fine/letters-sprite-black.png');
+  }
+}
+
+$letters: (
+  '01',
+  '02',
+  '03',
+  '04',
+  '05',
+  '06',
+  '10',
+  '13',
+  '15',
+  '16',
+  '17',
+  '19',
+  '21',
+  '23',
+  '24',
+  '25',
+  '26',
+  '27',
+  '28',
+  '29',
+  '30',
+  '31',
+  '32',
+  '33',
+  '54',
+  '69'
+);
+
+$unitOfSprite: 1em;
+$position: $unitOfSprite;
+
+@each $letter in $letters {
+  $position: $position - $unitOfSprite;
+  .letter-#{$letter} {
+    background-position: 0 $position;
+  }
+}

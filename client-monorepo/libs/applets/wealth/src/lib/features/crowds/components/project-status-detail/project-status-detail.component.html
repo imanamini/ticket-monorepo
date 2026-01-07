@@ -1,0 +1,37 @@
+<div class="w-100 d-flex flex-wrap mt-big align-items-center justify-content-space-between">
+  <ngx-badge
+    [status]="crowd().successPercentage >= 100 ? 'success' : 'neutral'"
+    [size]="'md'"
+    [type]="'text'"
+    [mode]="'fill'"
+  >
+    @if (crowd().successPercentage >= 100) {
+      تکمیل طرح
+    } @else {
+      در حال تامین سرمایه
+    }
+  </ngx-badge>
+
+  <span class="text-onback-medium">
+    @if (crowd().successPercentage >= 100) {
+      طرح با موفقیت تکمیل شد
+    } @else {
+      {{ crowd().investmentDeadlineInDays }} روز تا پایان سرمایه گذاری
+    }
+  </span>
+</div>
+
+<div class="w-100 mt-minus">
+  <app-status-bar [barPercentage]="crowd().successPercentage" />
+</div>
+
+@if (crowd().successPercentage < 100) {
+  <div class="w-100 mt-small">
+    <p class="l-2 text-onback-high">
+      {{ crowd().investedAlready | iranianRials }}
+      <span class="text-onback-medium"> از </span>
+      {{ crowd().totalPrice | iranianRials }}
+      <span class="text-onback-medium"> تامین شده است. </span>
+    </p>
+  </div>
+}

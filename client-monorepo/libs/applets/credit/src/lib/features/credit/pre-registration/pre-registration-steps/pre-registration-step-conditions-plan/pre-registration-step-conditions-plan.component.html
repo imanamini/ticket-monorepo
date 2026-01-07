@@ -1,0 +1,58 @@
+<app-credit-app-bar
+  (onBackButtonClick)="goBack()"
+  [backButton]="true"
+  title="شرایط دریافت وام"
+></app-credit-app-bar>
+
+<div class="top-section d-flex flex-column pt-big px-plus flex-grow rtl">
+  <app-credit-scrollable-view
+    [fullHeightContent]="true"
+    [hasFade]="true"
+  >
+    <div class="flex-grow d-flex flex-column justify-content-space-between">
+      <div class="flex-grow d-flex align-items-center justify-content-center">
+        <div class="conditions-image radius-rounded border-300 border-color-air surface-glass-onelevated">
+          <div class="conditions-image_icon"></div>
+          <div class="conditions-image_blur-bg"></div>
+        </div>
+      </div>
+
+      <!-- TODO: Change with ngx-callout -->
+      <div class="radius-medium surface-back d-flex flex-column py-plus px-medium gap-small w-100">
+        @for (condition of conditions(); track $index) {
+          <div class="d-flex align-items-center gap-minus">
+            <div class="radius-rounded surface-high-contrast inverted size-6"></div>
+            <span class="b-2 text-onback-high">{{ condition.title }}</span>
+            @if (condition.description) {
+              <ngx-icon
+                [ngxTooltip]="condition.description"
+                tooltipType="hover"
+                class="text-onback-brand mr-tiny d-inline-block"
+                [name]="'info-circle'"
+                [iconSize]="'20px'"
+              />
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </app-credit-scrollable-view>
+</div>
+
+<div class="d-flex flex-column gap-plus align-items-start pt-big pb-plus px-plus">
+  <ngx-checkbox
+    [size]="24"
+    [(checked)]="acceptedCondition"
+  >
+    <span class="mr-minus"> تمام شرایط گفته شده در بالا را دارم. </span>
+  </ngx-checkbox>
+  <ngx-button
+    (clickHandler)="onSubmit()"
+    [fullWidth]="true"
+    [disabled]="!acceptedCondition() || loading()"
+    [isLoading]="loading()"
+    ngxTrackableId
+    trackerId="conditionConfirmButtonClick"
+    >ادامه
+  </ngx-button>
+</div>

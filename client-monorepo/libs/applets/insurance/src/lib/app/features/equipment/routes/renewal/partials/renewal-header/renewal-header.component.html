@@ -1,0 +1,42 @@
+<div
+  *ngIf="isMobile"
+  class="steps-mobile-header"
+>
+  <div class="title-wrapper">
+    @if (showBackBtn) {
+      <ngx-icon
+        (click)="handleBackClick($event)"
+        [type]="'linear'"
+        [iconSize]="'24px'"
+        [name]="closeIconName()"
+        class="cursor-pointer"
+      ></ngx-icon>
+    }
+    <span class="page-title">
+      {{ journey === JourneyNamesModel.RENEWAL ? 'تمدید بیمه نامه' : 'صدور بیمه نامه' }}
+    </span>
+  </div>
+  <!--  <div (click)="handleProfileClick($event)"-->
+  <!--       class="profile">-->
+  <!--    <img alt="profile" src="assets/icons/avatar-placeholder-light-blue.svg"/>-->
+  <!--  </div>-->
+</div>
+<div
+  *ngIf="!isMobile"
+  class="steps-header"
+>
+  <div class="header-item"></div>
+  <div class="header-item logo">
+    <img
+      alt="digipay"
+      src="insurance-assets/images/logos/digipay-old.svg"
+    />
+  </div>
+  <!--  <div class="header-item profile">-->
+  <!--    <ui-button-->
+  <!--      (clicked)="handleProfileClick($event)"-->
+  <!--      appearance="OUTLINE-BLUE">-->
+  <!--      پروفایل-->
+  <!--    </ui-button>-->
+  <!--  </div>-->
+</div>

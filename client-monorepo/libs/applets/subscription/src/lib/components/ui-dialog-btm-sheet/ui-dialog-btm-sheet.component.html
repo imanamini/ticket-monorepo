@@ -1,0 +1,26 @@
+<section class="container">
+  @if (hasHeader) {
+    <div class="header p-medium border-b-100 border-color-light">
+      <ng-content select="[header]"></ng-content>
+      @if (closeable) {
+        <span
+          class="icon-close"
+          (click)="close()"
+        ></span>
+      }
+      @if (title) {
+        <span
+          class="title"
+          [class.right]="titleRight"
+          >{{ title }}</span
+        >
+      }
+    </div>
+  }
+  <div class="body">
+    <ng-content select="[body]"></ng-content>
+  </div>
+  <div class="footer">
+    <ng-content select="[footer]"></ng-content>
+  </div>
+</section>

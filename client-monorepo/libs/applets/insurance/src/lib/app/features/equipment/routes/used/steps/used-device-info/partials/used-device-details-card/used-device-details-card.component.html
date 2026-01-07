@@ -1,0 +1,39 @@
+<div (click)="handleCardClick()"
+     [ngClass]="{'active': isActive}"
+     class="device-details-card">
+
+  <!-- Title and Checkbox -->
+  <div class="card-title-wrapper">
+    <div class="title">
+      {{ title }}
+    </div>
+    <div class="checkbox"></div>
+  </div>
+  <!-- End Title and Checkbox -->
+
+  <!-- Details -->
+  <div class="card-details-wrapper">
+    @if (mode === 'MULTI-DATA') {
+      @for (head of contentHeads; let i = $index; track head + '_' + i; let last = $last) {
+        <div class="details-section">
+          <div class="section-head">
+            {{ head }}
+          </div>
+          <div class="section-body">
+            {{ chooseBodyText(i) }}
+          </div>
+        </div>
+        @if (!last) {
+          <div class="divider">
+          </div>
+        }
+      }
+    } @else {
+      <div class="section-body">
+        {{ chooseBodyText(0) }}
+      </div>
+    }
+  </div>
+  <!-- End Details -->
+
+</div>

@@ -1,0 +1,36 @@
+@if (isLoading() || transactionCards().length) {
+  <common-ui-components-title-summary
+    [title]="'تاریخچه‌ی تراکنش‌ها'"
+    [navigationLink]="'/transactions/report/history'"
+    [isLoading]="isLoading()"
+    [wrapperClasses]="'mb-small'"
+  ></common-ui-components-title-summary>
+
+  <payment-transactions-transaction-cards
+    [id]="'past-transactions'"
+    [isLoading]="isLoading()"
+    [transactionCards]="transactionCards()"
+    [mode]="'history'"
+    [maxHeight]="'392px'"
+  ></payment-transactions-transaction-cards>
+} @else {
+  <common-ui-components-title-summary
+    [title]="'تاریخچه‌ی تراکنش‌ها'"
+    [showButton]="false"
+    [wrapperClasses]="'mb-small'"
+  ></common-ui-components-title-summary>
+  <div class="w-100 d-flex align-items-center justify-content-center flex-column gap-medium">
+    <img
+      src="assets/clock-dash.png"
+      class="no-item-image"
+    />
+    <div class="c-2 text-onback-high">شما هنوز در دیجی‌پی تراکنشی ندارید!</div>
+    <div class="w-100">
+      <ngx-callout
+        [title]="'با یکی از خدمات زیر شروع کنید:'"
+        [mode]="'multiple'"
+        [messages]="messages()"
+      ></ngx-callout>
+    </div>
+  </div>
+}

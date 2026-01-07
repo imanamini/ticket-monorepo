@@ -1,0 +1,130 @@
+<div class="d-flex flex-column surface-elevated w-100 share-upload-link-page h-100">
+  <div class="d-flex align-items-center header">
+    <floki-header
+      (iconClickHandler)="goBack()"
+      [hasIcon]="true"
+      [iconName]="'arrow-right'"
+      [iconTitle]="''"
+      [title]="'سلامت‌سنجی دستگاه'"
+      class="icon-color"
+      titleTextAlign="center"
+    >
+    </floki-header>
+  </div>
+
+  <ng-container [ngTemplateOutlet]="stepTemplate()"></ng-container>
+</div>
+
+<ng-template #onboarding_temp>
+  <div class="onboarding-container d-flex flex-column gap-minus pb-plus px-plus">
+    <div class="d-flex gap-huge flex-column align-items-center gap-plus py-plus flex-1 mb-mega">
+      <div
+        class="h-100 w-100 surface-glass tutorial-container radius-minus border-500 border-color-disabled flex-column d-flex justify-content-center align-items-center"
+        style="flex: 1; min-height: 200px">
+        <p class="radius-rounded p-minus button-bg-onback-job d-flex justify-content-center align-items-center">
+          <ngx-icon [iconSize]="'26px'"
+                    name="play"
+                    classes="button-text-onbrand"
+                    type="bold"></ngx-icon>
+        </p>
+      </div>
+      <div>
+        <p class="st-3 text-onback-high">آموزش نحوه سلامت‌سنجی دستگاه</p>
+        <p class="b-2 text-onback-medium">
+          برای اطمینان از صحت عملکرد دستگاه بیمه ‌شده، فرآیند سلامت‌سنجی دستگاه را پس از تماشای کامل ویدئو آموزشی آغاز
+          کنید.
+        </p>
+      </div>
+    </div>
+    <ngx-button
+      (click)="startProcessing()"
+      [fullWidth]="true"
+      [size]="'large'"
+      [style]="'fill'">
+      شروع فرآیند
+    </ngx-button>
+  </div>
+</ng-template>
+
+<ng-template #qrCode_temp>
+  <div class="qr-code-container d-flex gap-huge flex-column align-items-center gap-plus p-plus">
+    <div class="surface-glass-onelevated radius-minus flex-column d-flex justify-content-center align-items-center">
+      @if (!isLoading()) {
+        <qrcode
+          [qrdata]="uploadLink()!.url"
+          [allowEmptyString]="false"
+          [cssClass]="'center'"
+          [colorDark]="'#000000ff'"
+          [colorLight]="'#ffffffff'"
+          [elementType]="'canvas'"
+          [errorCorrectionLevel]="'H'"
+          [margin]="4"
+          [scale]="1"
+          [width]="256"
+        ></qrcode>
+      } @else {
+        <ngx-spinner/>
+      }
+    </div>
+    <div>
+      <p class="st-3 text-onback-high">آماده سازی دستگاه دوم برای فرآیند</p>
+      <p class="b-2 text-onback-medium">
+        کد QR بالا را با دستگاه دومی که برای ثبت تصاویر از دستگاه مورد بیمه استفاده می‌کنید اسکن کنید
+      </p>
+      <p class="bt-2 mt-big mb-giant text-onback-brand" (click)="onOpenSendSmsModal()">
+        امکان اسکن کردن ندارید؟
+      </p>
+    </div>
+    <div class="radius-medium surface-glass-onelevated p-medium">
+      <ol>
+        <li class="p-tiny">دوربین و یا نرم‌افزار اسکن کد QR را در تلفن همراه دوم باز کنید.</li>
+        <li class="p-tiny">برای اسکن کد QR، گوشی خود را به سمت این صفحه بگیرید.</li>
+        <li class="p-tiny">ادامه فرآیند را از طریق گوشی دوم انجام دهید.</li>
+      </ol>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #waiting_to_start_temp>
+  <div
+    class="waiting-to-start-container h-100 d-flex flex-column justify-content-center align-items-center gap-plus p-plus">
+    <div class="radius-rounded p-plus surface-back d-flex justify-content-center align-items-center">
+      <ngx-icon
+        [iconSize]="'48px'"
+        name="notification"
+        classes="button-text-neutral-link"
+        type="bold">
+      </ngx-icon>
+    </div>
+    <p class="st-4 text-onback-high">در انتظار باز کردن لینک ارسال شده</p>
+    <p class="text-align-center b-2 text-onback-medium">در زمان باقی مانده لینک ارسال شده برای شماره {{ phoneNumber() }}
+      را باز کرده و فرآیند را از طریق گوشی دوم ادامه دهید</p>
+    <ng-container [ngTemplateOutlet]="count_down_temp"
+                  [ngTemplateOutletContext]="{$implicit: UploadLinkEnum.Create}"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #in_progress_temp>
+  <div class="in_progress-container h-100 d-flex flex-column justify-content-center align-items-center gap-plus p-plus">
+    <ngx-waiting-stepper
+      [isSelfProgress]="true"
+      [timerDeadline]="stepperCountdown()"
+      [state]="waitingStepperState()"
+    ></ngx-waiting-stepper>
+    <p class="st-4 text-onback-high">فرآیند سلامت‌سنجی در جریان است</p>
+    <p class="text-align-center b-2 text-onback-medium">
+      در زمان باقی مانده فرآیند را از طریق گوشی دوم ادامه دهید و از بستن اپلیکیشن اجتناب کنید
+    </p>
+    <ng-container [ngTemplateOutlet]="count_down_temp"
+                  [ngTemplateOutletContext]="{$implicit: UploadLinkEnum.Viewed}"></ng-container>
+  </div>
+</ng-template>
+
+
+<ng-template #count_down_temp let-type>
+  <ngx-count-down
+    (finished)="startProcessing(type)"
+    [timeInSeconds]="countdown()"
+    [type]="'with-badge'"
+  />
+</ng-template>

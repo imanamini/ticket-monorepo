@@ -1,0 +1,126 @@
+.chances-container {
+  .bold-title {
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 42px;
+    color: #000;
+  }
+
+  .colored-chance {
+    border-radius: 4px;
+    background: linear-gradient(90deg, #EAC936 0%, #D4A40D 100%);
+    padding: 10px 18px;
+
+  }
+
+  .titr {
+    font-size: 22px;
+    font-weight: 400;
+  }
+
+  .chance-section-2 {
+    span {
+      font-size: 18px;
+      font-weight: 400;
+    }
+  }
+}
+
+
+.ghorekeshi {
+  height: 186px;
+  margin-top: 80px !important;
+  padding: 48px;
+  background: linear-gradient(90deg, #EAC936 0%, #D4A40D 100%);
+
+  .title {
+    text-align: center;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 42px; /* 140% */
+  }
+}
+
+
+.javayez {
+
+  .title {
+    text-align: center;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 42px; /* 140% */
+  }
+
+}
+
+
+@media (max-width: 1280px) {
+  .chances-container {
+    padding: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+
+
+    .action {
+      margin-bottom: 10px !important;
+      margin-top: 10px !important;
+
+      ui-button {
+        width: 100%;
+      }
+    }
+
+    .chance-section {
+      flex-direction: column !important;
+      padding: 0 45px;
+      text-align: center;
+      gap: 6px !important;
+    }
+
+    .titr {
+      flex-direction: column;
+    }
+
+    .chance-section-2 {
+      text-align: center;
+      padding: 0 20px;
+    }
+
+  }
+
+  .ghorekeshi {
+    padding: 48px 20px;
+    height: auto;
+
+    .title {
+      font-size: 22px;
+    }
+
+    .subtitle {
+      padding: 0 20px;
+      text-align: center;
+
+      span {
+        font-size: 18px !important
+      }
+    }
+  }
+
+  .javayez {
+
+    .title {
+      font-size: 22px;
+    }
+
+    .action {
+      width: 100%;
+
+      ui-button {
+        width: 100%;
+      }
+    }
+  }
+}

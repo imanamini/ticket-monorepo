@@ -1,0 +1,51 @@
+<app-base-layout [loaded]="loaded">
+  <ng-container *ngIf="carFineTemplateData && carFineTemplateData.templateData">
+    <!--    section 1-->
+    <app-driving-fine-product
+      [drivingFineInitialData]="carFineTemplateData.templateData.sectionFineInquiryAndPayment"
+    ></app-driving-fine-product>
+
+    <!--    section 2-->
+    <app-ui-section-benefits
+      *ngIf="carFineTemplateData.templateData.sectionBenefits"
+      [benefits]="carFineTemplateData.templateData.sectionBenefits"
+    ></app-ui-section-benefits>
+
+    <!--    section 3-->
+    <app-driving-fine-payment-methods
+      *ngIf="carFineTemplateData.templateData.sectionPaymentWays"
+      [paymentMethods]="carFineTemplateData.templateData.sectionPaymentWays"
+    ></app-driving-fine-payment-methods>
+
+    <!--    section 4-->
+    <app-ui-basic-segment-explanation
+      *ngIf="carFineTemplateData.templateData.sectionPaymentSteps"
+      [data]="carFineTemplateData.templateData.sectionPaymentSteps"
+      [rtl]="true"
+    ></app-ui-basic-segment-explanation>
+
+    <!--    section 5-->
+    <app-ui-similar-services
+      *ngIf="carFineTemplateData.templateData.sectionSimilarServices"
+      [data]="carFineTemplateData.templateData.sectionSimilarServices"
+    ></app-ui-similar-services>
+
+    <!--    section 6-->
+    <app-ui-seo
+      *ngIf="carFineTemplateData.templateData.sectionSeoContent"
+      [seoContent]="carFineTemplateData.templateData.sectionSeoContent"
+    ></app-ui-seo>
+
+    <!--    section 7-->
+    <app-ui-faq
+      *ngIf="
+        carFineTemplateData.templateData.faq &&
+        carFineTemplateData.templateData.faq.faqItems &&
+        carFineTemplateData.templateData.faq.faqItems.length > 0
+      "
+      [faqs]="carFineTemplateData.templateData.faq.faqItems"
+      [subtitle]="carFineTemplateData.templateData.faq.subtitle"
+      [title]="carFineTemplateData.templateData.faq.title"
+    ></app-ui-faq>
+  </ng-container>
+</app-base-layout>

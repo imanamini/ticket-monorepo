@@ -1,0 +1,17 @@
+<common-ui-components-page-layout
+  [stickyHeader]="false"
+  title="امتیازگیری"
+  [headerClasses]="'surface-back'"
+>
+  <div class="surface-back h-100 d-grid all-points-container gap-medium px-plus py-plus w-100">
+    @for (item of points(); track item) {
+      <pay-club-applet-ui-point-card
+        [title]="item.text"
+        [description]="item.description"
+        [points]="item.point"
+        [iconName]="item.icon"
+        (clicked)="onPointCardClick(item)"
+      ></pay-club-applet-ui-point-card>
+    }
+  </div>
+</common-ui-components-page-layout>

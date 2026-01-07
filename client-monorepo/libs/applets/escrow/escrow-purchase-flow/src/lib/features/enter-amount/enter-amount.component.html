@@ -1,0 +1,30 @@
+@if (showPayError()) {
+  <escrow-purchase-flow-applet-pay-error></escrow-purchase-flow-applet-pay-error>
+} @else {
+  <common-ui-components-page-layout
+    [showBorder]="true"
+    [stickyHeader]="true"
+    [showBackIcon]="false"
+    [title]="'خرید اعتباری امن'"
+  >
+    <div class="d-flex flex-column justify-content-space-between h-100vh p-medium">
+      <div>
+        <escrow-purchase-flow-applet-order-overview [order]="order"></escrow-purchase-flow-applet-order-overview>
+        <escrow-purchase-flow-applet-price-input
+          [order]="order"
+          (amount)="getPrice($event)"
+        ></escrow-purchase-flow-applet-price-input>
+      </div>
+      <ngx-button
+        [mode]="'form'"
+        [size]="'large'"
+        [style]="'fill'"
+        [fullWidth]="true"
+        (clickHandler)="openConfirmToPayBottomSheet()"
+        [disabled]="!isAmountValid()"
+      >
+        تایید و ادامه
+      </ngx-button>
+    </div>
+  </common-ui-components-page-layout>
+}

@@ -1,0 +1,7 @@
+<motor-info-box class="ex-insurer-motor-date"
+                text="تاریخ شروع و انقضای بیمه‌نامه قبلی خود را وارد کنید:"
+                (activeButtonClicked)="onSubmit()"
+                (deActiveButtonClicked)="handleDeActiveButtonClicked()">
+  <ex-insurer-motor-date-form [exInsurerMotorDateForm]="dateForm()"
+                              [showError]="showError()"></ex-insurer-motor-date-form>
+</motor-info-box>

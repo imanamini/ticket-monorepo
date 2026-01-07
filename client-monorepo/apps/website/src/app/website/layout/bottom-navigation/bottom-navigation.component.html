@@ -1,0 +1,35 @@
+<div class="bottom-navigation radius-giant mt-pony surface-elevated mx-auto surface-glass-onback elevation-dialog-blur">
+  <div class="d-flex align-items-center pt-pony pb-low px-small mx-pony justify-content-space-between">
+    @for (item of bottomNavigation(); track $index) {
+      <a
+        href="{{ item.link }}"
+        (click)="setActiveItem(item)"
+      >
+        <div
+          class="d-flex flex-column align-items-center justify-content-center gap-tiny item pt-tiny"
+          [ngClass]="{ active: item.isActive }"
+        >
+          <div class="logo-bottom-navigation d-flex">
+            <ngx-icon
+              [type]="item.isActive ? 'bold' : 'linear'"
+              [name]="item.logo"
+              [iconSize]="'24px'"
+              [ngClass]="{ 'text-onback-brand': item.isActive, 'text-onback-low': !item.isActive }"
+            ></ngx-icon>
+          </div>
+          <span class="discount" *ngIf="item.showBadge">
+             <ngx-icon
+               name="discount"
+               type="bold"
+               iconSize="16px"
+               class="text-onback-error"
+             ></ngx-icon>
+            </span>
+          <div class="title-bottom-navigation l-2">
+            {{ item.title }}
+          </div>
+        </div>
+      </a>
+    }
+  </div>
+</div>

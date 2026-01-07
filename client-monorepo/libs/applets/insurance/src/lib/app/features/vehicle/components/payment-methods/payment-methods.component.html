@@ -1,0 +1,148 @@
+<div class="payment-methods d-flex flex-column gap-plus p-plus surface-elevated radius-big">
+  <ngx-tabs>
+    @for (tab of segmentControls(); track tab.id) {
+      <ngx-tab
+        [iconName]="tab.id === selectedSegment()?.id ? tab.icon : ''"
+        [label]="tab.text"
+        [badgeContent]="tab?.badgeCount"
+        [state]="
+          isVerifyingBnpl() && tab.id !== selectedSegment()?.id ? 'disabled' : tab.id === selectedSegment()?.id ? 'selected' : 'enabled'
+        "
+        (stateChange)="handleMethodChanged($event, tab)"
+      ></ngx-tab>
+      @if (tab.id === 0) {
+        <button
+          style="display: none; opacity: 0; width: 0; height: 0"
+          (click)="handleMethodChanged('selected', tab)"
+          data-tracking-id="btn-select-wallet"
+        ></button>
+      }
+      @if (tab.id === 2) {
+        <button
+          style="display: none; opacity: 0; width: 0; height: 0"
+          (click)="handleMethodChanged('selected', tab)"
+          data-tracking-id="btn-select-IPG"
+        ></button>
+      }
+      @if (tab.id === 13) {
+        <button
+          style="display: none; opacity: 0; width: 0; height: 0"
+          (click)="handleMethodChanged('selected', tab)"
+          data-tracking-id="btn-select-bnpl"
+        ></button>
+      }
+    }
+  </ngx-tabs>
+
+  @if (inventory() && inventory().show) {
+    <div class="d-flex flex-row justify-content-center align-items-center gap-small p-small radius-minus surface-glass-high-contrast">
+      <div class="bnpl-icon-wrapper d-flex align-items-center justify-content-center p-small radius-medium surface-back">
+        <ngx-icon
+          [name]="inventory()?.iconName"
+          [classes]="selectedMethod()?.isBanned ? 'surface-dim-level-1' : inventory()?.iconClass"
+          type="bold"
+          iconSize="32px"
+        ></ngx-icon>
+      </div>
+      <div
+        class="d-flex flex-column"
+        [ngClass]="{ 'text-onback-medium': !selectedMethod()?.isBanned, 'text-onback-low': selectedMethod()?.isBanned }"
+      >
+        <div class="d-flex flex-row gap-micro align-items-center">
+          <span
+            class="c-2"
+            [textContent]="'موجودی ' + inventory().title + ' دیجی‌پی:'"
+          ></span>
+        </div>
+        <div
+          class="inventory-amount d-flex flex-row gap-tiny align-items-center st-4"
+          [ngClass]="{}"
+        >
+          <span [textContent]="inventory()?.amount"></span>
+          <span [textContent]="unit"></span>
+        </div>
+      </div>
+    </div>
+  }
+
+  <div class="d-flex flex-column align-items-center">
+    <bnpl-payment-method-card
+      [productType]="productType()"
+      (verifiedAllocationEmitter)="handleVerifiedAllocation($event)"
+      [isBanned]="selectedMethod()?.isBanned"
+      [bnplDetail]="getBnplExtraDetails()"
+      [hidden]="
+        selectedMethod()?.ticketType !== PurchaseTicketTypeEnum.BNPL ||
+        (!selectedMethod().isBanned && !getBnplExtraDetails()?.showVerificationAllocationButton)
+      "
+      (isVerifyingEmitter)="handleIsVerifying($event)"
+    ></bnpl-payment-method-card>
+  </div>
+
+  @if (!selectedMethod()?.isBanned && !getBnplExtraDetails()?.showVerificationAllocationButton) {
+    <div class="d-flex flex-column gap-small">
+      @for (item of paymentDetails(); track $index) {
+        <div class="d-flex flex-row gap-tiny align-items-center">
+          <div class="title-detail">
+            <span
+              [textContent]="item.title"
+              class="b-3"
+              [ngClass]="item.titleColor"
+            ></span>
+            @if (item.titleSuffix && item.titleSuffixColor) {
+              <span
+                [textContent]="' ' + item.titleSuffix"
+                [ngClass]="item.titleSuffixColor"
+              ></span>
+            }
+          </div>
+          <span
+            [textContent]="item.value"
+            [ngClass]="item.valueColor"
+            class="st-8"
+          ></span>
+          <span
+            [textContent]="item.valuePrefix"
+            [ngClass]="item.valueColor"
+            class="c-3 text-onback-medium"
+          ></span>
+        </div>
+      }
+
+      <ngx-divider
+        class="my-tiny"
+        dividerStyle="dashed"
+      ></ngx-divider>
+
+      <div class="d-flex flex-row gap-tiny align-items-center">
+        <span
+          [textContent]="'مبلغ حق بیمه نهایی'"
+          class="title-detail b-3 text-onback-low"
+        ></span>
+        @if (selectedMethod()?.discount && selectedMethod()?.discount.value) {
+          <span
+            [textContent]="this.thousandsPipe.transform(selectedMethod()?.totalAmount / 10)"
+            class="discount-amount b-2 text-onback-disabled"
+          ></span>
+        }
+
+        <span
+          [textContent]="this.thousandsPipe.transform(selectedMethod()?.payableAmount / 10)"
+          class="st-8 text-onback-high"
+        ></span>
+        <span
+          [textContent]="unit"
+          class="c-3 text-onback-medium"
+        ></span>
+      </div>
+    </div>
+    @if (selectedMethod()?.discount) {
+      <voucher
+        [productType]="productType()"
+        [voucher]="selectedMethod().discount"
+        [ticketType]="selectedMethod()?.ticketType"
+        (voucherChange)="handleVoucherChanged($event)"
+      ></voucher>
+    }
+  }
+</div>

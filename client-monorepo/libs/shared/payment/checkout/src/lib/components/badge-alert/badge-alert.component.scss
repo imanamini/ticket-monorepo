@@ -1,0 +1,61 @@
+.w-100 {
+  width: 100%;
+}
+
+
+
+.dialog-container {
+  padding: 16px;
+  .header {
+    position: relative;
+
+    .close-icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      // todo fix close svg
+      // background: url("../../../../../assets/icon/close.svg") no-repeat 0 0/100%;
+    }
+  }
+
+  .body {
+    .title {
+      margin: 12px 0;
+      font-size: 18px;
+      color: #2c3544;
+      text-align: center;
+    }
+
+    .logo-wrapper {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    .description {
+      font-size: 14px;
+      color: #6e798d;
+      line-height: 1.71;
+      text-align: right;
+      direction: rtl;
+      margin-bottom: 24px;
+    }
+
+  }
+
+  .footer {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}

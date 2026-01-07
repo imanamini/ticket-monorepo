@@ -1,0 +1,13 @@
+<div class="bnpl-menu-title">پرسش‌های متداول</div>
+<div class="bnpl-menu-container">
+  <div class="bnpl-help-menu-list">
+    @for (item of data()?.sections; track item; let i = $index) {
+      <div
+        (click)="scrollTo(i)"
+        class="bnpl-help-menu-item"
+      >
+        {{ item.menuTitle }}
+      </div>
+    }
+  </div>
+</div>

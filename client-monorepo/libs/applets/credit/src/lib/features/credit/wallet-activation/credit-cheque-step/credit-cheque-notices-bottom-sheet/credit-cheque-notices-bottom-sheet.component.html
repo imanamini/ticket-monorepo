@@ -1,0 +1,20 @@
+<div class="notices-bottom-sheet pt-big pb-medium d-flex flex-column flex-grow">
+  <div class="d-flex flex-column flex-grow">
+    <div class="d-flex flex-column flex-grow align-items-center justify-content-center rtl px-plus pt-small">
+      <app-credit-notices
+        [notices]="notices"
+        [title]="'برای جلوگیری از رد چک موارد زیر را رعایت کنید:'"
+      ></app-credit-notices>
+    </div>
+  </div>
+  <div class="mt-big px-plus">
+    <ngx-button
+      (clickHandler)="close()"
+      [fullWidth]="true"
+      [style]="'fill'"
+      ngxTrackableId
+      trackerId="chequeNoticeBottomSheetButtonClick"
+      >تایید و ادامه
+    </ngx-button>
+  </div>
+</div>

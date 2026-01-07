@@ -1,0 +1,27 @@
+<ngx-bottom-sheet-header
+  [showResizable]="false"
+  [title]="'راهنمای ثبت صیادی'"
+></ngx-bottom-sheet-header>
+<div class="d-flex flex-column gap-large flex-grow w-100 p-plus">
+  <div class="d-flex w-100 flex-column gap-small">
+    @for (icons of allIcons; track $index) {
+      <div class="icon-container d-flex flex-row justify-content-center flex-nowrap align-items-center gap-medium">
+        @for (iconName of icons; track $index) {
+          <div class="radius-rounded bank-icon {{ iconName }}"></div>
+        }
+      </div>
+    }
+  </div>
+  <span class="b-2 text-onback-high">
+    برای ثبت چک در سامانه صیاد، می‌توانید از یکی از اپلیکیشن‌ <b>آپ</b> و یا از <b>اینترنت‌بانک</b> و <b>همراه‌بانک</b> بانک صادرکننده چک
+    استفاده کنید.
+  </span>
+  <ngx-button
+    (clickHandler)="close()"
+    [fullWidth]="true"
+    [style]="'fill'"
+    ngxTrackableId
+    trackerId="chequeSayadHintBottomSheetConfirmButtonClick"
+    >متوجه شدم
+  </ngx-button>
+</div>

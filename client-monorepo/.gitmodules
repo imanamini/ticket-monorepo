@@ -1,0 +1,68 @@
+#Apps
+[submodule "apps/website"]
+	path = apps/website
+	url = https://repo.mydigipay.info/frontend/monorepo/client-monorepo-sub-modules/apps/website
+	ignore = all
+
+[submodule "apps/wealth"]
+	path = apps/wealth
+	url = https://repo.mydigipay.info/frontend/monorepo/client-monorepo-sub-modules/apps/wealth
+	ignore = all
+
+[submodule "apps/escrow"]
+	path = apps/escrow
+	url = https://repo.mydigipay.info/frontend/monorepo/client-monorepo-sub-modules/apps/escrow
+	ignore = all
+
+[submodule "apps/pillar"]
+	path = apps/pillar
+	url = https://repo.mydigipay.info/frontend/monorepo/client-monorepo-sub-modules/apps/pillar
+	ignore = all
+
+#Applets
+[submodule "libs/applets/credit/src/lib/features/credit"]
+	path = libs/applets/credit/src/lib/features/credit
+	url = https://repo.mydigipay.info/frontend/sub-modules/credit.git
+	branch = master
+	ignore = all
+
+[submodule "libs/applets/wealth"]
+	path = libs/applets/wealth
+	url = https://repo.mydigipay.info/frontend/monorepo/client-monorepo-sub-modules/applets/wealth
+	ignore = all
+
+
+[submodule "libs/applets/escrow"]
+	path = libs/applets/escrow
+	url = https://repo.mydigipay.info/frontend/monorepo/client-monorepo-sub-modules/applets/escrow
+	ignore = all
+
+[submodule "libs/applets/daily-fintech"]
+	path = libs/applets/daily-fintech
+	url = https://repo.mydigipay.info/frontend/monorepo/client-monorepo-sub-modules/applets/daily-fintech
+  ignore = all
+
+[submodule "libs/applets/payment"]
+	path = libs/applets/payment
+	url = https://repo.mydigipay.info/frontend/monorepo/client-monorepo-sub-modules/applets/payment
+	ignore = all
+
+[submodule "libs/applets/pillar"]
+	path = libs/applets/pillar
+	url = https://repo.mydigipay.info/frontend/monorepo/client-monorepo-sub-modules/applets/pillar
+	ignore = all
+
+[submodule "libs/applets/insurance"]
+	path = libs/applets/insurance
+	url = https://repo.mydigipay.info/frontend/monorepo/client-monorepo-sub-modules/applets/insurance
+	ignore = all
+
+[submodule "libs/applets/stores"]
+	path = libs/applets/stores
+	url = https://repo.mydigipay.info/frontend/monorepo/client-monorepo-sub-modules/applets/stores
+	ignore = all
+
+[submodule "libs/applets/bnpl"]
+	path = libs/applets/bnpl
+	url = https://repo.mydigipay.info/frontend/monorepo/client-monorepo-sub-modules/applets/bnpl
+	ignore = all

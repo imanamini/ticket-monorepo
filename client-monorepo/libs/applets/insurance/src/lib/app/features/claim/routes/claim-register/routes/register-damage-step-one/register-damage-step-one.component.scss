@@ -1,0 +1,15 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.coverage {
+  .sub-header {
+    font-weight: 600;
+    color: #2c3544;
+    padding: 10px 24px;
+    line-height: 1.71;
+  }
+
+  &-content {
+    flex: 1;
+    overflow: auto;
+  }
+}

@@ -1,0 +1,54 @@
+<div class="container surface-elevated">
+  <div class="header">
+    <subscription-applet-section-title
+      class="section-title-container"
+      [type]="service.type"
+      [hasAction]="hasNextAction"
+      (nextActionClicked)="goToBnpl()"
+    >
+      <span class="arrow-icon"></span>
+    </subscription-applet-section-title>
+  </div>
+  <div class="content border-100 text-onback-disabled">
+    <div class="row border-b-100 text-onback-disabled">
+      <span class="row-title">نحوه بازپرداخت:</span>
+      <span class="installment-count">{{ bnplDetailConfig?.installmentCount }} قسط</span>
+    </div>
+    <div class="row border-b-100 text-onback-disabled">
+      <span class="row-title">میزان اعتبار:</span>
+      <span class="amount-value">{{
+        service?.status === SERVICE_STATUS.USED ? (service?.allocatedAmount | thousands) : (service?.amount | thousands) + 'تومان'
+      }}</span>
+    </div>
+    <div class="row border-b-100 text-onback-disabled">
+      <span class="row-title">وضعیت:</span>
+      <subscription-applet-ui-status
+        [status]="service.status"
+        [serviceType]="service.type"
+      ></subscription-applet-ui-status>
+    </div>
+  </div>
+  @if (service?.errorContent && service?.status === SERVICE_STATUS.REJECTED) {
+    <div class="error-content-container">
+      <div class="error-message">
+        <span class="icon-error"></span>
+        <span class="error-text">{{ service?.errorContent?.description }}</span>
+      </div>
+      @if (service?.errorContent?.retryable) {
+        <ngx-button
+          [size]="'small'"
+          [fullWidth]="true"
+          [style]="'tinted-on-back'"
+          [disabled]="retryIsLoading"
+          (clickHandler)="handleRetryButton()"
+        >
+          بررسی مجدد
+          <!--          TODO-->
+          <!--          <ng-container button-icon>-->
+          <!--            <img src="assets/icons/retry-blue.svg" />-->
+          <!--          </ng-container>-->
+        </ngx-button>
+      }
+    </div>
+  }
+</div>

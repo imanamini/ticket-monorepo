@@ -1,0 +1,25 @@
+@import "base-style/tokens/theme-surface";
+
+:host {
+  @extend .surface-back;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.floki-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: 100%;
+  box-sizing: border-box;
+  max-width: var(--max-width-container);
+  width: 100%;
+  border: {
+    left-width: 1px;
+    right-width: 1px;
+    style: solid;
+    color: var(--border-light);
+  }
+}
+

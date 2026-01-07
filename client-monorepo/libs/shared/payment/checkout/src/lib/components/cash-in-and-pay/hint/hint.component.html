@@ -1,0 +1,9 @@
+<div class="required-amount">
+  <span class="title">مبلغ مورد نیاز</span>
+  <div class="amount">{{ info.rawAmount | thousands: 'hideRial' }}<small class="is-currency"> ریال</small></div>
+  <div class="arrow-down"></div>
+  <div class="description">
+    حداقل مبلغ مجاز
+    <payment-checkout-user-card-tooltip [info]="info"></payment-checkout-user-card-tooltip>
+  </div>
+</div>

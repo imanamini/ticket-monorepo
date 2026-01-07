@@ -1,0 +1,23 @@
+<div
+  class="w-100 d-flex align-items-center radius-big mt-medium px-medium py-small surface-back cursor-pointer"
+  (click)="pendingTransactions.emit()"
+>
+  <div class="w-50">
+    <p class="text-onback-medium c-3">{{ title() }}</p>
+  </div>
+  <div class="w-50 d-flex justify-content-end align-items-center gap-tiny">
+    <ngx-badge
+      size="sm"
+      status="warning"
+      mode="bold"
+      type="count"
+      classList="text-oninvert-high"
+    >
+      {{ count() }}
+    </ngx-badge>
+    <ngx-icon
+      [name]="'arrow-2-left'"
+      [type]="'linear'"
+    />
+  </div>
+</div>

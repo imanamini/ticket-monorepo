@@ -1,0 +1,24 @@
+@if (!gettingData()) {
+  @if (!selectedAgreement) {
+    <app-credit-wallet-detail-header-menu-agreements-list
+      [agreements]="agreements()!"
+      (agreementClicked)="onAgreementHandler($event)"
+      (goMainClicked)="goMain()"
+    >
+    </app-credit-wallet-detail-header-menu-agreements-list>
+  }
+  @if (selectedAgreement()) {
+    <app-credit-wallet-detail-header-menu-agreements-view
+      [agreement]="selectedAgreement()!"
+      (backClicked)="onBackHandler()"
+    >
+    </app-credit-wallet-detail-header-menu-agreements-view>
+  }
+}
+
+@if (gettingData()) {
+  <ngx-spinner
+    size="md"
+    color="primary"
+  ></ngx-spinner>
+}

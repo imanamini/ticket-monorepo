@@ -1,0 +1,20 @@
+<section class="merchants-digikala-credit-promotion">
+  <div class="container">
+    <app-credit-promotion-tech-best-sellers
+      *ngIf="creditPromotionData.techBestSellers"
+      [creditPromotionTechBestSellers]="creditPromotionData.techBestSellers"
+    ></app-credit-promotion-tech-best-sellers>
+    <app-credit-renew-home-with-installments
+      *ngIf="creditPromotionData.renewHomeWithInstallments"
+      [renewHomeWithInstallmentsData]="creditPromotionData.renewHomeWithInstallments"
+    ></app-credit-renew-home-with-installments>
+    <app-gain-credit-offer
+      *ngIf="creditPromotionData.gainCreditOffer"
+      [gainCreditOfferData]="creditPromotionData.gainCreditOffer"
+    ></app-gain-credit-offer>
+    <app-credit-smartest-installments
+      *ngIf="creditPromotionData.smartestInstallments"
+      [smartestInstallmentData]="creditPromotionData.smartestInstallments"
+    ></app-credit-smartest-installments>
+  </div>
+</section>

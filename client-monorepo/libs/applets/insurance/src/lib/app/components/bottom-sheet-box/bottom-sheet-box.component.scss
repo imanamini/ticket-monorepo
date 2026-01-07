@@ -1,0 +1,17 @@
+@import "insurance/src/lib/app/style/mixins/ios";;
+
+.bottom-sheet-box {
+  @include set-container-height-style-ios();
+  margin-bottom: 0;
+
+  &-holder {
+    width: 40px;
+    height: 4px;
+  }
+
+  &-content {
+    flex: 1;
+    overflow: auto;
+  }
+}
+

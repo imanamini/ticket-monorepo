@@ -1,0 +1,21 @@
+:host {
+  position: relative;
+  --background-gradient-start: rgba(223, 255, 228, 1);
+  --background-gradient-center: rgba(222, 237, 255, 1);
+  --background-gradient-end: rgba(242, 243, 246, 1);
+  content: '';
+  display: block;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 140%;
+  background: var(--background-gradient-end);
+  background: radial-gradient(at bottom left, var(--background-gradient-start) 8%,
+          var(--background-gradient-center) 44%,
+          var(--background-gradient-end) 75%);
+}
+
+.icon {
+  min-width: 48px;
+  height: 48px;
+}

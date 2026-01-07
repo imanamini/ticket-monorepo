@@ -1,0 +1,270 @@
+@import '../beta-app.component';
+
+.multiple {
+  position: absolute;
+  top: 35%;
+  right: -50px;
+  width: 3%;
+}
+
+.za-container {
+  max-width: 1110px;
+  margin: auto;
+  width: 100%;
+}
+
+.za-section-title > p {
+  line-height: 56px;
+  margin-bottom: 10px;
+}
+
+.za-modal-text > p {
+  text-align: center;
+}
+
+.za-intro__desc > p {
+  line-height: 32px;
+  text-align: justify;
+}
+
+.za-modal-text > p {
+  text-align: center;
+}
+
+.za-modalWindow .za-modalWrapper .za-button__simple {
+  display: flex;
+  justify-content: center;
+}
+
+.za-button__simple > p,
+.za-button__simple > a {
+  color: white;
+  border-radius: 12px;
+  display: inline-flex;
+  min-height: 48px;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  padding: 0 45px;
+  cursor: pointer;
+}
+
+.za-button__simple {
+  margin-top: 35px;
+  display: inline-block;
+}
+
+.za-section-title {
+  text-align: center;
+  align-items: center;
+}
+
+.za-feature__items > ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.za-feature__items {
+  position: relative;
+}
+
+li.za-feature__item {
+  width: 33%;
+  padding: 0 30px;
+  justify-content: end;
+}
+
+.za-feature__item-title {
+  text-align: center;
+  margin: 40px 0 20px;
+  line-height: 40px;
+}
+
+.za-feature__item-desc > p {
+  line-height: 32px;
+  text-align: justify;
+}
+
+.za-feature .za-button__simple {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.multiple-second {
+  width: 2%;
+  position: absolute;
+  bottom: 4%;
+  right: 10%;
+  z-index: -1;
+}
+
+.za-intro__desc:after {
+  content: '';
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: block;
+  background-color: #fff5ee;
+  position: absolute;
+  right: 30%;
+  bottom: 23%;
+}
+
+section.za-new-version {
+  background: #f7f9fe;
+  margin-bottom: 0;
+}
+
+.za-new-version__content {
+  padding: 70px 0 120px;
+}
+
+.line {
+  width: 20%;
+  position: absolute;
+  right: -10%;
+  bottom: 2%;
+  z-index: -1;
+}
+
+li.za-new-version__item > div {
+  background: white;
+  border-radius: 24px;
+  padding: 16px 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+li.za-new-version__item {
+  padding: 06px 0;
+}
+
+.za-new-version__item-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.za-new-version--right {
+  display: flex;
+  width: 18%;
+  align-items: center;
+}
+
+.za-feature__item-icon > i {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  box-shadow: 2px 2px 20px 0 rgba(44, 53, 68, 0.11);
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 26px;
+}
+
+.za-intro__desc {
+  margin-top: 15px;
+}
+
+.za-modal-inset {
+  padding: 50px 65px 30px;
+}
+
+.za-download-app input {
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+}
+
+.za-download-app span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #afb9c5;
+}
+
+.za-download-app span.active {
+  border: 2px solid #0040ff;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background-color: #f0f5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0040ff;
+}
+
+.za-feature__item-icon img {
+  width: 100%;
+}
+
+.za-new-version__content .section-title {
+  margin-bottom: 40px;
+}
+
+.za-new-version__item-icon {
+  margin-left: 12px;
+}
+
+.za-new-version__item-icon > i {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.za-new-version__item-icon img {
+  width: 100%;
+}
+
+section.za-feature {
+  margin-bottom: 70px;
+}
+
+section {
+  margin-bottom: 60px;
+}
+
+.za-feature__content .section-title {
+  margin-bottom: 50px;
+}
+
+li.za-feature__item > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.za-feature__item-icon {
+  display: flex;
+  align-items: center;
+}
+
+.za-new-version__item-desc {
+  line-height: 24px;
+}
+
+@media (max-width: 900px) {
+  li.za-feature__item {
+    width: 100%;
+    margin-bottom: 50px;
+    padding: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .za-section-title > p {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .za-button__simple {
+    margin: 20px 0 30px;
+    width: 100%;
+  }
+}

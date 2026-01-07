@@ -1,0 +1,48 @@
+@import "@digipay/base-style/swatch";
+
+:host {
+  display: block;
+}
+
+$padding: 6px;
+
+.suggestions {
+  direction: rtl;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 (-1 * $padding);
+
+  .suggestion-wrapper {
+    flex: 0 1 33.33%;
+    padding: 0 $padding;
+  }
+
+  .suggestion {
+    background: $swatch_steel_100;
+    text-align: center;
+    font-size: 12px;
+    padding: 8px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px transparent;
+    cursor: pointer;
+    margin: 0 0 12px 0;
+    white-space: nowrap;
+    color: $swatch_steel_500;
+
+    &.selected {
+      box-shadow: 0 0 0 2px $swatch_blue_500;
+      background-color: #f0f5ff;
+      color: $swatch_blue_500;
+    }
+  }
+}
+
+
+@media only screen and (max-width: 320px) {
+  .suggestion {
+    font-size: 11px;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+  }
+}

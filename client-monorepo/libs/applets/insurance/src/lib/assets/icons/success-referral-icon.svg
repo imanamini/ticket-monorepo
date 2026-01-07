@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="116" height="73" viewBox="0 0 116 73">
+    <defs>
+        <path id="fohmjtojwa" d="M0 0H56.589V56.516H0z"/>
+        <path id="ddn6czxiyb" d="M0 0H56.589V56.516H0z"/>
+        <path id="jiz4az9x3c" d="M28.295 51.806c-13.023 0-23.58-10.543-23.58-23.548 0-13.005 10.557-23.548 23.58-23.548 13.022 0 23.579 10.543 23.579 23.548 0 13.005-10.557 23.548-23.58 23.548z"/>
+        <path id="e2o7tcevee" d="M36.083 19.547c.916-.944 2.4-.944 3.315 0 .915.945.915 2.475 0 3.42l-14.253 14.71-7.954-8.21c-.915-.944-.914-2.475 0-3.42.915-.945 2.4-.944 3.314 0l4.64 4.79 10.938-11.29z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g transform="translate(-122 -451) translate(124 451)">
+                <g stroke="#FFD500" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.358">
+                    <path d="M-.783 4.68L10.171 4.709M4.679-.788L4.709 10.177" transform="translate(0 22.371) rotate(40 4.694 4.694)"/>
+                </g>
+                <path fill="#FFD500" d="M91.958 3.532C91.958 1.582 90.374 0 88.42 0c-1.953 0-3.537 1.582-3.537 3.532s1.584 3.533 3.537 3.533c1.953 0 3.537-1.582 3.537-3.533"/>
+                <path stroke="#789AFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.358" d="M18.863 49.452L4.716 56.516M112 18.839L95.495 24.726"/>
+                <path stroke="#0040FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.358" d="M107.284 56.516L90.779 50.629M21.221 11.774L14.147 3.532"/>
+                <g transform="translate(28.295 2.355)">
+                    <g/>
+                    <mask id="2mmkoahiwd" fill="#fff">
+                        <use xlink:href="#jiz4az9x3c"/>
+                    </mask>
+                    <g fill="#00CC6D" mask="url(#2mmkoahiwd)">
+                        <path d="M0 0H56.589V56.516H0z"/>
+                    </g>
+                    <mask id="knayorg4af" fill="#fff">
+                        <use xlink:href="#e2o7tcevee"/>
+                    </mask>
+                    <g fill="#FFF" mask="url(#knayorg4af)">
+                        <path d="M0 0H56.589V56.516H0z"/>
+                    </g>
+                </g>
+                <ellipse cx="56.589" cy="69.468" fill="#F0F5FF" rx="23.579" ry="3.532"/>
+            </g>
+        </g>
+    </g>
+</svg>

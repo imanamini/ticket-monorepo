@@ -1,0 +1,26 @@
+.page-content {
+  text-align: center;
+  direction: rtl;
+  color: #4d4d4d;
+  padding-top: 84px;
+
+  .title {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .text {
+    font-weight: 200;
+    font-size: 12px;
+    margin: 16px 0 0;
+    line-height: 1.8em;
+  }
+
+  .score {
+    margin-bottom: 32px;
+  }
+}
+
+.actions {
+  margin: 88px 0 0;
+}

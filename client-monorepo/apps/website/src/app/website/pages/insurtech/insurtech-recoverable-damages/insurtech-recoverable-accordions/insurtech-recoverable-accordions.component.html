@@ -1,0 +1,10 @@
+<div class="accordions">
+  @if (recoverableDamages()?.directCover?.accordions) {
+    <app-ui-complex-accordion
+      (setActiveAccordion)="setActiveAccordion($event)"
+      [accordionIndex]="0"
+      [activeAccordion]="activeAccordion()"
+      [section]="recoverableDamages().directCover.accordions"
+    ></app-ui-complex-accordion>
+  }
+</div>

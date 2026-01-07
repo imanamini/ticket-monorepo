@@ -1,0 +1,72 @@
+<section class="services__flow">
+  <div
+    *ngIf="flow"
+    class="container"
+  >
+    <div class="section-title text-align-center">
+      <div class="section-title__title bold">
+        <h2>{{ flow?.title }}</h2>
+      </div>
+    </div>
+    <div class="services__flow--content">
+      <div class="services__flow-right">
+        <div class="services__flow-contain">
+          <div>
+            <ul>
+              <li
+                (mouseenter)="changeActiveItem(i)"
+                *ngFor="let item of flow?.steps; let i = index"
+                [ngClass]="{ act: i == activeIndex }"
+                class="services__flow-item"
+              >
+                <div class="services__flow-item--numb">
+                  <span>{{ i + 1 }}</span>
+                </div>
+                <div class="services__flow-item--contain">
+                  <div class="services__flow-item--title">{{ item.title }}</div>
+                  <div class="services__flow-item--desc">
+                    {{ item.description }}
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          *ngIf="flow?.notice"
+          class="services__flow-notice"
+        >
+          <div>
+            {{ flow?.notice }}
+          </div>
+        </div>
+      </div>
+      <div class="services__flow-left">
+        <div class="services__flow--mockup">
+          <div>
+            <ul>
+              <li
+                *ngFor="let item of flow?.steps; let j = index"
+                [ngClass]="{ act: j === activeIndex }"
+                class="services__flow--mockup-step"
+              >
+                <div
+                  *ngIf="item.images.mainImage && item.images.mainImage.url"
+                  [ngStyle]="{
+                    backgroundImage: 'url(' + item.images.mainImage.url + ')',
+                  }"
+                ></div>
+                <div
+                  *ngIf="item.images.focusImage && item.images.focusImage.url"
+                  [ngStyle]="{
+                    backgroundImage: 'url(' + item.images.focusImage.url + ')',
+                  }"
+                ></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,36 @@
+@if (isOpen()) {
+  <div class="d-flex flex-column gap-medium pt-minus">
+    @for (filter of filters(); track $index) {
+      <div class="d-flex flex-row gap-small justify-content-start align-items-center py-tiny">
+        <ngx-checkbox
+          [size]="16"
+          [checked]="isSelected(filter.id)"
+          (checkedChange)="handleCheckChange(filter.id, $event)"
+        ></ngx-checkbox>
+        <div
+          class="d-flex flex-row justify-content-start b-2"
+          (click)="handleCheckChange(filter.id, !isSelected(filter.id))"
+        >
+          {{ filter.label }}
+        </div>
+      </div>
+    }
+  </div>
+} @else {
+  @if (selectedFilters().length > 0) {
+    <div class="method-chips d-flex flex-row gap-small">
+      @for (filter of selectedFilters(); track $index) {
+        <ngx-chip
+          [id]="filter.id"
+          [size]="'MEDIUM'"
+          [pressed]="true"
+          [disableAnimations]="true"
+          [label]="filter.label"
+          [disableClick]="true"
+          [trailingIcon]="'close'"
+          (trailingIconClicked)="handleTrailingIconClicked(filter)"
+        ></ngx-chip>
+      }
+    </div>
+  }
+}

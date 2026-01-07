@@ -1,0 +1,47 @@
+<div class="button-select-list-items d-flex flex-column">
+  <div class="d-flex flex-row align-items-center px-plus pt-medium pb-minus border-color-light border-b-300">
+    <span [textContent]="data.title"
+          class="st-6 text-onback-high"></span>
+  </div>
+
+  @if (data.searchable) {
+    <div
+      class="d-flex flex-row align-items-center px-medium mb-small mt-minus  ">
+      <div
+        class="d-flex flex-row align-items-center gap-small px-medium py-minus w-100 border-300 radius-minus border-color-light">
+        <input [placeholder]="data.searchInputPlaceHolder"
+               [formControl]="searchFormControl"
+               class="search-input border-none px-pony">
+        <ngx-icon [iconSize]="24"
+                  name="search"
+                  type="linear"></ngx-icon>
+      </div>
+    </div>
+  }
+
+  <div class="items-box d-flex flex-column">
+    @for (item of items(); track item.value; let i = $index) {
+      <div class="d-flex flex-row align-items-center gap-small px-medium py-minus cursor-pointer"
+           [ngClass]="{'border-b-300 border-color-tint': data.isDivider && i < data.items.length - 1,
+                       'surface-brand-tint': data.type !== ButtonSelectItemTypeEnum.CHECK_BOX && item.selected }"
+           (click)="handleItemSelected(item)">
+        @if (data.type === ButtonSelectItemTypeEnum.CHECK_BOX) {
+          <ngx-checkbox [size]="24"
+                        [checked]="item.selected"></ngx-checkbox>
+        } @else if (data.type === ButtonSelectItemTypeEnum.RADIO_BUTTON) {
+          <ngx-radio-button [size]="24"
+                            [checked]="item.selected"></ngx-radio-button>
+        }
+        <span [textContent]="item.title" class="b-2 text-onback-medium"></span>
+      </div>
+    }
+  </div>
+
+  @if (data.type === ButtonSelectItemTypeEnum.CHECK_BOX) {
+    <action-buttons [activeButtonText]="data.buttonText"
+                    [showDeActiveButton]="false"
+                    [backgroundMode]="'transparent'"
+                    (activeButtonClicked)="handleButtonClicked()"></action-buttons>
+  }
+
+</div>

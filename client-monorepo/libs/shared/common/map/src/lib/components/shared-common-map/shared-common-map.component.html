@@ -1,0 +1,28 @@
+<div
+  id="map"
+  style="height: 100%; width: 100%"
+></div>
+@if (showLocateMeButton()) {
+  <div
+    [ngStyle]="{
+      height: locateButtonConfig()?.height ?? '48px',
+      width: locateButtonConfig()?.width ?? '48px',
+      fontSize: locateButtonConfig()?.fontSize ?? '20px',
+      textAlign: locateButtonConfig()?.textAlign ?? 'center',
+      background: locateButtonConfig()?.background ?? '#000436',
+      color: locateButtonConfig()?.color ?? 'white',
+      padding: locateButtonConfig()?.padding ?? '12px',
+      bottom: locateButtonConfig()?.bottom ?? '16px',
+      right: locateButtonConfig()?.right ?? '16px',
+      position: 'absolute',
+      zIndex: 10000,
+    }"
+    class="d-flex justify-content-center align-items-center cursor-pointer radius-rounded"
+    (click)="moveToCurrentLocation()"
+  >
+    <common-icon-dp-icon
+      [icon]="locateButtonConfig()?.icon ?? 'locate-me'"
+      [iconSize]="locateButtonConfig()?.iconSize ?? '24'"
+    ></common-icon-dp-icon>
+  </div>
+}

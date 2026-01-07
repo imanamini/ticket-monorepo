@@ -1,0 +1,23 @@
+<section class="sec-about-vision d-flex flex-column justify-content-center align-items-center pb-hulk">
+  <div class="vision-bg-wrapper">
+    <img class="vision-bg" src="/assets/images/about/about-us-history-bg.svg" alt=""/>
+  </div>
+  <div class="about-vision-title mb-large">{{ templateData?.mainVision?.title }}</div>
+  <div class="about-vision-subtitle bt-1 mb-giant">{{ templateData?.mainVision?.subtitle }}</div>
+  <div class="about-us-vision-list d-flex flex-wrap justify-content-space-between gap-plus mt-plus">
+    @for (item of templateData?.mainVision?.visions; track $index) {
+      <div
+        class="about-us-vision-item d-flex flex-column justify-content-center align-items-center surface-glass-onelevated radius-big">
+        <div class="vision-feature__image mb-large">
+          <img src="{{item.image?.url}}" alt="{{item.image?.altText}}">
+        </div>
+        <div class="vision-feature__title mb-small t-5">
+          {{ item.title }}
+        </div>
+        <div class="vision-feature__subtitle b-2">
+          {{ item.description }}
+        </div>
+      </div>
+    }
+  </div>
+</section>

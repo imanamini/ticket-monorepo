@@ -1,0 +1,53 @@
+@if (!gettingStatus()) {
+  @switch (status()) {
+    @case (statusEnum.INITIATED) {
+      <app-credit-account-block-init
+        (close)="closeStep()"
+        (finish)="reloadStatus()"
+        [creditId]="creditId()!"
+        class="flex-full-height"
+      ></app-credit-account-block-init>
+    }
+    @case (statusEnum.FAILED) {
+      <app-credit-account-block-failed
+        (close)="closeStep()"
+        class="flex-full-height"
+      ></app-credit-account-block-failed>
+    }
+    @case (statusEnum.PENDING) {
+      @if (pendingCounter() === 1) {
+        <app-credit-account-block-in-progress
+          (close)="closeStep()"
+          (finishCountDown)="reloadStatus()"
+          class="flex-full-height"
+        ></app-credit-account-block-in-progress>
+      } @else {
+        <app-credit-account-block-in-progress-sms
+          (close)="closeStep()"
+          class="flex-full-height"
+        ></app-credit-account-block-in-progress-sms>
+      }
+    }
+    @case (statusEnum.TIME_OUT) {
+      <app-credit-account-block-no-service
+        (close)="closeStep()"
+        (retry)="retryBlock()"
+        class="flex-full-height"
+      ></app-credit-account-block-no-service>
+    }
+    @case (statusEnum.REJECTED) {
+      <app-credit-account-block-rejected
+        (close)="closeStep()"
+        class="flex-full-height"
+      ></app-credit-account-block-rejected>
+    }
+    @case (statusEnum.SUCCESS) {
+      <app-credit-account-block-success
+        (close)="closeStep()"
+        (nextStep)="nextStep()"
+        class="flex-full-height"
+      ></app-credit-account-block-success>
+    }
+  }
+}
+<credit-page-loading [active]="gettingStatus()!"></credit-page-loading>

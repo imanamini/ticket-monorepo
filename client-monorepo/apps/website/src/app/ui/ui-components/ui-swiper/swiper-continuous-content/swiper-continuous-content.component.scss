@@ -1,0 +1,132 @@
+@import 'globals';
+
+:host ::ng-deep {
+  .section-swiper-continuous-content {
+    //background: #fff;
+    overflow: hidden;
+    position: relative;
+    //padding: 36px 0;
+
+    .container {
+      background: #fff;
+      border-radius: 16px;
+      padding: 36px 50px;
+    }
+
+    .swiper {
+      overflow: visible;
+    }
+
+    .swiper-wrapper {
+      margin-bottom: 0;
+      padding-right: 0;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+    }
+
+    .swiper-slide-visible > .item-card {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .item-card {
+      display: flex;
+      align-items: center;
+      line-height: 1.5;
+      position: relative;
+
+      .title {
+        font-weight: 500;
+        font-size: 16px;
+      }
+
+      .subtitle {
+        font-weight: 400;
+        font-size: 14px;
+      }
+
+      .icon {
+        display: flex;
+        align-items: center;
+        margin-left: 16px;
+      }
+
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+
+  div.swiper-button-disabled {
+    opacity: 0;
+  }
+
+  .swiper-continuous-button-next,
+  .swiper-continuous-button-prev {
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .swiper-continuous-button-next {
+    right: 0;
+  }
+
+  .swiper-continuous-button-prev {
+    left: 20px;
+  }
+
+  .swiper-continuous-button-next i,
+  .swiper-continuous-button-prev i {
+    font-family: 'icomoon';
+    font-size: 25px;
+    font-style: normal;
+    color: #828cb1 !important;
+    text-decoration: none;
+  }
+
+  .swiper-continuous-icon__arrow-left:before {
+    content: '\e900';
+    color: $text-color;
+  }
+
+  .swiper-continuous-icon__arrow-right:before {
+    content: '\e904';
+    color: $text-color;
+  }
+
+  @media (max-width: 1280px) {
+    .section-swiper-continuous-content {
+      //background: #fff;
+      .container {
+        margin: 0;
+        max-width: 100%;
+        border-radius: unset;
+        //padding: unset;
+      }
+    }
+  }
+  @media (max-width: 744px) {
+    .section-swiper-continuous-content {
+      .container {
+        padding: 24px;
+      }
+    }
+    .benefit-card {
+      margin: auto;
+    }
+
+    .front-title {
+      width: 100%;
+    }
+
+    .benefit-service-cards .benefit-card > div {
+      height: 128px;
+    }
+  }
+}

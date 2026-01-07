@@ -1,0 +1,24 @@
+<div class="partners container">
+  <div class="title">{{title}}</div>
+  <div class="subtitle st-4 text-onback-low text-align-center mt-minus">
+    {{ subtitle }}
+  </div>
+  <div class="mt-giant swiper-partner-container">
+    <swiper-container
+      appSwiper
+      #swiper="appSwiper"
+      [config]="config">
+      <ng-container *ngFor="let item of partnerItems">
+        <swiper-slide class="partner-item swiper-slide" >
+          <div class="partner-item-logo">
+            <img [src]="item.itemLogo.url" alt="{{ item.itemTitle }}">
+          </div>
+          <div class="partner-item-title">
+            {{ item.itemTitle }}
+          </div>
+        </swiper-slide>
+
+      </ng-container>
+    </swiper-container>
+  </div>
+</div>

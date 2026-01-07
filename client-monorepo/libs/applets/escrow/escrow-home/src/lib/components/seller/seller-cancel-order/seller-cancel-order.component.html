@@ -1,0 +1,52 @@
+<div>
+  <p class="st-8 mb-medium">لطفا یکی از دلایل لغو سفارش را انتخاب کنید:</p>
+  <ngx-divider
+    [color]="BorderColorsEnum.Air"
+    orientation="horizontal"
+  ></ngx-divider>
+  <div class="mt-medium">
+    @for (reason of refundReasonList(); track $index) {
+      <div class="d-flex flex-row py-tiny gap-small py-small mb-medium">
+        <div class="d-flex justify-content-center align-items-center">
+          <ngx-radio-button
+            [size]="20"
+            [checked]="reason.code === selectedReason().code"
+            (checkedChange)="handleCheckChange(reason.code, $event)"
+          ></ngx-radio-button>
+        </div>
+        <p
+          class="b-2 text-onback-medium"
+          (click)="handleCheckChange(reason.code, reason.code !== selectedReason().code)"
+        >
+          {{ reason.description }}
+        </p>
+      </div>
+    }
+  </div>
+  <div
+    [formGroup]="form"
+    class="h-80"
+  >
+    <ui-form-field
+      [formControlName]="'description'"
+      [label]="'لطفا دلیل خود را بنویسید:'"
+      [inputType]="'text'"
+      [error]="form.controls['description'].errors ?? {}"
+      [errorMessageMapper]="{ maxLength: 'حداکثر 255 کاراکتر' }"
+      [multiLine]="true"
+      [lock]="selectedReason().code !== 4"
+    ></ui-form-field>
+  </div>
+  <div class="mt-big">
+    <ngx-button
+      [mode]="'form'"
+      [size]="'large'"
+      [style]="'fill'"
+      [disabled]="!selectedReason().code"
+      [fullWidth]="true"
+      (clickHandler)="cancelOrder()"
+    >
+      تایید
+    </ngx-button>
+  </div>
+</div>

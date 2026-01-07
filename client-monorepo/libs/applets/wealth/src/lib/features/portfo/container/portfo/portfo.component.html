@@ -1,0 +1,41 @@
+<div class="w-100 d-flex flex-wrap pb-big">
+  <wealth-applet-app-bar-wrapper
+    class="w-100"
+    [title]="'سبد دارایی'"
+    (onBack)="onBackHandler()"
+  />
+
+  @if (loading()) {
+    <app-spinner class="w-100 h-100" />
+  } @else {
+    <div class="w-100 px-plus d-flex flex-column mt-small">
+      <div class="w-100 d-flex flex-wrap radius-medium surface-elevated pr-plus pl-minus pb-big">
+        <app-portfo-assets [assets]="portfolios()" />
+      </div>
+
+      @if (walletBalance() !== null) {
+        <div class="w-100 mt-big">
+          <app-portfo-etf
+            [canSee]="canSee()"
+            [balance]="walletBalance()"
+            [showWithdrawButton]="canWithdraw()"
+          />
+        </div>
+      }
+
+      <div class="mt-huge">
+        <wealth-applet-portfo-pending-transactions
+          [transactions]="transactions()"
+          [type]="type()"
+          [totalUnits]="totalUnits()"
+          [totalAmount]="totalAmount()"
+          [loadingTransactions]="loadingTransactions()"
+          [canSee]="canSee()"
+          [state]="state()"
+          (updateFilter)="updateFilter($event)"
+          (goToTransactions)="goToTransactions()"
+        />
+      </div>
+    </div>
+  }
+</div>

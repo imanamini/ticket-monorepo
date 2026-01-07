@@ -1,0 +1,11 @@
+<div class="flex-grow justify-content-center">
+  <ngx-status-result
+    (clicked)="openGuidBottomSheet()"
+    [buttons]="buttons()"
+    [description]="description()"
+    title="اشکال در دسترسی به دوربین"
+    [iconState]="'error'"
+    [type]="'Status'"
+  >
+  </ngx-status-result>
+</div>

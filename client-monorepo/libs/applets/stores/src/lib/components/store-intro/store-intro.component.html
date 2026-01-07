@@ -1,0 +1,20 @@
+@if (isOpen()) {
+  <div class="d-flex flex-column gap-small pt-small">
+    <span
+      class="c-3 text-onback-medium text-align-right store-description"
+      [innerHTML]="store()?.description"
+    ></span>
+    <div class="d-flex justify-content-end">
+      <ngx-button
+        [style]="'fill'"
+        [brandButton]="true"
+        [size]="'small'"
+        [mode]="'section'"
+        [rightIcon]="shoppingGuideIcon"
+        (clickHandler)="goToShoppingGuide()"
+      >
+        راهنمای خرید
+      </ngx-button>
+    </div>
+  </div>
+}

@@ -1,0 +1,74 @@
+@import "@digipay/base-style/swatch";
+.price-container {
+  background-color: #F2F3F6D9;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  //width: 25rem;
+  gap: 1rem;
+
+  .price-unit-title {
+    display: flex;
+    justify-content: space-between;
+    .unit-name {
+      display: flex;
+      font-size: 1.5rem;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    .price-unit-type {
+      color: $swatch_blue_500;
+      border: 1px solid $swatch_blue_500;
+      padding: 0.5rem;
+      border-radius: 2rem;
+      height: 1rem;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+    }
+  }
+  .price-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    .price-cost {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.16667rem;
+
+      .price-cost-text {
+        display: flex;
+        font-weight: 400;
+        color: $swatch_steel_500;
+      }
+      .price-cost-value {
+        display: flex;
+        font-weight: 700;
+        color: $swatch_steel_900;
+      }
+    }
+    .price-amount {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .price-amount-text {
+        display: flex;
+        font-weight: 400;
+        color: $swatch_steel_500;
+        align-items: center;
+
+        img{
+          margin-right: 0.5rem;
+        }
+      }
+      .price-amount-value {
+        display: flex;
+        font-weight: 700;
+        color: $swatch_steel_900;
+      }
+    }
+  }
+}

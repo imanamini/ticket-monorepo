@@ -1,0 +1,38 @@
+<label
+  (click)="wrapperClick($event)"
+  [ngClass]="{
+    disabled: !enabled,
+    'blue-border': blueBorder,
+    'has-error': errorState,
+    'mobile-mode': mobileMode,
+  }"
+  class="ui-amount-input"
+>
+  <span
+    *ngIf="!(value && value.length > 0)"
+    class="unit empty"
+    >(ریال)</span
+  >
+  <span
+    *ngIf="value && value.length > 0"
+    class="unit"
+    >ریال</span
+  >
+  <input
+    #input
+    (ngModelChange)="onValueChanged($event)"
+    [attr.disabled]="!enabled ? 'disabled' : null"
+    [attr.maxlength]="maxLength ? maxLength : null"
+    [attr.placeholder]="value && value.length > 0 ? null : placeholder"
+    [ngClass]="{ 'has-placeholder': !(value && value.length > 0) }"
+    [ngModel]="value"
+    [style.width]="inputWidth + 'px'"
+    numpad="price"
+    type="text"
+  />
+</label>
+<span
+  *ngIf="withHint"
+  class="hint"
+  >{{ hint }}</span
+>

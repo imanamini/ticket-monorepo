@@ -1,0 +1,47 @@
+<app-base-layout
+  [justShowLogo]="true"
+  [loaded]="loaded"
+>
+  <ng-container *ngIf="cCreditPageData && cCreditPageData.templateData">
+    <app-credit-intro
+      *ngIf="cCreditPageData.templateData.sectionIntro"
+      [data]="cCreditPageData.templateData.sectionIntro"
+      [firstCta]="creditIntroCta.firstCta"
+      [secondCta]="creditIntroCta.secondCta"
+      [isEntekhab]="isEntekhab"
+    ></app-credit-intro>
+
+    <app-c-credit-club-registering
+      *ngIf="cCreditPageData.templateData.sectionRegistering"
+      [CCreditRegisteringData]="cCreditPageData.templateData.sectionRegistering"
+      [certainFundProviderCode]="selectedBank"
+      [userType]="userType"
+      [isEntekhab]="isEntekhab"
+    ></app-c-credit-club-registering>
+
+    <!--    <app-credit-stores-->
+    <!--      *ngIf="merchants"-->
+    <!--      [creditStores]="merchants"-->
+    <!--      id="merchants"-->
+    <!--    ></app-credit-stores>-->
+
+    <app-ui-horizontal-flow
+      *ngIf="cCreditPageData.templateData.sectionFlow && cCreditPageData.templateData.sectionFlow.steps.length > 0"
+      [steps]="cCreditPageData.templateData.sectionFlow.steps"
+      [title]="cCreditPageData.templateData.sectionFlow.title"
+      id="section-flow"
+    >
+    </app-ui-horizontal-flow>
+
+    <app-ui-faq
+      *ngIf="
+        cCreditPageData.templateData.faq &&
+        cCreditPageData.templateData.faq.faqItems &&
+        cCreditPageData.templateData.faq.faqItems.length > 0
+      "
+      [faqs]="cCreditPageData.templateData.faq.faqItems"
+      [subtitle]="cCreditPageData.templateData.faq.subtitle"
+      [title]="cCreditPageData.templateData.faq.title"
+    ></app-ui-faq>
+  </ng-container>
+</app-base-layout>

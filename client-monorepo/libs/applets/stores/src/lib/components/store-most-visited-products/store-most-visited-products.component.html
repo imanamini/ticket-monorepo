@@ -1,0 +1,33 @@
+@if (!products() || products()?.length) {
+  <div class="mt-big mx-plus">
+    <common-ui-components-section>
+      <common-ui-components-title-summary
+        [title]="'پربازدیدترین محصولات'"
+        [showButton]="false"
+      ></common-ui-components-title-summary>
+
+      <div class="mt-pony d-flex flex-column gap-tiny">
+        @if (!isLoading()) {
+          @for (product of products(); track product.title) {
+            <common-stores-product-preview
+              [product]="product"
+              [mode]="'img-desc'"
+              [backgroundMode]="'back'"
+              (clicked)="goToProductPage($event)"
+              [position]="$index + 1"
+              [hasDivider]="!$last"
+            ></common-stores-product-preview>
+          }
+        } @else {
+          @for (_ of rangeCreator(5); track $index) {
+            <common-stores-product-preview
+              [isLoading]="true"
+              [backgroundMode]="'back'"
+              [mode]="'img-desc'"
+            ></common-stores-product-preview>
+          }
+        }
+      </div>
+    </common-ui-components-section>
+  </div>
+}

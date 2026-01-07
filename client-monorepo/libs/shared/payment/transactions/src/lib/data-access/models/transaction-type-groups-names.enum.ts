@@ -1,0 +1,17 @@
+export enum TransactionTypeGroupsNamesEnum {
+  C2C = 'کارت به کارت',
+  CHARGE = 'شارژ و بسته',
+  BILL = 'قبض',
+  TOLL = 'عوارض جاده‌ای',
+  DONATION = 'خیریه',
+  WALLET = 'کیف پول',
+  PURCHASE = 'خرید',
+  FINE = 'جریمه',
+  INVEST = 'سرمایه‌گذاری',
+  LOAN = 'وام و اعتبار',
+  REWARD = 'هدیه',
+  REFUND = 'بازگشت وجه',
+  INSTALLMENT = 'قسط',
+  TAXI = 'کرایه تاکسی',
+  Wealth = 'کیف ثروت',
+}

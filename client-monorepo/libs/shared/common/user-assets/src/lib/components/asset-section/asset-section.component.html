@@ -1,0 +1,17 @@
+<div class="assets-slider mb-big">
+  <common-user-assets-assets-slider-v2
+    [userAssets]="userAssets()"
+    [isNewUser]="isNewUser()"
+    [mode]="mode()"
+  ></common-user-assets-assets-slider-v2>
+</div>
+@if (showPromotions() && mode() === 'FULL') {
+  <div
+    [@slideIn]
+    class="promotions-wrapper px-plus pb-medium"
+  >
+    <common-user-assets-assets-promotions-widget
+      [availablePromotions]="availablePromotions()"
+    ></common-user-assets-assets-promotions-widget>
+  </div>
+}

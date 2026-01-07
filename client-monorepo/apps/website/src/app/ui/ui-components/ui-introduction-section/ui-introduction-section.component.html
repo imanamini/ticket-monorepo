@@ -1,0 +1,53 @@
+<section>
+  <div class="container">
+    <div
+      [style.backgroundImage]="banner && banner.url ? 'url(' + banner.url + ')' : ''"
+      class="banner"
+    >
+      <div class="titles">
+        <div class="titles-container">
+          <div
+            *ngIf="data.title"
+            class="title"
+          >
+            <h1>{{ data.title }}</h1>
+          </div>
+          <div
+            *ngIf="data.subtitle"
+            class="subtitle"
+          >
+            <span [innerHTML]="data.subtitle"></span>
+          </div>
+        </div>
+        <div
+          *ngIf="data.firstCta && data.firstCta.title"
+          class="desktop-ctas ml-auto"
+        >
+          <app-ui-button
+            (clicked)="scrollToElement(scrollToFirstElementId, 'center')"
+            [id]="data.firstCta.id"
+            [link]="data.firstCta.link ? data.firstCta.link : ''"
+            appearance="FLAT-BLUE"
+            class="first-cta-button"
+          >
+            {{ data.firstCta.title }}
+          </app-ui-button>
+        </div>
+      </div>
+      <div
+        *ngIf="data.firstCta && data.firstCta.title"
+        class="mobile-ctas"
+      >
+        <app-ui-button
+          (clicked)="scrollToElement(scrollToFirstElementId, 'center')"
+          [id]="data.firstCta.id"
+          [link]="data.firstCta.link ? data.firstCta.link : ''"
+          appearance="FLAT-BLUE"
+          class="first-cta-button"
+        >
+          {{ data.firstCta.title }}
+        </app-ui-button>
+      </div>
+    </div>
+  </div>
+</section>

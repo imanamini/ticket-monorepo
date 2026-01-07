@@ -1,0 +1,29 @@
+<div class="w-100 d-flex p-medium">
+  <p class="c-1 text-onback-high">
+    مطالعه
+    <span
+      class="cursor-pointer text-onback-brand"
+      (click)="agreementView(pdfType.PROSPECTUS)"
+      >امیدنامه
+    </span>
+    @if (assetSymbol() === '11421' || assetSymbol() === '11394' || assetSymbol() === '10883') {
+      ،
+    } @else {
+      و
+    }
+    <span
+      class="cursor-pointer text-onback-brand"
+      (click)="agreementView(pdfType.STATUTE)"
+      >اساسنامه
+    </span>
+    @if (assetSymbol() === '11421' || assetSymbol() === '11394' || assetSymbol() === '10883') {
+      و
+      <span
+        class="cursor-pointer text-onback-brand"
+        (click)="agreementView(pdfType.CONTRACT)"
+      >
+        قرارداد دیجی‌پی
+      </span>
+    }
+  </p>
+</div>

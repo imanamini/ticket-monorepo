@@ -1,0 +1,148 @@
+<section>
+  <div class="container">
+    <div class="intro-section position-relative">
+      <div class="banner-container d-flex justify-content-space-between">
+        <div class="text-section d-flex flex-column justify-content-space-between">
+          <div class="d-flex flex-column gap-big">
+            <span class="title fs-34">{{ heroSection.title }}</span>
+            <span class="subtitle fs-20">{{ heroSection.subtitle }}</span>
+            <span class="cta">
+              <app-ui-button
+                class="button-red"
+                appScrollToAnchor="scrollAnchor"
+              >
+                {{ heroSection.cta.title }}
+                <span
+                  [size]="24"
+                  icon="icon-arrow-left-white"
+                  class="mr-tiny"
+                  appUiIcon
+                ></span>
+              </app-ui-button>
+            </span>
+          </div>
+          <div class="d-flex gap-medium align-items-center support-wrapper">
+            <div>
+              <span class="position-relative logo">
+                <img
+                  src="/assets/images/contactus-bg.svg"
+                  alt=""
+                />
+                <span class="position-absolute img-logo">
+                  <img
+                    src="/assets/images/icons/icon-phone.svg"
+                    alt=""
+                  />
+                </span>
+              </span>
+            </div>
+            <div class="support">
+              <span class="fs-14"> نیاز به پشتیبانی دارید ؟ </span>
+              <p class="fs-22">
+                <a href="tel:02153924000">021-53924000</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="image-section">
+          <span class="cta-mobile">
+            <app-ui-button
+              class="button-red"
+              [withoutHref]="true"
+              [link]="heroSection.cta.link ? heroSection.cta.link : ''"
+            >
+              {{ heroSection.cta.title }}
+              <span
+                [size]="24"
+                icon="icon-arrow-left-white"
+                class="mr-tiny"
+                appUiIcon
+              ></span>
+            </app-ui-button>
+          </span>
+          <div class="d-flex gap-medium flex-column support-wrapper-mobile">
+            <div>
+              <span class="position-relative logo">
+                <img
+                  src="assets/images/contactus-bg.svg"
+                  alt=""
+                />
+                <span class="position-absolute img-logo">
+                  <img
+                    src="assets/images/icons/icon-phone.svg"
+                    alt=""
+                  />
+                </span>
+              </span>
+            </div>
+            <div class="support">
+              <span class="fs-14"> نیاز به پشتیبانی دارید ؟ </span>
+              <p class="fs-22">021-53924000</p>
+            </div>
+          </div>
+          <div class="box">
+            <div class="circle position-relative">
+              <span class="position-absolute img">
+                <img [src]="heroSection?.image?.url" />
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="statistics d-flex flex-column gap-massive">
+        <h3 class="text-align-center statistics-title fs-27">چرا در دیجی‌پی پذیرنده باشم؟</h3>
+        <div class="statistics-list d-flex align-items-center justify-content-space-between">
+          <div class="statistics-item d-flex flex-column gap-minus justify-content-center align-items-center">
+            <span>
+              <img
+                src="assets/images/icons/icon-store.svg"
+                alt="Icon"
+              />
+            </span>
+            <span>
+              <span class="fs-34 counter"> {{ dailyVisit }} + </span>هزار
+            </span>
+            <span class="fs-14"> بازدید روزانه از فروشگاه شما </span>
+          </div>
+          <div class="statistics-item d-flex flex-column gap-minus justify-content-center align-items-center">
+            <span>
+              <img
+                src="assets/images/icons/icon-users.svg"
+                alt="Icon"
+              />
+            </span>
+            <span>
+              <span class="fs-34 counter"> {{ userCount }} + </span>میلیون
+            </span>
+            <span class="fs-14"> کاربر با وام و اعتبار فعال </span>
+          </div>
+          <div class="statistics-item d-flex flex-column gap-minus justify-content-center align-items-center">
+            <span>
+              <img
+                src="assets/images/icons/icon-loan.svg"
+                alt="Icon"
+              />
+            </span>
+            <span>
+              <span class="fs-34 counter"> {{ loanCount }} + </span>هزار میلیارد تومان
+            </span>
+            <span class="fs-14"> اعطای اعتبار به کاربران </span>
+          </div>
+          <div class="statistics-item d-flex flex-column gap-minus justify-content-center align-items-center">
+            <span>
+              <img
+                src="assets/images/icons/icon-headset.svg"
+                alt="Icon"
+              />
+            </span>
+            <span>
+              <span class="fs-34 counter"> {{ timeCount }} </span> ساعته
+            </span>
+            <span class="fs-14"> پشتیبانی و پاسخگویی </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

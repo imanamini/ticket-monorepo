@@ -1,0 +1,38 @@
+<div class="w-100 d-flex flex-wrap">
+  <div class="d-flex justify-content-center w-100 position-relative">
+    <img
+      src="./wealth-assets/images/swap-notifier.svg"
+      alt=""
+    />
+    <div class="d-flex justify-content-center align-items-center gap-micro badge-container radius-minus plate-bg-primary px-small py-pony">
+      <p class="badge-title">تبدیل دارایی</p>
+      <div class="badge-icon-container surface-brand radius-rounded d-flex">
+        <ngx-icon
+          class="text-oninvert-high badge-icon"
+          name="transaction"
+          secondaryColor="surface-elevated"
+          iconSize="14px"
+        ></ngx-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-100 mt-large">
+    <p class="w-100 text-align-center st-5 text-onack-high">تبدیل دارایی، قابلیت جدید کیف ثروت</p>
+    <p class="w-100 text-align-right c-3 text-onack-medium mt-minus">
+      بدون نیاز به فروش و خرید جداگانه در چند ثانیه دارایی‌های خود را به راحتی به یکدیگر تبدیل کنید.
+    </p>
+  </div>
+
+  <div class="w-100 d-flex mt-huge">
+    <ngx-button
+      [style]="'fill'"
+      [mode]="'section'"
+      [fullWidth]="true"
+      [size]="'medium'"
+      (clickHandler)="confirm()"
+    >
+      متوجه شدم
+    </ngx-button>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+.video-bg {
+  position: relative;
+  background: url("/assets/shared/stores/social/user-guide-bg.svg") no-repeat;
+  background-size: contain;
+}
+
+:host ::ng-deep .shopping-guide-callout {
+   div {
+    padding-right: 0 !important;
+    padding-top: 0 !important;
+  }
+}

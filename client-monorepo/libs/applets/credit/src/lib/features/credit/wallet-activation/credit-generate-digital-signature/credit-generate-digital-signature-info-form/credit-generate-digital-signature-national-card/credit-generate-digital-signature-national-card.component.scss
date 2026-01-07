@@ -1,0 +1,49 @@
+@import "@digipay/base-style/styleguide";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.ltr {
+  direction: ltr;
+}
+
+.card-image {
+  width: 360px;
+  height: 193px;
+  background: url("../../assets/national-card.webp") no-repeat center center;
+  background-size: contain;
+}
+
+input {
+  height: 46px;
+  overflow: hidden;
+  transition: all 0.3s;
+  background: transparent;
+  padding: 0;
+
+  &:focus {
+    outline: none;
+    border-color: #{map-get($surface-colors, "brand")};
+    background-color: #{map-get($surface-colors, "brand-tint")};
+  }
+
+  &.ng-invalid.ng-touched {
+    border-color: #{map-get($surface-colors, "error")};
+    background-color: #{map-get($surface-colors, "error-tint")};
+  }
+
+  &.single-number {
+    width: 46px;
+    flex: 0 0 46px;
+  }
+
+  &.single-character {
+    width: 46px;
+    flex: 0 0 46px;
+    text-transform: uppercase;
+  }
+}
+

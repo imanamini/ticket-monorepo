@@ -1,0 +1,54 @@
+<div class="w-100 d-flex flex-column surface-elevated h-100dvh">
+  <ngx-app-bar
+    class="w-100"
+    [title]="pageTitle()"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="flex-1 d-flex flex-column w-100 px-plus mt-mega">
+    <p class="b-2">کد ارسال شده به شماره موبایل حساب سجام را وارد کنید.</p>
+    <ngx-otp
+      class="mt-big"
+      [(otp)]="otpCode"
+      [otpLength]="4"
+      [supportText]="supportText()"
+      [status]="otpStatus()"
+    />
+  </div>
+
+  <div class="w-100 d-flex align-items-center justify-content-center surface-elevated px-plus py-medium sticky-action-group gap-medium">
+    <ngx-button
+      buttonId="CAMPAIGN_RESEND_OTP"
+      [style]="'tinted-on-elevated'"
+      size="medium"
+      [disabled]="inProgress()"
+      (clickHandler)="resend()"
+    >
+      @if (inProgress()) {
+        <ngx-count-down
+          [timeInSeconds]="countDown()"
+          [type]="'mm:ss'"
+          (finished)="onTimerStopped()"
+        ></ngx-count-down>
+      } @else {
+        <span>ارسال دوباره کد</span>
+      }
+    </ngx-button>
+    <ngx-button
+      buttonId="CAMPAIGN-OTP-CONFIRM"
+      [style]="'fill'"
+      size="medium"
+      [isLoading]="btnLoading()"
+      [disabled]="btnDisabled()"
+      (clickHandler)="registerCustomer()"
+    >
+      تایید و ادامه
+    </ngx-button>
+  </div>
+</div>

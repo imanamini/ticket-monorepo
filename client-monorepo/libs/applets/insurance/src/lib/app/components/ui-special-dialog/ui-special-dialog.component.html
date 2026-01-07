@@ -1,0 +1,23 @@
+<div class="dialog-container">
+  <app-card (closeEvent)="closeDialog()"
+            [cardTitle]="title"
+            [contentSpace]="0">
+    <section card-body class="dialog-body">
+      <div class="content-description">{{ description }}</div>
+      <div class="content-wrapper">
+        <div class="content">
+          <ng-content></ng-content>
+        </div>
+      </div>
+    </section>
+    <div
+      *ngIf="buttonText"
+      card-footer
+      class="card-footer">
+      <ui-button
+        (click)="handleOnClick.emit()">
+        {{ buttonText }}
+      </ui-button>
+    </div>
+  </app-card>
+</div>

@@ -1,0 +1,5 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.ex-insurer-date-form {
+  @include flex-column();
+}

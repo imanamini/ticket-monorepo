@@ -1,0 +1,31 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+::ng-deep {
+  .owl-dot {
+    span {
+      width: 6px !important;
+      height: 6px !important;
+      background-color: #afb9c5 !important;
+      margin: 0 1.5px !important;
+      transition: width 0.3s !important;
+    }
+
+    &.active {
+      span {
+        width: 14px !important;
+        background-color: #424c5c !important;
+      }
+    }
+  }
+}
+
+.owl-carousel-wrapper {
+  direction: ltr;
+}
+
+.banner {
+  max-width: 100%;
+  aspect-ratio: 328 / 120;
+  background-color: #fff;
+  border-radius: 24px;
+}

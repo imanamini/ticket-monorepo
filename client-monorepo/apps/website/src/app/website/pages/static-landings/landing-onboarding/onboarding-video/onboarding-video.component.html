@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="py-big onboarding-video-wrapper d-flex gap-hulk justify-content-center align-items-center">
+    <div class="bg-video">
+      <div class="img-wrapper">
+        <img src="/assets/images/onboarding/BNPL.webp" alt="">
+
+        <span class="video-clickable" [ngStyle]="{'background-image': 'url(' + visualIntro()?.cover?.url + ')'}">
+     <div class="video-play cursor-pointer" (click)="openModal()">
+        <span><img src="/assets/images/onboarding/play-video.svg" alt=""></span>
+     </div>
+   </span>
+      </div>
+
+      @if (isModalOpen()) {
+        <div class="video-modal">
+          <div class="modal-content">
+            <button class="close-btn" (click)="closeModal()">✕</button>
+            <video #videoOnboarding
+                   controls
+                   preload="auto"
+                   class="fullscreen-video"
+                   (loadedmetadata)="onLoadedMetadata(videoOnboarding)">
+              <source [src]="visualIntro()?.video?.url" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="content d-flex flex-column gap-medium">
+      <div class="title">{{visualIntro()?.title}}</div>
+      <div class="subtitle b-2 text-onback-high">
+        {{visualIntro()?.description}}
+      </div>
+    </div>
+  </div>
+
+</div>

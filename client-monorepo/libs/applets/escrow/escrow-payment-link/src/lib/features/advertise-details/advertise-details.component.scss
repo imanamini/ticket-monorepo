@@ -1,0 +1,18 @@
+::ng-deep .divar-image-carousel {
+  height: 145px;
+
+  .items-container {
+    padding-right: 0 !important;
+  }
+
+  .divar-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    height: 100%;
+    aspect-ratio: 1/1;
+    background-size: cover;
+  }
+}
+

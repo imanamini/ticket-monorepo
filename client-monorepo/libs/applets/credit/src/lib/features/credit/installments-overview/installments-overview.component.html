@@ -1,0 +1,46 @@
+<credit-page-loading [active]="loading()" />
+
+@if (!loading()) {
+  <app-credit-app-bar
+    [title]="'اقساط من'"
+    [backButton]="true"
+    (onBackButtonClick)="back()"
+  />
+
+  <ngx-tabs class="flex-grow">
+    <ngx-tab
+      class="tab"
+      [class.flex-grow]="selectedTab() === tabs.Bnpl"
+      label="اعتباری"
+      [state]="selectedTab() === tabs.Bnpl ? 'selected' : 'enabled'"
+      (stateChange)="tabChangeHandler($event, tabs.Bnpl)"
+      [badgeStatus]="'error'"
+      [badgeContent]="dueInstallmentsCount().bnplCount"
+    >
+      @if (bnplInstallments()) {
+        <app-installments-overview-bnpl
+          [categorizedInstallments]="bnplInstallments()!"
+          [paymentFlow]="bnplPaymentFlow()!"
+          [notHaveActiveBnpl]="notHaveActiveBnpl()"
+          [paymentMaxLimitAmount]="bnplMaxLimitAmount()!"
+        />
+      }
+    </ngx-tab>
+    <ngx-tab
+      class="tab"
+      [class.flex-grow]="selectedTab() === tabs.Credit"
+      label="وام"
+      [state]="selectedTab() === tabs.Credit ? 'selected' : 'enabled'"
+      (stateChange)="tabChangeHandler($event, tabs.Credit)"
+      [badgeStatus]="'error'"
+      [badgeContent]="dueInstallmentsCount().creditCount"
+    >
+      @if (creditInstallments() && selectedTab() === tabs.Credit) {
+        <app-installments-overview-credit
+          [contractInstallments]="creditInstallments()!"
+          [notHaveActiveCredit]="notHaveActiveCredit()"
+        />
+      }
+    </ngx-tab>
+  </ngx-tabs>
+}

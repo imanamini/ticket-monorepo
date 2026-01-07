@@ -1,0 +1,62 @@
+<div class="donation-container">
+  <div class="charity-header">
+    <common-ui-components-framed-icon
+      [size]="'MEDIUM'"
+      class="framed-icon"
+      [showText]="true"
+      [type]="imageType"
+      [enableMixedBlendMode]="true"
+      [showBadge]="false"
+      [icon]="sheetData.data.imageId"
+      [trackerIdPrefix]="sheetData.data.imageId"
+    />
+    <div class="charity-info">
+      <div class="charity-title">{{ sheetData.data.name }}</div>
+      <div class="charity-subtitle">{{ sheetData.data.description }}</div>
+    </div>
+  </div>
+  <div class="amount-description">مبلغ همیاری را وارد کرده و یا از گزینه‌های موجود انتخاب کنید.</div>
+  <form [formGroup]="amountForm">
+    <div class="form-group">
+      <ui-form-field
+        [error]="amountForm.controls['amount'].errors"
+        [hasCleaner]="true"
+        [isNumericKeyboard]="true"
+        class="flex-grow"
+        formControlName="amount"
+        inputType="number"
+        label="مبلغ دلخواه(ریال)"
+        [maxSize]="sheetData.data.maxAmount.toString().length"
+        type="amount"
+      >
+      </ui-form-field>
+    </div>
+  </form>
+
+  <div class="amounts">
+    <div
+      class="amount"
+      *ngFor="let amount of sheetData.data.recommendations"
+      (click)="amountSelected(amount)"
+      [ngClass]="{
+        selected: this.selectedAmount() && this.selectedAmount() === amount,
+      }"
+    >
+      {{ amount | thousands }}
+      <span class="unit">ریال</span>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <ngx-button
+      [mode]="'form'"
+      [disabled]="isSubmitting || !amountForm.controls['amount'].value"
+      (clickHandler)="continueClicked()"
+      [size]="'large'"
+      [style]="'fill'"
+      [fullWidth]="true"
+    >
+      ادامه
+    </ngx-button>
+  </div>
+</div>

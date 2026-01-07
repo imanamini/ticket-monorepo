@@ -1,0 +1,73 @@
+@import "../../../../../../style/globals";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  direction: rtl;
+
+  .header {
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    .close-icon {
+      cursor: pointer;
+      width: 28px;
+      height: 28px;
+      margin-left: auto;
+      background: url('bottom-sheet-close-icon.svg') center center no-repeat;
+      background-size: contain;
+    }
+  }
+
+  .icon {
+    width: 82px;
+    height: 82px;
+    background: url('digikala-logo.svg') center center no-repeat;
+    background-size: contain;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .main {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 24px;
+      color: #2C3544;
+
+      span {
+        font-size: 18px;
+        font-weight: 900;
+        line-height: 32px;
+      }
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 24px;
+      color: #6E798D;
+    }
+  }
+
+  .description {
+    text-align: center;
+    width: 100%;
+    padding: 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 500;
+    color: #2C3544;
+    background-color: #F2F5F8;
+  }
+}

@@ -1,0 +1,24 @@
+<div class="cell-numbers-list">
+  @if (items().length > 0) {
+    @if (title()) {
+      <h3
+        dir="rtl"
+        class="title-wrapper"
+      >
+        {{ title() }}
+      </h3>
+    }
+    <div class="lists">
+      @for (item of items(); track item.id) {
+        <daily-fintech-recommendation-item
+          (itemClick)="handleItemClick($event)"
+          (handleOnHold)="itemOnHold($event, item, itemType())"
+          [clickable]="true"
+          [itemType]="itemType()"
+          [item]="item"
+        >
+        </daily-fintech-recommendation-item>
+      }
+    </div>
+  }
+</div>

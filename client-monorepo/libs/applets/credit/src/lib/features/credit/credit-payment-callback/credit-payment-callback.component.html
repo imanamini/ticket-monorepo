@@ -1,0 +1,13 @@
+@if (ready()) {
+  @switch (transactionCallbackType()) {
+    @case (creditTransactionCallbackType.installment) {
+      <app-credit-payment-callback-installment [result]="result()!" />
+    }
+    @case (creditTransactionCallbackType.ipl) {
+      <app-credit-payment-callback-ipl [result]="result()!" />
+    }
+    @case (creditTransactionCallbackType.installmentsOverview) {
+      <app-credit-payment-callback-installments-overview [result]="result()!" />
+    }
+  }
+}

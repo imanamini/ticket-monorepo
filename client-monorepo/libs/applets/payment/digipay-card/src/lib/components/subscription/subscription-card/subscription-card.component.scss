@@ -1,0 +1,6 @@
+.card-wrapper {
+  border-color: transparent;
+  &.active {
+    border-color: var(--border-brand);
+  }
+}

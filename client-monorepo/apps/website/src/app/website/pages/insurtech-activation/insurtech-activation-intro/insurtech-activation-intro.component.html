@@ -1,0 +1,124 @@
+<section class="section-activation-intro">
+  <div class="container">
+    <div class="content">
+      <div class="info">
+        <img
+          *ngIf="insuranceActivation[activeIndex].image && insuranceActivation[activeIndex].image.url"
+          [alt]="insuranceActivation[activeIndex].title"
+          [src]="insuranceActivation[activeIndex].image.url"
+        />
+        <h1 *ngIf="insuranceActivation[activeIndex].title">
+          {{ insuranceActivation[activeIndex].title }}
+        </h1>
+        <span *ngIf="insuranceActivation[activeIndex].subtitle">{{ insuranceActivation[activeIndex].subtitle }}</span>
+        <p *ngIf="insuranceActivation[activeIndex].description">
+          {{ insuranceActivation[activeIndex].description }}
+        </p>
+        <app-ui-button
+          (click)="scrollToAnchor('insurtech-services-processes')"
+          *ngIf="insuranceActivation[activeIndex].firstCta && insuranceActivation[activeIndex].firstCta.title"
+          appearance="BLUE-TEXT"
+        >
+          {{ insuranceActivation[activeIndex].firstCta.title }}
+          <i class="icon-left down"></i>
+        </app-ui-button>
+      </div>
+      <div class="box">
+        <div>
+          <swiper-container
+            appSwiper
+            #swiper
+            [config]="config"
+          >
+            <swiper-slide>
+              <div
+                (click)="changeTab(0)"
+                [ngClass]="activeIndex === 0 ? 'active' : ''"
+                class="tab"
+              >
+                <div class="icon icon-activation"></div>
+                <p class="title">فعال سازی و اعلام خسارت</p>
+              </div>
+            </swiper-slide>
+            <swiper-slide>
+              <div
+                (click)="changeTab(1)"
+                [ngClass]="activeIndex === 1 ? 'active' : ''"
+                class="tab"
+              >
+                <div class="icon icon-transfer"></div>
+                <p class="title">انتقال مالکیت</p>
+              </div>
+            </swiper-slide>
+          </swiper-container>
+        </div>
+
+        <div class="box-content">
+          <ng-container *ngIf="activeIndex === 0">
+            <p>
+              جهت
+              <span class="bold"> فعال سازی </span>
+              بیمه نامه خریداری شده یا
+              <span class="bold"> اعلام خسارت </span>
+              برای کالای بیمه شده از طریق پنل کاربری بیمه اقدام کنید
+            </p>
+            <div
+              [formGroup]="form"
+              class="form"
+            >
+              <ui-form-field
+                [maxSize]="11"
+                formControlName="cellNumber"
+                inputType="tel"
+                label="شماره موبایل خود را وارد کنید"
+                type="input"
+              >
+              </ui-form-field>
+              <app-ui-button
+                (click)="onSubmit()"
+                [disabled]="!form.valid"
+                size="BIG"
+              >
+                ورود به پنل کاربری
+              </app-ui-button>
+            </div>
+            <app-ui-card-notice
+              [notices]="[
+                {
+                  text: 'درصورت فعال نبودن بیمه نامه امکان اعلام خسارت وجود نخواهد داشت',
+                },
+              ]"
+              [title]="'توجه!'"
+            ></app-ui-card-notice>
+          </ng-container>
+
+          <ng-container *ngIf="activeIndex === 1">
+            <p>بیمه‌نامه گوشی یا سایر لوازم دیجیتال به نام خودتان نیست؟ به‌سادگی انتقال ماکیت کنید.</p>
+            <div
+              [formGroup]="form"
+              class="form"
+            >
+              <ui-form-field
+                [maxSize]="11"
+                formControlName="cellNumber"
+                inputType="tel"
+                label="شماره موبایل خود را وارد کنید"
+                type="input"
+              >
+              </ui-form-field>
+
+              <app-ui-button
+                (click)="onSubmit()"
+                [disabled]="!form.valid"
+                size="BIG"
+              >
+                انتقال مالکیت
+              </app-ui-button>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <app-insurtech-ownership-other [ownershipOther]="ownershipOther"></app-insurtech-ownership-other>
+  </div>
+</section>

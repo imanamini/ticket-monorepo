@@ -1,0 +1,65 @@
+<div class="ui-dialog-edit-profile">
+  <div class="close-cta">
+    <i
+      (click)="closeDialog()"
+      class="icon-close"
+    ></i>
+  </div>
+  <div class="title">ویرایش پروفایل</div>
+  <div
+    *ngIf="profileDialogData && profileDialogData.userData"
+    class="user-preview"
+  >
+    <div
+      [style.backgroundImage]="profileDialogData.userProfileImage"
+      class="image"
+    >
+      <span
+        *ngIf="!profileDialogData.userProfileImage"
+        icon="icon-default-user-profile"
+        size="74"
+        appUiIcon
+      ></span>
+    </div>
+    <div
+      *ngIf="profileDialogData && profileDialogData.userData && profileDialogData.userData.name"
+      class="phone-number"
+    >
+      {{ profileDialogData.userData.cellNumber }}
+    </div>
+  </div>
+  <form
+    [formGroup]="form"
+    class="user-fields"
+  >
+    <ui-form-field
+      [error]="form.controls.name.errors"
+      [maxSize]="20"
+      [placeholder]="getPlaceHolder('name')"
+      class="form-field"
+      formControlName="name"
+      inputType="text"
+      label="نام"
+      type="input"
+    ></ui-form-field>
+    <ui-form-field
+      [error]="form.controls.surname.errors"
+      [placeholder]="getPlaceHolder('surname')"
+      class="form-field"
+      formControlName="surname"
+      inputType="text"
+      label="نام خانوادگی"
+    ></ui-form-field>
+  </form>
+  <div class="cta">
+    <app-ui-button
+      (clicked)="save()"
+      class="first-cta"
+    >
+      <ng-container *ngIf="!updatingProfileRequest"> ذخیره </ng-container>
+      @if (updatingProfileRequest) {
+        <ngx-spinner size="md" color="primary" ></ngx-spinner>
+      }
+    </app-ui-button>
+  </div>
+</div>

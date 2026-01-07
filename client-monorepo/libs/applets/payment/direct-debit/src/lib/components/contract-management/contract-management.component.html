@@ -1,0 +1,55 @@
+<div class="d-flex flex-column gap-big surface-elevated">
+  @if (this.data.status === directDebitContractStatus.ACTIVE || this.data.status === directDebitContractStatus.INACTIVE) {
+    <div
+      class="d-flex gap-minus cursor-pointer"
+      (click)="onChangeCreateNewContract()"
+    >
+      <common-icon-dp-icon
+        [iconSize]="'24'"
+        [icon]="'plus-circle'"
+        [iconType]="'linear'"
+      ></common-icon-dp-icon>
+      <span class="text-onback-low fs-14 fw-normal">مجوز جدید</span>
+    </div>
+  }
+  @if (this.data.status === directDebitContractStatus.ACTIVE) {
+    <div
+      class="d-flex gap-minus cursor-pointer"
+      (click)="onChangeDeactivateContract()"
+    >
+      <common-icon-dp-icon
+        [iconSize]="'24'"
+        [icon]="'minus-circle'"
+        [iconType]="'linear'"
+      ></common-icon-dp-icon>
+      <span class="text-onback-low fs-14 fw-normal">غیرفعال‌سازی موقت</span>
+    </div>
+  }
+  @if (this.data.status === directDebitContractStatus.INACTIVE) {
+    <div
+      class="d-flex gap-minus cursor-pointer"
+      (click)="onChangeActiveContract()"
+    >
+      <common-icon-dp-icon
+        [iconSize]="'24'"
+        [icon]="'refresh'"
+        [iconType]="'linear'"
+      ></common-icon-dp-icon>
+      <span class="text-onback-low fs-14 fw-normal">فعال‌سازی</span>
+    </div>
+  }
+  @if (this.data.status === directDebitContractStatus.ACTIVE || this.data.status === directDebitContractStatus.INACTIVE) {
+    <div
+      class="d-flex gap-minus cursor-pointer text-onback-error"
+      (click)="onChangeCancelContract()"
+    >
+      <common-icon-dp-icon
+        [iconSize]="'24'"
+        [icon]="'error-triangle'"
+        [iconType]="'linear'"
+        class="text-onback-error"
+      ></common-icon-dp-icon>
+      <span class="text-onback-low fs-14 fw-normal text-onback-error">لغو مجوز</span>
+    </div>
+  }
+</div>

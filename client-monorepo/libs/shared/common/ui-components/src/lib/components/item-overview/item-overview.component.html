@@ -1,0 +1,134 @@
+@if (item()) {
+  <div
+    class="d-flex flex-row gap-minus w-100 cursor-pointer"
+    [ngClass]="{ 'pt-medium': !disableTopPadding() }"
+    (click)="handleClick()"
+  >
+    <!-- Icon -->
+    <div class="d-flex flex-column justify-content-start justify-align-start icon-wrapper">
+      @if (imageMode() === 'framed-icon') {
+        <common-ui-components-framed-icon
+          [type]="item()!.image.type"
+          [enableMixedBlendMode]="mixedBlendModeEnabled()"
+          [size]="'SMALL'"
+          iconStyle="color: {{ item()!.image.color }}"
+          [icon]="item()!.image.name ? item()!.image.name : 'digipay'"
+          [iconType]="'due'"
+          [trackerIdPrefix]="item()!.image.name ? item()!.image.name : 'digipay'"
+          [enableGradient]="enableImageGradient()"
+        ></common-ui-components-framed-icon>
+      } @else {
+        <common-ui-components-category-image [image]="item()!.image.name"></common-ui-components-category-image>
+      }
+      @if (item()!.auctionBadge) {
+        <ngx-badge
+          [status]="'error'"
+          [type]="'icon'"
+          [circularIcon]="true"
+          [size]="'lg'"
+        >
+          <ngx-icon
+            [type]="'due'"
+            [secondaryColor]="'#F9441F'"
+            [name]="'discount'"
+            [iconSize]="'24px'"
+          />
+        </ngx-badge>
+      }
+    </div>
+    <!-- End Icon -->
+    <div
+      class="d-flex flex-row gap-small w-100"
+      [ngClass]="{ 'border-b-100 border-color-air': item()?.divider, 'overflow-hidden': enableSingleLineMode() }"
+    >
+      <div
+        class="d-flex gap-small w-100"
+        [ngClass]="{ 'pb-medium': item().divider }"
+      >
+        <div class="d-flex flex-column gap-tiny texts-wrapper">
+          <div class="d-flex gap-tiny align-items-center flex-basis-1 justify-content-space-between">
+            <!-- Title and Badges -->
+            <div class="d-flex gap-tiny align-items-center">
+              <span
+                class="text-onback-high st-8 my-atom"
+                [ngClass]="{ 'single-line': enableSingleLineMode() }"
+                >{{ item()?.title }}</span
+              >
+              @if (item()?.badge) {
+                <ngx-badge
+                  [status]="item()!.badge!.status ?? 'info'"
+                  [mode]="item()!.badge!.mode ?? 'bold'"
+                  [size]="'sm'"
+                  >{{ (item()?.badge)!.text }}
+                </ngx-badge>
+              }
+              @if (item()?.score) {
+                <common-rate-count
+                  [rateAmount]="item().score!.amount"
+                  [rateCount]="item().score!.count"
+                  [size]="'sm'"
+                ></common-rate-count>
+              }
+            </div>
+            <!-- End Title and Badges -->
+            <!-- Radio Button -->
+            @if (showRadioButton()) {
+              <div class="d-flex justify-content-end">
+                <ngx-radio-button
+                  [size]="16"
+                  [checked]="radioChecked()"
+                ></ngx-radio-button>
+              </div>
+            }
+            <!-- End Radio Button -->
+          </div>
+          <div
+            class="d-flex gap-tiny align-items-center justify-content-space-between flex-basis-1"
+            [ngClass]="{ 'text-wrap': !enableSingleLineMode() }"
+          >
+            <span
+              class="my-atom c-3 text-onback-medium"
+              [ngClass]="{ 'single-line': enableSingleLineMode() }"
+              >{{ item()!.subTitleNormal }}
+            </span>
+            <div class="d-flex">
+              <ng-content></ng-content>
+            </div>
+          </div>
+        </div>
+      </div>
+      @if (!hideButton()) {
+        <div class="d-flex item-overview-icon align-items-start py-low">
+          <div class="surface-back radius-huge py-small px-small cursor-pointer">
+            <common-icon-dp-icon
+              [classes]="'text-onback-medium'"
+              iconSize="20"
+              [icon]="'arrow-left'"
+              [iconType]="'linear'"
+            ></common-icon-dp-icon>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+} @else {
+  <div class="d-flex py-tiny gap-medium w-100">
+    <div class="d-flex justify-content-center align-items-center p-small radius-medium surface-back size-48">
+      <lib-ngx-skeleton-loading
+        [width]="'100%'"
+        [height]="'100%'"
+      ></lib-ngx-skeleton-loading>
+    </div>
+    <div class="d-flex flex-column pb-medium gap-minus flex-basis-1">
+      <lib-ngx-skeleton-loading
+        [width]="'100px'"
+        [height]="'16px'"
+      ></lib-ngx-skeleton-loading>
+      <lib-ngx-skeleton-loading
+        [width]="'100px'"
+        [height]="'16px'"
+      ></lib-ngx-skeleton-loading>
+    </div>
+  </div>
+  <lib-ngx-skeleton-loading></lib-ngx-skeleton-loading>
+}

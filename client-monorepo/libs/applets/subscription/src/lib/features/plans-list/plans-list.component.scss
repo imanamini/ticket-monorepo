@@ -1,0 +1,19 @@
+
+.content-wrapper {
+  position: relative;
+  flex-grow: 1;
+  user-select: none;
+
+}
+
+.submit-button {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+.plans-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 100px
+}

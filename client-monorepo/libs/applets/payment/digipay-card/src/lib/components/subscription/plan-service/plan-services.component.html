@@ -1,0 +1,15 @@
+@if (isLoaded()) {
+  <div class="container">
+    <div>
+      @for (item of categorizeList(); track $index) {
+        <div class="items-container">
+          <digipay-card-applet-plan-service-list
+            class="w-100"
+            [title]="item.title"
+            [servicesList]="item.services"
+          ></digipay-card-applet-plan-service-list>
+        </div>
+      }
+    </div>
+  </div>
+}

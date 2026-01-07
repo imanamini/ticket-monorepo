@@ -1,0 +1,18 @@
+<section class="value-proposition">
+  <div class="container">
+    <div
+      *ngFor="let valueProposition of valuePropositionData.values"
+      class="value"
+    >
+      <div class="icon">
+        <img
+          [ngSrc]="valueProposition.icon.url"
+          width="24"
+          height="24"
+          alt=""
+        />
+      </div>
+      <div class="title">{{ valueProposition.title }}</div>
+    </div>
+  </div>
+</section>

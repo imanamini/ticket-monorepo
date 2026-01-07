@@ -1,0 +1,50 @@
+@import '@digipay/base-style/swatch';
+
+.asset-bg {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
+.padash {
+  background-image: url('libs/applets/wealth/src/lib/assets/svg/padash-assets-bg.svg');
+}
+
+.damavand {
+  background-image: url('libs/applets/wealth/src/lib/assets/svg/damavand-assets-bg.svg');
+}
+
+.golrang {
+  background-image: url('libs/applets/wealth/src/lib/assets/svg/golrang-assets-bg.svg');
+}
+
+.lotus {
+  background-position-y: 1rem;
+  background-position-x: -9rem;
+  background-size: 52rem;
+  background-image: url('libs/applets/wealth/src/lib/assets/svg/lotos-assets-bg.svg');
+}
+
+.sina {
+  background-position-y: 3rem;
+  background-image: url('libs/applets/wealth/src/lib/assets/svg/sina-assets-bg.svg');
+}
+
+.gardeshgari {
+  background-image: url('libs/applets/wealth/src/lib/assets/svg/gardeshgari-assets-bg.svg');
+  background-position-y: 1rem;
+  background-position-x: -16rem;
+  background-size: 46rem;
+}
+
+.buttons-container {
+  z-index: 1;
+  position: sticky;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.two-buttons {
+  grid-template-columns: repeat(2, 1fr);
+}

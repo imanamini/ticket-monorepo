@@ -1,0 +1,50 @@
+<section class="za-feature">
+  <div class="container">
+    <div class="za-feature__content">
+      <div class="za-section-title">
+        <p
+          *ngIf="templateData && templateData.features"
+          class="font-xxl-heavy"
+        >
+          {{ templateData.features.title }}
+        </p>
+      </div>
+      <div class="za-feature__items">
+        <ul *ngIf="templateData && templateData.features && templateData.features.items && templateData.features.items.length > 0">
+          <ng-container *ngFor="let item of templateData.features.items">
+            <li class="za-feature__item">
+              <div>
+                <div class="za-feature__item-icon">
+                  <i>
+                    <img
+                      *ngIf="item.featureIcon"
+                      [src]="item.featureIcon.url"
+                      alt="{{ item.featureTitle }}"
+                    />
+                  </i>
+                </div>
+                <div class="za-feature__item-content">
+                  <div class="za-feature__item-title">
+                    <p class="font-x-med">{{ item.featureTitle }}</p>
+                  </div>
+                  <div class="za-feature__item-desc">
+                    <p class="font-m-med color-gray">{{ item.featureDesc }}</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+      <div style="display: flex; justify-content: center">
+        <app-ui-button
+          (click)="openBetaAppDialog()"
+          *ngIf="templateData"
+          [className]="'za-button__simple'"
+          >{{ templateData.introCtaText }}
+        </app-ui-button>
+        <!--        <x-atom.anchor-button-default :url="$fields->modal['download_url']" :text="$fields->modal['download_btn_text']" classes="anchor-button-default-icon icon-circle-download za-download-btn" />-->
+      </div>
+    </div>
+  </div>
+</section>

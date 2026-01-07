@@ -1,0 +1,41 @@
+<section class="credit-product__type">
+  <div class="container">
+    <div
+      *ngIf="templateData && templateData.sectionProducts && templateData.sectionProducts.title"
+      class="title-section"
+    >
+      <h2>{{ templateData.sectionProducts.title }}</h2>
+    </div>
+    <div class="credit-product__type--contain">
+      <ul *ngIf="templateData && templateData.sectionProducts">
+        <li
+          *ngFor="let item of templateData.sectionProducts.contents; let i = index"
+          class="credit-product__type-item"
+        >
+          <div>
+            <div class="credit-product__type-img">
+              <img
+                *ngIf="item.icon"
+                [alt]="item.title"
+                [src]="item.icon.url"
+              />
+            </div>
+            <div class="credit-product__type-content">
+              <div class="credit-product__type-title">
+                <span>{{ i + 1 }}</span>
+                <span
+                  ><h3>{{ item.title }}</h3></span
+                >
+              </div>
+              <div class="credit-product__type-desc">
+                <p>
+                  {{ item.text }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

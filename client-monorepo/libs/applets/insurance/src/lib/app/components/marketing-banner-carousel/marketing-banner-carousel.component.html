@@ -1,0 +1,16 @@
+<owl-carousel-o [options]="options">
+  @for (banner of banners(); track banner.id) {
+    <ng-template carouselSlide>
+      <a [href]="banner.link"
+         target="_blank"
+         class="banner">
+        <img [ngSrc]="banner.mediaUrl"
+             [alt]="banner.title"
+             class="banner-image"
+             priority="0"
+             width="328"
+             height="120">
+      </a>
+    </ng-template>
+  }
+</owl-carousel-o>

@@ -1,0 +1,169 @@
+@import "@digipay/base-style/styleguide";
+
+
+.video-wrapper {
+  position: relative;
+  padding: 100px map-get($spacing-sizes, 'massive') map-get($spacing-sizes, 'giant') map-get($spacing-sizes, 'massive');
+  width: 100%;
+  height: 600px;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .short-video-wrapper {
+    width: 1280px;
+  }
+
+  video {
+    width: 1280px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+    z-index: 1;
+  }
+
+  .video-gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.8;
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.60) 0%, #000 97.5%);
+  }
+
+  .video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.97);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    position: relative;
+    width: 70%;
+    max-width: 1200px;
+    height: auto;
+  }
+
+  .fullscreen-video {
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    font-size: 24px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    z-index: 10000;
+  }
+
+  .content {
+    position: absolute;
+    z-index: 2;
+
+    .title {
+      color: #FFF;
+      text-align: center;
+      font-feature-settings: 'liga' off, 'clig' off;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 32px; /* 80% */
+    }
+
+    .subtitle {
+      text-align: center;
+    }
+
+  }
+}
+
+
+@media (max-width: 1279px) {
+  .video-wrapper {
+    height: 100%;
+    min-height: auto;
+    width: 100%;
+    margin: 20px auto 40px !important;
+    padding: 0;
+
+    .close-btn {
+      top: -8%;
+      right: 0;
+    }
+
+    .short-video-wrapper {
+      width: 100%;
+      height: 420px;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .content {
+
+      bottom: 40px;
+
+      .title {
+        font-size: 20px;
+      }
+
+      .subtitle {
+        font-size: 12px !important;
+      }
+
+      .actions {
+        flex-direction: column-reverse;
+        gap: map-get($spacing-sizes, 'medium') !important;
+        width: 188px;
+
+        ::ng-deep {
+          ngx-button {
+            width: 166px;
+            display: block;
+          }
+
+          .ngx-button {
+            width: 100% !important;
+          }
+        }
+      }
+
+    }
+
+    .modal-content {
+      width: 94%;
+    }
+  }
+}
+
+
+@media (max-width: 340px) {
+  .video-wrapper {
+    width: 100%;
+  }
+}

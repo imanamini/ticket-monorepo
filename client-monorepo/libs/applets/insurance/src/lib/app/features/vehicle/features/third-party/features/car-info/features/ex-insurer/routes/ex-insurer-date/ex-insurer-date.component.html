@@ -1,0 +1,7 @@
+<car-info-box class="ex-insurer-date"
+              text="تاریخ شروع و انقضای بیمه‌نامه قبلی خود را وارد کنید:"
+              (activeButtonClicked)="handleActiveButtonClicked()"
+              (deActiveButtonClicked)="handleDeActiveButtonClicked()">
+  <ex-insurer-date-form [exInsurerDateForm]="dateForm"
+                        [showError]="showError"></ex-insurer-date-form>
+</car-info-box>

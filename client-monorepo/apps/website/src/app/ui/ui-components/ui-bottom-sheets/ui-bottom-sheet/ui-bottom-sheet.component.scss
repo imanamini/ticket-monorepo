@@ -1,0 +1,11 @@
+div {
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  handle-bottom-sheet {
+    display: inline-block;
+    margin-top: 4px;
+  }
+}

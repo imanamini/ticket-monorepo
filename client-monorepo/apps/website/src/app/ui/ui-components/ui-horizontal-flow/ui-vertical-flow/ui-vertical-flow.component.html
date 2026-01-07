@@ -1,0 +1,61 @@
+<div class="horizontal-flow">
+  <div class="container">
+    <h2 *ngIf="title" class="title" [ngClass]="{'insurance-title' : insurance}"> {{ title }} </h2>
+    <div *ngIf="subtitle" class="st-4 text-onback-low subtitle steps"> {{ subtitle }}
+    </div>
+
+    <div *ngIf="insurance && ctaLink && ctaLink.title" class="d-flex justify-content-center my-large">
+      <ui-button
+        size="MEDIUM"
+        (clicked)="openCtaLink(ctaLink.link)">
+        {{ ctaLink.title }}
+      </ui-button>
+    </div>
+
+    <div class="horizontal-flow-items">
+      <ng-container *ngIf="steps && steps.length > 0">
+        <ng-container *ngFor="let step of steps;let stepIndex = index">
+          <div [ngClass]="{'no-padding': !step.icon}" class="horizontal-flow-item">
+            <div>
+              <div *ngIf="step.icon" class="horizontal-flow-icon">
+                <div>
+                  <i>
+                    <img [attr.alt]="step.title" src="{{step.icon}}">
+                  </i>
+                </div>
+              </div>
+              <div class="horizontal-flow-text">
+                <div class="d-flex flex-column">
+                  <div class="horizontal-flow-index">
+                    <span>{{ ((stepIndex + 1).toString().length < 2) ? "0" + (stepIndex + 1) : (stepIndex + 1) }}</span>
+                  </div>
+                  <div class="horizontal-flow-title">
+                    <span *ngIf="step.title || step.valueTitle">{{ step.title ?? step.valueTitle }}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="horizontal-flow-desc">
+                <span *ngIf="(step.text || step.valueText) && step.html" [innerHTML]="step.text ?? step.valueText"></span>
+                <span *ngIf="(step.text || step.valueText) && !step.html">{{ step.text ?? step.valueText }}</span>
+                <ui-button (click)="openModal(step.modal)"
+                           *ngIf="step.firstCta && step.firstCta.title && !step.firstCta.link && step.modal && step.modal.title"
+                           [appearance]="'SMALL-CTA'"
+                           [id]="step.firstCta.id"
+                           [linkTarget]="'_blank'">{{ step.firstCta.title }}
+                </ui-button>
+                <ui-button *ngIf="step.firstCta && step.firstCta.title && step.firstCta.link"
+                           [appearance]="'SMALL-CTA'" [id]="step.firstCta.id"
+                           [linkTarget]="'_blank'"
+                           [link]="step.firstCta.link">{{ step.firstCta.title }}
+                </ui-button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div *ngIf="firstCta && firstCta.title" class="ctas">
+      <ui-button [link]="firstCta.link">{{ firstCta.title }}</ui-button>
+    </div>
+  </div>
+</div>

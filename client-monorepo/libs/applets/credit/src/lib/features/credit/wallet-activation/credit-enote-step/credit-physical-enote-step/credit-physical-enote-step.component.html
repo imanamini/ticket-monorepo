@@ -1,0 +1,53 @@
+@if (!showLoading()) {
+  @if (states[stateIndex()] === 'NOTICES') {
+    <app-credit-physical-enote-step-notices
+      [switchTypePossible]="switchTypePossible()!"
+      (changeNoteTypeClicked)="onChangeEnoteType()"
+      [creditId]="creditId()!"
+      (nextStep)="nextState()"
+      (prevStep)="prevState()"
+    >
+    </app-credit-physical-enote-step-notices>
+  }
+  @if (states[stateIndex()] === 'REGISTER') {
+    <app-credit-physical-enote-step-register
+      [switchTypePossible]="switchTypePossible()!"
+      (changeNoteTypeClicked)="onChangeEnoteType()"
+      [creditId]="creditId()!"
+      (nextStep)="nextState()"
+      (prevStep)="goBack()"
+    >
+    </app-credit-physical-enote-step-register>
+  }
+  @if (states[stateIndex()] === 'GUIDE') {
+    <app-credit-physical-enote-step-guide
+      (openNotices)="openNotices()"
+      [creditId]="creditId()!"
+      (nextStep)="nextState()"
+      (prevStep)="goBack()"
+    >
+    </app-credit-physical-enote-step-guide>
+  }
+  @if (states[stateIndex()] === 'UPLOAD') {
+    <app-credit-physical-enote-step-upload
+      [switchTypePossible]="switchTypePossible()!"
+      (changeNoteTypeClicked)="onChangeEnoteType()"
+      [creditId]="creditId()!"
+      [fundProviderCode]="fundProviderCode()!"
+      (nextStep)="nextState()"
+      (prevStep)="prevState()"
+    >
+    </app-credit-physical-enote-step-upload>
+  }
+  @if (states[stateIndex()] === 'ERROR') {
+    <app-credit-physical-enote-step-error
+      [creditId]="creditId()!"
+      (openNotices)="openNotices()"
+      (actionClicked)="goToRegister()"
+      (close)="goBack()"
+    >
+    </app-credit-physical-enote-step-error>
+  }
+}
+
+<credit-page-loading [active]="showLoading()"></credit-page-loading>

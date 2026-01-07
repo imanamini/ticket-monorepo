@@ -1,0 +1,42 @@
+<section
+  class="seo-section"
+>
+  <div
+    *ngIf="seoContent"
+    class="ui-seo"
+  >
+    <div class="container">
+      <h4 *ngIf="seoContent.title">{{ seoContent.title }}</h4>
+      <div
+        *ngIf="seoContent.content"
+        [ngStyle]="{ maxHeight: isExpanded ? expandedHeight : shortenedHeight }"
+        class="content"
+      >
+        <p
+          [innerHTML]="seoContent.content"
+          id="seo-content"
+        ></p>
+      </div>
+      <div class="ctas">
+        <app-ui-button
+          (clicked)="toggleState()"
+          *ngIf="seoContent.firstCta.title && seoContent.secondCta.title"
+          [appearance]="'BLUE-TEXT'"
+        >
+          <ng-container *ngIf="!isExpanded">
+            {{ seoContent.firstCta.title }}
+          </ng-container>
+          <ng-container *ngIf="isExpanded">
+            {{ seoContent.secondCta.title }}
+          </ng-container>
+          <div
+            [ngClass]="isExpanded ? 'rotate' : ''"
+            class="icon"
+            icon="icon-charon-down-light-blue"
+            appUiIcon
+          ></div>
+        </app-ui-button>
+      </div>
+    </div>
+  </div>
+</section>

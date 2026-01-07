@@ -1,0 +1,30 @@
+<app-credit-app-bar
+  (onBackButtonClick)="closeStep.emit()"
+  [backButton]="true"
+  title="هزینه خدمات و زیر ساخت"
+></app-credit-app-bar>
+<div class="d-flex flex-column flex-grow">
+  <div class="flex-grow justify-content-center pb-plus">
+    <ngx-status-result
+      [description]="description()"
+      [title]="title()"
+      [type]="'Status'"
+      [iconState]="iconState()"
+      [buttons]="buttons()"
+      (clicked)="closeStep.emit()"
+    >
+      @if (alertMessage()) {
+        <div
+          html-content
+          class="d-flex flex-column flex-grow justify-content-flex-end"
+        >
+          <ngx-alert
+            [color]="'yellow'"
+            [hasCloseIcon]="false"
+            [text]="alertMessage()!"
+          />
+        </div>
+      }
+    </ngx-status-result>
+  </div>
+</div>

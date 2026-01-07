@@ -1,0 +1,146 @@
+@import "globals";
+
+section {
+  .container {
+    .title {
+      text-align: center;
+      font-size: 27px;
+      font-style: normal;
+      font-weight: 950;
+      line-height: 140%;
+      color: $swatch_steel_700;
+      margin-bottom: 32px;
+    }
+
+    .content {
+      height: 500px;
+      margin-right: auto;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+
+      .types {
+        width: 385px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        .type {
+          display: flex;
+          padding: 24px;
+          align-items: center;
+          gap: 8px;
+          border: 2px solid $swatch_yellow_900;
+          background-color: $swatch_white_900;
+          border-radius: 16px;
+          flex-grow: 1;
+
+          .name {
+            min-width: fit-content;
+          }
+
+          .icon {
+            height: 48px;
+            padding: 10px;
+            border-radius: 12px;
+            border: 2px solid $swatch_yellow_900;
+            background-color: $swatch_yellow_100;
+          }
+
+          .icon.gray-scale {
+            filter: grayscale(100%);
+            border: 1px solid $swatch_steel_200;
+            background-color: $swatch_white_900;
+          }
+
+          .select-icon {
+            margin-right: auto;
+          }
+        }
+
+        .type.gray-scale {
+          background-color: #f2f3f6;
+          border: 2px solid #c3c3c3;
+        }
+      }
+
+      .image {
+        width: 385px;
+        height: 100%;
+        border-radius: 16px;
+        background-color: $swatch_purple_100;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+          margin-top: 68px;
+        }
+
+        .details-button {
+          margin-bottom: 51px;
+
+          .text {
+            padding-left: 4px;
+          }
+        }
+      }
+
+      swiper-container {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  section {
+    .container {
+      .content {
+        flex-direction: column;
+        height: 100%;
+
+        .types {
+          width: 100%;
+
+
+          .type {
+            display: none;
+          }
+
+          swiper-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+
+            swiper-slide {
+              width: auto !important;
+
+              .type {
+                display: flex;
+              }
+            }
+          }
+        }
+
+        .image {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  section {
+    .container {
+      .title {
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 950;
+        line-height: 160%;
+      }
+    }
+  }
+}

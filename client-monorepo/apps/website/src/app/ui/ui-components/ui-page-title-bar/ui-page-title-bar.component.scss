@@ -1,0 +1,194 @@
+@import "globals";
+
+$bar-padding: 18px;
+
+.page-title-bar {
+  display: flex;
+  text-align: center;
+  padding: $bar-padding;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  align-items: center;
+  direction: ltr;
+  font-size: 18px;
+  color: $swatch_steel_500;
+
+  &.card-pattern {
+    background-size: cover;
+
+    &.light {
+      //background-image: url("../assets/credit_card_pattern_light.svg");
+    }
+
+    &.dark {
+      //background-image: url("../assets/credit_card_pattern_dark.svg");
+    }
+  }
+
+  .title {
+    flex-grow: 1;
+    color: rgba(0, 0, 0, 0.7);
+    direction: rtl;
+
+    span {
+      display: block;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      font-weight: 200;
+      margin: 8px 0 0;
+    }
+  }
+
+  .right-action,
+  .left-action {
+    display: flex;
+    align-items: center;
+    top: $bar-padding - 2;
+  }
+
+  .right-action {
+    right: $bar-padding;
+
+    .right-title {
+      padding-right: 5px;
+    }
+  }
+
+  .left-action {
+    left: $bar-padding;
+
+    a {
+      cursor: pointer;
+      color: #0040ffff;
+      font-size: 14px;
+
+      &.has-image {
+        display: flex;
+        align-items: center;
+
+        .left-action-img {
+          height: 24px;
+          width: 24px;
+          background-size: 100% 100%;
+          margin-right: 4px;
+
+          &.barcode-reader {
+            background-image: url('images/credit-title-barcode-reader.svg');
+          }
+
+          &.information {
+            background-image: url('images/credit-title-blue-information.svg');
+          }
+
+          &.report {
+            background-image: url('images/credit-title-report.svg');
+          }
+
+          &.support-gray {
+            background-image: url('images/credit-title-support-gray.svg');
+          }
+
+          &.play {
+            background-image: url('images/credit-title-play-icon.svg');
+          }
+
+          &.download {
+            background-image: url('images/credit-title-download.svg');
+          }
+        }
+      }
+    }
+  }
+
+  img {
+    height: 24px;
+    cursor: pointer;
+  }
+
+  .go-back {
+    transform: rotateY(180deg); // icon should be flipped
+  }
+
+  .close-text {
+    color: #d93660ff;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  &.invert-color {
+    .invert-text {
+      color: #fff;
+    }
+
+    .invertable {
+      filter: invert(1);
+    }
+
+    .left-action {
+      a {
+        color: #fff;
+      }
+    }
+  }
+
+  &.right-aligned {
+    .title {
+      padding-right: 16px;
+      text-align: right;
+    }
+  }
+
+  &.hide-title-bar {
+    display: none;
+  }
+
+  &.hide-title-text {
+    .title {
+      .main-title {
+        display: none;
+      }
+    }
+
+    .right-action {
+      .close-icon,
+      .right-title,
+      .go-back,
+      .close-text {
+        display: none;
+      }
+    }
+  }
+
+  .info-img-area {
+    margin-right: 5px;
+  }
+
+  .info-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-image: url('images/credit-title-information.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .close-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-image: url('images/credit-title-close.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .back-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-image: url('images/credit-title-back.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+}

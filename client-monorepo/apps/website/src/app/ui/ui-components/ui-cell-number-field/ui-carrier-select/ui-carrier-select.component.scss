@@ -1,0 +1,70 @@
+@import "globals";
+
+.carrier-select {
+  display: flex;
+  //justify-content: space-between;
+
+  .carrier {
+    border: 1px solid $swatch_steel_200;
+    border-radius: 12px;
+    padding: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:nth-child(2) {
+      margin: 0 4px;
+    }
+
+    .icon {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid $swatch_steel_200;
+      background-size: 70%;
+      background: no-repeat center;
+    }
+
+    &.is-mci {
+      .icon {
+        background-image: url('./icons/mci.svg');
+      }
+
+      &.is-selected {
+        border-color: $swatch_teal_500;
+        background: $swatch_teal_100;
+      }
+    }
+
+    &.is-mtn {
+      .icon {
+        background-image: url('./icons/mtn.svg');
+        background-color: #ffcb08;
+      }
+
+      &.is-selected {
+        border-color: $swatch_yellow_500;
+        background: $swatch_yellow_100;
+      }
+    }
+
+    &.is-rightel {
+      .icon {
+        background-image: url('./icons/rightel.svg');
+      }
+
+      &.is-selected {
+        border-color: $swatch_purple_500;
+        background: $swatch_purple_100;
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .carrier-select {
+    margin-top: 16px;
+  }
+}

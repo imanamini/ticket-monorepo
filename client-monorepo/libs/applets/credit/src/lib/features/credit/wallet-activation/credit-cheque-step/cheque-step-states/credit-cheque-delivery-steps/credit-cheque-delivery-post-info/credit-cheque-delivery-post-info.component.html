@@ -1,0 +1,49 @@
+<app-credit-app-bar
+  (onBackButtonClick)="back.emit()"
+  [backButton]="true"
+  title="چک ضمانت"
+></app-credit-app-bar>
+<app-credit-stepper
+  [currentStep]="5"
+  [steps]="5"
+  [title]="'تحویل اصل چک'"
+></app-credit-stepper>
+<div class="d-flex flex-column flex-grow p-plus gap-plus rtl">
+  <div class="d-flex flex-column w-100 flex-grow">
+    <span class="bt-1 text-onback-high mb-plus"> برای ارسال چک، به یکی از دفاتر پست مراجعه کرده و آن را به آدرس زیر ارسال کنید: </span>
+    <div class="d-flex flex-column w-100 gap-minus py-medium px-plus radius-plus border-300 border-color-light">
+      <span class="st-8 text-onback-high">
+        {{ address }}
+      </span>
+      <ngx-button
+        (clickHandler)="copy()"
+        [size]="'small'"
+        ngxTrackableId
+        mode="section"
+        [fullWidth]="true"
+        [rightIcon]="{ name: 'document-copy' }"
+        trackerId="chequeDeliveryOnSiteCopyButton"
+        [style]="'tinted-on-elevated'"
+        >کپی آدرس
+      </ngx-button>
+    </div>
+  </div>
+  <div class="d-flex flex-column gap-plus w-100">
+    <ngx-alert
+      color="blue"
+      size="md"
+      text="پس از دریافت چک شما از طریق پست، پیامک اطلاع‌رسانی برایتان ارسال خواهد شد."
+      [hasCloseIcon]="false"
+    ></ngx-alert>
+    <ngx-button
+      (clickHandler)="confirm()"
+      [isLoading]="loading()"
+      [disabled]="loading()"
+      [fullWidth]="true"
+      [style]="'fill'"
+      ngxTrackableId
+      trackerId="chequeDeliveryOnSiteConfirmButton"
+      >تایید و ادامه
+    </ngx-button>
+  </div>
+</div>

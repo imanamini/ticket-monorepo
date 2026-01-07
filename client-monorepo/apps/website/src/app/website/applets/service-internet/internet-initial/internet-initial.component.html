@@ -1,0 +1,160 @@
+<!--<layout-two-column>-->
+<!--  <ng-container *wideCol>-->
+<!--<ui-section [isPageBody]="true" [state]="" class="internet-initial">-->
+
+<!--      <ng-container *ngIf="isMobile && capResponse && capResponse.capDetail.status">-->
+<!--        <ui-gift-progress-->
+<!--          [message]="capResponse.capDetail.campaignCapFailureMessage"-->
+<!--          [progress]="capResponse.capDetail.usedCount"-->
+<!--          [totalCount]="capResponse.capDetail.maxCount"-->
+<!--          [withBox]="false"-->
+<!--          display="row"></ui-gift-progress>-->
+<!--        <ui-hr-line></ui-hr-line>-->
+<!--      </ng-container>-->
+
+<div class="internet-initial">
+  <div
+    *ngIf="(internetBoxData.title && state === 'SIM_SELECT') || state === 'PACKAGE_SELECT'"
+    class="title"
+  >
+    <span *ngIf="internetBoxData.title && state === 'SIM_SELECT'">
+      {{ internetBoxData.title }}
+    </span>
+    <span *ngIf="state === 'PACKAGE_SELECT'"> چه بسته ای برای سیم کارتت انتخاب میکنی؟ </span>
+  </div>
+  <div
+    *ngIf="state === 'PACKAGE_SELECT'"
+    class="top-content"
+  >
+    <div class="type-number">
+      <div
+        [ngClass]="'is-' + selectedCarrier?.icon"
+        class="carrier"
+      >
+        <span class="icon"></span>
+      </div>
+      <div class="cell-number-data">
+        <div class="cell-number">
+          {{ cellNumber }}
+        </div>
+        <div
+          *ngIf="selectedCarrier && selectedSimType"
+          class="sim-type"
+        >
+          <span class="icon"></span>
+          {{ 'سیم کارت ' + selectedSimTypeLabel }}
+        </div>
+      </div>
+    </div>
+    <app-ui-button
+      (click)="changeState('SIM_SELECT')"
+      appearance="GREEN-TEXT"
+      size="SMALL"
+    >
+      ویرایش
+      <i class="icon-left-green"></i>
+    </app-ui-button>
+  </div>
+  <div
+    *ngIf="state === 'SIM_SELECT'"
+    class="fields"
+  >
+    <app-ui-cell-number-field
+      (carrierChanged)="onCarrierChange($event)"
+      (cellNumberChange)="onCellNumberChange($event)"
+      [carrierOptions]="internetService.carriers"
+      [cellNumber]="cellNumber"
+      [errorMessage]="validationMessages.cellNumber"
+      [mobileFriendly]="isMobile"
+      [selectCarrier]="true"
+      [selectedCarrier]="selectedCarrier"
+      class="cell-number-field"
+    ></app-ui-cell-number-field>
+
+    <app-ui-recommendations-list
+      (itemClicked)="recommendationItemClicked($event)"
+      *ngIf="cachedNumbers.length > 0 && !isMobile"
+      [recommendations]="cachedNumbers"
+      class="lg-recommendations"
+      displayStyle="ROW"
+    ></app-ui-recommendations-list>
+
+    <!--    <ng-container *ngIf="!isMobile">-->
+    <!--      <ui-block-line class="block-line"></ui-block-line>-->
+    <!--    <ui-sim-card-select-->
+    <!--      (typeChange)="onSimTypeChange($event)"-->
+    <!--      [selected]="selectedSimType"-->
+    <!--      [simCards]="selectedCarrier ? internetService.simTypesGroups[selectedCarrier.value] : internetService.simTypes"></ui-sim-card-select>-->
+    <!--    </ng-container>-->
+
+    <!--    <ng-container *ngIf="">-->
+    <app-ui-sim-type-switch
+      (changed)="onSimTypeChange($event)"
+      [simCards]="selectedCarrier ? internetService.simTypesGroups[selectedCarrier.value] : internetService.simTypes"
+      [value]="selectedSimType"
+    ></app-ui-sim-type-switch>
+    <!--    </ng-container>-->
+
+    <div class="ctas">
+      <div class="action-row">
+        <app-ui-button
+          (clicked)="proceedToNextStep()"
+          [disabled]="!basicDataValidness.carrier || !basicDataValidness.cellNumber || !basicDataValidness.simType"
+          class="action-btn"
+        >
+          ادامه خرید اینترنت
+        </app-ui-button>
+      </div>
+
+      <!--    <ng-container *ngIf="isMobile">-->
+      <!--      <div class="action-row">-->
+      <!--        <app-ui-button-->
+      <!--          (clicked)="continueClickMobile()" [disabled]="!basicDataValidness.cellNumber || !basicDataValidness.carrier"-->
+      <!--          class="action-btn">-->
+      <!--          ادامه-->
+      <!--        </app-ui-button>-->
+      <!--      </div>-->
+      <!--    </ng-container>-->
+    </div>
+  </div>
+  <!--  </div>-->
+
+  <!--  </ng-container>-->
+  <!--  <div *col class="desktop-narrow">-->
+  <!--    <ui-gift-progress-->
+  <!--      *ngIf="capResponse && capResponse.capDetail.status"-->
+  <!--      [message]="capResponse.capDetail.campaignCapFailureMessage"-->
+  <!--      [progress]="capResponse.capDetail.usedCount"-->
+  <!--      [totalCount]="capResponse.capDetail.maxCount"></ui-gift-progress>-->
+  <!--  </div>-->
+  <!--</layout-two-column>-->
+
+  <!--<div *ngIf="state === 'PACKAGE_SELECT'" class="previously-purchased">-->
+  <!--  <h4 *ngIf="isMobile" class="section-title-xs">بسته‌های پراستفاده</h4>-->
+  <!--  <ui-internet-packages-box-->
+  <!--    (packageClick)="onFavouritePackageClick(group, $event)"-->
+  <!--    *ngFor="let group of favouriteGroups" [group]="group" class="col"></ui-internet-packages-box>-->
+  <!--</div>-->
+
+  <div
+    *ngIf="state === 'PACKAGE_SELECT'"
+    class="internet-package-select"
+  >
+    <app-internet-package-select></app-internet-package-select>
+  </div>
+  <marquee
+    *ngIf="state === 'SIM_SELECT'"
+    direction="down"
+    height="28px"
+    scrollamount="1"
+    width="100%"
+  >
+    <ng-container *ngFor="let text of internetBoxData.promotion">
+      <div>
+        {{ text.text }}
+      </div>
+    </ng-container>
+  </marquee>
+</div>
+
+<!--</ui-section>-->

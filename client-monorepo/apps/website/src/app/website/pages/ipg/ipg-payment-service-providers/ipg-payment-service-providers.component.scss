@@ -1,0 +1,118 @@
+::ng-deep {
+  #payment-service-providers {
+    overflow: hidden;
+  }
+
+  .ipg__psps_content {
+    margin: 0 -17px;
+  }
+
+  .ipg__psps_item > div {
+    border-radius: 2em;
+    border: 1px solid #eceff7;
+    padding-top: 80%;
+    position: relative;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+  }
+
+  .ipg__psps_item {
+    width: 16.6666%;
+    list-style: none;
+    padding: 17px;
+  }
+
+  .ipg__psps_item-title,
+  .ipg__psps_item-logo {
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    -webkit-filter: grayscale(0.9);
+    filter: grayscale(0.9);
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    left: 50%;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+
+  .ipg__psps_item-logo {
+    left: 0;
+    top: 0;
+    -webkit-transform: none;
+    transform: none;
+  }
+
+  .ipg__psps_item-logo img {
+    display: block;
+    max-width: 80%;
+  }
+
+  .ipg__psps_item-title {
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    left: 50%;
+    max-width: 80% !important;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1rem;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    width: 80%;
+  }
+
+  .ipg__psps_item > div:hover {
+    background: #f7f9ff;
+    border-color: #f7f9ff;
+    cursor: grab;
+  }
+
+  .ipg__psps_item > div:hover .ipg__psps_item-title {
+    opacity: 1;
+  }
+
+  .ipg__psps_item > div:hover .ipg__psps_item-logo {
+    opacity: 0.1;
+  }
+
+  .ipg__psps_item > div:hover .ipg__psps_item-logo {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+
+  @media (max-width: 1350px) {
+    .ipg__psps_item {
+      width: 20%;
+      padding: 17px 12px;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .ipg__psps_item {
+      width: 25%;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .ipg__psps_item {
+      padding: 17px 1em;
+      width: 33.333%;
+    }
+
+    .ipg__psps_item > div {
+      border-radius: 15px;
+    }
+  }
+}

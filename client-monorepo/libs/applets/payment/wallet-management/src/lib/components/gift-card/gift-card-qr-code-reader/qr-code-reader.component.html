@@ -1,0 +1,27 @@
+<common-ui-components-page-layout
+  [showBorder]="true"
+  [title]="'اسکن با دوربین'"
+>
+  <div class="gift-card-qr-code-container">
+    <zxing-scanner
+      (camerasFound)="onCamerasFound($event)"
+      (permissionResponse)="onHasPermission($event)"
+      (scanSuccess)="onCodeResult($event)"
+      *ngIf="accessCamera()"
+      [device]="currentDevice()"
+      [formats]="formatsEnabled"
+      [tryHarder]="tryHarder"
+    ></zxing-scanner>
+    <p
+      *ngIf="hasPermission === false"
+      class="access-denied"
+    >
+      برای استفاده از بارکد خوان لطفا به دوربین دسترسی دهید.
+    </p>
+
+    <ngx-spinner
+      *ngIf="hasPermission == null || !accessCamera()"
+      size="sm"
+    ></ngx-spinner>
+  </div>
+</common-ui-components-page-layout>

@@ -1,0 +1,105 @@
+@switch (state()) {
+  @case ('NATIONAL_CARD') {
+    <app-credit-generate-digital-signature-national-card
+      [step]="creditGenerateDigitalSignatureService.currentStep()"
+      [totalSteps]="creditGenerateDigitalSignatureService.totalSteps"
+      (back)="closeStep()"
+      (haveNoNationalCard)="showNationalCardReceipt()"
+      (serialNumberEntered)="setNationalCardSerialNumber($event)"
+      [serialNumberInput]="form.get('nationalCardSerial')?.value"
+      [loading]="submittingData()!"
+      [currentState]="state()!"
+    ></app-credit-generate-digital-signature-national-card>
+  }
+  @case ('NATIONAL_CARD_RECEIPT') {
+    <app-credit-generate-digital-signature-national-card-receipt
+      [step]="creditGenerateDigitalSignatureService.currentStep()"
+      [totalSteps]="creditGenerateDigitalSignatureService.totalSteps"
+      (back)="closeStep()"
+      (haveNationalCard)="showNationalCard()"
+      (trackingCode)="setReceiptQueryStatus($event)"
+      [trackingCodeInput]="form.get('nationalCardSerial')?.value"
+      [loading]="submittingData()!"
+      [currentState]="state()!"
+    ></app-credit-generate-digital-signature-national-card-receipt>
+  }
+  @default {
+    <app-credit-app-bar
+      (onBackButtonClick)="backToStepper()"
+      [backButton]="true"
+      [title]="'امضای دیجیتال'"
+    ></app-credit-app-bar>
+    <app-credit-stepper
+      [currentStep]="creditGenerateDigitalSignatureService.currentStep()"
+      [steps]="creditGenerateDigitalSignatureService.totalSteps"
+      title="تکمیل اطلاعات"
+    ></app-credit-stepper>
+    @if (!gettingData()) {
+      <div class="d-flex flex-column flex-grow rtl px-plus pb-mega">
+        <div class="d-flex flex-column flex-grow">
+          <app-credit-scrollable-view [fullHeightContent]="true">
+            <div class="d-flex flex-column flex-grow">
+              <div class="w-100 d-flex flex-column flex-grow">
+                <div class="b-2 text-onback-medium mb-medium">{{ infoTitle }}</div>
+                <div
+                  [formGroup]="form"
+                  class="w-100 d-flex flex-column flex-grow"
+                >
+                  @for (control of controls; track control) {
+                    <div class="d-block">
+                      <ui-form-field
+                        [allowedKeyDown]="control?.allowedKeyDown!"
+                        [errorMessageMapper]="control.errorMessageMap"
+                        [error]="form.controls[control.name].errors"
+                        [formControlName]="control.name"
+                        [label]="control.label"
+                        [required]="true"
+                        [maxSize]="control.maxLength"
+                      ></ui-form-field>
+                    </div>
+                  }
+                </div>
+              </div>
+              <div class="d-flex flex-column w-100 surface-back radius-medium p-plus mb-plus gap-plus">
+                @for (row of infoData(); track row) {
+                  <div class="w-100 d-flex flex-row justify-content-space-between align-items-center">
+                    <div class="b2 text-onback-medium text-align-right">{{ row.title }}</div>
+                    <div class="b-2 text-onback-high text-align-left">{{ row.value }}</div>
+                  </div>
+                }
+              </div>
+            </div>
+          </app-credit-scrollable-view>
+        </div>
+        <div class="call-to-action-section">
+          <ngx-button
+            ngxTrackableId
+            trackerId="digitalSignatureInfoFormConfirmButton"
+            (clickHandler)="checkNationalCardInfo()"
+            [fullWidth]="true"
+            [style]="'fill'"
+            [isLoading]="submittingData()"
+            [disabled]="submittingData() || form.invalid"
+          >
+            تایید و ادامه
+          </ngx-button>
+        </div>
+      </div>
+    }
+    <credit-page-loading [active]="gettingData()!"></credit-page-loading>
+  }
+}
+<ng-template #errorIcon>
+  @defer {
+    <div [class]="'hint-img ' + errorType()?.toLowerCase()"></div>
+  } @placeholder (minimum 1s) {
+    <div class="skeleton-container">
+      <lib-ngx-skeleton-loading
+        [width]="'80px'"
+        [height]="'80px'"
+        [borderRadius]="'50%'"
+        classes="skeleton-image"
+      ></lib-ngx-skeleton-loading>
+    </div>
+  }
+</ng-template>

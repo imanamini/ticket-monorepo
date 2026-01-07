@@ -1,0 +1,42 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+
+.active-voucher {
+  background-color: #eefff6;
+
+  &-icon {
+    @include flex-center();
+    padding: 6px;
+    background-color: #ffffff;
+    border-radius: 8px;
+  }
+
+  &-texts {
+    @include flex-column();
+
+    .texts-voucher {
+      color: #6e798d;
+      line-height: 24px;
+    }
+
+    .texts-description {
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #00cc6d;
+    }
+  }
+}
+
+
+@media screen and (max-width: 360px) {
+  .active-voucher {
+    .texts-description {
+      font-size: 10px !important;
+    }
+
+    &-icon {
+      padding: 0 !important;
+    }
+  }
+}

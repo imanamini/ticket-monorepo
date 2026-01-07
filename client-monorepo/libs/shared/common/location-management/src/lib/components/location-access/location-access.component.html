@@ -1,0 +1,31 @@
+<div class="d-flex flex-column justify-between align-items-center h-100">
+  <ng-lottie
+    class="location-animation"
+    [options]="{ path: locationAnimation() }"
+  ></ng-lottie>
+  <p class="st-6 pb-small">دسترسی به موقعیت مکانی</p>
+  <p class="b-2 text-onback-medium text-align-center description">
+    برای نمایش نزدیک‌ترین فروشگاه‌ها و ارائه دقیق‌تر خدمات، نیاز به دسترسی به موقعیت مکانی شما داریم.
+  </p>
+  <div class="d-flex justify-content-center align-items-center pt-huge w-100 gap-small">
+    <ngx-button
+      [size]="'large'"
+      [mode]="'form'"
+      [fullWidth]="true"
+      [style]="'tinted-on-elevated'"
+      id="location-sheet-not-yet"
+      (clickHandler)="onNotYetClicked()"
+    >
+      فعلا نه
+    </ngx-button>
+    <ngx-button
+      [size]="'large'"
+      [fullWidth]="true"
+      [mode]="'form'"
+      id="location-sheet-submit"
+      (clickHandler)="onAcceptClicked()"
+    >
+      اجازه دادن
+    </ngx-button>
+  </div>
+</div>

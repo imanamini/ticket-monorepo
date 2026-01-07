@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.flex-grow-0 {
+  flex-grow: 0;
+}
+
+.lottie-container{
+  width: 100%;
+  aspect-ratio: 2.03;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .lottie-container{
+    width: 100%;
+    aspect-ratio: 2.03;
+  }
+}

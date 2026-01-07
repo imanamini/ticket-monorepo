@@ -1,0 +1,19 @@
+<app-credit-app-bar
+  (onBackButtonClick)="back.emit()"
+  [backButton]="true"
+  title="امکان‌سنجی دریافت اعتبار"
+>
+</app-credit-app-bar>
+<div class="d-flex flex-column flex-grow w-100">
+  <div class="flex-grow justify-content-center rtl w-100">
+    <ngx-status-result
+      (clicked)="close.emit()"
+      [buttons]="buttons"
+      [description]="data().message"
+      [title]="data().title"
+      [iconState]="'error'"
+      [type]="'Status'"
+    >
+    </ngx-status-result>
+  </div>
+</div>

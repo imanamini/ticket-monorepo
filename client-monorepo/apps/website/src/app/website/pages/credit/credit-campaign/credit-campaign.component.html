@@ -1,0 +1,29 @@
+<app-base-layout
+  *ngIf="creditCampaignPage && creditCampaignPage.templateData"
+  [loaded]="loaded"
+  [modalBanner]="creditCampaignPage.templateData.modalBanner"
+>
+  <app-credit-campaign-timer [templateData]="creditCampaignPage.templateData"></app-credit-campaign-timer>
+  <app-credit-campaign-value
+    [templateData]="creditCampaignPage.templateData"
+    id="campaign-value"
+  ></app-credit-campaign-value>
+  <app-credit-campaign-form
+    *ngIf="creditCampaignPage.templateData.mainForm"
+    [contactForm]="contactForm"
+    [mainFormModal]="creditCampaignPage.templateData.mainForm.modal"
+    [subtitle]="creditCampaignPage.templateData.mainForm.subtitle"
+    [title]="creditCampaignPage.templateData.mainForm.title"
+    id="campaign-form"
+  ></app-credit-campaign-form>
+  <app-ui-faq
+    *ngIf="
+      creditCampaignPage.templateData.faq &&
+      creditCampaignPage.templateData.faq.faqItems &&
+      creditCampaignPage.templateData.faq.faqItems.length > 0
+    "
+    [faqs]="creditCampaignPage.templateData.faq.faqItems"
+    [subtitle]="creditCampaignPage.templateData.faq.subtitle"
+    [title]="creditCampaignPage.templateData.faq.title"
+  ></app-ui-faq>
+</app-base-layout>

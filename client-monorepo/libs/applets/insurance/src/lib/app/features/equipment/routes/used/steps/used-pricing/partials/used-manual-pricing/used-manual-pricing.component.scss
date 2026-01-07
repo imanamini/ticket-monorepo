@@ -1,0 +1,65 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+:host {
+  width: 100%;
+}
+
+.manual-pricing-wrapper {
+  @include flex-column;
+  background-color: #FFFFFF;
+  border: 1px solid #dee3e7;
+  border-radius: 16px;
+  padding: 16px;
+
+  .pricing-title {
+    @include flex-row;
+    @include flex-center-between;
+    width: 100%;
+    gap: 16px;
+    margin-bottom: 16px;
+
+    .title {
+      color: #2c3544;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 24px;
+    }
+
+    .radio {
+      width: 24px;
+      min-width: 24px;
+      max-width: 24px;
+      height: 24px;
+      min-height: 24px;
+      max-height: 24px;
+      background: url("/insurance-assets/images/check-box-empty.svg") no-repeat;
+    }
+  }
+
+  .pricing-input-wrapper {
+    @include flex-column;
+    gap: 8px;
+
+    .wage-percent-wrapper {
+      @include flex-row;
+      @include flex-center-between;
+      background: #f2f5f8;
+      color: #2c3544;
+      font-size: 12px;
+      padding: 8px;
+      border-radius: 8px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+  }
+
+  &.active {
+    border: 1px solid #0040ff;
+
+    .pricing-title {
+      .radio {
+        background: url("/insurance-assets/images/check-box-filled.svg") no-repeat !important;
+      }
+    }
+  }
+}

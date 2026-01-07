@@ -1,0 +1,93 @@
+@import "globals";
+
+::part(container) {
+  overflow: visible;
+}
+
+:host ::ng-deep {
+  .fee-description {
+    margin-bottom: 32px;
+
+    ul {
+      list-style: disc;
+
+      li {
+        font-size: 16px;
+        line-height: 2;
+      }
+    }
+  }
+
+  .section-fee .basic-segment-figure {
+    width: 50% !important;
+  }
+
+  .bnpl-value-section section {
+    .content {
+      background-color: #fff !important;
+    }
+  }
+
+  .bg-white section {
+    background-color: #fff;
+  }
+
+  .introduction-booklet .anchor-button-default-icon {
+    display: inline-flex;
+  }
+
+  .introduction-booklet > .container > div {
+    max-width: 50%;
+  }
+
+  .introduction-booklet > .container {
+    > div {
+      order: 2;
+    }
+
+    .image {
+      order: 1;
+    }
+  }
+
+  .introduction-booklet > .container > div img {
+    max-height: 570px;
+    max-width: 100%;
+  }
+
+  .introduction-booklet .container > div {
+    &:last-child {
+      padding-left: 32px;
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .introduction-booklet > .container {
+      flex-direction: column !important;
+    }
+    .introduction-booklet .container > div {
+      &:first-child {
+        max-width: 100%;
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      &:last-child {
+        padding-left: unset;
+        max-width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 744px) {
+    .introduction-booklet > .container > div > h1 {
+      text-align: right;
+    }
+    .introduction-booklet > .container > div ::ng-deep app-ui-button {
+      width: 100%;
+    }
+    .introduction-booklet > .container > div img {
+      max-width: 70%;
+    }
+  }
+}

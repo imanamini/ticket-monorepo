@@ -1,0 +1,31 @@
+<div class="w-100">
+  @for (document of crowd().documents; track document; let last = $last) {
+    <div class="w-100 d-flex flex-wrap align-items-center justify-content-space-between gap-tiny pb-medium mt-medium">
+      <div class="c-2 text-onback-high">
+        <span>
+          {{ document.title }}
+        </span>
+      </div>
+
+      <div class="value">
+        <ngx-button
+          [mode]="'icon-only'"
+          [style]="'link'"
+          [size]="'small'"
+          [leftIcon]="{ name: 'download' }"
+          [isLoading]="document['isDone']"
+          [disabled]="document['isDone']"
+          (clickHandler)="download(document)"
+        >
+        </ngx-button>
+      </div>
+    </div>
+
+    @if (!last) {
+      <ngx-divider
+        [color]="BorderColorsEnum.Air"
+        orientation="horizontal"
+      ></ngx-divider>
+    }
+  }
+</div>

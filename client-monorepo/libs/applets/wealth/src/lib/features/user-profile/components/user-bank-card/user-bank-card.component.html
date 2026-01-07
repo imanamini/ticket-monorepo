@@ -1,0 +1,28 @@
+<div class="radius-big p-plus bank-card">
+  <!-- ? Bank name -->
+  <div class="d-flex align-items-center justify-content-space-between">
+    <div class="d-flex gap-tiny">
+      <img
+        [src]="imageUrl()"
+        [alt]="bankAccountData().bankName"
+      />
+      <p class="st-8 text-oninvert-high">بانک {{ bankAccountData().bankName }}</p>
+    </div>
+    <ngx-badge
+      size="md"
+      mode="bold"
+      [hasIcon]="true"
+      type="text"
+    >
+      تایید شده
+    </ngx-badge>
+  </div>
+
+  <!-- ? Sheba -->
+  <div class="d-flex align-items-center justify-content-space-between mt-medium">
+    <span class="text-oninvert-high"> شماره شبا: </span>
+    <span class="text-oninvert-high">
+      {{ formatedShebaNumber() }}
+    </span>
+  </div>
+</div>

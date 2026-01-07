@@ -1,0 +1,16 @@
+:host {
+  height: 32px;
+  width: 100%;
+}
+
+.icon-color {
+  color: #1159FC;
+}
+.header-component {
+  position: relative;
+
+  .icon-container {
+    position: absolute;
+    right: 0;
+  }
+}

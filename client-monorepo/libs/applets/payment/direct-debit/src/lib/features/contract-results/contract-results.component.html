@@ -1,0 +1,38 @@
+<div class="h-100 surface-elevated">
+  <ngx-app-bar [title]="'پرداخت مستقیم'"></ngx-app-bar>
+  <div class="result d-flex flex-column justify-content-space-between p-medium">
+    <div class="d-flex m-auto">
+      <div class="d-flex flex-column gap-massive">
+        <direct-debit-status-header
+          [status]="decodedData.status"
+          [config]="config"
+          [data]="decodedData"
+        ></direct-debit-status-header>
+
+        <div class="d-flex flex-column gap-minus w-100">
+          @if (config.primaryButton && config.secondaryButton) {
+            <ngx-button
+              [mode]="'form'"
+              [size]="'medium'"
+              [fullWidth]="true"
+              [style]="'tinted-on-elevated'"
+              (clickHandler)="onNavigate(config.secondaryButton.redirectUrl)"
+            >
+              {{ config.secondaryButton.title }}
+            </ngx-button>
+          }
+
+          <ngx-button
+            [mode]="'form'"
+            [size]="'medium'"
+            [fullWidth]="true"
+            [style]="'fill'"
+            (clickHandler)="onNavigate(config.primaryButton.redirectUrl)"
+          >
+            {{ config.primaryButton.title }}
+          </ngx-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

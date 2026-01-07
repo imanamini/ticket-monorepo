@@ -1,0 +1,60 @@
+<div class="header d-flex justify-content-space-between align-items-center border-b-100 border-color-light px-plus py-small mt-medium">
+  <span class="header-title st-6">ویرایش کارت</span>
+</div>
+@if (form) {
+  <div
+    class="form pt-plus px-plus group-list-item"
+    [formGroup]="form"
+  >
+    <ui-form-field
+      class="alias-field"
+      label="عنوان کارت"
+      [maxSize]="15"
+      [formControlName]="'alias'"
+      [hasCleaner]="true"
+    ></ui-form-field>
+
+    <div class="expiration-field mt-plus">
+      @if (type() === 'source') {
+        <ui-form-field
+          class="alias-field"
+          label="تاریخ انقضا"
+          [formControlName]="'expireDate'"
+          [maxSize]="40"
+          (keydown)="expirationDateKeydown($event)"
+        ></ui-form-field>
+      }
+
+      <span
+        class="overlay"
+        (click)="expirationDateClick()"
+      ></span>
+    </div>
+  </div>
+}
+
+<div class="actions w-100 d-flex justify-content-space-between px-plus mt-mega pb-plus">
+  <ngx-button
+    class="ml-medium"
+    [style]="'tinted-on-elevated'"
+    [size]="'medium'"
+    (clickHandler)="close()"
+  >
+    انصراف
+  </ngx-button>
+  <ngx-button
+    [disabled]="form.invalid || form.pristine"
+    [size]="'medium'"
+    [fullWidth]="true"
+    (clickHandler)="save()"
+  >
+    ذخیره تغییرات
+  </ngx-button>
+</div>
+@if (displayingDatePicker()) {
+  <daily-bank-card-date-picker
+    [date]="form.value?.expireDate"
+    (confirm)="confirmDateSelection($event)"
+    (hide)="hideDatePicker()"
+  ></daily-bank-card-date-picker>
+}

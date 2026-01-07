@@ -1,0 +1,47 @@
+<div
+  [class]="statusCardClassMap[contract()?.status!]"
+  class="credit-contract-card"
+>
+  <div class="main-row">
+    <div>
+      <div class="contract-main-info">
+        <div class="contract-icon"></div>
+        <div class="contract-title-box">
+          <div class="contract-title-text">
+            {{ contract()?.title || 'بدهی' }}
+          </div>
+          <div class="contract-title-value">
+            {{ contract()?.debtAmount | IRR: 'hideRial' }}
+            <span class="currency is-currency">ریال</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <ngx-button
+        [size]="'small'"
+        [leftIcon]="{ name: 'arrow-2-left' }"
+        [style]="'link'"
+      >
+        جزئیات
+      </ngx-button>
+    </div>
+  </div>
+  @if (payableInstallment() && payableInstallment()?.length! > 0) {
+    <div class="detail-row">
+      @for (installment of payableInstallment(); track installment) {
+        <app-credit-installment-item
+          [payableGroup]="!aggregationEnabled()"
+          [installment]="installment"
+          [withoutCard]="true"
+          [fundProviderCode]="fundProviderCode()!"
+          [totalInstallmentCount]="totalInstallmentCount()!"
+          [isSingleInstallment]="isSingleInstallment()!"
+          (pay)="onPay()"
+        ></app-credit-installment-item>
+        <div class="divider"></div>
+      }
+    </div>
+  }
+</div>

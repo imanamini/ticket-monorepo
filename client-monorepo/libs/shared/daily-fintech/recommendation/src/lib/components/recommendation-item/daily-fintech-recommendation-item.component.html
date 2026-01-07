@@ -1,0 +1,43 @@
+<div
+  [ngClass]="clickable() ? 'cursor-pointer' : ''"
+  class="d-flex surface-back radius-medium p-minus pr-medium gap-minus align-items-center"
+  commonUtilitiesAppletOnHold
+  [holdTime]="400"
+  (handleOnHold)="handleHold($event)"
+  (click)="numberClick(item(), $event)"
+>
+  <div class="img-background">
+    <ui-api-image
+      [height]="'24px'"
+      [imageId]="item().imageId"
+      [styles]="{ borderRadius: '50%' }"
+      [width]="'24px'"
+    ></ui-api-image>
+    @if (item().pinned) {
+      <common-icon-dp-icon
+        class="pinned-icon"
+        [icon]="'pin-2'"
+        [classes]="'text-oninvert-medium'"
+        [iconSize]="'16'"
+        [iconType]="'linear'"
+      >
+      </common-icon-dp-icon>
+    }
+  </div>
+
+  <div class="d-flex flex-column flex-basis-1">
+    <span class="c-2 text-onback-medium">{{ item().title }}</span>
+    <div class="d-flex gap-tiny">
+      <span class="text-onback-low l-3">{{ item().id }}</span>
+    </div>
+  </div>
+  @if (clickable()) {
+    <ngx-button
+      [style]="'link'"
+      [size]="'small'"
+      [mode]="'icon-only'"
+      [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+    >
+    </ngx-button>
+  }
+</div>

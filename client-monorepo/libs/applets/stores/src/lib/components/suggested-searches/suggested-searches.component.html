@@ -1,0 +1,32 @@
+<div class="suggested-services d-flex flex-column align-items-stretch justify-content-start gap-small">
+  <div class="px-plus">
+    <common-ui-components-title-summary
+      [isLoading]="suggestionsLoading()"
+      [title]="'همین‌ حالا، پرطرفدارترین‌ها'"
+      [showButton]="false"
+    ></common-ui-components-title-summary>
+  </div>
+  <div class="d-flex flex-row flex-wrap gap-small px-plus">
+    @if (suggestionsLoading()) {
+      @for (item of rangeCreator(4); track $index) {
+        <ngx-chip
+          [id]="''"
+          [isLoading]="true"
+        ></ngx-chip>
+      }
+    } @else {
+      @for (suggestion of searchSuggestions(); track $index) {
+        <ngx-badge
+          (click)="itemClickedHandle(suggestion)"
+          class="'cursor-pointer'"
+          [id]="suggestion"
+          [size]="'md'"
+          [status]="'neutral'"
+          [mode]="'fill'"
+        >
+          <div class="c-2 text-onback-high cursor-pointer">{{ suggestion }}</div>
+        </ngx-badge>
+      }
+    }
+  </div>
+</div>

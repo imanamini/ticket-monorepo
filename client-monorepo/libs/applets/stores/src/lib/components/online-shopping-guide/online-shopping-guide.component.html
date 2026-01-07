@@ -1,0 +1,14 @@
+@if (isOpen()) {
+  <span class="b-3 text-onback-high"
+    >در صورت خرید از فروشگاه‌های آنلاین، در مرحله پرداخت باید گزینه‌ی پرداخت اعتباری دیجی‌پی را انتخاب کنید.</span
+  >
+  <div class="my-plus d-flex justify-content-center">
+    <img src="assets/online-shopping.png" />
+  </div>
+
+  <ngx-callout
+    [mode]="'multiple'"
+    [title]="'نحوه خرید و پرداخت'"
+    [messages]="messages"
+  ></ngx-callout>
+}

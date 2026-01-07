@@ -1,0 +1,29 @@
+.service-item{
+  width: 360px;
+  height: 390px;
+  align-items: start;
+  border-radius:  16px;
+  border: 2px solid #FFF;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.52) 100%);
+  box-shadow: 0 0 40px 0 rgba(104, 130, 178, 0.12);
+  backdrop-filter: blur(5px);
+}
+.title{
+  font-weight: 600;
+}
+
+ul li{
+  list-style: disc;
+}
+
+@media screen and (max-width: 1280px) {
+  .service-item {
+    height: auto;
+  }
+}
+@media screen and (max-width: 744px) {
+  .service-item {
+    width: 300px;
+   height: auto;
+  }
+}

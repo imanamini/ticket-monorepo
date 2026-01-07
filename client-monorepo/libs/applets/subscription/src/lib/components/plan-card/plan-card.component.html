@@ -1,0 +1,18 @@
+<div
+  [planType]="plan().type"
+  isSelected="true"
+  class="card w-100"
+>
+  @if (plan().hasGift) {
+    <div class="offer-text d-flex align-items-center justify-content-center surface-elevated l-1 surface-error text-oninvert-high">
+      پیشنهاد ویژه
+    </div>
+  }
+
+  <div class="plan-icon"></div>
+  <div class="title-container">
+    <span class="title">{{ plan().title }}</span>
+  </div>
+  <span class="duration" [ngClass]="{'d-none': donNotShowDuration()}">{{ plan().durationInMonth | durationInMonth }}</span>
+  <span class="price">{{ plan().amount | thousands }} ریال </span>
+</div>

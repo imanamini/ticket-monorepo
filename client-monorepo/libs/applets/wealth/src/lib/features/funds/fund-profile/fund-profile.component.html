@@ -1,0 +1,94 @@
+<div class="w-100 d-flex flex-wrap">
+  @if (isLoading()) {
+    <app-spinner class="h-100"></app-spinner>
+  } @else {
+    <div class="w-100 d-flex flex-wrap px-plus pt-plus">
+      @if (profile()) {
+        <app-fund-profile-info-card
+          class="d-flex flex-wrap w-100 p-plus radius-plus surface-elevated"
+          [profile]="profile()"
+        />
+
+        <app-fund-profile-price-card
+          class="w-100 mt-medium surface-elevated radius-medium"
+          [profile]="profile()"
+        />
+
+        <div class="w-100 mt-big">
+          <p class="st-8 mb-medium mr-tiny">دارایی شما در این صندوق</p>
+          <app-fund-profile-user-assets
+            [portfolio]="customerPortfolio()"
+            [isLoading]="customerPortfolioLoading()"
+            class="d-flex flex-wrap p-big radius-medium surface-elevated align-items-center justify-content-center asset-bg"
+            [ngClass]="userAssetsComputedClass()"
+          />
+        </div>
+
+        <ngx-segmented-control
+          [mode]="'PAGE_SEGMENT'"
+          [options]="options()"
+          [selectedOption]="compositionChart()?.length ? options()[0] : options()[1]"
+          class="w-100 mt-medium"
+          (change)="handleActiveSection($event)"
+        >
+        </ngx-segmented-control>
+      }
+
+      <div class="w-100 d-flex flex-wrap mt-medium">
+        @if (chartTab() && compositionChart()?.length) {
+          <div class="w-100 mt-medium">
+            <p class="st-8 mb-medium mr-tiny">ترکیب دارایی‌های صندوق</p>
+            <div class="py-big px-medium radius-big surface-elevated">
+              <app-assets-composition-chart
+                [data]="compositionChart()?.[0]"
+                [type]="profile()?.type"
+              ></app-assets-composition-chart>
+            </div>
+          </div>
+          <div class="w-100 mt-medium">
+            <p class="st-8 mb-medium mr-tiny">قیمت خرید و فروش هر واحد</p>
+            <div class="py-big px-medium radius-big surface-elevated">
+              <app-nav-chart
+                [data]="navChart()"
+                [finalPrice]="profile()?.type === 'Gold' || profile()?.symbol === 'IRT1SKDF0001'"
+              ></app-nav-chart>
+            </div>
+          </div>
+        } @else {
+          <p class="w-100 st-8 mb-medium mr-tiny">جزییات صندوق</p>
+          <app-fund-profile-general-info
+            class="w-100 d-flex flex-wrap radius-plus p-plus surface-elevated"
+            [fund]="profile()"
+          />
+        }
+      </div>
+
+      <app-fund-profile-footer
+        class="w-100 d-flex mt-medium surface-elevated radius-small"
+        [assetSymbol]="profile()?.symbol"
+      />
+
+      @if (buttons().length > 0) {
+        <div
+          class="w-100 mt-big radius-tl-medium radius-tr-medium p-medium surface-elevated buttons-container"
+          [ngClass]="{ 'two-buttons gap-small': buttons().length === 2 }"
+        >
+          @for (button of buttons(); track button) {
+            @if (button.isActive) {
+              <ngx-button
+                [style]="button.style === 'fill' ? 'fill' : 'tinted-on-elevated'"
+                size="medium"
+                [mode]="'form'"
+                [fullWidth]="true"
+                (clickHandler)="action(button.id.toUpperCase())"
+                [buttonId]="button.id + '_FUND_PROFILE'"
+              >
+                {{ button.label }}
+              </ngx-button>
+            }
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

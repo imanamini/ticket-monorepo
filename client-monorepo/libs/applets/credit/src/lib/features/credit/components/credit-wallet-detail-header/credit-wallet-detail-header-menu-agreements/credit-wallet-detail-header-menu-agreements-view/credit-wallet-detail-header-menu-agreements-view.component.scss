@@ -1,0 +1,69 @@
+@import "@digipay/base-style/swatch";
+
+:host {
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  height: calc(80vh - 48px);
+}
+
+.title {
+  color: $swatch_steel_500;
+  font-size: 18px;
+  padding: 0 16px 10px;
+  display: flex;
+  align-items: center;
+
+  .title-date {
+    margin-right: 8px;
+  }
+}
+
+.pdf-wrapper {
+  margin: 0 24px 24px;
+  background-color: $swatch_steel_100;
+  border-radius: 16px;
+  padding: 24px 12px 24px 24px;
+  color: $swatch_steel_500;
+  text-align: right;
+  flex-grow: 1;
+  position: relative;
+
+  .content {
+    flex-grow: 1;
+    display: flex;
+
+    .pdf-initiating {
+      width: 100%;
+      direction: rtl;
+      position: absolute;
+    }
+
+    .pdf-view {
+      width: 100%;
+      display: flex;
+      align-items: stretch;
+    }
+  }
+}
+
+.zoom-buttons {
+  display: flex;
+  position: absolute;
+  font-size: 12px;
+  bottom: -8px;
+  left: 22px;
+  align-items: center;
+  z-index: 10;
+
+  .zoom-in-button,
+  .zoom-out-button {
+    &.disabled {
+      opacity: 0.2;
+    }
+  }
+}
+
+.download-wrapper {
+  padding: 0 24px;
+}

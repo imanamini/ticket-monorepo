@@ -1,0 +1,35 @@
+@import "@digipay/base-style/swatch";
+
+.unauthorized-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $swatch_white_900;
+  height: 100dvh;
+  flex-direction: column;
+  padding: 0 1rem;
+
+  .unauthorized-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 28rem;
+
+    .unauthorized-title {
+      font-weight: 600;
+      margin-top: 2.67rem;
+    }
+
+    .unauthorized-description {
+      color: $swatch_steel_500;
+      text-align: center;
+    }
+  }
+
+  .btn-retry {
+    margin: 1rem;
+    width: 28rem;
+  }
+}

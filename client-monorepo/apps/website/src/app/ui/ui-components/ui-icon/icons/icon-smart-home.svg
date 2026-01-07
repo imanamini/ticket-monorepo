@@ -1,0 +1,11 @@
+<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <g id="Group">
+    <g id="Group_2">
+      <path clip-rule="evenodd"
+            d="M19.842 8.29925L13.842 3.63225C12.759 2.78925 11.242 2.78925 10.158 3.63225L4.158 8.29925C3.427 8.86725 3 9.74125 3 10.6673V18.0002C3 19.6572 4.343 21.0002 6 21.0002H18C19.657 21.0002 21 19.6572 21 18.0002V10.6673C21 9.74125 20.573 8.86725 19.842 8.29925Z"
+            fill-rule="evenodd"
+            id="Path"
+            stroke="#AFB9C5" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

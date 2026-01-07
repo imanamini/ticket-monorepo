@@ -1,0 +1,47 @@
+<div class="faq-search">
+  <div class="input-wrapper">
+    <input
+      (keydown)="onInputKeydown($event)"
+      (keyup)="onInputChange()"
+      [(ngModel)]="searchKeyword"
+      placeholder="سوالی که داری و اینجا وارد کن..."
+      type="text"
+    />
+    <span
+      (click)="clearSearch(true)"
+      *ngIf="searchKeyword"
+      class="clear-icon"
+    ></span>
+  </div>
+  <button
+    (click)="onSearchButtonClick()"
+    [disabled]="searching"
+    class="search-btn"
+  >
+    جستجو
+  </button>
+  <div
+    *ngIf="suggestions.length > 0"
+    class="results"
+  >
+    <div
+      (click)="entryClicked(item)"
+      *ngFor="let item of suggestions"
+      class="entry"
+    >
+      <div
+        *ngIf="item.categoryId && categoriesMap[item.categoryId] && categoriesMap[item.categoryId].icon"
+        [ngStyle]="{
+          backgroundImage: 'url(' + categoriesMap[item.categoryId].icon.url + ')',
+        }"
+        class="icon"
+      ></div>
+      <div class="content">
+        <p>
+          {{ item.question }}
+        </p>
+        <span class="category-name">خرید اقساطی از دیجی‌کالا</span>
+      </div>
+    </div>
+  </div>
+</div>

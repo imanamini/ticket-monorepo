@@ -1,0 +1,6 @@
+export enum EmittingDataEnum {
+  NONE = 0,
+  PAGE_LAYOUT_SCROLLED_TO_END = 1,
+  MAIN_LAYOUT_SCROLLED_TO_END = 2,
+  USER_HAS_LOGGED_IN = 3,
+}

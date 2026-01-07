@@ -1,0 +1,37 @@
+@if (!hasReTry()) {
+  <div class="user-address d-flex flex-column h-100">
+    <third-party-stepper [currentStep]="3"
+                         stepName="مرحله آخر"
+                         title="تکمیل اطلاعات و مدارک"
+                         [backgroundGray]="true"
+                         [totalSteps]="3"
+                         class="mb-medium"></third-party-stepper>
+    <div class="user-address-content">
+      <p class="content-text">
+        آدرس و کدپستی مورد نظر جهت درج بر روی بیمه‌نامه را وارد کنید:
+      </p>
+
+      @if (this.plate !== null) {
+        <div class="content-plate">
+          <ngx-plate
+                  type="car"
+                  [size]="'small'"
+                  [plate]="plate"
+                  [readonly]="true"
+          ></ngx-plate>
+        </div>
+      }
+
+      <address-form [addressForm]="addressForm"
+                    [showError]="showError"
+                    [address]="address"></address-form>
+    </div>
+    <action-buttons (activeButtonClicked)="handleActiveButtonClicked()"
+                    (deActiveButtonClicked)="handleDeActiveButtonClicked()"
+                    backgroundMode="gray"
+                    deActiveButtonText="بازگشت"
+                    activeButtonText="تایید و ادامه"></action-buttons>
+  </div>
+} @else {
+  <retry-error (retryButtonClicked)="getData()"></retry-error>
+}

@@ -1,0 +1,25 @@
+<section class="bnpl-usage-tutorial">
+  <div class="container">
+    <h2
+      *ngIf="bnplUsageTutorialData.title"
+      class="title"
+    >
+      {{ bnplUsageTutorialData.title }}
+    </h2>
+    <div class="steps">
+      <div
+        *ngFor="let step of bnplUsageTutorialData.steps"
+        class="step"
+      >
+        <div class="step-picture">
+          <img
+            [ngSrc]="step.stepPicture.url"
+            width="315"
+            height="363"
+          />
+        </div>
+        <div class="step-title">{{ step.stepTitle }}</div>
+      </div>
+    </div>
+  </div>
+</section>

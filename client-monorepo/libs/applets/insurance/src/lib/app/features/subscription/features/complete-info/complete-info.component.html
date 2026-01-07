@@ -1,0 +1,20 @@
+<div class="d-flex h-100 w-100 align-items-center justify-content-center">
+  @if (isLoading()) {
+    <ngx-spinner size="xl"></ngx-spinner>
+  } @else {
+    <div class="complete-info-container h-100 w-100 ">
+      <div class="header">
+        <subscription-header
+          title="فعال‌سازی بیمه"
+          [showBackIcon]="false">
+        </subscription-header>
+      </div>
+      <div class="container p-big">
+        <information-form
+          (dataRegistered)="handleDataRegistered($event)"
+          [subscriptionInfo]="subscriptionInfo">
+        </information-form>
+      </div>
+    </div>
+  }
+</div>

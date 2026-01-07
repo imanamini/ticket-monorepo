@@ -1,0 +1,112 @@
+<div class="ui-dialog-compensate-service-cost-shortage">
+  <div class="top-bar">
+    <div class="title">پرداخت با کیف پول</div>
+    <app-ui-button
+      (clicked)="close()"
+      appearance="RED-TEXT"
+    >
+      بازگشت
+      <span
+        icon="icon-charon-left-red"
+        size="20"
+        appUiIcon
+      ></span>
+    </app-ui-button>
+  </div>
+  <div class="body">
+    <div class="service-data">
+      <div class="name-logo">
+        <div class="image-wrapper">
+          <ui-api-image
+            [imageId]="dialogData.serviceImageID"
+            height="30px"
+            width="30px"
+          ></ui-api-image>
+        </div>
+        {{ dialogData.serviceName }}
+      </div>
+      <div class="cost">
+        {{ dialogData.serviceCost | IRR }}
+        ریال
+      </div>
+    </div>
+    <div class="payment-data">
+      <div class="data-row">
+        <div class="title">
+          <span
+            icon="icon-wallet-gray"
+            size="20"
+            appUiIcon
+          ></span>
+          موجودی کیف پول
+        </div>
+        <div class="cash">
+          {{ dialogData.selectFeatureResponse.walletBalance | IRR }}
+          ریال
+        </div>
+      </div>
+      <div class="data-row">
+        <div class="title">
+          <span
+            icon="icon-wallet-charge-gray"
+            size="20"
+            appUiIcon
+          ></span>
+          نیازمند افزایش موجودی
+        </div>
+        <div class="cash">
+          {{ dialogData.selectFeatureResponse.amount | IRR }}
+          ریال
+        </div>
+      </div>
+    </div>
+    <div class="arbitrary-cash-in">
+      <div [formGroup]="form">
+        <ui-form-field
+          class="toggle"
+          formControlName="arbitraryToggle"
+          label="وارد کردن مبلغ دلخواه:"
+          ltrInput="true"
+          type="slide-toggle"
+        ></ui-form-field>
+        <ui-form-field
+          *ngIf="isArbitraryCashIn"
+          [errorMessageMapper]="{
+            lessThanRequired: arbitraryCashInLessThanRequiredError,
+            moreThanMaximum: arbitraryCashInMoreThanMaxError,
+          }"
+          [error]="form.controls.cashInAmount.errors"
+          [hint]="arbitraryCashInHint"
+          [isNumericKeyboard]="true"
+          [ngClass]="isArbitraryCashSuitable ? 'green-hint' : ''"
+          formControlName="cashInAmount"
+          multiSelect="false"
+        ></ui-form-field>
+      </div>
+    </div>
+    <app-ui-button
+      (clicked)="cashInButton()"
+      [disabled]="isArbitraryCashIn && !isArbitraryCashSuitable"
+      >افزایش موجودی و پرداخت
+    </app-ui-button>
+    <marquee
+      direction="down"
+      height="28px"
+      scrollamount="1"
+      width="100%"
+    >
+      <ng-container *ngFor="let promotion of servicePromotions">
+        <div class="promotion">
+          <img
+            *ngIf="promotion.icon && promotion.icon.url"
+            [ngSrc]="promotion.icon.url"
+            class="icon"
+            height="20"
+            width="20"
+          />
+          {{ promotion.text }}
+        </div>
+      </ng-container>
+    </marquee>
+  </div>
+</div>

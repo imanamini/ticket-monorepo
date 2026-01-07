@@ -1,0 +1,145 @@
+<div class="container">
+  <div
+    *ngIf="isDesktop() || isIOsDevice()"
+    class="marketplace web"
+  >
+    <div class="icon"></div>
+    <div class="title">دانلود نسخه وب اپلیکیشن</div>
+    <ul
+      *ngIf="downloadSectionData && downloadSectionData.web"
+      class="marketplace-items"
+    >
+      <li class="marketplace-item">
+        <div class="d-flex align-items-center">
+          <div class="icon">
+            <img
+              *ngIf="downloadSectionData.web.icon && downloadSectionData.web.icon.url"
+              [src]="downloadSectionData.web.icon.url"
+              alt=""
+            />
+          </div>
+          <div>
+            <div
+              *ngIf="downloadSectionData.web.title"
+              [ngStyle]="{ color: downloadSectionData.web.titleColor }"
+            >
+              {{ downloadSectionData.web.title }}
+            </div>
+            <div
+              *ngIf="downloadSectionData.web.type"
+              class="type"
+            >
+              {{ downloadSectionData.web.type === 'subscription' ? 'اشتراکی' : 'رایگان' }}
+            </div>
+          </div>
+        </div>
+        <app-ui-button
+          (click)="openDownloadDialog(downloadSectionData.web)"
+          appearance="OUTLINE-BLUE"
+          size="MEDIUM"
+        >
+          دریافت
+        </app-ui-button>
+      </li>
+    </ul>
+  </div>
+  <div
+    *ngIf="isDesktop() || isIOsDevice()"
+    class="marketplace ios"
+  >
+    <div class="icon"></div>
+    <div class="title">دانلود نسخه آیفون</div>
+    <ul
+      *ngIf="downloadSectionData && downloadSectionData.iosMarketplaces && downloadSectionData.iosMarketplaces.length > 0"
+      class="marketplace-items"
+    >
+      <li
+        *ngFor="let marketplace of downloadSectionData.iosMarketplaces"
+        class="marketplace-item"
+      >
+        <div class="d-flex align-items-center">
+          <div class="icon">
+            <img
+              *ngIf="marketplace.icon && marketplace.icon.url"
+              [src]="marketplace.icon.url"
+              alt=""
+            />
+          </div>
+          <div>
+            <div
+              *ngIf="marketplace.title"
+              [ngStyle]="{ color: marketplace.titleColor }"
+            >
+              {{ marketplace.title }}
+            </div>
+            <div
+              *ngIf="marketplace.type"
+              class="type"
+            >
+              {{ marketplace.type === 'subscription' ? 'اشتراکی' : 'رایگان' }}
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="marketplace.coupons.code"
+          class="coupons"
+        >
+          <span class="icon-gift"></span>
+          دارای کد تخفیف
+        </div>
+        <app-ui-button
+          (click)="openDownloadDialog(marketplace)"
+          appearance="OUTLINE-BLUE"
+          size="MEDIUM"
+          >دریافت</app-ui-button
+        >
+      </li>
+    </ul>
+  </div>
+  <div
+    *ngIf="isDesktop() || isAndroidDevice()"
+    class="marketplace android"
+  >
+    <div class="icon"></div>
+    <div class="title">دانلود نسخه اندروید</div>
+    <ul
+      *ngIf="downloadSectionData && downloadSectionData.androidMarketplaces && downloadSectionData.androidMarketplaces.length > 0"
+      class="marketplace-items"
+    >
+      <li
+        *ngFor="let marketplace of downloadSectionData.androidMarketplaces"
+        class="marketplace-item"
+      >
+        <div class="d-flex align-items-center">
+          <div class="icon">
+            <img
+              *ngIf="marketplace.icon && marketplace.icon.url"
+              [src]="marketplace.icon.url"
+              alt=""
+            />
+          </div>
+          <div>
+            <div
+              *ngIf="marketplace.title"
+              [ngStyle]="{ color: marketplace.titleColor }"
+            >
+              {{ marketplace.title }}
+            </div>
+            <div
+              *ngIf="marketplace.type"
+              class="type"
+            >
+              {{ marketplace.type === 'subscription' ? 'اشتراکی' : 'رایگان' }}
+            </div>
+          </div>
+        </div>
+        <app-ui-button
+          (click)="openDownloadDialog(marketplace)"
+          appearance="OUTLINE-BLUE"
+          size="MEDIUM"
+          >دریافت</app-ui-button
+        >
+      </li>
+    </ul>
+  </div>
+</div>

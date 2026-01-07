@@ -1,0 +1,167 @@
+@import "globals";
+
+
+section {
+
+  .container {
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .titles {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+
+        h1 {
+          //line-height: 62px;
+          font-size: 40px;
+          text-align: center;
+        }
+
+        h2 {
+          text-align: center;
+          line-height: 50px;
+          font-weight: 700;
+          font-size: 32px;
+        }
+      }
+
+      .image {
+        width: 344px;
+        height: 245px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 35px auto auto;
+
+        img {
+          max-width: 100%;
+          //height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  //.wrapper {
+  //  display: block;
+  //}
+  //.wrapper-item {
+  //  width: 100%;
+  //}
+
+  //.first-title {
+  //  font-size: 24px;
+  //}
+  //.second-title {
+  //  font-size: 32px;
+  //}
+
+  //.third-title {
+  //  font-size: 16px;
+  //}
+  //.main-content .item {
+  //  display: flex;
+  //
+  //  .texts {
+  //    margin-right: 16px;
+  //  }
+  //}
+}
+
+@media (max-width: 1280px) {
+  //.first-title {
+  //  font-size: 20px;
+  //  margin-bottom: 8px;
+  //  text-align: center;
+  //}
+  //.second-title {
+  //  font-size: 20px;
+  //  margin-bottom: 40px;
+  //  text-align: center;
+  //}
+
+  //.third-title {
+  //  font-size: 16px;
+  //  margin-bottom: 24px;
+  //}
+
+  section {
+    .container {
+      .wrapper {
+        .titles {
+          h1 {
+            font-size: 32px;
+          }
+
+          h2 {
+            font-size: 20px;
+          }
+        }
+
+        .image {
+          width: 221px;
+          height: 157px;
+          margin-top: 28px;
+        }
+      }
+    }
+  }
+}
+
+//@media (max-width: 577px) {
+//  .ctas-mobile {
+//    display: flex;
+//    justify-content: center;
+//    margin-bottom: 64px;
+//  }
+//  .ctas-desktop {
+//    display: none;
+//  }
+//  .ctas-mobile {
+//    display: flex;
+//    flex-direction: column;
+//    width: 100%;
+//    gap: 20px;
+//    text-align: center;
+//
+//    * {
+//      width: 100%;
+//    }
+//
+//    > *:nth-child(2) {
+//      width: 100%;
+//
+//      > * {
+//        width: 100%;
+//      }
+//    }
+//  }
+//}
+
+@media (max-width: 744px) {
+  section {
+    .container {
+      .wrapper {
+        .titles {
+          h1 {
+            font-size: 20px;
+          }
+
+          h2 {
+            font-size: 18px;
+          }
+        }
+
+        .image {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}

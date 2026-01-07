@@ -1,0 +1,34 @@
+.auction-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  position: relative;
+  height: 40px;
+  overflow: visible;
+  pointer-events: none;
+}
+.right-image {
+  width: 127px;
+  height: 40px;
+  background: url("./ghesti-haraj.svg") no-repeat center;
+  background-size: 100% 100%;
+  position: relative;
+}
+.left-image {
+  width: 87px;
+  height: 79px;
+  background: url("./percentage-bg.svg") no-repeat center;
+  background-size: 100% 100%;
+  position: relative;
+}
+.shadow-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(292deg, #FFF -23.86%, #FFF -8.13%, rgba(255, 213, 176, 0.96) 19.3%, rgba(255, 208, 169, 0.49) 41.11%, #FFCAA3 74.34%);
+  background: linear-gradient(292deg, color(display-p3 1 1 1) -23.86%, color(display-p3 1 1 1) -8.13%, color(display-p3 1 0.8414 0.7088 / 0.96) 19.3%, color(display-p3 1 0.8228 0.6853 / 0.49) 41.11%, color(display-p3 1 0.803 0.6604 / 0.00) 74.34%);
+  filter: blur(9px);
+  z-index: 0;
+}

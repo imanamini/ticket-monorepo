@@ -1,0 +1,88 @@
+@if (!showHintImage) {
+  @if (!showCompleteInformationResult) {
+    <div class="upload-file-wrapper">
+      <p class="title st-4">
+        تصاویر صفحه نمایش و پشت گوشی خود را بارگذاری کنید.
+      </p>
+      <div class="tab-container">
+        <p class="tab-title">
+          تعداد صفحه نمایش گوشی
+        </p>
+        <div class="tab-container">
+          <ui-switch-control
+                  [options]="operatorSwitchOptions"
+                  (change)="changeOption($event)">
+          </ui-switch-control>
+          <div class="card-container">
+            <ui-upload-file
+                    [title]="'تصویر صفحه نمایش'"
+                    [uploadType]="files.get(UploadPictureModel.ImageFrontOne).mode"
+                    (deleteFile)="deleteFile(UploadPictureModel.ImageFrontOne)"
+                    (selectedFile)="selectedFile($event , UploadPictureModel.ImageFrontOne)"
+                    [percent]="files.get(UploadPictureModel.ImageFrontOne).percent"
+                    [fileUploadedName]="files.get(UploadPictureModel.ImageFrontOne).name"
+                    (componentHasError)="uploadFileHasError(UploadPictureModel.ImageFrontOne , $event)"
+                    [textUploaded]="( this.selectedOption() && this.selectedOption().id === 'ONE_SCREEN') ?
+                        'تصویر صفحه نمایش' : 'تصویر صفحه نمایش اول' "
+                    [url]="files.get(UploadPictureModel.ImageFrontOne).url">
+            </ui-upload-file>
+
+            @if (selectedOption()?.id === 'TWO_SCREEN') {
+              <ui-upload-file
+                      [title]="'تصویر صفحه نمایش'"
+                      [uploadType]="files.get(UploadPictureModel.ImageFrontTwo).mode"
+                      (selectedFile)="selectedFile($event , UploadPictureModel.ImageFrontTwo)"
+                      (deleteFile)="deleteFile(UploadPictureModel.ImageFrontTwo)"
+                      [percent]="files.get(UploadPictureModel.ImageFrontTwo).percent"
+                      [textUploaded]="'تصویر صفحه نمایش دوم'"
+                      [fileUploadedName]="files.get(UploadPictureModel.ImageFrontTwo).name"
+                      (componentHasError)="uploadFileHasError(UploadPictureModel.ImageFrontTwo , $event )"
+                      [url]="files.get(UploadPictureModel.ImageFrontTwo).url"
+              >
+              </ui-upload-file>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="info-container">
+        <used-info-box
+                [showFooter]="true"
+                [footerText]="'مشاهده راهنمای تصویری'"
+                (footerClicked)="handleFooterClicked()"
+                [bodyText]="'توجه داشته باشید که تصویر بایستی از صفحه نمایش گوشی بصورت روشن و پس از استعلام IMEI از طریق کد دستوری *#06# گرفته شود.'">
+        </used-info-box>
+      </div>
+      <div class="back-phone">
+        <ui-upload-file
+                [title]="'تصویر پشت گوشی'"
+                [uploadType]="files.get(UploadPictureModel.ImageBack).mode"
+                (selectedFile)="selectedFile($event , UploadPictureModel.ImageBack)"
+                (deleteFile)="deleteFile(UploadPictureModel.ImageBack)"
+                [percent]="files.get(UploadPictureModel.ImageBack).percent"
+                [textUploaded]="'تصویر پشت گوشی'"
+                [fileUploadedName]="files.get(UploadPictureModel.ImageBack).name"
+                [url]="files.get(UploadPictureModel.ImageBack).url"
+        >
+        </ui-upload-file>
+      </div>
+
+      <journey-buttons
+              [nextText]="'تایید و ادامه'"
+              [hideBackBtnIcon]="true"
+              [hideBackBtn]="true"
+              [disableNext]="isFileUploaded()"
+              (nextClicked)="submit()">
+      </journey-buttons>
+    </div>
+  } @else if (showCompleteInformationResult) {
+    <used-complete-information-result
+            [journey]="JourneyNamesModel.USED_DEVICE">
+    </used-complete-information-result>
+  }
+}
+@if (showHintImage) {
+  <hint-images (backClicked)="hiddenShowHintImage()"></hint-images>
+}
+
+

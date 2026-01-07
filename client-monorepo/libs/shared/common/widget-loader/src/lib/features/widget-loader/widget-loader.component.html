@@ -1,0 +1,3 @@
+@if (widget()) {
+  <ng-container *ngComponentOutlet="componentMap[widget().type]; inputs: { payload: widget().payload }"></ng-container>
+}

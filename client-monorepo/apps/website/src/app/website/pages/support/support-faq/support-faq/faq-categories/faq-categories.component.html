@@ -1,0 +1,37 @@
+@if (categories().length > 0) {
+  <div class="categories-wrapper">
+    <div class="card">
+      <div class="card-grid">
+        @for (category of categories(); track category; let ci = $index) {
+          @if (viewingMore() || ci + 1 <= visibleItemsCount()) {
+            <div
+              (click)="onParentClick(category)"
+              class="category"
+            >
+              @if (category.icon) {
+                <div
+                  [ngStyle]="{ backgroundImage: 'url(' + category.icon.url + ')' }"
+                  class="icon"
+                ></div>
+              }
+              <div class="content">
+                <h3>{{ category.name }}</h3>
+                @if (category.entriesCount) {
+                  <span>{{ category.entriesCount }} پاسخ</span>
+                }
+              </div>
+            </div>
+          }
+        }
+      </div>
+      @if (categories().length > visibleItemsCount()) {
+        <div
+          (click)="onViewMoreClick()"
+          class="view-more"
+        >
+          {{ viewingMore() ? 'نمایش کمتر' : 'نمایش بیشتر' }}
+        </div>
+      }
+    </div>
+  </div>
+}

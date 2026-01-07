@@ -1,0 +1,1 @@
+export const REDIRECT_URL_DIVAR = 'https://open-platform-redirect.divar.ir/completion'

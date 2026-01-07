@@ -1,0 +1,13 @@
+<div class="bnpl-installment-info d-flex align-items-center gap-giant" [ngClass]="flexDirection()">
+  <div class="content d-flex flex-column gap-medium align-items-start">
+    @if (installmentBnpl()?.title) {
+      <div class="title">{{installmentBnpl()?.title}}</div>
+    }
+    @if (installmentBnpl()?.subtitle) {
+      <div class="subtitle b-2 text-onback-high" [innerHTML]="sanitize(installmentBnpl().subtitle)"></div>
+    }
+  </div>
+  <div class="image">
+    <img src="{{installmentBnpl()?.image?.url}}" alt="">
+  </div>
+</div>

@@ -1,0 +1,21 @@
+.buttons-container {
+  display: grid;
+  grid-template-columns: 1fr 0.1fr 1fr;
+}
+
+.z-2 {
+  z-index: 2;
+}
+
+.empty-state-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -72%);
+  opacity: 0.5;
+}
+
+.empty-container {
+  position: relative;
+  z-index: 10;
+}

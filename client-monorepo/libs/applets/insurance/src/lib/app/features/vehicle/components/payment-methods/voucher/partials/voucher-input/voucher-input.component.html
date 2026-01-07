@@ -1,0 +1,44 @@
+<div class="voucher-input p-plus pt-minus">
+  <div class="title d-flex flex-column align-items-center justify-content-center gap-minus">
+    <div class="icon-wrapper radius-rounded surface-back d-flex flex-column align-items-center justify-content-center">
+      <ngx-icon
+              [name]="'discount'"
+              class="text-onback-brand"
+              type="bold"
+              iconSize="32px"
+      ></ngx-icon>
+    </div>
+    <div class="b-2">کد تخفیف مورد نظر را وارد کنید.</div>
+  </div>
+  <div class="form mt-big">
+    <ui-form-field
+            data-tracking-id="input-voucher"
+            [hasHintStar]="voucherInput.errors && showError && voucherInput?.value?.length > 0"
+            [hasCleaner]="true"
+            [inputType]="'text'"
+            [formControl]="voucherInput"
+            [error]="voucherInput.errors"
+            [errorMessageMapper]="errorMapper()"
+            placeholder="مثال: A3DB45T782S"
+            [showError]="showError?'show':'hidden'"
+            type="input"
+            label="کد تخفیف"></ui-form-field>
+  </div>
+  <div class="d-flex flex-row gap-small mt-tiny">
+    <ins-button
+            (clickHandler)="close()"
+            [style]="InsButtonStyleEnum.TintedOnElevated"
+            [fullWidth]="true"
+            [size]="InsButtonSizeEnum.Large"
+            text="بازگشت"
+    ></ins-button>
+    <ins-button
+            data-tracking-id="btn-voucher"
+            (clickHandler)="handleClicked()"
+            [fullWidth]="true"
+            [size]="InsButtonSizeEnum.Large"
+            [style]="InsButtonStyleEnum.Fill"
+            text="ثبت کد"
+    ></ins-button>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="checkout d-flex flex-column h-100">
+  <third-party-stepper [backgroundGray]="true"
+                       [currentStep]="2"
+                       [totalSteps]="3"
+                       stepName="مرحله دوم"
+                       title="انتخاب بیمه‌گر"
+  ></third-party-stepper>
+
+  <div class="content-wrapper w-100 d-flex flex-column p-plus gap-plus">
+
+    <div class="d-flex flex-column gap-small">
+      <span class="t-8 text-onback-high">مشخصات بیمه‌نامه جدید</span>
+      @if (!isLoading() && policyDetail()) {
+        <car-policy-detail class="w-100"
+                           [policyDetail]="policyDetail()"></car-policy-detail>
+      } @else {
+        <lib-ngx-skeleton-loading width="100%"
+                                  height="140px"></lib-ngx-skeleton-loading>
+      }
+    </div>
+
+    <div class="d-flex flex-column gap-small">
+      <span class="t-8 text-onback-high">انتخاب روش پرداخت</span>
+      @if (!isLoading() && orderData()?.priceOptions) {
+        <payment-methods
+                [productType]="'car'"
+                [methods]="orderData()?.priceOptions"
+                (reloadOrderEmitter)="handleVoucherChange()"
+                (selectedMethodChange)="handleMethodChanged($event)"></payment-methods>
+      } @else {
+        <lib-ngx-skeleton-loading width="100%"
+                                  height="432px"></lib-ngx-skeleton-loading>
+      }
+    </div>
+
+
+    @if (this.selectedMethod()?.ticketType === PurchaseTicketTypeEnum.BNPL) {
+      <ins-alert [hasIcon]="true"
+                 [size]="AlertSizeEnum.Small"
+                 [color]="AlertColorEnum.Blue"
+                 title="جزئیات اقساط و مبلغ هر قسط"
+                 icon="bnpl"
+                 text="با انتخاب دکمه تأیید و پرداخت، در صفحه بعد می‌توانید جزئیات پرداخت و مبالغ اقساط را مشاهده کنید."></ins-alert>
+    }
+
+    <div class="d-flex flex-row justify-content-flex-start surface-brand-tint gap-low p-minus radius-plus">
+      <ngx-icon name="info-circle"
+                type="linear"
+                iconSize="20px"
+                classes="text-onback-brand"></ngx-icon>
+      <p class="b-3 text-onback-medium">
+        تایید و پرداخت حق بیمه، به معنای
+        <span class="text-onback-brand cursor-pointer"
+              (click)="openRegulationsBottomSheet()">موافقت با قوانین و مقررات عمومی بیمه‌نامه</span>
+        و
+        <span class="text-onback-brand cursor-pointer"
+              (click)="openRegulationsBottomSheet()">شرایط و قوانین بیمه دیجی‌پی</span>
+        است.
+      </p>
+    </div>
+
+    <third-party-callout [items]="calloutItems()"
+                         title="لطفاً توجه داشته باشید:">
+    </third-party-callout>
+
+
+  </div>
+  <action-buttons (activeButtonClicked)="handleActiveButtonClicked()"
+                  (deActiveButtonClicked)="handleDeActiveButtonClicked()"
+                  activeButtonText="تایید روش پرداخت"
+                  deActiveButtonText="بازگشت">
+    <div class="d-flex flex-row justify-content-space-between align-items-center w-100" topContent>
+      <p class="bt-2 text-onback-high">مبلغ کل پرداختی:</p>
+      <p class="total-price t-7 text-onback-medium">
+        <span class="t-7 text-onback-medium">{{ ( selectedMethod()?.payableAmount / 10 )|thousands }}</span>
+        تومان
+      </p>
+    </div>
+    <p topContent class="b-3 pt-atom pb-low mb-minus text-onback-high">تایید و پرداخت به معنای موافقت با <span
+            (click)="openConditionTerms()" class="text-onback-brand">شرایط و مقررات بیمه دیجی‌پی</span> است.</p>
+  </action-buttons>
+</div>

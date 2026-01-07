@@ -1,0 +1,23 @@
+<common-ui-components-horizontal-scroll [classes]="classes()">
+  <ngx-chip
+    [id]="'all-chip'"
+    [size]="'MEDIUM'"
+    [leadingIcon]="'more'"
+    [label]="'همه دسته‌بندی‌ها'"
+    [pressed]="!selectedCategory()"
+    [disableClick]="true"
+    (click)="changeCategory()"
+  >
+  </ngx-chip>
+  @for (category of categories; track $index) {
+    <ngx-chip
+      [id]="category + '-chip'"
+      [size]="'MEDIUM'"
+      [label]="StoreCategoryTitleMapper[category.title]"
+      [leadingIcon]="StoreCategoryToIconMapper[category.title]"
+      [pressed]="category.id === selectedCategory()?.id"
+      (click)="changeCategory(category)"
+    >
+    </ngx-chip>
+  }
+</common-ui-components-horizontal-scroll>

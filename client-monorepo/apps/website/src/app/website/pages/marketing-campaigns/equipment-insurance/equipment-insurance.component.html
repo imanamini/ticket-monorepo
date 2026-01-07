@@ -1,0 +1,47 @@
+<app-base-layout
+  *ngIf="creditCampaignPage && creditCampaignPage.templateData"
+  [loaded]="loaded"
+>
+  <ng-container>
+    <div class="nobitex-container">
+      <app-credit-campaign-timer
+        class="campaign-timer"
+        [block]="'start'"
+        [scrollAnchor]="'custom-form'"
+        [scrollToElementId]="'register-benefits'"
+        [templateData]="creditCampaignPage.templateData"
+        (clickEmit)="openThirdPartyInsurance(creditCampaignPage.templateData.sectionCounter.firstCta.link)"
+      ></app-credit-campaign-timer>
+      <div class="section-registering">
+        <div class="container">
+          <app-credit-register-benefits
+            [registerBenefitsData]="digiPayBenefit"
+            class="register-benefits"
+            id="register-benefits"
+          ></app-credit-register-benefits>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container>
+    <app-ui-horizontal-flow
+      *ngIf="creditCampaignPage.templateData.sectionOnboarding && creditCampaignPage.templateData.sectionOnboarding.values.length > 0"
+      [steps]="creditCampaignPage.templateData.sectionOnboarding.values"
+      [title]="creditCampaignPage.templateData.sectionOnboarding.title"
+      id="section-flow"
+    >
+    </app-ui-horizontal-flow>
+  </ng-container>
+
+  <app-ui-faq
+    *ngIf="
+      creditCampaignPage.templateData.faq &&
+      creditCampaignPage.templateData.faq.faqItems &&
+      creditCampaignPage.templateData.faq.faqItems.length > 0
+    "
+    [faqs]="creditCampaignPage.templateData.faq.faqItems"
+    [subtitle]="creditCampaignPage.templateData.faq.subtitle"
+    [title]="creditCampaignPage.templateData.faq.title"
+  ></app-ui-faq>
+</app-base-layout>

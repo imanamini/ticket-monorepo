@@ -1,0 +1,29 @@
+@if (data()?.length > 0) {
+  <p class="hint text-onback-high bt-3 mb-plus text-align-right">
+    موارد زیر چک(های) برگشتی شماست. بعد از برطرف کردن آن‌ها بررسی دوباره را بزنید.
+  </p>
+}
+
+<div class="details-container w-100 d-flex flex-column align-items-center flex-grow">
+  @for (item of data(); track item) {
+    <div
+      class="details border-color-light border-100 w-100 d-flex flex-column"
+      (click)="openDetailBottomSheet(item)"
+    >
+      <div class="bank-name text-onback-medium st-5">{{ item.bankName }}</div>
+      <div class="item-detail d-flex flex-column">
+        <span class="date b-2 text-onback-medium">{{ item.bouncedDate | jalaliDate: 'jYYYY/jMM/jDD' }}</span>
+        <span class="amount text-onback-high d-flex align-items-center">
+          <span class="st-7">{{ item.amount | IRR: 'hideRial' }} </span>
+          <span class="is-currency"> ریال </span>
+        </span>
+      </div>
+    </div>
+  }
+  @if (data()?.length === 0) {
+    <div class="no-data d-flex flex-grow flex-column gap-plus justify-content-center">
+      <div class="no-data-image"></div>
+      <span class="c-3 text-align-center text-onback-medium">{{ CheckCreditFileFailedNoData[1] }}</span>
+    </div>
+  }
+</div>

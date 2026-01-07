@@ -1,0 +1,43 @@
+<div class="w-100 d-flex flex-wrap surface-elevated">
+  <ngx-app-bar
+    class="w-100"
+    [title]="'درخواست اعتبار'"
+    [rightButton]="{
+      icon: 'arrow-right',
+      style: 'neutral-link',
+      mode: 'icon-only',
+      size: 'medium',
+    }"
+    (onRightButtonClick)="onBackHandler()"
+  />
+
+  <div class="w-100 d-flex flex-wrap align-items-center justify-content-center surface-elevated content px-plus">
+    <div class="w-100 d-flex flex-wrap justify-content-center">
+      <img
+        src="./wealth-assets/svg/bnpl-request-failure.svg"
+        alt="request-failed"
+      />
+
+      <p class="w-100 mt-big st-7 text-onback-high text-align-center">شما اقساط پرداخت نشده دارید</p>
+      <p class="w-100 mt-small bt-2 text-onback-medium text-align-center">
+        برای درخواست اعتبار جدید، لازم است ابتدا تمام اقساط خود را پرداخت کنید.
+      </p>
+    </div>
+  </div>
+  <div class="w-100 d-flex gap-medium my-medium px-plus">
+    <ngx-button
+      [fullWidth]="true"
+      [style]="'tinted-on-elevated'"
+      (clickHandler)="onBackHandler()"
+    >
+      متوجه شدم
+    </ngx-button>
+
+    <ngx-button
+      [fullWidth]="true"
+      (clickHandler)="PaymentOfInstallments()"
+    >
+      پرداخت اقساط
+    </ngx-button>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="has-time">
+  <div class="counter">
+    <div class="counter-header">فرصت باقی‌مانده برای صدور بیمه‌نامه</div>
+    <ui-scheduler [endTime]="purchase.expiresAt"></ui-scheduler>
+  </div>
+  <div class="device-detail">
+    <policy-general-info
+            [electronicEquipment]="purchase.electronicEquipment"
+            [policyStatus]="'pending'"
+    ></policy-general-info>
+
+    <div
+            *ngFor="let item of policyInformationList"
+            class="detail-info-item">
+      <div class="title">{{ item.key }}</div>
+      <div class="value">{{ item.value }}</div>
+    </div>
+  </div>
+  <div class="hint">
+    <img class="img" src="assets/icons/icon-callout-info.svg"/>
+    <div class="hint-message">
+      در صورتی که در فرصت باقی‌مانده نسبت به صدور بیمه‌نامه اقدام نفرمایید مهلت شما به پایان رسیده و بعد از آن دیگر
+      نمی‌توانید بیمه‌نامه برای دستگاه‌تان صادر کنید.
+    </div>
+  </div>
+  <div class="buttons">
+    <ui-button (click)="back()" appearance="BLUE-TEXT">بازگشت</ui-button>
+    <ui-button
+            [queryParams]="{code: purchase.code}"
+            [routerLink]="['../../../equipment/unbundled/home']"
+            class="submit-button">
+      انتقال به صفحه صدور بیمه‌نامه
+    </ui-button>
+  </div>
+</div>

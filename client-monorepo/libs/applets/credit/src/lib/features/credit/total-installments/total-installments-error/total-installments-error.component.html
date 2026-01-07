@@ -1,0 +1,12 @@
+<div class="full-height p-pony d-flex align-items-center">
+  <div class="image"></div>
+  <div class="title text-onback-high">سیستم با خطا مواجه شد.</div>
+  <div class="subtitle text-onback-low">لطفا پس از چند لحظه، مجدد تلاش کنید.</div>
+  <ngx-button
+    (clickHandler)="onRetry.emit()"
+    [style]="'tinted-on-elevated'"
+    class="mt-big"
+  >
+    تلاش مجدد
+  </ngx-button>
+</div>

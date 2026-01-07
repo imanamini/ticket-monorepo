@@ -1,0 +1,20 @@
+@if (hasReminder) {
+  <subscription-applet-credit-registration (clickHandler)="clickButton()"></subscription-applet-credit-registration>
+}
+<div class="container surface-elevated">
+  <p class="title">سقف وام قابل دریافت</p>
+  <span class="amount is-currency">{{ service.amount | thousands }} </span>
+  <div class="status">
+    <span>وضعیت:</span>
+    <subscription-applet-ui-status
+      [status]="service.status"
+      [serviceType]="service.type"
+    ></subscription-applet-ui-status>
+  </div>
+  <ngx-button
+    [style]="'link'"
+    (clickHandler)="clickButton()"
+  >
+    {{ buttonText }}
+  </ngx-button>
+</div>

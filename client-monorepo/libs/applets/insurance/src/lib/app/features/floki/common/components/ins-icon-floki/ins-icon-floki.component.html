@@ -1,0 +1,7 @@
+<img [alt]="name()"
+     [ngSrc]="'assets/floki/icons/ins-icon/' + name() + '.svg'"
+     [height]="height()"
+     [width]="width()"
+     [loading]="'lazy'"
+     (error)="handleMissingImage()"
+     class="ins-icon">

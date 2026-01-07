@@ -1,0 +1,98 @@
+<div class="comparison-table-box">
+  <div class="details">
+    <div class="title">
+      {{ data.title }}
+    </div>
+    <div class="subtitle">
+      {{ data.description }}
+    </div>
+    <div class="description">
+      {{ data.subtitle }}
+    </div>
+  </div>
+
+  <div [ngClass]="'table' + (isTableExpanded ? ' expand' : '')">
+    <table>
+      <thead>
+        <tr>
+          <td style="visibility: hidden"></td>
+          <td>
+            <img
+              src="../../../../../../../assets/images/wealth/market-icons/real-state.svg"
+              width="16"
+              height="16"
+            />
+            <span>ملک</span>
+          </td>
+          <td>
+            <img
+              src="../../../../../../../assets/images/wealth/market-icons/bourse.svg"
+              width="16"
+              height="16"
+            />
+            <span>بورس</span>
+          </td>
+          <td>
+            <img
+              src="../../../../../../../assets/images/wealth/market-icons/automobile.svg"
+              width="16"
+              height="16"
+            />
+            <span>خودرو</span>
+          </td>
+          <td>
+            <img
+              src="../../../../../../../assets/images/wealth/market-icons/bank.svg"
+              width="16"
+              height="16"
+            />
+            <span>بانک</span>
+          </td>
+          <td>
+            <img
+              src="../../../../../../../assets/images/wealth/market-icons/gold.svg"
+              width="16"
+              height="16"
+            />
+            <span>طلا</span>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let properties of marketProperties; let index = index"
+          [ngClass]="index > 3 ? 'hidden' : ''"
+        >
+          <td>{{ properties[0].title }}</td>
+          <td *ngFor="let market of markets">
+            <span
+              [size]="24"
+              class="cursor-pointer"
+              [icon]="properties[0].availableMarkets.indexOf(market) !== -1 ? 'icon-verified-green' : 'icon-close-red'"
+              appUiIcon
+            ></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div
+      class="show-more-btn"
+      *ngIf="marketProperties.length > 4"
+    >
+      <app-ui-button
+        (click)="showMore()"
+        id="showMore"
+        appearance="BLUE-TEXT"
+      >
+        {{ isTableExpanded ? 'نمایش کمتر' : marketProperties.length - 4 + ' مورد بیشتر' }}
+        <div
+          [ngClass]="isTableExpanded ? 'rotate' : ''"
+          class="icon"
+          icon="icon-charon-down-light-blue"
+          appUiIcon
+          size="20"
+        ></div>
+      </app-ui-button>
+    </div>
+  </div>
+</div>

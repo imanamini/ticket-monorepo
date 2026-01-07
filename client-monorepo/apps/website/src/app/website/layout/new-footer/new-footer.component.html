@@ -1,0 +1,447 @@
+<div class="footer-box">
+  <div class="pt-mega">
+    <div class="top-footer-section d-flex gap-giant container">
+      <div class="right-section d-flex flex-column">
+        <div class="logo mb-medium">
+          <img
+            src="assets/images/logos/Logo.svg"
+            alt=""
+          />
+        </div>
+        <div class="info">
+          <div class="address b-3 mb-minus ml-massive">
+            <span class="address-prefix">آدرس:</span>
+            تهران، خیابان ملاصدرا، خیابان شیخ بهایی شمالی، نبش لادن، پلاک ۸۵
+          </div>
+          <div class="tel b-3 mb-mega">
+            <span class="tel-prefix">شماره تماس:</span>
+            <a href="tel:02153924000">02153924000</a>
+          </div>
+        </div>
+
+        <div class="socials d-flex align-items-center">
+          <div class="media-icon ml-minus mt-minus mb-minus mr-atom">
+            <a
+              href="https://www.instagram.com/mydigipay/?hl=en"
+              target="_blank"
+            >
+              <ngx-icon
+                name="instagram"
+                type="bold"
+                iconSize="32px"
+              >
+              </ngx-icon>
+            </a>
+          </div>
+          <div class="media-icon m-minus">
+            <a
+              href="https://www.linkedin.com/company/mydigipay/"
+              target="_blank"
+            >
+              <img src="assets/images/icons/linkedin-icon.svg" />
+            </a>
+          </div>
+          <div class="media-icon m-minus">
+            <a
+              href="https://x.com/digipay_team"
+              target="_blank"
+            >
+              <img src="assets/images/icons/x-icon.svg" />
+            </a>
+          </div>
+          <div class="media-icon m-minus">
+            <a
+              href="https://aparat.com/digipay"
+              target="_blank"
+            >
+              <img src="assets/images/icons/aparat-icon.svg" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="left-section d-flex">
+        <div class="all-links pt-giant d-flex gap-hulk mr-hulk ml-hulk">
+          <div class="links d-flex flex-column gap-pony">
+            <span class="heading"> درباره ما </span>
+            <span class="link b-3"
+              ><a
+                [routerLink]="'/about'"
+                target="_blank"
+              >
+                درباره دیجی‌پی</a
+              ></span
+            >
+            <span class="link b-3"
+              ><a
+                [routerLink]="'/careers'"
+                target="_blank"
+                >فرصت‌های شغلی</a
+              ></span
+            >
+            <span class="link b-3"
+              ><a
+                [href]="'/mag'"
+                target="_blank"
+                >مجله اینترنتی دیجی‌پی</a
+              ></span
+            >
+            <span class="link b-3"
+              ><a
+                [routerLink]="'/developers/docs/upg'"
+                target="_blank"
+                >مستندات فنی</a
+              ></span
+            >
+          </div>
+          <div class="links d-flex flex-column gap-pony">
+            <span class="heading">خدمات ما</span>
+            <span class="link b-3"
+              ><a
+                href="{{ appUrl + '/hub' }}"
+                target="_blank"
+                >خدمات ویژه مالی</a
+              ></span
+            >
+            <span class="link b-3"
+              ><a
+                [href]="'/stores'"
+                target="_blank"
+                >فروشگاه‌ها</a
+              ></span
+            >
+            <!--            <span class="link b-3">خدمات کسب‌و‌کارها</span>-->
+<!--            <span class="link b-3">خدمات سازمانی</span>-->
+          </div>
+          <div class="links d-flex flex-column gap-pony">
+            <span class="heading"> خدمات مشتریان</span>
+            <span class="link b-3">
+              <a
+                [routerLink]="'/faq'"
+                target="_blank"
+                >سوالات متداول
+              </a></span
+            >
+            <span class="link b-3">
+              <a
+                [routerLink]="'/rules'"
+                target="_blank"
+                >قوانین و مقررات</a
+              ></span
+            >
+            <span class="link b-3"
+              ><a
+                [routerLink]="'/contactus'"
+                target="_blank"
+                >تماس با ما</a
+              >
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="collapsible-items">
+        <span
+          class="collapsible b-2 p-medium d-flex justify-content-space-between"
+          (click)="toggleCollapsible('about')"
+        >
+          درباره ما
+          @if (collapsibleState['about']) {
+            <span class="d-s-block">
+              <ngx-icon
+                name="arrow-2-up"
+                type="linear"
+                iconSize="20"
+              >
+              </ngx-icon>
+            </span>
+          } @else {
+            <span class="d-s-block">
+              <ngx-icon
+                name="arrow-2-down"
+                type="linear"
+                iconSize="20"
+              >
+              </ngx-icon>
+            </span>
+          }
+        </span>
+        <div
+          class="content d-flex flex-column gap-medium px-medium"
+          [ngStyle]="{ 'max-height': collapsibleState['about'] ? '500px' : '0' }"
+        >
+          <span class="link b-3"
+            ><a
+              [routerLink]="'/about'"
+              target="_blank"
+            >
+              درباره دیجی‌پی</a
+            ></span
+          >
+          <span class="link b-3"></span>
+          <span class="link b-3"
+            ><a
+              [routerLink]="'/careers'"
+              target="_blank"
+              >فرصت‌های شغلی</a
+            ></span
+          >
+          <span class="link b-3"
+            ><a
+              [routerLink]="'/mag'"
+              target="_blank"
+              >مجله اینترنتی دیجی‌پی</a
+            ></span
+          >
+          <span class="link b-3"
+            ><a
+              [routerLink]="'/developers/docs/upg'"
+              target="_blank"
+              >مستندات فنی</a
+            ></span
+          >
+        </div>
+        <span
+          class="collapsible b-2 p-medium d-flex justify-content-space-between"
+          (click)="toggleCollapsible('services')"
+        >
+          خدمات ما
+          @if (collapsibleState['services']) {
+            <span class="d-s-block">
+              <ngx-icon
+                name="arrow-2-up"
+                type="linear"
+                iconSize="20"
+              >
+              </ngx-icon>
+            </span>
+          } @else {
+            <span class="d-s-block">
+              <ngx-icon
+                name="arrow-2-down"
+                type="linear"
+                iconSize="20"
+              >
+              </ngx-icon>
+            </span>
+          }
+        </span>
+        <div
+          class="content d-flex flex-column gap-medium px-medium"
+          [ngStyle]="{ 'max-height': collapsibleState['services'] ? '500px' : '0' }"
+        >
+          <span class="link b-3"
+            ><a
+              href="{{ appUrl + '/hub' }}"
+              target="_blank"
+              >خدمات ویژه مالی</a
+            ></span
+          >
+          <span class="link b-3"
+            ><a
+              [routerLink]="'/stores'"
+              target="_blank"
+              >فروشگاه‌ها</a
+            ></span
+          >
+          <!--          <span class="link b-3">خدمات کسب‌و‌کارها</span>-->
+<!--          <span class="link b-3">خدمات سازمانی</span>-->
+        </div>
+        <span
+          class="collapsible b-2 p-medium d-flex justify-content-space-between"
+          (click)="toggleCollapsible('customers')"
+        >
+          خدمات مشتریان
+          @if (collapsibleState['customers']) {
+            <span class="d-s-block">
+              <ngx-icon
+                name="arrow-2-up"
+                type="linear"
+                iconSize="20"
+              >
+              </ngx-icon>
+            </span>
+          } @else {
+            <span class="d-s-block">
+              <ngx-icon
+                name="arrow-2-down"
+                type="linear"
+                iconSize="20"
+              >
+              </ngx-icon>
+            </span>
+          }
+        </span>
+        <div
+          class="content d-flex flex-column gap-medium px-medium"
+          [ngStyle]="{ 'max-height': collapsibleState['customers'] ? '500px' : '0' }"
+        >
+          <span class="link b-3">
+            <a
+              [routerLink]="'/faq'"
+              target="_blank"
+              >سوالات متداول
+            </a></span
+          >
+          <span class="link b-3">
+            <a
+              [routerLink]="'/rules'"
+              target="_blank"
+              >قوانین و مقررات</a
+            ></span
+          >
+          <span class="link b-3"
+            ><a
+              [routerLink]="'/contactus'"
+              target="_blank"
+              >تماس با ما</a
+            >
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider my-large" />
+
+    <div class="mid-footer-section container d-flex">
+      <div class="about-dp">
+        <div class="title st-5 text-onback-medium">دیجی‌پی، پرداخت باهوش</div>
+        <div class="description b-3 text-onback-medium">
+          <div
+            class="toggle-text"
+            [innerHTML]="!isExpanded ? shortText : fullText"
+          ></div>
+          <ngx-button
+            id="toggle-text"
+            [style]="'neutral-link'"
+            [size]="'tiny'"
+            (clickHandler)="toggleReadMore()"
+          >
+            {{ toggleText }}
+          </ngx-button>
+        </div>
+      </div>
+      <div class="footer-download-section d-flex gap-plus">
+        <div class="stores d-flex gap-medium flex-column">
+          <div class="store android">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.mydigipay.app.android"
+              target="_blank"
+            >
+              <div class="pt-low pb-low pr-low pl-low">
+                <img src="assets/images/footer/gp-text.svg" />
+                <img
+                  src="assets/images/footer/gp-icon.svg"
+                  class="mr-micro"
+                />
+              </div>
+            </a>
+          </div>
+          <div class="store bazaar">
+            <a
+              href="https://cafebazaar.ir/app/com.mydigipay.app.android"
+              target="_blank"
+            >
+              <div class="pt-low mb-low pr-low pl-low">
+                <img src="assets/images/footer/bazaar-text.svg" />
+                <img
+                  class="mr-low"
+                  src="assets/images/footer/bazaar-icon.svg"
+                />
+              </div>
+            </a>
+          </div>
+          <div class="store pwa">
+            <a
+              href="https://app.mydigipay.com/"
+              target="_blank"
+            >
+              <div class="pt-low pb-low pr-low pl-low d-flex justify-content-center">
+                <img src="assets/images/footer/dp-text.svg" />
+                <img
+                  src="assets/images/footer/dp-icon.svg"
+                  class="mr-low"
+                />
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="qr d-flex align-items-center flex-column">
+          <span class="c-1 text-onback-medium">دانلود اپلیکیشن</span>
+          <div class="qr-code mt-minus">
+            <img
+              src="assets/images/footer/qr-code.png"
+              alt="qr-code"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="divider my-large" />
+    <div class="bot-footer-section container d-flex gap-medium pb-large justify-content-space-between align-items-flex-end">
+      <div class="copy-right b-3">© کلیه حقوق این سایت متعلق به شرکت نوآوران پرداخت مجازی ایرانیان (دیجی‌پی) است.</div>
+      <div class="logos d-flex gap-minus">
+        <div class="logo d-flex justify-content-center align-items-center">
+          <a
+            href="https://nics24.ir/"
+            rel="nofollow"
+            target="_blank"
+          >
+            <img
+              alt="logo-ics"
+              height="40"
+              src="assets/images/logos/ics-logo.svg"
+              referrerpolicy="origin"
+              width="40"
+            />
+          </a>
+        </div>
+        @if (virtualBuisinesData()) {
+          <div class="logo d-flex justify-content-center align-items-center">
+            <img referrerpolicy='origin' id="{{ virtualBuisinesData()?.id }}" style='cursor:pointer; width: 29px ; height: 40px'
+                 (click)="openPopup(virtualBuisinesData()?.hypertextReference)"
+                 alt='' src="{{ virtualBuisinesData()?.logoPath }}"/>
+          </div>
+        }
+        <div class="logo d-flex justify-content-center align-items-center">
+          <img
+            referrerpolicy="origin"
+            [id]="samandehiData()?.id"
+            style="cursor:pointer; width: 40px"
+            (click)="openPopup(samandehiData()?.hypertextReference)"
+            alt="logo-samandehi"
+            [src]="samandehiData()?.logoPath"
+          />
+        </div>
+        <div class="logo d-flex justify-content-center align-items-center">
+          <a
+            href="https://logo.saramad.ir/verify.aspx?CodeShamad=1-2-767877-63-0-1"
+            target="_blank"
+          >
+            <img
+              src="assets/images/logos/rasaneh2.svg"
+              alt="saramad"
+            />
+          </a>
+        </div>
+        <div class="logo d-flex justify-content-center align-items-center">
+          <a
+            [href]="enamadHypertextReference"
+            referrerpolicy="origin"
+            target="_blank"
+          >
+            <img
+              [id]="enamndId"
+              [src]="enamadLogoPath"
+              alt=""
+              referrerpolicy="origin"
+              style="cursor: pointer; object-fit: cover"
+            />
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

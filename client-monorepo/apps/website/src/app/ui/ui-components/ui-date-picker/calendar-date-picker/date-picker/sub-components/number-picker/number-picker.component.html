@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <select
+    (change)="selectChange($event)"
+    [ngModel]="value"
+    class="select"
+  >
+    <option
+      *ngFor="let option of list"
+      [value]="option.value"
+    >
+      {{ option.label }}
+    </option>
+  </select>
+</div>

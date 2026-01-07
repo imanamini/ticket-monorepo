@@ -1,0 +1,63 @@
+@if (priceFilter() && inited()) {
+  <div class="surface-elevated d-flex flex-column align-items-stretch justify-content-start">
+    <div class="pb-pony st-6 text-onback-high mb-huge">محدوده قیمت</div>
+    <div class="d-flex flex-column align-items-stretch justify-content-start gap-large mb-hulk">
+      <div class="w-100">
+        <ngx-slider-selector
+          [sliderType]="'Slider'"
+          [type]="'Range'"
+          [stepSize]="rangeStep()"
+          [showLabel]="false"
+          [selectedMinValue]="min()"
+          [selectedMaxValue]="max()"
+          [minValue]="priceFilter()?.rangeMin ?? 0"
+          [maxValue]="priceFilter()?.rangeMax ?? 0"
+          (selectValue)="handleSliderChange($event)"
+        ></ngx-slider-selector>
+      </div>
+      @if (pageForm) {
+        <div
+          class="w-100 d-flex align-items-center justify-content-space-between gap-small"
+          [formGroup]="pageForm"
+        >
+          <div class="w-50">
+            <ui-form-field
+              [label]="'از'"
+              [formControlName]="'min'"
+              [type]="'amount'"
+              [error]="pageForm.controls['min'].errors ?? {}"
+              [unitCurrency]="'toman'"
+              [convertNonEnglishDigits]="true"
+            ></ui-form-field>
+          </div>
+          <div class="w-50">
+            <ui-form-field
+              [label]="'تا'"
+              [formControlName]="'max'"
+              [type]="'amount'"
+              [error]="pageForm.controls['max'].errors ?? {}"
+              [unitCurrency]="'toman'"
+              [convertNonEnglishDigits]="true"
+            ></ui-form-field>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="d-flex align-items-center justify-content-space-between">
+      <ngx-button
+        (clickHandler)="cancel()"
+        [fullWidth]="true"
+        [mode]="'form'"
+        [style]="'tinted-on-back'"
+        >انصراف</ngx-button
+      >
+      <ngx-button
+        (clickHandler)="submit()"
+        [fullWidth]="true"
+        [mode]="'form'"
+        [style]="'fill'"
+        >تایید</ngx-button
+      >
+    </div>
+  </div>
+}

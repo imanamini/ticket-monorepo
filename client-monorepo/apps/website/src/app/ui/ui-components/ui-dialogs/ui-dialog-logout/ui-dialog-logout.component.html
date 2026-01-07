@@ -1,0 +1,28 @@
+<div class="ui-dialog-logout">
+  <div class="top">
+    <div
+      (click)="closeDialog()"
+      class="close-cta"
+    >
+      <ngx-icon
+        [name]="'close'"
+        classes="text-onback-high cursor-pointer"
+      ></ngx-icon>
+    </div>
+    <div class="title">خروج</div>
+  </div>
+  <div class="question">آیا می خواهید از پروفایل دیجی پی خارج شوید؟</div>
+  <div class="ctas">
+    <app-ui-button
+      (clicked)="logoutUser()"
+      class="cta"
+      >بله</app-ui-button
+    >
+    <app-ui-button
+      (clicked)="closeDialog()"
+      appearance="FLAT-BLUE"
+      class="cta"
+      >خیر</app-ui-button
+    >
+  </div>
+</div>

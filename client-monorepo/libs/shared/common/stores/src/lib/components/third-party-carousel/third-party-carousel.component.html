@@ -1,0 +1,84 @@
+@if (this.shouldCautiousAboutPerformance() && !this.isInViewport()) {
+  <common-ui-components-defer-place-holder
+    [mode]="'loading'"
+    [height]="'180px'"
+    [backgroundClass]="'surface-glass-onback'"
+  ></common-ui-components-defer-place-holder>
+} @else {
+  @if (!isLoading()) {
+    @if (fields()) {
+      <div
+        class="d-flex flex-column gap-minus py-medium radius-plus surface-elevated mx-plus"
+        (click)="redirectToThirdPartyWebsite()"
+      >
+        <div class="d-flex px-medium align-items-center">
+          <img
+            [width]="'36'"
+            [height]="'36'"
+            [src]="fields()!.logo"
+            [class]="'ml-pony my-low'"
+            loading="lazy"
+          />
+          <div class="d-flex flex-column ml-auto">
+            <span class="st-7 text-onback-high">{{ title() || fields()!.title }}</span>
+            @if (timer().hours) {
+              <div
+                class="d-flex gap-tiny st-8 ltr ml-auto"
+                [style.color]="color()"
+              >
+                <span class="time">{{ timer().hours }}</span>
+                <span>:</span>
+                <span class="time">{{ timer().minutes }}</span>
+                <span>:</span>
+                <span class="time">{{ timer().seconds }}</span>
+              </div>
+            } @else {
+              <span class="st-8 text-onback-low">{{ subtitle() || fields()!.subtitle }}</span>
+            }
+          </div>
+          <ngx-button
+            [size]="'small'"
+            [style]="'tinted-on-elevated'"
+            [mode]="'icon-only'"
+            [leftIcon]="{
+              name: 'arrow-left',
+              type: 'linear',
+            }"
+          >
+          </ngx-button>
+        </div>
+        <common-ui-components-auto-loop-horizontal-scroll
+          [classes]="'gap-minus'"
+          [pageSize]="fields()!.products.length"
+          [paused]="isPaused()"
+        >
+          @for (item of fields()?.products; track $index) {
+            <common-stores-third-party-carousel-product
+              [product]="item"
+              (touchstart)="onItemHold()"
+              (mousedown)="onItemHold()"
+              (touchend)="onItemRelease()"
+              (mouseup)="onItemRelease()"
+            />
+          }
+          @for (item of fields()?.products; track $index) {
+            <common-stores-third-party-carousel-product
+              [product]="item"
+              (touchstart)="onItemHold()"
+              (mousedown)="onItemHold()"
+              (touchend)="onItemRelease()"
+              (mouseup)="onItemRelease()"
+            />
+          }
+        </common-ui-components-auto-loop-horizontal-scroll>
+      </div>
+    }
+  } @else {
+    <div class="py-medium mx-plus">
+      <lib-ngx-skeleton-loading
+        [height]="'180px'"
+        [loadingEffect]="loadingEffect()"
+      ></lib-ngx-skeleton-loading>
+    </div>
+  }
+}

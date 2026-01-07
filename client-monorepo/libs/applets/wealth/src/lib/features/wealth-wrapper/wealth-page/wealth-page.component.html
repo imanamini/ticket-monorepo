@@ -1,0 +1,15 @@
+@if ((isWaitingForUpdate || !wealthTokenExist) && (shouldEnterPassword | async) === false) {
+  <app-spinner></app-spinner>
+} @else {
+  @if (shouldEnterPassword | async) {
+    <app-enter-password
+      class="surface-elevated password"
+      [style]="'position:fixed; top:0; height:100dvh'"
+    ></app-enter-password>
+  }
+  @if (isInit && (shouldEnterPassword | async) === false) {
+    <div class="surface-back">
+      <router-outlet></router-outlet>
+    </div>
+  }
+}

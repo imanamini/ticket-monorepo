@@ -1,0 +1,18 @@
+:host {
+  height: 100%;
+}
+
+.section-detail {
+  overflow: auto;
+
+  &-content {
+    flex: 1;
+    overflow: auto;
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
+  }
+}

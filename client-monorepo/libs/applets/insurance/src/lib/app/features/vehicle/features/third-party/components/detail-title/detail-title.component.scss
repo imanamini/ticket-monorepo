@@ -1,0 +1,20 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.detail-title {
+  @include flex-column();
+
+  h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 32px;
+    color: #2c3544;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #6e798d;
+  }
+}

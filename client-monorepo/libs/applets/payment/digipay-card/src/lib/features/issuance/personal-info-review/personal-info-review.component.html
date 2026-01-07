@@ -1,0 +1,95 @@
+<digipay-card-applet-page-loading></digipay-card-applet-page-loading>
+
+<div class="h-100 d-flex flex-column gap-medium surface-elevated">
+  <ngx-app-bar
+    [title]="'درخواست دیجی‌کارت'"
+    (onRightIconClick)="goBack()"
+    [rightIcon]="'close'"
+  />
+  <div class="p-plus flex-grow pt-medium d-flex flex-column justify-content-space-between gap-big">
+    <div class="d-flex flex-column gap-minus">
+      <div class="st-8">تکمیل اطلاعات</div>
+
+      <div class="d-flex flex-column radius-medium p-plus surface-back">
+        <div class="d-flex py-pony flex-row justify-content-space-between align-items-center">
+          <span class="c-1 text-onback-medium">نام و نام خانوادگی</span>
+          <span class="c-3 text-onback-high"> {{ addressDetail()?.name }}</span>
+        </div>
+        <div class="d-flex py-pony my-tiny flex-row justify-content-space-between align-items-center">
+          <span class="c-1 text-onback-medium"> تاریخ تولد</span>
+          <span class="c-3 text-onback-high">{{ addressDetail()?.birthDate | jalaliDate: 'YYYY/MM/DD' }}</span>
+        </div>
+        <div class="d-flex py-pony my-tiny flex-row justify-content-space-between align-items-center">
+          <span class="c-1 text-onback-medium">کدملی</span>
+          <span class="c-3 text-onback-high">{{ addressDetail()?.nationalCode }} </span>
+        </div>
+        <ngx-divider
+          [color]="BorderColorsEnum.Tint"
+          dividerStyle="dashed"
+          class="h-100"
+          orientation="horizontal"
+        ></ngx-divider>
+        <div class="d-flex py-low my-tiny flex-row justify-content-space-between align-items-center">
+          <span class="c-1 text-onback-medium address-label"> آدرس</span>
+          <span
+            class="c-3 text-onback-high"
+            dir="ltr"
+          >
+            {{ addressDetail()?.address }}</span
+          >
+        </div>
+        <div class="text-oninvert-brand l-1 d-flex align-items-center">
+          <common-icon-dp-icon
+            [icon]="'info-circle'"
+            [iconSize]="'20'"
+            [iconType]="'linear'"
+            [class]="'text-onback-brand'"
+          ></common-icon-dp-icon>
+          <span class="l-1 text-onback-brand mr-micro"> در صورت مغایرت در آدرس، کدپستی خود را ویرایش کنید. </span>
+        </div>
+      </div>
+      <div class="mt-tiny">
+        <ui-form-field
+          [(ngModel)]="description"
+          [label]="'توضیحات تکمیلی آدرس'"
+          [inputType]="'text'"
+          (change)="handleDescriptionChange($event)"
+          [type]="'input'"
+          [multiLine]="true"
+          [textareaRows]="1"
+        ></ui-form-field>
+      </div>
+    </div>
+
+    <div class="d-flex flex-column gap-big">
+      <ngx-callout
+        [backgroundMode]="'default'"
+        [mode]="'multiple'"
+        [showTitleBlink]="false"
+        [title]="''"
+        [messages]="[
+          'دیجی‌کارت با اطلاعات هویتی نمایش داده شده چاپ و به کدپستی وارد شده، ارسال خواهد شد.',
+          'آماده‌سازی و ارسال، ۵ تا ۷ روز کاری زمان خواهد برد؛ پس از دریافت کارت، اقدام به فعال‌سازی نمایید.'
+        ]"
+      ></ngx-callout>
+
+      <div class="d-flex gap-small actions">
+        <ngx-button
+          class="edit-button"
+          [style]="'tinted-on-elevated'"
+          [fullWidth]="true"
+          (clickHandler)="edit()"
+        >
+          ویرایش
+        </ngx-button>
+        <ngx-button
+          class="edit-button"
+          [fullWidth]="true"
+          (clickHandler)="approve()"
+        >
+          تایید
+        </ngx-button>
+      </div>
+    </div>
+  </div>
+</div>

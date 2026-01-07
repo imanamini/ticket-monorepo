@@ -1,0 +1,24 @@
+<common-ui-components-page-layout
+  [title]="'سفارش را تحویل نگرفتم'"
+  [showBackIcon]="true"
+  [hasBackAction]="true"
+  [showBorder]="true"
+  [stickyHeader]="true"
+>
+  <div class="p-plus">
+    <p class="st-8 mb-minus">چه مشکلی پیش آمده؟</p>
+    @for (conflict of conflicts(); track $index) {
+      <div class="d-flex justify-content-space-between mb-minus surface-back p-medium radius-medium">
+        <p class="b-2 text-onback-medium">{{ conflict.description }}</p>
+        <ngx-button
+          [mode]="'icon-only'"
+          [size]="'tiny'"
+          [style]="'fill'"
+          [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+          (clickHandler)="conflictOrder(conflict.code)"
+        >
+        </ngx-button>
+      </div>
+    }
+  </div>
+</common-ui-components-page-layout>

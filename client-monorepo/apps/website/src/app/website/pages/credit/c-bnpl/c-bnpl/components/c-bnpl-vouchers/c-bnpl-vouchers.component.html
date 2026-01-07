@@ -1,0 +1,47 @@
+<section *ngIf="validVouchers.length">
+  <div class="container">
+    <div class="title">
+      با خرید اعتباری از این فروشگاه‌ها
+      <span class="pink">تخفیف</span>
+      بگیر
+    </div>
+    <div
+      class="vouchers"
+      #vouchers
+      [ngClass]="!isVouchersExpanded ? 'compressed-' + calculateDeviceScreenType() : ''"
+    >
+      <div
+        class="voucher"
+        *ngFor="let voucher of validVouchers"
+        (click)="onPreviewVoucher(voucher)"
+      >
+        <div class="brand">
+          <img
+            [src]="voucher.icon.url"
+            width="24"
+            height="24"
+            alt=""
+          />
+          {{ voucher.name }}
+        </div>
+        <div class="label">
+          {{ voucher.discountText }}
+        </div>
+      </div>
+    </div>
+    <div
+      class="show-more"
+      *ngIf="isVisibleShowMoreBtn"
+      (click)="onToggleShowMore()"
+    >
+      <span class="show-more-title">{{ 'مشاهده ' + (isVouchersExpanded ? 'کمتر' : 'بیشتر') }}</span>
+      <span
+        [ngClass]="{ rotate: isVouchersExpanded }"
+        class="icon"
+        appUiIcon
+        icon="icon-arrow-down-blue"
+        size="20"
+      ></span>
+    </div>
+  </div>
+</section>

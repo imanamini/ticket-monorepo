@@ -1,0 +1,26 @@
+<section class="section">
+  <div class="container">
+    <h2
+      *ngIf="data.title"
+      class="text-align-center"
+    >
+      {{ data.title }}
+    </h2>
+    <ul
+      *ngIf="data.items.length > 1"
+      class="basic-tabs-wrapper"
+    >
+      <li
+        (click)="changeTab(tabIndex)"
+        *ngFor="let tab of data.items; let tabIndex = index"
+        [ngClass]="{ active: tabIndex === selectedTab }"
+      >
+        <a>{{ tab.title }}</a>
+      </li>
+    </ul>
+    <app-ui-horizontal-flow
+      *ngIf="data.items && data.items.length > 0 && show"
+      [steps]="data.items[selectedTab].steps"
+    ></app-ui-horizontal-flow>
+  </div>
+</section>

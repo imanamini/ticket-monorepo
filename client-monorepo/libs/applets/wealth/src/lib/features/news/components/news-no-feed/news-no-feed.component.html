@@ -1,0 +1,30 @@
+<div class="d-flex flex-column align-items-center">
+  <img
+    src="wealth-assets/svg/disconnected.svg"
+    alt="provider-unavailable"
+  />
+  <div class="d-flex flex-column gap-small mt-big text-align-center">
+    <span class="st-7 text-onback-high">سرویس اخبار در دسترس نیست</span>
+    <span class="c-2 text-onback-medium">برای ادامه فرایند دقایقی دیگر دوباره تلاش کنید.</span>
+  </div>
+
+  <div class="w-100 mt-big">
+    <ngx-button
+      [fullWidth]="true"
+      [disabled]="inProgress()"
+      (clickHandler)="refetchNews()"
+      [size]="'medium'"
+      [style]="'tinted-on-elevated'"
+    >
+      @if (inProgress()) {
+        <ngx-count-down
+          [timeInSeconds]="120"
+          [type]="'mm:ss'"
+          (finished)="inProgress.set(false)"
+        ></ngx-count-down>
+      } @else {
+        تلاش دوباره
+      }
+    </ngx-button>
+  </div>
+</div>

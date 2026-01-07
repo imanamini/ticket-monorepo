@@ -1,0 +1,41 @@
+<app-credit-content-box
+  [bodyPadding]="false"
+  [grayMode]="false"
+  [showCloseButton]="true"
+  [showHeader]="false"
+  [showLogo]="false"
+>
+  <div class="wrapper">
+    <div class="container">
+      <div class="body">
+        <div class="body-box">
+          <div class="logo"></div>
+
+          <div class="title">اعتبار اقساطی شما با موفقیت فعال شد</div>
+
+          <div class="row">
+            <span class="row-right">مبلغ اعتبار اقساطی</span>
+            <span>{{ amount() | IRR }}</span>
+          </div>
+
+          <div class="row">
+            <span class="row-right">تعداد اقساط</span>
+            <span>{{ installmentCount() }}</span>
+          </div>
+
+          <div class="actions">
+            <ngx-button
+              (finished)="backToMerchant()"
+              (clickHandler)="backToMerchant()"
+              [fullWidth]="true"
+              [style]="'fill'"
+              [timer]="timer()"
+            >
+              بازگشت به فروشگاه در&nbsp;
+            </ngx-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-credit-content-box>

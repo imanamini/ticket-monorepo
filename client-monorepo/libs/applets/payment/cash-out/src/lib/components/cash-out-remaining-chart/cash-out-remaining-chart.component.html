@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-center">
+<svg
+[attr.width]="radius()"
+[attr.height]="radius() "
+[attr.viewBox]="'0 0 ' + radius() * 2 + ' ' + radius() * 2"
+>
+<circle
+  [attr.cx]="radius()"
+  [attr.cy]="radius()"
+  [attr.r]="normalizedRadius()"
+  [attr.stroke-width]="stroke()"
+  class="circle-background"
+></circle>
+
+<circle
+  [attr.cx]="radius()"
+  [attr.cy]="radius()"
+  [attr.r]="normalizedRadius()"
+  [attr.stroke-width]="stroke()"
+  class="circle-progress"
+  [attr.stroke-dasharray]="circumference()"
+  [attr.stroke-dashoffset]="strokeDashoffset()"
+></circle>
+
+<text
+  [attr.x]="radius()"
+  [attr.y]="radius()"
+  class="text-onback-low circle-text fs-24" 
+  text-anchor="middle"
+  alignment-baseline="central"
+>
+  {{ progress() }}%
+</text>
+</svg>
+</div>

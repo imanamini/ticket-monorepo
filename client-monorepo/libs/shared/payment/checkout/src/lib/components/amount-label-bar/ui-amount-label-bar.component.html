@@ -1,0 +1,25 @@
+<div
+  class="label-bar-wrapper"
+  [ngClass]="getClass()"
+>
+  <div class="logo-wrapper"></div>
+
+  <div class="content">
+    <div class="wallet-detail">
+      <div class="label-bar-title">
+        <p>{{ title() }}</p>
+      </div>
+      <div class="label-bar-value">
+        <div class="value-amount">{{ toLocalStorage(value()) }}</div>
+        <div class="value-currency">{{ currency() }}</div>
+      </div>
+    </div>
+
+    <div
+      class="user-info"
+      *ngIf="(userFullName()?.length ?? 0) > 1"
+    >
+      {{ userFullName() }}
+    </div>
+  </div>
+</div>

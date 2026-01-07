@@ -1,0 +1,27 @@
+<ul class="feature-cards">
+  <li
+    *ngFor="let item of features"
+    class="feature-card"
+  >
+    <div class="feature-card-icon">
+      <img
+        *ngIf="item.featureIcon"
+        [src]="item.featureIcon.url"
+        alt="{{ item.featureTitle }}>"
+      />
+    </div>
+    <div class="feature-card-content">
+      <div
+        *ngIf="item.featureTitle"
+        class="card-title"
+      >
+        {{ item.featureTitle }}
+      </div>
+      <span
+        *ngIf="item.featureText"
+        class="card-description"
+        >{{ item.featureText }}</span
+      >
+    </div>
+  </li>
+</ul>

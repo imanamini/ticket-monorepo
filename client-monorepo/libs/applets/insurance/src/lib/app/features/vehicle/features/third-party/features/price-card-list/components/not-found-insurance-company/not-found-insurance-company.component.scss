@@ -1,0 +1,13 @@
+@import "insurance/src/lib/app/style/once/global";
+
+.not-found {
+  @include flex-center;
+  @include flex-column;
+  padding: 16px;
+  gap: 16px;
+  width: 100%;
+
+  .message {
+    text-align: center;
+  }
+}

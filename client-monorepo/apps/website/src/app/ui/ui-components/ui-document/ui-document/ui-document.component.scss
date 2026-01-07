@@ -1,0 +1,94 @@
+@import "globals";
+
+.documentation-contain {
+  font-size: 10px;
+  color: $text-color;
+  background-color: #f0f2f9;
+  border-radius: 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
+.documentation-contain > div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 4rem;
+}
+
+.documentation-contain > div.documentation-notice {
+  background-color: rgb(115 129 171 / 10%);
+  padding: 1.5rem 3rem;
+  box-shadow: inset 0 20px 35px -40px #7381ab;
+}
+
+.documentation-notice > span {
+  font-size: 1rem;
+  display: block;
+  margin: auto;
+}
+
+.documentation-cta {
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.documentation-button-black {
+  background: #001a66;
+  border-radius: 1rem;
+  margin-right: 1.5rem;
+}
+
+.documentation-button-black > a {
+  color: #fff;
+  padding: 0 4rem;
+  height: 3rem;
+  line-height: 3rem;
+  display: block;
+}
+
+.documentation-text > b {
+  font-size: 2rem;
+  font-weight: 800;
+  display: block;
+}
+
+.documentation-text > span {
+  font-size: 1rem;
+}
+
+.documentation-button-black > a > span {
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (max-width: 1000px) {
+  .documentation-cta > div {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+}
+
+.documentation-cta > div {
+  display: flex;
+}
+
+@media (max-width: 1000px) {
+  .documentation-contain > div {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    text-align: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+}

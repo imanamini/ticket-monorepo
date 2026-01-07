@@ -1,0 +1,41 @@
+<div class="w-100 d-flex radius-plus surface-brand p-plus gap-plus flex-column">
+  <div class="d-flex align-items-center justify-content-space-between">
+    <div class="d-flex align-items-center gap-small">
+      <img
+        class="radius-rounded surface-brand"
+        [src]="data()?.image || 'wealth-assets/icons/chart.svg'"
+        [alt]="data()?.cardTitle"
+      />
+      <span class="st-8 text-oninvert-high">{{ data()?.cardTitle }}</span>
+    </div>
+    <div class="d-flex gap-small">
+      <span class="st-3 text-oninvert-high">{{ data()?.amount | number }}</span>
+      <span class="st-3 text-oninvert-high is-currency">ریال</span>
+    </div>
+  </div>
+  <div class="d-flex flex-column gap-small">
+    <span class="text-oninvert-medium b-3">بابت</span>
+    <div class="d-flex gap-small h-5">
+      @if (data()?.cardTitle === 'SELL') {
+        @if (data().type === 'IPO') {
+          <span class="text-oninvert-high b-3"> فروش سهام {{ data()?.providerName }}</span>
+        } @else {
+          <span class="text-oninvert-high b-3"> فروش صندوق {{ data()?.providerName }}</span>
+        }
+      } @else {
+        <span class="text-oninvert-high b-3"> سرمایه‌گذاری در صندوق {{ data()?.providerName }}</span>
+      }
+
+      <ngx-divider
+        class="h-100"
+        [color]="BorderColorsEnum.Air"
+        orientation="vertical"
+      ></ngx-divider>
+
+      <div class="d-flex gap-small">
+        <span class="text-oninvert-high b-3">{{ data()?.unit }}</span>
+        <span class="text-oninvert-high b-3">واحد</span>
+      </div>
+    </div>
+  </div>
+</div>

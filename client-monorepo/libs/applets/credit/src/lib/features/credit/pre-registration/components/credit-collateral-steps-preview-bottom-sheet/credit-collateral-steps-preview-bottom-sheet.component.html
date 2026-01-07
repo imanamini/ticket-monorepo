@@ -1,0 +1,43 @@
+@if (!gettingData()) {
+  <div class="credit-steps-preview-container h-100 d-flex flex-column py-medium px-plus">
+    <ngx-bottom-sheet-header
+      [showResizable]="true"
+      [title]="dataMapper[collateral()?.value!].title"
+    ></ngx-bottom-sheet-header>
+    <div class="top-section px-plus">
+      @if (dataMapper[collateral()?.value!].description) {
+        <div class="mb-small">
+          {{ dataMapper[collateral()?.value!].description }}
+        </div>
+      }
+      @if (dataMapper[collateral()?.value!].steps) {
+        <div class="credit-steps-preview mt-big">
+          @for (step of dataMapper[collateral()?.value!].steps; track step; let stepIndex = $index) {
+            <div class="credit-step-item mb-minus bt-2 py-8 d-flex align-items-center gap-minus">
+              <div class="number b-2 d-flex align-items-center justify-content-center radius-rounded">
+                {{ stepIndex + 1 }}
+              </div>
+              {{ step }}
+            </div>
+          }
+        </div>
+      }
+    </div>
+    <div class="call-to-action-section px-plus py-medium">
+      <ngx-button
+        ngxTrackableId
+        trackerId="collateralStepButtonClick"
+        [mode]="'form'"
+        [style]="'fill'"
+        (clickHandler)="close()"
+        [fullWidth]="true"
+        >متوجه شدم
+      </ngx-button>
+    </div>
+  </div>
+}
+@if (!!gettingData()) {
+  <div class="py-big">
+    <credit-page-loading [active]="true"></credit-page-loading>
+  </div>
+}

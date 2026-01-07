@@ -1,0 +1,73 @@
+<form
+  [formGroup]="form()"
+  class="pt-medium px-plus"
+>
+  <span class="b-2 text-onback-medium">لطفا اطلاعات کارت بانکی خود را وارد کنید.</span>
+  <div class="pt-huge pb-big">
+    <daily-bank-card-preview [config]="cardData()"></daily-bank-card-preview>
+  </div>
+  <ui-form-field
+    [errorMessageMapper]="{
+      bankCardNumberValidator:
+        form().controls['sourceCardNumber'].getError('bankCardNumberValidator') === 'not-support-bank'
+          ? bank()?.badge?.message || ''
+          : 'لطفا یک شماره کارت معتبر وارد نمایید',
+      serverValidationError: this.errorServerMessage(),
+    }"
+    [error]="form()?.controls['sourceCardNumber'].errors"
+    [formControlName]="'sourceCardNumber'"
+    [label]="'شماره کارت'"
+    [type]="'card-number'"
+    [isNumericKeyboard]="true"
+    [convertNonEnglishDigits]="true"
+    [hasCleaner]="true"
+  ></ui-form-field>
+  <div class="d-flex justify-content-center gap-small">
+    <ui-form-field
+      id="card-exp-month"
+      [errorMessageMapper]="{
+        min: 'مقدار این فیلد باید بین 01 تا 12 باشد ',
+        max: 'مقدار این فیلد باید بین 01 تا 12 باشد ',
+      }"
+      [error]="form()?.controls.cardExpMonth.errors"
+      [formControlName]="'cardExpMonth'"
+      [label]="'ماه انقضا'"
+      [type]="'input'"
+      [isNumericKeyboard]="true"
+      [maxSize]="2"
+      class="flex-grow"
+    ></ui-form-field>
+    <ui-form-field
+      id="card-exp-year"
+      [errorMessageMapper]="{
+        min: 'مقدار این فیلد باید بین 03 تا 99 باشد ',
+        max: 'مقدار این فیلد باید بین 03 تا 99 باشد ',
+      }"
+      [error]="form()?.controls.cardExpYear.errors"
+      [formControlName]="'cardExpYear'"
+      [label]="'سال انقضا'"
+      [type]="'input'"
+      class="flex-grow"
+      [isNumericKeyboard]="true"
+      [maxSize]="2"
+    ></ui-form-field>
+  </div>
+  <ui-form-field
+    [formControlName]="'cardTitle'"
+    [error]="form()?.controls.cardTitle.errors"
+    [label]="'عنوان کارت ( اختیاری)'"
+    [maxSize]="15"
+    [type]="'input'"
+  ></ui-form-field>
+  <div class="mt-huge">
+    <ngx-button
+      [isLoading]="registerSpinner()"
+      [style]="'fill'"
+      [disabled]="!sourceCardProfile() || registerSpinner() || !form().valid"
+      (clickHandler)="continue()"
+      [fullWidth]="true"
+    >
+      ذخیره کارت
+    </ngx-button>
+  </div>
+</form>

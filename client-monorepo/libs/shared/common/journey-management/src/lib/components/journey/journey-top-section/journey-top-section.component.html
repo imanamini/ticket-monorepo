@@ -1,0 +1,20 @@
+@if (config().data?.badges && config().data?.badges.length) {
+  <div class="journey-top d-flex align-items-center justify-content-start flex-wrap gap-low pb-tiny {{ classes() }}">
+    @for (badge of config().data?.badges; track $index) {
+      <ngx-badge
+        [status]="badge.status ?? 'info'"
+        [size]="'tiny'"
+        [hasIcon]="!!badge.icon"
+      >
+        @if (badge.icon) {
+          <ng-container badge-icon>
+            <common-icon-dp-icon [icon]="badge.icon"></common-icon-dp-icon>
+          </ng-container>
+        }
+        {{ badge.text }}
+      </ngx-badge>
+    }
+  </div>
+} @else if (placeHolder()) {
+  <div class="journey-top-placeholder"></div>
+}

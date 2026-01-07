@@ -1,0 +1,82 @@
+<div class="get-upload-media-wrapper d-flex flex-column">
+  <div class="media-container flex-1">
+    @if (!isCameraEnabled()) {
+      <div id="access-to-camera">
+        <p>برای ادامه مراحل، لطفا به دوربین دسترسی دهید.</p>
+        <div class="d-flex justify-content-center">
+          <ngx-button
+            (click)="enableCamera()"
+            [size]="'medium'"
+            [style]="'fill'">
+            دسترسی به دوربین
+          </ngx-button>
+        </div>
+      </div>
+    }
+    <video #videoElement playsinline autoplay muted class="preview-video"></video>
+    @if (isCameraEnabled() && !detectedImei()) {
+      <div class="scan-overlay">
+        <div class="scan-frame">
+          <div class="corner tl"></div>
+          <div class="corner tr"></div>
+          <div class="corner bl"></div>
+          <div class="corner br"></div>
+          <div class="scan-line"></div>
+        </div>
+      </div>
+    }
+    @if (focusRing().visible) {
+      <div class="focus-ring" [ngStyle]="{ left: focusRing().x + 'px', top: focusRing().y + 'px' }"></div>
+    }
+    <canvas #canvas class="offscreen-canvas"></canvas>
+    @if (detectedImei()) {
+      <div class="imei-center">
+        <p class="imei-text">{{ detectedImei() }}</p>
+      </div>
+      <div class="imei-overlay">
+        <extract-imei [serialNumber]="detectedImei()" (set-imei)="onImeiSet($event)"></extract-imei>
+      </div>
+    }
+  </div>
+  <div class="controls-container d-flex flex-wrap gap-small">
+    @if (isCameraEnabled()) {
+      @if (!isRecording()) {
+        <ngx-button
+        (click)="startRecording()"
+        [size]="'medium'"
+        [style]="'link'">
+        <ngx-icon class="icon" name="icon-origin"></ngx-icon>
+        شروع فیلم برداری
+      </ngx-button>
+        <ngx-button
+          (click)="capturePhoto()"
+          [size]="'medium'"
+          [style]="'link'">
+          گرفتن عکس
+        </ngx-button>
+      } @else {
+        @if (!isPaused()) {
+          <ngx-button
+            (click)="pauseRecording()"
+            [size]="'medium'"
+            [style]="'link'">
+            توقف
+          </ngx-button>
+        } @else {
+          <ngx-button
+            (click)="resumeRecording()"
+            [size]="'medium'"
+            [style]="'link'">
+            ادامه
+          </ngx-button>
+        }
+        <ngx-button
+          (click)="stopRecording()"
+          [size]="'medium'"
+          [style]="'fill'">
+          پایان و ذخیره
+        </ngx-button>
+      }
+    }
+  </div>
+</div>

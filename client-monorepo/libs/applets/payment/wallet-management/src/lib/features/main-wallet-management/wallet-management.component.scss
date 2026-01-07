@@ -1,0 +1,169 @@
+@import "@digipay/base-style/swatch";
+
+
+.mt-24px {
+  margin-top: 24px !important;
+}
+
+.wallet-management-container {
+  direction: rtl;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-y: auto;
+  background: url("../../../../../../../../apps/dpx/src/assets/wallet-management/background.svg") 0 0px / 100% 52% no-repeat;
+
+  > .title-wrapper {
+    margin: 24px;
+    font-size: 18px;
+    line-height: 2;
+    color: $swatch_steel_900;
+    font-weight: 600;
+
+    .title-information {
+      font-size: 12px;
+      font-weight: 400;
+      color: $swatch_steel_500;
+      display: flex;
+      gap: 4px;
+      align-items: center;
+
+      .info {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        background-image: url("../../../../../../../../apps/dpx/src/assets/wallet-management/info.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+
+    .title{
+      display: flex;
+      align-items: center;
+    }
+
+    .blue-info {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      background-image: url("../../../../../../../../apps/dpx/src/assets/wallet-management/blue-info.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      margin-right: 4px;
+    }
+  }
+
+  .hide-wallet-description {
+    transition: 1s ease all;
+    height: 0 !important;
+    padding: 0 !important;
+    transform: scale(0);
+  }
+
+  .dashed-line {
+    align-self: center;
+    position: relative;
+    padding: 12px 0;
+  }
+
+  .dashed-line::after {
+    content: "";
+    height: 24px;
+    border: 1px dashed $swatch_steel_300;
+    display: inline-block;
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+
+  .arrow-down-wallet-mng {
+    padding: 4px;
+    position: relative;
+    align-self: center;
+  }
+
+  .arrow-down-wallet-mng::after {
+    content: "";
+    height: 8px;
+    width: 8px;
+    border-style: dashed;
+    border-color: $swatch_steel_300;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    left: 0;
+    position: absolute;
+    top: -3px;
+  }
+
+  .chart {
+    margin: 0 24px;
+    height: 180px;
+  }
+
+  .chart-labels {
+    margin: 0 24px;
+    background-color: #f2f5f8;
+    border-radius: 12px;
+    padding: 12px;
+  }
+
+  .hint {
+    margin: 0 24px;
+    background-color: #f2f5f8;
+    border-radius: 12px;
+    height: 176px;
+
+    &-block {
+      background-color: #fff5ee !important;
+      margin-top: 24px;
+    }
+  }
+
+  .display-none {
+    display: none;
+  }
+
+  .un-visible {
+    visibility: hidden;
+  }
+
+  .hide-hint-with-animation {
+    transition: 1s ease all;
+    height: 0 !important;
+    padding: 0 !important;
+    transform: scale(0);
+  }
+
+  .wallet-action-button {
+    justify-self: center;
+    padding: 12px 16px;
+    background-color: #f2f5f8;
+    border-radius: 24px;
+    width: fit-content;
+    margin: 24px auto;
+  }
+
+  .gift-card-container {
+    border-radius: 16px 16px 0 0;
+    border-top: 1px solid #E8ECF0;
+  }
+}
+
+
+.skeleton-chart {
+  display: flex;
+  justify-content: center;
+
+  .rounded-circle {
+    background-color: white;
+    width: 100%;
+    border-radius: 50%;
+    height: 130px;
+  }
+}
+
+.skeleton-description {
+  padding: 12px;
+}

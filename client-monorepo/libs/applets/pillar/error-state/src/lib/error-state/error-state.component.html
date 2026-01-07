@@ -1,0 +1,19 @@
+<div class="d-flex flex-grow justify-content-center surface-elevated align-items-center h-100 w-100">
+  <ngx-status-result
+    class="flex-grow"
+    (clicked)="onCtaClick($event)"
+    [title]="config().title"
+    [description]="config().description"
+    [buttons]="config().buttons"
+    [iconState]="config().iconState"
+    [type]="config().type"
+  >
+    @if (config().illustration && config().illustration?.icon) {
+      <ngx-illustration-icon
+        status-image
+        [icon]="config()?.illustration?.icon"
+        [mode]="config()?.illustration?.mode"
+      />
+    }
+  </ngx-status-result>
+</div>

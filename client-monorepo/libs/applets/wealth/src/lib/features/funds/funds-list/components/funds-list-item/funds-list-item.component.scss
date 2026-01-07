@@ -1,0 +1,32 @@
+.circle-logo {
+  width: 3rem;
+  min-width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+
+  app-image {
+    max-width: 2rem;
+    max-height: 2rem;
+  }
+}
+
+.fund-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: fit-content;
+}
+
+.buttons-container {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 1.6666rem;
+}
+
+.auto-columns {
+  grid-template-columns: auto;
+}
+
+ngx-badge{
+  min-width: fit-content!important;
+}

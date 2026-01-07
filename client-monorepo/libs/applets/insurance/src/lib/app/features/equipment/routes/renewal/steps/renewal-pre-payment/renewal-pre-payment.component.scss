@@ -1,0 +1,146 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.pre-payment {
+  @include flex-column();
+  gap: 28px;
+  width: 100%;
+  height: 62%;
+  overflow-y: auto;
+  padding-left: 8px;
+
+  .payment-description {
+    @include flex-row();
+    @include flex-center-between();
+    width: 100%;
+
+    .description-more-details {
+      @include flex-row();
+      @include flex-center();
+      gap: 8px;
+      color: #0040ff;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
+
+  .payment-details {
+    @include flex-row();
+    gap: 32px;
+
+    &.mobile {
+      @include flex-column();
+    }
+
+    .details-item {
+      flex: 1;
+    }
+
+    .details-first {
+      @include flex-column();
+
+      .first-item {
+        padding: 16px 0;
+      }
+
+      .first-device {
+        @include flex-row();
+        gap: 14px;
+
+        .device-name {
+          @include flex-column();
+          @include flex-start-center();
+          gap: 4px;
+
+          .title {
+            font-size: 14px;
+            color: #6e798d;
+            font-weight: 400;
+            line-height: 24px;
+          }
+
+          .name {
+            font-size: 14px;
+            color: #2c3544;
+            font-weight: 400;
+            line-height: 24px;
+          }
+        }
+      }
+    }
+
+    .details-second {
+      margin-top: 16px;
+      @include flex-column();
+      justify-content: space-between;
+      gap: 14px;
+
+      .discount-code {
+        display: flex;
+        gap: 8px;
+        height: 55px;
+
+        .field {
+          flex: 2.25 1;
+        }
+
+        .button {
+          flex: 1.5 1;
+          @include flex-row();
+          @include flex-center();
+          border-radius: 12px;
+          background-color: #f0f5ff;
+          color: #00cc6d;
+          cursor: pointer;
+        }
+
+        .announcement {
+          flex: 1;
+          @include flex-row();
+          @include flex-center-between();
+          padding: 16px;
+          background-color: #00cc6d;
+          color: #ffffff;
+          font-weight: 700;
+          border-radius: 16px;
+
+          .button {
+            @include flex-row();
+            @include flex-center-end();
+            color: #2c3544;
+            background-color: #00cc6d;
+            text-decoration: underline;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .payment-payable-price {
+    @include flex-row();
+    @include flex-center-between();
+    background-color: #f2f5f8;
+    padding: 24px 32px;
+    border-radius: 16px;
+    width: 100%;
+
+    .price-title {
+      color: #6e798d;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .price-amount {
+      color: #2c3544;
+      font-weight: 700;
+      font-size: 22px;
+    }
+  }
+}

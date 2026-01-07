@@ -1,0 +1,41 @@
+<form [formGroup]="claimDetailForm()"
+      class="detail-form">
+  <ui-form-field [errorMessageMapper]="errorMapper"
+                 [error]="claimDetailForm()?.controls?.propertyDamage?.errors"
+                 [options]="propertyDamages"
+                 [searchable]="false"
+                 [showError]="showError()?'show':'hidden'"
+                 [overflowToContainer]="true"
+                 [showRadioOptions]="showRadioButton"
+                 selectOpenType="auto"
+                 formControlName="propertyDamage"
+                 label="تعداد خسارت مالی"
+                 placeholder="مثال: یک بار خسارت مالی"
+                 type="select"></ui-form-field>
+
+  <ui-form-field [errorMessageMapper]="errorMapper"
+                 [error]="claimDetailForm()?.controls?.healthDamage?.errors"
+                 [options]="healthDamages"
+                 [searchable]="false"
+                 [showError]="showError()?'show':'hidden'"
+                 [overflowToContainer]="true"
+                 [showRadioOptions]="showRadioButton"
+                 selectOpenType="auto"
+                 formControlName="healthDamage"
+                 label="تعداد خسارت جانی"
+                 placeholder="مثال: یک بار خسارت جانی"
+                 type="select"></ui-form-field>
+
+  <ui-form-field [errorMessageMapper]="errorMapper"
+                 [error]="claimDetailForm()?.controls?.driverDamage?.errors"
+                 [options]="driverDamages"
+                 [searchable]="false"
+                 [showError]="showError()?'show':'hidden'"
+                 [overflowToContainer]="true"
+                 [showRadioOptions]="showRadioButton"
+                 selectOpenType="auto"
+                 formControlName="driverDamage"
+                 label="تعداد خسارت حوادث راننده"
+                 placeholder="مثال: یک بار خسارت حوادث رانندگی"
+                 type="select"></ui-form-field>
+</form>

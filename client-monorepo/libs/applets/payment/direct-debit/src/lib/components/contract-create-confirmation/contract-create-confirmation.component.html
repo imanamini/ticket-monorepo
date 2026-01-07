@@ -1,0 +1,26 @@
+<div class="d-flex flex-column gap-huge">
+  <div class="d-flex justify-content-center">
+    <span class="icon-shadow">
+      <ngx-icon
+        class="text-onback-brand"
+        type="bold"
+        [name]="'error-circle'"
+        iconSize="48px"
+      ></ngx-icon>
+    </span>
+  </div>
+  <div class="d-flex flex-column gap-low">
+    <h4 class="text-align-center st-3">ثبت کارت</h4>
+    <span class="b-2 text-align-center text-onback-medium ">در ادامه، برای ثبت کارت خود به صفحه امن نماینده بانک مرکزی منتقل می‌شوید.</span>
+  </div>
+  <ngx-button
+    [mode]="'form'"
+    [size]="'large'"
+    [style]="'fill'"
+    [fullWidth]="true"
+    [leftIcon]="{ name: 'arrow-left', type: 'linear' }"
+    (clickHandler)="onSubmit()"
+  >
+    تایید و ادامه
+  </ngx-button>
+</div>

@@ -1,0 +1,74 @@
+<div class="container d-flex flex-wrap">
+  <div class="w-100">
+    <p>صندوق مورد نظر برای به‌روز رسانی اطلاعات سجام را انتخاب کنید:</p>
+  </div>
+
+  <div class="w-100 mt-3">
+    <ngx-alert
+      [color]="'gray'"
+      [hasCloseIcon]="false"
+      [text]="
+        'برای هر صندوق روزانه ۱ بار امکان درخواست به‌روز رسانی وجود دارد.\n برای به‌روز رسانی اطلاعات سایرصندوق‌‌ها با پشتیبانی تماس بگیرید.\nپشتیبانی: ۵۳۹۲۴۰۰۰-۰۲۱'
+      "
+    />
+  </div>
+  @if (isLoading()) {
+    <div class="loading-container">
+      <app-spinner></app-spinner>
+    </div>
+  } @else {
+    <div class="checkbox-container w-100 mt-3">
+      @for (instrument of instroments; track $index) {
+        <div
+          class="checkbox"
+          [ngClass]="{ disabled: instrument.isUpdated }"
+          (click)="selectInstrument(instrument)"
+        >
+          <div class="logo-container">
+            <app-image
+              [imageUrl]="instrument.thumbnailLogoAddress"
+              defaultImage="wealth-assets/icons/default-instrument.svg"
+            />
+          </div>
+          <span [ngClass]="{ 'checkbox-selected': instrument.symbol === selectedItem }">
+            {{ instrument.title }}
+          </span>
+
+          @if (!instrument.isUpdated) {
+            <div class="w-100 d-flex justify-content-end">
+              <div
+                class="selection"
+                [ngClass]="{ selected: instrument.symbol === selectedItem }"
+              ></div>
+            </div>
+          } @else {
+            <ngx-badge
+              size="md"
+              status="info"
+              mode="fill"
+              type="text"
+            >
+              انجام شد
+            </ngx-badge>
+          }
+        </div>
+      }
+    </div>
+  }
+
+  <div class="w-100 buttons-container">
+    @for (button of buttons; track $index) {
+      <ngx-button
+        [buttonId]="button.id"
+        [size]="'medium'"
+        [fullWidth]="true"
+        [isLoading]="button.loading"
+        [style]="button.style === 'fill' ? 'fill' : 'tinted-on-elevated'"
+        (clickHandler)="clickHandler(button.id)"
+        [disabled]="button.disabled || button.loading"
+      >
+        {{ button.label }}
+      </ngx-button>
+    }
+  </div>
+</div>

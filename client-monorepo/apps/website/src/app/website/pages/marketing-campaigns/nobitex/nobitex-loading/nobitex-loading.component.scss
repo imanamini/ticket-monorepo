@@ -1,0 +1,35 @@
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  gap: 80px;
+  padding: 50px;
+
+  .images {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+  }
+
+  .title {
+    color: #2c3544;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+}
+
+::ng-deep {
+  .mat-mdc-dialog-container {
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  .mat-progress-bar {
+    height: 7px !important;
+    margin-top: 5px;
+  }
+}

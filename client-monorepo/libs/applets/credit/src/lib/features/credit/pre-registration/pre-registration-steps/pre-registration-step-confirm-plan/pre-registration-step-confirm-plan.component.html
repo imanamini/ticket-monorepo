@@ -1,0 +1,59 @@
+<app-credit-app-bar
+  (onBackButtonClick)="back()"
+  (onTextClick)="backToSelectPlan()"
+  [actionImage]="'edit-square'"
+  [backButton]="true"
+  actionText="تغییر بسته"
+  title="تایید بسته انتخابی"
+></app-credit-app-bar>
+
+<div class="d-flex flex-column flex-grow">
+  <app-credit-scrollable-view
+    [fullHeightContent]="true"
+    [hasFade]="true"
+  >
+    <div class="page-content d-flex flex-column flex-grow justify-content-center rtl">
+      <div class="page-content-top flex-grow">
+        <div class="title">اطلاعات بسته انتخابی شما</div>
+        <div class="credit-amount">
+          <div class="title">وام درخواستی</div>
+          <div class="amount">{{ creditAmount() | IRR: 'hideRial' }}<small class="is-currency"> ریال</small></div>
+        </div>
+        <div class="credit-info">
+          @for (item of info(); track item; let itemIndex = $index) {
+            <div
+              [class]="{
+                'border-bottom': itemIndex + 1 !== info().length,
+                'bg-gray': itemIndex + 1 === info().length,
+              }"
+              class="info"
+            >
+              <div class="title">
+                {{ item.title }}
+              </div>
+              <div class="amount">{{ item.amount | IRR: 'hideRial' }}<small class="is-currency"> ریال</small></div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </app-credit-scrollable-view>
+</div>
+<div class="call-to-action-section pt-small px-plus pb-plus rtl">
+  <div class="pt-pony mb-medium">
+    <ngx-checkbox [(checked)]="accepted">
+      <span class="st-8 mr-small d-block rtl">
+        هزینه خدمات و زیر‌ساخت را در آخرین مرحله ثبت‌نام (قبل از فعال‌سازی) به صورت نقدی پرداخت می‌کنم.
+      </span>
+    </ngx-checkbox>
+  </div>
+  <ngx-button
+    (clickHandler)="onSubmit()"
+    [disabled]="!accepted() || loading()"
+    [isLoading]="loading()"
+    [fullWidth]="true"
+    ngxTrackableId
+    trackerId="confirmPlanButtonClick"
+    >تایید و ادامه
+  </ngx-button>
+</div>

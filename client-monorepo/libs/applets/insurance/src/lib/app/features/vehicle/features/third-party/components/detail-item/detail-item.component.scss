@@ -1,0 +1,25 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.detail-item {
+  @include flex-center-between();
+  gap: 16px;
+
+  .item-title {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #2c3544;
+    min-width: fit-content;
+  }
+
+  .item-value {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #2c3544;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 163px;
+  }
+}

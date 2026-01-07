@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+.dots {
+  direction: ltr;
+  display: inline-flex;
+  justify-content: space-between;
+  max-width: 4em;
+
+  .dot {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.2s all;
+
+    &.center {
+      margin: 0 0.5em;
+    }
+  }
+}

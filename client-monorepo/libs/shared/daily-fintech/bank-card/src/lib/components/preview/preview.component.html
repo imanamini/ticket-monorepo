@@ -1,0 +1,38 @@
+@if (isDestination() !== undefined) {
+  <div class="{{ classes() }}">
+    <ngx-card
+      [cardMode]="'bank'"
+      [cardSize]="isMinimized() ? 'small' : 'default'"
+      [aspectRatio]="isMinimized() ? 'unset' : '1.58/1'"
+      [loading]="isLoading()"
+      [ownerName]="ownerName()"
+      [expireDate]="expDate()"
+      [cardNumber]="cardNumber()"
+      [pinned]="isPinned()"
+      [isTyping]="isSkeleton()"
+      [width]="width()"
+      [alias]="alias() ?? ''"
+      [showOwnerLoading]="false"
+      [maskCardNumber]="maskCardNumber()"
+      [cardType]="isDestination() ? 'destinationCard' : 'myCard'"
+    ></ngx-card>
+  </div>
+} @else {
+  <div class="{{ classes() }}">
+    <ngx-card
+      [cardMode]="'bank'"
+      [cardSize]="isMinimized() ? 'small' : 'default'"
+      [aspectRatio]="isMinimized() ? 'unset' : '1.58/1'"
+      [loading]="isLoading()"
+      [ownerName]="ownerName()"
+      [expireDate]="expDate()"
+      [cardNumber]="cardNumber()"
+      [pinned]="isPinned()"
+      [isTyping]="isSkeleton()"
+      [width]="width()"
+      [alias]="alias() ?? ''"
+      [showOwnerLoading]="false"
+      [maskCardNumber]="maskCardNumber()"
+    ></ngx-card>
+  </div>
+}

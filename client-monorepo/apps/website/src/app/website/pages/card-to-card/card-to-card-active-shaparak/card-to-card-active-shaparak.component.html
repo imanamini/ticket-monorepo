@@ -1,0 +1,19 @@
+<section>
+  <div class="container">
+    <h2
+      *ngIf="title"
+      class="text-align-center"
+    >
+      {{ title }}
+    </h2>
+    <!--    <ui-accordion [accordions]="accordions"></ui-accordion>-->
+    <ng-container *ngFor="let accordion of accordionsData; let accordionIndex = index">
+      <app-ui-complex-accordion
+        (setActiveAccordion)="selectAccordion($event)"
+        [accordionIndex]="accordionIndex"
+        [activeAccordion]="activeAccordion"
+        [section]="accordion"
+      ></app-ui-complex-accordion>
+    </ng-container>
+  </div>
+</section>

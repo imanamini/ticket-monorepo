@@ -1,0 +1,142 @@
+@import "globals";
+
+$border-color: #191919;
+
+:host {
+  display: block;
+  position: relative;
+}
+
+.vehicle-plate {
+  border: 2px solid $border-color;
+  border-radius: 12px;
+  overflow: hidden;
+  user-select: none;
+  cursor: pointer;
+  height: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  color: $border-color;
+
+  &.disabled {
+    border-color: $swatch_steel_300;
+
+    .province {
+      border-color: $swatch_steel_300;
+    }
+  }
+}
+
+input {
+  border: none;
+  font-size: rem(34, 16);
+  text-align: center;
+  background: transparent;
+  width: 100%;
+  color: inherit;
+  padding: 0;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    border: none;
+  }
+
+  &::placeholder {
+    color: #dedede;
+  }
+}
+
+.part3-input {
+  min-width: 2.5em;
+}
+
+.car-plate-layout {
+  &.inverted {
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .province {
+      background-image: url('/assets/images/driving-fine/plate-variants/plate-iran-w.png');
+    }
+  }
+}
+
+.car-plate-layout {
+  height: 72px;
+  display: flex;
+  direction: ltr;
+
+  .flag {
+    background: url('/assets/images/driving-fine/plate-variants/plate-left.png') no-repeat left 0/100% 100%;
+    width: 40px;
+    display: inline-flex;
+    height: 100%;
+  }
+
+  &.disabled {
+    .flag {
+      background-image: url('/assets/images/driving-fine/plate-variants/plate-left-disabled.png');
+    }
+
+    .province {
+      background-image: url('/assets/images/driving-fine/plate-variants/plate-iran-disabled.png');
+    }
+  }
+
+  .digits {
+    width: 60%;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 10px;
+    flex: 1 0;
+    color: inherit;
+  }
+
+  .province {
+    color: inherit;
+    display: inline-flex;
+    background: url('/assets/images/driving-fine/plate-variants/plate-iran.png') no-repeat top 5px center/87%;
+    padding-top: 20px;
+    border-left: 2px solid $border-color;
+    width: 19%;
+    height: 100%;
+    box-sizing: border-box;
+  }
+}
+
+ui-vehicle-plate-letter {
+  font-size: 60px;
+}
+
+.inline-item {
+  flex: 1 1;
+}
+
+.letter-keyboard {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+.letter-placeholder {
+  cursor: pointer;
+  opacity: 0.15;
+}
+
+@media (max-width: 744px) {
+  .car-plate-layout {
+    height: 63px;
+  }
+
+  input {
+    font-size: rem(32, 16);
+  }
+
+  .plate-letter {
+    font-size: 50px;
+  }
+}

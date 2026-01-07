@@ -1,0 +1,102 @@
+@import "base-style/tokens/theme-surface";
+$product-container-h: 370px;
+$header-container-h: 170px;
+:host {
+  height: 100vh;
+}
+
+.plp-container {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: calc(100% - #{$product-container-h}) minmax(#{$product-container-h}, max-content);
+  gap: 0 0;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "."
+    ".";
+
+  .wrapper-product-detail {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: #{$header-container-h} calc(100% - #{$header-container-h});
+    gap: 0 0;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "."
+    ".";
+  }
+}
+
+.header-container {
+  width: 100%;
+  position: relative;
+
+  .shapes {
+    background: var(--surface-back);
+    background: linear-gradient(0deg, var(--surface-back) -3%, #F2F3F600 100%);
+    inset: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      inset: 0;
+      background-color: #F2F3F640;
+
+      &:nth-child(1) {
+        clip-path: polygon(100% 10%, 67% 100%, 100% 100%);
+      }
+
+      &:nth-child(2) {
+        clip-path: polygon(90% 0, 100% 0, 100% 100%, 53% 100%);
+      }
+
+      &:nth-child(3) {
+        clip-path: polygon(61% 0, 100% 0, 100% 100%, 21% 100%);
+      }
+    }
+  }
+
+  & > div:not(.shapes) {
+    position: relative;
+  }
+}
+
+.product-slider {
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scrollbar-width: none;
+
+  &.drag-slider {
+    cursor: grab;
+  }
+
+  &:not(.drag-slider) {
+    scroll-snap-type: x mandatory;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .slide {
+    scroll-snap-align: start;
+    scroll-margin: 1em 24px 1em 1em;
+  }
+}
+
+.flex-3 {
+  flex: 3;
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.selected {
+  transition: transform 0.3s ease;
+}

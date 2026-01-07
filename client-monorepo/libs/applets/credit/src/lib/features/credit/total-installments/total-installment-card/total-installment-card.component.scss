@@ -1,0 +1,81 @@
+@import "@digipay/base-style/swatch";
+
+.card {
+  padding: 20px 20px 12px;
+  border: 1px solid $swatch_steel_200;
+  border-radius: 20px;
+  cursor: pointer;
+
+  &.selected {
+    border-color: $swatch_blue_500;
+  }
+
+  &.with-penalty-waiver {
+    .penalty {
+      position: relative;
+
+      &:after {
+        content: "";
+        width: 100%;
+        height: 1px;
+        top: 50%;
+        display: block;
+        position: absolute;
+        background-color: $swatch_red_500;
+      }
+    }
+  }
+}
+
+.card-title {
+  font-size: 14px;
+  line-height: 24px;
+  margin-bottom: 8px;
+
+  .text {
+    font-weight: 500;
+  }
+}
+
+.icon {
+  margin-left: 8px;
+}
+
+.count-tick {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  line-height: 20px;
+  color: $swatch_steel_500;
+}
+
+.due-date {
+  font-size: 12px;
+  line-height: 20px;
+  color: $swatch_steel_500;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: $swatch_steel_100;
+  margin: 14px 0;
+}
+
+.amount {
+  font-size: 18px;
+  line-height: 32px;
+  margin-left: 4px;
+}
+
+.unit {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.penalty {
+  color: $swatch_red_500;
+  font-size: 10px;
+  line-height: 16px;
+  font-weight: 500;
+}

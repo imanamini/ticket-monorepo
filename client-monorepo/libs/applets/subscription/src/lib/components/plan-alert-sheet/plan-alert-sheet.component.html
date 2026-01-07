@@ -1,0 +1,19 @@
+<ng-container body>
+  <div class="container">
+    <div class="image"></div>
+    <p class="title">توجه داشته باشید</p>
+    <p class="subtitle">
+      خرید این اشتراک به معنای دریافت وام تا سقف {{ amount }} نیست. برای اطمینان از اینکه تا چه مبلغی می‌توانید وام دریافت کنید ابتدا
+      <span class="bold">اعتبارسنجی</span> بانکی انجام دهید تا طرح متناسب با شرایط خود را بخرید.
+    </p>
+  </div>
+</ng-container>
+<ng-container footer>
+  <ngx-button
+    [fullWidth]="true"
+    [style]="'tinted-on-elevated'"
+    (clickHandler)="onSubmit()"
+  >
+    متوجه شدم
+  </ngx-button>
+</ng-container>

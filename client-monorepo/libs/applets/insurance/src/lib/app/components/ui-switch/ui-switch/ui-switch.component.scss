@@ -1,0 +1,42 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.switch {
+  height: 32px;
+  box-shadow: 0 0 0 1px #dee3e7;
+  border-radius: 12px;
+  padding: 6px;
+  box-sizing: content-box;
+
+  .switch-options {
+    display: flex;
+    justify-content: stretch;
+    height: 100%;
+
+    .option {
+      line-height: 32px;
+      font-size: 12px;
+      cursor: pointer;
+      color: $text-color;
+      flex-grow: 1;
+      flex-shrink: 1;
+      text-align: center;
+      z-index: 1;
+
+      &.selected {
+        font-weight: 600;
+        background-color: #f2f5f8;
+        border-radius: 8px;
+        color: #2c3544;
+      }
+
+      &.disabled-option {
+        color: #dee3e7;
+      }
+
+      .selected.disabled-option {
+        color: #dee3e7;
+        background-color: #f2f5f8;
+      }
+    }
+  }
+}

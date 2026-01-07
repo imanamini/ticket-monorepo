@@ -1,0 +1,20 @@
+<app-base-layout [loaded]="loaded">
+  <app-contact-us-intro [templateData]="page.templateData || {}"></app-contact-us-intro>
+  <app-ui-contact-section
+    *ngIf="page && page.templateData && page.templateData.mainForm && contactForm"
+    [contactForm]="contactForm"
+    [description]="page.templateData.mainForm.description"
+    [notice]="page.templateData.mainForm.notice"
+    [title]="page.templateData.mainForm.title"
+  ></app-ui-contact-section>
+  <app-contact-us-vacaction
+    *ngIf="
+      page.templateData &&
+      page.templateData.mainVacations &&
+      page.templateData.mainVacations.vacation &&
+      page.templateData.mainVacations.vacation.length > 0
+    "
+    [templateData]="page.templateData"
+  ></app-contact-us-vacaction>
+  <app-contact-us-map [templateData]="page.templateData || {}"></app-contact-us-map>
+</app-base-layout>

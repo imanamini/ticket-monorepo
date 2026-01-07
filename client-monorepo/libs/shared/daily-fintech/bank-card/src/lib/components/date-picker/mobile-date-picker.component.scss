@@ -1,0 +1,49 @@
+
+.date-picker {
+  border-top: 1px solid #dee3e7;
+  padding: 6px 12px 12px;
+  border-radius: 16px 16px 0 0;
+  background: #f2f5f8;
+
+  .header {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    color: #6e798d;
+    font-size: 12px;
+    border-bottom: 1px solid #dee3e7;
+    padding: 0 0 8px;
+
+    span {
+      cursor: pointer;
+    }
+
+    .confirm-selection {
+      ::ng-deep {
+        button {
+          padding: 6px 0;
+          min-width: 50px;
+          line-height: 1;
+          height: auto;
+          border-radius: 8px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .selects {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 50% 50%;
+    margin: 12px 0;
+
+    date-picker-number-picker {
+      flex: 0 0 48%;
+
+      ::ng-deep .wrapper {
+        padding: 0;
+      }
+    }
+  }
+}

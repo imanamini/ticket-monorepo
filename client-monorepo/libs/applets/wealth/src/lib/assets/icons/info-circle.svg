@@ -1,0 +1,9 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group">
+<circle id="Oval" cx="12" cy="12" r="6.5" stroke="#FF2638" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path" d="M12 12.25V14.5" stroke="#FF2638" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_2" d="M12 9.50005C11.9601 9.50005 11.9278 9.53238 11.9278 9.57227C11.9278 9.61215 11.9601 9.64449 12 9.64449C12.0399 9.64449 12.0722 9.61215 12.0722 9.57227V9.57227C12.0722 9.55311 12.0646 9.53474 12.0511 9.5212C12.0375 9.50765 12.0192 9.50004 12 9.50005V9.50005" stroke="#FF2638" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_3" d="M4.86029 5C1.04657 8.8875 1.04657 15.1125 4.86029 19" stroke="#FF2638" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_4" d="M19.1396 5C22.9534 8.8875 22.9534 15.1125 19.1396 19" stroke="#FF2638" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

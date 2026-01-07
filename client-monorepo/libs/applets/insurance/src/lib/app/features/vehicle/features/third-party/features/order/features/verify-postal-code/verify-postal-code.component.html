@@ -1,0 +1,29 @@
+<div class="verify-postal-code d-flex flex-column h-100">
+  <third-party-stepper [currentStep]="3"
+                       stepName="مرحله آخر"
+                       title="تکمیل اطلاعات و مدارک"
+                       [backgroundGray]="true"
+                       [totalSteps]="3"></third-party-stepper>
+
+  <div class="verify-postal-code-content mt-big">
+    <ngx-alert
+            color="red"
+            text="کدپستی واردشده در مرحله تکمیل اطلاعات، در سامانه املاک و اسکان یافت نشد."
+            title="کدپستی تایید نشده است"
+            [hasCloseIcon]="false"
+    ></ngx-alert>
+    <p class="content-text py-small">
+      در صورتی که آدرس و کدپستی شما در سامانه املاک و اسکان ثبت شده است، آن را تأیید کنید.
+      همچنین می‌توانید آدرس و کدپستی ثبت‌شده دیگری را برای درج بر روی بیمه‌نامه وارد کنید.
+    </p>
+    <address-form [addressForm]="addressForm"
+                  [showError]="showError()"
+                  [address]="address"></address-form>
+  </div>
+  <action-buttons (activeButtonClicked)="handleActiveButtonClicked()"
+                  backgroundMode="transparent"
+                  [activeButtonLoading]="isRequesting()"
+                  deActiveButtonText="انصراف"
+                  (deActiveButtonClicked)="goBack()"
+                  activeButtonText="ثبت آدرس"></action-buttons>
+</div>

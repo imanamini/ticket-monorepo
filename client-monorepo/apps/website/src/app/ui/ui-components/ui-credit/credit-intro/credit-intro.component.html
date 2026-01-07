@@ -1,0 +1,115 @@
+<section [ngClass]="{'p-atom entekhab' : isEntekhab}">
+  <div class="container">
+    <div
+      [style.backgroundImage]="banner && banner.url ? 'url(' + banner.url + ')' : ''"
+      class="banner"
+    >
+      <div class="titles">
+        <div class="titles-container">
+          <div
+            *ngIf="data.title"
+            class="title"
+          >
+            <h1>{{ data.title }}</h1>
+          </div>
+          <div
+            *ngIf="data.subtitle"
+            class="subtitle"
+          >
+            <span [innerHTML]="data.subtitle"></span>
+          </div>
+        </div>
+        <div class="desktop-ctas">
+          <app-ui-button
+            (clicked)="
+              firstCta.hasScrollToElement ? scrollToElement(firstCta.scrollToElementId, firstCta.scrollOption, data.firstCta.link) : ''
+            "
+            *ngIf="data.firstCta && data.firstCta.title"
+            [id]="data.firstCta.id"
+            [link]="data.firstCta.link ? data.firstCta.link : ''"
+            [appearance]="firstCta.isCustom ? 'CUSTOM' : 'DEFAULT'"
+            [color]="firstCta.isCustom ? firstCta.textColor : ''"
+            [backgroundColor]="firstCta.isCustom ? firstCta.backgroundColor : ''"
+            [border]="firstCta.isCustom ? firstCta.backgroundColor : ''"
+            linkTarget="_blank"
+            class="first-cta-button"
+            size="BIG"
+            >{{ data.firstCta.title }}
+            <img
+              *ngIf="data.firstCta.icon && data.firstCta.icon.url"
+              [ngSrc]="data.firstCta.icon.url"
+              width="24"
+              height="24"
+            />
+          </app-ui-button>
+          <app-ui-button
+            (clicked)="
+              secondCta.hasScrollToElement ? scrollToElement(secondCta.scrollToElementId, secondCta.scrollOption, data.secondCta.link) : ''
+            "
+            *ngIf="data.secondCta && data.secondCta.title"
+            [id]="data.firstCta.id"
+            [link]="data.secondCta.link ? data.secondCta.link : ''"
+            [appearance]="secondCta.isCustom ? 'CUSTOM' : 'DEFAULT'"
+            [color]="secondCta.isCustom ? secondCta.textColor : ''"
+            [backgroundColor]="secondCta.isCustom ? secondCta.backgroundColor : ''"
+            [border]="secondCta.isCustom ? secondCta.backgroundColor : ''"
+            linkTarget="_blank"
+            appearance="FLAT-BLUE"
+            class="second-cta-button"
+            size="BIG"
+            >{{ data.secondCta.title }}
+            <img
+              *ngIf="data.secondCta.icon && data.secondCta.icon.url"
+              [ngSrc]="data.secondCta.icon.url"
+              width="24"
+              height="24"
+            />
+          </app-ui-button>
+        </div>
+      </div>
+
+      <div
+        (click)="secondCta.hasScrollToElement ? scrollToElement(secondCta.scrollToElementId, 'start', '') : ''"
+        class="bottom-cta"
+      >
+        <img
+          height="36"
+          ngSrc="../../assets/credit-campaign/dent.svg"
+          width="208"
+        />
+        <div
+          icon="icon-charon-down-light-blue"
+          size="37"
+          appUiIcon
+        ></div>
+      </div>
+    </div>
+    <div class="mobile-ctas">
+      <app-ui-button
+        (clicked)="
+          firstCta.hasScrollToElement ? scrollToElement(firstCta.scrollToElementId, firstCta.scrollOption, data.firstCta.link) : ''
+        "
+        *ngIf="data.firstCta && data.firstCta.title"
+        [id]="data.firstCta.id"
+        [link]="data.firstCta.link ? data.firstCta.link : ''"
+        appearance="FLAT-BLUE"
+        linkTarget="_blank"
+        class="first-cta-button"
+        size="BIG"
+        >{{ data.firstCta.title }}
+      </app-ui-button>
+      <app-ui-button
+        (clicked)="
+          secondCta.hasScrollToElement ? scrollToElement(secondCta.scrollToElementId, secondCta.scrollOption, data.secondCta.link) : ''
+        "
+        *ngIf="data.secondCta && data.secondCta.title"
+        [id]="data.firstCta.id"
+        [link]="data.secondCta.link ? data.secondCta.link : ''"
+        linkTarget="_blank"
+        class="second-cta-button"
+        size="BIG"
+        >{{ data.secondCta.title }}
+      </app-ui-button>
+    </div>
+  </div>
+</section>

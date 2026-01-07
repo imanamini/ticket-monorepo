@@ -1,0 +1,33 @@
+.amounts-container {
+  display: flex;
+  gap: 8px;
+  padding: 3px;
+  overflow-x: scroll;
+  justify-content: center;
+  overflow-y: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  &::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+  }
+
+  .amount {
+    padding: 4px 12px;
+    box-shadow: 0 0 0 1px #F2F5F8FF inset;
+    color: #424C5CFF;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+    border-radius: 24px;
+    font-style: normal;
+
+    &.selected-item {
+      box-shadow: 0 0 0 1px #0040FFFF inset;
+      background-color: #f0f5ff;
+      color: #0040FFFF;
+    }
+  }
+
+}
+

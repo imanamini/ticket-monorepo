@@ -1,0 +1,14 @@
+<div class="letter-picker">
+  <ul class="letters">
+    <li
+      (click)="listItemClick(index)"
+      *ngFor="let index of plateIndexes"
+      class="letter"
+    >
+      <app-ui-vehicle-plate-letter
+        [invertColor]="true"
+        [letterNo]="index"
+      ></app-ui-vehicle-plate-letter>
+    </li>
+  </ul>
+</div>

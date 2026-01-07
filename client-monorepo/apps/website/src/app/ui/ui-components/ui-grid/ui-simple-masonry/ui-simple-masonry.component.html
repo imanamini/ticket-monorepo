@@ -1,0 +1,18 @@
+<div class="masonry">
+  <div
+    *ngFor="let arrayOfItems of columnsArray"
+    [ngStyle]="{ marginLeft: gap + 'px', flexBasis: 100 / this.columns + '%' }"
+    class="col"
+  >
+    <div
+      *ngFor="let item of arrayOfItems"
+      [ngStyle]="{ marginBottom: gap + 'px' }"
+      class="item"
+    >
+      <ng-container [ngTemplateOutlet]="item.template"></ng-container>
+    </div>
+  </div>
+  <!--  <div *ngFor="let arrayOfItems of rowsArray">-->
+  <!--    <-->
+  <!--</div>-->
+</div>

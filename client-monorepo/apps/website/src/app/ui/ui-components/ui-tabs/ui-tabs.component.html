@@ -1,0 +1,43 @@
+<div class="navigation">
+  <swiper-container
+    appSwiper
+    #swiper
+    [config]="configNav"
+    class="swiper swiper-wrapper"
+  >
+    @for (item of items; track $index) {
+      <swiper-slide
+        class="swiper-slide"
+        (click)="changeTab($index)"
+        [ngClass]="activeIndex === $index ? 'active' : ''"
+      >
+        <div class="item" [ngClass]="internalActiveIndex() === $index ? 'active' : ''">
+          @if (item?.icon) {
+            <div class="icon">
+              <img [alt]="item.tabTitle" [src]="item.icon.url"/>
+            </div>
+          }
+          <div class="titles">
+            @if (item?.tabTitle) {
+              <div class="title">
+                <span>{{ item.tabTitle }}</span>
+              </div>
+            }
+            @if (item?.subtitle) {
+              <div class="subtitle">
+                <span>{{ item.subtitle }}</span>
+              </div>
+            }
+          </div>
+          <div class="icon-charon">
+            <ngx-icon
+              [name]="'arrow-2-left'"
+              class="text-onback-brand"
+            ></ngx-icon>
+          </div>
+        </div>
+      </swiper-slide>
+    }
+
+  </swiper-container>
+</div>

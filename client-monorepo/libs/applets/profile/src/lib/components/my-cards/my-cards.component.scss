@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.my-card-container {
+  flex: 1;
+}
+
+.button-box {
+  position: sticky;
+  bottom: 0;
+}

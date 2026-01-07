@@ -1,0 +1,8 @@
+export enum ACTIVATION_STATUS {
+  INITIATE = 0,
+  INPROGRESS = 1,
+  FAILED = 2,
+  COMPLETED = 3,
+  CLOSE = 4,
+  READY_TO_ARCHIVE = 5,
+}

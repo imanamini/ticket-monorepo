@@ -1,0 +1,140 @@
+<div class="fine">
+  <div class="body">
+    <h3 class="header">
+      <div class="title">
+        <span class="icon">
+          <ui-api-image
+            [imageId]="'icon_general_car'"
+            width="100%"
+          ></ui-api-image>
+        </span>
+        <span class="text">
+          <ng-container *ngIf="vehiclePlate && vehiclePlate.title; else noTitle">
+            {{ vehiclePlate.title }}
+          </ng-container>
+          <ng-template #noTitle> خلافی خودرو </ng-template>
+        </span>
+        <span
+          *ngIf="fine && fine.hasImage"
+          class="camera-icon"
+        ></span>
+      </div>
+
+      <div class="date before-icon">
+        <app-ui-vehicle-simple-plate
+          *ngIf="trafficFine && trafficFine.plateNo && trafficFine.plateDetail"
+          [plateDetail]="trafficFine.plateDetail"
+          [plateNumber]="trafficFine.plateNo"
+        ></app-ui-vehicle-simple-plate>
+
+        <app-ui-vehicle-simple-plate
+          *ngIf="vehiclePlate && vehiclePlate.plateNo && vehiclePlate.plateDetail"
+          [plateDetail]="vehiclePlate.plateDetail"
+          [plateNumber]="vehiclePlate.plateNo"
+        ></app-ui-vehicle-simple-plate>
+      </div>
+    </h3>
+  </div>
+  <div class="footer">
+    <span class="info">
+      <ng-container *ngIf="trafficFine">
+        <app-ui-currency
+          *ngIf="trafficFine.totalAmount && trafficFine.totalAmount.amount"
+          [value]="trafficFine.totalAmount.amount"
+          fontSize="18px"
+          fontWeight="500"
+        ></app-ui-currency>
+        <div
+          *ngIf="trafficFine.totalAmount && trafficFine.totalAmount.amount === 0"
+          class="paid-notification"
+        >
+          بدهی تا تاریخ مربوط پرداخت شده است.
+        </div>
+      </ng-container>
+      <div
+        *ngIf="vehiclePlate"
+        class="fine-status"
+      >
+        <div class="notification">
+          <ui-api-image
+            *ngIf="vehiclePlate.descriptionImageId"
+            [imageId]="vehiclePlate.descriptionImageId"
+            width="20px"
+          ></ui-api-image>
+          <div class="paid-notification">
+            {{ vehiclePlate.description }}
+          </div>
+        </div>
+        <div
+          *ngIf="vehiclePlate.totalDebtAmount && vehiclePlate.totalDebtAmount > 0"
+          class="fine-notification"
+        >
+          <app-ui-currency
+            [value]="vehiclePlate.totalDebtAmount"
+            fontSize="18px"
+            fontWeight="500"
+          ></app-ui-currency>
+        </div>
+      </div>
+    </span>
+    <span
+      *ngIf="trafficFine"
+      class="date-text"
+    >
+      <ng-container
+        *ngIf="
+          !hasPayOption &&
+          trafficFine.reportAlert &&
+          trafficFine.reportAlert.descriptionItems &&
+          trafficFine.reportAlert.descriptionItems[1] &&
+          trafficFine.reportAlert.descriptionItems[1].keywords
+        "
+      >
+        <span
+          icon="icon-calender-gray"
+          appUiIcon
+        ></span>
+        {{ trafficFine.reportAlert.descriptionItems[1].keywords[0] }}
+      </ng-container>
+      <app-ui-button
+        (clicked)="payFine()"
+        *ngIf="hasPayOption"
+        appearance="FLAT-BLUE"
+      >
+        پرداخت
+        <ngx-icon
+          [name]="'arrow-2-left'"
+          class="text-onback-brand"
+        ></ngx-icon>
+      </app-ui-button>
+    </span>
+    <div *ngIf="vehiclePlate">
+      <app-ui-button
+        (clicked)="newInquiry()"
+        *ngIf="
+          hasInquiryOption && (vehiclePlate.totalDebtAmount === 0 || !vehiclePlate.totalDebtAmount || !vehiclePlate.inquiryTrackingCode)
+        "
+        appearance="FLAT-BLUE"
+        class="cta"
+      >
+        <div class="cta-text">استعلام جدید</div>
+        <ngx-icon
+          [name]="'arrow-2-left'"
+          class="text-onback-brand new-inquiry-icon"
+        ></ngx-icon>
+      </app-ui-button>
+      <app-ui-button
+        (clicked)="showFineDetails()"
+        *ngIf="vehiclePlate.totalDebtAmount > 0 && vehiclePlate.inquiryTrackingCode"
+        appearance="FLAT-BLUE"
+        class="cta"
+      >
+        <div class="cta-text">جزییات</div>
+        <ngx-icon
+          [name]="'arrow-2-left'"
+          class="text-onback-brand"
+        ></ngx-icon>
+      </app-ui-button>
+    </div>
+  </div>
+</div>

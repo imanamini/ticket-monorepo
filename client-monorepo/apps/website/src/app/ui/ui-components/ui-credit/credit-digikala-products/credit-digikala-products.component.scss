@@ -1,0 +1,265 @@
+@import "globals";
+
+
+h2 {
+  font-size: 25px;
+  font-weight: 750;
+}
+
+@media (max-width: 1280px) {
+  h2 {
+    font-size: 19px;
+    font-weight: 700;
+  }
+}
+
+.credit-digikala-products {
+
+  overflow: hidden;
+
+  ::ng-deep {
+    .swiper {
+      overflow: visible;
+
+      .swiper-slide {
+        width: auto !important;
+      }
+
+      .swiper-button-next,
+      .swiper-button-prev {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background-color: #fff;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+        &::after {
+          display: none;
+        }
+
+        &.swiper-button-disabled {
+          display: none;
+        }
+      }
+
+      .swiper-button-next {
+        background: #fff url('/src/assets/images/icons/icon-charon-left.svg') no-repeat center center;
+        top: 190px;
+        left: 0;
+      }
+
+      .swiper-button-prev {
+        background: #fff url('/src/assets/images/icons/icon-charon-right.svg') no-repeat center center;
+        top: 190px;
+        right: 0;
+      }
+    }
+
+    .button-group .swiper-wrapper {
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+    }
+
+    .button-group {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+
+    .button-group.swiper {
+      overflow: hidden;
+    }
+
+    .button-group .swiper-slide {
+      width: auto !important;
+    }
+
+    .button-group .links__item.active a span {
+      color: #fff;
+    }
+  }
+
+  .blog-category {
+    display: flex;
+    width: 100%;
+    position: relative;
+
+    .button-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .ui-curve-button {
+        border-radius: 57px;
+        margin: 8px;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 13px 14px;
+        transition: 0.2s ease-in-out all;
+        cursor: pointer;
+        background-color: transparent;
+        color: $swatch_blue_500;
+        border: 2px solid $swatch_blue_200;
+
+        &.active {
+          border: 2px solid $swatch_blue_900;
+          color: $swatch_blue_900;
+        }
+      }
+    }
+  }
+
+  .content {
+    margin-top: 32px;
+
+    .product-lists__contain {
+      min-height: 405px;
+
+      .item {
+        border-radius: 24px;
+        background: #fff;
+        padding: 16px;
+        width: 241px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 405px;
+        position: relative;
+
+        .image {
+          width: 209px;
+          height: 196px;
+          background: $swatch_steel_100;
+          border-radius: 24px;
+          padding: 28px 34px;
+          margin-bottom: 16px;
+
+          img {
+            mix-blend-mode: multiply;
+            width: 140px;
+            height: 140px;
+          }
+        }
+
+        .product-data {
+          height: 100px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          .product-name {
+            color: $swatch_steel_900;
+            font-size: 14px;
+            font-weight: 500;
+          }
+        }
+
+        .product-prices {
+          .product-installments {
+            .installments-title {
+              font-weight: 500;
+              font-size: 14px;
+              color: $swatch_steel_900;
+            }
+
+            .installments-data {
+              font-weight: 900;
+              font-size: 14px;
+              color: $swatch_green_500;
+            }
+          }
+        }
+
+        .product-price {
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+
+          .price-title {
+            font-weight: 400;
+            font-size: 14px;
+            color: $swatch_steel_900;
+          }
+
+          .price-data {
+            font-weight: 600;
+            font-size: 14px;
+            color: $swatch_steel_900;
+          }
+        }
+
+        .cta {
+          margin-top: 12px;
+          width: 100%;
+          display: none;
+          margin-left: -38px;
+        }
+
+        &:hover {
+          box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+
+          .cta {
+            display: flex;
+            justify-content: flex-end;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .credit-digikala-products {
+    .content {
+      ::ng-deep {
+        .swiper {
+          .swiper-button-next,
+          .swiper-button-prev {
+            display: none;
+          }
+        }
+      }
+
+      .product-lists__contain {
+        .item {
+          .cta {
+            display: flex;
+            justify-content: flex-end;
+          }
+        }
+      }
+    }
+  }
+
+  .button-group {
+    margin-top: 12px;
+
+    ::ng-deep .swiper-slide {
+      width: auto !important;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .credit-digikala-products {
+    .content {
+      margin-top: 16px;
+    }
+  }
+
+  .button-group .ui-curve-button {
+    padding: 5px 13px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 280px) {
+  ::ng-deep {
+    .button-group .swiper-wrapper {
+      justify-content: right;
+    }
+  }
+}

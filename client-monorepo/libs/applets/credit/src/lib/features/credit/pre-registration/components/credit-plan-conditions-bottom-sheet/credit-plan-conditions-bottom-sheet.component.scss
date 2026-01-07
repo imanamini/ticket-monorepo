@@ -1,0 +1,19 @@
+@import "@digipay/base-style/styleguide";
+
+.plan-conditions-bottom-sheet {
+  direction: rtl;
+
+  .condition-item {
+    &:before {
+      content: "";
+      flex: 0 0 auto;
+      width: 8px;
+      height: 8px;
+      display: inline-block;
+      border-radius: #{map-get($border-radius-sizes, "rounded")};
+      margin-left: #{map-get($spacing-sizes, "small")};
+      margin-top: #{map-get($spacing-sizes, "small")};
+      background-color: #{map-get($blue, "tint-50")};
+    }
+  }
+}

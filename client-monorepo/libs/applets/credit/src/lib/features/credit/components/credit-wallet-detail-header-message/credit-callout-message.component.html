@@ -1,0 +1,9 @@
+<div class="detail-header-message">
+  <div class="detail-title">{{ title() }}</div>
+  <div
+    [innerHTML]="description() | safeHtml"
+    class="detail-message"
+  >
+    {{ description() }}
+  </div>
+</div>

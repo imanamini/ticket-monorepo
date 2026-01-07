@@ -1,0 +1,110 @@
+<section class="horizontal-flow">
+  <div class="container">
+    <h2
+      *ngIf="title()"
+      class="text-align-center"
+      [ngClass]="{'insurance-title' : insurance()}"
+    >
+      {{ title() }}
+    </h2>
+    <div *ngIf="insurance()" class="st-4 text-align-center text-onback-low steps"> {{ subtitle() }}
+    </div>
+
+    <div *ngIf="insurance() && ctaLink && ctaLink.title" class="d-flex justify-content-center my-large">
+      <app-ui-button
+        size="MEDIUM"
+        (clicked)="openCtaLink(ctaLink.link)">
+        {{ ctaLink.title }}
+      </app-ui-button>
+    </div>
+    <div class="horizontal-flow-items">
+      <div class="swiper-flow">
+        <ng-container *ngIf="steps && steps.length > 0">
+          <div class="swiper-navigation">
+            <div class="horizontal-flow-navigation">
+              <div
+                class="horizontal-flow-button-prev"
+                (click)="swiper.slidePrev()"
+              >
+                <i class="horizontal-flow-icon__arrow-right"></i>
+              </div>
+              <div
+                class="horizontal-flow-button-next"
+                (click)="swiper.slideNext()"
+              >
+                <i class="horizontal-flow-icon__arrow-left"></i>
+              </div>
+            </div>
+          </div>
+          <swiper-container
+            appSwiper
+            #swiper="appSwiper"
+            class="swiper-nobitex swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-rtl swiper-watch-progress swiper-backface-hidden"
+            [config]="config"
+          >
+            <swiper-slide
+              *ngFor="let step of steps; let stepIndex = index"
+              class="swiper-slide"
+            >
+              <div
+                [ngClass]="{ 'no-padding': !step.icon }"
+                class="horizontal-flow-item"
+              >
+                <div>
+                  <div
+                    *ngIf="step.icon"
+                    class="horizontal-flow-icon"
+                  >
+                    <div>
+                      <i>
+                        <img
+                          [attr.alt]="step.title"
+                          [src]="step.icon.url"
+                        />
+                      </i>
+                    </div>
+                  </div>
+                  <div class="horizontal-flow-text">
+                    <div>
+                      <div class="horizontal-flow-index d-inline-block">
+                        <span>{{ (stepIndex + 1).toString().length < 2 ? '0' + (stepIndex + 1) : stepIndex + 1 }}</span>
+                      </div>
+                      <div class="horizontal-flow-title d-inline-block pr-small mb-medium nobitex">
+                        <span *ngIf="step.title || step.valueTitle">{{ step.title ?? step.valueTitle }}</span>
+                      </div>
+                      <div class="horizontal-flow-desc mt-pony">
+                        <span *ngIf="step.text || step.valueText">{{ step.text ?? step.valueText }}</span>
+                        <app-ui-button
+                          (click)="openModal(step.modal)"
+                          *ngIf="step.firstCta && step.firstCta.title && !step.firstCta.link && step.modal && step.modal.title"
+                          [appearance]="'SMALL-CTA'"
+                          [id]="step.firstCta.id"
+                          [linkTarget]="'_blank'"
+                          >{{ step.firstCta.title }}
+                        </app-ui-button>
+                        <app-ui-button
+                          *ngIf="step.firstCta && step.firstCta.title && step.firstCta.link"
+                          [appearance]="'SMALL-CTA'"
+                          [id]="step.firstCta.id"
+                          [linkTarget]="'_blank'"
+                          [link]="step.firstCta.link"
+                          >{{ step.firstCta.title }}
+                        </app-ui-button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </swiper-slide>
+          </swiper-container>
+        </ng-container>
+      </div>
+    </div>
+    <div
+      *ngIf="firstCta && firstCta.title"
+      class="ctas"
+    >
+      <app-ui-button [link]="firstCta.link">{{ firstCta.title }}</app-ui-button>
+    </div>
+  </div>
+</section>

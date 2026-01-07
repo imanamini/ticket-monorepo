@@ -1,0 +1,32 @@
+<div class="d-flex flex-column gap-giant pb-medium">
+  <div class="d-flex flex-column gap-huge align-items-center">
+    <div class="icon-wrapper d-flex justify-content-center align-items-center surface-back p-big radius-rounded">
+      <img src="assets/shared/icons/info-brand.svg" />
+    </div>
+    <div class="d-flex flex-column gap-low justify-content-center">
+      <div class="st-3 text-onback-high">هماهنگی قبل از خرید</div>
+      <div class="b-2 text-onback-medium">
+        پیش از اقدام به پرداخت، برای اطمینان از موجودی، قیمت کالا و... از طریق ارسال پیام با فروشنده هماهنگ کنید.
+      </div>
+    </div>
+  </div>
+
+  <div class="cta d-flex gap-minus align-items-center w-100">
+    <ngx-button
+      [mode]="'form'"
+      [size]="'large'"
+      [fullWidth]="true"
+      [style]="'tinted-on-elevated'"
+      (clickHandler)="handleBtnClick('MESSAGE')"
+    >ارسال پیام
+    </ngx-button>
+    <ngx-button
+      [mode]="'form'"
+      [fullWidth]="true"
+      [size]="'large'"
+      [style]="'fill'"
+      (clickHandler)="handleBtnClick('BUY')"
+    >ادامه
+    </ngx-button>
+  </div>
+</div>

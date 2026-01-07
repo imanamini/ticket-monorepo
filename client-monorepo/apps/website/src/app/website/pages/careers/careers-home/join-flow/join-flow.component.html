@@ -1,0 +1,21 @@
+<div class="join-flow">
+  <div class="container d-flex flex-column align-items-center justify-content-center">
+    <div class="title mb-large">{{ joinFlow()?.title }}</div>
+    <div class="subtitle bt-1 mb-mega">
+      {{ joinFlow()?.subtitle }}
+    </div>
+
+    <div class="desktop-image">
+      <img src="{{ joinFlow()?.desktopImage?.url }}" alt="{{joinFlow()?.desktopImage?.altText}}" />
+    </div>
+    <div class="mobile-image">
+      <img src="{{ joinFlow()?.mobileImage?.url }}" alt="{{joinFlow()?.mobileImage?.altText}}" />
+    </div>
+
+  </div>
+
+<div class="gallery">
+  <app-custom-gallery [honors]="joinFlow()?.gallery" [grayscale]="false"></app-custom-gallery>
+
+</div>
+</div>

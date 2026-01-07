@@ -1,0 +1,28 @@
+@if (merchantsSellerPage()?.templateData) {
+  <app-base-layout [loaded]="loaded()">
+    @if (merchantsSellerPage().templateData.sectionBanner) {
+      <app-merchants-seller-banner-section
+        [data]="merchantsSellerPage().templateData.sectionBanner"
+        [scrollToElementId]="'calculator'"
+      ></app-merchants-seller-banner-section>
+    }
+    @if (merchantsSellerPage().templateData.sectionBenefits) {
+      <app-merchants-seller-benefits-section
+        [benefits]="merchantsSellerPage().templateData.sectionBenefits"
+      ></app-merchants-seller-benefits-section>
+    }
+    @if (merchantsSellerPage().templateData.calculator) {
+      <app-merchants-seller-calculator-section
+        id="calculator"
+        [calculator]="merchantsSellerPage().templateData.calculator"
+      ></app-merchants-seller-calculator-section>
+    }
+    @if (merchantsSellerPage().templateData.faq?.faqItems?.length > 0) {
+      <app-ui-faq
+        [faqs]="merchantsSellerPage().templateData.faq.faqItems"
+        [subtitle]="merchantsSellerPage().templateData.faq.subtitle"
+        [title]="merchantsSellerPage().templateData.faq.title"
+      ></app-ui-faq>
+    }
+  </app-base-layout>
+}

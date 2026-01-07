@@ -1,0 +1,65 @@
+<ngx-app-bar
+  class="w-100 surface-elevated"
+  [title]="'قیمت بازارها'"
+  [rightButton]="{
+    icon: 'arrow-right',
+    style: 'neutral-link',
+    mode: 'icon-only',
+    size: 'medium',
+  }"
+  (onRightButtonClick)="onBackHandler()"
+/>
+
+<div class="w-100 d-flex flex-wrap surface-elevated">
+  <div class="w-100 d-flex p-big flex-column radius-tl-small radius-tr-small">
+    <app-tabs
+      (onTabChange)="onTabChanged()"
+      [defaultActiveTabIndex]="0"
+    >
+      <app-tab
+        class="w-100 d-flex align-items-center justify-content-center gold-tab"
+        tabTitle="طلا"
+      >
+        <tgju
+          type="market-data"
+          items="137121,137122,137119,137123"
+          columns="dot,diff"
+          token="webservice"
+        ></tgju>
+      </app-tab>
+      <app-tab
+        class="w-100 d-flex align-items-center justify-content-center coin-tab"
+        tabTitle="سکه"
+      >
+        <tgju
+          type="market-data"
+          items="137138,137137,137139,137140,137141"
+          columns="dot,diff"
+          token="webservice"
+        ></tgju>
+      </app-tab>
+      <app-tab
+        class="w-100 d-flex align-items-center justify-content-center currency-tab"
+        tabTitle="ارز"
+      >
+        <tgju
+          type="market-data"
+          items="137203,137205,137206,137207,137225"
+          columns="dot,diff"
+          token="webservice"
+        ></tgju>
+      </app-tab>
+      <app-tab
+        class="w-100 d-flex align-items-center justify-content-center crypto-tab"
+        tabTitle="رمز ارز"
+      >
+        <tgju
+          type="market-data"
+          items="398096,398097,535605,398115,398102,398130"
+          columns="dot,diff"
+          token="webservice"
+        ></tgju>
+      </app-tab>
+    </app-tabs>
+  </div>
+</div>

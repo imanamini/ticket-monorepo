@@ -1,0 +1,25 @@
+<div>
+  <div
+    *ngIf="selectCategoryId && openedSingleCategory"
+    class="filter-chip"
+  >
+    <div class="selected-category-name">
+      {{ openedSingleCategory.title }}
+    </div>
+    <span
+      (click)="clearCategoryFilter()"
+      class="close-icon"
+      icon="icon-close-red"
+      appUiIcon
+    ></span>
+  </div>
+  <div class="title">دسته بندی ها:</div>
+  <div class="categories">
+    <app-single-category-filter
+      (selectCategoryId)="categoryClicked($event)"
+      *ngFor="let categoryFilter of filters.categories"
+      [categoryData]="categoryFilter"
+      [selectedCategoryId]="selectedCategoryId"
+    ></app-single-category-filter>
+  </div>
+</div>

@@ -1,0 +1,272 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@ng-select/ng-select/themes/material.theme.css';
+@import '@digipay/base-style/swatch';
+@import '@digipay/base-style/styleguide';
+@import '@angular/cdk/overlay-prebuilt.css';
+
+$font-family: 'yekan-bakh';
+
+body,
+input,
+textarea,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+text,
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-body,
+.mat-expansion-panel-header-description,
+.mat-unthemed,
+.mat-mdc-button-base {
+  font-family: 'yekan-bakh', iranyekan, 'Courier New', Courier, monospace !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 12px !important;
+  overflow-x: hidden;
+}
+
+body {
+  // max-width: 864px;
+  margin: 0 auto !important;
+  direction: rtl;
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+@include large_screen {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: #fff;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--onback-shade-80);
+    transition: $transition-base;
+    border-radius: 24px;
+
+    &:hover {
+      background: var(--btn-text-neutral-link);
+    }
+  }
+}
+
+@include font-face(
+  'iranyekan',
+  100 200 300 400 500 600 700 800 900 950,
+  'libs/shared/common/assets/src/lib/fonts/',
+  normal,
+  woff2,
+  '',
+  swap,
+  true
+);
+@include font-face(
+  'yekan-bakh',
+  100 200 300 400 500 600 700 800 900 950,
+  'libs/shared/common/assets/src/lib/fonts/',
+  normal,
+  woff woff2,
+  '',
+  swap,
+  true
+);
+@include font-face(
+  'yekan-bakh',
+  100 200 300 400 500 600 700 800 900 950,
+  'libs/shared/common/assets/src/lib/fonts/',
+  normal,
+  woff woff2,
+  '',
+  swap,
+  true
+);
+
+.walk-through-prev-btn button {
+  background-color: map-get($shade-colors, onback-shade-20) !important;
+}
+
+#hub-scanner-btn button {
+  background-color: #000436 !important;
+}
+
+.group-list-item .dg-hint-message {
+  display: none;
+}
+
+.page-layout-header-action-icon {
+  .icon-close-linear::before {
+    content: url('data:image/svg+xml; utf8, <svg width="24px" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6L18 18" stroke="black" style="stroke:black;stroke-opacity:1;" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M18 6L6 18" stroke="black" style="stroke:black;stroke-opacity:1;" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>') !important;
+  }
+}
+
+.surface-transparent {
+  background: transparent;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.text-wrap {
+  text-wrap: wrap;
+}
+
+.text-nowrap {
+  text-wrap: nowrap;
+}
+
+body.forced-to-enter-password {
+  overflow: hidden;
+}
+
+.mdc-checkbox__ripple {
+  background-color: $swatch_blue_500 !important;
+}
+
+.mdc-checkbox:hover .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background,
+.mdc-checkbox:hover .mdc-checkbox__native-control:enabled:indeterminate ~ .mdc-checkbox__background,
+.mdc-checkbox:hover .mdc-checkbox__native-control[data-indeterminate='true']:enabled ~ .mdc-checkbox__background,
+.mdc-checkbox .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background,
+.mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate ~ .mdc-checkbox__background,
+.mdc-checkbox .mdc-checkbox__native-control[data-indeterminate='true']:enabled ~ .mdc-checkbox__background {
+  border-color: $swatch_blue_500 !important;
+  background-color: $swatch_blue_500 !important;
+}
+
+.pl-4 {
+  .dg-not-have-label {
+    padding-left: 3rem !important;
+  }
+}
+
+.align-content-start {
+  align-content: flex-start !important;
+}
+
+.align-content-center {
+  align-content: center !important;
+}
+
+.w-fit-content {
+  max-width: 24px !important;
+}
+
+.stepper {
+  width: 100%;
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    margin-bottom: 16px;
+    color: #45474a;
+    font-size: 12px;
+    font-weight: 450;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 3px;
+      height: calc(100% + 10px);
+      border-left: 2px dashed #eaeaea;
+      right: 0;
+      top: 10px;
+    }
+
+    &:last-child::before {
+      display: none;
+    }
+
+    .circle {
+      min-width: 8px;
+      min-height: 8px;
+      border-radius: 50%;
+      background-color: #3479ff;
+      margin-left: 12px;
+      margin-top: 6px;
+      position: relative;
+    }
+  }
+}
+
+#wealthHomeWalkThrough {
+  .walk-through {
+    right: 0 !important;
+  }
+}
+
+.tgju-widget {
+  width: 100% !important;
+  border-radius: 1.25rem !important;
+  padding: 0 0.5rem !important;
+}
+
+.tgju-widget-title-text.dot:before {
+  display: none !important;
+}
+
+.wallet-action-button {
+  min-width: 56px !important;
+  max-width: 56px !important;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+
+.h-100svh {
+  height: 100svh;
+}
+
+.h-100dvh {
+  height: 100dvh;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.sticky-action-group {
+  position: sticky;
+  bottom: 0;
+  border-top: 1px solid #f2f3f6;
+}
+
+.surfaces-status-warning {
+  color: #fec003;
+}

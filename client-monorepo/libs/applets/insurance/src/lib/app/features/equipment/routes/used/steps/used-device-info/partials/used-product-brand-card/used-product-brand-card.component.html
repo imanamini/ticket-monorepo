@@ -1,0 +1,19 @@
+<div
+  [ngClass]="{ active: isActive }"
+  class="brand-card-wrapper"
+>
+  @if (imageUrl) {
+    <div class="brand-img">
+      <img
+        [alt]="name"
+        [src]="imageUrl ? imageUrl : 'insurance-assets/images/logos/digipay-logo.svg'"
+      />
+    </div>
+  }
+  <div
+    (click)="handleClick()"
+    class="brand-name"
+  >
+    {{ name }}
+  </div>
+</div>

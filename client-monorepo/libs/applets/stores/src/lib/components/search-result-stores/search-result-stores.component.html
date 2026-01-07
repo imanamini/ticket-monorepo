@@ -1,0 +1,48 @@
+<div class="d-flex flex-column align-items-start justify-content-start flex-grow w-100">
+  <div class="px-plus w-100">
+    <common-ui-components-title-summary
+      [isLoading]="searching()"
+      [title]="'فروشگاه‌ها'"
+      [showButton]="false"
+    ></common-ui-components-title-summary>
+  </div>
+  @if (stores()) {
+    <div class="d-flex flex-column px-plus w-100">
+      @if (storesToShow().length) {
+        @for (store of storesToShow(); track $index) {
+          <common-ui-components-item-overview
+            class="cursor-pointer"
+            [mixedBlendModeEnabled]="true"
+            [disableTopPadding]="$index === 0"
+            [item]="store"
+            (click)="handleStoreClick(store.id!)"
+          ></common-ui-components-item-overview>
+        }
+      }
+      @if (searching()) {
+        <div class="pt-medium d-flex flex-column gap-pony">
+          @for (_ of rangeCreator(3); track $index) {
+            <lib-ngx-skeleton-loading
+              class="mb-small"
+              [height]="'72.84px'"
+              [width]="'100%'"
+              [classes]="'radius-minus'"
+            ></lib-ngx-skeleton-loading>
+          }
+        </div>
+      }
+    </div>
+  }
+  @if (hasNextPage()) {
+    <div class="d-flex justify-content-end w-100 mt-small px-plus">
+      <ngx-button
+        (clickHandler)="handleStoreNextPage()"
+        [style]="'link'"
+        [size]="'small'"
+        [leftIcon]="buttonIcon"
+      >
+        نمایش بیشتر
+      </ngx-button>
+    </div>
+  }
+</div>

@@ -1,0 +1,50 @@
+<div class="container">
+  @if (showFrom) {
+    <div class="sales-form py-giant d-flex flex-column justify-content-center align-items-center gap-large">
+
+      <div class="text-onback-medium st-6">
+        {{ templateData?.registrationForm?.title }}
+      </div>
+
+      <div class="d-flex gap-medium align-items-center justify-content-center form-section position-relative">
+      <span class="form" [formGroup]="form">
+        <ui-form-field
+          [errorMessageMapper]="{
+            required: 'شماره همراه را وارد کنید.',
+            invalidCellNumber: 'شماره همراه وارد شده معتبر نیست.'
+          }"
+          [error]="form.controls['cellNumber']?.errors"
+          formControlName="cellNumber"
+          [isNumericKeyboard]="true"
+          label=" برای مثال ۰۹۱۲۳۴۵۶۷۸۹"
+          [required]="true">
+
+        </ui-form-field>
+      </span>
+
+        <span class="error" *ngIf="errorText">
+        {{ errorText }}
+      </span>
+
+        <span class="action">
+                 <ngx-button
+                   [size]="'large'"
+                   [style]="'fill'"
+                   [mode]="'form'"
+                   (click)="sendRequest()"
+                   [fullWidth]="isMobileMode"
+                 >
+              {{ templateData?.registrationForm?.btnText }}
+            </ngx-button>
+      </span>
+      </div>
+    </div>
+  } @else {
+    <div class="sales-form py-giant d-flex flex-column justify-content-center align-items-center gap-large">
+    <span class="b-2 text-onback-high text-align-center success-text">
+      شماره‌ات ثبت شد. به محض اینکه شروع شد خبرت می‌کنیم!
+    </span>
+    </div>
+  }
+</div>
+

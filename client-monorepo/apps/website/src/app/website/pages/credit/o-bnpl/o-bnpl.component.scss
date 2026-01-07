@@ -1,0 +1,153 @@
+@import "../../../../style/globals";
+
+:host ::ng-deep {
+  #layout {
+    background: #f2f5f8;
+  }
+
+  .bnpl-value-section section {
+    .content {
+      background-color: #fff !important;
+    }
+  }
+
+  .bnpl-introduction-title {
+    font-weight: 600;
+    font-size: 24px;
+    color: $text-color;
+  }
+
+  .bnpl-introduction-subtitle {
+    font-weight: 900;
+    font-size: 38px;
+    color: $text-color;
+    margin-bottom: 8px;
+  }
+
+  .digipay-contact-form {
+    background-color: #7381ab;
+    padding-bottom: 128px;
+
+    h2 {
+      color: #fff;
+    }
+
+    .submit-button button {
+      background-color: #001a66;
+      border-color: #001a66;
+    }
+  }
+
+  .introduction-booklet > .container > div > h1 {
+    //display: inline-block;
+    //background-color: #001A66;
+    //color: #183FF5;
+    //font-weight: 300;
+    //font-size: 40px;
+    //line-height: normal;
+  }
+
+  //.introduction-booklet > .container > div > h3 {
+  //  font-size: 18px;
+  //  font-weight: 300;
+  //  margin-bottom: 32px;
+  //  line-height: 1.5;
+  //}
+
+  .introduction-booklet .anchor-button-default-icon {
+    display: inline-flex;
+  }
+
+  .introduction-booklet > .container > div {
+    max-width: 50%;
+  }
+
+  //.introduction-booklet > .container > div:last-child {
+  //  width: 50%;
+  //}
+
+  .introduction-booklet > .container {
+    > div {
+      order: 2;
+    }
+
+    .image {
+      order: 1;
+    }
+  }
+
+  .introduction-booklet > .container > div img {
+    max-height: 570px;
+    max-width: 100%;
+  }
+
+  .introduction-booklet .container > div {
+    &:first-child {
+      //max-width: 52%;
+    }
+
+    &:last-child {
+      //max-width: 48%;
+      padding-left: 32px;
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .introduction-booklet > .container {
+      flex-direction: column !important;
+    }
+    .introduction-booklet .container > div {
+      &:first-child {
+        max-width: 100%;
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      &:last-child {
+        padding-left: unset;
+        max-width: 100%;
+      }
+    }
+    .bnpl-introduction-title {
+      font-size: 20px;
+    }
+    .bnpl-introduction-subtitle {
+      margin-bottom: unset;
+      font-size: 32px;
+    }
+    //.introduction-booklet > .container > div > h3 {
+    //  font-size: 14px;
+    //  margin-bottom: 24px;
+    //}
+  }
+
+  @media (max-width: 744px) {
+    .bnpl-introduction-subtitle {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+    .bnpl-introduction-title {
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+    .introduction-booklet > .container > div > h1 {
+      text-align: right;
+    }
+    //.introduction-booklet > .container > div > h3 {
+    //  font-size: 12px;
+    //  margin-bottom: 40px;
+    //}
+    .introduction-booklet > .container > div ::ng-deep app-ui-button {
+      width: 100%;
+    }
+    .introduction-booklet .container > div {
+      &:first-child {
+        text-align: right;
+      }
+
+      &:last-child {
+        max-width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+<div class="w-100 d-flex flex-wrap container">
+  <div class="title">
+    <span>
+      {{ parentData.title }}
+    </span>
+  </div>
+
+  <div class="w-100 d-flex flex-wrap filters">
+    @for (filter of parentData.filters; track filter.id) {
+      @if (!filter.static) {
+        <div class="w-100">
+          <ngx-checkbox
+            [(ngModel)]="filter.value"
+            [checked]="filter.active"
+            (change)="checkChange($event)"
+          >
+            {{ filter.title }}
+          </ngx-checkbox>
+        </div>
+      }
+    }
+  </div>
+
+  <div class="w-100 buttons-container">
+    <div class="d-flex">
+      <ngx-button
+        [style]="'tinted-on-elevated'"
+        size="medium"
+        [fullWidth]="true"
+        (clickHandler)="close()"
+      >
+        بستن
+      </ngx-button>
+    </div>
+
+    <div class="d-flex">
+      <ngx-button
+        [style]="'fill'"
+        [fullWidth]="true"
+        size="medium"
+        (clickHandler)="updateFilters()"
+      >
+        ثبت تغییرات
+      </ngx-button>
+    </div>
+  </div>
+</div>

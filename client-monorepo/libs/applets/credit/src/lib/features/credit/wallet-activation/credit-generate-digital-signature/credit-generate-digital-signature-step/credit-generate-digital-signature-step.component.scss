@@ -1,0 +1,48 @@
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.steps-container {
+  box-sizing: border-box;
+
+  .counter-container {
+    gap: 7px;
+
+    .item {
+      width: 24px;
+      height: 24px;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+
+      &.item-done-icon {
+        background-image: url("../assets/item-done.svg");
+      }
+    }
+
+    .item-line {
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 1px;
+      height: 42px;
+      background-image: url("../assets/item-line.svg");
+    }
+  }
+
+  .steps {
+
+    .step {
+      box-sizing: border-box;
+      pointer-events: none;
+
+      &.active {
+        pointer-events: initial;
+        cursor: pointer;
+      }
+      }
+    }
+  }

@@ -1,0 +1,24 @@
+<div class="middle-section">
+  <h3 class="title">{{ data.info.title }}</h3>
+  <h4 class="points-text">
+    <span class="text">
+      {{ data.info.briefDescription }}
+    </span>
+    <div class="point surface-brand-tint"><span class="icon-coin"></span>{{ data.info.score }}</div>
+  </h4>
+  <p class="remaining-capacity">
+    ظرفیت باقی‌مانده:
+    @if (data.info.capacity.type === capacityType.UNLIMITED) {
+      <span>نامحدود</span>
+    } @else {
+      <span>{{ data?.info?.capacity?.remainingCount }} نفر </span>
+    }
+    <ng-template #capacity>
+      <span>{{ data?.info?.capacity?.remainingCount }} نفر </span>
+    </ng-template>
+  </p>
+</div>
+
+<div class="description">
+  {{ data.info.fullDescription }}
+</div>

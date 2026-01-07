@@ -1,0 +1,33 @@
+<div
+  class="flex-column gap-small px-plus"
+  [style.display]="displayStyle()"
+>
+  <common-ui-components-title-summary
+    [title]="title() ? title() : 'پربازدیدترین محصولات'"
+    [showButton]="false"
+    [isLoading]="displayState() === 'pending'"
+  ></common-ui-components-title-summary>
+
+  <div
+    class="posts-grid position-relative"
+    [ngClass]="displayState() === 'show' ? 'radius-medium' : ''"
+  >
+    @if (displayState() === 'pending') {
+      <div class="surface-back posts-overlay">
+        <lib-ngx-skeleton-loading
+          [width]="'100%'"
+          [height]="'400px'"
+        ></lib-ngx-skeleton-loading>
+      </div>
+    }
+
+    <common-social-posts-grid
+      [disablePagination]="true"
+      [showNoItems]="false"
+      [pageSize]="6"
+      [gridMode]="'RECTANGLE'"
+      [postIds]="postIds()"
+      (onSuccess)="updateDisplayState($event)"
+    ></common-social-posts-grid>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+:host,
+.accordions {
+  width: 100%;
+}
+
+@media (max-width: 744px) {
+  .accordions {
+    margin-top: 16px;
+  }
+}

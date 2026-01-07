@@ -1,0 +1,36 @@
+<div class="additional-upload-document d-flex flex-column h-100">
+  <third-party-stepper [backgroundGray]="true"
+                       [currentStep]="3"
+                       stepName="مرحله سوم"
+                       [totalSteps]="3"
+                       title="تکمیل اطلاعات و مدارک"
+  ></third-party-stepper>
+  <div class="p-big upload-item-container" style="flex: 1; overflow-y: auto;">
+    <p class="mb-small">لطفا مدارک مورد نیاز خواسته شده را بارگزاری نمایید.</p>
+    <div id="uploaded-item-container">
+      <div #upload_document_items_temp></div>
+    </div>
+    <div class="mt-small">
+      <ins-button [brandButton]="true"
+                  [mode]="InsButtonModeEnum.Form"
+                  [size]="InsButtonSizeEnum.Tiny"
+                  [fullWidth]="true"
+                  [text]="'افزودن مدارک جدید'"
+                  (clickHandler)="addUploadItem()"
+                  class="active-button"
+                  id="active-button">
+      </ins-button>
+    </div>
+  </div>
+
+  <action-buttons (activeButtonClicked)="handleActiveButtonClicked()"
+                  (deActiveButtonClicked)="handleDeActiveButtonClicked()"
+                  activeButtonText="تایید و ادامه"
+                  deActiveButtonText="بازگشت"
+                  [ngStyle]="{display: isLoaded() ? 'block' : 'none'}">
+  </action-buttons>
+  <div class="loading"
+       [ngStyle]="{display: isLoaded() ? 'none': 'flex'}">
+    <ui-loading-spinner [size]="48"></ui-loading-spinner>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="about-history">
+  @if (templateData()?.paySteps?.history) {
+    <div class="history-wrapper surface-high-contrast radius-big p-huge d-flex gap-huge">
+      <div class="content mt-minus d-flex flex-column">
+        <div class="history-title d-flex gap-medium flex-column">
+          <div class="title st-1">
+            <span class="text-onback-high"></span>{{ templateData().paySteps?.blackTitle }}
+          </div>
+          <div class="subtitle b-2"> {{ templateData().paySteps?.description }}
+          </div>
+        </div>
+        <div class="history-list"
+        >
+          @for (item of templateData().paySteps.history; track $index; let last = $last) {
+            <app-tapsi-step-item
+              [historyItem]="item"
+              [number]="$index+1"
+              [isActive]="activeIndex() === $index"
+              (click)="setActiveIndex($index)">
+            </app-tapsi-step-item>
+
+              @if (!last) {
+                <ngx-divider orientation="horizontal" [color]="BorderColorsEnum.Tint"></ngx-divider>
+              }
+          }
+
+        </div>
+      </div>
+
+      <div class="gallery radius-plus">
+        @if (activeHistoryItem()?.desktopImage?.url) {
+          <img
+            [src]="activeHistoryItem().desktopImage.url"
+            alt=""
+            class="radius-plus"
+          />
+        }
+        @if (activeHistoryItem()?.subtitle) {
+          <span class="year st-6">{{ activeHistoryItem().subtitle }}</span>
+        }
+        @if (activeHistoryItem()?.description) {
+          <span class="description b-2 text-oninvert-high"
+                [innerHTML]="activeHistoryItem().description"></span>
+        }
+
+      </div>
+    </div>
+  }
+
+</div>

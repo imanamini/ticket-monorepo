@@ -1,0 +1,18 @@
+:host{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+}
+.bottom-area {
+  flex-grow: 0;
+}
+
+.message-image {
+  background-image: url("../../credit-scoring-shared/assets/report-error-icon.svg");
+  height: 96px;
+  width: 96px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}

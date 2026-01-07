@@ -1,0 +1,32 @@
+<div class="d-flex flex-column p-plus gap-minus voucher-input-house-incident">
+  <ui-form-field
+          [hasHintStar]="voucherInput.errors && showError && voucherInput?.value?.length > 0"
+          [hasCleaner]="true"
+          [inputType]="'text'"
+          [formControl]="voucherInput"
+          [error]="voucherInput.errors"
+          [errorMessageMapper]="errorMapper()"
+          placeholder="مثال: A3DB45T782S"
+          [showError]="'auto'"
+          type="input"
+          label="کد تخفیف"></ui-form-field>
+  <div class="d-flex align-items-center justify-content-space-between gap-small">
+    <ins-button
+            (clickHandler)="closeDialog()"
+            text="انصراف"
+            [size]="InsButtonSizeEnum.Large"
+            [style]="InsButtonStyleEnum.TintedOnElevated"
+            [fullWidth]="true"
+            type="submit"
+    ></ins-button>
+    <ins-button
+            (clickHandler)="submitVoucher()"
+            text="تایید"
+            [size]="InsButtonSizeEnum.Large"
+            [style]="InsButtonStyleEnum.Fill"
+            [fullWidth]="true"
+            [isLoading]="isSubmitting()"
+            type="submit"
+    ></ins-button>
+  </div>
+</div>

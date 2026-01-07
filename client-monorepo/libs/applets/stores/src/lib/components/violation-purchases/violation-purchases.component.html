@@ -1,0 +1,79 @@
+<div class="transactions-wrapper d-flex flex-column px-plus gap-medium h-100">
+  @if (mode() === 'ALL' && purchases().length) {
+    <ngx-search-box
+      [placeHolder]="'جست‌وجو در نام فروشگاه‌ها'"
+      (searchTextChange)="doSearch($event ?? '')"
+      (submitted)="doSearch($event)"
+      [(searchText)]="searchText"
+      [mode]="'section'"
+      [height]="'40px'"
+      [autoFocus]="false"
+    ></ngx-search-box>
+  }
+
+  <common-ui-components-title-summary
+    [title]="'خریدهای اخیر شما'"
+    [mode]="'SECTION_TITLE'"
+    [showButton]="false"
+  ></common-ui-components-title-summary>
+
+  @if (!this.loadingPurchases()) {
+    @if (purchasesToShow().length) {
+      <div class="purchases-list d-flex flex-column">
+        @for (purchase of purchasesToShow(); track $index) {
+          <common-ui-components-item-overview
+            [item]="purchase"
+            [mixedBlendModeEnabled]="true"
+            [enableSingleLineMode]="true"
+            [hideSubtitleBold]="true"
+            [hideButton]="true"
+            [disableTopPadding]="$first"
+            [showRadioButton]="true"
+            [radioChecked]="selectedPurchase()?.id === purchase.id"
+            (clicked)="handleTransactionSelect(purchase)"
+            [enableImageGradient]="false"
+          >
+            <div class="d-flex gap-micro align-items-center flex-nowrap justify-content-end">
+              <div class="st-8 text-onback-high">{{ purchase.subTitleBold | thousands }}</div>
+              <ngx-icon [name]="'rial'"></ngx-icon>
+            </div>
+          </common-ui-components-item-overview>
+        }
+      </div>
+    } @else {
+      @if (searched()) {
+        <common-ui-components-no-item
+          [header]="'فروشگاه مورد نظر یافت نشد'"
+          [description]="'متاسفانه خریدی در ۳۰ روز گذشته در فروشگاه مدنظر یافت نشده است.'"
+          [imageSrc]="'assets/shared/stores/violation/violation-stores-empty.svg'"
+          [imageWidth]="'120px'"
+        ></common-ui-components-no-item>
+      } @else {
+        <common-ui-components-no-item
+          [description]="'متاسفانه شما خرید موفقی طی ۳۰ روز گذشته‌ نداشته‌اید.'"
+          [imageSrc]="'assets/shared/stores/violation/violation-transaction-empty.svg'"
+          [imageWidth]="'120px'"
+        ></common-ui-components-no-item>
+      }
+    }
+  } @else {
+    <div class="d-flex flex-column">
+      @for (_ of rangeCreator(4); track $index) {
+        <common-ui-components-item-overview [item]="undefined"></common-ui-components-item-overview>
+      }
+    </div>
+  }
+  @if (purchasesToShow().length) {
+    <div class="submit-button p-plus surface-elevated">
+      <ngx-button
+        [size]="'large'"
+        [mode]="'form'"
+        [style]="'fill'"
+        [fullWidth]="true"
+        [disabled]="!selectedPurchase()"
+        (clickHandler)="handleSubmitClick()"
+        >ادامه</ngx-button
+      >
+    </div>
+  }
+</div>

@@ -1,0 +1,49 @@
+
+<ng-container *ngIf="(spinnerState$ | async) as state">
+  <div
+    class="spinner-overlay d-flex align-items-center justify-content-center"
+    *ngIf="state.status !== 'hidden'"
+    (click)="closeSpinner()"
+  >
+    <div
+      class="success"
+      *ngIf="state.status === 'loading'"
+    >
+      <div class="spinner-wrapper d-flex flex-column align-items-center justify-content-center">
+        <div class="spinner"></div>
+        <div class="title st-4 text-oninvert-high mt-big">
+          {{ state.title || '' }}
+        </div>
+        <div class="subtitle bt-3 text-oninvert-medium mt-small">
+          {{ state.subtitle || '' }}
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="error"
+      *ngIf="state.status === 'error'"
+    >
+      <div class="spinner-wrapper d-flex flex-column align-items-center justify-content-center">
+        <div class="error-icon">
+          <img src="/assets/insurance/error.svg" alt="Error Icon">
+        </div>
+        <div class="error-title st-4 text-onback-error mt-big">
+          {{ state.title || 'مشکلی پیش آمده است' }}
+        </div>
+        <div class="error-subtitle bt-3 text-oninvert-medium mt-small">
+          {{ state.subtitle || '' }}
+        </div>
+        <div class="mt-big">
+          <ngx-button
+            (clickHandler)="closeSpinner()"
+            [size]="'MEDIUM'"
+          >
+            تلاش دوباره
+          </ngx-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+

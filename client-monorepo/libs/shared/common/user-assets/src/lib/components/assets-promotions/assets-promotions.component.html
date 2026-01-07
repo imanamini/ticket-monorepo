@@ -1,0 +1,44 @@
+<div class="d-flex flex-column radius-minus px-medium {{ modeMapper[mode()].backgroundColor }} {{ classes() }}">
+  @for (promotion of promotions(); track $index) {
+    <a
+      class="promotion-card d-flex align-items-center gap-small {{ cardClasses() }}"
+      [ngClass]="!$last ? 'border-b-100 border-color-light' : ''"
+      (click)="handleClick(promotion)"
+    >
+      @if (hasIcon()) {
+        <common-ui-components-framed-icon
+          [size]="'XS'"
+          [icon]="promotion?.icon || ''"
+          [type]="ServiceImagesType.ICON"
+          [iconType]="promotion.iconType"
+          [iconColor]="promotion.iconColor"
+        ></common-ui-components-framed-icon>
+      }
+
+      <div class="d-flex flex-column gap-tiny flex-grow">
+        <p class="text-onback-medium {{ titleClasses() }}">{{ promotion?.title }}</p>
+        <p class="l-2 text-onback-low description">{{ promotion?.description }}</p>
+      </div>
+      @if (mode() === 'NEW_USER') {
+        <div class="d-flex item-overview-icon align-items-start py-low">
+          <div class="surface-back radius-huge py-small px-small cursor-pointer">
+            <common-icon-dp-icon
+              [classes]="'text-onback-medium'"
+              iconSize="20"
+              [icon]="'arrow-left'"
+              [iconType]="'linear'"
+            ></common-icon-dp-icon>
+          </div>
+        </div>
+      } @else {
+        <ngx-button
+          [mode]="'section'"
+          [size]="'small'"
+          [style]="'fill'"
+        >
+          دریافت
+        </ngx-button>
+      }
+    </a>
+  }
+</div>

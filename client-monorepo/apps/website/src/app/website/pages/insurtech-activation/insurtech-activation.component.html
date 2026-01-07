@@ -1,0 +1,40 @@
+<app-base-layout
+  *ngIf="insurtechActivationPage && insurtechActivationPage.templateData && insurtechPage && insurtechPage.templateData"
+  [loaded]="loaded"
+>
+  <!--  section 1-->
+  <app-insurtech-activation-intro
+    (serviceActiveIndex)="serviceActiveIndex = $event"
+    [insuranceActivation]="insurtechActivationPage.templateData.sectionActivation"
+    [ownershipOther]="insurtechActivationPage.templateData.ownershipOther"
+  ></app-insurtech-activation-intro>
+
+  <!--  section 2-->
+  <app-insurtech-recoverable
+    *ngIf="insurtechPage.templateData.sectionRecoverableDamages"
+    [recoverableDamages]="insurtechPage?.templateData?.sectionRecoverableDamages"
+  ></app-insurtech-recoverable>
+
+  <!--  section 3-->
+  <app-insurtech-services-processes
+    *ngIf="insurtechPage.templateData.sectionInsuranceServicesProcesses"
+    [activeIndex]="serviceActiveIndex"
+    [insuranceServicesProcesses]="insurtechPage.templateData.sectionInsuranceServicesProcesses"
+  ></app-insurtech-services-processes>
+
+  <!--  section 4-->
+  <app-ui-similar-services
+    *ngIf="insurtechActivationPage.templateData.sectionRequestInsurance"
+    [config]="config"
+    [data]="insurtechActivationPage.templateData.sectionRequestInsurance"
+  ></app-ui-similar-services>
+
+  <!--  section 5-->
+  <app-ui-faq
+    *ngIf="insurtechActivationPage.templateData.faq"
+    [faqs]="insurtechActivationPage.templateData.faq.faqItems"
+    [subtitle]="insurtechActivationPage.templateData.faq.subtitle"
+    [title]="insurtechActivationPage.templateData.faq.title"
+  >
+  </app-ui-faq>
+</app-base-layout>

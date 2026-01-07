@@ -1,0 +1,113 @@
+<ng-container *ngIf="!gettingData">
+  <section class="section-credit-filter-plans-based-on-basket-amount">
+    <div class="container">
+      <h2
+        *ngIf="title"
+        class="text-align-center"
+      >
+        {{ title }}
+      </h2>
+      <div class="select-plan-card">
+        <div
+          *ngIf="noPlan"
+          class="title-no-plan"
+        >
+          محاسبه طرح بر اساس مبلغ سبد خرید شما انجام می‌شود.
+        </div>
+        <div class="basket-amount-box">
+          <div class="title">سبد خرید</div>
+          <div
+            [ngClass]="{ 'no-plan': noPlan }"
+            class="value"
+          >
+            <b>{{ basketAmount | thousands }}</b>
+            <span> ریال </span>
+          </div>
+        </div>
+
+        <ng-container *ngIf="noPlan; else havePlan">
+          <div class="warning-box">
+            <span
+              [icon]="'icon-warning'"
+              size="24"
+              appUiIcon
+            ></span>
+            <p>
+              با توجه به اینکه کمترین مبلغ طرح موجود در حال حاضر ۴۰ میلیون تومان است، مبلغ سبد خرید شما باید بیشتر یا مساوی ۴۰ میلیون تومان
+              باشد.
+            </p>
+          </div>
+          <div class="call-to-action-section">
+            <app-ui-button
+              link="https://digikala.com/cheque/"
+              linkTarget="_blank"
+              >بازگشت به دیجیکالا و تکمیل سبد خرید
+            </app-ui-button>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </section>
+</ng-container>
+
+<app-credit-page-loading *ngIf="gettingData"></app-credit-page-loading>
+<ng-template #havePlan>
+  <div class="card-item-description">مبلغ طرح بر اساس سبد خرید شما تعیین می‌شود.</div>
+  <div class="select-installment-count">
+    <div class="card-item-title">طرح قابل دریافت</div>
+    <div class="card-item-amount">{{ selectedPlan.creditAmount | thousands }} ریال</div>
+    <app-ui-animated-switch-rounded
+      (changed)="onInstallmentChange($event)"
+      [height]="86"
+      [options]="installmentOptions"
+      [selectedOption]="selectedInstallmentOptions"
+      [style]="{
+        width: installmentOptions.length * 165 + 'px',
+        display: 'block',
+      }"
+    ></app-ui-animated-switch-rounded>
+  </div>
+  <div class="installment-selector">
+    <div
+      *ngIf="!gettingData && selectedPlan"
+      class="found-plan"
+    >
+      <div class="result-title-value">
+        <div class="title">نحوه پرداخت اقساط</div>
+        <div class="value">
+          <b>
+            {{ selectedPlan.installmentChequeCount }}
+          </b>
+          فقره چک صیادی
+        </div>
+      </div>
+      <div class="result-title-value">
+        <div class="title">مبلغ هر چک</div>
+        <div class="value">
+          <b>{{ selectedPlan.installmentChequeAmount | thousands }}</b> ریال
+        </div>
+      </div>
+      <div>
+        <div class="result-title-value">
+          <div class="title">مابه‌التفاوت نقد و نسیه</div>
+          <div class="value">
+            <b>{{ selectedPlan.allocationPrepaymentAmount | thousands }}</b>
+            ریال
+          </div>
+        </div>
+        <div class="result-title-value-description">
+          در هنگام خرید {{ selectedPlan.allocationPrepaymentPercentage }}٪ مبلغ طرح را، باید به صورت نقدی پرداخت کنید.
+        </div>
+      </div>
+      <div class="result-title-value">
+        <div class="title">بازپرداخت نهایی</div>
+        <div class="value">
+          <b>{{ selectedPlan.totalAmount | thousands }}</b> ریال
+        </div>
+      </div>
+    </div>
+    <div class="call-to-action-section">
+      <app-ui-button (click)="openDialog()">درخواست طرح</app-ui-button>
+    </div>
+  </div>
+</ng-template>

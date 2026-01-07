@@ -1,0 +1,24 @@
+@if (rateCount() >= minimumCount()) {
+  <ngx-badge
+    [size]="size()"
+    [status]="'neutral'"
+    [mode]="'fill'"
+  >
+    <div class="d-flex align-items-center gap-tiny">
+      <common-icon-dp-icon
+        [icon]="'star'"
+        [iconType]="'bold'"
+        [secondaryColor]="'#3484ff'"
+        [styles]="'color: #3484ff'"
+        [iconSize]="'16'"
+        [gradientMode]="'tint'"
+      ></common-icon-dp-icon>
+      <div>
+        <span class="text-onback-high">{{ roundedRateAmount() }}</span>
+        @if (showCount()){
+          <span class="text-onback-low">{{ '(' + rateCount() + ')' }}</span>
+        }
+      </div>
+    </div>
+  </ngx-badge>
+}

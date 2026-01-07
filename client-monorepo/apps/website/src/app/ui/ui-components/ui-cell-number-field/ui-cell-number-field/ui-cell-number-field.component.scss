@@ -1,0 +1,65 @@
+@import "globals";
+
+.cell-number-field {
+  &.has-error {
+    .input-wrapper input {
+      border-color: $swatch_red_500;
+    }
+  }
+}
+
+.warning {
+  margin-bottom: 20px;
+}
+
+.input-wrapper {
+  .input {
+    border-radius: 16px;
+    border: solid 1px #191919;
+    width: 100%;
+    height: 48px;
+    color: #191919;
+    font-size: rem(16, 16);
+    padding: 0 14px;
+
+    &:focus {
+      box-shadow: none;
+      outline: none;
+      border-color: $primary-blue;
+    }
+  }
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+
+  .input-wrapper {
+    width: 100%;
+    flex-grow: 1;
+    margin-left: 12px;
+  }
+}
+
+.carrier-switch {
+  margin: 24px 0 0;
+  display: none;
+}
+
+.cell-number-field {
+  &.input-only {
+    .input-wrapper {
+      margin-left: 0;
+    }
+  }
+}
+
+@include mediaMobile() {
+  .input-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .carrier-switch {
+    display: block;
+  }
+}

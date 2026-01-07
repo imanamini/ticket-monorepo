@@ -1,0 +1,49 @@
+<div class="d-flex flex-column">
+  <div
+    class="d-flex align-items-center gap-small cursor-pointer border-b-100 border-color-air pb-minus"
+    (click)="onScannerClicked()"
+  >
+    <div class="surface-back radius-huge py-pony px-pony">
+      <common-icon-dp-icon
+        [iconSize]="'20'"
+        [icon]="'qr-scan'"
+        [iconType]="'linear'"
+      ></common-icon-dp-icon>
+    </div>
+
+    <div class="d-flex justify-content-space-between align-items-center gap-tiny w-100">
+      <span class="st-8 text-onback-medium">خرید با کیوآر کد</span>
+      <ngx-button
+        [style]="'link'"
+        [size]="'tiny'"
+        [classNames]="['text-onback-low']"
+        [mode]="'icon-only'"
+        [leftIcon]="{ name: 'arrow-left' }"
+      >
+      </ngx-button>
+    </div>
+  </div>
+  <div
+    class="d-flex align-items-center gap-small cursor-pointer pt-minus"
+    (click)="onBarcodeClicked()"
+  >
+    <div class="surface-back radius-huge py-pony px-pony">
+      <common-icon-dp-icon
+        [iconSize]="'20'"
+        [icon]="'barcode-scan'"
+        [iconType]="'linear'"
+      ></common-icon-dp-icon>
+    </div>
+    <div class="d-flex justify-content-space-between align-items-center gap-tiny w-100">
+      <span class="st-8 text-onback-medium">خرید با بارکد</span>
+      <ngx-button
+        [style]="'link'"
+        [size]="'tiny'"
+        [classNames]="['text-onback-low']"
+        [mode]="'icon-only'"
+        [leftIcon]="{ name: 'arrow-left' }"
+      >
+      </ngx-button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,163 @@
+@import "globals";
+
+:host {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row-reverse;
+}
+
+.header-title {
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 800;
+  color: #000d33;
+  margin-bottom: 40px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  .detail-message {
+    font-size: 14px;
+
+
+  }
+}
+
+.confirm-checkbox-box {
+  margin-top: 16px;
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid #dee3e7;
+  margin-bottom: 16px;
+}
+
+.confirm-checkbox {
+  color: #2c3544;
+  font-weight: 600;
+
+  &.warning-shack-x {
+    animation-name: shakeX;
+    animation-duration: 0.4s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+  }
+
+}
+
+.right-side {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  flex-grow: 1;
+}
+
+.left-side {
+  background: #f0f5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  width: 50%;
+}
+
+.cheque-image {
+  height: 260px;
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  &.purple-cheque {
+    background-image: url('../assets/credit-purple-cheque.png');
+  }
+
+  &.e-note {
+    background-image: url('../assets/credit-e-note.webp');
+  }
+
+  &.based-on-score {
+    background-image: url('../assets/credit-plan-info.svg');
+    width: 100%;
+    max-width: 260px;
+    min-height: 260px;
+  }
+
+  &.installment-cheque {
+    background-image: url('../assets/credit-installment-cheque.svg');
+    max-height: 343px;
+    height: 343px;
+  }
+}
+
+.top-section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ctas {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  .w-40 {
+    width: 40%;
+  }
+}
+
+@keyframes shakeX {
+  0%,
+  to {
+    transform: translateZ(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate3d(-3px, 0, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate3d(3px, 0, 0);
+  }
+}
+
+@media (max-width: 992px) {
+  .cheque-image {
+    max-height: 170px !important;
+  }
+  :host {
+    flex-direction: column-reverse;
+  }
+  .right-side {
+    padding: 24px;
+  }
+  .left-side {
+    padding: 0 48px 24px;
+    margin-right: unset;
+    flex-grow: 0;
+  }
+  .header-title {
+    margin-bottom: 24px;
+  }
+
+  .left-side,
+  .right-side {
+    width: 100%;
+  }
+  .confirm-checkbox-box {
+    margin: 12px 0;
+    padding: 0;
+    border: unset;
+  }
+}

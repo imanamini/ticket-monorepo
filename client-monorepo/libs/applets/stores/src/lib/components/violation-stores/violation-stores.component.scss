@@ -1,0 +1,15 @@
+.stores-wrapper {
+  position: relative;
+
+  .submit-button {
+    position: sticky;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+
+  .stores-list{
+    flex-grow: 1;
+  }
+}
+

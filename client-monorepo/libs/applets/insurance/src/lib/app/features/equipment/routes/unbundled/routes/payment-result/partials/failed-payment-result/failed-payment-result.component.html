@@ -1,0 +1,67 @@
+<div class="payment-result-content">
+
+  <div class="describe">
+    <div class="icon"></div>
+    <div
+            class="title">متاسفانه پرداخت شما ناموفق بود!
+    </div>
+    <div class="description-error">
+      <div class="line-one">شما برای بیمه کردن دستگاه خود تا {{ result?.deadlineDays }} روز دیگر فرصت دارید</div>
+      <div class="line-two">در صورتی که تا قبل از این زمان اقدام به پرداخت هزینه بیمه نکنید دستگاه شما دیگر شامل بیمه
+        نمی‌شود.
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <ui-button
+            (click)="returnToLead()"
+            [style]="{'width':'220px'}">
+      تلاش مجدد
+    </ui-button>
+  </div>
+
+  <div class="mobile-list">
+    <div *ngFor="let result of resultList" class="mobile-list-item">
+      <div class="title">{{ result?.title }}</div>
+      <div class="value">{{ result?.value }}</div>
+    </div>
+    <div class="notification">
+      درصورت کسر شدن مبلغ، وجه موردنظر حداکثر تا ۷۲ ساعت به حساب شما بازکشت داده خواهد شد.
+    </div>
+  </div>
+
+  <div class="more-info-error">
+    <div class="header">
+      <div class="icon"></div>
+      <div class="text"> چنانچه مبلغی از حساب شما کسر شده است، تا ۲۴ ساعت آینده به حساب شما باز خواهد گشت.</div>
+    </div>
+    <div class="body">
+      <div class="list">
+        <div
+                (click)="copy(result.clickable , result?.value)"
+                *ngFor="let result of resultList"
+                [class.clickable]="result.clickable"
+                class="list-item">
+          <div class="title">
+            {{ result?.title }}
+            <span
+                    *ngIf="result.clickable === true"
+                    class="copy-place-holder"> </span>
+          </div>
+          <div
+            #copyItem
+            [id]="result.engName"
+            class="value">{{ result?.value || '--' }}
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="title">درگاه</div>
+          <div class="value">دیجی پی</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

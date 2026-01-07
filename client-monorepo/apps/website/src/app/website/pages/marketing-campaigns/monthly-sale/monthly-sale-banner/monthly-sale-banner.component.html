@@ -1,0 +1,11 @@
+<div class="">
+  <div class="monthly-sale-banner py-large d-flex gap-mega justify-content-center align-items-center">
+    <ng-container *ngFor="let item of templateData?.valuePropositionSection ; let lastIndex = last">
+      <div class="banner-item d-flex flex-column align-items-center justify-content-center">
+        <span class="secondary-title" [innerHTML]="item?.text"></span>
+      </div>
+      <span class="divider" *ngIf="!lastIndex"></span>
+    </ng-container>
+
+  </div>
+</div>

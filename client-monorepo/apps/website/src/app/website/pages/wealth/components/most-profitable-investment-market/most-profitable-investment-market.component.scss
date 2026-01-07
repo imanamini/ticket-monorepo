@@ -1,0 +1,219 @@
+@import "globals";
+
+.most-profitable-investment-market {
+  position: relative;
+  padding: 64px 0 128px 0;
+
+  .title {
+    text-align: center;
+  }
+
+  .subtitle {
+    color: $swatch_steel_500;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.6px;
+    text-align: center;
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .box {
+    margin-top: 34px;
+    border-radius: 40px;
+    border: 1px solid #fff;
+    background: rgba(222, 227, 231, 0.4);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 24px;
+    border-left: 1px solid $swatch_steel_300;
+    padding: 40px;
+
+    .invest-amount,
+    .invest-date {
+      width: 480px;
+      padding: 26px 23px;
+      background-color: #fff;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+
+      .title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: $swatch_steel_900;
+        font-size: 16px;
+        font-weight: 450;
+      }
+    }
+
+    ::ng-deep {
+      .dg-hint-message {
+        display: none;
+      }
+    }
+
+    .invest-input {
+      ::ng-deep {
+        .ui-amount-input {
+          input {
+            font-size: 28px;
+          }
+        }
+      }
+    }
+
+    .invest-date {
+      gap: 16px;
+
+      .date-selects {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+
+        .select-input {
+          flex: 1 1;
+        }
+      }
+    }
+
+    .cta {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .left {
+    padding: 40px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 14px;
+
+    .hint {
+      color: $swatch_steel_900;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: -0.42px;
+
+      ul li {
+        list-style: inside;
+      }
+    }
+
+    .most-profitable-hint {
+      padding: 29px 40px;
+      border-radius: 12px;
+      background: #fff;
+      width: 100%;
+      color: $swatch_steel_900;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: -0.42px;
+    }
+  }
+
+  .chart {
+    width: 560px;
+    height: 304px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 0 40px 40px;
+  }
+
+  .cool-background {
+    z-index: -1;
+    top: 70px;
+    right: 23%;
+    position: absolute;
+    width: 676px;
+    height: 778px;
+    background: url('../shared-assets/cool-background.png') center center/cover no-repeat;
+  }
+}
+
+@media (max-width: 1280px) {
+  .most-profitable-investment-market {
+    padding: 32px 0;
+
+    .cool-background {
+      display: none;
+    }
+
+    .box {
+      flex-direction: column;
+      padding: 40px;
+      gap: 40px;
+    }
+
+    .right {
+      border-left: unset;
+      padding: 0;
+      width: 100%;
+
+      .invest-amount,
+      .invest-date,
+      .cta {
+        width: 100%;
+      }
+    }
+
+    .left {
+      padding: 0;
+    }
+
+    .cool-background {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .most-profitable-investment-market {
+    background: rgba(222, 227, 231, 0.4);
+    padding: 16px 0;
+
+    .subtitle {
+      font-size: 14px;
+    }
+
+    .box {
+      padding: 0;
+      background: unset;
+      border: unset;
+      margin-top: 16px;
+      gap: 16px;
+    }
+
+    .right {
+      gap: 16px;
+    }
+
+    .left {
+      width: 100%;
+
+      .most-profitable-hint {
+        padding: 12px;
+      }
+    }
+
+    .chart {
+      width: 100%;
+      padding: 0 16px 16px;
+    }
+  }
+}

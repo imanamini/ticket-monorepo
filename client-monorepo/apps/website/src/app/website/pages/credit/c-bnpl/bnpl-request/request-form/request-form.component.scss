@@ -1,0 +1,161 @@
+@import "../../../../../../style/globals";
+
+
+
+.request-form {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+  justify-content: center;
+
+  &.submitted {
+    .title {
+      color: $swatch_steel_900;
+      font-size: 31px;
+      font-weight: 1000;
+      line-height: 150%;
+    }
+
+    .artwork {
+      background: url('../../../../../../../assets/images/c-bnpl-v2/submitted-bnpl-form.png') no-repeat center center/cover;
+      height: 467px;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+    }
+
+    .ctas {
+      margin-top: 32px;
+    }
+  }
+
+  .artwork {
+    background: url('../../../../../../../assets/images/c-bnpl-v2/request-form.png') no-repeat center center/cover;
+    width: 515px;
+    height: 540px;
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .title {
+    color: $swatch_steel_900;
+    font-size: 34px;
+    font-weight: 1000;
+    line-height: 150%;
+  }
+
+  .subtitle {
+    color: $swatch_steel_500;
+    font-size: 16px;
+    font-weight: 200;
+    line-height: 200%;
+    letter-spacing: -0.48px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .forms {
+    margin-top: 24px;
+
+    > div {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+
+      > * {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .ctas {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4px;
+    gap: 24px;
+
+    .cta {
+      flex-grow: 1;
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .request-form {
+    flex-direction: column;
+    gap: 0;
+
+    &.submitted {
+      .content {
+        width: 400px;
+      }
+    }
+
+    .artwork {
+      height: 460px;
+      width: 445px;
+    }
+
+    .content {
+      width: 386px;
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .request-form {
+    &.submitted {
+      .artwork {
+        width: 320px;
+        height: 300px;
+      }
+
+      .content {
+        width: 100%;
+      }
+
+      .title {
+        font-size: 17px;
+        font-weight: 950;
+        line-height: 160%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .subtitle {
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 200%;
+        letter-spacing: -0.7px;
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    .artwork {
+      width: 360px;
+      height: 380px;
+    }
+
+    .title {
+      font-size: 17px;
+      font-weight: 950;
+    }
+
+    .title,
+    .subtitle {
+      display: flex;
+      justify-content: center;
+    }
+
+    .content {
+      width: 100%;
+    }
+  }
+}

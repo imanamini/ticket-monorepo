@@ -1,0 +1,168 @@
+@import "globals";
+
+.c-bnpl-intro {
+
+  .container {
+    display: flex;
+    gap: 48px;
+
+    ::ng-deep {
+      section {
+        padding: 32px 0;
+      }
+    }
+
+    .content {
+      width: 490px;
+
+      .descriptions {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 200%;
+        letter-spacing: -0.07px;
+        margin-top: 20px;
+
+        .desc1 {
+          display: flex;
+          gap: 8px;
+          margin-bottom: 16px;
+
+          span {
+            margin-right: 6px;
+          }
+        }
+
+        .desc2 {
+          display: flex;
+          gap: 6px;
+          padding: 16px;
+          background-color: $swatch_purple_100;
+          border-radius: 12px;
+
+          .star-img {
+            padding: 3px 2px 3px 3px;
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+    }
+  }
+
+  .video {
+    width: 588px;
+    height: 328px;
+
+    video {
+      border-radius: 14px;
+    }
+  }
+
+  .title {
+    color: $swatch_steel_900;
+    line-height: 150%;
+    font-size: 34px;
+    font-weight: 1000;
+  }
+
+  .subtitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: $swatch_steel_900;
+    font-size: 16px;
+    font-weight: 200;
+    line-height: 200%;
+    letter-spacing: -0.48px;
+  }
+
+  .ctas {
+    margin-top: 32px;
+    display: flex;
+    gap: 24px;
+
+    .cta {
+      width: 50%;
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .c-bnpl-intro {
+
+    .container {
+      flex-direction: column-reverse;
+      gap: 64px;
+      align-items: center;
+
+      ::ng-deep {
+        section {
+          padding: 0;
+        }
+      }
+
+      .content {
+        width: 100%;
+
+        .descriptions {
+          letter-spacing: -0.7px;
+        }
+      }
+    }
+
+    .title {
+      text-align: center;
+    }
+
+    .subtitle {
+      display: flex;
+      justify-content: center;
+    }
+
+    .video {
+      max-width: 100%;
+      width: unset;
+      height: unset;
+    }
+
+    .ctas {
+      .cta {
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+@media (max-width: 744px) {
+  .c-bnpl-intro {
+
+    .container {
+      gap: 32px;
+
+      .content {
+        .descriptions {
+          .desc2 {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .title {
+      font-size: 17px;
+      font-weight: 950;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    .ctas {
+      margin-top: 16px;
+      gap: 16px;
+    }
+  }
+}

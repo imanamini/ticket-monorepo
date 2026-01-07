@@ -1,0 +1,46 @@
+.credit-fp-groups-card {
+  direction: rtl;
+
+  .flex-auto {
+    flex: 0 0 auto;
+  }
+
+  .diamond {
+    width: 20px;
+    height: 20px;
+    background-size: 100% 100%;
+
+    &.diamond-silver {
+      background-image: url("../../../assets/icons/subscription/credit-diamond-silver.webp");
+    }
+
+    &.diamond-gold {
+      background-image: url("../../../assets/icons/subscription/credit-diamond-gold.webp");
+    }
+
+    &.bolder {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    &.diamond-bronze {
+      background-image: url("../../../assets/icons/subscription/credit-diamond-bronze.webp");
+    }
+
+    &.diamond-platinium {
+      background-image: url("../../../assets/icons/subscription/credit-diamond-platinum.webp");
+    }
+
+    &.diamond-brilliance {
+      background-image: url("../../../assets/icons/subscription/credit-diamond-brilliance.webp");
+    }
+
+    &.diamond-diamond {
+      background-image: url("../../../assets/icons/subscription/credit-diamond-diamond.webp");
+    }
+
+    &.diamond-titanium {
+      background-image: url("../../../assets/icons/subscription/credit-diamond-titanium.webp");
+    }
+  }
+}

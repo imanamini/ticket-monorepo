@@ -1,0 +1,13 @@
+@import "globals";
+
+:host {
+  display: block;
+}
+
+.message {
+  padding: 8px 12px;
+  font-size: rem(12, 16);
+  line-height: 1.5em;
+  border: 1px solid #4c4c4c;
+  border-radius: 16px;
+}

@@ -1,0 +1,35 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+.hint-container {
+  @include flex-column();
+  gap: 16px;
+  width: 100%;
+
+  .screens {
+    @include flex-column();
+    width: 100%;
+    gap: 16px;
+
+    .info-container {
+      @include flex-row();
+      gap: 8px;
+
+      p {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 24px;
+      }
+    }
+
+    .cards {
+      @include flex-start();
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+  }
+
+  .phone-image {
+    height: 148px;
+    width: 148px;
+  }
+}

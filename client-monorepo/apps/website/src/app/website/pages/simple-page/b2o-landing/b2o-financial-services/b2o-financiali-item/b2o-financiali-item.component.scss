@@ -1,0 +1,22 @@
+.service-item {
+  border-radius: 20px;
+  border: 1px solid #DFE1E5;
+  background: #FFF;
+  width: 270px;
+  height: 200px;
+
+img
+{
+  width: 75px;
+  height: 75px;
+}
+}
+
+
+@media screen and (max-width: 744px) {
+  .service-item{
+   width: 250px;
+    height: auto;
+  }
+
+}

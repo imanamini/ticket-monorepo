@@ -1,0 +1,66 @@
+<div class="model-picker">
+  @if (loading$ | async) {
+    <ui-loading-spinner></ui-loading-spinner>
+  } @else {
+    @if (showSelectedModel) {
+      <used-selected-brand-model
+        [subTitle]="selectedModel?.title"
+        [title]="'مدل انتخاب ‌شده'">
+      </used-selected-brand-model>
+      <div class="divider"></div>
+    }
+
+    <div class="hint">
+      {{ showSelectedModel ? 'می‌خواهید مدل دیگری را انتخاب کنید؟' : 'مدل دستگاه خود را انتخاب کنید:' }}
+      <div class="d-flex justify-content-center	align-items-center gap-tiny text-oninvert-brand"
+           (click)="handleButtonClick()">
+        <ngx-icon name="edit-square" class="text-oninvert-brand" [iconSize]="'18px'"></ngx-icon>
+        ثبت دستی
+      </div>
+    </div>
+
+    <div class="search-input">
+      <ng-container [formGroup]="form">
+        <ui-form-field
+          (blur)="scrollToTop()"
+          [error]="form.controls.phrase.errors"
+          [hasCleaner]="true"
+          formControlName="phrase"
+          inputType="search"
+          label="جستجو در مدل ها">
+        </ui-form-field>
+      </ng-container>
+    </div>
+
+    @if (showNotFound) {
+      <div class="not-found">
+        <used-brand-model-404
+          [isBrand]="false">
+        </used-brand-model-404>
+      </div>
+    } @else {
+      <div class="models-list">
+        @for (model of models; let i = $index; track model.id) {
+          <used-product-model-card
+            (modelClicked)="handleModelSelect($event)"
+            [id]="model.id"
+            [isActive]="selectedModel?.id === model.id"
+            [productModel]="model.englishTitle">
+          </used-product-model-card>
+        }
+      </div>
+    }
+  }
+
+  @if (!showNotFound) {
+    <journey-buttons
+      (nextClicked)="confirm()"
+      [disableNext]="!selectedModel"
+      [hasBorder]="true"
+      [hideBackBtn]="true"
+      [idValue]="'used-model-picker'"
+      [isReversed]="false"
+      [nextText]="'تایید مدل'">
+    </journey-buttons>
+  }
+</div>

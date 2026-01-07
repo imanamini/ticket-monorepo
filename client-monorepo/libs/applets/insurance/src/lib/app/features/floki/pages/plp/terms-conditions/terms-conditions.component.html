@@ -1,0 +1,23 @@
+<div class="terms-conditions-container d-flex flex-column align-items-center justify-content-space-between">
+  <floki-header
+    (iconClickHandler)="closeBottomSheet()"
+    [class]="'icon-color'"
+    [hasIcon]="true"
+    [iconName]="'close'"
+    [titleTextAlign]="'center'"
+    [title]="'شرایط و قوانین استفاده'"
+    class="py-medium"
+  >
+  </floki-header>
+  <div class="container d-flex flex-column py-big px-medium">
+    {{ termsAndConditions() }}
+  </div>
+  <ngx-button
+    (clickHandler)="closeBottomSheet()"
+    [fullWidth]="true"
+    [size]="'large'"
+    [style]="'fill'"
+    class="p-medium">
+    خواندم
+  </ngx-button>
+</div>

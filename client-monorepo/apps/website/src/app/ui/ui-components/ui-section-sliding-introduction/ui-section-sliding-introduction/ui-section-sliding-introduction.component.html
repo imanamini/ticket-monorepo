@@ -1,0 +1,87 @@
+<section>
+  <div class="container">
+    <div
+      [style.backgroundImage]="banner && banner.url ? 'url(' + banner.url + ')' : ''"
+      class="banner"
+    >
+      <img
+        *ngIf="data.mainIcon && data.mainIcon.url"
+        [ngSrc]="data.mainIcon.url"
+        class="main-icon"
+        height="152"
+        width="152"
+      />
+      <div class="titles">
+        <div class="titles-container">
+          <div
+            *ngIf="data.title"
+            class="title"
+          >
+            <h1>{{ data.title }}</h1>
+          </div>
+        </div>
+      </div>
+      <div class="slider-artwork">
+        <swiper-container
+          appSwiper
+          #swiper="appSwiper"
+          *ngIf="data.sliderItems && data.sliderItems.length > 0"
+          [config]="swiperArtworkConfig"
+        >
+          <swiper-slide
+            *ngFor="let slide of data.sliderItems"
+            class="swiper-slide"
+          >
+            <div class="slider-text">
+              <span
+                *ngIf="slide && slide.sliderText"
+                [innerHTML]="slide.sliderText"
+              ></span>
+            </div>
+            <img
+              *ngIf="slide && slide.artwork && slide.artwork.url"
+              [src]="slide.artwork.url"
+              class="artwork"
+            />
+          </swiper-slide>
+        </swiper-container>
+
+        <!--        <swiper-->
+        <!--          *ngIf="data.sliderItems && data.sliderItems.length > 0"-->
+        <!--          [config]="swiperArtworkConfig"-->
+        <!--        >-->
+        <!--          <ng-container *ngFor="let slide of data.sliderItems">-->
+        <!--            <ng-template swiperSlide>-->
+        <!--              <div class="slider-text">-->
+        <!--                <span-->
+        <!--                  *ngIf="slide && slide.sliderText"-->
+        <!--                  [innerHTML]="slide.sliderText"-->
+        <!--                ></span>-->
+        <!--              </div>-->
+        <!--              <img-->
+        <!--                *ngIf="slide && slide.artwork && slide.artwork.url"-->
+        <!--                [src]="slide.artwork.url"-->
+        <!--                class="artwork"-->
+        <!--              />-->
+        <!--            </ng-template>-->
+        <!--          </ng-container>-->
+        <!--        </swiper>-->
+      </div>
+      <div
+        (click)="scrollToElement(scrollToElementId)"
+        class="bottom-cta"
+      >
+        <img
+          height="36"
+          ngSrc="../../assets/credit-campaign/dent.svg"
+          width="208"
+        />
+        <div
+          icon="icon-charon-down-light-blue"
+          size="35"
+          appUiIcon
+        ></div>
+      </div>
+    </div>
+  </div>
+</section>

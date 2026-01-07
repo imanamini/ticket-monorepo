@@ -1,0 +1,13 @@
+<div class="le-text-card">
+  <div class="le-icon">
+    <img
+      *ngIf="payload.icon && payload.icon.url"
+      [src]="payload.icon.url"
+      alt=""
+    />
+  </div>
+  <div
+    [innerHTML]="payload.steps[0].description"
+    class="le-description"
+  ></div>
+</div>

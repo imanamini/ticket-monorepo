@@ -1,0 +1,16 @@
+.content {
+  border-radius: 12px;
+  // TODO
+  //background-color: $swatch_white_900;
+  //border: 1px solid $swatch_steel_100;
+  padding: 10px 12px;
+}
+
+.service-item:not(:last-child) {
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #F2F5F8;
+  }
+}

@@ -1,0 +1,57 @@
+@import "insurance/src/lib/app/style/once/global";;
+
+::ng-deep {
+  .drag-scroll-content {
+    width: initial !important;
+  }
+
+  .drag-scroll-content::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.horizontal-steps {
+  height: 100%;
+
+  .wrapper {
+    height: 100%;
+
+    .items {
+      height: 100%;
+      position: relative;
+      @include flex-center-start;
+
+      .item {
+        min-width: var(--width-per-step);
+        cursor: pointer;
+        height: 100%;
+        @include flex-center;
+
+        .text {
+          align-self: center;
+          text-align: center;
+          margin: 0 !important;
+          font-weight: 600;
+          cursor: pointer;
+
+          &.selected {
+            color: $primary-blue;
+          }
+        }
+      }
+
+      &:before {
+        transition: 200ms ease all;
+        content: '';
+        position: absolute;
+        bottom: 0;
+        height: 2px;
+        width: var(--width-per-step);
+        background-color: $primary-blue;
+        right: calc(var(--width-per-step) * var(--button-bar-position));
+      }
+    }
+  }
+}
+
+

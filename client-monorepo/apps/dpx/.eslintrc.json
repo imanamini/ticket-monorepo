@@ -1,0 +1,27 @@
+{
+  "ignorePatterns": ["!**/*"],
+  "extends": ["../../.eslintrc.json"],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "project": ["./tsconfig.*?.json"]
+  },
+  "rules": {
+    "@angular-eslint/component-selector": [
+      "error",
+      {
+        "type": "element",
+        "prefix": "dpx",
+        "style": "kebab-case"
+      }
+    ],
+    "@angular-eslint/directive-selector": [
+      "error",
+      {
+        "type": "attribute",
+        "prefix": "dpx",
+        "style": "camelCase"
+      }
+    ]
+  }
+}

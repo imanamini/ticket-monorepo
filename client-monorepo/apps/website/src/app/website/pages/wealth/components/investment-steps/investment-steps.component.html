@@ -1,0 +1,21 @@
+<div class="wealth-steps">
+  <div class="container">
+    <h2 class="title">{{ investmentStepsData.title }}</h2>
+    <div class="steps">
+      <div
+        *ngFor="let step of investmentStepsData.steps"
+        class="step"
+      >
+        <div class="wrapper-circle">
+          <span
+            appUiIcon
+            icon="icon-check-white"
+          ></span>
+        </div>
+        <div class="step-title">{{ step.stepTitle }}</div>
+        <div class="delimiter"></div>
+        <div class="step-description">{{ step.stepDescription }}</div>
+      </div>
+    </div>
+  </div>
+</div>

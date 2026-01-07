@@ -1,0 +1,26 @@
+<div>
+  <app-credit-calculator-v3
+    (selectedPlan)="selectedPlan($event)"
+    [detailTitle]="'طرح‌های موجود'"
+    [maxLoan]="creditAmount"
+    [plans]="filteredPlans"
+    [showFundProviderIcon]="showFundProviderIcon"
+    [showInterestPercentage]="showInterestPercentage"
+    class="calculator"
+  ></app-credit-calculator-v3>
+
+  <div class="help-section">
+    <app-ui-complex-accordion
+      *ngIf="help"
+      [isDisabled]="true"
+      [section]="help"
+    ></app-ui-complex-accordion>
+  </div>
+  <app-ui-button
+    (click)="onShowDetailLoan()"
+    [id]="'accepted-request'"
+    size="BIG"
+  >
+    درخواست وام
+  </app-ui-button>
+</div>

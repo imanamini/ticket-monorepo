@@ -1,0 +1,36 @@
+# Stage 1
+#stage 1
+FROM registry.mydigipay.info/cicd/generic/node-20.12.2:latest as build-step
+# argument
+ARG configuration=production
+ARG registryUrl
+
+#copy the file
+WORKDIR workspace
+# Copy the files
+COPY package.json ./
+COPY pnpm-lock.yaml ./
+COPY .npmrc ./
+
+RUN npx pnpm install --frozen-lockfile
+COPY . .
+
+RUN npx nx reset
+RUN npx nx build wealth --configuration=${configuration} --outputPath=dist/apps/app
+RUN ls -la dist/apps/app
+RUN pwd dist/apps/app
+
+
+# Stage 2
+FROM registry.mydigipay.info/cicd/generic/nginx-wealth:latest
+COPY --from=build-step /workspace/dist/apps/app/browser /var/www/
+
+#Copy nginx configuration files
+COPY ./apps/wealth/docker/nginx/conf.d /etc/nginx/conf.d
+
+#expose port 80
+EXPOSE 80
+
+#run nginx
+CMD ["nginx" , "-g", "daemon off;"]
+
