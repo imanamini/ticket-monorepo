@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import JSEncrypt from 'jsencrypt/bin/jsencrypt.min';
+import JSEncrypt from 'jsencrypt';
 import { CardApiService } from './card-api.service';
 import { Bank } from './models/bank.model';
 import { CardType } from './models/card-type-enum';
