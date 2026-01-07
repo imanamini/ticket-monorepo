@@ -50,13 +50,21 @@ export class CardService {
       pin: password,
     };
 
-    return encrypt.encrypt(JSON.stringify(dto));
+    const encrypted = encrypt.encrypt(JSON.stringify(dto));
+    if (encrypted === false) {
+      throw new Error('Encryption failed');
+    }
+    return encrypted;
   }
 
   encryptCardNumber(certText, cardNumber): string {
     const encrypt = new JSEncrypt();
     encrypt.setPublicKey(certText);
-    return encrypt.encrypt(cardNumber);
+    const encrypted = encrypt.encrypt(cardNumber);
+    if (encrypted === false) {
+      throw new Error('Encryption failed');
+    }
+    return encrypted;
   }
 
   async sendDynamicPass(
