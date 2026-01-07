@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Base64 } from 'js-base64';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { fixActivityInfoArray } from 'src/app/utils/strings';
+import { fixActivityInfoArray } from '../../utils/strings';
 import {
   PaymentResultDataModel, PaymentResultEnumMapper,
   PaymentResultServiceResponse
